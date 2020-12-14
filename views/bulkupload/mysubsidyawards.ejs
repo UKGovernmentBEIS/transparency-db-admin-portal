@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/headersubsidy.ejs') %>
+
+  <script type="text/javascript" language="javascript" src="
+  http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
+
+<script>
+//  $(document).ready(function () {
+//     $("#Subsidy_awardno_head").click(function () {
+//       console.log("check click")
+//         $(".govuk-checkboxes__input").prop('checked', $(this).prop('checked'));
+//     });
+
+//     $(".round").on('click', function(event){
+//       console.log("pageination button click1")
+//         $("input[type='checkbox']").attr("checked",false);
+//     });
+
+    // $(".Subsidy_awardNo").on('click', function(event){
+    //     $(".Subsidy_awardno_head").attr("checked",false);
+    //     //  $(".Subsidy_awardno_head").prop('checked', $(this).prop('checked'));
+    // });
+
+// });
+
+//select all checkboxes
+$(document).ready(function () {
+
+$("#select_all").change(function(){  //"select all" change 
+    $(".checkbox").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+});
+
+//".checkbox" change 
+$('.checkbox').change(function(){ 
+	//uncheck "select all", if one of the listed checkbox item is unchecked
+    if(false == $(this).prop("checked")){ //if this item is unchecked
+        $("#select_all").prop('checked', false); //change "select all" checked status to false
+    }
+	//check "select all" if all checkbox items are checked
+	if ($('.checkbox:checked').length == $('.checkbox').length ){
+		$("#select_all").prop('checked', true);
+	}
+});
+
+    $(".round").on('click', function(event){
+      alrt("pageination button click1")
+        $("input[type='checkbox']").attr("checked",false);
+    });
+
+});
+
+</script>
+
+
+<body>
+ <div class="govuk-width-container ">
+    
+
+   <main class="govuk-main-wrapper " id="main-content" role="main"> 
+
+    <div class="govuk-grid-row">   
+        <div class="govuk-grid-column-full">
+         <nav class="govuk-sub-navigation" aria-label="Sub navigation">
+             <ul class="govuk-sub-navigation__list">
+             <li class="govuk-sub-navigation__item">
+               <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidyawards">
+                 My subsidy awards
+               </a>
+             </li>      
+             <li class="govuk-sub-navigation__item">
+               <a class="govuk-sub-navigation__link" href="/addsubsidyaward">
+                 Add a subsidy award
+               </a>
+             </li>      
+             <li class="govuk-sub-navigation__item">
+               <a class="govuk-sub-navigation__link" href="/bulkuploadsubsidy">
+                 Bulk upload subsidy awards
+               </a>
+             </li>      
+              
+             <li class='govuk-sub-navigation__item head-right'>
+              <a class="govuk-sub-navigation__link" href="/loginfirstpage">
+                Signout 
+              </a>  
+            </li>
+            <li class='govuk-sub-navigation__item head-right'>
+              <a class="govuk-sub-navigation__link" href="/loginfirstpage">
+                Your account 
+              </a>   
+            </li>
+            </ul>  
+          </nav> 
+        
+         </div>
+            
+        </div>
+       
+       
+
+
+    <h1 class="govuk-heading-xl">My subsidy awards</h1>
+  
+            
+    <div id="Subsidy_Control_Number-hint" class="govuk-hint">
+      A list of all the subsidy awards worked upon by you.
+     </div>
+
+    <hr />
+
+    <form action='/cancelmysubsidy'  method="POST">     
+      <button class="govuk-button govuk-button--secondary"  type="Submit" >
+        Delete 
+      </button>  
+      </form>
+
+    <form action="/collectcheckbox" method="GET" novalidate="">
+      
+
+    <section>
+              <table class="govuk-table" id="datatable">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">
+                          <div class="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input Subsidy_awardno_head" id="select_all" name="Subsidy_awardNo" type="checkbox" value="Subsidy_awardNo">
+                            <label class="govuk-label govuk-checkboxes__label_padding govuk-checkboxes__label " for="Subsidy awardNo" id='Subsidy_awardno_lb'>
+                              <b>Subsidy awardNo</b>
+                            </label>
+                             </div>
+                            </div>
+                        </th>
+                        <th scope="col" class="govuk-table__header">Subsidy measure title</th>
+                        <th scope="col" class="govuk-table__header">Status</th>
+                        <th scope="col" class="govuk-table__header">Beneficiary name</th>
+                        <th scope="col" class="govuk-table__header">Granting authority</th>
+                        <th scope="col" class="govuk-table__header govuk-table__header--numeric">Subsidy amount</th>
+                    </tr >
+                </thead>
+                <tbody class="govuk-table__body">
+                    <% awards.awards.forEach(function(item) { %>
+                    <tr>
+                        <td class="govuk-table__cell">
+                          <div class="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input checkbox Subsidy_awardNo" id="Subsidy_awardNo" name="check[]" type="checkbox" value="Subsidy awardNo">
+                                <label class="govuk-label govuk-checkboxes__label" for="Subsidy awardNo">
+                                    <%= item.SubsidyawardNo %>
+                                </label>
+                                 </div>
+                                 </div>
+                            
+                        
+                        
+                        </td>
+                        <td class="govuk-table__cell"><%= item.Subsidymeasuretitle %></td>
+                        <td class="govuk-table__cell"><%= item.Status %></td>
+                        <td class="govuk-table__cell"><%= item.Beneficiaryname %></td>
+                        <td class="govuk-table__cell"><%= item.Grantingauthority %></td>
+                        <td class="govuk-table__cell govuk-table__cell--numeric"><%= item.Subsidyamount %></td>
+                    </tr>
+
+                    <% } ); %>
+                   
+                </tbody>
+                
+            </table>
+            <div id="pagination" class="pagination">
+                <div class="col first">
+                    <p class="pagination-label">
+                        Viewing <span>1-10</span> of <span>36</span>
+                    </p>
+                </div>
+                <div class="col last">
+                 
+                    <a href="#" id="paginationlink" class="first round"><span style='font-size:20px;'>&#8592;</span></a>
+                    <a href="#" id="paginationlink" class="previous round">Previous Page</a>
+                    <a href="#" id="paginationlink" class="round btn-page active">1</a>
+                    <a href="#" id="paginationlink" class="round btn-page">2</a>
+                    <a href="#" id="paginationlink" class="round btn-page">3</a>
+                    <a href="#" id="paginationlink" class="round btn-page">4</a>
+                    <a href="#" id="paginationlink" class="next round">Next Page</a>
+                    <a href="#" id="paginationlink" class="last round"><span style='font-size:20px;'>&#8594;</span></a>
+                </div>
+                
+                <!-- <div class="col last">
+                    Show
+                    <select class="cmb-row-count">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="15">15</option>                        
+                    </select>
+                    Rows
+                </div> -->
+            
+    </section>
+      <br />
+    <!-- <button class="govuk-button govuk-!-margin-right-1" data-module="govuk-button" >
+      Submit
+    </button> -->
+
+  </form>    
+    
+   
+   </main>
+</div>
+</body>
+
+<%- include('../partials/footer.ejs') %>
+</html>

@@ -1,0 +1,49 @@
+
+
+<!DOCTYPE html>
+<html>
+  <%- include('../partials/headersubsidy.ejs') %>
+
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-panel govuk-panel--confirmation">
+          <h1 class="govuk-panel__title">
+            Award submitted for approval 
+          </h1>
+          <h3 class="govuk-panel__body">
+            Subsidy award number <%= locals.Subsidy_Control_Number_Global_Substring %>
+          </h3>
+         </div>
+
+         <br />
+
+         <h2 class="govuk-heading-m">What happens next</h2>
+
+         <p class="govuk-body">1. The award has been submitted for approval and is now in 'Finalised' state.</p>
+         <p class="govuk-body">2. Once approved, by an approver, it will be published.</p>
+         <p class="govuk-body">3. If rejected, you will receive the notification with the reason</p>
+        <br /> 
+        <form action="/mysubsidyawards" method="GET" novalidate="">
+       <button class="govuk-button" data-module="govuk-button" >Proceed to My subsidy awards</button>
+       </form>
+
+       <form action="/addsubsidyaward" method="GET"  >
+        <div>
+        <button class=" govuk-button_cancel_xl govuk-button--secondary " >
+          Add another award
+        </button>  
+      </div>     
+      </form> 
+
+      </div>
+    </div>
+  </main>
+</div>
+
+
+<%- include('../partials/footer.ejs') %>
+</html>
+
+
