@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>GOV.UK - Public user search page</title>
+  </head>
+  <!-- <%- include('../partials/header.ejs') %> -->
+  <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css" />
+ 
+  <script
+    type="text/javascript"
+    src="/assets/javascripts/pagination.class.js"
+  ></script>
+  <script
+    type="text/javascript"
+    src="/assets/javascripts/script.js"
+    defer
+  ></script>
+  <script src="/assets/javascripts/vendor/modernizr.js"></script>
+
+  <!-- <%- include('../partials/headersubsidy.ejs') %> -->
+  <%- include('../partials/header.ejs') %>
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper" id="main-content" role="main">
+      <legend
+        class="govuk-fieldset__legend govuk-fieldset__legend--l form-group"
+      >
+        <h1 class="govuk-fieldset__heading">
+          Sign into the Transparency Database
+        </h1>
+      </legend>
+      <br />
+      <form action="/beisadmindashboard" method="POST" >
+      <div class="govuk-grid-row">
+        <div class="govuk-form-group govuk-grid-column-two-thirds">
+          <legend class="govuk-fieldset__legend">
+            <label class="label" for="sort">Select user</label>
+          </legend>
+          <select
+            class="govuk-select govuk-grid-column-two-thirds"
+            id="sort"
+            name="sort"
+          >
+            <option value="" disabled selected>38 Options Available</option>
+            <option value="published">Recently published</option>
+            <option value="updated">Recently updated</option>
+            <option value="views">Most views</option>
+            <option value="comments">Most comments</option>
+          </select>
+        </div>
+        <div class="govuk-form-group govuk-grid-column-two-thirds">
+          <legend class="govuk-fieldset__legend">
+            <label class="label" for="sort">Select the role you have</label>
+          </legend>
+          <select
+            class="govuk-select govuk-grid-column-two-thirds"
+            id="sort"
+            name="sort"
+          >
+            <option value="" disabled selected>4 Roles Available</option>
+            <option value="published">Recently published</option>
+            <option value="updated">Recently updated</option>
+            <option value="views">Most views</option>
+            <option value="comments">Most comments</option>
+          </select>
+        </div>
+        <div class="govuk-form-group govuk-grid-column-two-thirds">
+          <legend class="govuk-fieldset__legend">
+            <label class="label" for="sort">
+              Select the granting authority
+            </label>
+          </legend>
+          <select
+            class="govuk-select govuk-grid-column-two-thirds"
+            id="sort"
+            name="sort"
+          >
+            <option value="" disabled selected>
+              43 Granting Authorities Available
+            </option>
+            <option value="published">Recently published</option>
+            <option value="updated">Recently updated</option>
+            <option value="views">Most views</option>
+            <option value="comments">Most comments</option>
+          </select>
+        </div>
+        <div class="govuk-form-group govuk-grid-column-two-thirds">
+          <p class="govuk-body">
+            <a class="govuk-link" href="/loginforgetpassword" >
+              I have forgotten my password
+            </a>
+          </p>
+          <button
+            class="govuk-button govuk-login-button"
+            data-module="govuk-button"
+          >
+            Sign in
+          </button>
+        </div>
+      </div>
+    </form>
+    </main>
+  </div>
+
+  <%- include('../partials/footer.ejs') %>
+  <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+  <script src="/assets/javascripts/accordion/govuk-frontend.js"></script>
+  <script src="/assets/javascripts/accordion/example.js"></script>
+  <link
+    href="/assets/stylesheet/govuk-transparencyDb.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+</html>
