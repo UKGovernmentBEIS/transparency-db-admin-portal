@@ -39,7 +39,10 @@ app.locals.Legal_Granting_Date_Month_Global;
 app.locals.Legal_Granting_Date_Year_Global;
 app.locals.Goods_or_Services_Global;
 app.locals.Spending_Region_Global;
+<<<<<<< HEAD
 app.locals.Spending_Sector_Global;
+=======
+>>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
 app.locals.GetMonthName;
 app.locals.file_upload_name;
 
@@ -51,7 +54,11 @@ app.locals.errorsvalidationpass = [];
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
 app.get('/',(req, res) => {
+<<<<<<< HEAD
   res.render('bulkupload/logintransparency')
+=======
+  res.render('accessmanagement/loginfirstpage')
+>>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
 })
 
 // app.get('/',(req, res) => {
@@ -115,6 +122,7 @@ app.use('/addsubsidyreview',addsubsidyreview);
 var submitforapproval = require('./routes/submitforapproval');
 app.use('/submitforapproval',submitforapproval);
 
+<<<<<<< HEAD
 var beisadmindashboard = require('./routes/beisadmindashboard');
 app.use('/beisadmindashboard',beisadmindashboard);
 
@@ -123,6 +131,8 @@ app.use('/mygrantingauthority',mygrantingauthority);
 
 var editgrantingauthority = require('./routes/editgrantingauthority');
 app.use('/editgrantingauthority',editgrantingauthority);
+=======
+>>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
 
 
 

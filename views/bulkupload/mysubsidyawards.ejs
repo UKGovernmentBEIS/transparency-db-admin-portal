@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
   <%- include('../partials/header.ejs') %>
 
   <script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -8,6 +9,33 @@
 
    <script>
 
+=======
+  <%- include('../partials/headersubsidy.ejs') %>
+
+  <script type="text/javascript" language="javascript" src="
+  http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
+
+<script>
+//  $(document).ready(function () {
+//     $("#Subsidy_awardno_head").click(function () {
+//       console.log("check click")
+//         $(".govuk-checkboxes__input").prop('checked', $(this).prop('checked'));
+//     });
+
+//     $(".round").on('click', function(event){
+//       console.log("pageination button click1")
+//         $("input[type='checkbox']").attr("checked",false);
+//     });
+
+    // $(".Subsidy_awardNo").on('click', function(event){
+    //     $(".Subsidy_awardno_head").attr("checked",false);
+    //     //  $(".Subsidy_awardno_head").prop('checked', $(this).prop('checked'));
+    // });
+
+// });
+>>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
 
 //select all checkboxes
 $(document).ready(function () {
@@ -71,7 +99,11 @@ $('.checkbox').change(function(){
             </li>
             <li class='govuk-sub-navigation__item head-right'>
               <a class="govuk-sub-navigation__link" href="/loginfirstpage">
+<<<<<<< HEAD
                 My account 
+=======
+                Your account 
+>>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
               </a>   
             </li>
             </ul>  
@@ -84,6 +116,7 @@ $('.checkbox').change(function(){
        
 
 
+<<<<<<< HEAD
     <h1 class="govuk-heading-xl">Subsidy measure search</h1>
   
             
@@ -100,12 +133,26 @@ $('.checkbox').change(function(){
     
 
 <!--     
+=======
+    <h1 class="govuk-heading-xl">My subsidy awards</h1>
+  
+            
+    <div id="Subsidy_Control_Number-hint" class="govuk-hint">
+      A list of all the subsidy awards worked upon by you.
+     </div>
+
+    <hr />
+>>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
 
     <form action='/cancelmysubsidy'  method="POST">     
       <button class="govuk-button govuk-button--secondary"  type="Submit" >
         Delete 
       </button>  
+<<<<<<< HEAD
       </form> -->
+=======
+      </form>
+>>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
 
     <form action="/collectcheckbox" method="GET" novalidate="">
       
@@ -119,17 +166,29 @@ $('.checkbox').change(function(){
                             <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input Subsidy_awardno_head" id="select_all" name="Subsidy_awardNo" type="checkbox" value="Subsidy_awardNo">
                             <label class="govuk-label govuk-checkboxes__label_padding govuk-checkboxes__label " for="Subsidy awardNo" id='Subsidy_awardno_lb'>
+<<<<<<< HEAD
                               <b>Subsidy Name</b>
+=======
+                              <b>Subsidy awardNo</b>
+>>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
                             </label>
                              </div>
                             </div>
                         </th>
+<<<<<<< HEAD
                         <th scope="col" class="govuk-table__header">Subsidy control no</th>
                         <th scope="col" class="govuk-table__header">Granting authority</th>
                         <th scope="col" class="govuk-table__header">Start date</th>
                         <th scope="col" class="govuk-table__header">End date</th>
                         <th scope="col" class="govuk-table__header govuk-table__header--numeric">Duration</th>
                         <th scope="col" class="govuk-table__header govuk-table__header--numeric">Budget</th>
+=======
+                        <th scope="col" class="govuk-table__header">Subsidy measure title</th>
+                        <th scope="col" class="govuk-table__header">Status</th>
+                        <th scope="col" class="govuk-table__header">Beneficiary name</th>
+                        <th scope="col" class="govuk-table__header">Granting authority</th>
+                        <th scope="col" class="govuk-table__header govuk-table__header--numeric">Subsidy amount</th>
+>>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
                     </tr >
                 </thead>
                 <tbody class="govuk-table__body">
@@ -153,7 +212,10 @@ $('.checkbox').change(function(){
                         <td class="govuk-table__cell"><%= item.Beneficiaryname %></td>
                         <td class="govuk-table__cell"><%= item.Grantingauthority %></td>
                         <td class="govuk-table__cell govuk-table__cell--numeric"><%= item.Subsidyamount %></td>
+<<<<<<< HEAD
                         <td class="govuk-table__cell govuk-table__cell--numeric"><%= item.Subsidyamount %></td>
+=======
+>>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
                     </tr>
 
                     <% } ); %>
