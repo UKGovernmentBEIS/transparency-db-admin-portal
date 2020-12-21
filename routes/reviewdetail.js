@@ -27,10 +27,7 @@ router.post('/',(req, res) => {
   var Legal_Granting_Date_Year_Error = false;
   var Goods_or_Services_Error = false;
   var Spending_Region_Error = false;
-<<<<<<< HEAD
   var Spending_Sector_Error = false;
-=======
->>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
 
 
     const { 
@@ -50,18 +47,12 @@ router.post('/',(req, res) => {
       Legal_Granting_Date_Year,
       Goods_or_Services,
       Spending_Region,
-<<<<<<< HEAD
       Spending_Sector
-=======
->>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
        } = req.body;
 
        console.log("isAddSubsidyPrimarycall: " + isAddSubsidyPrimarycall);
        console.log("Subsidy_Instrument :" + Subsidy_Instrument);
-<<<<<<< HEAD
        console.log("Spending_Sector :" + Spending_Sector);
-=======
->>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
   
       Subsidy_Control_Number_Global= Subsidy_Control_Number;
       Subsidy_Measure_Title_Global = Subsidy_Measure_Title;
@@ -79,10 +70,7 @@ router.post('/',(req, res) => {
       Legal_Granting_Date_Year_Global = Legal_Granting_Date_Year;
       Goods_or_Services_Global = Goods_or_Services;
       Spending_Region_Global = Spending_Region;
-<<<<<<< HEAD
       Spending_Sector_Global = Spending_Sector;
-=======
->>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
 
       Subsidy_Control_Number_Global_Substring = Subsidy_Control_Number_Global.substring(2, 10);
 
@@ -226,7 +214,6 @@ router.post('/',(req, res) => {
       
     }
 
-<<<<<<< HEAD
     if (Spending_Sector == 'Empty')  { 
       Spending_Sector_Error = true ;
       SubsidyErrors[Additem] = '     Select the spending sector';
@@ -234,8 +221,6 @@ router.post('/',(req, res) => {
       
     }
 
-=======
->>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
     var SubsidyArraySize = SubsidyErrors.length;
 
    if ( 
@@ -254,12 +239,8 @@ router.post('/',(req, res) => {
     Legal_Granting_Date_Month_Error  ||
     Legal_Granting_Date_Year_Error  ||
     Goods_or_Services_Error  ||
-<<<<<<< HEAD
     Spending_Region_Error  ||
     Spending_Sector_Error
-=======
-    Spending_Region_Error  
->>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
 
   )
 
@@ -282,10 +263,7 @@ router.post('/',(req, res) => {
       Legal_Granting_Date_Year_Global ,
       Goods_or_Services_Global ,
       Spending_Region_Global,
-<<<<<<< HEAD
       Spending_Sector_Global,
-=======
->>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
 
       Subsidy_Control_Number_Error, 
       Subsidy_Measure_Title_Error,  
@@ -303,10 +281,7 @@ router.post('/',(req, res) => {
       Legal_Granting_Date_Year_Error,  
       Goods_or_Services_Error,  
       Spending_Region_Error,
-<<<<<<< HEAD
       Spending_Sector_Error,
-=======
->>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
 
       SubsidyErrors,
       SubsidyArraySize,
@@ -339,10 +314,7 @@ else {
     Legal_Granting_Date_Year_Global ,
     Goods_or_Services_Global ,
     Spending_Region_Global,
-<<<<<<< HEAD
     Spending_Sector_Global,
-=======
->>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
     GetMonthName
   } );
   }
