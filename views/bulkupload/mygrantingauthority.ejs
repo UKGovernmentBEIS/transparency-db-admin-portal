@@ -4,8 +4,6 @@
     <title>GOV.UK - Public user search page</title>
   </head>
   <!-- <%- include('../partials/header.ejs') %> -->
-  <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css" />
-
   <script
     type="text/javascript"
     src="/assets/javascripts/pagination.class.js"
@@ -16,39 +14,32 @@
     defer
   ></script>
   <script src="/assets/javascripts/vendor/modernizr.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
   <script>
     // mygrantingauthorityList = [];
-    $(document).ready(function () {
-      $("#addGA").hide();
-      $("#filter-input").on("keyup", function () {
-        $(".clear-all").show();
-      });
-      $(".clear-all").on("click", function () {
-        $("#filter-input").val("");
-        $(".clear-all").hide();
-      });
-      // $("#getFilterTags").on('click', function () {
-      //     var tags = $("#filter-input").val();
-      // if (!mygrantingauthorityList.includes(tags)) {
-      //     mygrantingauthorityList.push(tags);
-      // }
-      // else
-      //     return false;
-      // console.log(mygrantingauthorityList);
-      // });
-      $(".grantingAuthorityDiv").on("click", function () {
-        var divId = $(this).attr("data-id");
-        $(".govuk-tabs__panel").hide();
-        $("#" + divId).show();
-        $(".grantingAuthorityDiv").removeClass("active");
-        $(this).addClass("active");
-      });
-    });
+    // $(document).ready(function () {
+    // $("#filter-input").on("keyup", function () {
+    //   $(".clear-all").show();
+    // });
+    // $(".clear-all").on("click", function () {
+    //   $("#filter-input").val("");
+    //   $(".clear-all").hide();
+    // });
+    // $("#getFilterTags").on('click', function () {
+    //     var tags = $("#filter-input").val();
+    // if (!mygrantingauthorityList.includes(tags)) {
+    //     mygrantingauthorityList.push(tags);
+    // }
+    // else
+    //     return false;
+    // console.log(mygrantingauthorityList);
+    // });
+    // });
   </script>
   <!-- <%- include('../partials/headersubsidy.ejs') %> -->
   <%- include('../partials/header.ejs') %>
+  <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css" />
   <div class="govuk-width-container">
     <!-- <div class="nav-tabs">
       <ul class="navbar">
@@ -69,37 +60,41 @@
       </ul>
     </div> -->
 
-    <div class="govuk-grid-row">   
+    <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
-       <nav class="govuk-sub-navigation" aria-label="Sub navigation">
-           <ul class="govuk-sub-navigation__list">
-           <li class="govuk-sub-navigation__item">
-             <a class="govuk-sub-navigation__link" aria-current="page"  href="/mygrantingauthority">
-              Manage Granting Authorities
-             </a>
-           </li>      
-           <li class="govuk-sub-navigation__item">
-             <a class="govuk-sub-navigation__link" href="/editgrantingauthority">
-              Add a Granting Authority
-             </a>
-           </li>      
-           <li class='govuk-sub-navigation__item head-right'>
-            <a class="govuk-sub-navigation__link" href="/loginfirstpage">
-              Sign out 
-            </a>  
-          </li>
-          <li class='govuk-sub-navigation__item head-right'>
-            <a class="govuk-sub-navigation__link" href="/loginfirstpage">
-              My account 
-            </a>   
-          </li>
-          </ul>  
-        </nav> 
-      
-       </div>
-          
+        <nav class="govuk-sub-navigation" aria-label="Sub navigation">
+          <ul class="govuk-sub-navigation__list">
+            <li class="govuk-sub-navigation__item">
+              <a
+                class="govuk-sub-navigation__link"
+                aria-current="page"
+                href="/mygrantingauthority"
+              >
+                Manage Granting Authorities
+              </a>
+            </li>
+            <li class="govuk-sub-navigation__item">
+              <a
+                class="govuk-sub-navigation__link"
+                href="/addgrantingauthority"
+              >
+                Add a Granting Authority
+              </a>
+            </li>
+            <li class="govuk-sub-navigation__item head-right">
+              <a class="govuk-sub-navigation__link" href="/loginfirstpage">
+                Sign out
+              </a>
+            </li>
+            <li class="govuk-sub-navigation__item head-right">
+              <a class="govuk-sub-navigation__link" href="/loginfirstpage">
+                My account
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
-
 
     <main class="govuk-main-wrapper" id="main-content" role="main">
       <div class="govuk-tabs" data-module="govuk-tabs">
@@ -116,11 +111,13 @@
               <p class="label-2 label">
                 Search for Granting Authority Name or ID
               </p>
-              <div class="govuk-grid-column-three-quarters filter-input-div">
+              <div
+                class="govuk-grid-column-three-quarters govuk-filter-input-position-div govuk-p-0"
+              >
                 <div class="govuk-grid-column-two-thirds govuk-p-0">
                   <form action="/mygrantingauthority" method="POST">
                     <input
-                      class="govuk-input govuk-!-width-three-quarters search-filter-input"
+                      class="govuk-input govuk-!-width-three-quarters"
                       id="filter-input"
                       name="one-half"
                       type="text"
@@ -137,7 +134,7 @@
                     </button>
                   </form>
                 </div>
-                <div class="govuk-grid-column-one-third govuk-p-0">
+                <div class="govuk-grid-column-one-third">
                   <select class="govuk-select" name="sort" style="width: 100%">
                     <option value="" disabled selected>Only show me...</option>
                     <option value="">Draft</option>
@@ -173,16 +170,18 @@
                   class="govuk-table__header app-custom-class"
                 >
                   Granting Authority ID
-                  <svg version="1.1" width="8px" height="8px" id="uparrow">
-                    <g transform="matrix(1 0 0 1 0 -5 )">
-                      <path
-                        d="M 0 13  L 4 5  L 8 13  L 0 13  Z "
-                        fill-rule="nonzero"
-                        fill="#1d70b8"
-                        stroke="none"
-                      />
-                    </g>
-                  </svg>
+                  <a href="#">
+                    <svg version="1.1" width="8px" height="8px" id="uparrow">
+                      <g transform="matrix(1 0 0 1 0 -5 )">
+                        <path
+                          d="M 0 13  L 4 5  L 8 13  L 0 13  Z "
+                          fill-rule="nonzero"
+                          fill="#1d70b8"
+                          stroke="none"
+                        />
+                      </g>
+                    </svg>
+                  </a>
                   <svg version="1.1" id="downarrow" width="8px" height="8px">
                     <g transform="matrix(1 0 0 1 0 -5 )">
                       <path
@@ -248,7 +247,7 @@
                         <div class="middle">Down arrow: </div>
                         <div class="right"><span class="arrow down">&LongLeftArrow;</span></div>
                       </div>   -->
-          <div id="pagination1" class="pagination-GA">
+          <div id="pagination1" class="pagination">
             <div class="col last">
               <!-- <svg width="600px" height="100px">
  
@@ -292,7 +291,7 @@
               <a>3</a>
               <a>4</a>
               <a>Next Page</a>
-              
+
               <svg version="1.1" width="19px" height="30px" class="left-arrow">
                 <defs>
                   <mask fill="white" id="clip3">
@@ -319,57 +318,12 @@
                     mask="url(#clip3)"
                   />
                 </g>
-              </svg> 
+              </svg>
             </div>
           </div>
           <!-- ********************** -->
           <!-- Pagination ends here -->
           <!-- ********************** -->
-        </div>
-
-        <div class="govuk-tabs__panel" id="addGA">
-          <legend
-            class="govuk-fieldset__legend govuk-fieldset__legend--l form-group"
-          >
-            <h1 class="govuk-fieldset__heading">Add Granting Authority</h1>
-          </legend>
-          <div class="govuk-grid-row">
-            <div class="govuk-grid-column-three-quarters form-group">
-              <!-- <form action="/filtersearch" method="POST" > -->
-              <legend>Granting Authority ID</legend>
-              <input
-                class="govuk-input govuk-input--width-2"
-                disabled
-                id="width-2"
-                name="width-2"
-                type="text"
-              />
-              <!-- </form>  -->
-            </div>
-            <br />
-            <div class="govuk-grid-column-three-quarters form-group">
-              <!-- <form action="/filtersearch" method="POST" > -->
-              <legend>Granting Authority Name</legend>
-              <input
-                class="govuk-input search-filter-input"
-                id="width-2"
-                name="width-2"
-                type="text"
-              />
-              <!-- </form>  -->
-            </div>
-            <br />
-            <div class="govuk-grid-column-three-quarters">
-              <form action="/mygrantingauthority">
-                <button class="govuk-button govuk-button--success">
-                  &nbsp; &nbsp; Add &nbsp; &nbsp;
-                </button>
-                <button class="govuk-button govuk-button--secondary">
-                  Cancel
-                </button>
-              </form>
-            </div>
-          </div>
         </div>
       </div>
     </main>
@@ -378,9 +332,9 @@
   <%- include('../partials/footer.ejs') %>
   <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
   <script src="/assets/javascripts/accordion/govuk-frontend.js"></script>
-  <link
+  <!-- <link
     href="/assets/stylesheet/govuk-tabs.css"
     rel="stylesheet"
     type="text/css"
-  />
+  /> -->
 </html>
