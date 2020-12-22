@@ -61,7 +61,7 @@ app.get("/", (req, res) => {
 });
 
 // app.get('/',(req, res) => {
-//   res.render('accessmanagement/enterotp')
+//   res.render('accessmanagement/enterotp')  
 // })
 
 // var enterotp = require('./routes/enterotp');
