@@ -776,15 +776,12 @@
     border-left: 5px solid #d4351c
 }
 
-<<<<<<< HEAD
 .govuk-form-group--grey {
     padding-left: 20px;
     border-left: 5px solid #cecece
 }
 
 
-=======
->>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
 .govuk-form-group--error .govuk-form-group {
     padding: 0;
     border: 0
@@ -1388,15 +1385,9 @@
     width: 7px;
     height: 7px;
     margin: auto 0;
-<<<<<<< HEAD
     -webkit-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
     transform: rotate(0deg);
-=======
-    -webkit-transform: rotate(225deg);
-    -ms-transform: rotate(225deg);
-    transform: rotate(225deg);
->>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
     border: solid;
     border-width: 1px 1px 0 0;
     border-color: #505a5f
@@ -1464,11 +1455,7 @@
     margin-bottom: 5px;
     margin-left: 10px;
     padding-left: 15.655px;
-<<<<<<< HEAD
     
-=======
-    float: left;
->>>>>>> d9da39c35ec906eb00dcb0b47ebe648cc5291791
 }
 
 .govuk-breadcrumbs__list-item:before {
