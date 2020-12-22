@@ -21,7 +21,8 @@ router.get('/',(req, res) => {
     Legal_Granting_Date_Month_Global,
     Legal_Granting_Date_Year_Global,
     Goods_or_Services_Global,
-    Spending_Region_Global
+    Spending_Region_Global,
+    Spending_Sector_Global
     
    })
   });

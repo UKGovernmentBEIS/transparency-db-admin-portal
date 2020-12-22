@@ -179,6 +179,52 @@ router.post('/',(req, res) => {
       Additem = Additem + 1 ;
     }
 
+// day validation starts here
+
+    if (Legal_Granting_Date_Day > 31 || Legal_Granting_Date_Day < 1  ) { 
+      Legal_Granting_Date_Day_Error = true ;
+      SubsidyErrors[Additem] = '     Enter the valid legal granting day of the date';
+      SubsidyFocus[Additem] = '#Legal_Granting_Date_Day';
+      Additem = Additem + 1 ;
+    }
+
+
+    if (Legal_Granting_Date_Day == 31 && ( Legal_Granting_Date_Month == 02 || Legal_Granting_Date_Month == 04  || Legal_Granting_Date_Month == 06 || Legal_Granting_Date_Month == 09 || Legal_Granting_Date_Month == 11)) { 
+      Legal_Granting_Date_Day_Error = true ;
+      SubsidyErrors[Additem] = '     Enter the valid day';
+      SubsidyFocus[Additem] = '#Legal_Granting_Date_Day';
+      Additem = Additem + 1 ;
+    }
+
+    if (Legal_Granting_Date_Day == 29 && Legal_Granting_Date_Month == 02) { 
+
+      if (((Legal_Granting_Date_Year % 4 == 0) && (Legal_Granting_Date_Year % 100 != 0)) || (Legal_Granting_Date_Year % 400 == 0)) 
+      {   }
+
+    else {
+
+      Legal_Granting_Date_Day_Error = true ;
+      SubsidyErrors[Additem] = '     Enter the valid day';
+      SubsidyFocus[Additem] = '#Legal_Granting_Date_Day';
+      Additem = Additem + 1 ;
+    }
+    }
+
+    if (Legal_Granting_Date_Day == 30 && Legal_Granting_Date_Month == 02) { 
+
+      Legal_Granting_Date_Day_Error = true ;
+      SubsidyErrors[Additem] = '     Enter the valid day';
+      SubsidyFocus[Additem] = '#Legal_Granting_Date_Day';
+      Additem = Additem + 1 ;
+    }
+
+
+
+
+// day velidation ends here
+
+
+
     if (! Legal_Granting_Date_Month) { 
       Legal_Granting_Date_Month_Error = true ;
       SubsidyErrors[Additem] = '     Enter the legal granting month of the date';
