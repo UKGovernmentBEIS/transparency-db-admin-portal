@@ -4,6 +4,8 @@
   <script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
+
+ 
   <%- include('../partials/headersubsidy.ejs') %>
   <script>
      $(document).ready(function () {
@@ -26,12 +28,19 @@
 
     });
 
-
     jQuery('#Subsidy_Control_Number').on('input', function() {
     // alert("changeed: " + $('#Subsidy_Control_Number').val());
     var SubsidyMeasureTitle = document.getElementById("Subsidy_Measure_Title");
     SubsidyMeasureTitle = $('#Subsidy_Control_Number').val();
-    
+      
+  });
+
+    $('.govuk-date-input__input').on('keypress', function(e){
+  return e.metaKey || // cmd/ctrl
+    e.which <= 0 || // arrow keys
+    e.which == 8 || // delete key
+    /[0-9]/.test(String.fromCharCode(e.which)); // numbers
+
 });
 
 });
@@ -103,8 +112,6 @@
        <a rel="external" target="_blank" class="govuk-link head-right govuk-relative-position_title" href="./assets/files/HelpDocumentAddSubsidyAwards.pdf" >
         <p >Download the help file </p>
       </a>
-
-
       
           <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
@@ -1756,10 +1763,6 @@
             </div>
           </div>
        
-
-
-
-
   
       <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
       <script src="/assets/javascripts/govuk-frontend.js"></script>
