@@ -1,34 +1,35 @@
-
 // *************************************************************
 // Gov.UK transparency database - App.js is the subset of server.js
 // *************************************************************
 
-const express = require('express')
-const app = express()
+const express = require("express");
+const app = express();
 const fs = require("fs");
 const request = require("request");
-const methodOverride = require('method-override')
-const path = require('path')
-const fileUpload = require('express-fileupload')
+const methodOverride = require("method-override");
+const path = require("path");
+const fileUpload = require("express-fileupload");
 const fetch = require("node-fetch");
-const { callbackify } = require('util')
-const { Http2ServerRequest } = require('http2');
-const { contains } = require('jquery');
+const { callbackify } = require("util");
+const { Http2ServerRequest } = require("http2");
+const { contains } = require("jquery");
 
-app.set('views', path.join(__dirname, 'views')); 
-app.set('view engine', 'ejs');
-app.use(express.urlencoded({ extended: false }))
-app.use(methodOverride('_method'))
-app.use(express.static(__dirname + '/public'));
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
+app.use(express.static(__dirname + "/public"));
 
-const users = []
+const users = [];
 // app.use(fileUpload());
-app.use(fileUpload({
-  useTempFiles : false,
-  tempFileDir : '/tmp/'
-}));
-app.locals.awards = require('./views/bulkupload/awards.json');
-app.locals.Subsidy_Control_Number_Global ;
+app.use(
+  fileUpload({
+    useTempFiles: false,
+    tempFileDir: "/tmp/",
+  })
+);
+app.locals.awards = require("./views/bulkupload/awards.json");
+app.locals.Subsidy_Control_Number_Global;
 app.locals.Subsidy_Control_Number_Global_Substring;
 app.locals.Subsidy_Measure_Title_Global;
 app.locals.Subsidy_Objective_Global;
@@ -55,9 +56,9 @@ app.locals.errorsvalidationpass = [];
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
-app.get('/',(req, res) => {
-  res.render('bulkupload/logintransparency')
-})
+app.get("/", (req, res) => {
+  res.render("bulkupload/logintransparency");
+});
 
 // app.get('/',(req, res) => {
 //   res.render('accessmanagement/enterotp')
@@ -66,68 +67,77 @@ app.get('/',(req, res) => {
 // var enterotp = require('./routes/enterotp');
 // app.use('/enterotp',enterotp);
 
-
-var test = require('./routes/test');
-app.use('/test',test);
-
+var test = require("./routes/test");
+app.use("/test", test);
 
 /****************************************************** */
 /* All Router declarations */
 /****************************************************** */
 
-var loginfirstpage = require('./routes/loginfirstpage');
-app.use('/loginfirstpage',loginfirstpage);
+var loginfirstpage = require("./routes/loginfirstpage");
+app.use("/loginfirstpage", loginfirstpage);
 
-var mysubsidyawards = require('./routes/mysubsidyawards');
-app.use('/mysubsidyawards',mysubsidyawards);
+var mysubsidyawards = require("./routes/mysubsidyawards");
+app.use("/mysubsidyawards", mysubsidyawards);
 
-var bulkuploadsubsidy = require('./routes/bulkuploadsubsidy');
-app.use('/bulkuploadsubsidy',bulkuploadsubsidy);
+var bulkuploadsubsidy = require("./routes/bulkuploadsubsidy");
+app.use("/bulkuploadsubsidy", bulkuploadsubsidy);
 
-var loginforgetpassword = require('./routes/loginforgetpassword');
-app.use('/loginforgetpassword',loginforgetpassword);
+var loginforgetpassword = require("./routes/loginforgetpassword");
+app.use("/loginforgetpassword", loginforgetpassword);
 
-var loginnewpassword = require('./routes/loginnewpassword');
-app.use('/loginnewpassword',loginnewpassword);
+var loginnewpassword = require("./routes/loginnewpassword");
+app.use("/loginnewpassword", loginnewpassword);
 
-var loginemailconfirmation = require('./routes/loginemailconfirmation');
-app.use('/loginemailconfirmation',loginemailconfirmation);
+var loginemailconfirmation = require("./routes/loginemailconfirmation");
+app.use("/loginemailconfirmation", loginemailconfirmation);
 
-var loginpasswordcomplete = require('./routes/loginpasswordcomplete');
-app.use('/loginpasswordcomplete',loginpasswordcomplete);
+var loginpasswordcomplete = require("./routes/loginpasswordcomplete");
+app.use("/loginpasswordcomplete", loginpasswordcomplete);
 
-var loginresetpassword = require('./routes/loginresetpassword');
-app.use('/loginresetpassword',loginresetpassword);
+var loginresetpassword = require("./routes/loginresetpassword");
+app.use("/loginresetpassword", loginresetpassword);
 
-var loginemailconfirmationexpiry = require('./routes/loginemailconfirmationexpiry');
-app.use('/loginemailconfirmationexpiry',loginemailconfirmationexpiry);
+var loginemailconfirmationexpiry = require("./routes/loginemailconfirmationexpiry");
+app.use("/loginemailconfirmationexpiry", loginemailconfirmationexpiry);
 
-var reviewdetail = require('./routes/reviewdetail');
-app.use('/reviewdetail',reviewdetail);
+var reviewdetail = require("./routes/reviewdetail");
+app.use("/reviewdetail", reviewdetail);
 
-var formvalidation = require('./routes/formvalidation');
-app.use('/formvalidation',formvalidation);
+var formvalidation = require("./routes/formvalidation");
+app.use("/formvalidation", formvalidation);
 
-var addsubsidyaward = require('./routes/addsubsidyaward');
-app.use('/addsubsidyaward',addsubsidyaward);
+var addsubsidyaward = require("./routes/addsubsidyaward");
+app.use("/addsubsidyaward", addsubsidyaward);
 
-var cancelmysubsidy = require('./routes/cancelmysubsidy');
-app.use('/cancelmysubsidy',cancelmysubsidy);
+var cancelmysubsidy = require("./routes/cancelmysubsidy");
+app.use("/cancelmysubsidy", cancelmysubsidy);
 
-var addsubsidyreview = require('./routes/addsubsidyreview');
-app.use('/addsubsidyreview',addsubsidyreview);
+var addsubsidyreview = require("./routes/addsubsidyreview");
+app.use("/addsubsidyreview", addsubsidyreview);
 
-var submitforapproval = require('./routes/submitforapproval');
-app.use('/submitforapproval',submitforapproval);
+var submitforapproval = require("./routes/submitforapproval");
+app.use("/submitforapproval", submitforapproval);
 
-var beisadmindashboard = require('./routes/beisadmindashboard');
-app.use('/beisadmindashboard',beisadmindashboard);
+var beisadmindashboard = require("./routes/dashboard-beisadmin");
+app.use("/beisadmindashboard", beisadmindashboard);
 
-var mygrantingauthority = require('./routes/mygrantingauthority');
-app.use('/mygrantingauthority',mygrantingauthority);
+var gaadmindashboard = require("./routes/dashboard-gaadmin");
+app.use("/gaadmindashboard", gaadmindashboard);
 
-var editgrantingauthority = require('./routes/editgrantingauthority');
-app.use('/editgrantingauthority',editgrantingauthority);
+var gaencoderdashboard = require("./routes/dashboard-gaencoder");
+app.use("/gaencoderdashboard", gaencoderdashboard);
 
+var gaapproverdashboard = require("./routes/dashboard-gaapprover");
+app.use("/gaapproverdashboard", gaapproverdashboard);
+
+var mygrantingauthority = require("./routes/mygrantingauthority");
+app.use("/mygrantingauthority", mygrantingauthority);
+
+var editgrantingauthority = require("./routes/editgrantingauthority");
+app.use("/editgrantingauthority", editgrantingauthority);
+
+var addgrantingauthority = require("./routes/addgrantingauthority");
+app.use("/addgrantingauthority", addgrantingauthority);
 
 module.exports = app;

@@ -1,7 +1,7 @@
-body{
-    margin:0px;
-    /* font-family: Arial, Helvetica, sans-serif; */
-    font-family: GDS Transport, Arial, sans-serif;
+body {
+  margin: 0px;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: GDS Transport, Arial, sans-serif;
 }
 
 /* section{
@@ -44,11 +44,11 @@ table tbody tr:hover{
     cursor: pointer;
 } */
 
-.pagination{
-    display: grid;
-    grid-template-columns: auto auto ;
-    padding: 10px 0px;
-    margin-top: 20px;
+.pagination {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px 0px;
+  margin-top: 20px;
 }
 
 /* .pagination .col.middle{
@@ -58,39 +58,67 @@ table tbody tr:hover{
     margin: 10px 0px; 
 } */
 
-
-
-.pagination .col.last{
-    display: flex; 
-    justify-content: flex-end;
-    text-align: right;
-    margin: 10px 10px;
-    /* float : right; */
-    left: 200;
+.pagination .col.last {
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+  margin: 10px 10px;
+  /* float : right; */
+  left: 200;
 }
 
-.pagination p{
-    margin: 10px 0px;
+.pagination p {
+  margin: 10px 0px;
 }
 
-.pagination a{
-    border: solid 1px #ffffff;
-    padding: 8px 10px;
-    text-decoration: none;
-    color:rgb(22, 10, 134);
+.pagination a {
+  border: solid 1px #ffffff;
+  padding: 8px 10px;
+  text-decoration: underline;
+  color: rgb(22, 10, 134);
 }
 
-.pagination a:hover, .pagination a.active{
-    background-color: rgb(229, 235, 236);
-    
+.pagination a:hover,
+.pagination a.active {
+  /* background-color: rgb(229, 235, 236); */
+  text-decoration: none;
 }
 
-.pagination span{
-    font-weight: bold;
+.pagination span {
+  font-weight: bold;
 }
 
 .previous {
-    background-color: #ffffff;
-    color: black;
-  }
+  background-color: #ffffff;
+  color: black;
+}
 
+.govuk-button:focus:not(:active):not(:hover) {
+  border: 2px solid #fd0;
+  color: white;
+  background-color: #00703c;
+  -webkit-box-shadow: 0 0px 0 #0b0c0c;
+  box-shadow: 0 0px 0 #0b0c0c;
+}
+.govuk-button:focus {
+  border: 2px solid #fd0;
+  color: white;
+  background-color: #00703c;
+  -webkit-box-shadow: 0 0px 0 #0b0c0c;
+  box-shadow: 0 0px 0 #0b0c0c;
+}
+#downarrow {
+  position: absolute;
+  transform: rotate(180deg);
+  top: 29px;
+  right: 18px;
+}
+
+#uparrow {
+  position: absolute;
+  top: 19px;
+  right: 18px;
+}
+.govuk-table__row th {
+  position: relative;
+}

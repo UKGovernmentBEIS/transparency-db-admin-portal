@@ -38,7 +38,9 @@
 
 .govuk-beis-heading h2 {
   color: rgb(177, 180, 182);
-  font-size: 1.5em;
+  font-size: 27px;
+  font-weight: normal;
+  margin-top: 1%;
 }
 
 .govuk-charts label {
@@ -58,10 +60,15 @@
 .govuk-charts label:active {
   background-color: rgb(255, 221, 0);
 }
-.govuk-border-bottom {
-  border-bottom: 6px solid rgb(29, 112, 184);
-
-  margin: 2rem 0;
+.govuk-charts p {
+  float: left;
+  width: 100%;
+}
+.govuk-border-top {
+  border-top: 6px solid rgb(29, 112, 184);
+  float: left;
+  width: 100%;
+  margin-top: 2rem;
 }
 .govuk-fieldset_sub-heading {
   font-size: 1em;
@@ -69,7 +76,7 @@
 }
 .govuk-GA-heading {
   padding-bottom: 1%;
-  color: black;
+  color: #333333;
   font-weight: normal;
 }
 .govuk-table__row {
@@ -78,6 +85,7 @@
 .govuk-table__cell,
 .govuk-table__header {
   padding: 18px 20px 18px 0;
+  vertical-align: middle;
 }
 .govuk-editGA {
   color: rgb(0, 93, 166);
@@ -86,13 +94,14 @@ table th,
 table td {
   font-size: 16px;
 }
-table tbody th,
-table tbody td {
-  vertical-align: middle;
-}
-.btn-md {
+
+.govuk-button--size {
   width: 15%;
 }
-.govuk-btn-boxshadow {
+/* .govuk-btn-boxshadow {
   box-shadow: 0 0 0 #002d18;
+} */
+.govuk-footer {
+  width: 100%;
+  float: left;
 }

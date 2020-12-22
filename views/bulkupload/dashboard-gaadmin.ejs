@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>GOV.UK - GA Admin Dashboard</title>
+  </head>
+  <script
+    type="text/javascript"
+    src="/assets/javascripts/pagination.class.js"
+  ></script>
+  <script
+    type="text/javascript"
+    src="/assets/javascripts/script.js"
+    defer
+  ></script>
+  <script src="/assets/javascripts/vendor/modernizr.js"></script>
+
+  <!-- <%- include('../partials/headersubsidy.ejs') %> -->
+  <%- include('../partials/header.ejs') %>
+  <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css" />
+  <link
+    href="/assets/stylesheet/govuk-transparencyDb.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper" id="main-content" role="main">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+          <nav aria-label="Sub navigation">
+            <ul class="govuk-sub-navigation__list">
+              <li class="govuk-sub-navigation__item">
+                <a
+                  class="govuk-sub-navigation__link"
+                  href="/mygrantingauthority"
+                >
+                  Granting Authorities
+                </a>
+              </li>
+              <li class="govuk-sub-navigation__item">
+                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
+                  Subsidy Measures
+                </a>
+              </li>
+              <li class="govuk-sub-navigation__item">
+                <a class="govuk-sub-navigation__link" href="/subsidyawards">
+                  Subsidy Awards
+                </a>
+              </li>
+
+              <!-- <li class="govuk-sub-navigation__item">
+                <a class="govuk-sub-navigation__link" href="/manageusers">
+                  Users
+                </a>
+              </li>
+              <li class="govuk-sub-navigation__item">
+                <a class="govuk-sub-navigation__link" href=""> Audit log </a>
+              </li> -->
+
+              <li class="govuk-sub-navigation__item head-right">
+                <a class="govuk-sub-navigation__link" href="/loginfirstpage">
+                  Sign out
+                </a>
+              </li>
+              <li class="govuk-sub-navigation__item head-right">
+                <a class="govuk-sub-navigation__link" href="/loginfirstpage">
+                  My account
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="govuk-beis-heading">
+        <legend class="form-group">
+          <h2>Dashboard</h2>
+        </legend>
+        <legend
+          class="govuk-fieldset__legend govuk-fieldset__legend--l form-group"
+        >
+          <h1 class="govuk-fieldset__heading">Welcome Albert Einstein</h1>
+        </legend>
+      </div>
+      <div class="govuk-border-top">
+        <legend
+          class="govuk-fieldset__legend govuk-fieldset__legend--l form-group"
+        >
+          <h2 class="govuk-fieldset_sub-heading">Granting Authority</h2>
+        </legend>
+        <div class="govuk-grid-row">
+          <div
+            class="govuk-grid-column-one-quarter govuk-charts govuk-form-group"
+          >
+            <label>All granting authorities</label>
+            <p>Total granting authorities</p>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
+            >
+              72
+            </legend>
+          </div>
+          <div
+            class="govuk-grid-column-one-quarter govuk-charts govuk-form-group"
+          >
+            <label>Published by me</label>
+            <p>Total granting authorities I've published</p>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
+            >
+              15
+            </legend>
+          </div>
+          <div
+            class="govuk-grid-column-one-quarter govuk-charts govuk-form-group"
+          >
+            <label>Deactive</label>
+            <p>Total granting authorities that are not active</p>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
+            >
+              5
+            </legend>
+          </div>
+          <div
+            class="govuk-grid-column-one-quarter govuk-charts govuk-form-group"
+          >
+            <label>Not published</label>
+            <p>Number of granting authorities that are not published</p>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
+            >
+              5
+            </legend>
+          </div>
+        </div>
+        <p>
+          My Granting authority is Cardiff Council (Granting authority ID 3)
+        </p>
+        <div class="govuk-addGA form-group">
+          <button class="govuk-button govuk-button--success" id="getFilterTags">
+            View all granting authorities
+          </button>
+        </div>
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-GA-heading">
+            My 5 last updated granting authorities
+          </caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th
+                scope="col"
+                class="govuk-table__header govuk-!-width-one-half"
+              >
+                Granting Authority name
+              </th>
+              <th
+                scope="col"
+                class="govuk-table__header govuk-!-width-one-quarter"
+              >
+                Status
+              </th>
+              <th
+                scope="col"
+                class="govuk-table__header govuk-!-width-one-quarter"
+              >
+                Last modified
+              </th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">Adur District Council</a>
+              </td>
+              <td class="govuk-table__cell">Draft</td>
+              <td class="govuk-table__cell">11 November 2020</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">
+                  Bath and North East Somerset Council
+                </a>
+              </td>
+              <td class="govuk-table__cell">Finalized</td>
+              <td class="govuk-table__cell">11 November 2020</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">Cardiff Council</a>
+              </td>
+              <td class="govuk-table__cell">Published</td>
+              <td class="govuk-table__cell">11 November 2020</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">Cheltenham Borough Council</a>
+              </td>
+              <td class="govuk-table__cell">Deleted</td>
+              <td class="govuk-table__cell">11 November 2020</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">Cotswold District Council</a>
+              </td>
+              <td class="govuk-table__cell">Published</td>
+              <td class="govuk-table__cell">9 November 2020</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="govuk-border-top">
+        <legend
+          class="govuk-fieldset__legend govuk-fieldset__legend--l form-group"
+        >
+          <h2 class="govuk-fieldset_sub-heading">Users</h2>
+        </legend>
+        <div class="govuk-grid-row">
+          <div
+            class="govuk-grid-column-one-quarter govuk-charts govuk-form-group"
+          >
+            <label>All users</label>
+            <p>All users in the system</p>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
+            >
+              72
+            </legend>
+          </div>
+          <div
+            class="govuk-grid-column-one-quarter govuk-charts govuk-form-group"
+          >
+            <label>My users</label>
+            <p>All the users I'm resposnible for</p>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
+            >
+              72
+            </legend>
+          </div>
+          <div
+            class="govuk-grid-column-one-quarter govuk-charts govuk-form-group"
+          >
+            <label>All new users</label>
+            <p>All my new users</p>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
+            >
+              5
+            </legend>
+          </div>
+          <div
+            class="govuk-grid-column-one-quarter govuk-charts govuk-form-group"
+          >
+            <label>My new users</label>
+            <p>My new users only</p>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
+            >
+              2
+            </legend>
+          </div>
+        </div>
+        <div class="govuk-addGA form-group">
+          <button class="govuk-button govuk-button--success" id="getFilterTags">
+            Manager Users
+          </button>
+          <button
+            class="govuk-button govuk-button--success btn-md"
+            id="getFilterTags"
+          >
+            Add User
+          </button>
+        </div>
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-GA-heading">
+            My 5 last updated granting authorities by users
+          </caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">User name</th>
+              <th scope="col" class="govuk-table__header">
+                Granting Authority name
+              </th>
+              <th scope="col" class="govuk-table__header">Role</th>
+              <th scope="col" class="govuk-table__header">Created on</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Rachael Cole</td>
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">Adur District Council</a>
+              </td>
+              <td class="govuk-table__cell">Granting Authority Admin</td>
+              <td class="govuk-table__cell">12 :34 - 11 November 2020</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Claire Smith</td>
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA"
+                  >Bath and North East Somerset Council</a
+                >
+              </td>
+              <td class="govuk-table__cell">Granting Authority Approver</td>
+              <td class="govuk-table__cell">14:32 - 10 November 2020</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Andrew Davis</td>
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">Cardiff Council</a>
+              </td>
+              <td class="govuk-table__cell">Granting Authority Encoder</td>
+              <td class="govuk-table__cell">9:56 - 9 November 2020</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Michelle Bowman</td>
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">Cheltenham Borough Council</a>
+              </td>
+              <td class="govuk-table__cell">Granting Authority Encoder</td>
+              <td class="govuk-table__cell">15:02 - 7 November 2020</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Mark Jones</td>
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">Cotswold District Council</a>
+              </td>
+              <td class="govuk-table__cell">Granting Authority Encoder</td>
+              <td class="govuk-table__cell">10:08 - 4 November 2020</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="govuk-border-top">
+        <legend
+          class="govuk-fieldset__legend govuk-fieldset__legend--l form-group"
+        >
+          <h2 class="govuk-fieldset_sub-heading">Subsidy measures</h2>
+        </legend>
+        <div class="govuk-grid-row">
+          <div
+            class="govuk-grid-column-one-quarter govuk-charts govuk-form-group"
+          >
+            <label>All subsidy measures</label>
+            <p>All subsidy measures in the system</p>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
+            >
+              120
+            </legend>
+          </div>
+          <div
+            class="govuk-grid-column-one-quarter govuk-charts govuk-form-group"
+          >
+            <label>My subsidy measures</label>
+            <p>All the subsidy measures I'm responsible for</p>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
+            >
+              120
+            </legend>
+          </div>
+          <div
+            class="govuk-grid-column-one-quarter govuk-charts govuk-form-group"
+          >
+            <label>All new subsidy meausres</label>
+            <p>All my new subsidy measures</p>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
+            >
+              5
+            </legend>
+          </div>
+          <div
+            class="govuk-grid-column-one-quarter govuk-charts govuk-form-group"
+          >
+            <label>My new subsidy measures</label>
+            <p>My new subsidy measures only</p>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
+            >
+              2
+            </legend>
+          </div>
+        </div>
+        <div class="govuk-addGA form-group">
+          <button class="govuk-button govuk-button--success" id="getFilterTags">
+            Manage subsidy measures
+          </button>
+          <button class="govuk-button govuk-button--success" id="getFilterTags">
+            Add subsidy measure
+          </button>
+        </div>
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-GA-heading">
+            My 5 last updated subsidy measures
+          </caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Subsidy name</th>
+              <th scope="col" class="govuk-table__header">
+                Subsidy control no.
+              </th>
+              <th scope="col" class="govuk-table__header">
+                Granting authority
+              </th>
+              <th scope="col" class="govuk-table__header">Start date</th>
+              <th scope="col" class="govuk-table__header">End date</th>
+              <th scope="col" class="govuk-table__header">Duration</th>
+              <th scope="col" class="govuk-table__header">Budget</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">Air discount scheme</a>
+              </td>
+              <td class="govuk-table__cell">SC12345</td>
+              <td class="govuk-table__cell">
+                Wholesale and retail trade; repair of motor vehicles and
+                motorcycles
+              </td>
+              <td scope="row" class="govuk-table__cell">1 December 2020</td>
+              <td class="govuk-table__cell">1 January 2021</td>
+              <td class="govuk-table__cell">1 year</td>
+              <td class="govuk-table__cell">£632,000</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">
+                <a href="#" class="govuk-editGA"
+                  >High-end television tax relief - United Kingdom</a
+                >
+              </td>
+              <td class="govuk-table__cell">SC12345</td>
+              <td class="govuk-table__cell">
+                Agriculture, forestry and fishing​
+              </td>
+              <td scope="row" class="govuk-table__cell">1 November 2020</td>
+              <td class="govuk-table__cell">1 January 2021</td>
+              <td class="govuk-table__cell">1 year</td>
+              <td class="govuk-table__cell">£470,000</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">Air discount scheme</a>
+              </td>
+              <td class="govuk-table__cell">SC12345</td>
+              <td class="govuk-table__cell">
+                Agriculture, forestry and fishing​
+              </td>
+              <td scope="row" class="govuk-table__cell">1 October 2020</td>
+              <td class="govuk-table__cell">1 January 2021</td>
+              <td class="govuk-table__cell">1 year</td>
+              <td class="govuk-table__cell">£500,000</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">Air discount scheme</a>
+              </td>
+              <td class="govuk-table__cell">SC12345</td>
+              <td class="govuk-table__cell">
+                Wholesale and retail trade; repair of motor vehicles and
+                motorcycles
+              </td>
+              <td scope="row" class="govuk-table__cell">1 September 2020</td>
+              <td class="govuk-table__cell">1 January 2021</td>
+              <td class="govuk-table__cell">1 year</td>
+              <td class="govuk-table__cell">£632,000</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">Air discount scheme</a>
+              </td>
+              <td class="govuk-table__cell">SC12345</td>
+              <td class="govuk-table__cell">
+                Wholesale and retail trade; repair of motor vehicles and
+                motorcycles
+              </td>
+              <td scope="row" class="govuk-table__cell">1 August 2020</td>
+              <td class="govuk-table__cell">1 January 2021</td>
+              <td class="govuk-table__cell">1 year</td>
+              <td class="govuk-table__cell">£632,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="govuk-border-top">
+        <legend
+          class="govuk-fieldset__legend govuk-fieldset__legend--l form-group"
+        >
+          <h2 class="govuk-fieldset_sub-heading">Subsidy Awards</h2>
+        </legend>
+        <div class="govuk-grid-row">
+          <div
+            class="govuk-grid-column-one-quarter govuk-charts govuk-form-group"
+          >
+            <label>All subsidy awards</label>
+            <p>All subsidy awards in the system</p>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
+            >
+              230
+            </legend>
+          </div>
+          <div
+            class="govuk-grid-column-one-quarter govuk-charts govuk-form-group"
+          >
+            <label>My subsidy awards</label>
+            <p>All the subsidy measures I'm responsible for</p>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
+            >
+              230
+            </legend>
+          </div>
+          <div
+            class="govuk-grid-column-one-quarter govuk-charts govuk-form-group"
+          >
+            <label>All new subsidy awards</label>
+            <p>All my new subsidy awards</p>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
+            >
+              5
+            </legend>
+          </div>
+          <div
+            class="govuk-grid-column-one-quarter govuk-charts govuk-form-group"
+          >
+            <label>My new subsidy awards</label>
+            <p>My new subsidy awards only</p>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
+            >
+              2
+            </legend>
+          </div>
+        </div>
+        <div class="govuk-addGA form-group">
+          <button class="govuk-button govuk-button--success" id="getFilterTags">
+            Manage subsidy award
+          </button>
+          <button
+            class="govuk-button govuk-button--success btn-md"
+            id="getFilterTags"
+          >
+            Add award
+          </button>
+        </div>
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-GA-heading">
+            My 5 last updated subsidy awards
+          </caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Award no.</th>
+              <th scope="col" class="govuk-table__header">Measure title</th>
+              <th scope="col" class="govuk-table__header">Status</th>
+              <th scope="col" class="govuk-table__header">Recipient name</th>
+              <th scope="col" class="govuk-table__header">
+                Granting authority
+              </th>
+              <th scope="col" class="govuk-table__header">Subsidy amount</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">123456</a>
+              </td>
+              <td class="govuk-table__cell">Air discount scheme</td>
+
+              <td class="govuk-table__cell">Published</td>
+
+              <td class="govuk-table__cell">AA Animation Limited</td>
+
+              <td class="govuk-table__cell">Scottish Government</td>
+
+              <td class="govuk-table__cell">£632,000</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">123456</a>
+              </td>
+              <td class="govuk-table__cell">Air discount scheme</td>
+
+              <td class="govuk-table__cell">Published</td>
+
+              <td class="govuk-table__cell">Abbey Productions Limited</td>
+
+              <td class="govuk-table__cell">Scottish Government</td>
+
+              <td class="govuk-table__cell">£470,000</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">123456</a>
+              </td>
+              <td class="govuk-table__cell">Air discount scheme</td>
+
+              <td class="govuk-table__cell">Published</td>
+
+              <td class="govuk-table__cell">Abbey Productions Limited</td>
+
+              <td class="govuk-table__cell">Scottish Government</td>
+
+              <td class="govuk-table__cell">£470,000</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">123456</a>
+              </td>
+              <td class="govuk-table__cell">Air discount scheme</td>
+
+              <td class="govuk-table__cell">Published</td>
+
+              <td class="govuk-table__cell">AA Animation Limited</td>
+
+              <td class="govuk-table__cell">Scottish Government</td>
+
+              <td class="govuk-table__cell">£632,000</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">
+                <a href="" class="govuk-editGA">123456</a>
+              </td>
+              <td class="govuk-table__cell">Air discount scheme</td>
+
+              <td class="govuk-table__cell">Published</td>
+
+              <td class="govuk-table__cell">Abbey Productions Limited</td>
+
+              <td class="govuk-table__cell">Scottish Government</td>
+
+              <td class="govuk-table__cell">£470,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <%- include('../partials/footer.ejs') %>
+  <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+  <script src="/assets/javascripts/accordion/govuk-frontend.js"></script>
+</html>

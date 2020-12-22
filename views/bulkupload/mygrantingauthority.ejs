@@ -69,37 +69,41 @@
       </ul>
     </div> -->
 
-    <div class="govuk-grid-row">   
+    <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
-       <nav class="govuk-sub-navigation" aria-label="Sub navigation">
-           <ul class="govuk-sub-navigation__list">
-           <li class="govuk-sub-navigation__item">
-             <a class="govuk-sub-navigation__link" aria-current="page"  href="/mygrantingauthority">
-              Manage Granting Authorities
-             </a>
-           </li>      
-           <li class="govuk-sub-navigation__item">
-             <a class="govuk-sub-navigation__link" href="/editgrantingauthority">
-              Add a Granting Authority
-             </a>
-           </li>      
-           <li class='govuk-sub-navigation__item head-right'>
-            <a class="govuk-sub-navigation__link" href="/loginfirstpage">
-              Sign out 
-            </a>  
-          </li>
-          <li class='govuk-sub-navigation__item head-right'>
-            <a class="govuk-sub-navigation__link" href="/loginfirstpage">
-              My account 
-            </a>   
-          </li>
-          </ul>  
-        </nav> 
-      
-       </div>
-          
+        <nav class="govuk-sub-navigation" aria-label="Sub navigation">
+          <ul class="govuk-sub-navigation__list">
+            <li class="govuk-sub-navigation__item">
+              <a
+                class="govuk-sub-navigation__link"
+                aria-current="page"
+                href="/mygrantingauthority"
+              >
+                Manage Granting Authorities
+              </a>
+            </li>
+            <li class="govuk-sub-navigation__item">
+              <a
+                class="govuk-sub-navigation__link"
+                href="/addgrantingauthority"
+              >
+                Add a Granting Authority
+              </a>
+            </li>
+            <li class="govuk-sub-navigation__item head-right">
+              <a class="govuk-sub-navigation__link" href="/loginfirstpage">
+                Sign out
+              </a>
+            </li>
+            <li class="govuk-sub-navigation__item head-right">
+              <a class="govuk-sub-navigation__link" href="/loginfirstpage">
+                My account
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
-
 
     <main class="govuk-main-wrapper" id="main-content" role="main">
       <div class="govuk-tabs" data-module="govuk-tabs">
@@ -173,16 +177,18 @@
                   class="govuk-table__header app-custom-class"
                 >
                   Granting Authority ID
-                  <svg version="1.1" width="8px" height="8px" id="uparrow">
-                    <g transform="matrix(1 0 0 1 0 -5 )">
-                      <path
-                        d="M 0 13  L 4 5  L 8 13  L 0 13  Z "
-                        fill-rule="nonzero"
-                        fill="#1d70b8"
-                        stroke="none"
-                      />
-                    </g>
-                  </svg>
+                  <a href="#">
+                    <svg version="1.1" width="8px" height="8px" id="uparrow">
+                      <g transform="matrix(1 0 0 1 0 -5 )">
+                        <path
+                          d="M 0 13  L 4 5  L 8 13  L 0 13  Z "
+                          fill-rule="nonzero"
+                          fill="#1d70b8"
+                          stroke="none"
+                        />
+                      </g>
+                    </svg>
+                  </a>
                   <svg version="1.1" id="downarrow" width="8px" height="8px">
                     <g transform="matrix(1 0 0 1 0 -5 )">
                       <path
@@ -292,7 +298,7 @@
               <a>3</a>
               <a>4</a>
               <a>Next Page</a>
-              
+
               <svg version="1.1" width="19px" height="30px" class="left-arrow">
                 <defs>
                   <mask fill="white" id="clip3">
@@ -319,7 +325,7 @@
                     mask="url(#clip3)"
                   />
                 </g>
-              </svg> 
+              </svg>
             </div>
           </div>
           <!-- ********************** -->
@@ -378,9 +384,9 @@
   <%- include('../partials/footer.ejs') %>
   <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
   <script src="/assets/javascripts/accordion/govuk-frontend.js"></script>
-  <link
+  <!-- <link
     href="/assets/stylesheet/govuk-tabs.css"
     rel="stylesheet"
     type="text/css"
-  />
+  /> -->
 </html>
