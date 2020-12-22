@@ -75,9 +75,22 @@ table tbody tr:hover{
   border: solid 1px #ffffff;
   padding: 8px 10px;
   text-decoration: underline;
-  color: rgb(22, 10, 134);
+  color: #005da6;
 }
-
+.govuk-filter-input-position-div {
+  position: relative;
+}
+.govuk-p-0 {
+  padding: 0;
+}
+.clear-all {
+  position: absolute;
+  left: 290px;
+  /* align-items: center; */
+  /* display: inline-flex; */
+  top: 6px;
+  display: none;
+}
 .pagination a:hover,
 .pagination a.active {
   /* background-color: rgb(229, 235, 236); */
