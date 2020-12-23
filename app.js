@@ -53,6 +53,20 @@ app.locals.email_addresspass;
 app.locals.formvalidationerrpass = [];
 app.locals.errorsvalidationpass = [];
 
+app.locals.dashboard_user_name;
+app.locals.frontend_totalRecordsPerPage;
+
+app.locals.pageCount;
+app.locals.previous_page;
+app.locals.next_page;
+app.locals.start_record;
+app.locals.end_record;
+app.locals.totalrows;
+app.locals.current_page_active;
+app.locals.current_page;
+app.locals.start_page;
+app.locals.end_page;
+
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
@@ -139,5 +153,11 @@ app.use("/editgrantingauthority", editgrantingauthority);
 
 var addgrantingauthority = require("./routes/addgrantingauthority");
 app.use("/addgrantingauthority", addgrantingauthority);
+
+var choosedashboard = require("./routes/choosedashboard");
+app.use("/choosedashboard", choosedashboard);
+
+var mysubsidymeasures = require("./routes/mysubsidymeasures");
+app.use("/mysubsidymeasures", mysubsidymeasures);
 
 module.exports = app;
