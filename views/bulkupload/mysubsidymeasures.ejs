@@ -133,8 +133,21 @@
         </thead>
 
         <tbody class="govuk-table__body">
-      
-   
+          <% searchawards.awards.forEach(function(item) { %> 
+          <tr>
+            <td class="govuk-table__cell"> <%= item.beneficiary.beneficiaryName  %> </a> </td>
+            <td class="govuk-table__cell"><%= item.subsidyMeasure.scNumber %></td> 
+            <td class="govuk-table__cell">Granting Authority Name</td> 
+            <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>    
+            <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td> 
+            <td class="govuk-table__cell">1 year</td> 
+
+            <td class="govuk-table__cell" style="text-align:center"> £ 500,00</td> 
+            
+            
+          </tr>
+
+          <% } ); %>
         </tbody>
       </table>
  
