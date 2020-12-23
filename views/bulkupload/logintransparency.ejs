@@ -29,7 +29,7 @@
         </h1>
       </legend>
       <br />
-      <form action="/beisadmindashboard" method="POST">
+      <form action="/choosedashboard" method="POST">
         <div class="govuk-grid-row">
           <div class="govuk-form-group govuk-grid-column-two-thirds">
             <legend class="govuk-fieldset__legend">
@@ -37,16 +37,15 @@
             </legend>
             <select
               class="govuk-select govuk-grid-column-two-thirds"
-              id="sort"
-              name="sort"
+              id="dashboard_username" name="dashboard_username"
             >
               <option value="" disabled selected>38 Options Available</option>
-              <option value="published">Andrew Davis</option>
-              <option value="updated">Albert Einstein</option>
-              <option value="views">Barry Smith</option>
-              <option value="comments">Claire Jones</option>
-              <option value="">Mary Johnson</option>
-              <option value="">Michael Robinson</option>
+              <option value="Andrew Davis">Andrew Davis</option>
+              <option value="Albert Einstein">Albert Einstein</option>
+              <option value="Barry Smith">Barry Smith</option>
+              <option value="Claire Jones">Claire Jones</option>
+              <option value="Mary Johnson">Mary Johnson</option>
+              <option value="Michael Robinson">Michael Robinson</option>
             </select>
           </div>
           <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -55,14 +54,13 @@
             </legend>
             <select
               class="govuk-select govuk-grid-column-two-thirds"
-              id="sort"
-              name="sort"
+              id="dashboard_roles" name="dashboard_roles"
             >
               <option value="" disabled selected>4 Roles Available</option>
-              <option value="published">BEIS Administrator</option>
-              <option value="updated">Granting Authority Administrator</option>
-              <option value="views">Granting Authority Approver</option>
-              <option value="comments">Granting Authority Encoder</option>
+              <option value="BEIS Administrator">BEIS Administrator</option>
+              <option value="Granting Authority Administrator">Granting Authority Administrator</option>
+              <option value="Granting Authority Approver">Granting Authority Approver</option>
+              <option value="Granting Authority Encoder">Granting Authority Encoder</option>
             </select>
           </div>
           <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -88,11 +86,11 @@
             </select>
           </div>
           <div class="govuk-form-group govuk-grid-column-two-thirds">
-            <p class="govuk-body">
+            <!-- <p class="govuk-body">
               <a class="govuk-link" href="/loginforgetpassword">
                 I have forgotten my password
               </a>
-            </p>
+            </p> -->
             <button
               class="govuk-button govuk-login-button"
               data-module="govuk-button"
