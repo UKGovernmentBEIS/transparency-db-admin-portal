@@ -97,7 +97,7 @@ table tbody tr:hover{
   text-decoration: none;
 }
 
-.pagination span {
+.pagination span:last-child {
   font-weight: bold;
 }
 

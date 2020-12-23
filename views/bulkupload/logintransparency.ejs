@@ -1,115 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>GOV.UK - Public user search page</title>
-  </head>
-  <!-- <%- include('../partials/header.ejs') %> -->
-  <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css" />
 
-  <script
-    type="text/javascript"
-    src="/assets/javascripts/pagination.class.js"
-  ></script>
-  <script
-    type="text/javascript"
-    src="/assets/javascripts/script.js"
-    defer
-  ></script>
-  <script src="/assets/javascripts/vendor/modernizr.js"></script>
+<head>
+  <title>GOV.UK - Public user search page</title>
+</head>
+<!-- <%- include('../partials/header.ejs') %> -->
+<link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css" />
 
-  <!-- <%- include('../partials/headersubsidy.ejs') %> -->
-  <%- include('../partials/header.ejs') %>
-  <div class="govuk-width-container">
-    <main class="govuk-main-wrapper" id="main-content" role="main">
-      <legend
-        class="govuk-fieldset__legend govuk-fieldset__legend--l form-group"
-      >
-        <h1 class="govuk-fieldset__heading">
-          Sign into the Transparency Database
-        </h1>
-      </legend>
-      <br />
-      <form action="/choosedashboard" method="POST">
-        <div class="govuk-grid-row">
-          <div class="govuk-form-group govuk-grid-column-two-thirds">
-            <legend class="govuk-fieldset__legend">
-              <label class="label" for="sort">Select user</label>
-            </legend>
-            <select
-              class="govuk-select govuk-grid-column-two-thirds"
-              id="dashboard_username" name="dashboard_username"
-            >
-              <option value="" disabled selected>38 Options Available</option>
-              <option value="Andrew Davis">Andrew Davis</option>
-              <option value="Albert Einstein">Albert Einstein</option>
-              <option value="Barry Smith">Barry Smith</option>
-              <option value="Claire Jones">Claire Jones</option>
-              <option value="Mary Johnson">Mary Johnson</option>
-              <option value="Michael Robinson">Michael Robinson</option>
-            </select>
-          </div>
-          <div class="govuk-form-group govuk-grid-column-two-thirds">
-            <legend class="govuk-fieldset__legend">
-              <label class="label" for="sort">Select the role you have</label>
-            </legend>
-            <select
-              class="govuk-select govuk-grid-column-two-thirds"
-              id="dashboard_roles" name="dashboard_roles"
-            >
-              <option value="" disabled selected>4 Roles Available</option>
-              <option value="BEIS Administrator">BEIS Administrator</option>
-              <option value="Granting Authority Administrator">Granting Authority Administrator</option>
-              <option value="Granting Authority Approver">Granting Authority Approver</option>
-              <option value="Granting Authority Encoder">Granting Authority Encoder</option>
-            </select>
-          </div>
-          <div class="govuk-form-group govuk-grid-column-two-thirds">
-            <legend class="govuk-fieldset__legend">
-              <label class="label" for="sort">
-                Select the granting authority
-              </label>
-            </legend>
-            <select
-              class="govuk-select govuk-grid-column-two-thirds"
-              id="sort"
-              name="sort"
-            >
-              <option value="" disabled selected>
-                43 Granting Authorities Available
-              </option>
-              <option value="published">Aberdeenshire Council</option>
-              <option value="updated">BFI</option>
-              <option value="views">Big Lottery Fund</option>
-              <option value="comments">Birmingham City Council</option>
-              <option value="">Blaenau Gwent County Borough Council</option>
-              <option value="">Carmenthenshire County Council</option>
-            </select>
-          </div>
-          <div class="govuk-form-group govuk-grid-column-two-thirds">
-            <!-- <p class="govuk-body">
+<script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
+<script type="text/javascript" src="/assets/javascripts/script.js" defer></script>
+<script src="/assets/javascripts/vendor/modernizr.js"></script>
+<script>
+  handleChange = (event) => {
+    if (event.target.value == 'BEIS Administrator')
+      document.getElementById("govuk-granting-authority-select").setAttribute("disabled", true);
+    else
+      document.getElementById("govuk-granting-authority-select").removeAttribute("disabled");
+  };
+</script>
+<!-- <%- include('../partials/headersubsidy.ejs') %> -->
+<%- include('../partials/header.ejs') %>
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper" id="main-content" role="main">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
+      <h1 class="govuk-fieldset__heading">
+        Sign into the Transparency Database
+      </h1>
+    </legend>
+    <br />
+    <form action="/choosedashboard" method="POST">
+      <div class="govuk-grid-row">
+        <div class="govuk-form-group govuk-grid-column-two-thirds">
+          <legend class="govuk-fieldset__legend">
+            <label class="label" for="sort">Select user</label>
+          </legend>
+          <select class="govuk-select govuk-grid-column-two-thirds" id="dashboard_username" name="dashboard_username">
+            <option value="" disabled selected>38 Options Available</option>
+            <option value="Andrew Davis">Andrew Davis</option>
+            <option value="Albert Einstein">Albert Einstein</option>
+            <option value="Barry Smith">Barry Smith</option>
+            <option value="Claire Jones">Claire Jones</option>
+            <option value="Mary Johnson">Mary Johnson</option>
+            <option value="Michael Robinson">Michael Robinson</option>
+          </select>
+        </div>
+        <div class="govuk-form-group govuk-grid-column-two-thirds">
+          <legend class="govuk-fieldset__legend">
+            <label class="label" for="sort">Select the role you have</label>
+          </legend>
+          <select class="govuk-select govuk-grid-column-two-thirds" id="dashboard_roles" name="dashboard_roles"
+            onchange=handleChange(event)>
+            <option value="" disabled selected>4 Roles Available</option>
+            <option value="BEIS Administrator">BEIS Administrator</option>
+            <option value="Granting Authority Administrator">Granting Authority Administrator</option>
+            <option value="Granting Authority Approver">Granting Authority Approver</option>
+            <option value="Granting Authority Encoder">Granting Authority Encoder</option>
+          </select>
+        </div>
+        <div class="govuk-form-group govuk-grid-column-two-thirds">
+          <legend class="govuk-fieldset__legend">
+            <label class="label" for="sort">
+              Select the granting authority
+            </label>
+          </legend>
+          <select class="govuk-select govuk-grid-column-two-thirds" id="govuk-granting-authority-select" name="sort">
+            <option value="" disabled selected>
+              43 Granting Authorities Available
+            </option>
+            <option value="published">Aberdeenshire Council</option>
+            <option value="updated">BFI</option>
+            <option value="views">Big Lottery Fund</option>
+            <option value="comments">Birmingham City Council</option>
+            <option value="">Blaenau Gwent County Borough Council</option>
+            <option value="">Carmenthenshire County Council</option>
+          </select>
+        </div>
+        <div class="govuk-form-group govuk-grid-column-two-thirds">
+          <!-- <p class="govuk-body">
               <a class="govuk-link" href="/loginforgetpassword">
                 I have forgotten my password
               </a>
             </p> -->
-            <button
-              class="govuk-button govuk-login-button"
-              data-module="govuk-button"
-            >
-              Sign in
-            </button>
-          </div>
+          <button class="govuk-button govuk-login-button" data-module="govuk-button">
+            Sign in
+          </button>
         </div>
-      </form>
-    </main>
-  </div>
+      </div>
+    </form>
+  </main>
+</div>
 
-  <%- include('../partials/footer.ejs') %>
-  <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
-  <script src="/assets/javascripts/accordion/govuk-frontend.js"></script>
-  <script src="/assets/javascripts/accordion/example.js"></script>
-  <link
-    href="/assets/stylesheet/govuk-transparencyDb.css"
-    rel="stylesheet"
-    type="text/css"
-  />
+<%- include('../partials/footer.ejs') %>
+<script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+<script src="/assets/javascripts/accordion/govuk-frontend.js"></script>
+<script src="/assets/javascripts/accordion/example.js"></script>
+<link href="/assets/stylesheet/govuk-transparencyDb.css" rel="stylesheet" type="text/css" />
+
 </html>
