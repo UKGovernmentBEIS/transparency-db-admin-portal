@@ -70,20 +70,29 @@
 
       <!-- Body header starts here -->
       <h1 class="govuk-heading-xl">Subsidy measure search</h1>
-      <div id="Subsidy_Control_Number-hint" class="govuk-hint">
-        Search by entering either Subsidy Measure Title, Subsidy Control number, or Granting Authority
-      </div>
+
 
       <!-- Body header ends here -->
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds filter-input-div">
+          <p class="govuk-input--width-20">Search by entering either Subsidy Measure Title, Subsidy Control number, or
+            Granting Authority</p>
           <input class="govuk-input govuk-input--width-20" id="width-20" name="width-20" type="text">
           <button class="govuk-button" data-module="govuk-button">
             Search
           </button>
         </div>
-
+        <div class="govuk-grid-column-one-third">
+          <select class="govuk-select govuk-!-width-full" id="sort">
+            <option disabled>Only show me</option>
+            <option disabled>Draft (1)</option>
+            <option disabled>Finalised (5)</option>
+            <option disabled>Published (35)</option>
+            <option disabled>Deactive (5) </option>
+            <option disabled>Show all (46)</option>
+          </select>
+        </div>
         <div class="govuk-grid-column-one-third govuk-display-flex govuk-padding-0">
           <label class="govuk-grid-column-two-thirds govuk-padding-0">
             Results per page
@@ -169,7 +178,6 @@
             </div>
 
             <% } %>
-
 
             <div class="col last">
               <% if (pageCount > 1) { %>
