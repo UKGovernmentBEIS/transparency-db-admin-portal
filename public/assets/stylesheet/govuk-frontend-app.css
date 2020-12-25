@@ -448,3 +448,9 @@ button.link {
 .govuk-breadcrumbs__link.active {
   text-decoration: none;
 }
+.govuk-checkboxes__input {
+  top: -9px;
+  left: 21px;
+  width: 38px;
+  height: 38px;
+}

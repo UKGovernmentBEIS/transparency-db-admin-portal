@@ -74,6 +74,10 @@ app.get("/", (req, res) => {
   res.render("bulkupload/logintransparency");
 });
 
+
+var logintransparency= require('./routes/logintransparency');
+app.use('/logintransparency',logintransparency);
+
 // app.get('/',(req, res) => {
 //   res.render('accessmanagement/enterotp')  
 // })
@@ -159,5 +163,17 @@ app.use("/choosedashboard", choosedashboard);
 
 var mysubsidymeasures = require("./routes/mysubsidymeasures");
 app.use("/mysubsidymeasures", mysubsidymeasures);
+
+var awardspageroute = require("./routes/awardspageroute");
+app.use("/awardspageroute", awardspageroute);
+
+var awardspageperroute = require("./routes/awardspageperroute");
+app.use("/awardspageperroute", awardspageperroute);
+
+var measurespageroute = require("./routes/measurespageroute");
+app.use("/measurespageroute",measurespageroute);
+
+var measurespageperroute = require("./routes/measurespageperroute");
+app.use("/measurespageperroute", measurespageperroute);
 
 module.exports = app;
