@@ -23,28 +23,28 @@
               <nav class="govuk-sub-navigation" aria-label="Sub navigation">
                   <ul class="govuk-sub-navigation__list">
                   <li class="govuk-sub-navigation__item">
-                    <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidyawards">
+                    <a class="govuk-sub-navigation__link"  href="/mygrantingauthority">
                       Granting Authorities
                     </a>
                   </li>      
                   <li class="govuk-sub-navigation__item">
-                    <a class="govuk-sub-navigation__link" href="/addsubsidyaward">
+                    <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidymeasures">
                       Subsidy Measures
                     </a>
                   </li>      
                   <li class="govuk-sub-navigation__item">
-                    <a class="govuk-sub-navigation__link" href="/bulkuploadsubsidy">
+                    <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
                       Subsidy Awards
                     </a>
                   </li>      
                    
                   <li class='govuk-sub-navigation__item head-right'>
-                   <a class="govuk-sub-navigation__link" href="/loginfirstpage">
+                   <a class="govuk-sub-navigation__link" href="/logintransparency">
                      Signout 
                    </a>  
                  </li>
                  <li class='govuk-sub-navigation__item head-right'>
-                   <a class="govuk-sub-navigation__link" href="/loginfirstpage">
+                   <a class="govuk-sub-navigation__link" href="/logintransparency">
                      My account 
                    </a>   
                  </li>
@@ -88,8 +88,8 @@
             Results per page
           </label>
          
-         <form class="govuk-grid-column-one-third" action="/measurepageperroute" method="GET" >  
-          <select class="govuk-select" id="sort" name="recordperpage" onchange="this.form.submit()">  
+         <form class="govuk-grid-column-one-third" action="/measurespageperroute" method="GET" >  
+          <select class="govuk-select" id="sort" name="sort" onchange="this.form.submit()">  
             <% if(frontend_totalRecordsPerPage  == 1) { %>    
               <option value="1" selected>1</option>
             <% } else { %>
@@ -172,21 +172,21 @@
             <% if (pageCount > 1) { %>
 
               <% if (current_page_active != 1) { %> 
-               <a href="/pageroute/?page=1" id="paginationlink" class="first round"><img id="govuk-left-arrow" src="/assets/images/govuk-left-arrow.jpg"></a>
-                <a href="/pageroute/?page=<%= previous_page %>" id="paginationlink" class="previous round">Previous Page</a>
+               <a href="/measurespageroute/?page=1" id="paginationlink" class="first round"><img id="govuk-left-arrow" src="/assets/images/govuk-left-arrow.jpg"></a>
+                <a href="/measurespageroute/?page=<%= previous_page %>" id="paginationlink" class="previous round">Previous Page</a>
                <% } %>
               
                   <% for (var i = start_page; i <= end_page; i++) { %>
                     <% if (current_page_active != i ) { %>
-                    <a id="paginationlink" class="round btn-page" href="/pageroute/?page=<%= i %>"><%= i %></a>
+                    <a id="paginationlink" class="round btn-page" href="/measurespageroute/?page=<%= i %>"><%= i %></a>
                     <% } else { %>
-                      <a id="paginationlink" class="round btn-page active" href="/pageroute/?page=<%= i %>"><%= i %></a>
+                      <a id="paginationlink" class="round btn-page active" href="/measurespageroute/?page=<%= i %>"><%= i %></a>
                       <% } %> 
                     <% } %>
                 
                     <% if (current_page_active != pageCount) { %> 
-                  <a href="/pageroute/?page=<%= next_page %>" id="paginationlink" class="next round">Next Page</a>
-                 <a href="/pageroute/?page=<%= pageCount %>" id="paginationlink" class="last round"><img id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg"></a> 
+                  <a href="/measurespageroute/?page=<%= next_page %>" id="paginationlink" class="next round">Next Page</a>
+                 <a href="/measurespageroute/?page=<%= pageCount %>" id="paginationlink" class="last round"><img id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg"></a> 
                   <% } %>
             <% } %>
         </div>
