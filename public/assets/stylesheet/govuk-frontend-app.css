@@ -438,6 +438,7 @@ button.link {
   display: flex;
   align-items: center;
   text-align: right;
+  justify-content: flex-end;
 }
 .govuk-padding-0 {
   padding: 0;

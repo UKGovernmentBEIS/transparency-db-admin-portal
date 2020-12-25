@@ -75,29 +75,33 @@
       <!-- Body header ends here -->
 
       <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds filter-input-div">
-          <p class="govuk-input--width-20">Search by entering either Subsidy Measure Title, Subsidy Control number, or
-            Granting Authority</p>
-          <input class="govuk-input govuk-input--width-20" id="width-20" name="width-20" type="text">
+        <div class="govuk-grid-column-full govuk-grid-row">
+          <label class="govuk-label govuk-grid-column-one-third">
+            Search by entering either Subsidy Measure Title, Subsidy Control number, or
+            Granting Authority
+          </label>
+        </div>
+        <div class="govuk-grid-column-one-half govuk-form-group">
+          <input class="govuk-input govuk-!-width-three-quarters" id="width-20" name="width-20" type="text">
           <button class="govuk-button" data-module="govuk-button">
             Search
           </button>
         </div>
-        <div class="govuk-grid-column-one-third">
+        <div class="govuk-grid-column-one-quarter govuk-form-group">
           <select class="govuk-select govuk-!-width-full" id="sort">
-            <option disabled>Only show me</option>
-            <option disabled>Draft (1)</option>
-            <option disabled>Finalised (5)</option>
-            <option disabled>Published (35)</option>
-            <option disabled>Deactive (5) </option>
-            <option disabled>Show all (46)</option>
+            <option disabled selected value="">Only show me</option>
+            <option value="">Draft (1)</option>
+            <option value="">Finalised (5)</option>
+            <option value="">Published (35)</option>
+            <option value="">Deactive (5) </option>
+            <option value="">Show all (46)</option>
           </select>
         </div>
-        <div class="govuk-grid-column-one-third govuk-display-flex govuk-padding-0">
-          <label class="govuk-grid-column-two-thirds govuk-padding-0">
+
+        <div class="govuk-grid-column-one-quarter govuk-display-flex govuk-padding-0">
+          <label>
             Results per page
           </label>
-
           <form class="govuk-grid-column-one-third" action="/measurepageperroute" method="GET">
             <select class="govuk-select govuk-!-width-full" id="sort" name="recordperpage"
               onchange="this.form.submit()">
@@ -190,7 +194,8 @@
                   </g>
                 </svg></a>
               <a href="/measurespageroute/?page=<%= previous_page %>" id="paginationlink"
-                class="previous round">Previous Page</a>
+                class="previous round">Previous
+                Page</a>
               <% } %>
 
               <% for (var i = start_page; i <= end_page; i++) { %>
