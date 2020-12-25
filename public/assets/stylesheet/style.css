@@ -97,7 +97,7 @@ table tbody tr:hover{
   text-decoration: none;
 }
 
-.pagination span {
+.pagination span:last-child {
   font-weight: bold;
 }
 
@@ -123,14 +123,14 @@ table tbody tr:hover{
 #downarrow {
   position: absolute;
   transform: rotate(180deg);
-  top: 29px;
-  right: 18px;
+  bottom: 10px;
+  right: 11px;
 }
 
 #uparrow {
   position: absolute;
-  top: 19px;
-  right: 18px;
+  bottom: 20px;
+  right: 11px;
 }
 .govuk-table__row th {
   position: relative;
