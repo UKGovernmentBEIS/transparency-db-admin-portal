@@ -268,7 +268,8 @@
               <% if (pageCount > 1) { %>
 
               <% if (current_page_active != 1) { %>
-              <a href="/awardspageroute/?page=1" id="paginationlink" class="first round"><svg version="1.1" width="19px"
+              <a href="/awardspageroute/?page=1" id="paginationlink" class="first round">
+                <svg version="1.1" width="19px"
                   height="30px">
                   <defs>
                     <mask fill="white" id="clip2">
@@ -286,7 +287,8 @@
                       stroke-width="2" stroke="#ffffff" fill="none" transform="matrix(1 0 0 1 456 1241 )"
                       mask="url(#clip2)" />
                   </g>
-                </svg>></a>
+                </svg>
+              </a>
               <a href="/awardspageroute/?page=<%= previous_page %>" id="paginationlink" class="previous round">Previous
                 Page</a>
               <% } %>
