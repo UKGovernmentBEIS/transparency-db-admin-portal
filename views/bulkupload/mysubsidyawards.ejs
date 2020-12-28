@@ -126,7 +126,7 @@
           </button>
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group">
-          <select class="govuk-select govuk-!-width-full" id="sort">
+          <select class="govuk-select govuk-!-width-full">
             <option disabled selected value="">Only show me</option>
             <option value="">Draft (1)</option>
             <option value="">Finalised (5)</option>
@@ -136,41 +136,43 @@
           </select>
         </div>
         <div class="govuk-grid-column-two-thirds govuk-form-group">
-          <a href="/addsubsidyaward" style="color : black; text-decoration: none">
-            <button class="govuk-button" data-module="govuk-button">
-              Add subsidy award
-            </button> </a>
-          <a href="/bulkuploadsubsidy" style="color : black; text-decoration: none">
-            <button class="govuk-button" data-module="govuk-button">
-              Bulk upload
-            </button> </a>
-          <button class="govuk-button" data-module="govuk-button">
+          <!-- <a href="/" style="color : black; text-decoration: none"> -->
+          <button class="govuk-button" onclick="window.location.href='/addsubsidyaward'" data-module="govuk-button">
+            Add subsidy award
+          </button>
+          <!-- </a> -->
+          <!-- <a href=""> -->
+          <button class="govuk-button" onclick="window.location.href='/bulkuploadsubsidy'" data-module="govuk-button">
+            Bulk upload
+          </button>
+          <!-- </a> -->
+          <button class="govuk-button" data-module="govuk-button" disabled>
             Delete Selected
           </button>
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group govuk-display-flex" style="text-align: right;">
           <label>Results per page</label>
-          <form class="govuk-grid-column-one-third" action="/awardspageperroute" method="GET">
+          <form class="govuk-grid-column-one-third govuk-padding-0" action="/awardspageperroute" method="GET">
             <select class="govuk-select" id="sort" name="sort" onchange="this.form.submit()">
-              <% if(frontend_totalRecordsPerPage  == 1) { %>
-              <option value="1" selected>1</option>
-              <% } else { %>
-              <option value="1">1</option>
-              <% }  %>
-              <% if(frontend_totalRecordsPerPage  == 2) { %>
-              <option value="2" selected>2</option>
-              <% } else { %>
-              <option value="2">2</option>
-              <% }  %>
-              <% if(frontend_totalRecordsPerPage  == 5) { %>
-              <option value="5" selected>5</option>
-              <% } else { %>
-              <option value="5">5</option>
-              <% }  %>
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <option value="10" selected>10</option>
               <% } else { %>
               <option value="10">10</option>
+              <% }  %>
+              <% if(frontend_totalRecordsPerPage  == 20) { %>
+              <option value="20" selected>20</option>
+              <% } else { %>
+              <option value="20">20</option>
+              <% }  %>
+              <% if(frontend_totalRecordsPerPage  == 50) { %>
+              <option value="50" selected>50</option>
+              <% } else { %>
+              <option value="50">50</option>
+              <% }  %>
+              <% if(frontend_totalRecordsPerPage  == 100) { %>
+              <option value="100" selected>100</option>
+              <% } else { %>
+              <option value="100">100</option>
               <% }  %>
             </select>
           </form>
@@ -269,8 +271,7 @@
 
               <% if (current_page_active != 1) { %>
               <a href="/awardspageroute/?page=1" id="paginationlink" class="first round">
-                <svg version="1.1" width="19px"
-                  height="30px">
+                <svg version="1.1" width="19px" height="30px">
                   <defs>
                     <mask fill="white" id="clip2">
                       <path
