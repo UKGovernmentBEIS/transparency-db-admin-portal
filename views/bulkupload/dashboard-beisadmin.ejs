@@ -93,9 +93,8 @@
             <label>All granting authorities</label>
             <p>Total granting authorities</p>
             <legend
-              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
-            >
-              72
+              class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+              <%= dashboardawards.grantingAuthorityUserActionCount.totalGrantingAuthority %>
             </legend>
           </div>
           <div
@@ -106,7 +105,7 @@
             <legend
               class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
             >
-              15
+            <%= dashboardawards.grantingAuthorityUserActionCount.totalGAPublishedByUser %>
             </legend>
           </div>
           <div
@@ -117,7 +116,7 @@
             <legend
               class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
             >
-              5
+            <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
             </legend>
           </div>
           <div
@@ -128,7 +127,7 @@
             <legend
               class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
             >
-              5
+            <%= dashboardawards.grantingAuthorityUserActionCount.totalNotPublishedGA %>
             </legend>
           </div>
         </div>
@@ -167,43 +166,16 @@
             </tr>
           </thead>
           <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">Adur District Council</a>
-              </td>
-              <td class="govuk-table__cell">Draft</td>
-              <td class="govuk-table__cell">11 November 2020</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">
-                  Bath and North East Somerset Council
-                </a>
-              </td>
-              <td class="govuk-table__cell">Finalized</td>
-              <td class="govuk-table__cell">11 November 2020</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">Cardiff Council</a>
-              </td>
-              <td class="govuk-table__cell">Published</td>
-              <td class="govuk-table__cell">11 November 2020</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">Cheltenham Borough Council</a>
-              </td>
-              <td class="govuk-table__cell">Deleted</td>
-              <td class="govuk-table__cell">11 November 2020</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">Cotswold District Council</a>
-              </td>
-              <td class="govuk-table__cell">Published</td>
-              <td class="govuk-table__cell">9 November 2020</td>
-            </tr>
+            <% dashboardawards.grantingAuthorityResponse.forEach(function(item) { %>
+              <tr>
+                <td class="govuk-table__cell"> <a> <%= item.gaName %> </a> </td>
+                <td class="govuk-table__cell"><%= item.status %></td>
+                <td class="govuk-table__cell"> <%= item.lastModifiedDate  %>  </td>
+              
+              </tr>
+
+              <% } ); %>
+          
           </tbody>
         </table>
       </div>
@@ -345,7 +317,7 @@
             <legend
               class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
             >
-              120
+            <%= dashboardawards.subsidyMeasureUserActionCount.totalSubsidyMeasures %>
             </legend>
           </div>
           <div
@@ -356,7 +328,7 @@
             <legend
               class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
             >
-              120
+            <%= dashboardawards.subsidyMeasureUserActionCount.totalUserSubsidyMeasures %>
             </legend>
           </div>
           <div
@@ -367,7 +339,7 @@
             <legend
               class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
             >
-              5
+            <%= dashboardawards.subsidyMeasureUserActionCount.totalAllNewSubsidyMeasures %>
             </legend>
           </div>
           <div
@@ -378,7 +350,7 @@
             <legend
               class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
             >
-              2
+            <%= dashboardawards.subsidyMeasureUserActionCount.totalUserNewSubsidyMeasures %>
             </legend>
           </div>
         </div>
@@ -410,76 +382,18 @@
             </tr>
           </thead>
           <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">Air discount scheme</a>
-              </td>
-              <td class="govuk-table__cell">SC12345</td>
-              <td class="govuk-table__cell">
-                Wholesale and retail trade; repair of motor vehicles and
-                motorcycles
-              </td>
-              <td scope="row" class="govuk-table__cell">1 December 2020</td>
-              <td class="govuk-table__cell">1 January 2021</td>
-              <td class="govuk-table__cell">1 year</td>
-              <td class="govuk-table__cell">£632,000</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__cell">
-                <a href="#" class="govuk-editGA"
-                  >High-end television tax relief - United Kingdom</a
-                >
-              </td>
-              <td class="govuk-table__cell">SC12345</td>
-              <td class="govuk-table__cell">
-                Agriculture, forestry and fishing​
-              </td>
-              <td scope="row" class="govuk-table__cell">1 November 2020</td>
-              <td class="govuk-table__cell">1 January 2021</td>
-              <td class="govuk-table__cell">1 year</td>
-              <td class="govuk-table__cell">£470,000</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">Air discount scheme</a>
-              </td>
-              <td class="govuk-table__cell">SC12345</td>
-              <td class="govuk-table__cell">
-                Agriculture, forestry and fishing​
-              </td>
-              <td scope="row" class="govuk-table__cell">1 October 2020</td>
-              <td class="govuk-table__cell">1 January 2021</td>
-              <td class="govuk-table__cell">1 year</td>
-              <td class="govuk-table__cell">£500,000</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">Air discount scheme</a>
-              </td>
-              <td class="govuk-table__cell">SC12345</td>
-              <td class="govuk-table__cell">
-                Wholesale and retail trade; repair of motor vehicles and
-                motorcycles
-              </td>
-              <td scope="row" class="govuk-table__cell">1 September 2020</td>
-              <td class="govuk-table__cell">1 January 2021</td>
-              <td class="govuk-table__cell">1 year</td>
-              <td class="govuk-table__cell">£632,000</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">Air discount scheme</a>
-              </td>
-              <td class="govuk-table__cell">SC12345</td>
-              <td class="govuk-table__cell">
-                Wholesale and retail trade; repair of motor vehicles and
-                motorcycles
-              </td>
-              <td scope="row" class="govuk-table__cell">1 August 2020</td>
-              <td class="govuk-table__cell">1 January 2021</td>
-              <td class="govuk-table__cell">1 year</td>
-              <td class="govuk-table__cell">£632,000</td>
-            </tr>
+            <% dashboardawards.subsidyMeasureResponse.forEach(function(item) { %>
+              <tr>
+                <td class="govuk-table__cell"> <a> <%= item.subsidyMeasureTitle  %> </a> </td>
+                <td class="govuk-table__cell"><%= item.scNumber %></td>
+                <td class="govuk-table__cell"> <%= item.gaName  %>  </td>
+                <td class="govuk-table__cell"><%= item.startDate %></td>
+                <td class="govuk-table__cell"> <%= item.endDate %>  </td>
+                <td class="govuk-table__cell"><%= item.duration %></td>
+                <td class="govuk-table__cell">£<%= item.budget %></td>
+              </tr>
+
+              <% } ); %>
           </tbody>
         </table>
       </div>
@@ -498,7 +412,7 @@
             <legend
               class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
             >
-              230
+            <%= dashboardawards.awardUserActionCount.totalSubsidyAward %>
             </legend>
           </div>
           <div
@@ -509,7 +423,7 @@
             <legend
               class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
             >
-              230
+            <%= dashboardawards.awardUserActionCount.totalUserSubsidyAward %>
             </legend>
           </div>
           <div
@@ -520,7 +434,7 @@
             <legend
               class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
             >
-              5
+            <%= dashboardawards.awardUserActionCount.totalAllNewSubsidyAward %>
             </legend>
           </div>
           <div
@@ -531,7 +445,7 @@
             <legend
               class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count"
             >
-              2
+            <%= dashboardawards.awardUserActionCount.totalUserNewSubsidyAward %>
             </legend>
           </div>
         </div>
@@ -556,83 +470,25 @@
               <th scope="col" class="govuk-table__header">Measure title</th>
               <th scope="col" class="govuk-table__header">Status</th>
               <th scope="col" class="govuk-table__header">Recipient name</th>
-              <th scope="col" class="govuk-table__header">
-                Granting authority
-              </th>
+              <th scope="col" class="govuk-table__header"> Date</th>
               <th scope="col" class="govuk-table__header">Subsidy amount</th>
             </tr>
           </thead>
           <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">123456</a>
-              </td>
-              <td class="govuk-table__cell">Air discount scheme</td>
+            <tbody class="govuk-table__body">
+              <% dashboardawards.awardResponse.forEach(function(item) { %>
+              <tr>
+                <td class="govuk-table__cell"> <a> <%= item.awardNumber  %> </a> </td>
+                <td class="govuk-table__cell"><%= item.subsidyMeasureTitle %></td>
+                <td class="govuk-table__cell"> <%= item.status  %>  </td>
+                <td class="govuk-table__cell"><%= item.gaName %></td>
+                <td class="govuk-table__cell"> <%= item.lastModifiedDate  %>  </td>
+                <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>
+            
+              </tr>
 
-              <td class="govuk-table__cell">Published</td>
-
-              <td class="govuk-table__cell">AA Animation Limited</td>
-
-              <td class="govuk-table__cell">Scottish Government</td>
-
-              <td class="govuk-table__cell">£632,000</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">123456</a>
-              </td>
-              <td class="govuk-table__cell">Air discount scheme</td>
-
-              <td class="govuk-table__cell">Published</td>
-
-              <td class="govuk-table__cell">Abbey Productions Limited</td>
-
-              <td class="govuk-table__cell">Scottish Government</td>
-
-              <td class="govuk-table__cell">£470,000</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">123456</a>
-              </td>
-              <td class="govuk-table__cell">Air discount scheme</td>
-
-              <td class="govuk-table__cell">Published</td>
-
-              <td class="govuk-table__cell">Abbey Productions Limited</td>
-
-              <td class="govuk-table__cell">Scottish Government</td>
-
-              <td class="govuk-table__cell">£470,000</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">123456</a>
-              </td>
-              <td class="govuk-table__cell">Air discount scheme</td>
-
-              <td class="govuk-table__cell">Published</td>
-
-              <td class="govuk-table__cell">AA Animation Limited</td>
-
-              <td class="govuk-table__cell">Scottish Government</td>
-
-              <td class="govuk-table__cell">£632,000</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">123456</a>
-              </td>
-              <td class="govuk-table__cell">Air discount scheme</td>
-
-              <td class="govuk-table__cell">Published</td>
-
-              <td class="govuk-table__cell">Abbey Productions Limited</td>
-
-              <td class="govuk-table__cell">Scottish Government</td>
-
-              <td class="govuk-table__cell">£470,000</td>
-            </tr>
+              <% } ); %>
+            </tbody>
           </tbody>
         </table>
       </div>
