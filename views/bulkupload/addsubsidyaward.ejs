@@ -151,6 +151,14 @@
             <div class="govuk-grid-column-two-thirds">
               <form action="/reviewdetail" method="POST" >
 
+                <label class="govuk-label" for="Subsidy_award_label">
+                  This section is for adding one subsidy award. 
+                  You can use the bulk upload to 
+                  <a href="/bulkuploadsubsidy">add multiple subsidy awards.</a>
+                </label>
+
+                <br />
+
                 <h1 class="govuk-heading-xl">Subsidy Details</h1>
 
 
@@ -163,14 +171,15 @@
                       Subsidy Control Number
                   </label>
                   <div id="Subsidy_Control_Number-hint" class="govuk-hint">
-                     It starts with SC followed by five or six digits. For example SC12345
-                    </div>
+                    This will start with SC, followed by 5 digits. 
+                    It must match the subsidy measure that this award is related to.
+                  </div>
 
                 <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
                 <span class="govuk-visually-hidden">Error:</span> Enter the subsidy control number
                 </span>  
 
-                 <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Control_Number" name="Subsidy_Control_Number" 
+                 <input class="govuk-input govuk-input--width-10 govuk-input--error" id="Subsidy_Control_Number" name="Subsidy_Control_Number" 
                  type="text" aria-describedby="Subsidy_Control_Number-hint" 
                  <% if(locals.Subsidy_Control_Number_Global) {%> value="<%= locals.Subsidy_Control_Number_Global%>" <% } %>  /> 
                  </div>
@@ -181,9 +190,10 @@
                         Subsidy Control Number
                     </label>
                     <div id="Subsidy_Control_Number-hint" class="govuk-hint">
-                       It starts with SC followed by five or six digits. For example SC12345
+                      This will start with SC, followed by 5 digits. 
+                    It must match the subsidy measure that this award is related to.
                       </div>
-                   <input class="govuk-input govuk-input--width-20" id="Subsidy_Control_Number" name="Subsidy_Control_Number" 
+                   <input class="govuk-input govuk-input--width-10" id="Subsidy_Control_Number" name="Subsidy_Control_Number" 
                    type="text" aria-describedby="Subsidy_Control_Number-hint" 
                    <% if(locals.Subsidy_Control_Number_Global) {%> value="<%= locals.Subsidy_Control_Number_Global%>" <% } %>  /> 
                    </div>
@@ -203,9 +213,11 @@
                       <span class="govuk-visually-hidden">Error:</span> Enter the subsidy measure title
                       </span>  
 
-                   <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Measure_Title" name="Subsidy_Measure_Title" 
+                   <input class="govuk-input govuk-input--width-20 govuk-input--error" 
+                   id="Subsidy_Measure_Title" name="Subsidy_Measure_Title" 
                    type="text" aria-describedby="Subsidy_Measure_Title-hint"
-                   <% if(locals.Subsidy_Measure_Title_Global) {%> value="<%= locals.Subsidy_Measure_Title_Global%>" <% } %>  /> 
+                   <% if(locals.Subsidy_Measure_Title_Global) {%> 
+                    value="<%= locals.Subsidy_Measure_Title_Global%>" <% } %>  /> 
                    </div>
                   <% } else { %>
 
@@ -214,9 +226,10 @@
                         Subsidy Measure Title
                     </label>
 
-                   <input class="govuk-input govuk-input--width-20" id="Subsidy_Measure_Title" name="Subsidy_Measure_Title" 
-                   type="text" aria-describedby="Subsidy_Measure_Title-hint"
-                   <% if(locals.Subsidy_Measure_Title_Global) {%> value="<%= locals.Subsidy_Measure_Title_Global%>" <% } %>  /> 
+                   <input class="govuk-input govuk-input--width-20" id="Subsidy_Measure_Title" 
+                   name="Subsidy_Measure_Title" type="text" aria-describedby="Subsidy_Measure_Title-hint"
+                   <% if(locals.Subsidy_Measure_Title_Global) {%> 
+                    value="<%= locals.Subsidy_Measure_Title_Global%>" <% } %>  /> 
                    </div>
                    <% }  %>
 
