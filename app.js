@@ -66,6 +66,7 @@ app.locals.current_page_active;
 app.locals.current_page;
 app.locals.start_page;
 app.locals.end_page;
+app.locals.dashboardawards;
 
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
