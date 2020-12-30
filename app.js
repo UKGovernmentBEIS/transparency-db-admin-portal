@@ -128,6 +128,12 @@ app.use("/formvalidation", formvalidation);
 var addsubsidyaward = require("./routes/addsubsidyaward");
 app.use("/addsubsidyaward", addsubsidyaward);
 
+var rejectsubsidyaward = require("./routes/subsidyaward-reject");
+app.use("/rejectsubsidyaward", rejectsubsidyaward);
+
+var approverejectsubsidyaward = require("./routes/subsidyaward-approve-reject");
+app.use("/approverejectsubsidyaward", approverejectsubsidyaward);
+
 var cancelmysubsidy = require("./routes/cancelmysubsidy");
 app.use("/cancelmysubsidy", cancelmysubsidy);
 
