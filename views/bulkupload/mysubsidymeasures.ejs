@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Public user search page</title>
+  <title>GOV.UK - Subsidy Measures search page</title>
 </head>
 
 <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
@@ -26,6 +26,11 @@
               <li class="govuk-sub-navigation__item">
                 <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
                   Granting Authorities
+                </a>
+              </li>
+              <li class="govuk-sub-navigation__item">
+                <a class="govuk-sub-navigation__link" href="#">
+                  Users
                 </a>
               </li>
               <li class="govuk-sub-navigation__item">
@@ -61,31 +66,45 @@
           <li class="govuk-breadcrumbs__list-item">
             <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
           </li>
-          <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/">Subsidy measures</a>
+          <li class="govuk-breadcrumbs__list-item ">
+            <a class="govuk-breadcrumbs__link active" href="/">Subsidy measures</a>
           </li>
         </ol>
       </div>
       <!-- bread crumbs ends here -->
 
       <!-- Body header starts here -->
-      <h1 class="govuk-heading-xl">Subsidy measure search</h1>
+      <h1 class="govuk-heading-xl">Subsidy measures</h1>
       <!-- Body header ends here -->
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full govuk-grid-row">
           <label class="govuk-label govuk-grid-column-one-third">
-            Search by entering either Subsidy Measure Title, Subsidy Control number, or Granting Authority
+            Search Subsidy Measure Title, Subsidy Control number, or Granting Authority.
           </label>
         </div>
 
-        <div class="govuk-grid-column-two-thirds filter-input-div">
-          <input class="govuk-input govuk-input--width-20" id="width-20" name="width-20" type="text">
+        <div class="govuk-grid-column-one-half">
+          <input class="govuk-input govuk-!-width-three-quarters" type="text">
           <button class="govuk-button" data-module="govuk-button">
             Search
           </button>
         </div>
-
+        <div class="govuk-grid-column-one-third govuk-form-group">
+          <select class="govuk-select govuk-!-width-full">
+            <option disabled selected value="">Only show me</option>
+            <option value="">Draft (1)</option>
+            <option value="">Finalised (5)</option>
+            <option value="">Published (35)</option>
+            <option value="">Deactive (5) </option>
+            <option value="">Show all (46)</option>
+          </select>
+        </div>
+        <div class="govuk-grid-column-two-thirds govuk-form-group">
+          <a href="/addsubsidymeasures"><button class="govuk-button" data-module="govuk-button">
+              Add subsidy measure
+            </button></a>
+        </div>
         <div class="govuk-grid-column-one-third govuk-display-flex">
           <label class="govuk-grid-column-two-thirds">
             Results per page
@@ -125,7 +144,7 @@
             </caption>
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header app-custom-class">Subsidy Name</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Subsidy measure name</th>
                 <th scope="col" class="govuk-table__header app-custom-class">Subsidy control no.</th>
                 <th scope="col" class="govuk-table__header app-custom-class">Granting authority</th>
                 <th scope="col" class="govuk-table__header app-custom-class">Start date</th>
@@ -138,7 +157,8 @@
             <tbody class="govuk-table__body">
               <% searchawards.awards.forEach(function(item) { %>
               <tr>
-                <td class="govuk-table__cell"> <%= item.beneficiary.beneficiaryName  %> </a> </td>
+                <td class="govuk-table__cell"><a href="/editsubsidymeasure"> <%= item.beneficiary.beneficiaryName  %>
+                  </a> </td>
                 <td class="govuk-table__cell"><%= item.subsidyMeasure.scNumber %></td>
                 <td class="govuk-table__cell">Granting Authority Name</td>
                 <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>

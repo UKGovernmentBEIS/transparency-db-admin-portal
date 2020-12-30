@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<%- include('../partials/headersubsidy.ejs') %>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+            <!-- bread crumbs start here -->
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <nav class="govuk-sub-navigation" aria-label="Sub navigation">
+                        <ul class="govuk-sub-navigation__list">
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                    Granting Authorities
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="#">
+                                    Users
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidymeasures">
+                                    Subsidy Measures
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
+                                    Subsidy Awards
+                                </a>
+                            </li>
+
+                            <li class='govuk-sub-navigation__item head-right'>
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    Signout
+                                </a>
+                            </li>
+                            <li class='govuk-sub-navigation__item head-right'>
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    My account
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a1 class="govuk-breadcrumbs__link" href="/mysubsidymeasures">Subsidy measures</a1>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a1 class="govuk-breadcrumbs__link active" href="#">Add a subsidy measure</a1>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds-from-desktop">
+                    <h1 class="govuk-heading-xl">Review subsidy measure information before sending for approval</h1>
+
+                    <!-- *************************************
+              Review for subsidy details tab
+              ************************************* -->
+
+                </div>
+                <div class="govuk-grid-column-full">
+                    <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy measure details
+                    </h2>
+                    <a rel="external" class="govuk-link head-right govuk-relative-position" href="/addsubsidymeasures">
+                        <p>Change </p>
+                    </a>
+                </div>
+            </div>
+            <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Granting Authority</th>
+                        <td class="govuk-table__cell">Cardiff Council</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Subsidy measure name</th>
+                        <td class="govuk-table__cell">Air discount scheme</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Legal basis</th>
+                        <td class="govuk-table__cell">Research and development</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Weblink to Granting Authority Text
+                            of
+                            Subsidy</th>
+                        <td class="govuk-table__cell">Tax measures (tax credit, or tax/duty exemption)​
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Budget</th>
+                        <td class="govuk-table__cell">£1,000,000</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Start Date</th>
+                        <td class="govuk-table__cell">25 June 2020</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">End Date</th>
+                        <td class="govuk-table__cell">24 June 2021</td>
+                    </tr>
+                </tbody>
+            </table>
+            <form action="/mysubsidymeasures" method="post" novalidate>
+                <input type="hidden" name="answers-checked" value="true">
+
+                <button class="govuk-button" data-module="govuk-button">
+                    Submit for Approval
+                </button>
+
+            </form>
+
+            <form action="/addsubsidymeasures" method="POST">
+                <button class=" govuk-button_cancel_lg govuk-button--secondary ">
+                    Cancel
+                </button>
+            </form>
+        </main>
+    </div>
+
+
+</body>
+
+<%- include('../partials/footer.ejs') %>
+
+
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - Add Subsidy Measures</title>
+</head>
+
+<link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
+<script src="/assets/javascripts/vendor/modernizr.js"></script>
+
+
+<%- include('../partials/header.ejs') %>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+
+            <!-- Header pane starts here -->
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <nav class="govuk-sub-navigation" aria-label="Sub navigation">
+                        <ul class="govuk-sub-navigation__list">
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                    Granting Authorities
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="#">
+                                    Users
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidymeasures">
+                                    Subsidy Measures
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
+                                    Subsidy Awards
+                                </a>
+                            </li>
+
+                            <li class='govuk-sub-navigation__item head-right'>
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    Signout
+                                </a>
+                            </li>
+                            <li class='govuk-sub-navigation__item head-right'>
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    My account
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- Header pane starts here -->
+
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Subsidy measures</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link active" href="/">Add a subsidy measure</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+
+            <!-- Body header starts here -->
+            <h1 class="govuk-heading-xl">Add a subsidy measure</h1>
+
+            <p class="govuk-body govuk-!-font-size-19">This section is for adding one subsidy measure.</p>
+            <!-- Body header ends here -->
+            <label class="govuk-heading-l">
+                Subsidy measure details
+            </label>
+
+            <form action="/reviewsubsidymeasures" method="POST">
+                <section class="govuk-grid-row">
+
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            Granting Authority
+                        </label>
+                        <input class="govuk-input govuk-!-width-one-half" value="Cardiff Council" disabled name=""
+                            type="text">
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            Subsidy measure name
+                        </label>
+                        <div id="passport-issued-hint" class="govuk-hint">This is the name of the
+                            subsidy measure that awards
+                            can be related to.</div>
+                        <input class="govuk-input govuk-!-width-one-half" name="" type="text">
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            Legal basis
+                        </label>
+                        <div id="passport-issued-hint" class="govuk-hint">Description text required</div>
+                        <input class="govuk-input govuk-!-width-one-half" name="" type="text">
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            Weblink to Granting Authority Text of Subsidy
+                        </label>
+                        <div id="passport-issued-hint" class="govuk-hint">Description text required</div>
+                        <input class="govuk-input govuk-!-width-one-half" name="" type="text">
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            Budget (£)
+                        </label>
+                        <div id="passport-issued-hint" class="govuk-hint">Description text required</div>
+                        <input class="govuk-input govuk-!-width-one-third" name="" type="text">
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            Start Date
+                        </label>
+                        <div id="passport-issued-hint" class="govuk-hint">
+                            For example, 25 3 2020
+                        </div>
+                        <div class="govuk-date-input" id="passport-issued">
+                            <div class="govuk-date-input__item">
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                                        Day
+                                    </label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                        id="passport-issued-day" name="passport-issued-day" type="text" placeholder="DD"
+                                        pattern="[0-9]*" inputmode="numeric"></div>
+                            </div>
+                            <div class="govuk-date-input__item">
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                                        Month
+                                    </label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                        id="passport-issued-month" name="passport-issued-month" placeholder="MM"
+                                        type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                            </div>
+                            <div class="govuk-date-input__item">
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                                        Year
+                                    </label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                        id="passport-issued-year" name="passport-issued-year" type="text"
+                                        pattern="[0-9]*" inputmode="numeric" placeholder="YYYY"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            End Date
+                        </label>
+                        <div id="passport-issued-hint" class="govuk-hint">
+                            For example, 25 3 2021
+                        </div>
+                        <div class="govuk-date-input" id="passport-issued">
+                            <div class="govuk-date-input__item">
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                                        Day
+                                    </label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                        id="passport-issued-day" name="passport-issued-day" type="text" placeholder="DD"
+                                        pattern="[0-9]*" inputmode="numeric"></div>
+                            </div>
+                            <div class="govuk-date-input__item">
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                                        Month
+                                    </label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                        id="passport-issued-month" name="passport-issued-month" placeholder="MM"
+                                        type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                            </div>
+                            <div class="govuk-date-input__item">
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                                        Year
+                                    </label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                        id="passport-issued-year" name="passport-issued-year" type="text"
+                                        pattern="[0-9]*" inputmode="numeric" placeholder="YYYY"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <button class="govuk-button govuk-button_cancel_md" data-module="govuk-button">Continue</button>
+                        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Cancel</button>
+                    </div>
+                </section>
+
+            </form>
+
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+    <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
+
+</body>
+
+</html>

@@ -229,9 +229,9 @@ sec {
   width: 20%;
   margin-top: 0;
   margin-bottom: 22px;
-  left: 154px;
-  top: -71px;
-  padding: 8px 10px 7px;
+  /* left: 154px;
+  top: -71px; */
+  /* padding: 8px 10px 7px; */
   border: 2px solid rgba(0, 0, 0, 0);
   border-radius: 0;
   color: #fff;
