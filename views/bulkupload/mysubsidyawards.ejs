@@ -102,7 +102,7 @@
             <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
           </li>
           <li class="govuk-breadcrumbs__list-item">
-            <a1 class="govuk-breadcrumbs__link" href="#">Subsidy awards</a1>
+            <a1 class="govuk-breadcrumbs__link active" href="#">Subsidy awards</a1>
           </li>
         </ol>
       </div>
@@ -205,18 +205,18 @@
                         type="checkbox" value="Subsidy_awardNo">
                       <label class="govuk-label govuk-checkboxes__label_padding govuk-checkboxes__label "
                         for="Subsidy awardNo" id='Subsidy_awardno_lb'>
-                        <b>Subsidy Name</b>
+                        <!-- <b>Subsidy Name</b>-->
                       </label>
                     </div>
                   </div>
                 </th>
 
-                <th scope="col" class="govuk-table__header app-custom-class">Subsidy control no.</th>
-                <th scope="col" class="govuk-table__header app-custom-class">Granting authority</th>
-                <th scope="col" class="govuk-table__header app-custom-class">Start date</th>
-                <th scope="col" class="govuk-table__header app-custom-class">End date</th>
-                <th scope="col" class="govuk-table__header app-custom-class">Duration</th>
-                <th scope="col" class="govuk-table__header app-custom-class">Budget</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Award no.</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Measure Title</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Staus</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Recipient</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Granting autority</th>
+                <th scope="col" class="govuk-table__header app-custom-class">subsidy amount</th>
               </tr>
             </thead>
             <tbody class="govuk-table__body">
@@ -227,8 +227,8 @@
                     <div class="govuk-checkboxes__item">
                       <input class="govuk-checkboxes__input checkbox Subsidy_awardNo" id="Subsidy_awardNo"
                         name="check[]" type="checkbox" value="Subsidy awardNo">
-                      <label class="govuk-label govuk-checkboxes__label" for="Subsidy awardNo">
-                        <%= item.beneficiary.beneficiaryName %>
+                      <label class="govuk-label govuk-checkboxes__label" for="waste">
+
                       </label>
                     </div>
                   </div>
@@ -236,11 +236,13 @@
                 </td>
 
                 <td class="govuk-table__cell"><%= item.subsidyMeasure.scNumber %></td>
-                <td class="govuk-table__cell">Granting Authority Name</td>
-                <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
-                <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
-                <td class="govuk-table__cell">1 year</td>
-                <td class="govuk-table__cell" style="text-align:center"> £ 500,00</td>
+                <td class="govuk-table__cell">
+                  <%= item.beneficiary.beneficiaryName %>
+                </td>
+                <td class="govuk-table__cell" style="text-align:center">Finalised</td>
+                <td class="govuk-table__cell" style="text-align:center">Amigos</td>
+                <td class="govuk-table__cell">Cardiff Council</td>
+                <td class="govuk-table__cell" style="text-align:center"> £632,000</td>
               </tr>
 
               <% } ); %>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<%- include('../partials/headersubsidy.ejs') %>
+
+<body>
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+
+
+
+            <!-- <body class="govuk-template__body app-example-page js-enabled"> -->
+            <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+            <!-- Disable browser validation for any examples that include form elements -->
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <nav aria-label="Sub navigation">
+                        <ul class="govuk-sub-navigation__list">
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                    Granting Authorities
+                                </a>
+                            </li>
+
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="#">
+                                    Users
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
+                                    Subsidy Measures
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidyawards">
+                                    Subsidy Awards
+                                </a>
+                            </li>
+
+
+
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    Sign out
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    My account
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+
+            <br />
+            <br />
+
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a1 class="govuk-breadcrumbs__link active" href="#">Add a subsidy awards</a1>
+                    </li>
+                </ol>
+            </div>
+
+            <p>
+                <a href="#" class="govuk-back-link"> Back</a>
+            </p>
+            <!-- bread crumbs ends here -->
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds-from-desktop">
+                    <h1 class="govuk-heading-xl">Give reason for rejecting this subsidy award</h1>
+
+                    </h1>
+                    <label class="govuk-label">Reason for rejection</label>
+                    <textarea class="govuk-textarea" rows="6"></textarea>
+                    <form action="/addsubsidyaward" method="POST">
+                        <div>
+                            <button class=" govuk-button_cancel_lg govuk-button--secondary ">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+    </div>
+
+    </main>
+    </div>
+
+
+</body>
+
+<%- include('../partials/footer.ejs') %>
+
+
+</html>

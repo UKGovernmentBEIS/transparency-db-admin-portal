@@ -1,27 +1,23 @@
-
 <!DOCTYPE html>
 <html>
-  <%- include('../partials/headersubsidy.ejs') %>
+<%- include('../partials/headersubsidy.ejs') %>
 
 
 <body>
-<div class="govuk-width-container ">
-<main class="govuk-main-wrapper " id="main-content" role="main"> 
+  <div class="govuk-width-container ">
+    <main class="govuk-main-wrapper " id="main-content" role="main">
 
-  
-  
-    <!-- <body class="govuk-template__body app-example-page js-enabled"> -->
+
+
+      <!-- <body class="govuk-template__body app-example-page js-enabled"> -->
       <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
       <!-- Disable browser validation for any examples that include form elements -->
-      <div class="govuk-grid-row">   
+      <div class="govuk-grid-row">
         <div class="govuk-grid-column-full">
           <nav aria-label="Sub navigation">
             <ul class="govuk-sub-navigation__list">
               <li class="govuk-sub-navigation__item">
-                <a
-                  class="govuk-sub-navigation__link"
-                  href="/mygrantingauthority"
-                >
+                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
                   Granting Authorities
                 </a>
               </li>
@@ -42,7 +38,7 @@
                 </a>
               </li>
 
-            
+
 
               <li class="govuk-sub-navigation__item head-right">
                 <a class="govuk-sub-navigation__link" href="/logintransparency">
@@ -56,289 +52,320 @@
               </li>
             </ul>
           </nav>
-        
-         </div>
-            
+
         </div>
-       
-       
-    <br />
-    <br />
 
-        <!-- bread crumbs start here -->
-        <div class="govuk-breadcrumbs ">
-          <ol class="govuk-breadcrumbs__list">
-            <li class="govuk-breadcrumbs__list-item">
-              <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
-            </li>
-            <li class="govuk-breadcrumbs__list-item">
-              <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
-            </li>
-            <li class="govuk-breadcrumbs__list-item">
-              <a1 class="govuk-breadcrumbs__link" href="#">Add multiple subsidy awards</a1>
-            </li>
-          </ol>
-        </div>
-     <!-- bread crumbs ends here -->
-
-     <br />
-     <br />
-       <h1 class="govuk-heading-xl">Bulk upload subsidy awards</h1>
-
-       <div class="govuk-tabs" data-module="govuk-tabs">
-         <h2 class="govuk-tabs__title">
-           Contents
-         </h2>
+      </div>
 
 
-          <ul class="govuk-tabs__list" role="tablist">
-            <li class="govuk-tabs__list-item" role="presentation">
-              <a class="govuk-tabs__tab" href="#download-template" id="tab_download-template" role="tab" aria-controls="download-template" aria-selected="false" tabindex="-1">
-                Download template
-              </a>
-            </li>
-            <li class="govuk-tabs__list-item" role="presentation">
-              <a class=" govuk-tabs__tab" href="#upload-csv" id="tab_upload-csv" role="tab" aria-controls="upload-csv" aria-selected="true" tabindex="0">
-                Upload file
-              </a>
-            </li>
-           </ul>
-                  
-         
-           <a rel="external" target="_blank" class="govuk-link head-right govuk-relative-position" href="./assets/files/HelpDocumentBulkUpload.pdf" >
-            <p >Download the help file </p>
-          </a>
-          
-  
-         <div class="govuk-tabs__panel  govuk-tabs__panel--hidden" id="download-template">                   
+      <br />
+      <br />
+
+      <!-- bread crumbs start here -->
+      <div class="govuk-breadcrumbs ">
+        <ol class="govuk-breadcrumbs__list">
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <a1 class="govuk-breadcrumbs__link active" href="#">Add multiple subsidy awards</a1>
+          </li>
+        </ol>
+      </div>
+      <!-- bread crumbs ends here -->
+
+      <br />
+      <br />
+      <h1 class="govuk-heading-xl">Add multiple subsidy awards</h1>
+
+      <div class="govuk-tabs" data-module="govuk-tabs">
+        <h2 class="govuk-tabs__title">
+          Contents
+        </h2>
+
+
+        <ul class="govuk-tabs__list" role="tablist">
+          <li class="govuk-tabs__list-item" role="presentation">
+            <a class="govuk-tabs__tab" href="#download-template" id="tab_download-template" role="tab"
+              aria-controls="download-template" aria-selected="false" tabindex="-1">
+              Download template
+            </a>
+          </li>
+          <li class="govuk-tabs__list-item" role="presentation">
+            <a class=" govuk-tabs__tab" href="#upload-csv" id="tab_upload-csv" role="tab" aria-controls="upload-csv"
+              aria-selected="true" tabindex="0">
+              Upload file
+            </a>
+          </li>
+        </ul>
+
+
+        <!-- <a rel="external" target="_blank" class="govuk-link head-right govuk-relative-position"
+          href="./assets/files/HelpDocumentBulkUpload.pdf">
+          <p>Download the help file </p>
+        </a> -->
+
+
+        <div class="govuk-tabs__panel  govuk-tabs__panel--hidden" id="download-template">
           <div class="govuk-grid-row">
-             <div class="govuk-grid-column-full">
+            <div class="govuk-grid-column-full">
               <form method="get" action="./assets/files/Bulk_Upload_Awards_Template.xlsx">
-                <h2 class="govuk-heading-m">Download the template file</h2>
-                <p class="govuk-body">Use the template file to fill in the information regarding the subsidy awards you want to upload.
-                  You can 
-                  <a rel="external"  target="_blank" class="govuk-link" href="./assets/files/HelpDocumentBulkUpload.pdf" >
-                    download the help file 
+                <h2 class="govuk-heading-l">Download template</h2>
+                <p class="govuk-body">
+                  You can use the template to fill in the required information for the subsidy awards you want to add.
+                </p>
+                <p class="govuk-body govuk-form-group">You can download the user guide for
+                  <a rel="external" target="_blank" class="govuk-link" href="./assets/files/HelpDocumentBulkUpload.pdf">
+                    help with adding multiple subsidy awards.
                   </a>
-                   on how to create your file first.</p><br />
-                <button class="govuk-button" data-module="govuk-button">Download the template file </button>
-                <br /> <br />
+                </p>
+                <button class="govuk-button" data-module="govuk-button">Download template file </button>
+                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Cancel </button>
+                <!-- <br /> <br />
                 <h2 class="govuk-heading-m">What happens next</h2>
                 
                 <p class="govuk-body govuk-hint">1.Open the downloaded template file and fill the in the relevant information using the help file</p>
                 <p class="govuk-body govuk-hint">2.Save your filled file as a CSV or Microsoft Excel spreadsheet</p>
-                <p class="govuk-body govuk-hint">3.Go to the 'Upload file' tab on top and upload the saved file</p>
-                </form>
-             </div>
+                <p class="govuk-body govuk-hint">3.Go to the 'Upload file' tab on top and upload the saved file</p> -->
+              </form>
             </div>
-           </div>
-    
-          
-      
-    
-         <div class="govuk-tabs__panel" id="upload-csv">
-             <div class="govuk-grid-row">
-             <div class="govuk-grid-column-full"> 
+          </div>
+        </div>
+
+
+
+
+        <div class="govuk-tabs__panel" id="upload-csv">
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
               <form encType="multipart/form-data" action="/formvalidation" method="post" novalidate="">
 
-              <% if( locals.isFileUploadEmpty || locals.isNotCsvOrExcel){ %> 
+                <% if( locals.isFileUploadEmpty || locals.isNotCsvOrExcel){ %>
 
-                <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title" data-module="govuk-error-summary">
+                <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
+                  data-module="govuk-error-summary">
                   <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
-                  <div class="govuk-error-summary__body">          
-                      <ul class="govuk-list govuk-error-summary__list">   
-                      <% if( locals.isFileUploadEmpty ) { %> 
-                        <li> <a href="#file-upload-1"> Choose a file to upload </a> </li> 
+                  <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                      <% if( locals.isFileUploadEmpty ) { %>
+                      <li> <a href="#file-upload-1"> Choose a file to upload </a> </li>
                       <% } else { %>
-                        <li> <a href="#file-upload-1"> File failed to upload.Retry uploading the file </a> </li> 
+                      <li> <a href="#file-upload-1"> File failed to upload.Retry uploading the file </a> </li>
                       <% } %>
-                  </div> 
-              </div>   
-              <div class="govuk-form-group govuk-form-group--error">
-                <label class="govuk-label" for="file-upload-1"> Upload a file</label>
-                <span id="file-upload-1-error" class="govuk-error-message">
-                  <% if( locals.isFileUploadEmpty ) { %> 
+                  </div>
+                </div>
+                <div class="govuk-form-group govuk-form-group--error">
+                  <label class="govuk-label" for="file-upload-1"> Upload file</label>
+                  <span id="file-upload-1-error" class="govuk-error-message">
+                    <% if( locals.isFileUploadEmpty ) { %>
                     <span class="govuk-visually-hidden">Error:</span> Choose a file to upload
-                  <% } else { %>
+                    <% } else { %>
                     <span class="govuk-visually-hidden">Error:</span> Retry uploading the file
-                  <% } %>
-                </span>
-                <input class="govuk-file-upload govuk-file-upload--error" id="file-upload-1" name="file_upload_1" type="file" aria-describedby="file-upload-1-error">
-              </div>    
-              <br /> 
-              <button class="govuk-button" data-module="govuk-button">Upload the file </button>               
-               <br /><br /><br /><br /><br /><br /><br /> 
+                    <% } %>
+                  </span>
+                  <div class="govuk-input__wrapper">
+                    <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
+                      type="text">
+                    <button class="govuk-button govuk-button--secondary">Browse...</button>
+                  </div>
+                </div>
+                <br />
+                <button class="govuk-button" data-module="govuk-button">Upload the file </button>
+                <br /><br /><br /><br /><br /><br /><br />
 
-              <% } else if( locals.isExcelFormat){ %> 
-
-
-                <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title" data-module="govuk-error-summary">
-                  <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem in 60 out of 100 records</h2>
-                  <div class="govuk-error-summary__body">          
-                      <ul class="govuk-list govuk-error-summary__list">       
-                        <li> <a href="#file-upload-1"> You must fix the errors listed below and upload the file again </a> </li>         
-                  </div> 
-              </div> 
-
-              <div class="govuk-form-group">
-                <label class="govuk-label" for="file-upload-1"> Upload a file</label>                                
-                <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file">
-                <label class="govuk-label-grey" for="file-upload-2">
-                  <p> The file must be a CSV or Microsoft Excel spreadsheet</p>
-                </label>
-              </div>
-
-              <br /> 
-              <button class="govuk-button" data-module="govuk-button">Upload the file </button>               
-               <br /><br />
-
-              <div class="govuk-form-group govuk-form-group--error">
-                <span id="file-upload-1-error" class="govuk-error-message">
-                  <span class="govuk-visually-hidden">Error:</span> Errors found in Bulk uploadfile.xlsx
-                </span>
-                <label class="govuk-label" for="file-upload-1">
-                  You can also download a PDF of errors (opens in a new window or tab)
-                </label>
-
-              </div>
+                <% } else if( locals.isExcelFormat){ %>
 
 
-              <section>
-                <table class="govuk-table" id="datatable">
-                  <thead class="govuk-table__head">
+                <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
+                  data-module="govuk-error-summary">
+                  <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem in 60 out of 100
+                    records</h2>
+                  <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                      <li> <a href="#file-upload-1"> You must fix the errors listed below and upload the file again </a>
+                      </li>
+                  </div>
+                </div>
+
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="file-upload-1"> Upload file</label>
+                  <label class="govuk-label-grey" for="file-upload-2">
+                    <p> The file format must be .csv or .xlsx</p>
+                  </label>
+                  <div class="govuk-input__wrapper">
+                    <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
+                      type="text">
+                    <button class="govuk-button govuk-button--secondary">Browse...</button>
+                  </div>
+
+                  <!-- <label class="govuk-label-grey" for="file-upload-2">
+                    <p> The file must be a CSV or Microsoft Excel spreadsheet</p>
+                  </label> -->
+                </div>
+
+                <br />
+                <button class="govuk-button" data-module="govuk-button">Upload the file </button>
+                <br /><br />
+
+                <div class="govuk-form-group govuk-form-group--error">
+                  <span id="file-upload-1-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> Errors found in Bulk uploadfile.xlsx
+                  </span>
+                  <label class="govuk-label" for="file-upload-1">
+                    You can also download a PDF of errors (opens in a new window or tab)
+                  </label>
+
+                </div>
+
+
+                <section>
+                  <table class="govuk-table" id="datatable">
+                    <thead class="govuk-table__head">
                       <tr class="govuk-table__row">
-                          <th scope="col" class="govuk-table__header">Column</th>
-                          <th scope="col" class="govuk-table__header">Row</th>
-                          <th scope="col" class="govuk-table__header">Errors</th>
-                      </tr >
-                  </thead>
-                  <tbody class="govuk-table__body">
-                    <% validationerrors.validationErrorResult.forEach(function(item) { %>
+                        <th scope="col" class="govuk-table__header">Column</th>
+                        <th scope="col" class="govuk-table__header">Row</th>
+                        <th scope="col" class="govuk-table__header">Errors</th>
+                      </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                      <% validationerrors.validationErrorResult.forEach(function(item) { %>
                       <tr>
-                        
+
                         <td class="govuk-table__cell"><%= item.columns %></td>
                         <td class="govuk-table__cell"><%= item.row %></td>
-                        <td class="govuk-table__cell"><%= item.errorMessages %></td> 
+                        <td class="govuk-table__cell"><%= item.errorMessages %></td>
                       </tr>
 
                       <% } ); %>
-                     
-                  </tbody>
-                  
-              </table>
-              <div id="pagination" class="pagination">
-                  <div class="col first">
+
+                    </tbody>
+
+                  </table>
+                  <div id="pagination" class="pagination">
+                    <div class="col first">
                       <p class="pagination-label">
-                          Viewing <span>1-10</span> of <span>36</span>
+                        Viewing <span>1-10</span> of <span>36</span>
                       </p>
-                  </div>
-                  <div class="col last">
-                    <a href="#" class="first round"><span style='font-size:20px;'>&#8592;</span></a>
-                    <a href="#" class="previous round">Previous Page</a>
-                    <a href="#" class="round btn-page active">1</a>
-                    <a href="#" class="round btn-page">2</a>
-                    <a href="#" class="round btn-page">3</a>
-                    <a href="#" class="round btn-page">4</a>
-                    <a href="#" class="next round">Next Page</a>
-                    <a href="#" class="last round"><span style='font-size:20px;'>&#8594;</span></a>
-                  </div>
-                
+                    </div>
+                    <div class="col last">
+                      <a href="#" class="first round"><span style='font-size:20px;'>&#8592;</span></a>
+                      <a href="#" class="previous round">Previous Page</a>
+                      <a href="#" class="round btn-page active">1</a>
+                      <a href="#" class="round btn-page">2</a>
+                      <a href="#" class="round btn-page">3</a>
+                      <a href="#" class="round btn-page">4</a>
+                      <a href="#" class="next round">Next Page</a>
+                      <a href="#" class="last round"><span style='font-size:20px;'>&#8594;</span></a>
+                    </div>
 
-           </section>
 
-            <!-- ************************************ -->
-            <!-- CSV file uploaded section            -->
-            <!-- ************************************ -->
+                </section>
 
-           <% } else if( locals.isCsvFormat){ %> 
+                <!-- ************************************ -->
+                <!-- CSV file uploaded section            -->
+                <!-- ************************************ -->
 
-            
-              <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
-                <div class="govuk-grid-row">
-                  <div class="govuk-grid-column-two-thirds">
-                    <div class="govuk-panel govuk-panel--confirmation">
-                      <h1 class="govuk-panel__title">
-                        File uploaded successfully
-                      </h1>
-                   
+                <% } else if( locals.isCsvFormat){ %>
 
-                      <h3 class="govuk-panel__body">
-                        100 records have been saved as draft
-                      </h3>
-                     </div>
-            
-                    
 
-                     <section>
-                      <table class="govuk-table" id="datatable">
-                        <thead class="govuk-table__head">
+                <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+                  <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-two-thirds">
+                      <div class="govuk-panel govuk-panel--confirmation">
+                        <h1 class="govuk-panel__title">
+                          File uploaded successfully
+                        </h1>
+
+
+                        <h3 class="govuk-panel__body">
+                          100 records have been saved as draft
+                        </h3>
+                      </div>
+
+
+
+                      <section>
+                        <table class="govuk-table" id="datatable">
+                          <thead class="govuk-table__head">
                             <tr class="govuk-table__row">
-                                <th scope="col" class="govuk-table__header">File uploaded</th>
-                                <th scope="col" class="govuk-table__header">Number of records</th>
-                            </tr >
-                        </thead>
-                        <tbody class="govuk-table__body">  
+                              <th scope="col" class="govuk-table__header">File uploaded</th>
+                              <th scope="col" class="govuk-table__header">Number of records</th>
+                            </tr>
+                          </thead>
+                          <tbody class="govuk-table__body">
                             <tr>
-                                <td class="govuk-table__cell">Bulk upload-testing.xlsx</td>
-                                <td class="govuk-table__cell">100</td>
-                            </tr>          
-                        </tbody>      
-                      </table>
-                    </section>
-            
-                     <h2 class="govuk-heading-m">What happens next</h2>
-            
-                     
-            
-                    <p class="govuk-body">
-                      All the records have been successfully uploaded and saved as draft under 'My subsidy awards' tab. Proceed to 'My subsidy awards' for any further actions.
-                    </p>
-                    <form action="/mysubsidyawards" method="GET" novalidate="">
-                   <button class="govuk-button" data-module="govuk-button" >Proceed to My subsidy awards 	&#62;</button>
-                   </form>
+                              <td class="govuk-table__cell">Bulk upload-testing.xlsx</td>
+                              <td class="govuk-table__cell">100</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+
+                      <h2 class="govuk-heading-m">What happens next</h2>
+
+
+
+                      <p class="govuk-body">
+                        All the records have been successfully uploaded and saved as draft under 'My subsidy awards'
+                        tab. Proceed to 'My subsidy awards' for any further actions.
+                      </p>
+                      <form action="/mysubsidyawards" method="GET" novalidate="">
+                        <button class="govuk-button" data-module="govuk-button">Proceed to My subsidy awards
+                          &#62;</button>
+                      </form>
+                    </div>
                   </div>
+                </main>
+
+
+
+                <!-- ************************************ -->
+                <!-- Default render of bulkupload section -->
+                <!-- ************************************ -->
+
+                <% } else { %>
+
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="file-upload-1"> Upload file</label>
+                  <label class="govuk-label-grey" for="file-upload-2">
+                    <p> The file format must be .csv or .xlsx</p>
+                  </label>
+                  <div class="govuk-input__wrapper">
+                    <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
+                      type="text">
+                    <button class="govuk-button govuk-button--secondary">Browse...</button>
+                  </div>
+                  <p>Uploading will update the status of every subsidy award in the file to ‘Finalised’ and submit them
+                    for approval.</p>
+
                 </div>
-              </main>
-           
 
+                <br />
+                <button class="govuk-button" data-module="govuk-button">Upload the file </button>
+                <br /><br /><br /><br /><br /><br /><br />
 
-            <!-- ************************************ -->
-            <!-- Default render of bulkupload section -->
-            <!-- ************************************ -->
+                <% } %>
 
-              <% } else { %> 
-
-             <div class="govuk-form-group">
-                <label class="govuk-label" for="file-upload-1"> Upload a file</label>                                
-                <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file">
-                <label class="govuk-label-grey" for="file-upload-2">
-                  <p> The file must be a CSV or Microsoft Excel spreadsheet</p>
-                </label>
-              </div>
-
-              <br /> 
-              <button class="govuk-button" data-module="govuk-button">Upload the file </button>               
-               <br /><br /><br /><br /><br /><br /><br />
-
-              <% } %>
-           
               </form>
-             </div>
-             </div>
+            </div>
           </div>
- 
+        </div>
 
 
 
-  </div>
+
+      </div>
       <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
       <script src="/assets/javascripts/govuk-frontend-tabdefault.js"></script>
-      <script src="/assets/javascripts/example.js"></script> 
-    
-  </main>
+      <script src="/assets/javascripts/example.js"></script>
+
+    </main>
   </div>
-</body>  
-    
+</body>
+
 <%- include('../partials/footer.ejs') %>
 
 

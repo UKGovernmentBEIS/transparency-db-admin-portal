@@ -75,12 +75,11 @@ app.get("/", (req, res) => {
   res.render("bulkupload/logintransparency");
 });
 
-
-var logintransparency= require('./routes/logintransparency');
-app.use('/logintransparency',logintransparency);
+var logintransparency = require("./routes/logintransparency");
+app.use("/logintransparency", logintransparency);
 
 // app.get('/',(req, res) => {
-//   res.render('accessmanagement/enterotp')  
+//   res.render('accessmanagement/enterotp')
 // })
 
 // var enterotp = require('./routes/enterotp');
@@ -129,6 +128,12 @@ app.use("/formvalidation", formvalidation);
 var addsubsidyaward = require("./routes/addsubsidyaward");
 app.use("/addsubsidyaward", addsubsidyaward);
 
+var rejectsubsidyaward = require("./routes/subsidyaward-reject");
+app.use("/rejectsubsidyaward", rejectsubsidyaward);
+
+var approverejectsubsidyaward = require("./routes/subsidyaward-approve-reject");
+app.use("/approverejectsubsidyaward", approverejectsubsidyaward);
+
 var cancelmysubsidy = require("./routes/cancelmysubsidy");
 app.use("/cancelmysubsidy", cancelmysubsidy);
 
@@ -165,6 +170,15 @@ app.use("/choosedashboard", choosedashboard);
 var mysubsidymeasures = require("./routes/mysubsidymeasures");
 app.use("/mysubsidymeasures", mysubsidymeasures);
 
+var addsubsidymeasures = require("./routes/subsidymeasures-add");
+app.use("/addsubsidymeasures", addsubsidymeasures);
+
+var reviewsubsidymeasures = require("./routes/subsidymeasure-reviewdetails");
+app.use("/reviewsubsidymeasures", reviewsubsidymeasures);
+
+var editsubsidymeasures = require("./routes/subsidymeasure-edit");
+app.use("/editsubsidymeasure", editsubsidymeasures);
+
 var awardspageroute = require("./routes/awardspageroute");
 app.use("/awardspageroute", awardspageroute);
 
@@ -172,7 +186,7 @@ var awardspageperroute = require("./routes/awardspageperroute");
 app.use("/awardspageperroute", awardspageperroute);
 
 var measurespageroute = require("./routes/measurespageroute");
-app.use("/measurespageroute",measurespageroute);
+app.use("/measurespageroute", measurespageroute);
 
 var measurespageperroute = require("./routes/measurespageperroute");
 app.use("/measurespageperroute", measurespageperroute);

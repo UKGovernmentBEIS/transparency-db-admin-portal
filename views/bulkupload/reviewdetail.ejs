@@ -1,232 +1,298 @@
-
 <!DOCTYPE html>
 <html>
 
-  <%- include('../partials/headersubsidy.ejs') %>
+<%- include('../partials/headersubsidy.ejs') %>
 
 <body>
+  <div class="govuk-width-container ">
+    <main class="govuk-main-wrapper " id="main-content" role="main">
 
-    <div class="govuk-width-container">
-        <a href="/addsubsidyaward" class="govuk-back-link-new">Back</a>
-      
-        <main class="govuk-main-wrapper " id="main-content" role="main">
-          <div class="govuk-grid-row">
-            <div class="govuk-grid-column-two-thirds-from-desktop">
-      
-              <h1 class="govuk-heading-l">Review details before submitting the award for approval</h1>
 
-            <!-- *************************************
-              Review for subsidy details tab
-              ************************************* -->
-              <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy details</h2>
-              <a rel="external" class="govuk-link head-right govuk-relative-position" href="/addsubsidyreview" >
-                <p >Change </p>
-              </a>
-      
-              <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Subsidy Control
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    <%= Subsidy_Control_Number_Global %>
-                  </dd>
-                
-                </div>
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Subsidy Measure Title
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    <%= Subsidy_Measure_Title_Global %>
-                  </dd>
-                 
-                </div>
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Subsidy Objective 
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    <%= Subsidy_Objective_Global %> 
-                  </dd>
-                  
-                </div>
 
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Subsidy Instrument
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    <%= Subsidy_Instrument_Global %> 
-                 
-                  </dd>
-                 </div>
+      <!-- <body class="govuk-template__body app-example-page js-enabled"> -->
+      <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+      <!-- Disable browser validation for any examples that include form elements -->
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+          <nav aria-label="Sub navigation">
+            <ul class="govuk-sub-navigation__list">
+              <li class="govuk-sub-navigation__item">
+                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                  Granting Authorities
+                </a>
+              </li>
 
-                 <% if( locals.Subsidy_Element_Full_Amount_Global  ) { %> 
-                 <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                      Subsidy Element Full Amount(£)
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                      <%= Subsidy_Element_Full_Amount_Global %> 
-                   
-                    </dd>
-                   </div>
+              <li class="govuk-sub-navigation__item">
+                <a class="govuk-sub-navigation__link" href="#">
+                  Users
+                </a>
+              </li>
+              <li class="govuk-sub-navigation__item">
+                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
+                  Subsidy Measures
+                </a>
+              </li>
+              <li class="govuk-sub-navigation__item">
+                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidyawards">
+                  Subsidy Awards
+                </a>
+              </li>
 
-                   <% } else { %>
-                   <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                      Subsidy Full Amount Range (£)
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                      <%= Subsidy_Full_Amount_Range_Global %> 
-                   
-                    </dd>
-                   </div>
 
-                   <% }  %>
-              </dl>
 
-              <!-- *************************************
-              Review for beneficialry details tab
-              ************************************* -->
+              <li class="govuk-sub-navigation__item head-right">
+                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                  Sign out
+                </a>
+              </li>
+              <li class="govuk-sub-navigation__item head-right">
+                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                  My account
+                </a>
+              </li>
+            </ul>
+          </nav>
 
-              <h2 class="govuk-heading-m">Beneficiary details</h2>
-              <!-- <a rel="external" class="govuk-link head-right govuk-relative-position" href="/beneficiarydetailsreview" >
-                <p >Change </p> -->
-              </a>
-              <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    National ID Type
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    <%= National_ID_Type_Global %> 
-                  </dd>
-                
-                </div>
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    National ID number
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    <%= National_ID_Number_Global %> 
-                  </dd>
-                 
-                </div>
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Beneficiary name 
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    <%= Beneficiary_Name_Global %> 
-                  </dd>
-                  
-                </div>
+        </div>
 
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Size of the Organisation
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    <%= Size_of_the_Organisation_Global %> 
-                 
-                  </dd>
-                 </div>
-
-                
-
-              </dl>
-
-            <!-- *************************************
-              Review for Granting details tab
-              ************************************* -->
-
-              <h2 class="govuk-heading-m">Granting details</h2>
-              <!-- <a rel="external" class="govuk-link head-right govuk-relative-position" href="/grantingdetailsreview" >
-                <p >Change </p>
-              </a> -->
-              <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Granting Authority Name
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    <%= Granting_Authority_Name_Global %> 
-                  </dd>
-                
-                </div>
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Legal Granting Date
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    <%= Legal_Granting_Date_Day_Global %>  &nbsp; <%= GetMonthName %>  &nbsp; <%= Legal_Granting_Date_Year_Global %>
-                  </dd>
-                 
-                </div>
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Goods or Services
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    <%= Goods_or_Services_Global %>
-                  </dd>
-                  
-                </div>
-
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Spending Region
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    <%= Spending_Region_Global %>
-                 
-                  </dd>
-                 </div>
-
-                 
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Spending Sector
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    <%= Spending_Sector_Global %>
-                 
-                  </dd>
-                 </div>
-
-                 
-              </dl>
-
-               <form action="/submitforapproval" method="post" novalidate>
-      
-                <input type="hidden" name="answers-checked" value="true">
-      
-                <button class="govuk-button" data-module="govuk-button">
-                  Submit for Approval
-                </button>
-      
-              </form>
-      
-              <form action="/addsubsidyaward" method="POST" >
-                <div>
-                <button class=" govuk-button_cancel_lg govuk-button--secondary " >
-                  Cancel
-                </button>  
-
-                             
-              </div>     
-              </form> 
-              
-            </div>
-          </div>
-        </main>
       </div>
 
 
-</body>  
-    
+      <br />
+      <br />
+
+      <!-- bread crumbs start here -->
+      <div class="govuk-breadcrumbs ">
+        <ol class="govuk-breadcrumbs__list">
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <a1 class="govuk-breadcrumbs__link active" href="#">Add multiple subsidy awards</a1>
+          </li>
+        </ol>
+      </div>
+      <!-- bread crumbs ends here -->
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds-from-desktop">
+
+          <h1 class="govuk-heading-xl">Review subsidy award information before sending for approval</h1>
+
+          <!-- *************************************
+              Review for subsidy details tab
+              ************************************* -->
+        </div>
+        <div class="govuk-grid-column-full">
+          <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy details</h2>
+          <a rel="external" class="govuk-link head-right govuk-relative-position" href="/addsubsidyreview">
+            <p>Change </p>
+          </a>
+        </div>
+      </div>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidy Control
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= Subsidy_Control_Number_Global %>
+          </dd>
+
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidy Measure Title
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= Subsidy_Measure_Title_Global %>
+          </dd>
+
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidy Objective
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= Subsidy_Objective_Global %>
+          </dd>
+
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidy Instrument
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= Subsidy_Instrument_Global %>
+
+          </dd>
+        </div>
+
+        <% if( locals.Subsidy_Element_Full_Amount_Global  ) { %>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidy Element Full Amount(£)
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= Subsidy_Element_Full_Amount_Global %>
+
+          </dd>
+        </div>
+
+        <% } else { %>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidy Full Amount Range (£)
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= Subsidy_Full_Amount_Range_Global %>
+
+          </dd>
+        </div>
+
+        <% }  %>
+      </dl>
+
+      <!-- *************************************
+              Review for beneficialry details tab
+              ************************************* -->
+
+      <h2 class="govuk-heading-m">Beneficiary details</h2>
+      <!-- <a rel="external" class="govuk-link head-right govuk-relative-position" href="/beneficiarydetailsreview" >
+                <p >Change </p> -->
+      </a>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            National ID Type
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= National_ID_Type_Global %>
+          </dd>
+
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            National ID number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= National_ID_Number_Global %>
+          </dd>
+
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Beneficiary name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= Beneficiary_Name_Global %>
+          </dd>
+
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Size of the Organisation
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= Size_of_the_Organisation_Global %>
+
+          </dd>
+        </div>
+
+
+
+      </dl>
+
+      <!-- *************************************
+              Review for Granting details tab
+              ************************************* -->
+
+      <h2 class="govuk-heading-m">Granting details</h2>
+      <!-- <a rel="external" class="govuk-link head-right govuk-relative-position" href="/grantingdetailsreview" >
+                <p >Change </p>
+              </a> -->
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Granting Authority Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= Granting_Authority_Name_Global %>
+          </dd>
+
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Legal Granting Date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= Legal_Granting_Date_Day_Global %> &nbsp; <%= GetMonthName %> &nbsp;
+            <%= Legal_Granting_Date_Year_Global %>
+          </dd>
+
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Goods or Services
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= Goods_or_Services_Global %>
+          </dd>
+
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Spending Region
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= Spending_Region_Global %>
+
+          </dd>
+        </div>
+
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Spending Sector
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= Spending_Sector_Global %>
+
+          </dd>
+        </div>
+      </dl>
+
+      <form action="/submitforapproval" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button class="govuk-button" data-module="govuk-button">
+          Submit for Approval
+        </button>
+
+      </form>
+
+      <form action="/addsubsidyaward" method="POST">
+        <div>
+          <button class=" govuk-button_cancel_lg govuk-button--secondary ">
+            Cancel
+          </button>
+        </div>
+      </form>
+
+  </div>
+
+  </main>
+  </div>
+
+
+</body>
+
 <%- include('../partials/footer.ejs') %>
 
 
