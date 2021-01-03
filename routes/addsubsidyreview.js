@@ -1,12 +1,9 @@
-
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-router.get('/',(req, res) => {
-
- 
-    console.log("subsiy details:" + Subsidy_Control_Number_Global);
-    res.render('bulkupload/addsubsidyaward',{ 
+router.get("/", (req, res) => {
+  console.log("subsiy details:" + Subsidy_Control_Number_Global);
+  res.render("bulkupload/addsubsidyaward", {
     Subsidy_Control_Number_Global,
     Subsidy_Measure_Title_Global,
     Subsidy_Objective_Global,
@@ -22,12 +19,8 @@ router.get('/',(req, res) => {
     Legal_Granting_Date_Year_Global,
     Goods_or_Services_Global,
     Spending_Region_Global,
-    Spending_Sector_Global
-    
-   })
+    Spending_Sector_Global,
   });
-  
+});
+
 module.exports = router;
-
-
-

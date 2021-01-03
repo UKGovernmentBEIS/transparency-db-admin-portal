@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<%- include('../partials/headersubsidy.ejs') %>
+
+<body>
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+
+
+
+            <!-- <body class="govuk-template__body app-example-page js-enabled"> -->
+            <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+            <!-- Disable browser validation for any examples that include form elements -->
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <nav aria-label="Sub navigation">
+                        <ul class="govuk-sub-navigation__list">
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                    Granting Authorities
+                                </a>
+                            </li>
+
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="#">
+                                    Users
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
+                                    Subsidy Measures
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidyawards">
+                                    Subsidy Awards
+                                </a>
+                            </li>
+
+
+
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    Sign out
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    My account
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+
+            <br />
+            <br />
+
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a1 class="govuk-breadcrumbs__link active" href="#">Edit SC10033
+                        </a1>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds-from-desktop">
+                    <h1 class="govuk-heading-xl">Review SC10033 information before sending
+                        for approval</h1>
+
+                    <!-- *************************************
+              Review for subsidy details tab
+              ************************************* -->
+                </div>
+                <div class="govuk-grid-column-full">
+                    <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy details</h2>
+                    <a rel="external" class="govuk-link head-right govuk-relative-position"
+                        href="/editsubsidyaward/?award=22">
+                        <p>Change </p>
+                    </a>
+                </div>
+            </div>
+            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Subsidy Control
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        SC10033
+                    </dd>
+
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Subsidy Measure Title
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= Subsidy_Measure_Title %>
+                    </dd>
+
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Subsidy Objective
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= Subsidy_Objective %>
+                    </dd>
+
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Subsidy Instrument
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= Subsidy_Instrument %>
+
+                    </dd>
+                </div>
+
+                <% if( Subsidy_Element_Full_Amount  ) { %>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Subsidy Element Full Amount(£)
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= Subsidy_Element_Full_Amount %>
+
+                    </dd>
+                </div>
+
+                <% } else { %>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Subsidy Full Amount Range (£)
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= Subsidy_Full_Amount_Range %>
+
+                    </dd>
+                </div>
+
+                <% }  %>
+            </dl>
+
+            <!-- *************************************
+              Review for beneficialry details tab
+              ************************************* -->
+
+            <h2 class="govuk-heading-m">Beneficiary details</h2>
+            <!-- <a rel="external" class="govuk-link head-right govuk-relative-position" href="/beneficiarydetailsreview" >
+                <p >Change </p> -->
+            </a>
+            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        National ID Type
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= National_ID_Type %>
+                    </dd>
+
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        National ID number
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= National_ID_Number %>
+                    </dd>
+
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Beneficiary name
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= Beneficiary_Name %>
+                    </dd>
+
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Size of the Organisation
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= Size_of_the_Organisation %>
+
+                    </dd>
+                </div>
+
+
+
+            </dl>
+
+            <!-- *************************************
+              Review for Granting details tab
+              ************************************* -->
+
+            <h2 class="govuk-heading-m">Granting details</h2>
+            <!-- <a rel="external" class="govuk-link head-right govuk-relative-position" href="/grantingdetailsreview" >
+                <p >Change </p>
+              </a> -->
+            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Granting Authority Name
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= Granting_Authority_Name %>
+                    </dd>
+
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Legal Granting Date
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= Legal_Granting_Date_Day %> &nbsp; <%= Legal_Granting_Date_Month %> &nbsp;
+                        <%= Legal_Granting_Date_Year %>
+                    </dd>
+
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Goods or Services
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= Goods_or_Services %>
+                    </dd>
+
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Spending Region
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= Spending_Region %>
+
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Spending Sector
+                    </dt>
+                    <dd class="govuk-summary-list__value" name="Spending_Sector">
+                        <%= Spending_Sector %>
+                    </dd>
+                </div>
+            </dl>
+
+            <form action="/editsubmitforapproval" method="post" novalidate>
+
+                <input type="hidden" name="answers-checked" value="true">
+
+                <button class="govuk-button" data-module="govuk-button">
+                    Submit for Approval
+                </button>
+
+            </form>
+
+            <form action="/addsubsidyaward" method="POST">
+                <div>
+                    <button class=" govuk-button_cancel_lg govuk-button--secondary ">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+
+    </div>
+
+    </main>
+    </div>
+
+
+</body>
+
+<%- include('../partials/footer.ejs') %>
+
+
+</html>
