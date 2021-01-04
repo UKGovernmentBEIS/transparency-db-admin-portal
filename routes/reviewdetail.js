@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/',(req, res) => {
 
   var isAddSubsidyPrimarycall = false;
-  var GetMonthName;
+  GetMonthName ='';
   var SubsidyErrors = [] ;
   var SubsidyFocus = [] ;
   var Additem = 0;
@@ -47,12 +47,15 @@ router.post('/',(req, res) => {
       Legal_Granting_Date_Year,
       Goods_or_Services,
       Spending_Region,
-      Spending_Sector
+      Spending_Sector,
+      buttonvalue,
+      mylink
        } = req.body;
 
        console.log("isAddSubsidyPrimarycall: " + isAddSubsidyPrimarycall);
        console.log("Subsidy_Instrument :" + Subsidy_Instrument);
-       console.log("Spending_Sector :" + Spending_Sector);
+       console.log("buttonvalue:" + buttonvalue);
+       console.log("mylink:" + mylink);
   
       Subsidy_Control_Number_Global= Subsidy_Control_Number;
       Subsidy_Measure_Title_Global = Subsidy_Measure_Title;
@@ -87,8 +90,11 @@ router.post('/',(req, res) => {
        if (Legal_Granting_Date_Month_Global == 11 ) { GetMonthName = "November"};
        if (Legal_Granting_Date_Month_Global == 12 ) { GetMonthName =  "December"};
        
-
+      
     console.log("Legal_Granting_Date_Month_Global" + GetMonthName);
+
+
+ if (buttonvalue == "continue")   {
 
     //Empty field validations
 
@@ -365,6 +371,13 @@ else {
   } );
   }
 
+}
+
+else {
+
+  res.render("bulkupload/subsidyaward-cancel");
+
+}
 
   });
   

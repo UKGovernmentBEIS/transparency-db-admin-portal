@@ -191,4 +191,15 @@ app.use("/measurespageroute", measurespageroute);
 var measurespageperroute = require("./routes/measurespageperroute");
 app.use("/measurespageperroute", measurespageperroute);
 
+
+var subsidyawardcancel = require("./routes/subsidyaward-cancel");
+app.use("/subsidyawardcancel", subsidyawardcancel);
+
+var subsidyawardreviewcancel = require("./routes/subsidyaward-review-cancel");
+app.use("/subsidyawardreviewcancel", subsidyawardreviewcancel);
+
+var reviewdetailcancel = require("./routes/reviewdetailcancel");
+app.use("/reviewdetailcancel", reviewdetailcancel);
+
+
 module.exports = app;
