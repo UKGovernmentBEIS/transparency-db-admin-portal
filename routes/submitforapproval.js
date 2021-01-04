@@ -10,6 +10,10 @@ router.post('/',async(req, res) => {
   if (typeof  Subsidy_Full_Amount_Range_Global == 'undefined') {  Subsidy_Full_Amount_Range_Global =""; };
   if (typeof  Subsidy_Element_Full_Amount_Global == 'undefined') {  Subsidy_Element_Full_Amount_Global =""; };
     
+
+  subsidy_legal_granting_date = Legal_Granting_Date_Day_Global + '-' + Legal_Granting_Date_Month_Global + '-'  +  Legal_Granting_Date_Year_Global;
+  
+
 const addAwardRequest = 
 {
   
@@ -23,7 +27,7 @@ const addAwardRequest =
   "subsidyObjective": Subsidy_Objective_Global,  
   "subsidyAmountRange": Subsidy_Full_Amount_Range_Global,
   "subsidyAmountExact": Subsidy_Element_Full_Amount_Global,
-  "legalGrantingDate": "22-Jan-18",
+  "legalGrantingDate": subsidy_legal_granting_date,
   "grantingAuthorityName":  Granting_Authority_Name_Global,
   "goodsOrServices": Goods_or_Services_Global ,
   "spendingRegion": Spending_Region_Global,
