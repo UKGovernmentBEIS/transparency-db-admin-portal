@@ -95,7 +95,7 @@
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Subsidy Control
+            Subsidy control (SC) number
           </dt>
           <dd class="govuk-summary-list__value">
             <%= Subsidy_Control_Number_Global %>
@@ -104,7 +104,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Subsidy Measure Title
+            Subsidy name
           </dt>
           <dd class="govuk-summary-list__value">
             <%= Subsidy_Measure_Title_Global %>
@@ -113,7 +113,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Subsidy Objective
+            Subsidy purpose
           </dt>
           <dd class="govuk-summary-list__value">
             <%= Subsidy_Objective_Global %>
@@ -123,7 +123,7 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Subsidy Instrument
+            Subsidy type
           </dt>
           <dd class="govuk-summary-list__value">
             <%= Subsidy_Instrument_Global %>
@@ -134,7 +134,7 @@
         <% if( locals.Subsidy_Element_Full_Amount_Global  ) { %>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Subsidy Element Full Amount(£)
+            Subsidy amount
           </dt>
           <dd class="govuk-summary-list__value">
             <%= Subsidy_Element_Full_Amount_Global %>
@@ -145,7 +145,7 @@
         <% } else { %>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Subsidy Full Amount Range (£)
+            Subsidy range
           </dt>
           <dd class="govuk-summary-list__value">
             <%= Subsidy_Full_Amount_Range_Global %>
@@ -154,38 +154,44 @@
         </div>
 
         <% }  %>
+
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Granting Authority
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= Granting_Authority_Name_Global %>
+          </dd>
+
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Award date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= Legal_Granting_Date_Day_Global %> &nbsp; <%= GetMonthName %> &nbsp;
+            <%= Legal_Granting_Date_Year_Global %>
+          </dd>
+
+        </div>
+
       </dl>
 
       <!-- *************************************
               Review for beneficialry details tab
               ************************************* -->
 
-      <h2 class="govuk-heading-m">Beneficiary details</h2>
-      <!-- <a rel="external" class="govuk-link head-right govuk-relative-position" href="/beneficiarydetailsreview" >
-                <p >Change </p> -->
+      <h2 class="govuk-heading-m">Recipient details</h2>
+      <a rel="external" class="govuk-link head-right govuk-relative-position" href="/addsubsidyreview">
+        <p>Change </p>
       </a>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            National ID Type
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= National_ID_Type_Global %>
-          </dd>
 
-        </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            National ID number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= National_ID_Number_Global %>
-          </dd>
-
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Beneficiary name
+            Organisation name
           </dt>
           <dd class="govuk-summary-list__value">
             <%= Beneficiary_Name_Global %>
@@ -195,7 +201,7 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Size of the Organisation
+            Organisation size
           </dt>
           <dd class="govuk-summary-list__value">
             <%= Size_of_the_Organisation_Global %>
@@ -203,41 +209,28 @@
           </dd>
         </div>
 
-
-
-      </dl>
-
-      <!-- *************************************
-              Review for Granting details tab
-              ************************************* -->
-
-      <h2 class="govuk-heading-m">Granting details</h2>
-      <!-- <a rel="external" class="govuk-link head-right govuk-relative-position" href="/grantingdetailsreview" >
-                <p >Change </p>
-              </a> -->
-      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Granting Authority Name
+            ID Type
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= Granting_Authority_Name_Global %>
+            <%= National_ID_Type_Global %>
           </dd>
 
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Legal Granting Date
+            ID number
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= Legal_Granting_Date_Day_Global %> &nbsp; <%= GetMonthName %> &nbsp;
-            <%= Legal_Granting_Date_Year_Global %>
+            <%= National_ID_Number_Global %>
           </dd>
 
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Goods or Services
+            Provider of(goods or services)
           </dt>
           <dd class="govuk-summary-list__value">
             <%= Goods_or_Services_Global %>
@@ -245,9 +238,10 @@
 
         </div>
 
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Spending Region
+            Region
           </dt>
           <dd class="govuk-summary-list__value">
             <%= Spending_Region_Global %>
@@ -255,17 +249,19 @@
           </dd>
         </div>
 
-
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Spending Sector
+            Sector
           </dt>
           <dd class="govuk-summary-list__value">
             <%= Spending_Sector_Global %>
 
           </dd>
         </div>
+
       </dl>
+
+
 
       <form action="/submitforapproval" method="post" novalidate>
 
@@ -275,15 +271,18 @@
           Submit for Approval
         </button>
 
+        <a href="/subsidyawardreviewcancel" class="govuk-link govuk-cancel-button-link">Cancel</a>
       </form>
 
-      <form action="/addsubsidyaward" method="POST">
+      <!-- <form action="/subsidyawardreviewcancel" method="get">
         <div>
           <button class=" govuk-button_cancel_lg govuk-button--secondary ">
             Cancel
           </button>
         </div>
-      </form>
+      </form> -->
+
+
 
   </div>
 
