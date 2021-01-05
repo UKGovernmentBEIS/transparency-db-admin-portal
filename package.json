@@ -1,5 +1,5 @@
 {
-  "name": "current-project",
+  "name": "Transparency-admin-portal",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -7,11 +7,12 @@
     "start": "nodemon server.js",
     "dev": "nodemon server.js"
   },
-  "author": "",
+  "author": "Jegan Maharajan",
   "license": "ISC",
   "dependencies": {
     "@types/express-fileupload": "^1.1.4",
     "axios": "^0.21.1",
+    "cors": "^2.8.5",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.0",
@@ -25,17 +26,16 @@
     "jquery": "^3.5.1",
     "method-override": "^3.0.0",
     "node-fetch": "^2.6.1",
+    "nodemon": "^1.19.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "request": "^2.88.2",
     "router": "^1.3.5",
     "unirest": "^0.6.0",
-    "xmlhttprequest": "^1.8.0",
-    "nodemon": "^1.19.1"
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "dotenv": "^8.0.0"
-    
   }
 }
