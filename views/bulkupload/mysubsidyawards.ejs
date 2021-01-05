@@ -126,15 +126,62 @@
           </button>
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group">
-          <select class="govuk-select govuk-!-width-full">
-            <option disabled selected value="">Only show me</option>
+          <!-- <select class="govuk-select govuk-!-width-full">
+            <option disabled selected value="">Filter results by status</option>
             <option value="">Draft (1)</option>
             <option value="">Finalised (5)</option>
             <option value="">Published (35)</option>
             <option value="">Deactive (5) </option>
             <option value="">Show all (46)</option>
-          </select>
+          </select> -->
+
+          <form class="govuk-grid-column-one-third govuk-padding-0" action="/awardsfilterroute" method="GET">
+            <select class="govuk-select" id="sort" name="sort" onchange="this.form.submit()">
+              <% if(awards_status  == "Filter results by status") { %>
+                <option disabled value="Filter results by status" selected>Filter results by status </option>
+                <% } else { %>
+                <option disabled value="Filter results by status ">Filter results by status</option>
+                <% }  %>
+              <% if(awards_status  == "Draft") { %>
+              <option value="DRAFT" selected>Draft </option>
+              <% } else { %>
+              <option value="DRAFT">Draft</option>
+              <% }  %>
+
+              <% if(awards_status  == "Finalised") { %>
+                <option value="Finalised" selected>Finalised </option>
+                <% } else { %>
+                <option value="Finalised">Finalised</option>
+                <% }  %>
+
+              <% if(awards_status  == "Published") { %>
+                <option value="Published" selected>Published </option>
+                <% } else { %>
+                <option value="Published">Published</option>
+                <% }  %>
+
+              <% if(awards_status  == "Deactive") { %>
+                <option value="Deactive" selected>Deactive </option>
+                <% } else { %>
+                <option value="Deactive">Deactive</option>
+                <% }  %>
+
+              <% if(awards_status  == "Rejected") { %>
+                <option value="Rejected" selected>Rejected </option>
+                <% } else { %>
+                <option value="Rejected">Rejected</option>  
+                <% }  %>
+
+              <% if(awards_status  == "Show all") { %>
+                <option value="Show all" selected>Show all </option>
+                <% } else { %>
+                <option value="Show all">Show all</option>
+                <% }  %>
+           
+            </select>
+          </form>
         </div>
+
         <div class="govuk-grid-column-two-thirds govuk-form-group">
           <!-- <a href="/" style="color : black; text-decoration: none"> -->
           <button class="govuk-button" onclick="window.location.href='/addsubsidyaward'" data-module="govuk-button">
@@ -211,12 +258,12 @@
                   </div>
                 </th>
 
-                <th scope="col" class="govuk-table__header app-custom-class">Award no.</th>
-                <th scope="col" class="govuk-table__header app-custom-class">Measure Title</th>
-                <th scope="col" class="govuk-table__header app-custom-class">Staus</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Subsidy award number.</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Scheme name</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Status</th>
                 <th scope="col" class="govuk-table__header app-custom-class">Recipient</th>
                 <th scope="col" class="govuk-table__header app-custom-class">Granting autority</th>
-                <th scope="col" class="govuk-table__header app-custom-class">subsidy amount</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Subsidy amount</th>
               </tr>
             </thead>
             <tbody class="govuk-table__body">
@@ -239,12 +286,12 @@
                     href="/editsubsidyaward/?award=<%= item.awardNumber %>"><%= item.awardNumber %></a>
                 </td>
                 <td class="govuk-table__cell">
-                  <%= item.beneficiary.beneficiaryName %>
+                  <%= item.subsidyMeasureTitle %>
                 </td>
-                <td class="govuk-table__cell" style="text-align:center">Finalised</td>
+                <td class="govuk-table__cell" style="text-align:center"><%= item.status %></td>
                 <td class="govuk-table__cell" style="text-align:center">Amigos</td>
-                <td class="govuk-table__cell">Cardiff Council</td>
-                <td class="govuk-table__cell" style="text-align:center"> £632,000</td>
+                <td class="govuk-table__cell"><%= item.gaName %></td>
+                <td class="govuk-table__cell" style="text-align:center"> <%= item.subsidyFullAmountExact %> </td>
               </tr>
 
               <% } ); %>

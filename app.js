@@ -69,6 +69,8 @@ app.locals.end_page;
 app.locals.dashboardawards;
 app.locals.awardnumber;
 
+app.locals.awards_status;
+
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
@@ -197,6 +199,9 @@ app.use("/awardspageroute", awardspageroute);
 
 var awardspageperroute = require("./routes/awardspageperroute");
 app.use("/awardspageperroute", awardspageperroute);
+
+var awardsfilterroute = require("./routes/awardsfilterroute");
+app.use("/awardsfilterroute", awardsfilterroute);
 
 var measurespageroute = require("./routes/measurespageroute");
 app.use("/measurespageroute", measurespageroute);
