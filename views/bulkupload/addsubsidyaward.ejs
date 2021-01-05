@@ -45,9 +45,9 @@
     });
 
 
-    document.getElementById('mylink').onclick = function() {
-        document.getElementById('myform').submit();
-        return false;
+    document.getElementById('mylink').onclick = function () {
+      document.getElementById('myform').submit();
+      return false;
     };
 
   });
@@ -107,7 +107,7 @@
       <br />
       <br />
 
-     
+
       <!-- bread crumbs start here -->
       <div class="govuk-breadcrumbs ">
         <ol class="govuk-breadcrumbs__list">
@@ -215,7 +215,7 @@
             <% if( locals.Subsidy_Measure_Title_Error ){ %>
             <div class="govuk-form-group  govuk-form-group--error">
 
-              
+
               <label class="govuk-label" for="Subsidy_Measure_Title">
                 Subsidy measure title
               </label>
@@ -538,7 +538,6 @@
               <% if( locals.Subsidy_Full_Amount_Range_Error ) { %>
 
               <div class="govuk-form-group govuk-form-group--error">
-
                 <fieldset class="govuk-fieldset">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                     <h1 class="govuk-label">
@@ -806,361 +805,361 @@
 
             </div>
 
-          <!-- *****************************************  -->
+            <!-- *****************************************  -->
             <!-- Get the Granting Authority Name from user  -->
             <!-- *****************************************  -->
             <% if( locals.Granting_Authority_Name_Error ) { %>
-              <div class="govuk-form-group govuk-form-group--error">
-                <label class="govuk-label" for="Granting_Authority_Name">
-                  Granting Authority Name
-                </label>
-  
-                <span class="govuk-error-message" id="Granting_Authority_Name_Error">
-                  <span class="govuk-visually-hidden">Error:</span> Enter the granting authority name
-                </span>
-  
-                <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Granting_Authority_Name"
-                  name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name-hint"
-                  <% if(locals.Granting_Authority_Name_Global) {%> value="<%= locals.Granting_Authority_Name_Global%>"
-                  <% } %> />
-              </div>
-              <% } else { %>
-  
-              <div class="govuk-form-group">
-                <label class="govuk-label" for="Granting_Authority_Name">
-                  Granting Authority Name
-                </label>
-  
-                <input class="govuk-input govuk-input--width-20" id="Granting_Authority_Name"
-                  name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name-hint"
-                  <% if(locals.Granting_Authority_Name_Global) {%> value="<%= locals.Granting_Authority_Name_Global%>"
-                  <% } %> />
-              </div>
-              <% }  %>
+            <div class="govuk-form-group govuk-form-group--error">
+              <label class="govuk-label" for="Granting_Authority_Name">
+                Granting Authority Name
+              </label>
+
+              <span class="govuk-error-message" id="Granting_Authority_Name_Error">
+                <span class="govuk-visually-hidden">Error:</span> Enter the granting authority name
+              </span>
+
+              <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Granting_Authority_Name"
+                name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name-hint"
+                <% if(locals.Granting_Authority_Name_Global) {%> value="<%= locals.Granting_Authority_Name_Global%>"
+                <% } %> />
+            </div>
+            <% } else { %>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="Granting_Authority_Name">
+                Granting Authority Name
+              </label>
+
+              <input class="govuk-input govuk-input--width-20" id="Granting_Authority_Name"
+                name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name-hint"
+                <% if(locals.Granting_Authority_Name_Global) {%> value="<%= locals.Granting_Authority_Name_Global%>"
+                <% } %> />
+            </div>
+            <% }  %>
 
 
-                          <!-- *****************************************  -->
+            <!-- *****************************************  -->
             <!-- Get the Legal Granting Date     from user  -->
             <!-- *****************************************  -->
             <% if( locals.Legal_Granting_Date_Day_Error || locals.Legal_Granting_Date_Month_Error || locals.Legal_Granting_Date_Year_Error) { %>
-              <div class="govuk-form-group govuk-form-group--error">
-                <fieldset class="govuk-fieldset" role="group" aria-describedby="Legal_Granting_Date-hint">
-                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                    <h1 class="govuk-label">
-                      Granting date
-                    </h1>
-                  </legend>
-                  <div id="Legal_Granting_Date-hint" class="govuk-hint">
-                    For example, 31 3 1980
-                  </div>
-  
-                  <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
-                    <span class="govuk-visually-hidden">Error:</span> Enter the granting date
-                  </span>
-  
-                  <div class="govuk-date-input" id="Legal_Granting_Date">
-                    <div class="govuk-date-input__item">
-                      <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Legal_Granting_Date_Day">
-                          Day
-                        </label>
-                        <% if( locals.Legal_Granting_Date_Day_Error) { %>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error"
-                          id="Legal_Granting_Date_Day" name="Legal_Granting_Date_Day" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(locals.Legal_Granting_Date_Day_Global) {%>
-                          value="<%= locals.Legal_Granting_Date_Day_Global%>" <% } %> />
-                        <% } else { %>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Legal_Granting_Date_Day" name="Legal_Granting_Date_Day" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(locals.Legal_Granting_Date_Day_Global) {%>
-                          value="<%= locals.Legal_Granting_Date_Day_Global%>" <% } %> />
-                        <% } %>
-                      </div>
-                    </div>
-                    <div class="govuk-date-input__item">
-                      <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Legal_Granting_Date_Month">
-                          Month
-                        </label>
-  
-                        <% if( locals.Legal_Granting_Date_Month_Error) { %>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error"
-                          id="Legal_Granting_Date_Month" name="Legal_Granting_Date_Month" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(locals.Legal_Granting_Date_Month_Global) {%>
-                          value="<%= locals.Legal_Granting_Date_Month_Global%>" <% } %> />
-                        <% } else { %>
-  
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Legal_Granting_Date_Month" name="Legal_Granting_Date_Month" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(locals.Legal_Granting_Date_Month_Global) {%>
-                          value="<%= locals.Legal_Granting_Date_Month_Global%>" <% } %> />
-                        <% } %>
-                      </div>
-                    </div>
-                    <div class="govuk-date-input__item">
-                      <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Legal_Granting_Date_Year">
-                          Year
-                        </label>
-                        <% if( locals.Legal_Granting_Date_Year_Error) { %>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error"
-                          id="Legal_Granting_Date_Year" name="Legal_Granting_Date_Year" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(locals.Legal_Granting_Date_Year_Global) {%>
-                          value="<%= locals.Legal_Granting_Date_Year_Global%>" <% } %> />
-                        <% } else { %>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                          id="Legal_Granting_Date_Year" name="Legal_Granting_Date_Year" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(locals.Legal_Granting_Date_Year_Global) {%>
-                          value="<%= locals.Legal_Granting_Date_Year_Global%>" <% } %> />
-                        <% } %>
-                      </div>
-                    </div>
-                  </div>
-                </fieldset>
-              </div>
-  
-              <% } else { %>
-  
-              <div class="govuk-form-group">
-                <fieldset class="govuk-fieldset" role="group" aria-describedby="Legal_Granting_Date-hint">
-                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                    <h1 class="govuk-label">
-                      Granting date
-                    </h1>
-                  </legend>
-                  <div id="Legal_Granting_Date-hint" class="govuk-hint">
-                    For example, 31 3 1980
-                  </div>
-                  <div class="govuk-date-input" id="Legal_Granting_Date">
-                    <div class="govuk-date-input__item">
-                      <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Legal_Granting_Date_Day">
-                          Day
-                        </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Legal_Granting_Date_Day" name="Legal_Granting_Date_Day" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(locals.Legal_Granting_Date_Day_Global) {%>
-                          value="<%= locals.Legal_Granting_Date_Day_Global%>" <% } %> />
-                      </div>
-                    </div>
-                    <div class="govuk-date-input__item">
-                      <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Legal_Granting_Date_Month">
-                          Month
-                        </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Legal_Granting_Date_Month" name="Legal_Granting_Date_Month" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(locals.Legal_Granting_Date_Month_Global) {%>
-                          value="<%= locals.Legal_Granting_Date_Month_Global%>" <% } %> />
-                      </div>
-                    </div>
-                    <div class="govuk-date-input__item">
-                      <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Legal_Granting_Date_Year">
-                          Year
-                        </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                          id="Legal_Granting_Date_Year" name="Legal_Granting_Date_Year" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(locals.Legal_Granting_Date_Year_Global) {%>
-                          value="<%= locals.Legal_Granting_Date_Year_Global%>" <% } %> />
-                      </div>
-                    </div>
-                  </div>
-                </fieldset>
-              </div>
-  
-              <% } %>
+            <div class="govuk-form-group govuk-form-group--error">
+              <fieldset class="govuk-fieldset" role="group" aria-describedby="Legal_Granting_Date-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                  <h1 class="govuk-label">
+                    Granting date
+                  </h1>
+                </legend>
+                <div id="Legal_Granting_Date-hint" class="govuk-hint">
+                  For example, 31 3 1980
+                </div>
 
-              
+                <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
+                  <span class="govuk-visually-hidden">Error:</span> Enter the granting date
+                </span>
+
+                <div class="govuk-date-input" id="Legal_Granting_Date">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="Legal_Granting_Date_Day">
+                        Day
+                      </label>
+                      <% if( locals.Legal_Granting_Date_Day_Error) { %>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error"
+                        id="Legal_Granting_Date_Day" name="Legal_Granting_Date_Day" type="text" pattern="[0-9]*"
+                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Day_Global) {%>
+                        value="<%= locals.Legal_Granting_Date_Day_Global%>" <% } %> />
+                      <% } else { %>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                        id="Legal_Granting_Date_Day" name="Legal_Granting_Date_Day" type="text" pattern="[0-9]*"
+                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Day_Global) {%>
+                        value="<%= locals.Legal_Granting_Date_Day_Global%>" <% } %> />
+                      <% } %>
+                    </div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="Legal_Granting_Date_Month">
+                        Month
+                      </label>
+
+                      <% if( locals.Legal_Granting_Date_Month_Error) { %>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error"
+                        id="Legal_Granting_Date_Month" name="Legal_Granting_Date_Month" type="text" pattern="[0-9]*"
+                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Month_Global) {%>
+                        value="<%= locals.Legal_Granting_Date_Month_Global%>" <% } %> />
+                      <% } else { %>
+
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                        id="Legal_Granting_Date_Month" name="Legal_Granting_Date_Month" type="text" pattern="[0-9]*"
+                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Month_Global) {%>
+                        value="<%= locals.Legal_Granting_Date_Month_Global%>" <% } %> />
+                      <% } %>
+                    </div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="Legal_Granting_Date_Year">
+                        Year
+                      </label>
+                      <% if( locals.Legal_Granting_Date_Year_Error) { %>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error"
+                        id="Legal_Granting_Date_Year" name="Legal_Granting_Date_Year" type="text" pattern="[0-9]*"
+                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Year_Global) {%>
+                        value="<%= locals.Legal_Granting_Date_Year_Global%>" <% } %> />
+                      <% } else { %>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4"
+                        id="Legal_Granting_Date_Year" name="Legal_Granting_Date_Year" type="text" pattern="[0-9]*"
+                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Year_Global) {%>
+                        value="<%= locals.Legal_Granting_Date_Year_Global%>" <% } %> />
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <% } else { %>
+
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset" role="group" aria-describedby="Legal_Granting_Date-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                  <h1 class="govuk-label">
+                    Granting date
+                  </h1>
+                </legend>
+                <div id="Legal_Granting_Date-hint" class="govuk-hint">
+                  For example, 31 3 1980
+                </div>
+                <div class="govuk-date-input" id="Legal_Granting_Date">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="Legal_Granting_Date_Day">
+                        Day
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                        id="Legal_Granting_Date_Day" name="Legal_Granting_Date_Day" type="text" pattern="[0-9]*"
+                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Day_Global) {%>
+                        value="<%= locals.Legal_Granting_Date_Day_Global%>" <% } %> />
+                    </div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="Legal_Granting_Date_Month">
+                        Month
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                        id="Legal_Granting_Date_Month" name="Legal_Granting_Date_Month" type="text" pattern="[0-9]*"
+                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Month_Global) {%>
+                        value="<%= locals.Legal_Granting_Date_Month_Global%>" <% } %> />
+                    </div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="Legal_Granting_Date_Year">
+                        Year
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4"
+                        id="Legal_Granting_Date_Year" name="Legal_Granting_Date_Year" type="text" pattern="[0-9]*"
+                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Year_Global) {%>
+                        value="<%= locals.Legal_Granting_Date_Year_Global%>" <% } %> />
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <% } %>
+
+
             <!-- ************************************  -->
             <!-- Get the recipent details from user  -->
             <!-- ************************************  -->
 
-              <h1 class="govuk-heading-xl">Recipient details</h1>
+            <h1 class="govuk-heading-xl">Recipient details</h1>
 
 
             <!-- ************************************  -->
             <!-- Get the Beneficiary Name from user  -->
             <!-- ************************************  -->
             <% if( locals.Beneficiary_Name_Error ) { %>
-              <div class="govuk-form-group govuk-form-group--error">
-                <label class="govuk-label" for="Beneficiary_Name">
-                  Recipient organisation name
-                </label>
-  
-                
-                <span class="govuk-error-message" id="Beneficiary_Name_Error">
-                  <span class="govuk-visually-hidden">Error:</span> Enter the recipient organisation name
-                </span>
-  
-  
-                <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Beneficiary_Name"
-                  name="Beneficiary_Name" type="text" aria-describedby="Beneficiary_Name-hint"
-                  <% if(locals.Beneficiary_Name_Global) {%> value="<%= locals.Beneficiary_Name_Global%>" <% } %> />
-              </div>
-  
-              <% } else { %>
-              <div class="govuk-form-group">
-                <label class="govuk-label" for="Beneficiary_Name">
-                  Recipient organisation name
-                </label>
-               
-                <input class="govuk-input govuk-input--width-20" id="Beneficiary_Name" name="Beneficiary_Name" type="text"
-                  aria-describedby="Beneficiary_Name-hint" <% if(locals.Beneficiary_Name_Global) {%>
-                  value="<%= locals.Beneficiary_Name_Global%>" <% } %> />
-              </div>
-              <% } %>
+            <div class="govuk-form-group govuk-form-group--error">
+              <label class="govuk-label" for="Beneficiary_Name">
+                Recipient organisation name
+              </label>
+
+
+              <span class="govuk-error-message" id="Beneficiary_Name_Error">
+                <span class="govuk-visually-hidden">Error:</span> Enter the recipient organisation name
+              </span>
+
+
+              <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Beneficiary_Name"
+                name="Beneficiary_Name" type="text" aria-describedby="Beneficiary_Name-hint"
+                <% if(locals.Beneficiary_Name_Global) {%> value="<%= locals.Beneficiary_Name_Global%>" <% } %> />
+            </div>
+
+            <% } else { %>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="Beneficiary_Name">
+                Recipient organisation name
+              </label>
+
+              <input class="govuk-input govuk-input--width-20" id="Beneficiary_Name" name="Beneficiary_Name" type="text"
+                aria-describedby="Beneficiary_Name-hint" <% if(locals.Beneficiary_Name_Global) {%>
+                value="<%= locals.Beneficiary_Name_Global%>" <% } %> />
+            </div>
+            <% } %>
 
             <!-- ******************************************  -->
             <!-- Get the Size of the Organisation from user  -->
             <!-- ******************************************  -->
             <% if( locals.Size_of_the_Organisation_Error ) { %>
-              <div class="govuk-form-group govuk-form-group--error">
-                <fieldset class="govuk-fieldset">
-                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                    <h1 class="govuk-label">
-                      Organisation size
-                    </h1>
-                  </legend>
-                
-  
-                  <span class="govuk-error-message" id="Size_of_the_Organisation_Error">
-                    <span class="govuk-visually-hidden">Error:</span> Enter the organisation size
+            <div class="govuk-form-group govuk-form-group--error">
+              <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                  <h1 class="govuk-label">
+                    Organisation size
+                  </h1>
+                </legend>
 
-                  </span>
-  
-  
-                  <div class="govuk-radios">
-                    <div class="govuk-radios__item">
-                      <% if( locals.Size_of_the_Organisation_Global == 'Micro organisation' ){ %>
-                      <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
-                        type="radio" value="Micro organisation" checked>
-  
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
-                        type="radio" value="Micro organisation">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation">
-                        Micro (fewer than 10 employees)
-                      </label>
-                    </div>
-                    <div class="govuk-radios__item">
-                      <% if( locals.Size_of_the_Organisation_Global == 'Small organisation' ){ %>
-                      <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
-                        type="radio" value="Small organisation" checked>
-  
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
-                        type="radio" value="Small organisation">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-2">
-                        Small (between 10 and 49 employees)
-                      </label>
-                    </div>
-                    <div class="govuk-radios__item">
-                      <% if( locals.Size_of_the_Organisation_Global == 'Medium organisation' ){ %>
-                      <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
-                        type="radio" value="Medium organisation" checked>
-  
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
-                        type="radio" value="Medium organisation">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-3">
-                        Medium (between 50 and 249 employees)
-                      </label>
-                    </div>
-                    <div class="govuk-radios__item">
-                      <% if( locals.Size_of_the_Organisation_Global == 'Large organisation' ){ %>
-                      <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                        type="radio" value="Large organisation" checked>
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                        type="radio" value="Large organisation">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-4">
-                        Large (more than 250 employees)
-                      </label>
-                    </div>
+
+                <span class="govuk-error-message" id="Size_of_the_Organisation_Error">
+                  <span class="govuk-visually-hidden">Error:</span> Enter the organisation size
+
+                </span>
+
+
+                <div class="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <% if( locals.Size_of_the_Organisation_Global == 'Micro organisation' ){ %>
+                    <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
+                      type="radio" value="Micro organisation" checked>
+
+                    <% } else { %>
+                    <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
+                      type="radio" value="Micro organisation">
+                    <% } %>
+                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation">
+                      Micro (fewer than 10 employees)
+                    </label>
                   </div>
-                </fieldset>
-              </div>
-  
-              <% } else { %>
-  
-              <div class="govuk-form-group">
-                <fieldset class="govuk-fieldset">
-                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                    <h1 class="govuk-label">
-                      Organisation size
-                    </h1>
-                  </legend>
-              
-  
-                  <div class="govuk-radios">
-                    <div class="govuk-radios__item">
-                      <% if( locals.Size_of_the_Organisation_Global == 'Micro organisation' ){ %>
-                      <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
-                        type="radio" value="Micro organisation" checked>
-  
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
-                        type="radio" value="Micro organisation">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation">
-                        Micro (fewer than 10 employees)
-                      </label>
-                    </div>
-                    <div class="govuk-radios__item">
-                      <% if( locals.Size_of_the_Organisation_Global == 'Small organisation' ){ %>
-                      <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
-                        type="radio" value="Small organisation" checked>
-  
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
-                        type="radio" value="Small organisation">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-2">
-                        Small (between 10 and 49 employees)
-                      </label>
-                    </div>
-                    <div class="govuk-radios__item">
-                      <% if( locals.Size_of_the_Organisation_Global == 'Medium organisation' ){ %>
-                      <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
-                        type="radio" value="Medium organisation" checked>
-  
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
-                        type="radio" value="Medium organisation">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-3">
-                        Medium (between 50 and 249 employees)
-                      </label>
-                    </div>
-                    <div class="govuk-radios__item">
-                      <% if( locals.Size_of_the_Organisation_Global == 'Large organisation' ){ %>
-                      <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                        type="radio" value="Large organisation" checked>
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                        type="radio" value="Large organisation">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-4">
-                        Large (more than 250 employees)
-                      </label>
-                    </div>
+                  <div class="govuk-radios__item">
+                    <% if( locals.Size_of_the_Organisation_Global == 'Small organisation' ){ %>
+                    <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
+                      type="radio" value="Small organisation" checked>
+
+                    <% } else { %>
+                    <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
+                      type="radio" value="Small organisation">
+                    <% } %>
+                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-2">
+                      Small (between 10 and 49 employees)
+                    </label>
                   </div>
-                </fieldset>
-              </div>
-  
-              <% }  %>
+                  <div class="govuk-radios__item">
+                    <% if( locals.Size_of_the_Organisation_Global == 'Medium organisation' ){ %>
+                    <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
+                      type="radio" value="Medium organisation" checked>
+
+                    <% } else { %>
+                    <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
+                      type="radio" value="Medium organisation">
+                    <% } %>
+                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-3">
+                      Medium (between 50 and 249 employees)
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <% if( locals.Size_of_the_Organisation_Global == 'Large organisation' ){ %>
+                    <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
+                      type="radio" value="Large organisation" checked>
+                    <% } else { %>
+                    <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
+                      type="radio" value="Large organisation">
+                    <% } %>
+                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-4">
+                      Large (more than 250 employees)
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <% } else { %>
+
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                  <h1 class="govuk-label">
+                    Organisation size
+                  </h1>
+                </legend>
+
+
+                <div class="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <% if( locals.Size_of_the_Organisation_Global == 'Micro organisation' ){ %>
+                    <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
+                      type="radio" value="Micro organisation" checked>
+
+                    <% } else { %>
+                    <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
+                      type="radio" value="Micro organisation">
+                    <% } %>
+                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation">
+                      Micro (fewer than 10 employees)
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <% if( locals.Size_of_the_Organisation_Global == 'Small organisation' ){ %>
+                    <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
+                      type="radio" value="Small organisation" checked>
+
+                    <% } else { %>
+                    <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
+                      type="radio" value="Small organisation">
+                    <% } %>
+                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-2">
+                      Small (between 10 and 49 employees)
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <% if( locals.Size_of_the_Organisation_Global == 'Medium organisation' ){ %>
+                    <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
+                      type="radio" value="Medium organisation" checked>
+
+                    <% } else { %>
+                    <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
+                      type="radio" value="Medium organisation">
+                    <% } %>
+                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-3">
+                      Medium (between 50 and 249 employees)
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <% if( locals.Size_of_the_Organisation_Global == 'Large organisation' ){ %>
+                    <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
+                      type="radio" value="Large organisation" checked>
+                    <% } else { %>
+                    <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
+                      type="radio" value="Large organisation">
+                    <% } %>
+                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-4">
+                      Large (more than 250 employees)
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <% }  %>
 
             <!-- ************************************  -->
             <!-- Get the National ID Type from user  -->
             <!-- ************************************  -->
 
 
-            
+
 
             <% if( locals.National_ID_Type_Error ) { %>
 
@@ -1241,7 +1240,7 @@
               <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                   <h1 class="govuk-label">
-                   ID Type
+                    ID Type
                   </h1>
                 </legend>
                 <div class="govuk-radios">
@@ -1313,7 +1312,7 @@
               </label>
 
               <div id="National_ID_Number-hint" class="govuk-hint">
-                This must match the ID type. For example, if you selected ‘VAT number’ for ID type, 
+                This must match the ID type. For example, if you selected ‘VAT number’ for ID type,
                 you must enter the recipient’s VAT number
               </div>
 
@@ -1332,7 +1331,7 @@
                 ID Number
               </label>
               <div id="National_ID_Number-hint" class="govuk-hint">
-                This must match the ID type. For example, if you selected ‘VAT number’ for ID type, 
+                This must match the ID type. For example, if you selected ‘VAT number’ for ID type,
                 you must enter the recipient’s VAT number
               </div>
               <input class="govuk-input govuk-input--width-20" id="National_ID_Number" name="National_ID_Number"
@@ -1359,7 +1358,7 @@
 
                 <div id="Goods_or_Services-hint" class="govuk-hint">
                   This is what the organisation provides. For example, a greengrocer provides goods,
-                   while a dentist provides services.
+                  while a dentist provides services.
                 </div>
 
                 <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
@@ -1407,7 +1406,7 @@
                 </legend>
                 <div id="Goods_or_Services-hint" class="govuk-hint">
                   This is what the organisation provides. For example, a greengrocer provides goods,
-                   while a dentist provides services.
+                  while a dentist provides services.
                 </div>
 
                 <div class="govuk-radios govuk-radios--inline">
@@ -1966,19 +1965,21 @@
             <% } %>
 
             <div>
-            <button class="govuk-button" id="buttonvalue" name="buttonvalue" value="continue"  data-module="govuk-button">
-              Continue
-            </button>
-            <a class="govuk-link" id="mylink" name="mylink" value="cancel" href="#" > Cancel </a>
-<!-- 
+              <button class="govuk-button" id="buttonvalue" name="buttonvalue" value="continue"
+                data-module="govuk-button">
+                Continue
+              </button>
+              <a class="govuk-link govuk-cancel-button-link" id="mylink" name="mylink" value="cancel" href="#"> Cancel
+              </a>
+              <!-- 
            <button class="govuk-button" id="buttonvalue" name="buttonvalue" value="cancel" data-module="govuk-button">
             </button> -->
-          </div>
+            </div>
 
 
           </form>
 
-        
+
 
 
         </div>

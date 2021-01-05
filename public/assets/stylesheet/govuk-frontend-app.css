@@ -467,3 +467,9 @@ button.link {
 .govuk-button_sm {
   width: 10%;
 }
+
+.govuk-cancel-button-link {
+  padding: 8px 10px 7px;
+  display: inline-flex;
+  align-items: center;
+}

@@ -67,6 +67,7 @@ app.locals.current_page;
 app.locals.start_page;
 app.locals.end_page;
 app.locals.dashboardawards;
+app.locals.awardnumber;
 
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
@@ -128,11 +129,23 @@ app.use("/formvalidation", formvalidation);
 var addsubsidyaward = require("./routes/addsubsidyaward");
 app.use("/addsubsidyaward", addsubsidyaward);
 
+var editsubsidyaward = require("./routes/subsidyaward-edit");
+app.use("/editsubsidyaward", editsubsidyaward);
+
+var updatesubsidyaward = require("./routes/subsidyaward-update");
+app.use("/updatesubsidyaward", updatesubsidyaward);
+
 var rejectsubsidyaward = require("./routes/subsidyaward-reject");
 app.use("/rejectsubsidyaward", rejectsubsidyaward);
 
 var approverejectsubsidyaward = require("./routes/subsidyaward-approve-reject");
 app.use("/approverejectsubsidyaward", approverejectsubsidyaward);
+
+var revieweditsubsidyaward = require("./routes/subsidyaward-edit-review");
+app.use("/reviewedit-subsidyaward", revieweditsubsidyaward);
+
+var subsidyawardsubmitforapprovaledit = require("./routes/subsidyaward-submitforapproval-edit");
+app.use("/editsubmitforapproval", subsidyawardsubmitforapprovaledit);
 
 var cancelmysubsidy = require("./routes/cancelmysubsidy");
 app.use("/cancelmysubsidy", cancelmysubsidy);

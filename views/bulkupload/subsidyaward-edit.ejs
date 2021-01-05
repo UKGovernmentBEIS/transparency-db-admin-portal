@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+
+<%- include('../partials/headersubsidy.ejs') %>
+
+<body>
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+
+
+
+            <!-- <body class="govuk-template__body app-example-page js-enabled"> -->
+            <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+            <!-- Disable browser validation for any examples that include form elements -->
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <nav aria-label="Sub navigation">
+                        <ul class="govuk-sub-navigation__list">
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                    Granting Authorities
+                                </a>
+                            </li>
+
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="#">
+                                    Users
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
+                                    Subsidy Measures
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidyawards">
+                                    Subsidy Awards
+                                </a>
+                            </li>
+
+
+
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    Sign out
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    My account
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+
+            <br />
+            <br />
+
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a1 class="govuk-breadcrumbs__link active" href="#">Edit <%= Subsidy_Control_Number %>
+                        </a1>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+            <h1 class="govuk-heading-xl">Edit <%= Subsidy_Control_Number %></h1>
+
+            <!-- Body header ends here -->
+            <label class="govuk-heading-l">
+                Subsidy details
+            </label>
+            <form action="/reviewedit-subsidyaward" method="POST">
+                <section class="govuk-grid-row">
+
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="Subsidy_Control_Number">
+                            Subsidy Control Number
+                        </label>
+                        <div id="Subsidy_Control_Number-hint" class="govuk-hint">
+                            This will start with SC, followed by 5 digits.
+                            It must match the subsidy measure that this award is related to.
+                        </div>
+                        <input class="govuk-input govuk-!-width-one-half" disabled value="<%= Subsidy_Control_Number %>"
+                            name="Subsidy_Control_Number" type="text">
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="Subsidy_Measure_Title">
+                            Subsidy measure title
+                        </label>
+                        <div id="Subsidy_Measure_Title-hint" class="govuk-hint">
+                            This is the name of the subsidy measure that this award is related to.
+                        </div>
+                        <input class="govuk-input govuk-!-width-two-thirds" value="<%= Subsidy_Measure_Title %>"
+                            name="Subsidy_Measure_Title" type="text">
+                    </div>
+
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            Subsidy purpose
+                        </label>
+                        <select class="govuk-select" id="Subsidy_Objective" name="Subsidy_Objective">
+                            <% if( Subsidy_Objective == '' ){ %>
+                            <option value="Empty" selected> </option>
+                            <% } else { %>
+                            <option value="Empty"> </option>
+                            <% } %>
+                            <% if( Subsidy_Objective == 'Research and development' ){ %>
+                            <option value="Research and development" selected>Research and development </option>
+                            <% } else { %>
+                            <option value="Research and development">Research and development </option>
+                            <% } %>
+                            <% if( Subsidy_Objective == 'Environmental protection' ){ %>
+                            <option value="Environmental protection" selected>Environmental protection </option>
+                            <% } else { %>
+                            <option value="Environmental protection">Environmental protection </option>
+                            <% } %>
+                            <% if( Subsidy_Objective == 'Energy efficiency' ){ %>
+                            <option value="Energy efficiency" selected>Energy efficiency </option>
+                            <% } else { %>
+                            <option value="Energy efficiency">Energy efficiency </option>
+                            <% } %>
+                            <% if( Subsidy_Objective == 'Culture heritage' ){ %>
+                            <option value="Culture heritage" selected>Culture/Heritage </option>
+                            <% } else { %>
+                            <option value="Culture heritage">Culture/Heritage </option>
+                            <% } %>
+                            <% if( Subsidy_Objective == 'SME support' ){ %>
+                            <option value="SME support" selected>SME support </option>
+                            <% } else { %>
+                            <option value="SME support">SME support </option>
+                            <% } %>
+                            <% if( Subsidy_Objective == 'Regional development' ){ %>
+                            <option value="Regional development" selected>Regional development </option>
+                            <% } else { %>
+                            <option value="Regional development">Regional development </option>
+                            <% } %>
+                            <% if( Subsidy_Objective == 'Training' ){ %>
+                            <option value="Training" selected>Training </option>
+                            <% } else { %>
+                            <option value="Training">Training </option>
+                            <% } %>
+                            <% if( Subsidy_Objective == 'Employment' ){ %>
+                            <option value="Employment" selected>Employment </option>
+                            <% } else { %>
+                            <option value="Employment">Employment </option>
+                            <% } %>
+                            <% if( Subsidy_Objective == 'Infrastructure' ){ %>
+                            <option value="Infrastructure" selected>Infrastructure </option>
+                            <% } else { %>
+                            <option value="Infrastructure">Infrastructure </option>
+                            <% } %>
+                            <% if( Subsidy_Objective == 'Rescue aid' ){ %>
+                            <option value="Rescue aid" selected>Rescue aid </option>
+                            <% } else { %>
+                            <option value="Rescue aid">Rescue aid </option>
+                            <% } %>
+                            <% if( Subsidy_Objective == 'Other' ){ %>
+                            <option value="Other" selected>Other </option>
+                            <% } else { %>
+                            <option value="Other">Other </option>
+                            <% } %>
+                        </select>
+                    </div>
+
+
+
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            Subsidy type
+                        </label>
+                        <div id="passport-issued-hint" class="govuk-hint">Description text required</div>
+                        <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument">
+                            <% if( Subsidy_Instrument == '' ){ %>
+                            <option value="Empty" selected></option>
+                            <% } else { %>
+                            <option value="Empty"></option>
+                            <% } %>
+                            <% if( Subsidy_Instrument == 'Direct Grant' ){ %>
+                            <option value="Direct Grant" selected>Direct Grant</option>
+                            <% } else { %>
+                            <option value="Direct Grant">Direct Grant</option>
+                            <% } %>
+                            <% if( Subsidy_Instrument == 'Loan' ){ %>
+                            <option value="Loan" selected>Loan</option>
+                            <% } else { %>
+                            <option value="Loan">Loan</option>
+                            <% } %>
+                            <% if( Subsidy_Instrument == 'Equity' ){ %>
+                            <option value="Equity" selected>Equity</option>
+                            <% } else { %>
+                            <option value="Equity">Equity</option>
+                            <% } %>
+                            <% if( Subsidy_Instrument == 'Guarantee' ){ %>
+                            <option value="Guarantee" selected>Guarantee</option>
+                            <% } else { %>
+                            <option value="Guarantee">Guarantee</option>
+                            <% } %>
+                            <% if( Subsidy_Instrument == 'Tax measures' ){ %>
+                            <option value="Tax measures" selected>Tax measures (tax credit or tax/duty exemption)
+                            </option>
+                            <% } else { %>
+                            <option value="Tax measures">Tax measures (tax credit or tax/duty exemption)</option>
+                            <% } %>
+                            <% if( Subsidy_Instrument == 'Provision of goods' ){ %>
+                            <option value="Provision of goods" selected>Provision of goods or services below market
+                                prices</option>
+                            <% } else { %>
+                            <option value="Provision of goods">Provision of goods or services below market prices
+                            </option>
+                            <% } %>
+                            <% if( Subsidy_Instrument == 'Purchase of goods' ){ %>
+                            <option value="Purchase of goods" selected>Purchase of goods services above market prices
+                            </option>
+                            <% } else { %>
+                            <option value="Purchase of goods">Purchase of goods services above market prices</option>
+                            <% } %>
+                            <% if( Subsidy_Instrument == 'Other' ){ %>
+                            <option value="Other" selected>Other</option>
+                            <% } else { %>
+                            <option value="Other">Other</option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            Subsidy Full Amount Range (£)
+                        </label>
+                        <div id="passport-issued-hint" class="govuk-hint">If the subsidy type is not a tax measure, you
+                            must select ‘N/A’.</div>
+                        <select class="govuk-select" id="Subsidy_Full_Amount_Range" name="Subsidy_Full_Amount_Range">
+                            <option value="£0 - £50,000">£0 - £50,000</option>
+                            <option value="£50,001 - £100,000">£50,001 - £100,000</option>
+                            <option value="£100,001 - £200,000">£100,001 - £200,000</option>
+                            <option value="£200,001 - £300,000">£200,001 - £300,000</option>
+                            <option value="£300,001 - £400,000">£300,001 - £400,000</option>
+                            <option value="£400,001 - £500,000">£400,001 - £500,000</option>
+                            <option value="£500,001 - £1,000,000">£500,001 - £1,000,000</option>
+                            <option value="£NA">N/A (If subsidy type is <b>not</b>a tax measure )</option>
+                        </select>
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            Granting Authority Name
+                        </label>
+
+                        <input class="govuk-input govuk-!-width-one-third" value="<%= Granting_Authority_Name %>"
+                            name="Granting_Authority_Name" type="text">
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            Granting date
+                        </label>
+                        <div id="passport-issued-hint" class="govuk-hint">
+                            For example, 25 3 2020
+                        </div>
+                        <div class="govuk-date-input" id="passport-issued">
+                            <div class="govuk-date-input__item">
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                                        Day
+                                    </label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                        id="passport-issued-day" name="Legal_Granting_Date_Day" type="text"
+                                        placeholder="DD" pattern="[0-9]*" value="<%= Legal_Granting_Date_Day %>"
+                                        inputmode="numeric"></div>
+                            </div>
+                            <div class="govuk-date-input__item">
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                                        Month
+                                    </label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                        id="passport-issued-month" name="Legal_Granting_Date_Month" placeholder="MM"
+                                        type="text" value="<%= Legal_Granting_Date_Month %>" pattern="[0-9]*"
+                                        inputmode="numeric"></div>
+                            </div>
+                            <div class="govuk-date-input__item">
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                                        Year
+                                    </label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                        id="passport-issued-year" name="Legal_Granting_Date_Year" type="text"
+                                        pattern="[0-9]*" value="<%= Legal_Granting_Date_Year %>" inputmode="numeric"
+                                        placeholder="YYYY"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <label class="govuk-heading-l govuk-grid-column-full">
+                        Recipient details
+                    </label>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            Recipient organisation name
+                        </label>
+                        <input type="text" class="govuk-input  govuk-!-width-one-half" value="<%= Beneficiary_Name%>"
+                            name="Beneficiary_Name">
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            Organisation size
+                        </label>
+                        <div class="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <% if( Size_of_the_Organisation == 'Micro organisation' ){ %>
+                                <input class="govuk-radios__input" id="Size_of_the_Organisation"
+                                    name="Size_of_the_Organisation" type="radio" value="Micro organisation" checked>
+
+                                <% } else { %>
+                                <input class="govuk-radios__input" id="Size_of_the_Organisation"
+                                    name="Size_of_the_Organisation" type="radio" value="Micro organisation">
+                                <% } %>
+                                <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation">
+                                    Micro organisation
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <% if( Size_of_the_Organisation == 'Small organisation' ){ %>
+                                <input class="govuk-radios__input" id="Size_of_the_Organisation-2"
+                                    name="Size_of_the_Organisation" type="radio" value="Small organisation" checked>
+
+                                <% } else { %>
+                                <input class="govuk-radios__input" id="Size_of_the_Organisation-2"
+                                    name="Size_of_the_Organisation" type="radio" value="Small organisation">
+                                <% } %>
+                                <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-2">
+                                    Small organisation
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <% if( Size_of_the_Organisation == 'Medium organisation' ){ %>
+                                <input class="govuk-radios__input" id="Size_of_the_Organisation-3"
+                                    name="Size_of_the_Organisation" type="radio" value="Medium organisation" checked>
+
+                                <% } else { %>
+                                <input class="govuk-radios__input" id="Size_of_the_Organisation-3"
+                                    name="Size_of_the_Organisation" type="radio" value="Medium organisation">
+                                <% } %>
+                                <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-3">
+                                    Medium organisation
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <% if( Size_of_the_Organisation == 'Large Organisation' ){ %>
+                                <input class="govuk-radios__input" id="Size_of_the_Organisation-4"
+                                    name="Size_of_the_Organisation" type="radio" value="Large Organisation" checked>
+                                <% } else { %>
+                                <input class="govuk-radios__input" id="Size_of_the_Organisation-4"
+                                    name="Size_of_the_Organisation" type="radio" value="Large Organisation">
+                                <% } %>
+                                <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-4">
+                                    Large organisation
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            ID Type
+                        </label>
+                        <div class="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <% if( National_ID_Type == 'Company Registration Number' ) { %>
+                                <input class="govuk-radios__input" id="National_ID_Type" name="National_ID_Type"
+                                    type="radio" value="Company Registration Number" checked>
+
+                                <% } else { %>
+                                <input class="govuk-radios__input" id="National_ID_Type" name="National_ID_Type"
+                                    type="radio" value="Company Registration Number">
+                                <% } %>
+                                <label class="govuk-label govuk-radios__label" for="National_ID_Type">
+                                    Company Registration Number
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <% if( National_ID_Type == 'Charity Number' ) { %>
+                                <input class="govuk-radios__input" id="National_ID_Type-2" name="National_ID_Type"
+                                    type="radio" value="Charity Number" checked>
+
+                                <% } else { %>
+                                <input class="govuk-radios__input" id="National_ID_Type-2" name="National_ID_Type"
+                                    type="radio" value="Charity Number">
+                                <% } %>
+                                <label class="govuk-label govuk-radios__label" for="National_ID_Type-2">
+                                    Charity Number
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <% if( National_ID_Type == 'VAT Number' ){ %>
+                                <input class="govuk-radios__input" id="National_ID_Type-3" name="National_ID_Type"
+                                    type="radio" value="VAT Number" checked>
+                                <% } else { %>
+                                <input class="govuk-radios__input" id="National_ID_Type-3" name="National_ID_Type"
+                                    type="radio" value="VAT Number">
+                                <% } %>
+                                <label class="govuk-label govuk-radios__label" for="National_ID_Type-3">
+                                    VAT number
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <% if( National_ID_Type == 'UTR Number' ){ %>
+                                <input class="govuk-radios__input" id="National_ID_Type-4" name="National_ID_Type"
+                                    type="radio" value="UTR Number" checked>
+
+                                <% } else { %>
+                                <input class="govuk-radios__input" id="National_ID_Type-4" name="National_ID_Type"
+                                    type="radio" value="UTR Number">
+                                <% } %>
+                                <label class="govuk-label govuk-radios__label" for="National_ID_Type-4">
+                                    UTR Number
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            ID number
+                        </label>
+                        <div id="passport-issued-hint" class="govuk-hint">This must match the ID type. For example, if
+                            you selected ‘VAT number’ for ID type, you
+                            must enter the recipient’s VAT number.</div>
+                        <input class="govuk-input govuk-!-width-one-third" name="National_ID_Number"
+                            value="<%= National_ID_Number %>" type="text">
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            Goods or services
+                        </label>
+                        <div id="passport-issued-hint" class="govuk-hint">This is what the organisation provides. For
+                            example, a greengrocer provides goods, while a dentist provides services.</div>
+                        <div class="govuk-radios__item">
+                            <% if( Goods_or_Services == 'Goods' ){ %>
+                            <input class="govuk-radios__input" id="Goods_or_Services" name="Goods_or_Services"
+                                type="radio" value="Goods" checked>
+                            <% } else { %>
+                            <input class="govuk-radios__input" id="Goods_or_Services" name="Goods_or_Services"
+                                type="radio" value="Goods">
+                            <% } %>
+                            <label class="govuk-label govuk-radios__label" for="Goods_or_Services">
+                                Goods
+                            </label>
+
+                        </div>
+                        <div class="govuk-radios__item">
+                            <% if( Goods_or_Services == 'Services' ){ %>
+                            <input class="govuk-radios__input" id="Goods_or_Services-2" name="Goods_or_Services"
+                                type="radio" value="Services" checked>
+                            <% } else { %>
+                            <input class="govuk-radios__input" id="Goods_or_Services-2" name="Goods_or_Services"
+                                type="radio" value="Services">
+
+                            <% } %>
+                            <label class="govuk-label govuk-radios__label" for="Goods_or_Services-2">
+                                Services
+                            </label>
+                        </div>
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            Region
+                        </label>
+                        <div id="passport-issued-hint" class="govuk-hint">This is the region that the organisation is
+                            based in.</div>
+                        <select class="govuk-select" id="Subsidy_Instrument" name="">
+                            <option>South west</option>
+                            <option> South East</option>
+                            <option> Midlands</option>
+                            <option> Wales</option>
+                            <option> North West</option>
+                            <option> North East</option>
+                            <option> Scotland</option>
+                            <option> Northern Ireland</option>
+                        </select>
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="address-line-1">
+                            Sector
+                        </label>
+                        <select class="govuk-select" id="Spending_Sector" name="Spending_Sector">
+                            <% if( Spending_Sector == '' ){ %>
+                            <option value="Empty" selected></option>
+                            <% } else { %>
+                            <option value="Empty"></option>
+                            <% } %>
+
+                            <% if( Spending_Sector == 'Accommodation' ){ %>
+                            <option value="Accommodation" selected>Accommodation</option>
+                            <% } else { %>
+                            <option value="Accommodation">Accommodation</option>
+                            <% } %>
+
+                            <% if( Spending_Sector == 'Activities of extraterritorial organisations and bodies' ){ %>
+                            <option value="Activities of extraterritorial organisations and bodies" selected>Activities
+                                of
+                                extraterritorial organisations and bodies</option>
+                            <% } else { %>
+                            <option value="Activities of extraterritorial organisations and bodies">Activities of
+                                extraterritorial
+                                organisations and bodies</option>
+                            <% } %>
+
+                            <% if( Spending_Sector == 'Administrative and support service activities' ){ %>
+                            <option value="Administrative and support service activities" selected>Administrative and
+                                support
+                                service activities</option>
+                            <% } else { %>
+                            <option value="Administrative and support service activities">Administrative and support
+                                service
+                                activities</option>
+                            <% } %>
+
+                            <% if( Spending_Sector == 'Agriculture, forestry and fishing' ){ %>
+                            <option value="Agriculture, forestry and fishing" selected>Agriculture, forestry and fishing
+                            </option>
+                            <% } else { %>
+                            <option value="Agriculture, forestry and fishing">Agriculture, forestry and fishing</option>
+                            <% } %>
+
+                            <% if( Spending_Sector == 'Arts, entertainment and recreation' ){ %>
+                            <option value="Arts, entertainment and recreation" selected>Arts, entertainment and
+                                recreation</option>
+                            <% } else { %>
+                            <option value="Arts, entertainment and recreation">Arts, entertainment and recreation
+                            </option>
+                            <% } %>
+
+
+                            <% if( Spending_Sector == 'Construction' ){ %>
+                            <option value="Construction" selected>Construction</option>
+                            <% } else { %>
+                            <option value="Construction">Construction</option>
+                            <% } %>
+
+                            <% if( Spending_Sector == 'Education' ){ %>
+                            <option value="Education" selected>Education</option>
+                            <% } else { %>
+                            <option value="Education">Education</option>
+                            <% } %>
+
+                            <% if( Spending_Sector == 'Electricity, gas, steam and air conditioning supply' ){ %>
+                            <option value="Electricity, gas, steam and air conditioning supply" selected>Electricity,
+                                gas, steam and
+                                air conditioning supply</option>
+                            <% } else { %>
+                            <option value="Electricity, gas, steam and air conditioning supply">Electricity, gas, steam
+                                and air
+                                conditioning supply</option>
+                            <% } %>
+
+                            <% if( Spending_Sector == 'Financial and insurance activities' ){ %>
+                            <option value="Financial and insurance activities" selected>Financial and insurance
+                                activities</option>
+                            <% } else { %>
+                            <option value="Financial and insurance activities">Financial and insurance activities
+                            </option>
+                            <% } %>
+
+
+                            <% if( Spending_Sector == 'Human health and social work activities' ){ %>
+                            <option value="Human health and social work activities" selected>Human health and social
+                                work activities
+                            </option>
+                            <% } else { %>
+                            <option value="Human health and social work activities">Human health and social work
+                                activities</option>
+                            <% } %>
+
+
+                            <% if( Spending_Sector == 'Information and communication' ){ %>
+                            <option value="Information and communication" selected>Information and communication
+                            </option>
+                            <% } else { %>
+                            <option value="Information and communication">Information and communication</option>
+                            <% } %>
+
+                            <% if( Spending_Sector == 'Manufacturing' ){ %>
+                            <option value="Manufacturing" selected>Manufacturing</option>
+                            <% } else { %>
+                            <option value="Manufacturing">Manufacturing</option>
+                            <% } %>
+
+                            <% if( Spending_Sector == 'Mining and quarrying' ){ %>
+                            <option value="Mining and quarrying" selected>Mining and quarrying</option>
+                            <% } else { %>
+                            <option value="Mining and quarrying">Mining and quarrying</option>
+                            <% } %>
+
+                            <% if( Spending_Sector == 'Professional, scientific and technical activities' ){ %>
+                            <option value="Professional, scientific and technical activities" selected>Professional,
+                                scientific and
+                                technical activities</option>
+                            <% } else { %>
+                            <option value="Professional, scientific and technical activities">Professional, scientific
+                                and technical
+                                activities</option>
+                            <% } %>
+
+                            <% if( Spending_Sector == 'Public administrative and defence; compulsory social security' ){ %>
+                            <option value="Public administrative and defence; compulsory social security" selected>
+                                Public
+                                administrative and defence; compulsory social security</option>
+                            <% } else { %>
+                            <option value="Public administrative and defence; compulsory social security">Public
+                                administrative and
+                                defence; compulsory social security</option>
+                            <% } %>
+
+
+                            <% if( Spending_Sector == 'Real estate activities' ){ %>
+                            <option value="Real estate activities" selected>Real estate activities</option>
+                            <% } else { %>
+                            <option value="Real estate activities">Real estate activities</option>
+                            <% } %>
+
+                            <% if( Spending_Sector == 'Transportation and storage' ){ %>
+                            <option value="Transportation and storage" selected>Transportation and storage</option>
+                            <% } else { %>
+                            <option value="Transportation and storage">Transportation and storage</option>
+                            <% } %>
+
+                            <% if( Spending_Sector == 'Undifferentiated goods and services-producing activities of households for own use' ){ %>
+                            <option
+                                value="Undifferentiated goods and services-producing activities of households for own use"
+                                selected>Undifferentiated goods and services-producing activities of households for own
+                                use</option>
+                            <% } else { %>
+                            <option
+                                value="Undifferentiated goods and services-producing activities of households for own use">
+                                Undifferentiated goods and services-producing activities of households for own use
+                            </option>
+                            <% } %>
+
+                            <% if( Spending_Sector == 'Water supply; sewerage, waste management and remediation activities' ){ %>
+                            <option value="Water supply; sewerage, waste management and remediation activities"
+                                selected>Water
+                                supply; sewerage, waste management and remediation activities</option>
+                            <% } else { %>
+                            <option value="Water supply; sewerage, waste management and remediation activities">Water
+                                supply;
+                                sewerage, waste management and remediation activities</option>
+                            <% } %>
+
+                            <% if( Spending_Sector == 'Wholesale and retail trade; repair of motor vehicles and motorcycles' ){ %>
+                            <option value="Wholesale and retail trade; repair of motor vehicles and motorcycles"
+                                selected>Wholesale
+                                and retail trade; repair of motor vehicles and motorcycles</option>
+                            <% } else { %>
+                            <option value="Wholesale and retail trade; repair of motor vehicles and motorcycles">
+                                Wholesale and
+                                retail trade; repair of motor vehicles and motorcycles</option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <button class="govuk-button govuk-button_cancel_md" data-module="govuk-button">Continue</button>
+                        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Cancel</button>
+                    </div>
+                </section>
+
+            </form>
+
+
+    </div>
+
+    </main>
+    </div>
+
+
+</body>
+
+<%- include('../partials/footer.ejs') %>
+
+
+</html>
