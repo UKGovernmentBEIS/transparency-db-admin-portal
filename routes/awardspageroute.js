@@ -25,31 +25,22 @@ router.get('/',async(req, res) => {
  console.log("routing prev page :" + previous_page);
  console.log("routing next page :" + next_page );
 
+ 
+ Award_page = current_page_active;
+ Award_selected_status = 'DRAFT';
 
-  const data_request = 
-  {
-    
-        "beneficiaryName": "",
-        "subsidyMeasureTitle": "",
-        "subsidyObjective": [],
-        "spendingRegion": [],
-        "subsidyInstrument": [],
-        "spendingSector":[],
-        "legalGrantingFromDate" :"",
-        "legalGrantingToDate" : "",
-        "pageNumber": current_page,
-        "totalRecordsPerPage" : frontend_totalRecordsPerPage,
-        "sortBy" : [""]
-    
-  
-};
-  
-var data = JSON.parse(JSON.stringify(data_request));
-console.log("request data : " + data);
-  
-      try {
-        const apidata = await axios.post('http://subsidy-search-service.azurewebsites.net/searchResults', data);
-        console.log(`Status: ${apidata.status}`);
+ Base_URL = 'http://access-management-service.azurewebsites.net/accessmanagement/searchresults?';
+ Award_status = 'status=' + Award_selected_status;
+ Award_concate = '&';
+ Award_page = 'page=' + Award_page
+ Award_recordsperpage = 'recordsPerPage=' + frontend_totalRecordsPerPage
+
+ Actual_URL = Base_URL  + Award_status + Award_concate + Award_page + Award_concate + Award_recordsperpage ;
+ console.log("Actual_URL  : " + Actual_URL) ;
+
+ try {
+         const apidata = await axios.get(Actual_URL );
+          console.log(`Status: ${apidata.status}`);
           console.log('Body: ', apidata.data);
           searchawards = apidata.data
           var searchawards_api = apidata.data;
@@ -59,9 +50,7 @@ console.log("request data : " + data);
           const seachawardJSON = JSON.parse(seachawardstring );
           // console.log('seachawardJSON ' + seachawardJSON.awards[0]  );
           totalrows = parseInt(searchawards.totalSearchResults);
-          console.log(searchawards.awards[0].beneficiary.beneficiaryType);
-          console.log(searchawards.awards[0].subsidyFullAmountExact);
-          console.log("req.query.page: "+ req.query.page);
+       
 
           if (current_page == 1) { start_record = 1 ; end_record = frontend_totalRecordsPerPage }
           else if (current_page == pageCount ) { start_record = (current_page - 1)  * frontend_totalRecordsPerPage + 1; end_record =  totalrows }
