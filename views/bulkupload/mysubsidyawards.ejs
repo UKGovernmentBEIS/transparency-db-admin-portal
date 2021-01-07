@@ -142,16 +142,16 @@
                 <% } else { %>
                 <option disabled value="Filter results by status ">Filter results by status</option>
                 <% }  %>
-              <% if(awards_status  == "Draft") { %>
+              <!-- <% if(awards_status  == "Draft") { %>
               <option value="DRAFT" selected>Draft </option>
               <% } else { %>
               <option value="DRAFT">Draft</option>
-              <% }  %>
+              <% }  %> -->
 
-              <% if(awards_status  == "Finalised") { %>
-                <option value="Finalised" selected>Finalised </option>
+              <% if(awards_status  == "Awaiting approval") { %>
+                <option value="Awaiting approval" selected>Awaiting approval</option>
                 <% } else { %>
-                <option value="Finalised">Finalised</option>
+                <option value="Awaiting approval">Awaiting approval</option>
                 <% }  %>
 
               <% if(awards_status  == "Published") { %>
@@ -283,7 +283,7 @@
                 </td>
 
                 <td class="govuk-table__cell"><a
-                    href="/editsubsidyaward/?award=<%= item.awardNumber %>"><%= item.awardNumber %></a>
+                    href="/subsidyawardfetch/?award=<%= item.awardNumber %>"><%= item.awardNumber %></a>
                 </td>
                 <td class="govuk-table__cell">
                   <%= item.subsidyMeasureTitle %>

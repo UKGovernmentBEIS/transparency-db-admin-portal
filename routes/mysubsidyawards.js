@@ -11,19 +11,19 @@ router.get("/", async (req, res) => {
   frontend_totalRecordsPerPage = 10;
   Award_page = 1;
   awards_status = "Filter results by status"
-  Award_selected_status = 'DRAFT';
+  Award_selected_status = '';
 
-  Base_URL = 'http://access-management-service.azurewebsites.net/accessmanagement/searchresults?';
+  Base_URL = 'http://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net/accessmanagement/searchresults?';
   Award_status = 'status=' + Award_selected_status;
   Award_concate = '&';
   Award_page = 'page=' + Award_page
   Award_recordsperpage = 'recordsPerPage=' + frontend_totalRecordsPerPage
 
-  Actual_URL = Base_URL  + Award_status + Award_concate + Award_page + Award_concate + Award_recordsperpage ;
-  console.log("Actual_URL  : " + Actual_URL) ;
+  Award_search_URL = Base_URL  + Award_status + Award_concate + Award_page + Award_concate + Award_recordsperpage ;
+  console.log("Award_search_URL  : " + Award_search_URL) ;
 
   try {
-    const apidata = await axios.get(Actual_URL );
+    const apidata = await axios.get(Award_search_URL );
     console.log(`Status: ${apidata.status}`);
     API_response_code = `${apidata.status}`;
     console.log("API_response_code: try" + API_response_code);
