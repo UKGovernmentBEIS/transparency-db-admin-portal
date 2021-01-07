@@ -68,6 +68,8 @@ app.locals.start_page;
 app.locals.end_page;
 app.locals.dashboardawards;
 app.locals.awardnumber;
+app.locals.fetchawarddetails;
+app.locals.Award_search_URL ;
 
 app.locals.awards_status;
 
@@ -212,6 +214,12 @@ app.use("/measurespageperroute", measurespageperroute);
 
 var subsidyawardcancel = require("./routes/subsidyaward-cancel");
 app.use("/subsidyawardcancel", subsidyawardcancel);
+
+var subsidyawardfetch = require("./routes/subsidyaward-fetch");
+app.use("/subsidyawardfetch", subsidyawardfetch);
+
+var subsidyawardaction= require("./routes/subsidyaward-action");
+app.use("/subsidyawardaction", subsidyawardaction);
 
 var subsidyawardreviewcancel = require("./routes/subsidyaward-review-cancel");
 app.use("/subsidyawardreviewcancel", subsidyawardreviewcancel);
