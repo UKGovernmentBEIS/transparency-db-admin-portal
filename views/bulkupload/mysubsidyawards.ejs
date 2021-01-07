@@ -125,7 +125,7 @@
             Search
           </button>
         </div>
-        <div class="govuk-grid-column-one-third govuk-form-group">
+        <div class="govuk-grid-column-one-third govuk-form-group govuk-padding-0">
           <!-- <select class="govuk-select govuk-!-width-full">
             <option disabled selected value="">Filter results by status</option>
             <option value="">Draft (1)</option>
@@ -135,49 +135,49 @@
             <option value="">Show all (46)</option>
           </select> -->
 
-          <form class="govuk-grid-column-one-third govuk-padding-0" action="/awardsfilterroute" method="GET">
+          <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
             <select class="govuk-select" id="sort" name="sort" onchange="this.form.submit()">
               <% if(awards_status  == "Filter results by status") { %>
-                <option disabled value="Filter results by status" selected>Filter results by status </option>
-                <% } else { %>
-                <option disabled value="Filter results by status ">Filter results by status</option>
-                <% }  %>
-              <!-- <% if(awards_status  == "Draft") { %>
+              <option disabled value="Filter results by status" selected>Filter results by status </option>
+              <% } else { %>
+              <option disabled value="Filter results by status ">Filter results by status</option>
+              <% }  %>
+              <% if(awards_status  == "Draft") { %>
               <option value="DRAFT" selected>Draft </option>
               <% } else { %>
               <option value="DRAFT">Draft</option>
               <% }  %> -->
 
-              <% if(awards_status  == "Awaiting approval") { %>
-                <option value="Awaiting approval" selected>Awaiting approval</option>
-                <% } else { %>
-                <option value="Awaiting approval">Awaiting approval</option>
-                <% }  %>
+              <% if(awards_status  == "Finalised") { %>
+              <option value="Finalised" selected>Finalised </option>
+              <% } else { %>
+              <option value="Finalised">Finalised</option>
+              <% }  %>
 
               <% if(awards_status  == "Published") { %>
-                <option value="Published" selected>Published </option>
-                <% } else { %>
-                <option value="Published">Published</option>
-                <% }  %>
+              <option value="Published" selected>Published </option>
+              <% } else { %>
+              <option value="Published">Published</option>
+              <% }  %>
 
               <% if(awards_status  == "Deactive") { %>
-                <option value="Deactive" selected>Deactive </option>
-                <% } else { %>
-                <option value="Deactive">Deactive</option>
-                <% }  %>
+              <option value="Deactive" selected>Deactive </option>
+              <% } else { %>
+              <option value="Deactive">Deactive</option>
+              <% }  %>
 
               <% if(awards_status  == "Rejected") { %>
-                <option value="Rejected" selected>Rejected </option>
-                <% } else { %>
-                <option value="Rejected">Rejected</option>  
-                <% }  %>
+              <option value="Rejected" selected>Rejected </option>
+              <% } else { %>
+              <option value="Rejected">Rejected</option>
+              <% }  %>
 
               <% if(awards_status  == "Show all") { %>
-                <option value="Show all" selected>Show all </option>
-                <% } else { %>
-                <option value="Show all">Show all</option>
-                <% }  %>
-           
+              <option value="Show all" selected>Show all </option>
+              <% } else { %>
+              <option value="Show all">Show all</option>
+              <% }  %>
+
             </select>
           </form>
         </div>

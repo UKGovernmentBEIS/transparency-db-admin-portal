@@ -75,7 +75,7 @@
               </li>
               <li class="govuk-sub-navigation__item">
                 <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                  Subsidy Measures
+                  Subsidy Schemes
                 </a>
               </li>
               <li class="govuk-sub-navigation__item">
@@ -83,8 +83,6 @@
                   Subsidy Awards
                 </a>
               </li>
-
-
 
               <li class="govuk-sub-navigation__item head-right">
                 <a class="govuk-sub-navigation__link" href="/logintransparency">
@@ -186,7 +184,7 @@
                 <span class="govuk-visually-hidden">Error:</span> Enter the subsidy control number
               </span>
 
-              <input class="govuk-input govuk-input--width-10 govuk-input--error" id="Subsidy_Control_Number"
+              <input class="govuk-input govuk-input--width-5 govuk-input--error" id="Subsidy_Control_Number"
                 name="Subsidy_Control_Number" type="text" aria-describedby="Subsidy_Control_Number-hint"
                 <% if(locals.Subsidy_Control_Number_Global) {%> value="<%= locals.Subsidy_Control_Number_Global%>"
                 <% } %> />
@@ -201,7 +199,7 @@
                 This will start with SC, followed by 5 digits.
                 It must match the subsidy measure that this award is related to.
               </div>
-              <input class="govuk-input govuk-input--width-10" id="Subsidy_Control_Number" name="Subsidy_Control_Number"
+              <input class="govuk-input govuk-input--width-5" id="Subsidy_Control_Number" name="Subsidy_Control_Number"
                 type="text" aria-describedby="Subsidy_Control_Number-hint"
                 <% if(locals.Subsidy_Control_Number_Global) {%> value="<%= locals.Subsidy_Control_Number_Global%>"
                 <% } %> />
@@ -210,6 +208,12 @@
             <!-- ***************************************  -->
             <!-- Get the Subsidy Measure Title from user  -->
             <!-- ***************************************  -->
+
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-!-font-weight-bold" for="Subsidy_Control_Number">
+                Or
+              </label>
+            </div>
 
 
             <% if( locals.Subsidy_Measure_Title_Error ){ %>

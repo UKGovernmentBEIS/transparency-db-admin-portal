@@ -53,19 +53,15 @@
 }
 .govuk-total-count {
   font-size: 48px;
+  color: #005da6;
 }
-.govuk-charts label:hover {
-  color: rgb(46, 138, 202);
-}
-.govuk-charts label:active {
-  background-color: rgb(255, 221, 0);
-}
+
 .govuk-charts p {
   float: left;
   width: 100%;
 }
 .govuk-border-top {
-  border-top: 6px solid rgb(29, 112, 184);
+  border-top: 4px solid rgb(29, 112, 184);
   float: left;
   width: 100%;
   margin-top: 2rem;

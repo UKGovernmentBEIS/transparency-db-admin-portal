@@ -473,3 +473,24 @@ button.link {
   display: inline-flex;
   align-items: center;
 }
+.govuk-background {
+  background: rgba(243, 242, 241, 1);
+  padding: 1rem;
+  height: 143px;
+  position: relative;
+}
+.govuk-description-text {
+  margin-bottom: 0;
+  color: #1d70b8;
+  font-family: "Arial Bold", "Arial";
+  position: absolute;
+  bottom: 1rem;
+  width: 89%;
+}
+.govuk-description-text:active {
+  background-color: rgb(255, 221, 0);
+}
+
+.govuk-description-text:hover {
+  color: rgb(46, 138, 202);
+}
