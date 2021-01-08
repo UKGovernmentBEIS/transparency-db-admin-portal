@@ -7,24 +7,31 @@ const router = express.Router();
 const axios = require("axios");
 var request = require("request");
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
+
+  var    { search_award_text } = req.body;
   frontend_totalRecordsPerPage = 10;
+  awards_status = '';
+
+  Award_search_text = search_award_text;
+
   Award_page = 1;
-  awards_status = "Filter results by status"
-  Award_selected_status = '';
-  Award_search_text =''
+  Award_selected_status = awards_status;
 
   Base_URL = 'http://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net/accessmanagement/searchresults?';
+  Award_text  = 'searchName=' +  Award_search_text;
   Award_status = 'status=' + Award_selected_status;
   Award_concate = '&';
   Award_page = 'page=' + Award_page
   Award_recordsperpage = 'recordsPerPage=' + frontend_totalRecordsPerPage
 
-  Award_search_URL = Base_URL  + Award_status + Award_concate + Award_page + Award_concate + Award_recordsperpage ;
-  console.log("Award_search_URL  : " + Award_search_URL) ;
+  Award_search_URL  = Base_URL  + Award_text + Award_concate + Award_status + Award_concate + Award_page + Award_concate + Award_recordsperpage ;
+  console.log("Award_search_URL   : " + Award_search_URL ) ;
+
+  awards_status  = "Filter results by status"
 
   try {
-    const apidata = await axios.get(Award_search_URL );
+    const apidata = await axios.get(Award_search_URL  );
     console.log(`Status: ${apidata.status}`);
     API_response_code = `${apidata.status}`;
     console.log("API_response_code: try" + API_response_code);
@@ -69,74 +76,10 @@ router.get("/", async (req, res) => {
     response_error_message = err;
     console.log("message error : " + err);
     console.log("response_error_message catch : " + response_error_message );
-    // res.render('publicusersearch/noresults');
+   
   }
 
   // end of POST call
 });
 
 module.exports = router;
-
-// old my subsidy award code for validation email and pass from home screen
-// **************************************************************************
-// const express = require('express');
-// const { truncate } = require('fs');
-// const router = express.Router();
-
-// router.get('/',(req, res) => {
-
-//     res.render('bulkupload/mysubsidyawards')
-//   });
-
-//   router.post('/', (req, res) => {
-//     const { email_address , password} = req.body;
-//     let isEmailAndPasswordEmpty = false;
-//     let isPasswordEmpty = false;
-//     let isPasswordlesseight = false;
-
-//     if(!email_address && !password )
-//     {
-//       isEmailAndPasswordEmpty = true ;
-//     }
-
-//     else if (!email_address) {
-//       isEmailAndPasswordEmpty = true ;
-
-//     }
-
-//     else if(!password )
-//     {
-//     isPasswordEmpty = true;
-//     }
-
-//     else if(password )
-//     {
-//       if( password.length <8 ){
-
-//         isPasswordlesseight = true;
-//       }
-
-//     }
-
-//     if (isEmailAndPasswordEmpty || isPasswordEmpty || isPasswordlesseight)
-//     {
-
-//         res.render('accessmanagement/loginfirstpage', {
-//          isEmailAndPasswordEmpty ,
-//          isPasswordEmpty,
-//          isPasswordlesseight,
-//          email_address : email_address,
-//          password
-//          } );
-//     }
-//     // this is for password expiry page temporary
-//     else if (email_address =='xyz.xyz@xyz.com') {
-//       let isEmailValid = true;
-//       res.render('accessmanagement/loginresetpassword',{isEmailValid})
-
-//     }
-//     else { res.render('bulkupload/mysubsidyawards')}
-
-//     } );
-
-// module.exports = router;

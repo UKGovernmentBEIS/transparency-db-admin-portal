@@ -27,9 +27,9 @@ router.get('/',async(req, res) => {
 
  
  Award_page = current_page_active;
- Award_selected_status = 'DRAFT';
+//  Award_selected_status = '';
 
- Base_URL = 'http://access-management-service.azurewebsites.net/accessmanagement/searchresults?';
+ Base_URL = 'http://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net/accessmanagement/searchresults?';
  Award_status = 'status=' + Award_selected_status;
  Award_concate = '&';
  Award_page = 'page=' + Award_page

@@ -77,7 +77,7 @@
             </div>
 
             <p>
-                <a href="#" class="govuk-back-link"> Back</a>
+                <a href="/subsidyawardfetch/?award=<%= awardnumber %>" class="govuk-back-link"> Back</a>
             </p>
             <!-- bread crumbs ends here -->
             <div class="govuk-grid-row">
@@ -87,10 +87,11 @@
                     </h1>
                     <label class="govuk-label">Reason for rejection</label>
                     <textarea class="govuk-textarea" rows="6"></textarea>
-                    <form action="/addsubsidyaward" method="POST">
+                    <br /> <br /> 
+                    <form action="/subsidyawardrejectreason" method="POST">
                         <div>
-                            <button class=" govuk-button_cancel_lg govuk-button--secondary ">
-                                Cancel
+                            <button class="govuk-button " data-module="govuk-button">
+                               Reject
                             </button>
                         </div>
                     </form>

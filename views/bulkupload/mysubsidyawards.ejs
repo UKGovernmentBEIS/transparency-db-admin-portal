@@ -119,11 +119,17 @@
             Granting Authority
           </label>
         </div>
+
         <div class="govuk-grid-column-one-half govuk-form-group">
-          <input class="govuk-input govuk-!-width-three-quarters" id="width-20" name="width-20" type="text">
+          <form class="govuk-!-width-full govuk-padding-0" action="/subsidyawardsearch" method="POST">
+
+          <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text" name="search_award_text" type="text" 
+          <% if(Award_search_text) {%> value="<%= Award_search_text%>"  <% } %> />
+                
           <button class="govuk-button" data-module="govuk-button">
             Search
           </button>
+        </form>
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group govuk-padding-0">
           <!-- <select class="govuk-select govuk-!-width-full">
@@ -142,16 +148,16 @@
               <% } else { %>
               <option disabled value="Filter results by status ">Filter results by status</option>
               <% }  %>
-              <% if(awards_status  == "Draft") { %>
+              <!-- <% if(awards_status  == "Draft") { %>
               <option value="DRAFT" selected>Draft </option>
               <% } else { %>
               <option value="DRAFT">Draft</option>
-              <% }  %> -->
+              <% }  %>  -->
 
-              <% if(awards_status  == "Finalised") { %>
-              <option value="Finalised" selected>Finalised </option>
+              <% if(awards_status  == "Awaiting Approval") { %>
+              <option value="Awaiting Approval" selected>Awaiting Approval </option>
               <% } else { %>
-              <option value="Finalised">Finalised</option>
+              <option value="Awaiting Approval">Awaiting Approval</option>
               <% }  %>
 
               <% if(awards_status  == "Published") { %>
@@ -185,12 +191,12 @@
         <div class="govuk-grid-column-two-thirds govuk-form-group">
           <!-- <a href="/" style="color : black; text-decoration: none"> -->
           <button class="govuk-button" onclick="window.location.href='/addsubsidyaward'" data-module="govuk-button">
-            Add subsidy award
+            Add a new subsidy award
           </button>
           <!-- </a> -->
           <!-- <a href=""> -->
           <button class="govuk-button" onclick="window.location.href='/bulkuploadsubsidy'" data-module="govuk-button">
-            Bulk upload
+            Add multiple subsidy awards
           </button>
           <!-- </a> -->
           <button class="govuk-button" data-module="govuk-button" disabled>
@@ -201,25 +207,25 @@
           <label>Results per page</label>
           <form class="govuk-grid-column-one-third govuk-padding-0" action="/awardspageperroute" method="GET">
             <select class="govuk-select" id="sort" name="sort" onchange="this.form.submit()">
+              <% if(frontend_totalRecordsPerPage  == 1) { %>
+              <option value="1" selected>1</option>
+              <% } else { %>
+              <option value="1">1</option>
+              <% }  %>
+              <% if(frontend_totalRecordsPerPage  == 2) { %>
+              <option value="2" selected>2</option>
+              <% } else { %>
+              <option value="2">2</option>
+              <% }  %>
+              <% if(frontend_totalRecordsPerPage  == 5) { %>
+              <option value="5" selected>5</option>
+              <% } else { %>
+              <option value="5">5</option>
+              <% }  %>
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <option value="10" selected>10</option>
               <% } else { %>
               <option value="10">10</option>
-              <% }  %>
-              <% if(frontend_totalRecordsPerPage  == 20) { %>
-              <option value="20" selected>20</option>
-              <% } else { %>
-              <option value="20">20</option>
-              <% }  %>
-              <% if(frontend_totalRecordsPerPage  == 50) { %>
-              <option value="50" selected>50</option>
-              <% } else { %>
-              <option value="50">50</option>
-              <% }  %>
-              <% if(frontend_totalRecordsPerPage  == 100) { %>
-              <option value="100" selected>100</option>
-              <% } else { %>
-              <option value="100">100</option>
               <% }  %>
             </select>
           </form>
@@ -258,7 +264,7 @@
                   </div>
                 </th>
 
-                <th scope="col" class="govuk-table__header app-custom-class">Subsidy award number.</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Subsidy Control number.</th>
                 <th scope="col" class="govuk-table__header app-custom-class">Scheme name</th>
                 <th scope="col" class="govuk-table__header app-custom-class">Status</th>
                 <th scope="col" class="govuk-table__header app-custom-class">Recipient</th>
@@ -283,7 +289,7 @@
                 </td>
 
                 <td class="govuk-table__cell"><a
-                    href="/subsidyawardfetch/?award=<%= item.awardNumber %>"><%= item.awardNumber %></a>
+                    href="/subsidyawardfetch/?award=<%= item.awardNumber %>"><%= item.scNumber %></a>
                 </td>
                 <td class="govuk-table__cell">
                   <%= item.subsidyMeasureTitle %>

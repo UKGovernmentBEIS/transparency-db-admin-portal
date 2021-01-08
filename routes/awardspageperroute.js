@@ -17,19 +17,20 @@ router.get("/", async (req, res) => {
   current_page_active = current_page;
 
   Award_page = current_page_active;
- Award_selected_status = 'DRAFT';
+//  Award_selected_status = '';
 
- Base_URL = 'http://access-management-service.azurewebsites.net/accessmanagement/searchresults?';
+ Base_URL = 'http://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net/accessmanagement/searchresults?';
+ Award_text  = 'searchName=' +  Award_search_text;
  Award_status = 'status=' + Award_selected_status;
  Award_concate = '&';
  Award_page = 'page=' + Award_page
  Award_recordsperpage = 'recordsPerPage=' + frontend_totalRecordsPerPage
 
- Actual_URL = Base_URL  + Award_status + Award_concate + Award_page + Award_concate + Award_recordsperpage ;
- console.log("Actual_URL  : " + Actual_URL) ;
+ Award_search_URL  = Base_URL  + Award_text + Award_concate + Award_status + Award_concate + Award_page + Award_concate + Award_recordsperpage ;
+ console.log("Award_search_URL   : " + Award_search_URL ) ;
 
  try {
-    const apidata = await axios.get(Actual_URL );
+    const apidata = await axios.get(Award_search_URL  );
     console.log(`Status: ${apidata.status}`);
     console.log("Body: ", apidata.data);
     searchawards = apidata.data;

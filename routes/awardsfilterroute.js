@@ -15,13 +15,16 @@ router.get("/", async (req, res) => {
   Award_page = 1;
   Award_selected_status = awards_status;
 
+  if (Award_selected_status == "Show all") { Award_selected_status = ''}
+
   Base_URL = 'http://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net/accessmanagement/searchresults?';
+  Award_text  = 'searchName=' +  Award_search_text;
   Award_status = 'status=' + Award_selected_status;
   Award_concate = '&';
   Award_page = 'page=' + Award_page
   Award_recordsperpage = 'recordsPerPage=' + frontend_totalRecordsPerPage
 
-  Actual_URL = Base_URL  + Award_status + Award_concate + Award_page + Award_concate + Award_recordsperpage ;
+  Actual_URL = Base_URL  + Award_text + Award_concate  + Award_status + Award_concate + Award_page + Award_concate + Award_recordsperpage ;
   console.log("Actual_URL  : " + Actual_URL) ;
 
   try {
