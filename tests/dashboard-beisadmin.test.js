@@ -21,9 +21,16 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   const req = mockRequest();
+  global.dashboard_user_name = "";
   global.dashboardawards = {
-    grantingAuthorityUserActionCount: null,
-    awardUserActionCount: null,
+    grantingAuthorityUserActionCount: {
+      totalGrantingAuthority: 0,
+      totalGAPublishedByUser: 0,
+      totalDeactiveGA: 0,
+    },
+    awardUserActionCount: {
+      totalSubsidyAward: 3,
+    },
     subsidyMeasureUserActionCount: {
       totalPublishedSubsidyMeasures: 0,
       totalDraftSubsidyMeasures: 2,
@@ -61,8 +68,14 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   axios.get.mockResolvedValue({
     status: "success",
     data: {
-      grantingAuthorityUserActionCount: null,
-      awardUserActionCount: null,
+      grantingAuthorityUserActionCount: {
+        totalGrantingAuthority: 0,
+        totalGAPublishedByUser: 0,
+        totalDeactiveGA: 0,
+      },
+      awardUserActionCount: {
+        totalSubsidyAward: 3,
+      },
       subsidyMeasureUserActionCount: {
         totalPublishedSubsidyMeasures: 0,
         totalDraftSubsidyMeasures: 2,
