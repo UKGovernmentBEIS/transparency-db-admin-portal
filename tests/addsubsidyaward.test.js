@@ -30,88 +30,56 @@ const mockRequest = (sessionData, body) => ({
 });
 
 test("Unit testing for spending filter route - Test for POST call", (done) => {
-  global.text_beneficiaryname = "";
-  global.actual_subsidy_objective_pass1 = [];
-  global.actual_subsidy_instrument_pass1 = [];
-  global.actual_spending_sector_pass1 = [];
-  global.legal_granting_from_date = "";
-  global.legal_granting_to_date = "";
-  global.frontend_totalRecordsPerPage = "10";
+  global.locals.SubsidyArraySize = 0;
+  global.locals.Subsidy_Control_Number_Error = "";
+  global.locals.Subsidy_Control_Number_Global = "";
+  global.locals.Subsidy_Measure_Title_Error = "";
+  global.locals.Subsidy_Measure_Title_Global = "";
+  global.locals.Subsidy_Objective_Error = "";
+  global.locals.Subsidy_Objective_Global = "";
+  global.locals.Subsidy_Instrument_Error = "";
+  global.locals.Subsidy_Instrument_Global = "";
+  global.locals.Subsidy_Full_Amount_Range_Error = "";
+  global.locals.Subsidy_Full_Amount_Range_Global = "upto500k";
+  global.locals.Subsidy_Element_Full_Amount_Error = "";
+  global.locals.Subsidy_Element_Full_Amount_Global = "";
+  global.locals.Granting_Authority_Name_Error = "";
+  global.locals.Granting_Authority_Name_Global = "";
+  global.locals.Legal_Granting_Date_Day_Error = "";
+  global.locals.Legal_Granting_Date_Month_Error = "";
+  global.locals.Legal_Granting_Date_Year_Error = "";
+  global.locals.Legal_Granting_Date_Day_Global = "";
+  global.locals.Legal_Granting_Date_Month_Error = "";
+  global.locals.Legal_Granting_Date_Year_Error = "";
+  global.locals.Legal_Granting_Date_Year_Global = "";
+  global.locals.Legal_Granting_Date_Month_Global = "";
+  global.locals.Beneficiary_Name_Error = "";
+  global.locals.Beneficiary_Name_Global = "";
+  global.locals.Size_of_the_Organisation_Error = "";
+  global.locals.Size_of_the_Organisation_Global = "";
+  global.locals.National_ID_Type_Error = "";
+  global.locals.National_ID_Type_Global = "";
+  global.locals.National_ID_Number_Error = "";
+  global.locals.National_ID_Number_Global = "";
+  global.locals.Goods_or_Services_Error = "";
+  global.locals.Goods_or_Services_Global = "";
+  global.locals.Spending_Region_Error = "";
+  global.locals.Spending_Region_Global = "";
+  global.locals.Spending_Sector_Error = "";
+  global.locals.Spending_Sector_Global = "";
   const req = mockRequest();
-  axios.post.mockResolvedValue({
-    status: "success",
-    data: {
-      totalSearchResults: 49,
-      currentPage: 1,
-      totalPages: 1,
-      awards: [
-        {
-          awardNumber: 22,
-          beneficiary: {
-            beneficiaryName: "Absolem Productions Limited",
-          },
-          subsidyMeasure: {
-            subsidyMeasureTitle:
-              "COVID-19 Temporary Framework for UK authorities",
-            scNumber: "SC10033",
-            adhoc: false,
-            legalBasis: {
-              legalBasisText: "R&D&I Framework",
-            },
-          },
-          subsidyFullAmountRange: "£NA",
-          subsidyFullAmountExact: "597,336",
-          subsidyObjective: "Energy efficiency",
-          subsidyInstrument: "Direct Grant",
-          spendingSector: "Arts, entertainment and recreation",
-          legalGrantingDate: "13 October 2020",
-          spendingRegion: "Scotland",
-        },
-      ],
-    },
-  });
+
   const res = {};
   request(app)
-    .post("/filterroute", (req, res))
+    .post("/addsubsidyaward", (req, res))
     .expect(200, done);
 });
 
 test("Unit testing for filter route Test for GET call", (done) => {
   const req = mockRequest();
-  axios.post.mockResolvedValue({
-    status: "success",
-    data: {
-      totalSearchResults: 49,
-      currentPage: 1,
-      totalPages: 1,
-      awards: [
-        {
-          awardNumber: 22,
-          beneficiary: {
-            beneficiaryName: "Absolem Productions Limited",
-          },
-          subsidyMeasure: {
-            subsidyMeasureTitle:
-              "COVID-19 Temporary Framework for UK authorities",
-            scNumber: "SC10033",
-            adhoc: false,
-            legalBasis: {
-              legalBasisText: "R&D&I Framework",
-            },
-          },
-          subsidyFullAmountRange: "£NA",
-          subsidyFullAmountExact: "597,336",
-          subsidyObjective: "Energy efficiency",
-          subsidyInstrument: "Direct Grant",
-          spendingSector: "Arts, entertainment and recreation",
-          legalGrantingDate: "13 October 2020",
-          spendingRegion: "Scotland",
-        },
-      ],
-    },
-  });
+
   const res = {};
   request(app)
-    .get("/filterroute", (req, res))
+    .get("/addsubsidyaward", (req, res))
     .expect(200, done);
 });

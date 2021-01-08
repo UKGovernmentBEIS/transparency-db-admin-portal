@@ -76,7 +76,7 @@ test("Unit testing for search results ward route Test for GET call", (done) => {
     },
   });
   request(app)
-    .get("/searchresultsawardroute", (req, res))
+    .post("/searchresultsawardroute", (req, res))
     .query({ page: "22" })
     .expect(200, done);
 });

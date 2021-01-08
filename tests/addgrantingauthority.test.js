@@ -29,29 +29,11 @@ const mockRequest = (sessionData, body) => ({
 
 const res = {};
 
-test("beneficiary name route works", (done) => {
-  const req = mockRequest(
-    {},
-    {
-      Subsidy_measure_title: "london",
-    }
-  );
+test("Add Granting Authority Get Call", (done) => {
+  const req = mockRequest();
 
   const res = {};
   request(app)
-    .post("/beneficiaryname", (req, res))
-
-    .send({
-      Subsidy_measure_title: "london",
-    })
-    .expect(200, done);
-});
-
-test("beneficiary name GET route works", (done) => {
-  const req = mockRequest({});
-
-  const res = {};
-  request(app)
-    .get("/beneficiaryname", (req, res))
+    .get("/addgrantingauthority", (req, res))
     .expect(200, done);
 });

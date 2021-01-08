@@ -5,31 +5,31 @@ router.post("/", (req, res) => {
   console.log("reqqqq", req.body);
   var GetMonthName;
 
-  if (req.body.Legal_Granting_Date_Month == 01) {
+  if (req.body.Legal_Granting_Date_Month == parseInt("01", 8)) {
     GetMonthName = "January";
   }
-  if (req.body.Legal_Granting_Date_Month == 02) {
+  if (req.body.Legal_Granting_Date_Month == parseInt("02", 8)) {
     GetMonthName = "February";
   }
-  if (req.body.Legal_Granting_Date_Month == 03) {
+  if (req.body.Legal_Granting_Date_Month == parseInt("03", 8)) {
     GetMonthName = "March";
   }
-  if (req.body.Legal_Granting_Date_Month == 04) {
+  if (req.body.Legal_Granting_Date_Month == parseInt("04", 8)) {
     GetMonthName = "April";
   }
-  if (req.body.Legal_Granting_Date_Month == 05) {
+  if (req.body.Legal_Granting_Date_Month == parseInt("05", 8)) {
     GetMonthName = "May";
   }
-  if (req.body.Legal_Granting_Date_Month == 06) {
+  if (req.body.Legal_Granting_Date_Month == parseInt("06", 8)) {
     GetMonthName = "June";
   }
-  if (req.body.Legal_Granting_Date_Month == 07) {
+  if (req.body.Legal_Granting_Date_Month == parseInt("07", 8)) {
     GetMonthName = "July";
   }
-  if (req.body.Legal_Granting_Date_Month == 08) {
+  if (req.body.Legal_Granting_Date_Month == parseInt("08", 8)) {
     GetMonthName = "August";
   }
-  if (req.body.Legal_Granting_Date_Month == 09) {
+  if (req.body.Legal_Granting_Date_Month == parseInt("09", 8)) {
     GetMonthName = "September";
   }
   if (req.body.Legal_Granting_Date_Month == 10) {
