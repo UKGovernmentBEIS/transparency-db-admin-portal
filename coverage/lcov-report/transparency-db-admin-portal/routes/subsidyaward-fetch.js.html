@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">35.29% </span>
+                <span class="strong">94.12% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/17</span>
+                <span class='fraction'>16/17</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">35.29% </span>
+                <span class="strong">94.12% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/17</span>
+                <span class='fraction'>16/17</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -95,34 +95,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">21x</span>
-<span class="cline-any cline-yes">21x</span>
-<span class="cline-any cline-yes">21x</span>
-<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">21x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// ********************************************************************
 // Gov.UK public user search page outing 
 // ********************************************************************
@@ -133,20 +133,20 @@ const router = express.Router();
 const axios = require('axios');
 var request = require('request');
 &nbsp;
-router.get('/',<span class="fstat-no" title="function not covered" >as</span>ync(req, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >console.log("req.query.award: "+ req.query.award);</span>
-<span class="cstat-no" title="statement not covered" >awardnumber =   req.query.award;</span>
+router.get('/',async(req, res) =&gt; {
+console.log("req.query.award: "+ req.query.award);
+awardnumber =   req.query.award;
    
-<span class="cstat-no" title="statement not covered" >console.log("awardnumber : " + awardnumber);  </span>
+console.log("awardnumber : " + awardnumber);  
 &nbsp;
-var awardendpoint = <span class="cstat-no" title="statement not covered" >'http://dev-beis-tp-db-public-search-service.azurewebsites.net/searchResults/award/' + awardnumber </span>;
+var awardendpoint = 'http://dev-beis-tp-db-public-search-service.azurewebsites.net/searchResults/award/' + awardnumber ;
   
-<span class="cstat-no" title="statement not covered" >      try {</span>
-        const awardapidata = <span class="cstat-no" title="statement not covered" >await axios.get(awardendpoint);</span>
-<span class="cstat-no" title="statement not covered" >        console.log(`Status: ${awardapidata.status}`);</span>
-<span class="cstat-no" title="statement not covered" >        console.log('Body: ', awardapidata.data);</span>
-<span class="cstat-no" title="statement not covered" >        fetchawarddetails = awardapidata.data;</span>
-<span class="cstat-no" title="statement not covered" >          res.render('bulkupload/subsidyaward-fetch')  ; </span>
+      try {
+        const awardapidata = await axios.get(awardendpoint);
+        console.log(`Status: ${awardapidata.status}`);
+        console.log('Body: ', awardapidata.data);
+        fetchawarddetails = awardapidata.data;
+          res.render('bulkupload/subsidyaward-fetch')  ; 
 &nbsp;
       } catch (err) {
 <span class="cstat-no" title="statement not covered" >          console.error(err);</span>
@@ -163,7 +163,7 @@ module.exports = router;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Jan 08 2021 11:51:51 GMT+0530 (India Standard Time)
+                at Fri Jan 08 2021 16:58:19 GMT+0530 (India Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

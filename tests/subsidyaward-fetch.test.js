@@ -76,7 +76,7 @@ test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
     },
   });
   request(app)
-    .get("/rejectsubsidyaward", (req, res))
+    .get("/subsidyawardfetch", (req, res))
     .query({ award: 22 })
     .expect(200, done);
   //   expect(acd).toBe(200);
