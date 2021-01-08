@@ -20,6 +20,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
 
+
+   
+app.locals.beis_url_publishing ;
+app.locals.beis_url_accessmanagement
+
 const users = [];
 // app.use(fileUpload());
 app.use(
@@ -148,11 +153,8 @@ app.use("/rejectsubsidyaward", rejectsubsidyaward);
 var approverejectsubsidyaward = require("./routes/subsidyaward-approve-reject");
 app.use("/approverejectsubsidyaward", approverejectsubsidyaward);
 
-var revieweditsubsidyaward = require("./routes/subsidyaward-edit-review");
-app.use("/reviewedit-subsidyaward", revieweditsubsidyaward);
 
-var subsidyawardsubmitforapprovaledit = require("./routes/subsidyaward-submitforapproval-edit");
-app.use("/editsubmitforapproval", subsidyawardsubmitforapprovaledit);
+
 
 var cancelmysubsidy = require("./routes/cancelmysubsidy");
 app.use("/cancelmysubsidy", cancelmysubsidy);
@@ -163,17 +165,7 @@ app.use("/addsubsidyreview", addsubsidyreview);
 var submitforapproval = require("./routes/submitforapproval");
 app.use("/submitforapproval", submitforapproval);
 
-var beisadmindashboard = require("./routes/dashboard-beisadmin");
-app.use("/beisadmindashboard", beisadmindashboard);
 
-var gaadmindashboard = require("./routes/dashboard-gaadmin");
-app.use("/gaadmindashboard", gaadmindashboard);
-
-var gaencoderdashboard = require("./routes/dashboard-gaencoder");
-app.use("/gaencoderdashboard", gaencoderdashboard);
-
-var gaapproverdashboard = require("./routes/dashboard-gaapprover");
-app.use("/gaapproverdashboard", gaapproverdashboard);
 
 var mygrantingauthority = require("./routes/mygrantingauthority");
 app.use("/mygrantingauthority", mygrantingauthority);

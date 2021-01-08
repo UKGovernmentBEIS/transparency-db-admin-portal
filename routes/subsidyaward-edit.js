@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
 
   try {
     const awardapidata = await axios.get(
-      "http://subsidy-search-service.azurewebsites.net/searchResults/award/" +
+      beis_url_publicsearch  + "/searchResults/award/" +
         awardnumber
     );
     console.log(`Status: ${awardapidata.status}`);

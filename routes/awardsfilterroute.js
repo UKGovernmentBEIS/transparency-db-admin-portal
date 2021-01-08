@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 
   if (Award_selected_status == "Show all") { Award_selected_status = ''}
 
-  Base_URL = 'http://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net/accessmanagement/searchresults?';
+  Base_URL = beis_url_accessmanagement + '/accessmanagement/searchresults?';
   Award_text  = 'searchName=' +  Award_search_text;
   Award_status = 'status=' + Award_selected_status;
   Award_concate = '&';
