@@ -19,7 +19,7 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
+test("Unit testing for Review details Test for GET call", (done) => {
   const req = mockRequest();
   global.Subsidy_Control_Number_Global = "";
   global.Subsidy_Measure_Title_Global = "";
@@ -43,59 +43,156 @@ test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
     .expect(200, done);
   //   expect(abcd).toBe(200);
 });
-test("Unit testing for Subsidy Award Cancel Test for POSt call", (done) => {
+test("Unit testing for Review details Test for POSt call", (done) => {
   const req = mockRequest();
-  global.Subsidy_Control_Number = "";
-  global.Subsidy_Measure_Title = "";
-  global.Subsidy_Objective = "";
-  global.Subsidy_Instrument = "";
-  global.Subsidy_Element_Full_Amount = "";
-  global.Subsidy_Full_Amount_Range = "";
-  global.National_ID_Type = "";
-  global.National_ID_Number = "";
-  global.Beneficiary_Name = "";
-  global.Size_of_the_Organisation = "";
-  global.Granting_Authority_Name = "";
-  global.Legal_Granting_Date_Day = "";
-  global.Legal_Granting_Date_Month = "";
-  global.Legal_Granting_Date_Year = "";
-  global.Goods_or_Services = "";
-  global.Spending_Region = "";
-  global.Spending_Sector = "";
-  global.mylink = "";
-  global.buttonvalue = "";
+
   const res = {};
   request(app)
     .post("/reviewdetail", (req, res))
+    .send({
+      Subsidy_Control_Number: "",
+      Subsidy_Measure_Title: "",
+      Subsidy_Objective: "",
+      Subsidy_Instrument: "",
+      Subsidy_Element_Full_Amount: "",
+      Subsidy_Full_Amount_Range: "",
+      National_ID_Type: "",
+      National_ID_Number: "",
+      Beneficiary_Name: "",
+      Size_of_the_Organisation: "",
+      Granting_Authority_Name: "",
+      Legal_Granting_Date_Day: "",
+      Legal_Granting_Date_Month: "",
+      Legal_Granting_Date_Year: "",
+      Goods_or_Services: "",
+      Spending_Region: "",
+      Spending_Sector: "",
+      mylink: "",
+      buttonvalue: "",
+    })
     .expect(200, done);
   //   expect(abcd).toBe(200);
 });
 
-test("Unit testing for Subsidy Award Cancel Test for POSt call", (done) => {
+test("Unit testing for Review details Test for POSt call", (done) => {
   const req = mockRequest();
-  global.Subsidy_Control_Number = "";
-  global.Subsidy_Measure_Title = "";
-  global.Subsidy_Objective = "";
-  global.Subsidy_Instrument = "";
-  global.Subsidy_Element_Full_Amount = "";
-  global.Subsidy_Full_Amount_Range = "";
-  global.National_ID_Type = "";
-  global.National_ID_Number = "";
-  global.Beneficiary_Name = "";
-  global.Size_of_the_Organisation = "";
-  global.Granting_Authority_Name = "";
-  global.Legal_Granting_Date_Day = "";
-  global.Legal_Granting_Date_Month = "";
-  global.Legal_Granting_Date_Year = "";
-  global.Goods_or_Services = "";
-  global.Spending_Region = "Empty";
-  global.Spending_Sector = "Empty";
-  global.mylink = "";
-  global.buttonvalue = "continue";
+  global.Subsidy_Control_Number_Global = "";
+  global.Subsidy_Control_Number_Global_Substring = "";
+  global.Subsidy_Measure_Title_Global = "";
+  global.Subsidy_Objective_Global = "";
+  global.Subsidy_Instrument_Global = "";
+  global.Subsidy_Element_Full_Amount_Global = "";
+  global.Subsidy_Full_Amount_Range_Global = "";
+  global.National_ID_Type_Global = "";
+  global.National_ID_Number_Global = "";
+  global.Beneficiary_Name_Global = "";
+  global.Size_of_the_Organisation_Global = "";
+  global.Granting_Authority_Name_Global = "";
+  global.Legal_Granting_Date_Day_Global = "";
+  global.Legal_Granting_Date_Month_Global = "";
+  global.Legal_Granting_Date_Year_Global = "";
+  global.Goods_or_Services_Global = "";
+  global.Spending_Region_Global = "";
+  global.Spending_Sector_Global = "";
+  global.GetMonthName = "";
 
   const res = {};
   request(app)
     .post("/reviewdetail", (req, res))
+    .send({
+      Subsidy_Control_Number: "",
+      Subsidy_Measure_Title: "",
+      Subsidy_Objective: "",
+      Subsidy_Instrument: "",
+      Subsidy_Element_Full_Amount: "",
+      Subsidy_Full_Amount_Range: "",
+      National_ID_Type: "",
+      National_ID_Number: "",
+      Beneficiary_Name: "",
+      Size_of_the_Organisation: "",
+      Granting_Authority_Name: "",
+      Legal_Granting_Date_Day: "",
+      Legal_Granting_Date_Month: "",
+      Legal_Granting_Date_Year: "",
+      Goods_or_Services: "",
+      Spending_Region: "",
+      Spending_Sector: "",
+      mylink: "",
+      buttonvalue: "continue",
+    })
+    .expect(200, done);
+});
+//   expect(abcd).toBe(200);=""
+test("Unit testing for Review details Test for POSt call", (done) => {
+  const req = mockReque();
+  global.Subsidy_Control_Number_Global = "";
+  global.Subsidy_Control_Number_Global_Substring = "";
+  global.Subsidy_Measure_Title_Global = "";
+  global.Subsidy_Objective_Global = "";
+  global.Subsidy_Instrument_Global = "";
+  global.Subsidy_Element_Full_Amount_Global = "";
+  global.Subsidy_Full_Amount_Range_Global = "";
+  global.National_ID_Type_Global = "";
+  global.National_ID_Number_Global = "";
+  global.Beneficiary_Name_Global = "";
+  global.Size_of_the_Organisation_Global = "";
+  global.Granting_Authority_Name_Global = "";
+  global.Legal_Granting_Date_Day_Global = "";
+  global.Legal_Granting_Date_Month_Global = "";
+  global.Legal_Granting_Date_Year_Global = "";
+  global.Goods_or_Services_Global = "";
+  global.Spending_Region_Global = "";
+  global.Spending_Sector_Global = "";
+  global.GetMonthName = "";
+
+  global.Subsidy_Control_Number_Error = "";
+  global.Subsidy_Measure_Title_Error = "";
+  global.Subsidy_Objective_Error = "";
+  global.Subsidy_Instrument_Error = "";
+  global.Subsidy_Element_Full_Amount_Error = "";
+  global.Subsidy_Full_Amount_Range_Error = "";
+  global.National_ID_Type_Error = "";
+  global.National_ID_Number_Error = "";
+  global.Beneficiary_Name_Error = "";
+  global.Size_of_the_Organisation_Error = "";
+  global.Granting_Authority_Name_Error = "";
+  global.Legal_Granting_Date_Day_Error = "";
+  global.Legal_Granting_Date_Month_Error = "";
+  global.Legal_Granting_Date_Year_Error = "";
+  global.Goods_or_Services_Error = "";
+  global.Spending_Region_Error = "";
+  global.Spending_Sector_Error = "";
+
+  global.SubsidyErrors = "";
+  global.SubsidyArraySize = "";
+  global.SubsidyFocus = "";
+
+  global.isAddSubsidyPrimarycall = "";
+
+  const res = {};
+  request(app)
+    .post("/reviewdetail", (req, res))
+    .send({
+      Subsidy_Control_Number: "",
+      Subsidy_Measure_Title: "",
+      Subsidy_Objective: "",
+      Subsidy_Instrument: "",
+      Subsidy_Element_Full_Amount: "",
+      Subsidy_Full_Amount_Range: "",
+      National_ID_Type: "",
+      National_ID_Number: "",
+      Beneficiary_Name: "",
+      Size_of_the_Organisation: "",
+      Granting_Authority_Name: "",
+      Legal_Granting_Date_Day: "",
+      Legal_Granting_Date_Month: "",
+      Legal_Granting_Date_Year: "",
+      Goods_or_Services: "",
+      Spending_Region: "Empty",
+      Spending_Sector: "Empty",
+      mylink: "",
+      buttonvalue: "continue",
+    })
     .expect(200, done);
   //   expect(abcd).toBe(200);
 });
