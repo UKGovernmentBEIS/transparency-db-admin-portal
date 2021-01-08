@@ -53,10 +53,8 @@ router.get('/',(req, res) => {
     return buffer;
    }
   
-  // var url ='http://localhost:8181/uploadBulkAwards';
-
-  // var url ='https://experience-micro-service.azurewebsites.net/uploadBulkAwards';
-  var url ='https://publishing-subsidy-service.azurewebsites.net/uploadBulkAwards';
+ 
+  var url = beis_url_publishing + '/uploadBulkAwards';
   
   var errorsvalidationpass;
   var req = request.post(url, function (err, resp, body) {

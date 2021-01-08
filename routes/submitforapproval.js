@@ -60,7 +60,7 @@ var data = JSON.parse(JSON.stringify(addAwardRequest));
 console.log("request :" + JSON.stringify(data));
     
       try {
-          const apidata = await axios.post('https://publishing-subsidy-service.azurewebsites.net/addAward', data);
+          const apidata = await axios.post(beis_url_publishing + '/addAward', data);
           console.log(`Status: ${apidata.status}`);
           API_response_code = `${apidata.status}`;
           console.log("API_response_code: " + API_response_code);
@@ -69,7 +69,7 @@ console.log("request :" + JSON.stringify(data));
           var Additem = 0;
 
           if (API_response_code == 200) {
-                for ( i = 0 ; i < 3 ; i= i + 1) {
+                for ( i = 0 ; i < add_award_response.totalErrors ; i= i + 1) {
                 console.log("add_award_response:  " + add_award_response.validationErrorResult[i].column);
                 console.log("add_award_response:  " + add_award_response.validationErrorResult[i].message);
 
@@ -80,18 +80,52 @@ console.log("request :" + JSON.stringify(data));
                   Additem = Additem + 1 ;
                 }
 
-                if (add_award_response.validationErrorResult[i].column == "subsidyMeasureTitle") { 
+                if (add_award_response.validationErrorResult[i].column == "subsidyControlTitle") { 
                   Subsidy_Measure_Title_Error = true ;
-                  SubsidyErrors[Additem] = '     Enter the subsidy measure title';
+                  SubsidyErrors[Additem] =  add_award_response.validationErrorResult[i].message;
                   SubsidyFocus[Additem] = '#Subsidy_Measure_Title';
                   Additem = Additem + 1 ;
                 }
             
+                if (add_award_response.validationErrorResult[i].column == "nationalId") { 
+                  Subsidy_Measure_Title_Error = true ;
+                  SubsidyErrors[Additem] = add_award_response.validationErrorResult[i].message;
+                  SubsidyFocus[Additem] = '#National_ID_Number';
+                  Additem = Additem + 1 ;
+                }
+
+                if (add_award_response.validationErrorResult[i].column == "nationalIdType") { 
+                  Subsidy_Measure_Title_Error = true ;
+                  SubsidyErrors[Additem] = add_award_response.validationErrorResult[i].message;
+                  SubsidyFocus[Additem] = '#National_ID_Type';
+                  Additem = Additem + 1 ;
+                }
+
+                if (add_award_response.validationErrorResult[i].column == "subsidyObjective") { 
+                  Subsidy_Measure_Title_Error = true ;
+                  SubsidyErrors[Additem] = add_award_response.validationErrorResult[i].message;
+                  SubsidyFocus[Additem] = '#Subsidy_Objective';
+                  Additem = Additem + 1 ;
+                }
+              
+                if (add_award_response.validationErrorResult[i].column == "spendingRegion") { 
+                  Subsidy_Measure_Title_Error = true ;
+                  SubsidyErrors[Additem] = add_award_response.validationErrorResult[i].message;
+                  SubsidyFocus[Additem] = '#Spending_Region';
+                  Additem = Additem + 1 ;
+                }
+              
+                if (add_award_response.validationErrorResult[i].column == "subsidyInstrument") { 
+                  Subsidy_Measure_Title_Error = true ;
+                  SubsidyErrors[Additem] = add_award_response.validationErrorResult[i].message;
+                  SubsidyFocus[Additem] = '#Subsidy_Instrument';
+                  Additem = Additem + 1 ;
+                }
 
                 if (add_award_response.validationErrorResult[i].column == "grantingAuthorityName") { 
                   Granting_Authority_Name_Error = true ;
-                  SubsidyErrors[Additem] = add_award_response.validationErrorResult[i].message;
-                  SubsidyFocus[Additem] = '#Legal_Granting_Date_Day';
+                  SubsidyErrors[Additem] =  add_award_response.validationErrorResult[i].message;
+                  SubsidyFocus[Additem] = '#Granting_Authority_Name';
                   Additem = Additem + 1 ;
                 }
 

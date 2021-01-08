@@ -12,7 +12,7 @@ router.get('/',async(req, res) => {
 
 console.log("awardnumber : " + awardnumber);  
 
-var awardendpoint = 'http://dev-beis-tp-db-public-search-service.azurewebsites.net/searchResults/award/' + awardnumber ;
+var awardendpoint = beis_url_publicsearch  + '/searchResults/award/' + awardnumber ;
   
       try {
         const awardapidata = await axios.get(awardendpoint);

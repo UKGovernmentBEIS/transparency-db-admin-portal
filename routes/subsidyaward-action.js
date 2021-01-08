@@ -27,7 +27,7 @@ Award_selected_status = '';
 var data = JSON.parse(JSON.stringify(data_request));
 console.log("request :" + JSON.stringify(data));
 
-var awardendpoint = 'http://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net/accessmanagement/' + awardnumber ;
+var awardendpoint = beis_url_accessmanagement + '/accessmanagement/' + awardnumber ;
   
       try {
         const awardapidata = await axios.put(awardendpoint,data);
