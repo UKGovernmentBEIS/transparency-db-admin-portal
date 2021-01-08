@@ -1,5 +1,5 @@
 // ***********************************************************
-// Automated Unit testing scripts for legal granting date route
+// Automated Unit testing scripts for hide filter route
 // ***********************************************************
 
 const index = require("../app");
@@ -7,6 +7,8 @@ const request = require("supertest");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const axios = require("axios");
+jest.mock("axios");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
@@ -19,36 +21,61 @@ const mockRequest = (sessionData, body) => ({
 
 const res = {};
 
-test("Unit testing for legal granting date route - Test for POST call", (done) => {
-  const req = mockRequest(
-    {},
-    { check_subsidyinstrument0: "Equity", subsidyinstrument0: "Loan" }
-  );
+test("Unit testing for hide filter route Test for GET call", (done) => {
+  const req = mockRequest();
 
+  global.awards_status = "Draft";
+  global.frontend_totalRecordsPerPage = 10;
+  global.searchawards = {
+    awards: [
+      {
+        awardNumber: 2,
+        subsidyFullAmountExact: "0",
+        subsidyFullAmountRange: "£500,000 - £1,000,000",
+        subsidyObjective: "Research and development",
+        subsidyMeasureTitle: "Grant Assistance for the Historic Environment",
+        status: "Published",
+        gaName: "Flintshire County council",
+        lastModifiedDate: "08 January 2021",
+        scNumber: "SC10029",
+        subsidyInstrument: "Tax measures (tax credit, or tax/duty exemption)",
+        beneficiaryName: "Adamaarku Productions LTD",
+      },
+    ],
+  };
+  global.pageCount = 10;
+  global.current_page_active = 1;
+  global.previous_page = "";
+  global.next_page = 2;
+  global.start_record = 1;
+  global.end_record = 10;
+  global.totalrows = 10;
+  axios.get.mockResolvedValue({
+    status: 200,
+    data: {
+      totalSearchResults: 10,
+      currentPage: 1,
+      totalPages: 1,
+      awards: [
+        {
+          awardNumber: 2,
+          subsidyFullAmountExact: "0",
+          subsidyFullAmountRange: "£500,000 - £1,000,000",
+          subsidyObjective: "Research and development",
+          subsidyMeasureTitle: "Grant Assistance for the Historic Environment",
+          status: "Published",
+          gaName: "Flintshire County council",
+          lastModifiedDate: "08 January 2021",
+          scNumber: "SC10029",
+          subsidyInstrument: "Tax measures (tax credit, or tax/duty exemption)",
+          beneficiaryName: "Adamaarku Productions LTD",
+        },
+      ],
+    },
+  });
   const res = {};
   request(app)
-    .post("/legalgrantingdate", (req, res))
-    .send({
-      check_subsidyinstrument0: "Equity",
-      subsidyinstrument0: "Loan",
-      subsidyinstrument1: "Guarantee",
-      subsidyinstrument2: "Loan",
-      subsidyinstrument3: "Purchase of goods or services above market prices",
-      subsidyinstrument4: "Sale of goods or services below market prices",
-      subsidyinstrument5: "Tax measures (tax credit, or tax/duty exemption)",
-      subsidyinstrument6: "Direct Grant",
-      subsidyinstrument7: "Loan",
-      subsidyinstrument8: "Loan",
-      subsidyinstrument9: "Loan",
-    })
-    .expect(200, done);
-});
-
-test("Unit testing for legal granting date route Test for GET call", (done) => {
-  const req = mockRequest({});
-
-  const res = {};
-  request(app)
-    .get("/legalgrantingdate", (req, res))
+    .get("/mysubsidyawards", (req, res))
+    .query({ page: "2" })
     .expect(200, done);
 });

@@ -17,19 +17,26 @@ router.get("/", async (req, res) => {
   current_page_active = current_page;
 
   Award_page = current_page_active;
- Award_selected_status = 'DRAFT';
+  Award_selected_status = "DRAFT";
 
- Base_URL = 'http://access-management-service.azurewebsites.net/accessmanagement/searchresults?';
- Award_status = 'status=' + Award_selected_status;
- Award_concate = '&';
- Award_page = 'page=' + Award_page
- Award_recordsperpage = 'recordsPerPage=' + frontend_totalRecordsPerPage
+  Base_URL =
+    "http://access-management-service.azurewebsites.net/accessmanagement/searchresults?";
+  Award_status = "status=" + Award_selected_status;
+  Award_concate = "&";
+  Award_page = "page=" + Award_page;
+  Award_recordsperpage = "recordsPerPage=" + frontend_totalRecordsPerPage;
 
- Actual_URL = Base_URL  + Award_status + Award_concate + Award_page + Award_concate + Award_recordsperpage ;
- console.log("Actual_URL  : " + Actual_URL) ;
+  Actual_URL =
+    Base_URL +
+    Award_status +
+    Award_concate +
+    Award_page +
+    Award_concate +
+    Award_recordsperpage;
+  console.log("Actual_URL  : " + Actual_URL);
 
- try {
-    const apidata = await axios.get(Actual_URL );
+  try {
+    const apidata = await axios.get(Actual_URL);
     console.log(`Status: ${apidata.status}`);
     console.log("Body: ", apidata.data);
     searchawards = apidata.data;
@@ -40,7 +47,6 @@ router.get("/", async (req, res) => {
     const seachawardJSON = JSON.parse(seachawardstring);
     // console.log('seachawardJSON ' + seachawardJSON.awards[0]  );
     totalrows = parseInt(searchawards.totalSearchResults);
-   
 
     if (current_page == 1) {
       start_record = 1;

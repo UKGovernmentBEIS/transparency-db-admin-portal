@@ -19,64 +19,84 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for search results ward route Test for GET call", (done) => {
+test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   const req = mockRequest();
-  global.searchmeasuredetails = {
-    awardNumber: 22,
-    beneficiary: {
-      beneficiaryName: "Absolem Productions Limited",
+  global.dashboardawards = {
+    grantingAuthorityUserActionCount: null,
+    awardUserActionCount: null,
+    subsidyMeasureUserActionCount: {
+      totalPublishedSubsidyMeasures: 0,
+      totalDraftSubsidyMeasures: 2,
+      totalSubsidyMeasures: 2,
+      totalAwaitingSubsidyMeasures: 0,
+      totalDeletedSubsidyMeasures: 0,
     },
-    subsidyMeasure: {
-      subsidyMeasureTitle: "COVID-19 Temporary Framework for UK authorities",
-      scNumber: "SC10033",
-      adhoc: false,
-      legalBasis: {
-        legalBasisText: "R&D&I Framework",
+    awardResponse: null,
+    subsidyMeasureResponse: [
+      {
+        subsidyMeasureTitle: "AHDB Promotional Measures scheme",
+        scNumber: "SC10001",
+        startDate: "2014-10-23",
+        endDate: "2021-03-31",
+        duration: "6 years 5 months 3 weeks ",
+        budget: "180000000",
+        gaName: "Scottish Government",
+        lastModifiedDate: "04 January 2021",
       },
-    },
-    subsidyFullAmountRange: "£NA",
-    subsidyFullAmountExact: "597,336",
-    subsidyObjective: "Energy efficiency",
-    subsidyInstrument: "Direct Grant",
-    spendingSector: "Arts, entertainment and recreation",
-    legalGrantingDate: "13 October 2020",
-    spendingRegion: "Scotland",
+      {
+        subsidyMeasureTitle: "Plug in Taxi Grant",
+        scNumber: "SC10068",
+        startDate: "2017-12-20",
+        endDate: "2021-03-31",
+        duration: "3 years 3 months 2 weeks 4 days ",
+        budget: "16000000",
+        gaName: "Scottish Government",
+        lastModifiedDate: "04 January 2021",
+      },
+    ],
+    grantingAuthorityResponse: null,
   };
   const res = {};
 
   axios.get.mockResolvedValue({
     status: "success",
     data: {
-      awardNumber: 22,
-      beneficiary: {
-        beneficiaryName: "Absolem Productions Limited",
-        orgSize: "",
-        nationalIdType: "",
-        nationalId: "",
+      grantingAuthorityUserActionCount: null,
+      awardUserActionCount: null,
+      subsidyMeasureUserActionCount: {
+        totalPublishedSubsidyMeasures: 0,
+        totalDraftSubsidyMeasures: 2,
+        totalSubsidyMeasures: 2,
+        totalAwaitingSubsidyMeasures: 0,
+        totalDeletedSubsidyMeasures: 0,
       },
-      grantingAuthorityResponse: {
-        grantingAuthorityName: "",
-      },
-      subsidyMeasure: {
-        subsidyMeasureTitle: "COVID-19 Temporary Framework for UK authorities",
-        scNumber: "SC10033",
-        adhoc: false,
-        legalBasis: {
-          legalBasisText: "R&D&I Framework",
+      awardResponse: null,
+      subsidyMeasureResponse: [
+        {
+          subsidyMeasureTitle: "AHDB Promotional Measures scheme",
+          scNumber: "SC10001",
+          startDate: "2014-10-23",
+          endDate: "2021-03-31",
+          duration: "6 years 5 months 3 weeks ",
+          budget: "180000000",
+          gaName: "Scottish Government",
+          lastModifiedDate: "04 January 2021",
         },
-      },
-      subsidyFullAmountRange: "£NA",
-      subsidyFullAmountExact: "597,336",
-      subsidyObjective: "Energy efficiency",
-      subsidyInstrument: "Direct Grant",
-      spendingSector: "Arts, entertainment and recreation",
-      legalGrantingDate: "13 October 2020",
-      spendingRegion: "Scotland",
-      goodsServicesFilter: "",
+        {
+          subsidyMeasureTitle: "Plug in Taxi Grant",
+          scNumber: "SC10068",
+          startDate: "2017-12-20",
+          endDate: "2021-03-31",
+          duration: "3 years 3 months 2 weeks 4 days ",
+          budget: "16000000",
+          gaName: "Scottish Government",
+          lastModifiedDate: "04 January 2021",
+        },
+      ],
+      grantingAuthorityResponse: null,
     },
   });
   request(app)
-    .post("/searchresultsawardroute", (req, res))
-    .query({ page: "22" })
+    .post("/beisadmindashboard", (req, res))
     .expect(200, done);
 });

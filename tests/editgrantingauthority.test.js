@@ -19,32 +19,11 @@ const mockRequest = (sessionData, body) => ({
 
 const res = {};
 
-test("Unit testing for subsidy objective route - Test for with beneficiary name", (done) => {
-  global.subsidy_objective_isfirst = "Yes";
-  const req = mockRequest({}, { Beneficiary_name: "SpiceJet Ltd" });
+test("Unit testing for edit granting authority", (done) => {
+  const req = mockRequest();
 
   const res = {};
   request(app)
-    .post("/subsidyobjective", (req, res))
-    .send({ Beneficiary_name: "SpiceJet Ltd", beneficiaryname: "Yes" })
+    .get("/editgrantingauthority", (req, res))
     .expect(200, done);
-});
-
-test("Unit testing for subsidy objective route Test for with out beneficiary name", (done) => {
-  const req = mockRequest({}, { radio_beneficiaryname: "No" });
-  global.subsidy_objective_isfirst = "Yes";
-  const res = {};
-  request(app)
-    .post("/subsidyobjective", (req, res))
-    .send({ beneficiaryname: "No" })
-    .expect(200, done);
-});
-
-test("Unit testing for subsidy objective route Test for with out beneficiary name", async () => {
-  const req = mockRequest({}, { radio_beneficiaryname: "No" });
-  global.subsidy_objective_isfirst = "Yes";
-  const res = {};
-  await request(app)
-    .get("/subsidyobjective", (req, res))
-    .expect(200);
 });
