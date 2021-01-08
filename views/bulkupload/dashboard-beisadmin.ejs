@@ -85,31 +85,23 @@
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
-            <!-- <label>Published by me</label>
-          <p>Total granting authorities I've published</p> -->
+           
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.grantingAuthorityUserActionCount.totalGAPublishedByUser %>
+              <%= dashboardawards.grantingAuthorityUserActionCount.totalActiveGA %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Active</p>
           </div>
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
-            <!-- <label>Deactive</label>
-            <p>Total granting authorities that are not active</p> -->
+           
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
               <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Inactive</p>
           </div>
         </div>
-        <!-- <div class="govuk-grid-column-one-quarter govuk-form-group">
-          <label>Not published</label>
-          <p>Number of granting authorities that are not published</p>
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-            <%= dashboardawards.grantingAuthorityUserActionCount.totalNotPublishedGA %>
-          </legend>
-        </div> -->
+      
       </div>
       <div class="govuk-addGA form-group">
         <button class="govuk-button govuk-button--success" id="getFilterTags">
@@ -119,45 +111,7 @@
           Add granting authority
         </button>
       </div>
-      <!-- <table class="govuk-table">
-          <caption class="govuk-table__caption govuk-GA-heading">
-            My 5 last updated granting authorities
-          </caption>
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th
-                scope="col"
-                class="govuk-table__header govuk-!-width-one-half"
-              >
-                Granting Authority name
-              </th>
-              <th
-                scope="col"
-                class="govuk-table__header govuk-!-width-one-quarter"
-              >
-                Status
-              </th>
-              <th
-                scope="col"
-                class="govuk-table__header govuk-!-width-one-quarter"
-              >
-                Last modified
-              </th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            <% dashboardawards.grantingAuthorityResponse.forEach(function(item) { %>
-              <tr>
-                <td class="govuk-table__cell"> <a> <%= item.gaName %> </a> </td>
-                <td class="govuk-table__cell"><%= item.status %></td>
-                <td class="govuk-table__cell"> <%= item.lastModifiedDate  %>  </td>
-              
-              </tr>
-
-              <% } ); %>
-          
-          </tbody>
-        </table> -->
+    
     </div>
     <div class="govuk-border-top">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
@@ -307,7 +261,7 @@
             <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
+              <%= dashboardawards.subsidyMeasureUserActionCount.totalAwaitingSubsidyMeasures %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Awaiting approval
             </p>
@@ -318,7 +272,7 @@
             <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
+              <%= dashboardawards.subsidyMeasureUserActionCount.totalPublishedSubsidyMeasures %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Published
             </p>
@@ -329,7 +283,7 @@
             <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
+              <%= dashboardawards.subsidyMeasureUserActionCount.totalDraftSubsidyMeasures %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Draft</p>
           </div>
@@ -339,7 +293,7 @@
             <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
+              <%= dashboardawards.subsidyMeasureUserActionCount.totalDeletedSubsidyMeasures %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Deleted</p>
           </div>
@@ -439,7 +393,7 @@
             <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
+              <%= dashboardawards.awardUserActionCount.totalAwaitingAward %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Awaiting approval
             </p>
@@ -450,7 +404,7 @@
             <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
+              <%= dashboardawards.awardUserActionCount.totalPublishedAward %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Published
             </p>
@@ -461,7 +415,7 @@
             <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
+              <%= dashboardawards.awardUserActionCount.totalDraftAward %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Draft</p>
           </div>
@@ -471,7 +425,7 @@
             <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
+              <%= dashboardawards.awardUserActionCount.totalDeletedAward %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Deleted</p>
           </div>

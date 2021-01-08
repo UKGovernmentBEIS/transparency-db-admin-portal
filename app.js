@@ -54,6 +54,7 @@ app.locals.formvalidationerrpass = [];
 app.locals.errorsvalidationpass = [];
 
 app.locals.dashboard_user_name;
+app.locals.dashboard_ga_name;
 app.locals.frontend_totalRecordsPerPage;
 
 app.locals.pageCount;
@@ -71,7 +72,9 @@ app.locals.awardnumber;
 app.locals.fetchawarddetails;
 app.locals.Award_search_URL ;
 
-app.locals.awards_status;
+app.locals.Award_selected_status;
+app.locals.awards_status ;
+app.locals.Award_search_text;
 
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
@@ -223,6 +226,12 @@ app.use("/subsidyawardaction", subsidyawardaction);
 
 var subsidyawardreviewcancel = require("./routes/subsidyaward-review-cancel");
 app.use("/subsidyawardreviewcancel", subsidyawardreviewcancel);
+
+var subsidyawardsearch = require("./routes/subsidyaward-search");
+app.use("/subsidyawardsearch", subsidyawardsearch);
+
+var subsidyawardrejectreason = require("./routes/subsidyaward-reject-reason");
+app.use("/subsidyawardrejectreason", subsidyawardrejectreason);
 
 var reviewdetailcancel = require("./routes/reviewdetailcancel");
 app.use("/reviewdetailcancel", reviewdetailcancel);
