@@ -180,65 +180,7 @@
           Add a new user
         </button>
       </div>
-      <!-- <table class="govuk-table">
-          <caption class="govuk-table__caption govuk-GA-heading">
-            My 5 last updated granting authorities by users
-          </caption>
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">User name</th>
-              <th scope="col" class="govuk-table__header">
-                Granting Authority name
-              </th>
-              <th scope="col" class="govuk-table__header">Role</th>
-              <th scope="col" class="govuk-table__header">Created on</th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Rachael Cole</td>
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">Adur District Council</a>
-              </td>
-              <td class="govuk-table__cell">Granting Authority Admin</td>
-              <td class="govuk-table__cell">12 :34 - 11 November 2020</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Claire Smith</td>
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA"
-                  >Bath and North East Somerset Council</a
-                >
-              </td>
-              <td class="govuk-table__cell">Granting Authority Approver</td>
-              <td class="govuk-table__cell">14:32 - 10 November 2020</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Andrew Davis</td>
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">Cardiff Council</a>
-              </td>
-              <td class="govuk-table__cell">Granting Authority Encoder</td>
-              <td class="govuk-table__cell">9:56 - 9 November 2020</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Michelle Bowman</td>
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">Cheltenham Borough Council</a>
-              </td>
-              <td class="govuk-table__cell">Granting Authority Encoder</td>
-              <td class="govuk-table__cell">15:02 - 7 November 2020</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Mark Jones</td>
-              <td scope="row" class="govuk-table__cell">
-                <a href="" class="govuk-editGA">Cotswold District Council</a>
-              </td>
-              <td class="govuk-table__cell">Granting Authority Encoder</td>
-              <td class="govuk-table__cell">10:08 - 4 November 2020</td>
-            </tr>
-          </tbody>
-        </table> -->
+    
     </div>
     <div class="govuk-border-top">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
@@ -285,7 +227,7 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
               <%= dashboardawards.subsidyMeasureUserActionCount.totalDraftSubsidyMeasures %>
             </legend>
-            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Draft</p>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Rejected</p>
           </div>
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group">
@@ -295,7 +237,7 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
               <%= dashboardawards.subsidyMeasureUserActionCount.totalDeletedSubsidyMeasures %>
             </legend>
-            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Deleted</p>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Inactive</p>
           </div>
         </div>
       </div>
@@ -334,43 +276,10 @@
           View all subsidy schemes
         </button>
         <button class="govuk-button govuk-button--success" id="getFilterTags">
-          Add a new subsidy measure
+          Add a new subsidy schemes
         </button>
       </div>
-      <!-- <table class="govuk-table">
-          <caption class="govuk-table__caption govuk-GA-heading">
-            My 5 last updated subsidy measures
-          </caption>
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Subsidy name</th>
-              <th scope="col" class="govuk-table__header">
-                Subsidy control no.
-              </th>
-              <th scope="col" class="govuk-table__header">
-                Granting authority
-              </th>
-              <th scope="col" class="govuk-table__header">Start date</th>
-              <th scope="col" class="govuk-table__header">End date</th>
-              <th scope="col" class="govuk-table__header">Duration</th>
-              <th scope="col" class="govuk-table__header">Budget</th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            <% dashboardawards.subsidyMeasureResponse.forEach(function(item) { %>
-              <tr>
-                <td class="govuk-table__cell"> <a> <%= item.subsidyMeasureTitle  %> </a> </td>
-                <td class="govuk-table__cell"><%= item.scNumber %></td>
-                <td class="govuk-table__cell"> <%= item.gaName  %>  </td>
-                <td class="govuk-table__cell"><%= item.startDate %></td>
-                <td class="govuk-table__cell"> <%= item.endDate %>  </td>
-                <td class="govuk-table__cell"><%= item.duration %></td>
-                <td class="govuk-table__cell">£<%= item.budget %></td>
-              </tr>
-
-              <% } ); %>
-          </tbody>
-        </table> -->
+     
     </div>
     <div class="govuk-border-top">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
@@ -417,7 +326,7 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
               <%= dashboardawards.awardUserActionCount.totalDraftAward %>
             </legend>
-            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Draft</p>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Rejected</p>
           </div>
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group">
@@ -427,77 +336,20 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
               <%= dashboardawards.awardUserActionCount.totalDeletedAward %>
             </legend>
-            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Deleted</p>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Inactive</p>
           </div>
         </div>
-        <!-- <div class="govuk-grid-column-one-quarter govuk-form-group">
-          <label>All subsidy awards</label>
-          <p>All subsidy awards in the system</p>
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-            
-          </legend>
-        </div>
-        <div class="govuk-grid-column-one-quarter govuk-form-group">
-          <label>My subsidy awards</label>
-          <p>All the subsidy measures I'm responsible for</p>
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-            <%= dashboardawards.awardUserActionCount.totalUserSubsidyAward %>
-          </legend>
-        </div>
-        <div class="govuk-grid-column-one-quarter govuk-form-group">
-          <label>All new subsidy awards</label>
-          <p>All my new subsidy awards</p>
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-            <%= dashboardawards.awardUserActionCount.totalAllNewSubsidyAward %>
-          </legend>
-        </div>
-        <div class="govuk-grid-column-one-quarter govuk-form-group">
-          <label>My new subsidy awards</label>
-          <p>My new subsidy awards only</p>
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-            <%= dashboardawards.awardUserActionCount.totalUserNewSubsidyAward %>
-          </legend>
-        </div> -->
+     
       </div>
       <div class="govuk-addGA form-group">
         <button class="govuk-button govuk-button--success" id="getFilterTags">
           View all subsidy award
         </button>
         <button class="govuk-button govuk-button--success btn-md" id="getFilterTags">
-          Add award
+          Add a new subsidy award
         </button>
       </div>
-      <!-- <table class="govuk-table">
-          <caption class="govuk-table__caption govuk-GA-heading">
-            My 5 last updated subsidy awards
-          </caption>
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Award no.</th>
-              <th scope="col" class="govuk-table__header">Measure title</th>
-              <th scope="col" class="govuk-table__header">Status</th>
-              <th scope="col" class="govuk-table__header">Recipient name</th>
-              <th scope="col" class="govuk-table__header"> Date</th>
-              <th scope="col" class="govuk-table__header">Subsidy amount</th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            <tbody class="govuk-table__body">
-              <% dashboardawards.awardResponse.forEach(function(item) { %>
-              <tr>
-                <td class="govuk-table__cell"> <a> <%= item.awardNumber  %> </a> </td>
-                <td class="govuk-table__cell"><%= item.subsidyMeasureTitle %></td>
-                <td class="govuk-table__cell"> <%= item.status  %>  </td>
-                <td class="govuk-table__cell"><%= item.gaName %></td>
-                <td class="govuk-table__cell"> <%= item.lastModifiedDate  %>  </td>
-                <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>
-            
-              </tr>
-
-              <% } ); %>
-            </tbody>
-          </tbody>
-        </table> -->
+  
     </div>
 
     <div class="govuk-border-top">
