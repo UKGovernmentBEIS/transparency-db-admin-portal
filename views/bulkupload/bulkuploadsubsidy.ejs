@@ -139,7 +139,7 @@
                   <button class="govuk-button">Download the template file </button>
                 </form>
                 <div class="govuk-grid-column-one-third">
-                  <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Cancel </button></div>
+                  <button class="govuk-link govuk-cancel-button-link" data-module="govuk-button">Cancel </button></div>
               </div>
               <!-- <h2 class="govuk-heading-m">What happens next</h2>
               <br />
@@ -194,7 +194,7 @@
                   <div class="govuk-input__wrapper">
                     <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
                       type="file">
-                    <button class="govuk-button govuk-button--secondary">Browse...</button>
+                    <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                 </div>
 
@@ -245,16 +245,7 @@
                 <script type="text/javascript"
                   src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
                 <script type="text/javascript" src="/assets/javascripts/bulkuploadpdfgen.js"></script>
-                <!-- <form encType="multipart/form-data"  method="post" novalidate="">
-                <a rel="external" target="" class="govuk-link" value="Export" onclick="Export()" href="" >
-                  You can also download a PDF of errors (opens in a new window or tab)
-                </a>
-                </form> -->
-
-                <!-- <form action="/" method="GET" > -->
-                <!-- <h3><%= validationerrors.validationErrorResult[0].columns %></h3>
-                  <h3><%= validationerrors.validationErrorResult[0].row %></h3>
-                  <h3><%= validationerrors.validationErrorResult[0].errorMessages %></h3> -->
+               
 
                 <div>
                   <p> You can also
@@ -283,6 +274,7 @@
 
 
                 <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+                  <br /> <br />
                   <div class="govuk-grid-row">
                     <div class="govuk-grid-column-two-thirds">
                       <div class="govuk-panel govuk-relative-position govuk-panel--confirmation">
@@ -291,7 +283,7 @@
                         </h1>
                         <h3 class="govuk-panel__body">
                           <%= locals.validationerrors.totalRows %> records have been submitted for approval and are now
-                          in 'Finalised state</h3>
+                          in 'Awaiting approval' state</h3>
 
                       </div>
 
@@ -320,13 +312,20 @@
 
 
 
-                      <p class="govuk-body">1. The awards have been submitted for approval and is now in 'Finalised'
+                      <p class="govuk-body">1. The awards have been submitted for approval and is now in 'Awaiting approval'
                         state.</p>
                       <p class="govuk-body">2. Once approved,they will be published.</p>
                       <p class="govuk-body">3. If rejected, you will receive the notification with the reason</p>
                       <form action="/mysubsidyawards" method="GET">
                         <div>
-                          <button class="govuk-button">Proceed to My subsidy awards &#62;</button>
+                          <!-- <button class="govuk-button">Proceed to My subsidy awards &#62;</button> -->
+                          <button class="govuk-button" data-module="govuk-button">
+                            Proceed to My subsidy awards 
+                          <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+                            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                          </svg></a>
+                        </button>
+
                         </div>
                       </form>
 

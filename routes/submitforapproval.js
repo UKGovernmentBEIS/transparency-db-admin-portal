@@ -68,7 +68,7 @@ console.log("request :" + JSON.stringify(data));
           var add_award_response = apidata.data;
           var Additem = 0;
 
-          if (API_response_code == 200) {
+          if (add_award_response.totalErrors > 0) {
                 for ( i = 0 ; i < add_award_response.totalErrors ; i= i + 1) {
                 console.log("add_award_response:  " + add_award_response.validationErrorResult[i].column);
                 console.log("add_award_response:  " + add_award_response.validationErrorResult[i].message);

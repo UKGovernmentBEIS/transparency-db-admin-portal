@@ -30,16 +30,17 @@ router.get('/',async(req, res) => {
 //  Award_selected_status = '';
 
  Base_URL = beis_url_accessmanagement + '/accessmanagement/searchresults?';
+ Award_text  = 'searchName=' +  Award_search_text;
  Award_status = 'status=' + Award_selected_status;
  Award_concate = '&';
  Award_page = 'page=' + Award_page
  Award_recordsperpage = 'recordsPerPage=' + frontend_totalRecordsPerPage
 
- Actual_URL = Base_URL  + Award_status + Award_concate + Award_page + Award_concate + Award_recordsperpage ;
- console.log("Actual_URL  : " + Actual_URL) ;
+ Award_search_URL  = Base_URL  + Award_text + Award_concate + Award_status + Award_concate + Award_page + Award_concate + Award_recordsperpage ;
+ console.log("Award_search_URL   : " + Award_search_URL ) ;
 
  try {
-         const apidata = await axios.get(Actual_URL );
+         const apidata = await axios.get(Award_search_URL );
           console.log(`Status: ${apidata.status}`);
           console.log('Body: ', apidata.data);
           searchawards = apidata.data
