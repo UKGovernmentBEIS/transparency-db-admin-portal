@@ -7,6 +7,10 @@ router.post("/", async (req, res) => {
   // ********************************************************
   // Read environment property file and set the API URL end points
   // ********************************************************
+  var beis_url_accessmanagement = "";
+  var beis_url_publishing = "";
+  var beis_url_publicsearch = "";
+
   Environment_variable = process.argv[2];
 
   if (Environment_variable == "env=dev") {

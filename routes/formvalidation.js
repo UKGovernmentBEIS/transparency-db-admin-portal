@@ -47,35 +47,35 @@ router.post("/", (req, res) => {
       }
       return buffer;
     }
-    return buffer;
-   }
-  
- 
-  var url = beis_url_publishing + '/uploadBulkAwards';
-  
-  var errorsvalidationpass;
-  var req = request.post(url, function (err, resp, body) {
-    if (err) {
-      console.log('Application Programming Interface (API) is Down at this moment');
-    } else {
-      validationerrors = JSON.parse(body);
-   
-         console.log('URL: ' + body);
-      console.log("type:"+ validationerrors);
-      console.log(validationerrors.errorRows);
-      errorsvalidationpass = JSON.stringify(validationerrors.validationErrorResult);
-      console.log("type:"+ errorsvalidationpass);
-      
-    }
-  });
-  var form = req.form();
-  
-  form.append('file', toBuffer(file.data), {
-    filename: file.name,
-    contentType: file.type
-  });
-  
-    let isFileUploadEmpty =  false;
+
+    var url = beis_url_publishing + "/uploadBulkAwards";
+
+    var errorsvalidationpass;
+    var req = request.post(url, function (err, resp, body) {
+      if (err) {
+        console.log(
+          "Application Programming Interface (API) is Down at this moment"
+        );
+      } else {
+        validationerrors = JSON.parse(body);
+
+        console.log("URL: " + body);
+        console.log("type:" + validationerrors);
+        console.log(validationerrors.errorRows);
+        errorsvalidationpass = JSON.stringify(
+          validationerrors.validationErrorResult
+        );
+        console.log("type:" + errorsvalidationpass);
+      }
+    });
+    var form = req.form();
+
+    form.append("file", toBuffer(file.data), {
+      filename: file.name,
+      contentType: file.type,
+    });
+
+    let isFileUploadEmpty = false;
     let isUploadSectionIsActive = true;
     let validCsvFormat = ".csv";
     let validExcelFormat = ".xlsx";
