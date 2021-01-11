@@ -90,7 +90,7 @@ console.log("request :" + JSON.stringify(data));
 }
 else if( dashboard_roles == 'Granting Authority Administrator') { 
   
-  const userPrincipleRequest = '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Administrator","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"HMRC"}';
+  const userPrincipleRequest = '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Administrator","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' + dashboard_ga_name + '"}';
 var config = {
     headers: { 'userPrinciple': userPrincipleRequest }
   
@@ -120,7 +120,7 @@ console.log("request :" + JSON.stringify(data));
  }
 else if( dashboard_roles == 'Granting Authority Approver') {
   
-  const userPrincipleRequest = '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"HMRC"}';
+  const userPrincipleRequest = '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' + dashboard_ga_name + '"}';
   var config = {
       headers: { 'userPrinciple': userPrincipleRequest }
     
@@ -151,7 +151,7 @@ else if( dashboard_roles == 'Granting Authority Approver') {
 
 else if( dashboard_roles == 'Granting Authority Encoder') {
   
-  const userPrincipleRequest = '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Encoder","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"HMRC"}';
+  const userPrincipleRequest = '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Encoder","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' + dashboard_ga_name + '"}';
   var config = {
       headers: { 'userPrinciple': userPrincipleRequest }
     
