@@ -62,7 +62,7 @@
             <br />
 
             <!-- bread crumbs start here -->
-            <div class="govuk-breadcrumbs ">
+            <!-- <div class="govuk-breadcrumbs ">
                 <ol class="govuk-breadcrumbs__list">
                     <li class="govuk-breadcrumbs__list-item">
                         <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
@@ -74,23 +74,25 @@
                         <a1 class="govuk-breadcrumbs__link active" href="#">Add a subsidy awards</a1>
                     </li>
                 </ol>
-            </div>
+            </div> -->
 
             <p>
-                <a href="#" class="govuk-back-link"> Back</a>
+                <a href="/subsidyawardfetch/?award=<%= awardnumber %>" class="govuk-back-link"> Back</a>
             </p>
             <!-- bread crumbs ends here -->
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
-                    <h1 class="govuk-heading-xl">Give reason for rejecting this subsidy award</h1>
+                    <h1 class="govuk-heading-xl">Add comments</h1>
 
                     </h1>
-                    <label class="govuk-label">Reason for rejection</label>
+                    <label class="govuk-label">Add feedback for the person who is working on this 
+                        subsidy award. Your comments will not be visible to the public.</label>
                     <textarea class="govuk-textarea" rows="6"></textarea>
-                    <form action="/addsubsidyaward" method="POST">
+                    <br /> <br /> 
+                    <form action="/subsidyawardrejectreason" method="POST">
                         <div>
-                            <button class=" govuk-button_cancel_lg govuk-button--secondary ">
-                                Cancel
+                            <button class="govuk-button govuk-button--warning" data-module="govuk-button">
+                               Reject subsidy award
                             </button>
                         </div>
                     </form>

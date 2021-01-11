@@ -9,20 +9,15 @@ const axios = require('axios');
 var request = require('request');
 
 router.post('/',async(req, res) => {
-
-    var    { Award_status } = req.body;
+   
 
 console.log("awardnumber : " + awardnumber);  
 console.log("Award_status : " + Award_status);
 
 const data_request = 
 {
-    "status": Award_status
+    "status": "Rejected"
 };
-
-awards_status = 'Filter results by status';
-Award_selected_status = '';
-
 
 var data = JSON.parse(JSON.stringify(data_request));
 console.log("request :" + JSON.stringify(data));
@@ -66,8 +61,7 @@ var awardendpoint = beis_url_accessmanagement + '/accessmanagement/' + awardnumb
             } else {
               end_page = 9;
             }
-
-           if (Award_status == "Published") {            
+           
             res.render("bulkupload/mysubsidyawards", {
               pageCount,
               previous_page,
@@ -79,12 +73,8 @@ var awardendpoint = beis_url_accessmanagement + '/accessmanagement/' + awardnumb
               frontend_totalRecordsPerPage,
             });
 
-          }
-
-           if (Award_status == "Rejected") {
-            res.render("bulkupload/subsidyaward-reject",{awardnumber});
-    
-          }
+          
+           
           } catch (err) {
             
         

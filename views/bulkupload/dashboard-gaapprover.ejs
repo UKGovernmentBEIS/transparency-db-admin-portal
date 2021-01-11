@@ -37,7 +37,7 @@
             </li>
             <li class="govuk-sub-navigation__item">
               <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
-                Subsidy Awards
+                Subsidy awards
               </a>
             </li>
 
@@ -157,7 +157,7 @@
         </tbody>
       </table> -->
     </div>
-    <div class=" govuk-border-top">
+    <div class="govuk-border-top">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
         <h2 class="govuk-fieldset_sub-heading">Subsidy schemes</h2>
       </legend>
@@ -165,16 +165,15 @@
         <div class="govuk-grid-column-one-half govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              20
-            </legend>
-            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-              Total subsidy schemes</p>
+              <%= dashboardawards.subsidyMeasureUserActionCount.totalSubsidyMeasures %> </legend>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Total subsidy
+              schemes</p>
           </div>
         </div>
         <div class="govuk-grid-column-one-half govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              4</legend>
+              <%= dashboardawards.subsidyMeasureUserActionCount.totalAwaitingSubsidyMeasures %> </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
               Awaiting approval</p>
           </div>
@@ -182,7 +181,7 @@
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              16</legend>
+              <%= dashboardawards.subsidyMeasureUserActionCount.totalPublishedSubsidyMeasures %> </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
               Published</p>
           </div>
@@ -190,22 +189,22 @@
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              2</legend>
+              <%= dashboardawards.subsidyMeasureUserActionCount.totalDraftSubsidyMeasures %>
+            </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-              Draft</p>
+              Rejected</p>
           </div>
-
-
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              2
+              <%= dashboardawards.subsidyMeasureUserActionCount.totalDeletedSubsidyMeasures %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-              Deleted</p>
+              Inactive</p>
           </div>
         </div>
+
       </div>
       <div class="govuk-addGA form-group">
         <button class="govuk-button govuk-button--success" id="getFilterTags">
@@ -306,14 +305,15 @@
         </tbody>
       </table> -->
     </div>
-    <div class=" govuk-border-top">
+    <div class="govuk-border-top">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
         <h2 class="govuk-fieldset_sub-heading">Subsidy Awards</h2>
       </legend>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-half govuk-form-group">
           <div class="govuk-background">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">100
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+              <%= dashboardawards.awardUserActionCount.totalSubsidyAward %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
               Total subsidy awards</p>
@@ -322,7 +322,8 @@
         <div class="govuk-grid-column-one-half govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              5</legend>
+              <%= dashboardawards.awardUserActionCount.totalAwaitingAward %>
+            </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
               Awaiting approval</p>
           </div>
@@ -330,7 +331,8 @@
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              80</legend>
+              <%= dashboardawards.awardUserActionCount.totalPublishedAward %>
+            </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
               Published</p>
           </div>
@@ -338,9 +340,10 @@
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              5</legend>
+              <%= dashboardawards.awardUserActionCount.totalDraftAward %>
+            </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-              Draft</p>
+              Rejected</p>
           </div>
 
 
@@ -348,9 +351,10 @@
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              5</legend>
+              <%= dashboardawards.awardUserActionCount.totalDeletedAward %>
+            </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-              Deleted</p>
+              Inactive</p>
           </div>
         </div>
       </div>
@@ -359,98 +363,10 @@
           View all subsidy award
         </button>
         <button class="govuk-button govuk-button--success btn-md" id="getFilterTags">
-          Add a new subsidy award
+          Add a new subsidy award 
         </button>
       </div>
-      <!-- <table class="govuk-table">
-        <caption class="govuk-table__caption govuk-GA-heading">
-          My 5 last updated subsidy awards
-        </caption>
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Award no.</th>
-            <th scope="col" class="govuk-table__header">Measure title</th>
-            <th scope="col" class="govuk-table__header">Status</th>
-            <th scope="col" class="govuk-table__header">Recipient name</th>
-            <th scope="col" class="govuk-table__header">
-              Granting authority
-            </th>
-            <th scope="col" class="govuk-table__header">Subsidy amount</th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <td scope="row" class="govuk-table__cell">
-              <a href="" class="govuk-editGA">123456</a>
-            </td>
-            <td class="govuk-table__cell">Air discount scheme</td>
-
-            <td class="govuk-table__cell">Published</td>
-
-            <td class="govuk-table__cell">AA Animation Limited</td>
-
-            <td class="govuk-table__cell">Scottish Government</td>
-
-            <td class="govuk-table__cell">£632,000</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="row" class="govuk-table__cell">
-              <a href="" class="govuk-editGA">123456</a>
-            </td>
-            <td class="govuk-table__cell">Air discount scheme</td>
-
-            <td class="govuk-table__cell">Published</td>
-
-            <td class="govuk-table__cell">Abbey Productions Limited</td>
-
-            <td class="govuk-table__cell">Scottish Government</td>
-
-            <td class="govuk-table__cell">£470,000</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="row" class="govuk-table__cell">
-              <a href="" class="govuk-editGA">123456</a>
-            </td>
-            <td class="govuk-table__cell">Air discount scheme</td>
-
-            <td class="govuk-table__cell">Published</td>
-
-            <td class="govuk-table__cell">Abbey Productions Limited</td>
-
-            <td class="govuk-table__cell">Scottish Government</td>
-
-            <td class="govuk-table__cell">£470,000</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="row" class="govuk-table__cell">
-              <a href="" class="govuk-editGA">123456</a>
-            </td>
-            <td class="govuk-table__cell">Air discount scheme</td>
-
-            <td class="govuk-table__cell">Published</td>
-
-            <td class="govuk-table__cell">AA Animation Limited</td>
-
-            <td class="govuk-table__cell">Scottish Government</td>
-
-            <td class="govuk-table__cell">£632,000</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="row" class="govuk-table__cell">
-              <a href="" class="govuk-editGA">123456</a>
-            </td>
-            <td class="govuk-table__cell">Air discount scheme</td>
-
-            <td class="govuk-table__cell">Published</td>
-
-            <td class="govuk-table__cell">Abbey Productions Limited</td>
-
-            <td class="govuk-table__cell">Scottish Government</td>
-
-            <td class="govuk-table__cell">£470,000</td>
-          </tr>
-        </tbody>
-      </table> -->
+    
     </div>
   </main>
 </div>

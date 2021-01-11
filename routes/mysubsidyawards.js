@@ -12,9 +12,9 @@ router.get("/", async (req, res) => {
   Award_page = 1;
   awards_status = "Filter results by status";
   Award_selected_status = "";
+  Award_search_text = "";
 
-  Base_URL =
-    "http://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net/accessmanagement/searchresults?";
+  Base_URL = beis_url_accessmanagement + "/accessmanagement/searchresults?";
   Award_status = "status=" + Award_selected_status;
   Award_concate = "&";
   Award_page = "page=" + Award_page;

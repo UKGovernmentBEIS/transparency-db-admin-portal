@@ -75,7 +75,7 @@
     </div>
     <div class="">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
-        <h2 class="govuk-fieldset_sub-heading">Granting Authority: Cardiff Council </h2>
+        <h2 class="govuk-fieldset_sub-heading">Granting Authority: <%= dashboard_ga_name %> </h2>
       </legend>
       <!-- <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-quarter govuk-form-group">
@@ -183,7 +183,7 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">20
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Total active
-              users in Cardiff Council</p>
+              users in <%= dashboard_ga_name %></p>
           </div>
 
         </div>
@@ -296,7 +296,7 @@
         <div class="govuk-grid-column-one-half govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.subsidyMeasureUserActionCount.totalUserSubsidyMeasures %> </legend>
+              <%= dashboardawards.subsidyMeasureUserActionCount.totalAwaitingSubsidyMeasures %> </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
               Awaiting approval</p>
           </div>
@@ -304,7 +304,7 @@
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.subsidyMeasureUserActionCount.totalAllNewSubsidyMeasures %> </legend>
+              <%= dashboardawards.subsidyMeasureUserActionCount.totalPublishedSubsidyMeasures %> </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
               Published</p>
           </div>
@@ -312,19 +312,19 @@
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.subsidyMeasureUserActionCount.totalUserNewSubsidyMeasures %>
+              <%= dashboardawards.subsidyMeasureUserActionCount.totalDraftSubsidyMeasures %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-              Draft</p>
+              Rejected</p>
           </div>
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.subsidyMeasureUserActionCount.totalUserNewSubsidyMeasures %>
+              <%= dashboardawards.subsidyMeasureUserActionCount.totalDeletedSubsidyMeasures %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-              Deleted</p>
+              Inactive</p>
           </div>
         </div>
 
@@ -391,7 +391,7 @@
         <div class="govuk-grid-column-one-half govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.awardUserActionCount.totalUserSubsidyAward %>
+              <%= dashboardawards.awardUserActionCount.totalAwaitingAward %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
               Awaiting approval</p>
@@ -400,7 +400,7 @@
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.awardUserActionCount.totalAllNewSubsidyAward %>
+              <%= dashboardawards.awardUserActionCount.totalPublishedAward %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
               Published</p>
@@ -409,10 +409,10 @@
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.awardUserActionCount.totalUserNewSubsidyAward %>
+              <%= dashboardawards.awardUserActionCount.totalDraftAward %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-              Draft</p>
+            Rejected</p>
           </div>
 
 
@@ -420,10 +420,10 @@
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.awardUserActionCount.totalUserNewSubsidyAward %>
+              <%= dashboardawards.awardUserActionCount.totalDeletedAward %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-              Deleted</p>
+              Inactive</p>
           </div>
         </div>
       </div>
@@ -432,45 +432,14 @@
           View all subsidy award
         </button>
         <button class="govuk-button govuk-button--success btn-md" id="getFilterTags">
-          Add a new subsidy award award
+          Add a new subsidy award 
         </button>
       </div>
-      <!-- <table class="govuk-table">
-        <caption class="govuk-table__caption govuk-GA-heading">
-          My 5 last updated subsidy awards
-        </caption>
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Award no.</th>
-            <th scope="col" class="govuk-table__header">Measure title</th>
-            <th scope="col" class="govuk-table__header">Status</th>
-            <th scope="col" class="govuk-table__header">Recipient name</th>
-            <th scope="col" class="govuk-table__header">
-              Granting authority
-            </th>
-            <th scope="col" class="govuk-table__header">Subsidy amount</th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-
-          <% dashboardawards.awardResponse.forEach(function(item) { %>
-          <tr>
-            <td class="govuk-table__cell"> <a> <%= item.awardNumber  %> </a> </td>
-            <td class="govuk-table__cell"><%= item.subsidyMeasureTitle %></td>
-            <td class="govuk-table__cell"> <%= item.status  %> </td>
-            <td class="govuk-table__cell"><%= item.gaName %></td>
-            <td class="govuk-table__cell"> <%= item.lastModifiedDate  %> </td>
-            <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>
-
-          </tr>
-
-          <% } ); %>
-        </tbody>
-      </table> -->
+    
     </div>
   </main>
 </div>
-
+<br />
 <%- include('../partials/footer.ejs') %>
 <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
 <script src="/assets/javascripts/accordion/govuk-frontend.js"></script>
