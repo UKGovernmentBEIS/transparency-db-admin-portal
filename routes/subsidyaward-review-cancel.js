@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.render("bulkupload/subsidyaward-review-cancel",
-  { 
+  res.render("bulkupload/subsidyaward-review-cancel", {
     Subsidy_Control_Number_Global,
     Subsidy_Measure_Title_Global,
     Subsidy_Objective_Global,
@@ -20,11 +19,8 @@ router.get("/", (req, res) => {
     Goods_or_Services_Global,
     Spending_Region_Global,
     Spending_Sector_Global,
-    GetMonthName }
-    
-  
-  );
+    GetMonthName,
+  });
 });
 
 module.exports = router;
-

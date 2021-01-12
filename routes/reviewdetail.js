@@ -76,31 +76,31 @@ router.post("/", (req, res) => {
     10
   );
 
-  if (Legal_Granting_Date_Month_Global == 01) {
+  if (Legal_Granting_Date_Month_Global == parseInt("01", 8)) {
     GetMonthName = "January";
   }
-  if (Legal_Granting_Date_Month_Global == 02) {
+  if (Legal_Granting_Date_Month_Global == parseInt("02", 8)) {
     GetMonthName = "February";
   }
-  if (Legal_Granting_Date_Month_Global == 03) {
+  if (Legal_Granting_Date_Month_Global == parseInt("03", 8)) {
     GetMonthName = "March";
   }
-  if (Legal_Granting_Date_Month_Global == 04) {
+  if (Legal_Granting_Date_Month_Global == parseInt("04", 8)) {
     GetMonthName = "April";
   }
-  if (Legal_Granting_Date_Month_Global == 05) {
+  if (Legal_Granting_Date_Month_Global == parseInt("05", 8)) {
     GetMonthName = "May";
   }
-  if (Legal_Granting_Date_Month_Global == 06) {
+  if (Legal_Granting_Date_Month_Global == parseInt("06", 8)) {
     GetMonthName = "June";
   }
-  if (Legal_Granting_Date_Month_Global == 07) {
+  if (Legal_Granting_Date_Month_Global == parseInt("07", 8)) {
     GetMonthName = "July";
   }
-  if (Legal_Granting_Date_Month_Global == 08) {
+  if (Legal_Granting_Date_Month_Global == parseInt("08", 8)) {
     GetMonthName = "August";
   }
-  if (Legal_Granting_Date_Month_Global == 09) {
+  if (Legal_Granting_Date_Month_Global == parseInt("09", 8)) {
     GetMonthName = "September";
   }
   if (Legal_Granting_Date_Month_Global == 10) {
@@ -217,10 +217,10 @@ router.post("/", (req, res) => {
 
     if (
       Legal_Granting_Date_Day == 31 &&
-      (Legal_Granting_Date_Month == 02 ||
-        Legal_Granting_Date_Month == 04 ||
-        Legal_Granting_Date_Month == 06 ||
-        Legal_Granting_Date_Month == 09 ||
+      (Legal_Granting_Date_Month == parseInt("02", 8) ||
+        Legal_Granting_Date_Month == parseInt("04", 8) ||
+        Legal_Granting_Date_Month == parseInt("06", 8) ||
+        Legal_Granting_Date_Month == parseInt("09", 8) ||
         Legal_Granting_Date_Month == 11)
     ) {
       Legal_Granting_Date_Day_Error = true;
@@ -229,7 +229,10 @@ router.post("/", (req, res) => {
       Additem = Additem + 1;
     }
 
-    if (Legal_Granting_Date_Day == 29 && Legal_Granting_Date_Month == 02) {
+    if (
+      Legal_Granting_Date_Day == 29 &&
+      Legal_Granting_Date_Month == parseInt("02", 8)
+    ) {
       if (
         (Legal_Granting_Date_Year % 4 == 0 &&
           Legal_Granting_Date_Year % 100 != 0) ||
@@ -243,7 +246,10 @@ router.post("/", (req, res) => {
       }
     }
 
-    if (Legal_Granting_Date_Day == 30 && Legal_Granting_Date_Month == 02) {
+    if (
+      Legal_Granting_Date_Day == 30 &&
+      Legal_Granting_Date_Month == parseInt("02", 8)
+    ) {
       Legal_Granting_Date_Day_Error = true;
       SubsidyErrors[Additem] = "     Enter the valid day";
       SubsidyFocus[Additem] = "#Legal_Granting_Date_Day";
