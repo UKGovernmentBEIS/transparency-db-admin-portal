@@ -22,6 +22,7 @@ const mockRequest = (sessionData, body) => ({
 test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
   const req = mockRequest();
   const res = {};
+  global.awardnumber = 22;
   request(app)
     .get("/rejectsubsidyaward", (req, res))
     .expect(200, done);

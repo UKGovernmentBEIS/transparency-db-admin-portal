@@ -11,6 +11,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
+const axios = require("axios");
+jest.mock("axios");
 
 const mockRequest = (sessionData, body) => ({
   session: { data: sessionData },
@@ -20,6 +22,58 @@ const mockRequest = (sessionData, body) => ({
 test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
   const req = mockRequest();
   const res = {};
+  global.beis_url_publicsearch =
+    "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
+  global.awardnumber = 22;
+  global.fetchawarddetails = {
+    subsidyMeasure: {
+      scNumber: "",
+      subsidyMeasureTitle: "",
+    },
+    subsidyObjective: "",
+    subsidyInstrument: "",
+    subsidyFullAmountRange: "",
+    subsidyFullAmountExact: "",
+    legalGrantingDate: "",
+    goodsServicesFilter: "",
+    spendingRegion: "",
+    spendingSector: "",
+    beneficiary: {
+      beneficiaryName: "",
+      orgSize: "",
+      nationalIdType: "",
+      nationalId: "",
+    },
+    grantingAuthorityResponse: {
+      grantingAuthorityName: "",
+    },
+  };
+  axios.get.mockResolvedValue({
+    status: 200,
+    data: {
+      subsidyMeasure: {
+        scNumber: "",
+        subsidyMeasureTitle: "",
+      },
+      subsidyObjective: "",
+      subsidyInstrument: "",
+      subsidyFullAmountRange: "",
+      subsidyFullAmountExact: "",
+      legalGrantingDate: "",
+      goodsServicesFilter: "",
+      spendingRegion: "",
+      spendingSector: "",
+      beneficiary: {
+        beneficiaryName: "",
+        orgSize: "",
+        nationalIdType: "",
+        nationalId: "",
+      },
+      grantingAuthorityResponse: {
+        grantingAuthorityName: "",
+      },
+    },
+  });
 
   request(app)
     .get("/subsidyawardcancel", (req, res))
@@ -43,5 +97,5 @@ test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
       Spending_Sector: "",
     })
     .expect(200, done);
-  //   expect(acd).toBe(200);
+  // expect(abcd).toBe(200);
 });

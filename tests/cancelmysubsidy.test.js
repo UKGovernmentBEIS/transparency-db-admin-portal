@@ -33,6 +33,7 @@ test("Unit testing for filter route Test for GET call", (done) => {
   const req = mockRequest();
   global.awards_status = "Filter results by status";
   global.frontend_totalRecordsPerPage = 10;
+  global.Award_search_text = "";
   global.searchawards = {
     awards: [
       {

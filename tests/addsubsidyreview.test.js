@@ -61,7 +61,7 @@ test("Unit testing for spending filter route - Test for GET call", (done) => {
   global.Spending_Sector_Global = "";
   const res = {};
   request(app)
-    .get("/addsubsidyaward", (req, res))
+    .get("/addsubsidyreview", (req, res))
     .send({
       Subsidy_Control_Number_Global: "",
       Subsidy_Measure_Title_Global: "",

@@ -19,65 +19,65 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
+test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
   const req = mockRequest();
   const res = {};
+  global.beis_url_publicsearch =
+    "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Filter results by status";
   global.frontend_totalRecordsPerPage = 10;
   global.fetchawarddetails = {
-    awardNumber: 22,
-    beneficiary: {
-      beneficiaryName: "Absolem Productions Limited",
-    },
     subsidyMeasure: {
-      subsidyMeasureTitle: "COVID-19 Temporary Framework for UK authorities",
-      scNumber: "SC10033",
-      adhoc: false,
-      legalBasis: {
-        legalBasisText: "R&D&I Framework",
-      },
+      scNumber: "",
+      subsidyMeasureTitle: "",
     },
-    subsidyFullAmountRange: "£NA",
-    subsidyFullAmountExact: "597,336",
-    subsidyObjective: "Energy efficiency",
-    subsidyInstrument: "Direct Grant",
-    spendingSector: "Arts, entertainment and recreation",
-    legalGrantingDate: "13 October 2020",
-    spendingRegion: "Scotland",
+    subsidyObjective: "",
+    subsidyInstrument: "",
+    subsidyFullAmountRange: "",
+    subsidyFullAmountExact: "",
+    legalGrantingDate: "",
+    goodsServicesFilter: "",
+    spendingRegion: "",
+    spendingSector: "",
+    beneficiary: {
+      beneficiaryName: "",
+      orgSize: "",
+      nationalIdType: "",
+      nationalId: "",
+    },
+    grantingAuthorityResponse: {
+      grantingAuthorityName: "",
+    },
   };
-  global.pageCount = 10;
-  global.current_page_active = 1;
-  global.previous_page = "";
-  global.next_page = 2;
-  global.start_record = 1;
-  global.end_record = 10;
-  global.totalrows = 10;
   axios.get.mockResolvedValue({
     status: 200,
     data: {
-      totalSearchResults: 10,
-      currentPage: 1,
-      totalPages: 1,
-      awards: [
-        {
-          awardNumber: 2,
-          subsidyFullAmountExact: "0",
-          subsidyFullAmountRange: "£500,000 - £1,000,000",
-          subsidyObjective: "Research and development",
-          subsidyMeasureTitle: "Grant Assistance for the Historic Environment",
-          status: "Published",
-          gaName: "Flintshire County council",
-          lastModifiedDate: "08 January 2021",
-          scNumber: "SC10029",
-          subsidyInstrument: "Tax measures (tax credit, or tax/duty exemption)",
-          beneficiaryName: "Adamaarku Productions LTD",
-        },
-      ],
+      subsidyMeasure: {
+        scNumber: "",
+        subsidyMeasureTitle: "",
+      },
+      subsidyObjective: "",
+      subsidyInstrument: "",
+      subsidyFullAmountRange: "",
+      subsidyFullAmountExact: "",
+      legalGrantingDate: "",
+      goodsServicesFilter: "",
+      spendingRegion: "",
+      spendingSector: "",
+      beneficiary: {
+        beneficiaryName: "",
+        orgSize: "",
+        nationalIdType: "",
+        nationalId: "",
+      },
+      grantingAuthorityResponse: {
+        grantingAuthorityName: "",
+      },
     },
   });
   request(app)
     .get("/subsidyawardfetch", (req, res))
     .query({ award: 22 })
     .expect(200, done);
-  //   expect(acd).toBe(200);
+  // expect(acd).toBe(200);
 });

@@ -46,3 +46,52 @@ test("Unit testing for update results page per route Test for GET call", (done) 
     })
     .expect(200, done);
 });
+
+test("Unit testing for update results page per route Test for POST call", (done) => {
+  const req = mockRequest();
+  global.isFileUploadEmpty = false;
+  global.isNotCsvOrExcel = false;
+  global.isExcelFormat = true;
+  global.isCsvFormat = false;
+  global.validationerrors = {
+    validationErrorResult: [
+      {
+        columns: "",
+        row: "",
+        errorMessages: "",
+      },
+    ],
+  };
+  global.files = null;
+  request(app)
+    .post("/formvalidation", (req, res))
+    .send({
+      isFileUploadEmpty: false,
+      isNotCsvOrExcel: false,
+      isExcelFormat: true,
+    })
+    .attach("files", null)
+    .expect(200, done);
+});
+
+test("Unit testing for update results page per route Test for POST call", (done) => {
+  const req = mockRequest();
+  global.isFileUploadEmpty = false;
+  global.isNotCsvOrExcel = false;
+  global.isExcelFormat = true;
+  global.isCsvFormat = false;
+  global.validationerrors = {
+    validationErrorResult: [
+      {
+        columns: "",
+        row: "",
+        errorMessages: "",
+      },
+    ],
+  };
+  global.beis_url_publishing = "";
+  const filesList = { file_upload_1: "", name: "exportFile.csv" };
+  request(app)
+    .post("/formvalidation", (req, res))
+    .expect(200, done);
+});

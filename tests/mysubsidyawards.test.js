@@ -31,6 +31,8 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for filter route Test for GET call", (done) => {
   const req = mockRequest();
+  global.beis_url_accessmanagement =
+    "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Filter results by status";
   global.frontend_totalRecordsPerPage = 10;
   global.searchawards = {

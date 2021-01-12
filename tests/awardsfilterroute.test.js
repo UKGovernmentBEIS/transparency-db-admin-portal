@@ -20,10 +20,10 @@ const mockRequest = (sessionData, body) => ({
 });
 
 const res = {};
-
 test("Unit testing for hide filter route Test for GET call", (done) => {
   const req = mockRequest();
-
+  global.beis_url_accessmanagement =
+    "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Draft";
   global.frontend_totalRecordsPerPage = 10;
   global.searchawards = {

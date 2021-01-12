@@ -10,40 +10,35 @@ router.post("/", async (req, res) => {
   var beis_url_accessmanagement = "";
   var beis_url_publishing = "";
   var beis_url_publicsearch = "";
-
-  Environment_variable = process.argv[2];
-
-  if (Environment_variable == "env=dev") {
-    beis_url_publishing =
-      "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
-    beis_url_accessmanagement =
-      "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
-    beis_url_publicsearch =
-      "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
-    console.log(beis_url_publishing);
-    console.log(beis_url_accessmanagement);
-    console.log(beis_url_publicsearch);
-  } else if (Environment_variable == "env=integ") {
-    beis_url_publishing =
-      "https://integ-transparency-db-publishing-subsidies-service.azurewebsites.net";
-    beis_url_accessmanagement =
-      "https://integ-transparency-db-access-management-service.azurewebsites.net";
-    beis_url_publicsearch =
-      "https://integ-transparency-db-public-search-service.azurewebsites.net";
-    console.log(beis_url_publishing);
-    console.log(beis_url_accessmanagement);
-    console.log(beis_url_publicsearch);
-  } else if (Environment_variable == "env=stag") {
-    beis_url_publishing =
-      "https://stag-transparency-db-publishing-subsidies-service.azurewebsites.net";
-    beis_url_accessmanagement =
-      "https://stag-transparency-db-access-management-service.azurewebsites.net";
-    beis_url_publicsearch =
-      "https://stag-transparency-db-public-search-service.azurewebsites.net";
-    console.log(beis_url_publishing);
-    console.log(beis_url_accessmanagement);
-    console.log(beis_url_publicsearch);
-  }
+  Environment_variable = process.argv[2].split("=");
+  // if (Environment_variable == "env=dev") {
+  beis_url_publishing = `https://${Environment_variable[1]}-beis-tp-db-publishing-subsidies-service.azurewebsites.net`;
+  beis_url_accessmanagement = `https://${Environment_variable[1]}-beis-tp-db-accessmanagement-service-app.azurewebsites.net`;
+  beis_url_publicsearch = `https://${Environment_variable[1]}-beis-tp-db-public-search-service.azurewebsites.net`;
+  console.log(beis_url_publishing);
+  console.log(beis_url_accessmanagement);
+  console.log(beis_url_publicsearch);
+  // } else if (Environment_variable == "env=integ") {
+  //   beis_url_publishing =
+  //     "https://integ-transparency-db-publishing-subsidies-service.azurewebsites.net";
+  //   beis_url_accessmanagement =
+  //     "https://integ-transparency-db-access-management-service.azurewebsites.net";
+  //   beis_url_publicsearch =
+  //     "https://integ-transparency-db-public-search-service.azurewebsites.net";
+  //   console.log(beis_url_publishing);
+  //   console.log(beis_url_accessmanagement);
+  //   console.log(beis_url_publicsearch);
+  // } else if (Environment_variable == "env=stag") {
+  //   beis_url_publishing =
+  //     "https://stag-transparency-db-publishing-subsidies-service.azurewebsites.net";
+  //   beis_url_accessmanagement =
+  //     "https://stag-transparency-db-access-management-service.azurewebsites.net";
+  //   beis_url_publicsearch =
+  //     "https://stag-transparency-db-public-search-service.azurewebsites.net";
+  //   console.log(beis_url_publishing);
+  //   console.log(beis_url_accessmanagement);
+  //   console.log(beis_url_publicsearch);
+  // }
 
   // *******************
   // Globale declarations
