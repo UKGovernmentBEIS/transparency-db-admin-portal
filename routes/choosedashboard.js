@@ -7,6 +7,10 @@ router.post("/", async (req, res) => {
   // ********************************************************
   // Read environment property file and set the API URL end points
   // ********************************************************
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5e1ed82b7a9f03ad20569848da2c746783312d75
   Environment_variable = process.argv[2];
   if (Environment_variable == "env=dev") {
     beis_url_publishing = `https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net`;
