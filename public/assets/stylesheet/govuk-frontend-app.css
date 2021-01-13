@@ -494,3 +494,7 @@ button.link {
 .govuk-description-text:hover {
   color: rgb(46, 138, 202);
 }
+
+.govuk-width-8 {
+  width: 8%;
+}

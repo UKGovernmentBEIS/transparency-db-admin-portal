@@ -123,13 +123,13 @@
         <div class="govuk-grid-column-one-half govuk-form-group">
           <form class="govuk-!-width-full govuk-padding-0" action="/subsidyawardsearch" method="POST">
 
-          <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text" name="search_award_text" type="text" 
-          <% if(Award_search_text) {%> value="<%= Award_search_text%>"  <% } %> />
-                
-          <button class="govuk-button" data-module="govuk-button">
-            Search
-          </button>
-        </form>
+            <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text" name="search_award_text"
+              type="text" <% if(Award_search_text) {%> value="<%= Award_search_text%>" <% } %> />
+
+            <button class="govuk-button" data-module="govuk-button">
+              Search
+            </button>
+          </form>
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group govuk-padding-0">
           <!-- <select class="govuk-select govuk-!-width-full">
@@ -188,7 +188,7 @@
           </form>
         </div>
 
-        <div class="govuk-grid-column-two-thirds govuk-form-group">
+        <div class="govuk-grid-column-full govuk-form-group">
           <!-- <a href="/" style="color : black; text-decoration: none"> -->
           <button class="govuk-button" onclick="window.location.href='/addsubsidyaward'" data-module="govuk-button">
             Add a new subsidy award
@@ -203,9 +203,10 @@
             Delete Selected
           </button>
         </div>
-        <div class="govuk-grid-column-one-third govuk-form-group govuk-display-flex" style="text-align: right;">
+
+        <div class="govuk-grid-column-full govuk-form-group govuk-display-flex" style="text-align: right;">
           <label>Results per page</label>
-          <form class="govuk-grid-column-one-third govuk-padding-0" action="/awardspageperroute" method="GET">
+          <form class="govuk-padding-0 govuk-width-8" action="/awardspageperroute" method="GET">
             <select class="govuk-select" id="sort" name="sort" onchange="this.form.submit()">
               <% if(frontend_totalRecordsPerPage  == 1) { %>
               <option value="1" selected>1</option>
