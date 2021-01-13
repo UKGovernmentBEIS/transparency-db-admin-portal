@@ -271,9 +271,9 @@
 
               <select class="govuk-select" id="Subsidy_Objective" name="Subsidy_Objective">
                 <% if( locals.Subsidy_Objective_Global == '' ){ %>
-                <option value="Empty" selected> </option>
+                <option value="Empty" selected>Select subsidy purpose (11) </option>
                 <% } else { %>
-                <option value="Empty"> </option>
+                <option value="Empty">Select subsidy purpose (11) </option>
                 <% } %>
                 <% if( locals.Subsidy_Objective_Global == 'Research and development' ){ %>
                 <option value="Research and development" selected>Research and development </option>
@@ -342,9 +342,9 @@
 
               <select class="govuk-select" id="Subsidy_Objective" name="Subsidy_Objective">
                 <% if( locals.Subsidy_Objective_Global == '' ){ %>
-                <option value="Empty" selected> </option>
+                <option value="Empty" selected>Select subsidy purpose (11) </option>
                 <% } else { %>
-                <option value="Empty"> </option>
+                <option value="Empty">Select subsidy purpose (11) </option>
                 <% } %>
                 <% if( locals.Subsidy_Objective_Global == 'Research and development' ){ %>
                 <option value="Research and development" selected>Research and development </option>
@@ -421,9 +421,9 @@
 
               <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument">
                 <% if( locals.Subsidy_Instrument_Global == '' ){ %>
-                <option value="Empty" selected></option>
+                <option value="Empty" selected>Select subsidy type (8)</option>
                 <% } else { %>
-                <option value="Empty"></option>
+                <option value="Empty">Select subsidy type (8)</option>
                 <% } %>
                 <% if( locals.Subsidy_Instrument_Global == 'Direct Grant' ){ %>
                 <option value="Direct Grant" selected>Direct Grant</option>
@@ -478,9 +478,9 @@
               </label>
               <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument">
                 <% if( locals.Subsidy_Instrument_Global == '' ){ %>
-                <option value="Empty" selected></option>
+                <option value="Empty" selected>Select subsidy type (8)</option>
                 <% } else { %>
-                <option value="Empty"></option>
+                <option value="Empty">Select subsidy type (8)</option>
                 <% } %>
                 <% if( locals.Subsidy_Instrument_Global == 'Direct Grant' ){ %>
                 <option value="Direct Grant" selected>Direct Grant</option>
@@ -552,11 +552,17 @@
                     <span class="govuk-visually-hidden">Error:</span> Select the Subsidy Full Amount Range
                   </span>
 
-                  <select class="govuk-select" id="Spending_Region" name="Subsidy_Full_Amount_Range">
+                  <select class="govuk-select" id="Subsidy_Full_Amount_Range" name="Subsidy_Full_Amount_Range">
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '' ) { %>
+                    <option selected value="Empty"> Select subsidy range(8)</option>
+                    <% } else { %>
+                    <option value="Empty"> Select subsidy range(8)</option>
+                    <% } %>
                     <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto500k' ) { %>
                     <option value="1 - 500,000" selected>£1 - £500,000</option>
                     <% } else { %>
                     <option value="1 - 500,000">£1 - £500,000</option>
+                    <% } %>
                     <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto1000k' ) { %>
                     <option value="500,001 - 1,000,000" selected>£500,001 - £1,000,000</option>
                     <% } else { %>
@@ -699,11 +705,17 @@
                       Subsidy Full Amount Range (£)
                     </h1>
                   </legend>
-                  <select class="govuk-select" id="Spending_Region" name="Subsidy_Full_Amount_Range">
+                  <select class="govuk-select" id="Subsidy_Full_Amount_Range" name="Subsidy_Full_Amount_Range">
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '' ) { %>
+                    <option selected value="Empty"> Select subsidy range(8)</option>
+                    <% } else { %>
+                    <option value="Empty"> Select subsidy range(8)</option>
+                    <% } %>
                     <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto500k' ) { %>
                     <option value="1 - 500,000" selected>£1 - £500,000</option>
                     <% } else { %>
                     <option value="1 - 500,000">£1 - £500,000</option>
+                    <% } %>
                     <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto1000k' ) { %>
                     <option value="500,001 - 1,000,000" selected>£500,001 - £1,000,000</option>
                     <% } else { %>
@@ -1533,9 +1545,9 @@
 
               <select class="govuk-select" id="Spending_Region" name="Spending_Region">
                 <% if( locals.Spending_Region_Global == '' ){ %>
-                <option value="Empty" selected></option>
+                <option value="Empty" selected>Select a region (8)</option>
                 <% } else { %>
-                <option value="Empty"></option>
+                <option value="Empty">Select a region (8)</option>
                 <% } %>
 
                 <% if( locals.Spending_Region_Global == 'North East' ){ %>
@@ -1628,9 +1640,9 @@
               </div>
               <select class="govuk-select" id="Spending_Region" name="Spending_Region">
                 <% if( locals.Spending_Region_Global == '' ){ %>
-                <option value="Empty" selected></option>
+                <option value="Empty" selected>Select a region (8)</option>
                 <% } else { %>
-                <option value="Empty"></option>
+                <option value="Empty">Select a region (8)</option>
                 <% } %>
 
                 <% if( locals.Spending_Region_Global == 'North East' ){ %>
@@ -1729,9 +1741,9 @@
 
               <select class="govuk-select" id="Spending_Sector" name="Spending_Sector">
                 <% if( locals.Spending_Sector_Global == '' ){ %>
-                <option value="Empty" selected></option>
+                <option value="Empty" selected>Select sector (20)</option>
                 <% } else { %>
-                <option value="Empty"></option>
+                <option value="Empty">Select sector (20)</option>
                 <% } %>
 
                 <% if( locals.Spending_Sector_Global == 'Accommodation' ){ %>
@@ -1887,9 +1899,9 @@
 
               <select class="govuk-select" id="Spending_Sector" name="Spending_Sector">
                 <% if( locals.Spending_Sector_Global == '' ){ %>
-                <option value="Empty" selected></option>
+                <option value="Empty" selected>Select sector (20)</option>
                 <% } else { %>
-                <option value="Empty"></option>
+                <option value="Empty">Select sector (20)</option>
                 <% } %>
 
                 <% if( locals.Spending_Sector_Global == 'Accommodation' ){ %>
