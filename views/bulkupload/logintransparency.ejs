@@ -13,9 +13,9 @@
 <script>
   handleChange = (event) => {
     if (event.target.value == 'BEIS Administrator')
-      document.getElementById("govuk-granting-authority-select").setAttribute("disabled", true);
+      document.getElementById("dashboard_GA").setAttribute("disabled", true);
     else
-      document.getElementById("govuk-granting-authority-select").removeAttribute("disabled");
+      document.getElementById("dashboard_GA").removeAttribute("disabled");
   };
 </script>
 <!-- <%- include('../partials/headersubsidy.ejs') %> -->
@@ -92,8 +92,8 @@
 
 <%- include('../partials/footer.ejs') %>
 <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
-<script src="/assets/javascripts/accordion/govuk-frontend.js"></script>
-<script src="/assets/javascripts/accordion/example.js"></script>
+<!-- <script src="/assets/javascripts/accordion/govuk-frontend.js"></script>
+<script src="/assets/javascripts/accordion/example.js"></script> -->
 <link href="/assets/stylesheet/govuk-transparencyDb.css" rel="stylesheet" type="text/css" />
 
 </html>
