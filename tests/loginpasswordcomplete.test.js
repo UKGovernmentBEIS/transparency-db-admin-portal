@@ -65,14 +65,13 @@ test("Unit testing for update results page per route Test for POST call", (done)
     .expect(200, done);
 });
 
-test("Unit testing for update results page per route Test for POST call", async () => {
+test("Unit testing for update results page per route Test for POST call", (done) => {
   const req = mockRequest();
-  var abcd = await request(app)
+request(app)
     .post("/loginpasswordcomplete", (req, res))
     .send({
       password: "123456888",
       password1: "123456888",
-    });
-  expect(abcd).toBe(200);
-  // .expect(200, done);
+    })
+  .expect(200, done);
 });
