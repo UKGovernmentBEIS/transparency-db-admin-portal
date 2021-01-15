@@ -27,10 +27,9 @@ router.get("/", async (req, res) => {
   var data = JSON.parse(JSON.stringify(data_request));
 
   console.log("request :" + JSON.stringify(data));
-
+  Base_URL = beis_url_accessmanagement + "/accessmanagement/searchresults";
   try {
-    const apidata = await axios.post(
-      "http://subsidy-search-service.azurewebsites.net/searchResults",
+    const apidata = await axios.post(Base_URL,
       data
     );
     console.log(`Status: ${apidata.status}`);
