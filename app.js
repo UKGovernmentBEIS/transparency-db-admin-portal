@@ -145,16 +145,14 @@ app.use("/addsubsidyaward", addsubsidyaward);
 var editsubsidyaward = require("./routes/subsidyaward-edit");
 app.use("/editsubsidyaward", editsubsidyaward);
 
-var updatesubsidyaward = require("./routes/subsidyaward-update");
-app.use("/updatesubsidyaward", updatesubsidyaward);
+// var updatesubsidyaward = require("./routes/subsidyaward-update");
+// app.use("/updatesubsidyaward", updatesubsidyaward);
 
 var rejectsubsidyaward = require("./routes/subsidyaward-reject");
 app.use("/rejectsubsidyaward", rejectsubsidyaward);
 
 var approverejectsubsidyaward = require("./routes/subsidyaward-approve-reject");
 app.use("/approverejectsubsidyaward", approverejectsubsidyaward);
-
-
 
 
 var cancelmysubsidy = require("./routes/cancelmysubsidy");

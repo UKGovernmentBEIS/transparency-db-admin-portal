@@ -8,6 +8,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const axios = require("axios");
+const { globalEval } = require("jquery");
 jest.mock("axios");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -50,6 +51,7 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
   global.start_record = 1;
   global.end_record = 10;
   global.totalrows = 10;
+  global.Award_search_text = "";
   axios.get.mockResolvedValue({
     status: 200,
     data: {
@@ -75,7 +77,7 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
   });
   const res = {};
   request(app)
-    .get("/mysubsidyawards", (req, res))
+    .get("/awardsfilterroute", (req, res))
     .query({ sort: "Draft" })
     .expect(200, done);
 });
