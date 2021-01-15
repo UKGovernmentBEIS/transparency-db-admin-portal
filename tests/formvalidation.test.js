@@ -93,5 +93,6 @@ test("Unit testing for update results page per route Test for POST call", (done)
   const filesList = { file_upload_1: "", name: "exportFile.csv" };
   request(app)
     .post("/formvalidation", (req, res))
+    .attach({"files":filesList})
     .expect(200, done);
 });
