@@ -27,6 +27,8 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Draft";
   global.frontend_totalRecordsPerPage = 10;
+  global.Award_selected_status  = "";
+  global.Award_search_text = "";
   global.searchawards = {
     awards: [
       {
@@ -76,7 +78,7 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
   });
   const res = {};
   request(app)
-    .get("/mysubsidyawards", (req, res))
+    .get("/awardspageroute", (req, res))
     .query({ page: "2" })
     .expect(200, done);
 });

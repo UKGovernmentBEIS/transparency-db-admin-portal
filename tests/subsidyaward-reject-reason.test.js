@@ -1,5 +1,5 @@
 // ***********************************************************
-// Automated Unit testing scripts for hide filter route
+// Automated Unit testing scripts for search results award route
 // ***********************************************************
 
 const index = require("../app");
@@ -7,27 +7,38 @@ const request = require("supertest");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const axios = require("axios");
-jest.mock("axios");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
+const axios = require("axios");
+jest.mock("axios");
 
 const mockRequest = (sessionData, body) => ({
   session: { data: sessionData },
   body,
 });
 
-const res = {};
-
-test("Unit testing for hide filter route Test for GET call", (done) => {
+test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
   const req = mockRequest();
+  const res = {};
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
-  global.awards_status = "Draft";
+  global.awards_status = "Filter results by status";
   global.frontend_totalRecordsPerPage = 10;
-  global.Award_selected_status  = "";
+  global.awardnumber = 22;
+  global.Award_status = "";
+  global.Award_search_URL = "";
+
+  global.pageCount = "";
+  global.previous_page = "";
+  global.next_page = "";
+  global.start_record = "";
+  global.end_record = "";
+  global.totalrows = "";
+  global.current_page_active = "";
+  global.frontend_totalRecordsPerPage = "";
+  global.Award_search_text = "";
   global.searchawards = {
     awards: [
       {
@@ -45,22 +56,36 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
       },
     ],
   };
-  global.Award_search_text= "";
-  global.pageCount = 10;
-  global.current_page_active = 1;
-  global.previous_page = "";
-  global.next_page = 2;
-  global.start_record = 1;
-  global.end_record = 10;
-  global.totalrows = 10;
-  global.start_page = 1;
-  global.end_page = 10;
+  axios.put.mockResolvedValue({
+    status: 200,
+    data: {
+      subsidyMeasure: {
+        scNumber: "",
+        subsidyMeasureTitle: "",
+      },
+      subsidyObjective: "",
+      subsidyInstrument: "",
+      subsidyFullAmountRange: "",
+      subsidyFullAmountExact: "",
+      legalGrantingDate: "",
+      goodsServicesFilter: "",
+      spendingRegion: "",
+      spendingSector: "",
+      beneficiary: {
+        beneficiaryName: "",
+        orgSize: "",
+        nationalIdType: "",
+        nationalId: "",
+      },
+      grantingAuthorityResponse: {
+        grantingAuthorityName: "",
+      },
+    },
+  });
+
   axios.get.mockResolvedValue({
     status: 200,
     data: {
-      totalSearchResults: 10,
-      currentPage: 1,
-      totalPages: 1,
       awards: [
         {
           awardNumber: 2,
@@ -78,9 +103,9 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
       ],
     },
   });
-  const res = {};
   request(app)
-    .get("/awardspageperroute", (req, res))
-    .query({ sort: "10" })
+    .post("/subsidyawardrejectreason", (req, res))
+    .send({ search_award_text: "" })
+    //   expect(abcd).toBe(200);
     .expect(200, done);
 });
