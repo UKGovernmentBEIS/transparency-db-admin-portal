@@ -125,7 +125,11 @@
               Subsidy amount
             </dt>
             <dd class="govuk-summary-list__value">
-              £<%= fetchawarddetails.subsidyFullAmountExact%>
+              <% if(fetchawarddetails.subsidyFullAmountExact != '0' && fetchawarddetails.subsidyFullAmountExact!= 'NA'){ %>
+                £<%= fetchawarddetails.subsidyFullAmountExact%>
+              <% }else{ %>
+                <%= fetchawarddetails.subsidyFullAmountExact%>
+              <% }%>
             </dd>
           </div>
 
