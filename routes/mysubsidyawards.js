@@ -8,6 +8,8 @@ const axios = require("axios");
 var request = require("request");
 
 router.get("/", async (req, res) => {
+  console.log("TEST")
+  console.log("url :" +  beis_url_accessmanagement );
   frontend_totalRecordsPerPage = 10;
   Award_page = 1;
   awards_status = "Filter results by status";
