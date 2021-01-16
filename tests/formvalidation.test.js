@@ -90,9 +90,11 @@ test("Unit testing for update results page per route Test for POST call", (done)
     ],
   };
   global.beis_url_publishing = "";
-  const filesList = { file_upload_1: "", name: "exportFile.csv" };
+  const file_upload_1 = { file_upload_1: "timesheetDec.png" };
   request(app)
     .post("/formvalidation", (req, res))
-    .attach({"files":filesList})
+    // .attach("files", "exportFile.csv")
+    .attach("file_upload_1", "timesheetDec.png")
+    // .req({ files: "exportFile.csv" })
     .expect(200, done);
 });
