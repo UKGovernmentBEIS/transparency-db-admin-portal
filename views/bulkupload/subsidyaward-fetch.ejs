@@ -28,7 +28,7 @@
             </li>
             <li class="govuk-sub-navigation__item">
               <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                Subsidy Measures
+                Subsidy Schemes
               </a>
             </li>
             <li class="govuk-sub-navigation__item">
@@ -126,9 +126,9 @@
             </dt>
             <dd class="govuk-summary-list__value">
               <% if(fetchawarddetails.subsidyFullAmountExact != '0' && fetchawarddetails.subsidyFullAmountExact!= 'NA'){ %>
-                £<%= fetchawarddetails.subsidyFullAmountExact%>
+              £<%= fetchawarddetails.subsidyFullAmountExact%>
               <% }else{ %>
-                <%= fetchawarddetails.subsidyFullAmountExact%>
+              <%= fetchawarddetails.subsidyFullAmountExact%>
               <% }%>
             </dd>
           </div>
@@ -231,10 +231,8 @@
           <button class="govuk-button govuk-button--warning" data-module="govuk-button" name="Award_status"
             id="Award_status" value="Rejected">
             Reject </button>
-          <button class="govuk-button govuk-button--secondary" value="Cancel" data-module="govuk-button"
-            name="Award_status" id="">
-            Cancel </button>
-        </div>
+
+          <a value="Cancel" class="govuk-button-cancel" name="Award_status">Cancel</a>
       </form>
   </main>
 </div>
