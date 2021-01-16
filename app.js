@@ -19,11 +19,6 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
-
-
-   
-
-
 const users = [];
 // app.use(fileUpload());
 app.use(
@@ -74,14 +69,15 @@ app.locals.end_page;
 app.locals.dashboardawards;
 app.locals.awardnumber;
 app.locals.fetchawarddetails;
-app.locals.Award_search_URL ;
+app.locals.Award_search_URL;
 
 app.locals.Award_selected_status;
-app.locals.awards_status ;
+app.locals.awards_status;
 app.locals.Award_search_text;
 app.locals.beis_url_publishing ;
 app.locals.beis_url_accessmanagement;
 app.locals.beis_url_publicsearch;
+
 
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
@@ -146,17 +142,14 @@ app.use("/addsubsidyaward", addsubsidyaward);
 var editsubsidyaward = require("./routes/subsidyaward-edit");
 app.use("/editsubsidyaward", editsubsidyaward);
 
-var updatesubsidyaward = require("./routes/subsidyaward-update");
-app.use("/updatesubsidyaward", updatesubsidyaward);
+// var updatesubsidyaward = require("./routes/subsidyaward-update");
+// app.use("/updatesubsidyaward", updatesubsidyaward);
 
 var rejectsubsidyaward = require("./routes/subsidyaward-reject");
 app.use("/rejectsubsidyaward", rejectsubsidyaward);
 
 var approverejectsubsidyaward = require("./routes/subsidyaward-approve-reject");
 app.use("/approverejectsubsidyaward", approverejectsubsidyaward);
-
-
-
 
 var cancelmysubsidy = require("./routes/cancelmysubsidy");
 app.use("/cancelmysubsidy", cancelmysubsidy);
@@ -166,8 +159,6 @@ app.use("/addsubsidyreview", addsubsidyreview);
 
 var submitforapproval = require("./routes/submitforapproval");
 app.use("/submitforapproval", submitforapproval);
-
-
 
 var mygrantingauthority = require("./routes/mygrantingauthority");
 app.use("/mygrantingauthority", mygrantingauthority);
@@ -208,6 +199,8 @@ app.use("/measurespageroute", measurespageroute);
 var measurespageperroute = require("./routes/measurespageperroute");
 app.use("/measurespageperroute", measurespageperroute);
 
+var subsidyawardfetchcancel = require("./routes/cancel-subsidyawardfetch");
+app.use("/subsidyawardfetchcancel", subsidyawardfetchcancel);
 
 var subsidyawardcancel = require("./routes/subsidyaward-cancel");
 app.use("/subsidyawardcancel", subsidyawardcancel);
@@ -215,7 +208,7 @@ app.use("/subsidyawardcancel", subsidyawardcancel);
 var subsidyawardfetch = require("./routes/subsidyaward-fetch");
 app.use("/subsidyawardfetch", subsidyawardfetch);
 
-var subsidyawardaction= require("./routes/subsidyaward-action");
+var subsidyawardaction = require("./routes/subsidyaward-action");
 app.use("/subsidyawardaction", subsidyawardaction);
 
 var subsidyawardreviewcancel = require("./routes/subsidyaward-review-cancel");
@@ -229,6 +222,5 @@ app.use("/subsidyawardrejectreason", subsidyawardrejectreason);
 
 var reviewdetailcancel = require("./routes/reviewdetailcancel");
 app.use("/reviewdetailcancel", reviewdetailcancel);
-
 
 module.exports = app;

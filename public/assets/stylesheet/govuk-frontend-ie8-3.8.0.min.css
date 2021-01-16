@@ -755,9 +755,9 @@
     height: auto; */
   border: solid;
   /* border-width: 2px 2px 0 0; */
-  border-width: 3px 3px 0 0;
-  /* color: #505a5f; */
-  color: black;
+  /* border-width: 3px 3px 0 0; */
+  color: #505a5f;
+  /* color: black; */
   font-family: Arial, sans-serif;
 }
 

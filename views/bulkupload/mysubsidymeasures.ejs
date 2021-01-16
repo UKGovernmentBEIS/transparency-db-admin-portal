@@ -35,7 +35,7 @@
               </li>
               <li class="govuk-sub-navigation__item">
                 <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidymeasures">
-                  Subsidy Measures
+                  Subsidy Schemes
                 </a>
               </li>
               <li class="govuk-sub-navigation__item">
@@ -67,20 +67,21 @@
             <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
           </li>
           <li class="govuk-breadcrumbs__list-item ">
-            <a class="govuk-breadcrumbs__link active" href="/">Subsidy measures</a>
+            <a class="govuk-breadcrumbs__link active" href="/">Subsidy schemes</a>
           </li>
         </ol>
       </div>
       <!-- bread crumbs ends here -->
 
       <!-- Body header starts here -->
-      <h1 class="govuk-heading-xl">Subsidy measures</h1>
+      <h1 class="govuk-heading-xl">Subsidy schemes</h1>
       <!-- Body header ends here -->
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full govuk-grid-row">
           <label class="govuk-label govuk-grid-column-one-third">
-            Search Subsidy Measure Title, Subsidy Control number, or Granting Authority.
+            You can search for specific subsidy schemes by entering a subsidy scheme title, control number or granting
+            authority.
           </label>
         </div>
 
@@ -102,7 +103,7 @@
         </div>
         <div class="govuk-grid-column-two-thirds govuk-form-group">
           <a href="/addsubsidymeasures"><button class="govuk-button" data-module="govuk-button">
-              Add subsidy measure
+              Add subsidy scheme
             </button></a>
         </div>
         <div class="govuk-grid-column-one-third govuk-display-flex">
@@ -144,7 +145,7 @@
             </caption>
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header app-custom-class">Subsidy measure name</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Subsidy scheme name</th>
                 <th scope="col" class="govuk-table__header app-custom-class">Subsidy control no.</th>
                 <th scope="col" class="govuk-table__header app-custom-class">Granting authority</th>
                 <th scope="col" class="govuk-table__header app-custom-class">Start date</th>
@@ -157,19 +158,15 @@
             <tbody class="govuk-table__body">
               <% searchawards.awards.forEach(function(item) { %>
               <tr>
-                <td class="govuk-table__cell"><a href="/editsubsidymeasure"> <%= item.beneficiary.beneficiaryName  %>
+                <td class="govuk-table__cell"><a href="/editsubsidymeasure"> <%= item.beneficiaryName  %>
                   </a> </td>
-                <td class="govuk-table__cell"><%= item.subsidyMeasure.scNumber %></td>
-                <td class="govuk-table__cell">Granting Authority Name</td>
+                <td class="govuk-table__cell"><%= item.scNumber %></td>
+                <td class="govuk-table__cell"><%= item.gaName %></td>
                 <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
                 <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
                 <td class="govuk-table__cell">1 year</td>
-
                 <td class="govuk-table__cell" style="text-align:center"> £ 500,00</td>
-
-
               </tr>
-
               <% } ); %>
             </tbody>
           </table>

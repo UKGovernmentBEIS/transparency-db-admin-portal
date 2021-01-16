@@ -76,31 +76,31 @@ router.post("/", (req, res) => {
     10
   );
 
-  if (Legal_Granting_Date_Month_Global == parseInt("01", 8)) {
+  if (Legal_Granting_Date_Month_Global == 1) {
     GetMonthName = "January";
   }
-  if (Legal_Granting_Date_Month_Global == parseInt("02", 8)) {
+  if (Legal_Granting_Date_Month_Global == 2) {
     GetMonthName = "February";
   }
-  if (Legal_Granting_Date_Month_Global == parseInt("03", 8)) {
+  if (Legal_Granting_Date_Month_Global == 3) {
     GetMonthName = "March";
   }
-  if (Legal_Granting_Date_Month_Global == parseInt("04", 8)) {
+  if (Legal_Granting_Date_Month_Global == 4) {
     GetMonthName = "April";
   }
-  if (Legal_Granting_Date_Month_Global == parseInt("05", 8)) {
+  if (Legal_Granting_Date_Month_Global == 5) {
     GetMonthName = "May";
   }
-  if (Legal_Granting_Date_Month_Global == parseInt("06", 8)) {
+  if (Legal_Granting_Date_Month_Global == 6) {
     GetMonthName = "June";
   }
-  if (Legal_Granting_Date_Month_Global == parseInt("07", 8)) {
+  if (Legal_Granting_Date_Month_Global == 7) {
     GetMonthName = "July";
   }
-  if (Legal_Granting_Date_Month_Global == parseInt("08", 8)) {
+  if (Legal_Granting_Date_Month_Global == 8) {
     GetMonthName = "August";
   }
-  if (Legal_Granting_Date_Month_Global == parseInt("09", 8)) {
+  if (Legal_Granting_Date_Month_Global == 9) {
     GetMonthName = "September";
   }
   if (Legal_Granting_Date_Month_Global == 10) {
@@ -118,19 +118,20 @@ router.post("/", (req, res) => {
   if (buttonvalue == "continue") {
     //Empty field validations
 
-    if (!Subsidy_Control_Number) {
+    if (!Subsidy_Control_Number && !Subsidy_Measure_Title ) {
       Subsidy_Control_Number_Error = true;
-      SubsidyErrors[Additem] = "     Enter the subsidy control number";
+      SubsidyErrors[Additem] = "     Enter the either subsidy control number (Or)";
       SubsidyFocus[Additem] = "#Subsidy_Control_Number";
       Additem = Additem + 1;
-    }
-
-    if (!Subsidy_Measure_Title) {
       Subsidy_Measure_Title_Error = true;
-      SubsidyErrors[Additem] = "     Enter the subsidy measure title";
+      SubsidyErrors[Additem] = "     Enter the subsidy sheme name";
       SubsidyFocus[Additem] = "#Subsidy_Measure_Title";
       Additem = Additem + 1;
     }
+
+    // if (!Subsidy_Measure_Title) {
+     
+    // }
 
     if (Subsidy_Objective == "Empty") {
       Subsidy_Objective_Error = true;

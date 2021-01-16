@@ -494,3 +494,16 @@ button.link {
 .govuk-description-text:hover {
   color: rgb(46, 138, 202);
 }
+
+.govuk-width-8 {
+  width: 8%;
+}
+
+.govuk-button-cancel {
+  color: #169bd5;
+  text-decoration: underline;
+  height: 37px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 1%;
+}

@@ -24,6 +24,8 @@ test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
   const res = {};
   global.awards_status = "Filter results by status";
   global.frontend_totalRecordsPerPage = 10;
+  global.beis_url_accessmanagement =
+    "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.searchawards = {
     awards: [
       {
@@ -58,7 +60,7 @@ test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
   global.start_record = 1;
   global.end_record = 10;
   global.totalrows = 10;
-  axios.get.mockResolvedValue({
+  axios.post.mockResolvedValue({
     status: 200,
     data: {
       totalSearchResults: 10,

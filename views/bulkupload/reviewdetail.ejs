@@ -99,7 +99,11 @@
             Subsidy control (SC) number
           </dt>
           <dd class="govuk-summary-list__value">
+           <% if (locals.Subsidy_Control_Number_Global !== '') { %>
             <%= Subsidy_Control_Number_Global %>
+           <% } else { %>
+            NA
+            <% } %>
           </dd>
 
         </div>
@@ -108,7 +112,11 @@
             Subsidy scheme name
           </dt>
           <dd class="govuk-summary-list__value">
+            <% if (locals.Subsidy_Measure_Title_Global !== '') { %>
             <%= Subsidy_Measure_Title_Global %>
+            <% } else { %>
+              NA
+              <% } %>
           </dd>
 
         </div>
@@ -132,25 +140,23 @@
           </dd>
         </div>
 
-        <% if( locals.Subsidy_Element_Full_Amount_Global  ) { %>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Subsidy amount
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= Subsidy_Element_Full_Amount_Global %>
-
-          </dd>
-        </div>
-
-        <% } else { %>
+        <% if( locals.Subsidy_Instrument_Global == "Tax measures (tax credit, or tax/duty exemption)"  ) { %>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Subsidy range
           </dt>
           <dd class="govuk-summary-list__value">
             <%= Subsidy_Full_Amount_Range_Global %>
+          </dd>
+        </div>
 
+        <% } else { %>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidy amount
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= Subsidy_Element_Full_Amount_Global %>
           </dd>
         </div>
 

@@ -28,7 +28,7 @@
             </li>
             <li class="govuk-sub-navigation__item">
               <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                Subsidy Measures
+                Subsidy Schemes
               </a>
             </li>
             <li class="govuk-sub-navigation__item">
@@ -112,22 +112,25 @@
               <%= fetchawarddetails.subsidyInstrument%>
             </dd>
           </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Subsidy range
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <%= fetchawarddetails.subsidyFullAmountRange%>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Subsidy amount
-            </dt>
-            <dd class="govuk-summary-list__value">
-              £<%= fetchawarddetails.subsidyFullAmountExact%>
-            </dd>
-          </div>
+          <% if (fetchawarddetails.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Subsidy range
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <%= fetchawarddetails.subsidyFullAmountRange%>
+              </dd>
+            </div>
+            <% } else { %>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Subsidy amount
+              </dt>
+              <dd class="govuk-summary-list__value">
+                £<%= fetchawarddetails.subsidyFullAmountExact%>
+              </dd>
+            </div>
+            <% } %>
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
@@ -228,7 +231,7 @@
             id="Award_status" value="Rejected">
             Reject </button>
 
-        </div>
+          <a value="Cancel" href="/subsidyawardfetchcancel" class="govuk-button-cancel" name="Award_status">Cancel</a>
       </form>
   </main>
 </div>
