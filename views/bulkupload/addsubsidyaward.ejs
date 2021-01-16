@@ -19,7 +19,7 @@
 
       var subsidy_seleceted_value = $('#Subsidy_Instrument option:selected').val();
       // alert("tax selsubsidy sel value" + subsidy_seleceted_value )
-      if (subsidy_seleceted_value == 'Tax measures') {
+      if (subsidy_seleceted_value == 'Tax measures (tax credit, or tax/duty exemption)') {
         $('.amount_subsidy_tax').show();
         $('.amount_subsidy_nottax').hide();
       }
@@ -446,10 +446,10 @@
                 <% } else { %>
                 <option value="Guarantee">Guarantee</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Tax measures' ){ %>
-                <option value="Tax measures" selected>Tax measures (tax credit or tax/duty exemption)</option>
+                <% if( locals.Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)' ){ %>
+                <option value="Tax measures (tax credit, or tax/duty exemption)" selected>Tax measures (tax credit or tax/duty exemption)</option>
                 <% } else { %>
-                <option value="Tax measures">Tax measures (tax credit or tax/duty exemption)</option>
+                <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit or tax/duty exemption)</option>
                 <% } %>
                 <% if( locals.Subsidy_Instrument_Global == 'Provision of goods' ){ %>
                 <option value="Provision of goods" selected>Provision of goods or services below market prices</option>
@@ -503,11 +503,11 @@
                 <% } else { %>
                 <option value="Guarantee">Guarantee</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Tax measures' ){ %>
-                <option value="Tax measures" data-target="#Tax_measures" selected>Tax measures (tax credit or tax/duty
+                <% if( locals.Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)' ){ %>
+                <option value="Tax measures (tax credit, or tax/duty exemption)" data-target="#Tax_measures" selected>Tax measures (tax credit or tax/duty
                   exemption)</option>
                 <% } else { %>
-                <option value="Tax measures" data-target="#Tax_measures">Tax measures (tax credit or tax/duty exemption)
+                <option value="Tax measures (tax credit, or tax/duty exemption)" data-target="#Tax_measures">Tax measures (tax credit or tax/duty exemption)
                 </option>
                 <% } %>
                 <% if( locals.Subsidy_Instrument_Global == 'Provision of goods' ){ %>
@@ -559,40 +559,40 @@
                     <% } else { %>
                     <option value="Empty"> Select subsidy range(8)</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto500k' ) { %>
-                    <option value="1 - 500000" selected>£1 - £500,000</option>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£1 - £500,000' ) { %>
+                    <option value="£1 - £500,000" selected>£1 - £500,000</option>
                     <% } else { %>
-                    <option value="1 - 500000">£1 - £500,000</option>
+                    <option value="£1 - £500,000">£1 - £500,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto1000k' ) { %>
-                    <option value="500001 - 1000000" selected>£500,001 - £1,000,000</option>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£500,001 - £1,000,000' ) { %>
+                    <option value="£500,001 - £1,000,000" selected>£500,001 - £1,000,000</option>
                     <% } else { %>
-                    <option value="500001 - 1000000">£500,001 - £1,000,000</option>
+                    <option value="£500,001 - £1,000,000">£500,001 - £1,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto2000k' ) { %>
-                    <option value="1000001 - 2000000" selected>£1,000,001 - £2,000,000</option>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£1,000,001 - £2,000,000' ) { %>
+                    <option value="£1,000,001 - £2,000,000" selected>£1,000,001 - £2,000,000</option>
                     <% } else { %>
-                    <option value="1000001 - 2000000">£1,000,001 - £2,000,000</option>
+                    <option value="£1,000,001 - £2,000,000">£1,000,001 - £2,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto5000k' ) { %>
-                    <option value="2000001 - 5000000" selected>£2,000,001 - £5,000,000</option>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£2,000,001 - £5,000,000' ) { %>
+                    <option value="£2,000,001 - £5,000,000" selected>£2,000,001 - £5,000,000</option>
                     <% } else { %>
-                    <option value="2000001 - 5000000">£2,000,001 - £5,000,000</option>
+                    <option value="£2,000,001 - £5,000,000">£2,000,001 - £5,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto10000k' ) { %>
-                    <option value="5000001 - 10000000" selected>£5,000,001 - £10,000,000</option>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£5,000,001 - £10,000,000' ) { %>
+                    <option value="£5,000,001 - £10,000,000" selected>£5,000,001 - £10,000,000</option>
                     <% } else { %>
-                    <option value="5000001 - 10000000">£5,000,001 - £10,000,000</option>
+                    <option value="£5,000,001 - £10,000,000">£5,000,001 - £10,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto30000k' ) { %>
-                    <option value="10000001 - 30000000" selected>£10,000,001 - £30,000,000</option>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£10,000,001 - £30,000,000' ) { %>
+                    <option value="£10,000,001 - £30,000,000" selected>£10,000,001 - £30,000,000</option>
                     <% } else { %>
-                    <option value="10000001 - 30000000">£10,000,001 - £30,000,000</option>
+                    <option value="£10,000,001 - £30,000,000">£10,000,001 - £30,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == 'above30000k' ) { %>
-                    <option value="30000001 or more" selected>£30,000,001 or more</option>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£30,000,001 or more' ) { %>
+                    <option value="£30,000,001 or more" selected>£30,000,001 or more</option>
                     <% } else { %>
-                    <option value="30000001 or more">£30,000,001 or more</option>
+                    <option value="£30,000,001 or more">£30,000,001 or more</option>
                     <% } %>
                   </select>
                   <!-- <div class="govuk-radios">
@@ -706,46 +706,47 @@
                       Subsidy Full Amount Range (£)
                     </h1>
                   </legend>
+                 
                   <select class="govuk-select" id="Subsidy_Full_Amount_Range" name="Subsidy_Full_Amount_Range">
                     <% if( locals.Subsidy_Full_Amount_Range_Global == '' ) { %>
                     <option selected value="Empty"> Select subsidy range(8)</option>
                     <% } else { %>
                     <option value="Empty"> Select subsidy range(8)</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto500k' ) { %>
-                    <option value="1 - 500000" selected>£1 - £500,000</option>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£1 - £500,000' ) { %>
+                    <option value="£1 - £500,000" selected>£1 - £500,000</option>
                     <% } else { %>
-                    <option value="1 - 500000">£1 - £500,000</option>
+                    <option value="£1 - £500,000">£1 - £500,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto1000k' ) { %>
-                    <option value="500001 - 1000000" selected>£500,001 - £1,000,000</option>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£500,001 - £1,000,000' ) { %>
+                    <option value="£500,001 - £1,000,000" selected>£500,001 - £1,000,000</option>
                     <% } else { %>
-                    <option value="500001 - 1000000">£500,001 - £1,000,000</option>
+                    <option value="£500,001 - £1,000,000">£500,001 - £1,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto2000k' ) { %>
-                    <option value="1000001 - 2000000" selected>£1,000,001 - £2,000,000</option>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£1,000,001 - £2,000,000' ) { %>
+                    <option value="£1,000,001 - £2,000,000" selected>£1,000,001 - £2,000,000</option>
                     <% } else { %>
-                    <option value="1000001 - 2000000">£1,000,001 - £2,000,000</option>
+                    <option value="£1,000,001 - £2,000,000">£1,000,001 - £2,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto5000k' ) { %>
-                    <option value="2000001 - 5000000" selected>£2,000,001 - £5,000,000</option>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£2,000,001 - £5,000,000' ) { %>
+                    <option value="£2,000,001 - £5,000,000" selected>£2,000,001 - £5,000,000</option>
                     <% } else { %>
-                    <option value="2000001 - 5000000">£2,000,001 - £5,000,000</option>
+                    <option value="£2,000,001 - £5,000,000">£2,000,001 - £5,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto10000k' ) { %>
-                    <option value="5000001 - 10000000" selected>£5,000,001 - £10,000,000</option>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£5,000,001 - £10,000,000' ) { %>
+                    <option value="£5,000,001 - £10,000,000" selected>£5,000,001 - £10,000,000</option>
                     <% } else { %>
-                    <option value="5000001 - 10000000">£5,000,001 - £10,000,000</option>
+                    <option value="£5,000,001 - £10,000,000">£5,000,001 - £10,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto30000k' ) { %>
-                    <option value="10000001 - 30000000" selected>£10,000,001 - £30,000,000</option>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£10,000,001 - £30,000,000' ) { %>
+                    <option value="£10,000,001 - £30,000,000" selected>£10,000,001 - £30,000,000</option>
                     <% } else { %>
-                    <option value="10000001 - 30000000">£10,000,001 - £30,000,000</option>
+                    <option value="£10,000,001 - £30,000,000">£10,000,001 - £30,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == 'above30000k' ) { %>
-                    <option value="30000001 or more" selected>£30,000,001 or more</option>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£30,000,001 or more' ) { %>
+                    <option value="£30,000,001 or more" selected>£30,000,001 or more</option>
                     <% } else { %>
-                    <option value="30000001 or more">£30,000,001 or more</option>
+                    <option value="£30,000,001 or more">£30,000,001 or more</option>
                     <% } %>
                   </select>
                   <!-- <div class="govuk-radios">

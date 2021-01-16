@@ -112,26 +112,25 @@
               <%= fetchawarddetails.subsidyInstrument%>
             </dd>
           </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Subsidy range
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <%= fetchawarddetails.subsidyFullAmountRange%>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Subsidy amount
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <% if(fetchawarddetails.subsidyFullAmountExact != '0' && fetchawarddetails.subsidyFullAmountExact!= 'NA'){ %>
-              £<%= fetchawarddetails.subsidyFullAmountExact%>
-              <% }else{ %>
-              <%= fetchawarddetails.subsidyFullAmountExact%>
-              <% }%>
-            </dd>
-          </div>
+          <% if (fetchawarddetails.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Subsidy range
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <%= fetchawarddetails.subsidyFullAmountRange%>
+              </dd>
+            </div>
+            <% } else { %>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Subsidy amount
+              </dt>
+              <dd class="govuk-summary-list__value">
+                £<%= fetchawarddetails.subsidyFullAmountExact%>
+              </dd>
+            </div>
+            <% } %>
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
