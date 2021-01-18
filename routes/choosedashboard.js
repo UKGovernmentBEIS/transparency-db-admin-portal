@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
   // ********************************************************
   // Read environment property file and set the API URL end points
   // ********************************************************
-  
+
   Environment_variable = process.argv[2];
   if (Environment_variable == "env=dev") {
     beis_url_publishing = "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
@@ -30,14 +30,26 @@ router.post("/", async (req, res) => {
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
+  } else if (Environment_variable == "env=prod") {
+    beis_url_publishing = "https://prod-transparency-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement = "https://prod-transparency-db-access-management-service.azurewebsites.net";
+    beis_url_publicsearch = "https://prod-transparency-db-public-search-service.azurewebsites.net";
+    console.log(beis_url_publishing);
+    console.log(beis_url_accessmanagement);
+    console.log(beis_url_publicsearch);
   }
+
 
   // *******************
   // Globale declarations
   // *******************
   frontend_totalRecordsPerPage = 1;
 
-  var { dashboard_username, dashboard_roles, dashboard_GA } = req.body;
+  var {
+    dashboard_username,
+    dashboard_roles,
+    dashboard_GA
+  } = req.body;
 
   console.log("dashboard_username:" + dashboard_username);
   console.log("dashboard_roles:" + dashboard_roles);
@@ -49,7 +61,9 @@ router.post("/", async (req, res) => {
     const userPrincipleRequest =
       '{"userName": "TEST","password": "password123","role": "BEIS Administrator","grantingAuthorityGroupId": "123","grantingAuthorityGroupName": "test"}';
     var config = {
-      headers: { userPrinciple: userPrincipleRequest },
+      headers: {
+        userPrinciple: userPrincipleRequest
+      },
     };
 
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
@@ -65,7 +79,9 @@ router.post("/", async (req, res) => {
       console.log("API_response_code: try" + API_response_code);
       console.log("Body: ", apidata.data);
       dashboardawards = apidata.data;
-      res.render("bulkupload/dashboard-beisadmin",{beis_url_accessmanagement});
+      res.render("bulkupload/dashboard-beisadmin", {
+        beis_url_accessmanagement
+      });
     } catch (err) {
       response_error_message = err;
       console.log("message error : " + err);
@@ -77,7 +93,9 @@ router.post("/", async (req, res) => {
       dashboard_ga_name +
       '"}';
     var config = {
-      headers: { userPrinciple: userPrincipleRequest },
+      headers: {
+        userPrinciple: userPrincipleRequest
+      },
     };
 
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
@@ -105,7 +123,9 @@ router.post("/", async (req, res) => {
       dashboard_ga_name +
       '"}';
     var config = {
-      headers: { userPrinciple: userPrincipleRequest },
+      headers: {
+        userPrinciple: userPrincipleRequest
+      },
     };
 
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
@@ -133,7 +153,9 @@ router.post("/", async (req, res) => {
       dashboard_ga_name +
       '"}';
     var config = {
-      headers: { userPrinciple: userPrincipleRequest },
+      headers: {
+        userPrinciple: userPrincipleRequest
+      },
     };
 
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
