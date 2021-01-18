@@ -34,7 +34,7 @@
           <legend class="govuk-fieldset__legend">
             <label class="label" for="sort">Select user</label>
           </legend>
-          <select class="govuk-select govuk-grid-column-two-thirds" id="dashboard_username" name="dashboard_username">
+          <select class="govuk-select govuk-grid-column-two-thirds" id="dashboard_username" name="dashboard_username" aria-label="select user">
             <option value="" disabled selected>38 Options Available</option>
             <option value="Andrew Davis">Andrew Davis</option>
             <option value="Albert Einstein">Albert Einstein</option>
@@ -48,7 +48,7 @@
           <legend class="govuk-fieldset__legend">
             <label class="label" for="sort">Select the role you have</label>
           </legend>
-          <select class="govuk-select govuk-grid-column-two-thirds" id="dashboard_roles" name="dashboard_roles"
+          <select class="govuk-select govuk-grid-column-two-thirds" id="dashboard_roles" name="dashboard_roles" aria-label="select role"
             onchange=handleChange(event)>
             <option value="" disabled selected>4 Roles Available</option>
             <option value="BEIS Administrator">BEIS Administrator</option>
@@ -63,7 +63,7 @@
               Select the granting authority
             </label>
           </legend>
-          <select class="govuk-select govuk-grid-column-two-thirds" id="dashboard_GA" name="dashboard_GA">
+          <select class="govuk-select govuk-grid-column-two-thirds" id="dashboard_GA" name="dashboard_GA" aria-label="select the granting authority"> 
             <option value="" disabled selected>
               43 Granting Authorities Available
             </option>
