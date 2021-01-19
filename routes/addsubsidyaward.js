@@ -26,3 +26,5 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   res.render("bulkupload/addsubsidyaward");
 });
+
+module.exports = router;
