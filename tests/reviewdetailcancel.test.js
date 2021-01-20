@@ -21,6 +21,11 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
   const req = mockRequest();
+
+  global.Subsidy_Control_Number_Global_Substring = "";
+  global.Subsidy_Instrument_Global = "";
+  global.Subsidy_Element_Full_Amount_Global = "";
+  global.Legal_Granting_Date_Month_Global = "";
   global.Subsidy_Control_Number_Global = "";
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Objective_Global = "";
@@ -41,5 +46,5 @@ test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
   request(app)
     .get("/reviewdetailcancel", (req, res))
     .expect(200, done);
-  //   expect(abcd).toBe(200);
+  // expect(abcd).toBe(200);
 });

@@ -74,10 +74,9 @@ app.locals.Award_search_URL;
 app.locals.Award_selected_status;
 app.locals.awards_status;
 app.locals.Award_search_text;
-app.locals.beis_url_publishing ;
+app.locals.beis_url_publishing;
 app.locals.beis_url_accessmanagement;
 app.locals.beis_url_publicsearch;
-
 
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
@@ -96,8 +95,8 @@ app.use("/logintransparency", logintransparency);
 // var enterotp = require('./routes/enterotp');
 // app.use('/enterotp',enterotp);
 
-var test = require("./routes/test");
-app.use("/test", test);
+// var test = require("./routes/test");
+// app.use("/test", test);
 
 /****************************************************** */
 /* All Router declarations */

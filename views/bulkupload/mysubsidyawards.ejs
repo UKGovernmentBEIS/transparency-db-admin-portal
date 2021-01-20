@@ -126,7 +126,8 @@
         <div class="govuk-grid-column-one-half govuk-form-group">
           <form class="govuk-!-width-full govuk-padding-0" action="/subsidyawardsearch" method="POST">
 
-            <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text" name="search_award_text" aria-label="User input text box for Searching either Subsidy Measure Title, Subsidy Control number, or Granting Authority"
+            <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text" name="search_award_text"
+              aria-label="User input text box for Searching either Subsidy Measure Title, Subsidy Control number, or Granting Authority"
               type="text" <% if(Award_search_text) {%> value="<%= Award_search_text%>" <% } %> />
 
             <button class="govuk-button" data-module="govuk-button">
@@ -145,7 +146,8 @@
           </select> -->
 
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
-            <select class="govuk-select" id="sort" name="sort" aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
+            <select class="govuk-select" id="sort" name="sort"
+              aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
               <% if(awards_status  == "Filter results by status") { %>
               <option disabled value="Filter results by status" selected>Filter results by status </option>
               <% } else { %>
@@ -210,7 +212,8 @@
         <div class="govuk-grid-column-full govuk-form-group govuk-display-flex" style="text-align: right;">
           <label>Results per page</label>
           <form class="govuk-padding-0 govuk-width-8" action="/awardspageperroute" method="GET">
-            <select class="govuk-select" id="sort" name="sort" aria-label="Results per page" onchange="this.form.submit()">
+            <select class="govuk-select" id="sort" name="sort" aria-label="Results per page"
+              onchange="this.form.submit()">
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <option value="10" selected>10</option>
               <% } else { %>
@@ -251,7 +254,7 @@
       <form action="/collectcheckbox" method="GET" novalidate="">
 
 
-        <section>
+        <section class="govuk-table-responsive">
           <table class="govuk-table" id="datatable">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -355,22 +358,30 @@
                   </g>
                 </svg>
               </a>
-              <a href="/awardspageroute/?page=<%= previous_page %>" aria-label="go to subsidy awards search results previous page"  id="paginationlink_previous_page" class="previous round">Previous
+              <a href="/awardspageroute/?page=<%= previous_page %>"
+                aria-label="go to subsidy awards search results previous page" id="paginationlink_previous_page"
+                class="previous round">Previous
                 Page</a>
               <% } %>
 
               <% for (var i = start_page; i <= end_page; i++) { %>
               <% if (current_page_active != i ) { %>
-              <a id="paginationlink<%= i %>" aria-label="go to subsidy awards search results page <%= i %>" class="round btn-page" href="/awardspageroute/?page=<%= i %>"><%= i %></a>
+              <a id="paginationlink<%= i %>" aria-label="go to subsidy awards search results page <%= i %>"
+                class="round btn-page" href="/awardspageroute/?page=<%= i %>"><%= i %></a>
               <% } else { %>
-              <a id="paginationlink<%= i %>" aria-label="go to subsidy awards search results page <%= i %>"  class="round btn-page active" href="/awardspageroute/?page=<%= i %>"><%= i %></a>
+              <a id="paginationlink<%= i %>" aria-label="go to subsidy awards search results page <%= i %>"
+                class="round btn-page active" href="/awardspageroute/?page=<%= i %>"><%= i %></a>
               <% } %>
               <% } %>
 
               <% if (current_page_active != pageCount) { %>
-              <a href="/awardspageroute/?page=<%= next_page %>" aria-label="go to subsidy awards search results next page"  id="paginationlink_next_page" class="next round">Next Page</a>
-              <a href="/awardspageroute/?page=<%= pageCount %>"  aria-label="go to subsidy awards search results last page"  id="paginationlink_last_page" class="last round"><svg
-                  version="1.1" width="19px" height="30px" class="left-arrow" aria-label="go to subsidy awards last page">
+              <a href="/awardspageroute/?page=<%= next_page %>"
+                aria-label="go to subsidy awards search results next page" id="paginationlink_next_page"
+                class="next round">Next Page</a>
+              <a href="/awardspageroute/?page=<%= pageCount %>"
+                aria-label="go to subsidy awards search results last page" id="paginationlink_last_page"
+                class="last round"><svg version="1.1" width="19px" height="30px" class="left-arrow"
+                  aria-label="go to subsidy awards last page">
                   <defs>
                     <mask fill="white" id="clip3">
                       <path

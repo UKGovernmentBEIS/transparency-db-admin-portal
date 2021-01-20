@@ -507,3 +507,8 @@ button.link {
   align-items: center;
   padding: 0 1%;
 }
+
+.govuk-table-responsive {
+  min-height: 0.01%;
+  overflow-x: auto;
+}
