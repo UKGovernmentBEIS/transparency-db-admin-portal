@@ -224,7 +224,19 @@ app.use("/reviewdetailcancel", reviewdetailcancel);
 
 //Users Pages
 
-var manageusers = require("./routes/manage-users");
+var manageusers = require("./routes/users-manage");
 app.use("/manageusers", manageusers);
+
+var manageusers = require("./routes/user-add");
+app.use("/adduser", manageusers);
+
+var canceluser = require("./routes/user-cancel");
+app.use("/canceluser", canceluser);
+
+var canceluser = require("./routes/user-review");
+app.use("/reviewuser", canceluser);
+
+var useraddedsuccessfully = require("./routes/user-added-successfully");
+app.use("/useraddedsuccessfully", useraddedsuccessfully);
 
 module.exports = app;

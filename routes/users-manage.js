@@ -60,7 +60,7 @@ router.get("/", async (req, res) => {
     } else {
       end_page = 9;
     }
-    res.render("bulkupload/manage-users", {
+    res.render("bulkupload/users-manage", {
       pageCount,
       previous_page,
       next_page,

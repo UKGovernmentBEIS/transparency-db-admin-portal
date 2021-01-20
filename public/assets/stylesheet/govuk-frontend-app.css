@@ -519,3 +519,14 @@ button.link {
 .header-subtitle:hover {
   text-decoration: underline;
 }
+.govuk-user-added {
+  background-color: rgba(0, 112, 60, 1);
+
+  text-align: center;
+  padding: 9%;
+}
+
+.govuk-user-added h1 {
+  color: white;
+  margin-bottom: 0;
+}

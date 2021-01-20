@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/headersubsidy.ejs') %>
+
+<body>
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+            <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <nav aria-label="Sub navigation">
+                        <ul class="govuk-sub-navigation__list">
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                    Granting Authorities
+                                </a>
+                            </li>
+
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/manageusers">
+                                    Users
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
+                                    Subsidy Measures
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
+                                    Subsidy Awards
+                                </a>
+                            </li>
+
+
+
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    Sign out
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    My account
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+
+            <br />
+            <br />
+
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Users</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a1 class="govuk-breadcrumbs__link active" href="#">Add a new user</a1>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+            <div class="govuk-grid-row">
+
+                <div class="govuk-grid-column-two-thirds govuk-form-group">
+                    <div class="govuk-user-added">
+                        <h1 class="govuk-heading-xl">New user added</h1>
+                    </div>
+                </div>
+                <div class="govuk-grid-column-full govuk-form-group">
+                    <p class="govuk-body govuk-!-font-size-19">You have added a new user.</p>
+                    <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-27">What happens next</p>
+                    <p class="govuk-body govuk-!-font-size-19 govuk-grid-column-two-thirds" style="padding: 0;">We have
+                        sent
+                        an email to the user with a link to set up
+                        their
+                        password and sign in.</p>
+
+                </div>
+                <div class="govuk-grid-column-full govuk-form-group">
+                    <form action="/submitforapproval" method="post" novalidate>
+                        <a class="govuk-button" href="/manageusers" data-module="govuk-button">
+                            View all users
+                        </a>
+
+                        <a class="govuk-button govuk-button--secondary" href="/adduser" data-module="govuk-button">Add
+                            another
+                            user</a>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+
+    </div>
+
+    </main>
+    </div>
+
+
+</body>
+
+<%- include('../partials/footer.ejs') %>
+
+
+</html>

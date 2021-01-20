@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/headercss.ejs') %>
+    <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
+
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
+    <script>
+
+        //select all checkboxes
+        $(document).ready(function () {
+
+            $("#select_all").change(function () { //"select all" change
+                $(".checkbox").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+            });
+
+            //".checkbox" change
+            $('.checkbox').change(function () {
+                //uncheck "select all", if one of the listed checkbox item is unchecked
+                if (false == $(this).prop("checked")) { //if this item is unchecked
+                    $("#select_all").prop('checked', false); //change "select all" checked status to false
+                }
+                //check "select all" if all checkbox items are checked
+                if ($('.checkbox:checked').length == $('.checkbox').length) {
+                    $("#select_all").prop('checked', true);
+                }
+            });
+
+            $(".round").on('click', function (event) {
+                alrt("pageination button click1")
+                $("input[type='checkbox']").attr("checked", false);
+            });
+
+        });
+
+    </script>
+</head>
+
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <nav aria-label="Sub navigation">
+                        <ul class="govuk-sub-navigation__list">
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                    Granting Authorities
+                                </a>
+                            </li>
+
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/managerusers">
+                                    Users
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
+                                    Subsidy Schemes
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
+                                    Subsidy Awards
+                                </a>
+                            </li>
+
+
+
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    Sign out
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    My account
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+
+            <br />
+            <br />
+
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/manageusers">Users</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link active" href="#">Add a new user</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+
+            <h1 class="govuk-heading-xl">
+                Add a new user</h1>
+            <div id="sign-in-hint" class="govuk-hint">
+                Role
+            </div>
+            <div class="govuk-radios govuk-form-group">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="BEISAdmin" name="where-do-you-live" type="radio"
+                        value="england">
+                    <label class="govuk-label govuk-radios__label" for="BEISAdmin">
+                        BEIS Administrator
+                    </label>
+                    <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                        Will be able to add, edit and approve users, granting authorities, subsidy schemes and awards.
+                    </div>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="GAAdmin" name="where-do-you-live" type="radio"
+                        value="scotland">
+                    <label class="govuk-label govuk-radios__label" for="GAAdmin">
+                        Granting Authority Administrator
+                    </label>
+                    <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                        Will be able to add, edit and approve users, subsidy schemes and awards.
+                    </div>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="GAApprover" name="where-do-you-live" type="radio"
+                        value="wales">
+                    <label class="govuk-label govuk-radios__label" for="GAApprover">
+                        Granting Authority Approver
+                    </label>
+                    <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                        Will be able to add, edit and approve subsidy schemes and awards.
+                    </div>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="GAEncoder" name="where-do-you-live" type="radio"
+                        value="northern-ireland">
+                    <label class="govuk-label govuk-radios__label" for="GAEncoder">
+                        Granting Authority Encoder
+                    </label>
+                    <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                        Will be able to add and edit subsidy awards.
+                    </div>
+                </div>
+            </div>
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full govuk-grid-row">
+                    <div class="govuk-form-group govuk-grid-column-one-third">
+                        <label class="govuk-label" for="width-20">
+                            Granting Authority name
+                        </label>
+                        <input class="govuk-input govuk-input--width-20" placeholder="Start typing name" type="text">
+                    </div>
+
+                </div>
+                <div class="govuk-grid-column-full govuk-grid-row">
+                    <div class="govuk-form-group govuk-grid-column-one-third">
+                        <label class="govuk-label" for="width-20">
+                            First name
+                        </label>
+                        <input class="govuk-input govuk-input--width-20" type="text">
+                    </div>
+
+                </div>
+                <div class="govuk-grid-column-full govuk-grid-row">
+                    <div class="govuk-form-group govuk-grid-column-one-third">
+                        <label class="govuk-label" for="width-20">
+                            Last name
+                        </label>
+                        <input class="govuk-input govuk-input--width-20" type="text">
+                    </div>
+
+                </div>
+                <div class="govuk-grid-column-full govuk-grid-row">
+                    <div class="govuk-form-group govuk-grid-column-one-third">
+                        <label class="govuk-label" for="width-20">
+                            Email address
+                        </label>
+                        <input class="govuk-input govuk-input--width-20" type="text">
+                    </div>
+
+                </div>
+                <div class="govuk-grid-column-full govuk-grid-row">
+                    <div class="govuk-form-group govuk-grid-column-full">
+                        <label class="govuk-label" for="width-20">
+                            Mobile phone number
+                        </label>
+                        <div class="govuk-hint">
+                            We will send a reset code to this phone number if the user forgets their password.
+                        </div>
+                        <input class="govuk-input govuk-input--width-20" type="text">
+                    </div>
+
+                </div>
+            </div>
+            <button class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+            <a class="govuk-link govuk-cancel-button-link">
+                Cancel
+            </a>
+        </main>
+    </div>
+</body>
+
+<%- include('../partials/footer.ejs') %>
+
+</html>
