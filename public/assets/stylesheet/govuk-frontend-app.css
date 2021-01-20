@@ -13,7 +13,7 @@
 
 .govuk-width-container {
   max-width: 960px;
-  width: 960px;
+  /* width: 960px; */
   margin-right: auto;
   margin-left: auto;
 }
@@ -511,4 +511,11 @@ button.link {
 .govuk-table-responsive {
   min-height: 0.01%;
   overflow-x: auto;
+}
+.header-subtitle {
+  color: white;
+  text-decoration: none;
+}
+.header-subtitle:hover {
+  text-decoration: underline;
 }

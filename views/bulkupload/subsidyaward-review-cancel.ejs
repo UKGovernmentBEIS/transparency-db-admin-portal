@@ -2,18 +2,16 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - Add Subsidy Measures</title>
+    <title>GOV.UK - Subsidy Award Review</title>
+    <%- include('../partials/headercss.ejs') %>
 </head>
-
+<!-- 
 <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
-<script src="/assets/javascripts/vendor/modernizr.js"></script>
-
-
-<%- include('../partials/header.ejs') %>
+<script src="/assets/javascripts/vendor/modernizr.js"></script> -->
 
 <body class="govuk-template__body app-example-page">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-
+    <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
 
@@ -38,7 +36,7 @@
                                 </a>
                             </li>
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page"  href="/mysubsidyawards">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidyawards">
                                     Subsidy Awards
                                 </a>
                             </li>

@@ -1,78 +1,83 @@
 <!DOCTYPE html>
 <html>
-<title>GOV.UK - Add Subsidy Award</title>
-<!-- <script type="text/javascript" language="javascript"
+
+<head>
+  <title>GOV.UK - Add Subsidy Award</title>
+  <!-- <script type="text/javascript" language="javascript"
   src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 
-<%- include('../partials/headersubsidy.ejs') %>
-<script>
-  $(document).ready(function () {
-    $('.amount_subsidy_tax').hide();
-    $('.amount_subsidy_nottax').hide();
+  <%- include('../partials/headersubsidy.ejs') %>
+  <script>
+    $(document).ready(function () {
+      $('.amount_subsidy_tax').hide();
+      $('.amount_subsidy_nottax').hide();
 
-    $('#Subsidy_Instrument').change(function (e) {
+      $('#Subsidy_Instrument').change(function (e) {
 
-      var subsidy_seleceted_value = $('#Subsidy_Instrument option:selected').val();
-      // alert("tax selsubsidy sel value" + subsidy_seleceted_value )
-      if (subsidy_seleceted_value == 'Tax measures (tax credit, or tax/duty exemption)') {
-        $('.amount_subsidy_tax').show();
-        $('.amount_subsidy_nottax').hide();
-      }
-      else {
-        $('.amount_subsidy_tax').hide();
-        $('.amount_subsidy_nottax').show();
-      }
+        var subsidy_seleceted_value = $('#Subsidy_Instrument option:selected').val();
+        // alert("tax selsubsidy sel value" + subsidy_seleceted_value )
+        if (subsidy_seleceted_value == 'Tax measures (tax credit, or tax/duty exemption)') {
+          $('.amount_subsidy_tax').show();
+          $('.amount_subsidy_nottax').hide();
+        }
+        else {
+          $('.amount_subsidy_tax').hide();
+          $('.amount_subsidy_nottax').show();
+        }
+
+      });
+
+      jQuery('#Subsidy_Control_Number').on('input', function () {
+        // alert("changeed: " + $('#Subsidy_Control_Number').val());
+        var SubsidyMeasureTitle = document.getElementById("Subsidy_Measure_Title");
+        SubsidyMeasureTitle = $('#Subsidy_Control_Number').val();
+
+      });
+
+      $('.govuk-date-input__input').on('keypress', function (e) {
+        return e.metaKey || // cmd/ctrl
+          e.which <= 0 || // arrow keys
+          e.which == 8 || // delete key
+          /[0-9]/.test(String.fromCharCode(e.which)); // numbers
+
+      });
+
+
+      document.getElementById('mylink').onclick = function () {
+        document.getElementById('myform').submit();
+        return false;
+      };
 
     });
 
-    jQuery('#Subsidy_Control_Number').on('input', function () {
-      // alert("changeed: " + $('#Subsidy_Control_Number').val());
-      var SubsidyMeasureTitle = document.getElementById("Subsidy_Measure_Title");
-      SubsidyMeasureTitle = $('#Subsidy_Control_Number').val();
-
-    });
-
-    $('.govuk-date-input__input').on('keypress', function (e) {
-      return e.metaKey || // cmd/ctrl
-        e.which <= 0 || // arrow keys
-        e.which == 8 || // delete key
-        /[0-9]/.test(String.fromCharCode(e.which)); // numbers
-
-    });
-
-
-    document.getElementById('mylink').onclick = function () {
-      document.getElementById('myform').submit();
-      return false;
+    changeSubsidyPurpose = (event) => {
+      if (event.target.value == 'Other')
+        document.getElementById("other_purpose").style.display = "block";
+      else
+        document.getElementById("other_purpose").style.display = "none";
     };
 
-  });
+    changeSubsidyType = (event) => {
+      if (event.target.value == 'Other')
+        document.getElementById("other_type").style.display = "block";
+      else
+        document.getElementById("other_type").style.display = "none";
+    };
+  </script>
+</head>
 
-  changeSubsidyPurpose = (event) => {
-    if (event.target.value == 'Other')
-      document.getElementById("other_purpose").style.display = "block";
-    else
-      document.getElementById("other_purpose").style.display = "none";
-  };
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
-  changeSubsidyType = (event) => {
-    if (event.target.value == 'Other')
-      document.getElementById("other_type").style.display = "block";
-    else
-      document.getElementById("other_type").style.display = "none";
-  };
-</script>
-
-<body>
+  <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
     <main class="govuk-main-wrapper " id="main-content" role="main">
 
-      <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full">
           <nav aria-label="Sub navigation">
@@ -84,7 +89,7 @@
               </li>
 
               <li class="govuk-sub-navigation__item">
-                <a class="govuk-sub-navigation__link" href="#">
+                <a class="govuk-sub-navigation__link" href="/manageusers">
                   Users
                 </a>
               </li>
@@ -469,9 +474,11 @@
                 <option value="Guarantee">Guarantee</option>
                 <% } %>
                 <% if( locals.Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)' ){ %>
-                <option value="Tax measures (tax credit, or tax/duty exemption)" selected>Tax measures (tax credit or tax/duty exemption)</option>
+                <option value="Tax measures (tax credit, or tax/duty exemption)" selected>Tax measures (tax credit or
+                  tax/duty exemption)</option>
                 <% } else { %>
-                <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit or tax/duty exemption)</option>
+                <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit or tax/duty
+                  exemption)</option>
                 <% } %>
                 <% if( locals.Subsidy_Instrument_Global == 'Provision of goods' ){ %>
                 <option value="Provision of goods" selected>Provision of goods or services below market prices</option>
@@ -527,10 +534,12 @@
                 <option value="Guarantee">Guarantee</option>
                 <% } %>
                 <% if( locals.Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)' ){ %>
-                <option value="Tax measures (tax credit, or tax/duty exemption)" data-target="#Tax_measures" selected>Tax measures (tax credit or tax/duty
+                <option value="Tax measures (tax credit, or tax/duty exemption)" data-target="#Tax_measures" selected>
+                  Tax measures (tax credit or tax/duty
                   exemption)</option>
                 <% } else { %>
-                <option value="Tax measures (tax credit, or tax/duty exemption)" data-target="#Tax_measures">Tax measures (tax credit or tax/duty exemption)
+                <option value="Tax measures (tax credit, or tax/duty exemption)" data-target="#Tax_measures">Tax
+                  measures (tax credit or tax/duty exemption)
                 </option>
                 <% } %>
                 <% if( locals.Subsidy_Instrument_Global == 'Provision of goods' ){ %>
@@ -734,7 +743,7 @@
                       Subsidy Full Amount Range (£)
                     </h1>
                   </legend>
-                 
+
                   <select class="govuk-select" id="Subsidy_Full_Amount_Range" name="Subsidy_Full_Amount_Range">
                     <% if( locals.Subsidy_Full_Amount_Range_Global == '' ) { %>
                     <option selected value="Empty"> Select subsidy range(8)</option>
@@ -2108,9 +2117,7 @@
 
     </main>
   </div>
+  <%- include('../partials/footer.ejs') %>
 </body>
-
-<%- include('../partials/footer.ejs') %>
-
 
 </html>

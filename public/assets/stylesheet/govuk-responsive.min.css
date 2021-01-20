@@ -560,7 +560,7 @@
 .govuk-body-m,
 .govuk-body,
 .app-prose-scope p {
-  color: #0b0c0c;
+  /* color: #0b0c0c; */
   font-family: "GDS Transport", arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -928,7 +928,7 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   width: 100%;
-  padding: 0 15px;
+  /* padding: 0 15px; */
 }
 @media (min-width: 40.0625em) {
   .govuk-grid-column-one-half {
@@ -1643,7 +1643,8 @@
   }
 }
 @media (min-width: 40.0625em) {
-  .govuk-button {
+  .govuk-button,
+  .govuk-login-button {
     width: auto;
   }
 }
@@ -7580,11 +7581,11 @@ p code {
   margin-bottom: 0;
 }
 
-@media screen and (max-width: 767px){
-.govuk-table-responsive {
+@media screen and (max-width: 767px) {
+  .govuk-table-responsive {
     width: 100%;
     margin-bottom: 15px;
     overflow-y: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
-}
+  }
 }

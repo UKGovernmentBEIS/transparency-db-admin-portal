@@ -222,4 +222,9 @@ app.use("/subsidyawardrejectreason", subsidyawardrejectreason);
 var reviewdetailcancel = require("./routes/reviewdetailcancel");
 app.use("/reviewdetailcancel", reviewdetailcancel);
 
+//Users Pages
+
+var manageusers = require("./routes/manage-users");
+app.use("/manageusers", manageusers);
+
 module.exports = app;
