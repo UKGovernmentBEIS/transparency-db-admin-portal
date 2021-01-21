@@ -3,6 +3,8 @@
 
 <head>
   <title>GOV.UK - Add Subsidy Award</title>
+  <%- include('../partials/headercss.ejs') %>
+
   <!-- <script type="text/javascript" language="javascript"
   src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -11,26 +13,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 
-  <%- include('../partials/headersubsidy.ejs') %>
   <script>
     $(document).ready(function () {
       $('.amount_subsidy_tax').hide();
       $('.amount_subsidy_nottax').hide();
 
-      $('#Subsidy_Instrument').change(function (e) {
+      // $('#Subsidy_Instrument').change(function (e) {
 
-        var subsidy_seleceted_value = $('#Subsidy_Instrument option:selected').val();
-        // alert("tax selsubsidy sel value" + subsidy_seleceted_value )
-        if (subsidy_seleceted_value == 'Tax measures (tax credit, or tax/duty exemption)') {
-          $('.amount_subsidy_tax').show();
-          $('.amount_subsidy_nottax').hide();
-        }
-        else {
-          $('.amount_subsidy_tax').hide();
-          $('.amount_subsidy_nottax').show();
-        }
+      //   var subsidy_seleceted_value = $('#Subsidy_Instrument option:selected').val();
+      //   // alert("tax selsubsidy sel value" + subsidy_seleceted_value )
 
-      });
+
+      // });
 
       jQuery('#Subsidy_Control_Number').on('input', function () {
         // alert("changeed: " + $('#Subsidy_Control_Number').val());
@@ -56,13 +50,50 @@
     });
 
     changeSubsidyPurpose = (event) => {
+
       if (event.target.value == 'Other')
         document.getElementById("other_purpose").style.display = "block";
       else
         document.getElementById("other_purpose").style.display = "none";
     };
 
+    getSubsidyInstrument = (subsidyValue) => {
+      var objSelect = document.getElementById("Subsidy_Instrument");
+      setSelectedValue(objSelect, subsidyValue);
+
+      if (subsidyValue == 'Tax measures (tax credit, or tax/duty exemption)') {
+        $('.amount_subsidy_tax').show();
+        $('.amount_subsidy_nottax').hide();
+      }
+      else {
+        $('.amount_subsidy_tax').hide();
+        $('.amount_subsidy_nottax').show();
+      }
+      if (event.target.value == 'Other')
+        document.getElementById("other_type").style.display = "block";
+      else
+        document.getElementById("other_type").style.display = "none";
+    }
+
+    function setSelectedValue(selectObj, valueToSet) {
+      for (var i = 0; i < selectObj.options.length; i++) {
+        if (selectObj.options[i].value == valueToSet) {
+          selectObj.options[i].selected = true;
+          return;
+        }
+      }
+    }
+
     changeSubsidyType = (event) => {
+
+      if (event.target.value == 'Tax measures (tax credit, or tax/duty exemption)') {
+        $('.amount_subsidy_tax').show();
+        $('.amount_subsidy_nottax').hide();
+      }
+      else {
+        $('.amount_subsidy_tax').hide();
+        $('.amount_subsidy_nottax').show();
+      }
       if (event.target.value == 'Other')
         document.getElementById("other_type").style.display = "block";
       else
@@ -71,7 +102,8 @@
   </script>
 </head>
 
-<body class="govuk-template__body app-example-page">
+<body class="govuk-template__body app-example-page"
+  onload="getSubsidyInstrument('<%= locals.Subsidy_Instrument_Global %>')">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
   <%- include('../partials/header.ejs') %>
@@ -447,8 +479,18 @@
               </span>
 
               <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument"
-                onChange="changeSubsidyType(event)">
-                <% if( locals.Subsidy_Instrument_Global == '' ){ %>
+                onchange="changeSubsidyType(event)">
+                <option value="">Select subsidy type (8)</option>
+                <option value="Direct Grant">Direct Grant</option>
+                <option value="Loan">Loan</option>
+                <option value="Equity">Equity</option>
+                <option value="Guarantee">Guarantee</option>
+                <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit or tax/duty
+                  exemption)</option>
+                <option value="Provision of goods">Provision of goods or services below market prices</option>
+                <option value="Purchase of goods">Purchase of goods services above market prices</option>
+                <option value="Other">Other</option>
+                <!-- <% if( locals.Subsidy_Instrument_Global == '' ){ %>
                 <option value="Empty" selected>Select subsidy type (8)</option>
                 <% } else { %>
                 <option value="Empty">Select subsidy type (8)</option>
@@ -494,7 +536,7 @@
                 <option value="Other" selected>Other</option>
                 <% } else { %>
                 <option value="Other">Other</option>
-                <% } %>
+                <% } %> -->
 
 
               </select>
@@ -507,8 +549,8 @@
                 Subsidy type
               </label>
               <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument"
-                onChange="changeSubsidyType(event)">
-                <% if( locals.Subsidy_Instrument_Global == '' ){ %>
+                onchange="changeSubsidyType(event)">
+                <!-- <% if( locals.Subsidy_Instrument_Global == '' ){ %>
                 <option value="Empty" selected>Select subsidy type (8)</option>
                 <% } else { %>
                 <option value="Empty">Select subsidy type (8)</option>
@@ -556,9 +598,18 @@
                 <option value="Other" data-target="#Not_Tax_measures" selected>Other</option>
                 <% } else { %>
                 <option value="Other" data-target="#Not_Tax_measures">Other</option>
-                <% } %>
+                <% } %> -->
 
-
+                <option value="">Select subsidy type (8)</option>
+                <option value="Direct Grant">Direct Grant</option>
+                <option value="Loan">Loan</option>
+                <option value="Equity">Equity</option>
+                <option value="Guarantee">Guarantee</option>
+                <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit or tax/duty
+                  exemption)</option>
+                <option value="Provision of goods">Provision of goods or services below market prices</option>
+                <option value="Purchase of goods">Purchase of goods services above market prices</option>
+                <option value="Other" data-target="#Not_Tax_measures">Other</option>
               </select>
             </div>
 
