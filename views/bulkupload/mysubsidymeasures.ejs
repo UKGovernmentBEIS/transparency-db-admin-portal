@@ -3,6 +3,7 @@
 
 <head>
   <title>GOV.UK - Subsidy Measures search page</title>
+  <%- include('../partials/headercss.ejs') %>
 </head>
 
 <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
@@ -10,11 +11,11 @@
 <script src="/assets/javascripts/vendor/modernizr.js"></script>
 
 
-<%- include('../partials/header.ejs') %>
+
 
 <body class="govuk-template__body app-example-page">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-
+  <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
     <main class="govuk-main-wrapper " id="main-content" role="main">
 
