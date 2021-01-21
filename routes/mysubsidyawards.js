@@ -8,8 +8,8 @@ const axios = require("axios");
 var request = require("request");
 
 router.get("/", async (req, res) => {
-  console.log("TEST")
-  console.log("url :" +  beis_url_accessmanagement );
+  console.log("TEST");
+  console.log("url :" + beis_url_accessmanagement);
   frontend_totalRecordsPerPage = 10;
   Award_page = 1;
   awards_status = "Filter results by status";
@@ -74,7 +74,7 @@ router.get("/", async (req, res) => {
     response_error_message = err;
     console.log("message error : " + err);
     console.log("response_error_message catch : " + response_error_message);
-    // res.render('publicusersearch/noresults');
+    // res.render("publicusersearch/noresults");
   }
 
   // end of POST call

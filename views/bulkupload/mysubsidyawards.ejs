@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/header.ejs') %>
 
-<link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
-<script src="/assets/javascripts/vendor/modernizr.js"></script>
+<head>
+  <%- include('../partials/headercss.ejs') %>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
+  <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
+  <script src="/assets/javascripts/vendor/modernizr.js"></script>
 
-<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
+
+  <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
-<script>
+  <script>
 
-  //select all checkboxes
-  $(document).ready(function () {
+    //select all checkboxes
+    $(document).ready(function () {
 
-    $("#select_all").change(function () { //"select all" change
-      $(".checkbox").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+      $("#select_all").change(function () { //"select all" change
+        $(".checkbox").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+      });
+
+      //".checkbox" change
+      $('.checkbox').change(function () {
+        //uncheck "select all", if one of the listed checkbox item is unchecked
+        if (false == $(this).prop("checked")) { //if this item is unchecked
+          $("#select_all").prop('checked', false); //change "select all" checked status to false
+        }
+        //check "select all" if all checkbox items are checked
+        if ($('.checkbox:checked').length == $('.checkbox').length) {
+          $("#select_all").prop('checked', true);
+        }
+      });
+
+      $(".round").on('click', function (event) {
+        alrt("pageination button click1")
+        $("input[type='checkbox']").attr("checked", false);
+      });
+
     });
 
-    //".checkbox" change
-    $('.checkbox').change(function () {
-      //uncheck "select all", if one of the listed checkbox item is unchecked
-      if (false == $(this).prop("checked")) { //if this item is unchecked
-        $("#select_all").prop('checked', false); //change "select all" checked status to false
-      }
-      //check "select all" if all checkbox items are checked
-      if ($('.checkbox:checked').length == $('.checkbox').length) {
-        $("#select_all").prop('checked', true);
-      }
-    });
+  </script>
+</head>
 
-    $(".round").on('click', function (event) {
-      alrt("pageination button click1")
-      $("input[type='checkbox']").attr("checked", false);
-    });
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
-  });
-
-</script>
-
-
-<body>
+  <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
-
-
     <main class="govuk-main-wrapper " id="main-content" role="main">
 
       <div class="govuk-grid-row">

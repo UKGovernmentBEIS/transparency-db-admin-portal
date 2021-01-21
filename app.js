@@ -239,4 +239,10 @@ app.use("/reviewuser", canceluser);
 var useraddedsuccessfully = require("./routes/user-added-successfully");
 app.use("/useraddedsuccessfully", useraddedsuccessfully);
 
+var userindividualdetails = require("./routes/user-individual-detail");
+app.use("/userindividualdetails", userindividualdetails);
+
+var userdeactivated = require("./routes/user-deactivated-successfully");
+app.use("/userdeactivated", userdeactivated);
+
 module.exports = app;
