@@ -2,12 +2,15 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - Subsidy Award Review</title>
+    <title>GOV.UK - Add Subsidy Measures</title>
     <%- include('../partials/headercss.ejs') %>
 </head>
 <!-- 
 <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
 <script src="/assets/javascripts/vendor/modernizr.js"></script> -->
+
+
+
 
 <body class="govuk-template__body app-example-page">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
@@ -26,17 +29,17 @@
                                 </a>
                             </li>
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="#">
+                                <a class="govuk-sub-navigation__link" href="/manageusers">
                                     Users
                                 </a>
                             </li>
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidymeasures">
                                     Subsidy Measures
                                 </a>
                             </li>
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidyawards">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
                                     Subsidy Awards
                                 </a>
                             </li>
@@ -64,10 +67,10 @@
                         <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" href="/">Subsidy awards</a>
+                        <a class="govuk-breadcrumbs__link" href="/manageusers">Users</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active" href="/">Add a subsidy award</a>
+                        <a class="govuk-breadcrumbs__link active" href="#">User details</a>
                     </li>
                 </ol>
             </div>
@@ -75,18 +78,18 @@
 
             <!-- Body header starts here -->
             <div class="govuk-body-cancel">
-                <h1 class="govuk-heading-l">Cancel new subsidy award</h1>
+                <h1 class="govuk-heading-l">Deactivate user</h1>
 
-                <p class="govuk-body govuk-!-font-size-19 govuk-!-width-two-thirds">If you cancel, you will lose any
-                    information that you’ve
-                    already entered for this subsidy award</p>
+                <p class="govuk-body govuk-!-font-size-19 govuk-!-width-two-thirds">If you make this user inactive, the
+                    user will no longer be able to access the system.</p>
                 <!-- Body header ends here -->
-                <p class="govuk-body govuk-!-font-size-19">Are you sure you want to cancel?</p>
+                <p class="govuk-body govuk-!-font-size-19">Are you sure you want to make this user inactive?</p>
 
-                <a href="/mysubsidyawards">
-                    <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Yes, cancel</button>
+                <a href="/userdeactivated">
+                    <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Yes, deactivate
+                        user</button>
                 </a>
-                <a href="/reviewdetailcancel">
+                <a href="/userindividualdetails">
                     <button class="govuk-button govuk-button_sm govuk-button--secondary"
                         data-module="govuk-button">No</button>
                 </a>

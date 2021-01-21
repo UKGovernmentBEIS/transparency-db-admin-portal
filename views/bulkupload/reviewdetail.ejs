@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <%- include('../partials/headersubsidy.ejs') %>
 
@@ -23,7 +23,7 @@
               </li>
 
               <li class="govuk-sub-navigation__item">
-                <a class="govuk-sub-navigation__link" href="#">
+                <a class="govuk-sub-navigation__link" href="/manageusers">
                   Users
                 </a>
               </li>
@@ -99,11 +99,11 @@
             Subsidy control (SC) number
           </dt>
           <dd class="govuk-summary-list__value">
-           <% if (Subsidy_Control_Number_Global !== '') { %>
+            <% if (Subsidy_Control_Number_Global !== '') { %>
             <%= Subsidy_Control_Number_Global %>
-           <% } else { %>
+            <% } else { %>
             NA
-            <% } %> 
+            <% } %>
           </dd>
 
         </div>
@@ -115,8 +115,8 @@
             <% if (Subsidy_Measure_Title_Global !== '') { %>
             <%= Subsidy_Measure_Title_Global %>
             <% } else { %>
-              NA
-              <% } %> 
+            NA
+            <% } %>
           </dd>
 
         </div>

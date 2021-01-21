@@ -74,7 +74,7 @@ test("Unit testing for update results page per route Test for POST call", (done)
     .expect(200, done);
 });
 
-test("Unit testing for update results page per route Test for POST call", (done) => {
+test("Unit testing for update results page per route Test for POST call", async () => {
   const req = mockRequest();
   global.isFileUploadEmpty = false;
   global.isNotCsvOrExcel = false;
@@ -96,5 +96,6 @@ test("Unit testing for update results page per route Test for POST call", (done)
     // .attach("files", "exportFile.csv")
     .attach("file_upload_1", "timesheetDec.png")
     // .req({ files: "exportFile.csv" })
-    .expect(200, done);
+    .expect(200);
+  // expect(resp).toBe(200);
 });

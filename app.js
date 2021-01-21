@@ -74,10 +74,9 @@ app.locals.Award_search_URL;
 app.locals.Award_selected_status;
 app.locals.awards_status;
 app.locals.Award_search_text;
-app.locals.beis_url_publishing ;
+app.locals.beis_url_publishing;
 app.locals.beis_url_accessmanagement;
 app.locals.beis_url_publicsearch;
-
 
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
@@ -96,8 +95,8 @@ app.use("/logintransparency", logintransparency);
 // var enterotp = require('./routes/enterotp');
 // app.use('/enterotp',enterotp);
 
-var test = require("./routes/test");
-app.use("/test", test);
+// var test = require("./routes/test");
+// app.use("/test", test);
 
 /****************************************************** */
 /* All Router declarations */
@@ -222,5 +221,28 @@ app.use("/subsidyawardrejectreason", subsidyawardrejectreason);
 
 var reviewdetailcancel = require("./routes/reviewdetailcancel");
 app.use("/reviewdetailcancel", reviewdetailcancel);
+
+//Users Pages
+
+var manageusers = require("./routes/users-manage");
+app.use("/manageusers", manageusers);
+
+var manageusers = require("./routes/user-add");
+app.use("/adduser", manageusers);
+
+var canceluser = require("./routes/user-cancel");
+app.use("/canceluser", canceluser);
+
+var canceluser = require("./routes/user-review");
+app.use("/reviewuser", canceluser);
+
+var useraddedsuccessfully = require("./routes/user-added-successfully");
+app.use("/useraddedsuccessfully", useraddedsuccessfully);
+
+var userindividualdetails = require("./routes/user-individual-detail");
+app.use("/userindividualdetails", userindividualdetails);
+
+var userdeactivated = require("./routes/user-deactivated-successfully");
+app.use("/userdeactivated", userdeactivated);
 
 module.exports = app;

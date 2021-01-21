@@ -471,7 +471,7 @@
 
 .govuk-width-container {
   max-width: 960px;
-  width: 960px;
+  /* width: 960px; */
   margin-right: auto;
   margin-left: auto;
 }
@@ -757,6 +757,7 @@
   /* border-width: 2px 2px 0 0; */
   /* border-width: 3px 3px 0 0; */
   color: #505a5f;
+  border-width: 1px 1px 0 0;
   /* color: black; */
   font-family: Arial, sans-serif;
 }

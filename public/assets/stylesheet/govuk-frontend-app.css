@@ -13,7 +13,7 @@
 
 .govuk-width-container {
   max-width: 960px;
-  width: 960px;
+  /* width: 960px; */
   margin-right: auto;
   margin-left: auto;
 }
@@ -506,4 +506,27 @@ button.link {
   display: inline-flex;
   align-items: center;
   padding: 0 1%;
+}
+
+.govuk-table-responsive {
+  min-height: 0.01%;
+  overflow-x: auto;
+}
+.header-subtitle {
+  color: white;
+  text-decoration: none;
+}
+.header-subtitle:hover {
+  text-decoration: underline;
+}
+.govuk-user-added {
+  background-color: rgba(0, 112, 60, 1);
+
+  text-align: center;
+  padding: 9%;
+}
+
+.govuk-user-added h1 {
+  color: white;
+  margin-bottom: 0;
 }
