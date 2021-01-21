@@ -7,7 +7,34 @@ router.post("/", async (req, res) => {
   // ********************************************************
   // Read environment property file and set the API URL end points
   // ********************************************************
+  const APP_ID = '5b817e5b-f5d5-4085-8662-c35b7b6deebe';
+  const APP_SECERET = 'UNHf4b7GlhKwruqxwA-2uHO3CI~O_e4.m.';
+  const TOKEN_ENDPOINT = 'https://login.microsoftonline.com/4494cc1e-fb14-4a2d-bb5e-bf164d9141cf/oauth2/v2.0/token';
+  const MS_GRAPH_SCOPE = 'https://graph.microsoft.com/.default';
 
+  const axios = require('axios');
+  const qs = require('qs');
+
+  const postData = {
+    client_id: APP_ID,
+    scope: MS_GRAPH_SCOPE,
+    client_secret: APP_SECERET,
+    grant_type: 'client_credentials'
+  };
+
+  axios.defaults.headers.post['Content-Type'] =
+    'application/x-www-form-urlencoded';
+
+  let token = '';
+
+  axios
+    .post(TOKEN_ENDPOINT, qs.stringify(postData))
+    .then(response => {
+      console.log("access_token "+response.data.access_token);
+    })
+    .catch(error => {
+      console.log(error);
+    });
   Environment_variable = process.argv[2];
   if (Environment_variable == "env=dev") {
     beis_url_publishing = "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";

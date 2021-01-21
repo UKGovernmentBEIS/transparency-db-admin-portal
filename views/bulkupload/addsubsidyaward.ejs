@@ -3,6 +3,8 @@
 
 <head>
   <title>GOV.UK - Add Subsidy Award</title>
+  <%- include('../partials/headercss.ejs') %>
+
   <!-- <script type="text/javascript" language="javascript"
   src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -11,26 +13,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 
-  <%- include('../partials/headersubsidy.ejs') %>
   <script>
     $(document).ready(function () {
       $('.amount_subsidy_tax').hide();
       $('.amount_subsidy_nottax').hide();
 
-      $('#Subsidy_Instrument').change(function (e) {
+      // $('#Subsidy_Instrument').change(function (e) {
 
-        var subsidy_seleceted_value = $('#Subsidy_Instrument option:selected').val();
-        // alert("tax selsubsidy sel value" + subsidy_seleceted_value )
-        if (subsidy_seleceted_value == 'Tax measures (tax credit, or tax/duty exemption)') {
-          $('.amount_subsidy_tax').show();
-          $('.amount_subsidy_nottax').hide();
-        }
-        else {
-          $('.amount_subsidy_tax').hide();
-          $('.amount_subsidy_nottax').show();
-        }
+      //   var subsidy_seleceted_value = $('#Subsidy_Instrument option:selected').val();
+      //   // alert("tax selsubsidy sel value" + subsidy_seleceted_value )
 
-      });
+
+      // });
 
       jQuery('#Subsidy_Control_Number').on('input', function () {
         // alert("changeed: " + $('#Subsidy_Control_Number').val());
@@ -56,13 +50,50 @@
     });
 
     changeSubsidyPurpose = (event) => {
+
       if (event.target.value == 'Other')
         document.getElementById("other_purpose").style.display = "block";
       else
         document.getElementById("other_purpose").style.display = "none";
     };
 
+    getSubsidyInstrument = (subsidyValue) => {
+      var objSelect = document.getElementById("Subsidy_Instrument");
+      setSelectedValue(objSelect, subsidyValue);
+
+      if (subsidyValue == 'Tax measures (tax credit, or tax/duty exemption)') {
+        $('.amount_subsidy_tax').show();
+        $('.amount_subsidy_nottax').hide();
+      }
+      else {
+        $('.amount_subsidy_tax').hide();
+        $('.amount_subsidy_nottax').show();
+      }
+      if (event.target.value == 'Other')
+        document.getElementById("other_type").style.display = "block";
+      else
+        document.getElementById("other_type").style.display = "none";
+    }
+
+    function setSelectedValue(selectObj, valueToSet) {
+      for (var i = 0; i < selectObj.options.length; i++) {
+        if (selectObj.options[i].value == valueToSet) {
+          selectObj.options[i].selected = true;
+          return;
+        }
+      }
+    }
+
     changeSubsidyType = (event) => {
+
+      if (event.target.value == 'Tax measures (tax credit, or tax/duty exemption)') {
+        $('.amount_subsidy_tax').show();
+        $('.amount_subsidy_nottax').hide();
+      }
+      else {
+        $('.amount_subsidy_tax').hide();
+        $('.amount_subsidy_nottax').show();
+      }
       if (event.target.value == 'Other')
         document.getElementById("other_type").style.display = "block";
       else
@@ -71,7 +102,8 @@
   </script>
 </head>
 
-<body class="govuk-template__body app-example-page">
+<body class="govuk-template__body app-example-page"
+  onload="getSubsidyInstrument('<%= locals.Subsidy_Instrument_Global %>')">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
   <%- include('../partials/header.ejs') %>
@@ -446,56 +478,18 @@
               </span>
 
               <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument"
-                onChange="changeSubsidyType(event)">
-                <% if( locals.Subsidy_Instrument_Global == '' ){ %>
-                <option value="Empty" selected>Select subsidy type (8)</option>
-                <% } else { %>
-                <option value="Empty">Select subsidy type (8)</option>
-                <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Direct Grant' ){ %>
-                <option value="Direct Grant" selected>Direct Grant</option>
-                <% } else { %>
+                onchange="changeSubsidyType(event)">
+                <option value="">Select subsidy type (8)</option>
                 <option value="Direct Grant">Direct Grant</option>
-                <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Loan' ){ %>
-                <option value="Loan" selected>Loan</option>
-                <% } else { %>
                 <option value="Loan">Loan</option>
-                <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Equity' ){ %>
-                <option value="Equity" selected>Equity</option>
-                <% } else { %>
                 <option value="Equity">Equity</option>
-                <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Guarantee' ){ %>
-                <option value="Guarantee" selected>Guarantee</option>
-                <% } else { %>
                 <option value="Guarantee">Guarantee</option>
-                <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)' ){ %>
-                <option value="Tax measures (tax credit, or tax/duty exemption)" selected>Tax measures (tax credit or
-                  tax/duty exemption)</option>
-                <% } else { %>
                 <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit or tax/duty
                   exemption)</option>
-                <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Provision of goods' ){ %>
-                <option value="Provision of goods" selected>Provision of goods or services below market prices</option>
-                <% } else { %>
                 <option value="Provision of goods">Provision of goods or services below market prices</option>
-                <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Purchase of goods' ){ %>
-                <option value="Purchase of goods" selected>Purchase of goods services above market prices</option>
-                <% } else { %>
                 <option value="Purchase of goods">Purchase of goods services above market prices</option>
-                <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Other' ){ %>
-                <option value="Other" selected>Other</option>
-                <% } else { %>
                 <option value="Other">Other</option>
-                <% } %>
-
-
+             
               </select>
             </div>
 
@@ -506,58 +500,18 @@
                 Subsidy type
               </label>
               <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument"
-                onChange="changeSubsidyType(event)">
-                <% if( locals.Subsidy_Instrument_Global == '' ){ %>
-                <option value="Empty" selected>Select subsidy type (8)</option>
-                <% } else { %>
-                <option value="Empty">Select subsidy type (8)</option>
-                <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Direct Grant' ){ %>
-                <option value="Direct Grant" selected>Direct Grant</option>
-                <% } else { %>
+                onchange="changeSubsidyType(event)">
+                
+                <option value="">Select subsidy type (8)</option>
                 <option value="Direct Grant">Direct Grant</option>
-                <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Loan' ){ %>
-                <option value="Loan" selected>Loan</option>
-                <% } else { %>
                 <option value="Loan">Loan</option>
-                <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Equity' ){ %>
-                <option value="Equity" selected>Equity</option>
-                <% } else { %>
                 <option value="Equity">Equity</option>
-                <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Guarantee' ){ %>
-                <option value="Guarantee" selected>Guarantee</option>
-                <% } else { %>
                 <option value="Guarantee">Guarantee</option>
-                <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)' ){ %>
-                <option value="Tax measures (tax credit, or tax/duty exemption)" data-target="#Tax_measures" selected>
-                  Tax measures (tax credit or tax/duty
+                <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit or tax/duty
                   exemption)</option>
-                <% } else { %>
-                <option value="Tax measures (tax credit, or tax/duty exemption)" data-target="#Tax_measures">Tax
-                  measures (tax credit or tax/duty exemption)
-                </option>
-                <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Provision of goods' ){ %>
-                <option value="Provision of goods" selected>Provision of goods or services below market prices</option>
-                <% } else { %>
                 <option value="Provision of goods">Provision of goods or services below market prices</option>
-                <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Purchase of goods' ){ %>
-                <option value="Purchase of goods" selected>Purchase of goods services above market prices</option>
-                <% } else { %>
                 <option value="Purchase of goods">Purchase of goods services above market prices</option>
-                <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Other' ){ %>
-                <option value="Other" data-target="#Not_Tax_measures" selected>Other</option>
-                <% } else { %>
                 <option value="Other" data-target="#Not_Tax_measures">Other</option>
-                <% } %>
-
-
               </select>
             </div>
 
@@ -631,104 +585,6 @@
                     <option value="£30,000,001 or more">£30,000,001 or more</option>
                     <% } %>
                   </select>
-                  <!-- <div class="govuk-radios">
-                    <div class="govuk-radios__item">
-                      <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto500k' ) { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range" name="Subsidy_Full_Amount_Range"
-                        type="radio" value="upto500k" checked>
-
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range" name="Subsidy_Full_Amount_Range"
-                        type="radio" value="upto500k">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Subsidy_Full_Amount_Range">
-                        1 - 500000
-                      </label>
-                    </div>
-                    <div class="govuk-radios__item">
-                      <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto1000k' ) { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-2"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto1000k" checked>
-
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-2"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto1000k">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Subsidy_Full_Amount_Range-2">
-                        500001 - 1000000
-                      </label>
-                    </div>
-                    <div class="govuk-radios__item">
-                      <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto2000k' ){ %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-3"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto2000k" checked>
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-3"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto2000k">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Subsidy_Full_Amount_Range-3">
-                        1000001 - 2000000
-                      </label>
-                    </div>
-                    <div class="govuk-radios__item">
-                      <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto5000k' ){ %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-4"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto5000k" checked>
-
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-4"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto5000k">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Subsidy_Full_Amount_Range-4">
-                        2000001 - 5000000
-                      </label>
-                    </div>
-
-                    <div class="govuk-radios__item">
-                      <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto10000k' ){ %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-5"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto10000k" checked>
-
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-5"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto10000k">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Subsidy_Full_Amount_Range-5">
-                        5000000 - 10000000
-                      </label>
-                    </div>
-
-                    <div class="govuk-radios__item">
-                      <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto30000k' ){ %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-6"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto30000k" checked>
-
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-6"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto30000k">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Subsidy_Full_Amount_Range-6">
-                        10000001 - 30000000
-                      </label>
-                    </div>
-
-                    <div class="govuk-radios__item">
-                      <% if( locals.Subsidy_Full_Amount_Range_Global == 'above30000k' ){ %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-7"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="above30000k" checked>
-
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-7"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="above30000k">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Subsidy_Full_Amount_Range-7">
-                        30000000 and above
-                      </label>
-                    </div>
-
-
-
-                  </div> -->
                 </fieldset>
               </div>
 
@@ -785,103 +641,7 @@
                     <option value="£30,000,001 or more">£30,000,001 or more</option>
                     <% } %>
                   </select>
-                  <!-- <div class="govuk-radios">
-                    <div class="govuk-radios__item">
-                      <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto500k' ) { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range" name="Subsidy_Full_Amount_Range"
-                        type="radio" value="upto500k" checked>
-
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range" name="Subsidy_Full_Amount_Range"
-                        type="radio" value="upto500k">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Subsidy_Full_Amount_Range">
-                        1 - 500000
-                      </label>
-                    </div>
-                    <div class="govuk-radios__item">
-                      <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto1000k' ) { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-2"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto1000k" checked>
-
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-2"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto1000k">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Subsidy_Full_Amount_Range-2">
-                        500001 - 1000000
-                      </label>
-                    </div>
-                    <div class="govuk-radios__item">
-                      <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto2000k' ){ %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-3"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto2000k" checked>
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-3"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto2000k">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Subsidy_Full_Amount_Range-3">
-                        1000001 - 2000000
-                      </label>
-                    </div>
-                    <div class="govuk-radios__item">
-                      <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto5000k' ){ %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-4"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto5000k" checked>
-
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-4"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto5000k">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Subsidy_Full_Amount_Range-4">
-                        2000001 - 5000000
-                      </label>
-                    </div>
-
-                    <div class="govuk-radios__item">
-                      <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto10000k' ){ %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-5"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto10000k" checked>
-
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-5"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto10000k">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Subsidy_Full_Amount_Range-5">
-                        5000000 - 10000000
-                      </label>
-                    </div>
-
-                    <div class="govuk-radios__item">
-                      <% if( locals.Subsidy_Full_Amount_Range_Global == 'upto30000k' ){ %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-6"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto30000k" checked>
-
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-6"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="upto30000k">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Subsidy_Full_Amount_Range-6">
-                        10000001 - 30000000
-                      </label>
-                    </div>
-
-                    <div class="govuk-radios__item">
-                      <% if( locals.Subsidy_Full_Amount_Range_Global == 'above30000k' ){ %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-7"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="above30000k" checked>
-
-                      <% } else { %>
-                      <input class="govuk-radios__input" id="Subsidy_Full_Amount_Range-7"
-                        name="Subsidy_Full_Amount_Range" type="radio" value="above30000k">
-                      <% } %>
-                      <label class="govuk-label govuk-radios__label" for="Subsidy_Full_Amount_Range-7">
-                        30000000 and above
-                      </label>
-                    </div>
-
-                  </div> -->
-                </fieldset>
+                  </fieldset>
               </div>
 
               <% } %>
