@@ -21,7 +21,24 @@ var awardendpoint = beis_url_publicsearch  + '/searchResults/award/' + awardnumb
         console.log(`Status: ${awardapidata.status}`);
         console.log('Body: ', awardapidata.data);
         fetchawarddetails = awardapidata.data;
-          res.render('bulkupload/subsidyaward-fetch')  ; 
+        Get_Award_Status = fetchawarddetails.status;
+
+        if (Get_Award_Status == "Rejected") {
+          res.render('bulkupload/subsidyaward-fetch-rejected')  ; 
+        }
+        else if (Get_Award_Status == "Awaiting approval") {
+          res.render('bulkupload/subsidyaward-fetch-approval')  ; 
+        }
+        else if (Get_Award_Status == "Published") {
+          res.render('bulkupload/subsidyaward-fetch-published')  ; 
+        }  
+        else if (Get_Award_Status == "Deleted") {
+          res.render('bulkupload/subsidyaward-fetch-deleted')  ; 
+        }
+        else {
+          res.render('bulkupload/subsidyaward-fetch-notfound')  ; 
+        }
+
 
       } catch (err) {
           console.error(err);

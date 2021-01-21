@@ -74,14 +74,23 @@
         </div>
 
         <!-- Reject Message Block -->
+
+        <% if( Get_Award_Status =="Rejected") { %>
+
         <div class="govuk-form-group app-example">
           <div class="app-example__toolbar">
             <label>Comments from approver</label>
           </div>
           <div class="app-example__frame">
-            <p>This is rejected</p>
+            <% if(fetchawarddetails.status) { %> 
+            <p>This is rejected <%= fetchawarddetails.status %></p>
+            <% } else { %>
+            <p>The subsidy award reject reason not mentioned by the approver </p>
+            <% } %>
           </div>
         </div>
+
+        <% } %>
         <!-- Reject Message Block -->
 
         <h2 class="govuk-heading-m">
@@ -233,13 +242,13 @@
 
           <div>
             <button class="govuk-button" data-module="govuk-button" name="Award_status" id="Award_status"
-              value="Published">
-              Approve </button>
+              value="Editaward">
+              Edit</button>
             <button class="govuk-button govuk-button--warning" data-module="govuk-button" name="Award_status"
               id="Award_status" value="Rejected">
               Reject </button>
 
-            <a value="Cancel" href="/subsidyawardfetchcancel" class="govuk-button-cancel" name="Award_status">Cancel</a>
+            <a value="Cancel" href="/subsidyawardfetchcancel" class="govuk-button-cancel" name="Award_status" aria-label="cancel the current award rejection page and ">Cancel</a>
         </form>
       </main>
 

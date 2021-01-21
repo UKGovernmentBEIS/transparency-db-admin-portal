@@ -98,31 +98,17 @@
       </div>
 
 
-      <br />
-      <br />
+      <p> </p> <p> </p>
 
       <!-- bread crumbs start here -->
-      <div class="govuk-breadcrumbs ">
-        <ol class="govuk-breadcrumbs__list">
-          <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
-          </li>
-          <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link active" href="#">Subsidy awards</a>
-          </li>
-        </ol>
-      </div>
-      <!-- bread crumbs ends here -->
+     
 
       <h1 class="govuk-heading-xl">
         Subsidy awards</h1>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full govuk-grid-row">
-          <label class="govuk-label govuk-grid-column-one-third">
-            Search by entering either Subsidy Measure Title, Subsidy Control
-            number,
-            or
-            Granting Authority
+          <label class="govuk-label govuk-grid-column-full">
+            You can search for specific subsidy schemes by entering a subsidy scheme title, control number, recipient or granting authority
           </label>
         </div>
 
@@ -139,14 +125,7 @@
           </form>
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group govuk-padding-0">
-          <!-- <select class="govuk-select govuk-!-width-full">
-            <option disabled selected value="">Filter results by status</option>
-            <option value="">Draft (1)</option>
-            <option value="">Finalised (5)</option>
-            <option value="">Published (35)</option>
-            <option value="">Deactive (5) </option>
-            <option value="">Show all (46)</option>
-          </select> -->
+         
 
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
             <select class="govuk-select" id="sort" name="sort"
@@ -156,11 +135,7 @@
               <% } else { %>
               <option disabled value="Filter results by status ">Filter results by status</option>
               <% }  %>
-              <!-- <% if(awards_status  == "Draft") { %>
-              <option value="DRAFT" selected>Draft </option>
-              <% } else { %>
-              <option value="DRAFT">Draft</option>
-              <% }  %>  -->
+          
 
               <% if(awards_status  == "Awaiting Approval") { %>
               <option value="Awaiting Approval" selected>Awaiting Approval </option>
@@ -408,10 +383,8 @@
           </div>
 
         </section>
-        <br />
-        <!-- <button class="govuk-button govuk-!-margin-right-1" data-module="govuk-button" >
-      Submit
-    </button> -->
+        <p> </p>
+     
 
       </form>
 
