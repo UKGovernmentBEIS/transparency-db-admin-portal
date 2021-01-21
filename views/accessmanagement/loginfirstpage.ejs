@@ -1,163 +1,167 @@
 <!DOCTYPE html>
-<html>
-<%- include('../partials/header.ejs') %>
+<html lang="en">
 
-<div class="govuk-width-container ">
-  <br />
+<head>
+  <title>GOV.UK - Login page</title>
+  <%- include('../partials/headercss.ejs') %>
+</head>
 
-  <% if( locals.isEmailAndPasswordEmpty ){ %>
-  <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
-    data-module="govuk-error-summary">
-    <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
-    <div class="govuk-error-summary__body">
-      <ul class="govuk-list govuk-error-summary__list">
-        <li> <a href="#input-email_address"> Enter an email address </a> </li>
-        <li> <a href="#input-password"> Enter the password </a> </li>
-      </ul>
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+  <%- include('../partials/header.ejs') %>
+  <div class="govuk-width-container ">
+    <br />
+
+    <% if( locals.isEmailAndPasswordEmpty ){ %>
+    <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
+      data-module="govuk-error-summary">
+      <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+      <div class="govuk-error-summary__body">
+        <ul class="govuk-list govuk-error-summary__list">
+          <li> <a href="#input-email_address"> Enter an email address </a> </li>
+          <li> <a href="#input-password"> Enter the password </a> </li>
+        </ul>
+      </div>
     </div>
-  </div>
-  <% } %>
+    <% } %>
 
 
-  <% if( locals.isPasswordEmpty){ %>
-  <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
-    data-module="govuk-error-summary">
-    <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem </h2>
-    <div class="govuk-error-summary__body">
-      <ul class="govuk-list govuk-error-summary__list">
-        <li> <a href="#input-password"> Enter the password </a> </li>
-      </ul>
+    <% if( locals.isPasswordEmpty){ %>
+    <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
+      data-module="govuk-error-summary">
+      <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem </h2>
+      <div class="govuk-error-summary__body">
+        <ul class="govuk-list govuk-error-summary__list">
+          <li> <a href="#input-password"> Enter the password </a> </li>
+        </ul>
+      </div>
     </div>
-  </div>
-  <% } %>
+    <% } %>
 
-  <% if( locals.isPasswordlesseight){ %>
-  <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
-    data-module="govuk-error-summary">
-    <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem </h2>
-    <div class="govuk-error-summary__body">
-      <ul class="govuk-list govuk-error-summary__list">
-        <li> <a href="#input-password"> Enter the password 8 or more characters </a> </li>
-      </ul>
+    <% if( locals.isPasswordlesseight){ %>
+    <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
+      data-module="govuk-error-summary">
+      <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem </h2>
+      <div class="govuk-error-summary__body">
+        <ul class="govuk-list govuk-error-summary__list">
+          <li> <a href="#input-password"> Enter the password 8 or more characters </a> </li>
+        </ul>
+      </div>
     </div>
-  </div>
-  <% } %>
+    <% } %>
 
+    <main class="govuk-main-wrapper " id="main-content" role="main">
+      <h1 class="govuk-heading-xl">Sign into the Transparency Database</h1>
 
+      <form action="/mysubsidyawards" method="POST" novalidate="">
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            <input id="csrf_token" name="csrf_token" type="hidden"
+              value="ImIyODk3Zjc2ZDUxYWFlOWNiMGFkNTRiZjFiNTgyN2UxYWZlYjQ2YjYi.Xy8cwA.RZgIQFQ_nNp2cIuxopDG5tpMeLQ" />
 
-  <main class="govuk-main-wrapper " id="main-content" role="main">
-    <h1 class="govuk-heading-xl">Sign into the Transparency Database</h1>
+            <% if(locals.isEmailAndPasswordEmpty ){ %>
 
-    <form action="/mysubsidyawards" method="POST" novalidate="">
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds">
-          <input id="csrf_token" name="csrf_token" type="hidden"
-            value="ImIyODk3Zjc2ZDUxYWFlOWNiMGFkNTRiZjFiNTgyN2UxYWZlYjQ2YjYi.Xy8cwA.RZgIQFQ_nNp2cIuxopDG5tpMeLQ" />
-
-          <% if(locals.isEmailAndPasswordEmpty ){ %>
-
-          <div class="govuk-form-group govuk-form-group--error">
-            <label class="govuk-label" for="input-email_address">Email address</label>
-            <!-- <div class="govuk-hint" id="input-email_address-hint">
+            <div class="govuk-form-group govuk-form-group--error">
+              <label class="govuk-label" for="input-email_address">Email address</label>
+              <!-- <div class="govuk-hint" id="input-email_address-hint">
                      Enter an email address you used to register with the Transparency Database
                   </div> -->
 
-            <span class="govuk-error-message" id="input-email_address-error">
-              <span class="govuk-visually-hidden">Error:</span> Enter an email address
-            </span>
-            <input name="email_address" class="govuk-input govuk-input--error" id="input-email_address"
-              aria-describedby="input-email_address-hint input-email_address-error" spellcheck="false" type="email"
-              autocomplete="username" />
-          </div>
+              <span class="govuk-error-message" id="input-email_address-error">
+                <span class="govuk-visually-hidden">Error:</span> Enter an email address
+              </span>
+              <input name="email_address" class="govuk-input govuk-input--error" id="input-email_address"
+                aria-describedby="input-email_address-hint input-email_address-error" spellcheck="false" type="email"
+                autocomplete="username" />
+            </div>
 
-          <div class="govuk-form-group govuk-form-group--error">
-            <label class="govuk-label" for="input-password">Password</label>
-            <span class="govuk-error-message" id="input-password-error">
-              <span class="govuk-visually-hidden">Error:</span> Enter the password
-            </span>
-            <input name="password" class="govuk-input govuk-input--error" id="input-password"
-              aria-describedby="input-password-error" type="password" autocomplete="current-password" />
-          </div>
+            <div class="govuk-form-group govuk-form-group--error">
+              <label class="govuk-label" for="input-password">Password</label>
+              <span class="govuk-error-message" id="input-password-error">
+                <span class="govuk-visually-hidden">Error:</span> Enter the password
+              </span>
+              <input name="password" class="govuk-input govuk-input--error" id="input-password"
+                aria-describedby="input-password-error" type="password" autocomplete="current-password" />
+            </div>
 
-          <% } else if (locals.isPasswordEmpty){ %>
+            <% } else if (locals.isPasswordEmpty){ %>
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="input-email_address">Email address</label>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="input-email_address">Email address</label>
 
-            <!-- <div id="input-email_address-hint" class="govuk-hint">
+              <!-- <div id="input-email_address-hint" class="govuk-hint">
               Enter an email address you used to register with the Transparency Database
             </div> -->
-            <input class="govuk-input govuk-input--width-20" id="email_address" name="email_address"
-              <% if(locals.email_address) {%> value="<%= email_address %>" <% } %> />
-          </div>
+              <input class="govuk-input govuk-input--width-20" id="email_address" name="email_address"
+                <% if(locals.email_address) {%> value="<%= email_address %>" <% } %> />
+            </div>
 
-          <div class="govuk-form-group govuk-form-group--error">
-            <label class="govuk-label" for="input-password">Password</label>
-            <span class="govuk-error-message" id="input-password-error">
-              <span class="govuk-visually-hidden">Error:</span> Enter the password
-            </span>
-            <input name="password" class="govuk-input govuk-input--error" id="input-password"
-              aria-describedby="input-password-error" type="password" autocomplete="current-password" />
-          </div>
+            <div class="govuk-form-group govuk-form-group--error">
+              <label class="govuk-label" for="input-password">Password</label>
+              <span class="govuk-error-message" id="input-password-error">
+                <span class="govuk-visually-hidden">Error:</span> Enter the password
+              </span>
+              <input name="password" class="govuk-input govuk-input--error" id="input-password"
+                aria-describedby="input-password-error" type="password" autocomplete="current-password" />
+            </div>
 
-          <% } else if (locals.isPasswordlesseight){ %>
+            <% } else if (locals.isPasswordlesseight){ %>
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="input-email_address">Email address</label>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="input-email_address">Email address</label>
 
-            <!-- <div id="input-email_address-hint" class="govuk-hint">
+              <!-- <div id="input-email_address-hint" class="govuk-hint">
               Enter an email address you used to register with the Transparency Database
             </div> -->
-            <input class="govuk-input govuk-input--width-20" id="email_address" name="email_address"
-              <% if(locals.email_address) {%> value="<%= email_address %>" <% } %> />
-          </div>
+              <input class="govuk-input govuk-input--width-20" id="email_address" name="email_address"
+                <% if(locals.email_address) {%> value="<%= email_address %>" <% } %> />
+            </div>
 
-          <div class="govuk-form-group govuk-form-group--error">
-            <label class="govuk-label" for="input-password">Password</label>
-            <span class="govuk-error-message" id="input-password-error">
-              <span class="govuk-visually-hidden">Error:</span> Enter the password more than 8 characters
-            </span>
-            <input name="password" class="govuk-input govuk-input--error" id="input-password"
-              aria-describedby="input-password-error" type="password" autocomplete="current-password" />
-          </div>
+            <div class="govuk-form-group govuk-form-group--error">
+              <label class="govuk-label" for="input-password">Password</label>
+              <span class="govuk-error-message" id="input-password-error">
+                <span class="govuk-visually-hidden">Error:</span> Enter the password more than 8 characters
+              </span>
+              <input name="password" class="govuk-input govuk-input--error" id="input-password"
+                aria-describedby="input-password-error" type="password" autocomplete="current-password" />
+            </div>
 
 
-          <% } else { %>
+            <% } else { %>
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="input-email_address">Email address</label>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="input-email_address">Email address</label>
 
-            <!-- <div id="input-email_address-hint" class="govuk-hint">
+              <!-- <div id="input-email_address-hint" class="govuk-hint">
               Enter an email address you used to register with the Transparency Database
             </div> -->
-            <input class="govuk-input govuk-input--width-20" id="email_address" name="email_address" type="email"
-              aria-describedby="input-email_address-hint" autocomplete="username" spellcheck="false" />
+              <input class="govuk-input govuk-input--width-20" id="email_address" name="email_address" type="email"
+                aria-describedby="input-email_address-hint" autocomplete="username" spellcheck="false" />
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="input-password">Password</label>
+              <input class="govuk-input govuk-input--width-20" id="password" name="password" type="password"
+                autocomplete="current-password" />
+            </div>
+
+            <% }  %>
+
+
+            <p class="govuk-body">
+              <a class="govuk-link" href="/loginforgetpassword">
+                Forgotten your password?
+              </a>
+            </p>
+            <button class="govuk-button" data-module="govuk-button">Sign in</button>
+
           </div>
-
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="input-password">Password</label>
-            <input class="govuk-input govuk-input--width-20" id="password" name="password" type="password"
-              autocomplete="current-password" />
-          </div>
-
-          <% }  %>
-
-
-          <p class="govuk-body">
-            <a class="govuk-link" href="/loginforgetpassword">
-              Forgotten your password
-            </a>
-          </p>
-          <button class="govuk-button" data-module="govuk-button">Sign in</button>
-
         </div>
-      </div>
-    </form>
-  </main>
-</div>
-
-
-
-<%- include('../partials/footer.ejs') %>
+      </form>
+    </main>
+  </div>
+  <%- include('../partials/footer.ejs') %>
+</body>
 
 </html>
