@@ -61,20 +61,7 @@
             <br />
             <br />
 
-            <!-- bread crumbs start here -->
-            <!-- <div class="govuk-breadcrumbs ">
-                <ol class="govuk-breadcrumbs__list">
-                    <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
-                    </li>
-                    <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
-                    </li>
-                    <li class="govuk-breadcrumbs__list-item">
-                        <a1 class="govuk-breadcrumbs__link active" href="#">Add a subsidy awards</a1>
-                    </li>
-                </ol>
-            </div> -->
+        
 
             <p>
                 <a href="/subsidyawardfetch/?award=<%= awardnumber %>" class="govuk-back-link"> Back</a>
@@ -85,11 +72,12 @@
                     <h1 class="govuk-heading-xl">Add comments</h1>
 
                     </h1>
+                    <form action="/subsidyawardrejectreason" method="POST">
                     <label class="govuk-label">Add feedback for the person who is working on this
                         subsidy award. Your comments will not be visible to the public.</label>
-                    <textarea class="govuk-textarea" rows="6"></textarea>
+                    <textarea class="govuk-textarea" id="reject_reason_text" type="textarea" name="reject_reason_text" rows="6"></textarea>
                     <br /> <br />
-                    <form action="/subsidyawardrejectreason" method="POST">
+                    
                         <div>
                             <button class="govuk-button govuk-button--warning" data-module="govuk-button">
                                 Reject subsidy award
