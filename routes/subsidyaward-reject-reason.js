@@ -10,13 +10,15 @@ var request = require('request');
 
 router.post('/',async(req, res) => {
    
-
+var { reject_reason_text} = req.body;
 console.log("awardnumber : " + awardnumber);  
 console.log("Award_status : " + Award_status);
+console.log("reject_reason : " + reject_reason_text);
 
 const data_request = 
 {
-    "status": "Rejected"
+    "status": "Rejected",
+    "reason": reject_reason_text
 };
 
 var data = JSON.parse(JSON.stringify(data_request));
