@@ -31,7 +31,6 @@ router.post("/", async (req, res) => {
     .post(TOKEN_ENDPOINT, qs.stringify(postData))
     .then(response => {
       console.log("access_token "+response.data.access_token);
-      access_token = response.data.access_token;
     })
     .catch(error => {
       console.log(error);
