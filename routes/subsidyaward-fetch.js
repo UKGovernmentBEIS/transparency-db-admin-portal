@@ -20,6 +20,7 @@ var awardendpoint = beis_url_publicsearch  + '/searchResults/award/' + awardnumb
         const awardapidata = await axios.get(awardendpoint);
         console.log(`Status: ${awardapidata.status}`);
         console.log('Body: ', awardapidata.data);
+        console.log("End point : " + awardendpoint);
         fetchawarddetails = awardapidata.data;
         Get_Award_Status = fetchawarddetails.status;
 
