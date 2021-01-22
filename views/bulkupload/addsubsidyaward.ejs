@@ -199,19 +199,16 @@
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <form id="myform" action="/reviewdetail" method="POST">
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="Subsidy_award_label">
+                This section is for adding one subsidy award.
+                You can use the bulk upload to
+                <a href="/bulkuploadsubsidy">add multiple subsidy awards.</a>
+              </label>
+            </div>
+            <h1 class="govuk-heading-l">Related subsidy scheme</h1>
 
-            <label class="govuk-label" for="Subsidy_award_label">
-              This section is for adding one subsidy award.
-              You can use the bulk upload to
-              <a href="/bulkuploadsubsidy">add multiple subsidy awards.</a>
-            </label>
-
-            <p> </p>
-            <p> </p>
-
-            <h1 class="govuk-heading-l">Subsidy Details</h1>
-
-
+            <p class="govuk-body">Enter the details of the subsidy scheme that this award is related to.</p>
             <!-- ************************************  -->
             <!-- Get the Subsidy Control Number from user  -->
             <!-- ************************************  -->
@@ -221,8 +218,7 @@
                 Subsidy control number
               </label>
               <div id="Subsidy_Control_Number-hint" class="govuk-hint">
-                This will start with SC, followed by 5 digits.
-                It must match the subsidy scheme that this award is related to.
+                For example, SC92138. This must match the subsidy scheme that this award is related to.
               </div>
 
               <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
@@ -241,8 +237,7 @@
                 Subsidy control number
               </label>
               <div id="Subsidy_Control_Number-hint" class="govuk-hint">
-                This will start with SC, followed by 5 digits.
-                It must match the subsidy scheme that this award is related to.
+                For example, SC92138. This must match the subsidy scheme that this award is related to.
               </div>
               <input class="govuk-input govuk-input--width-5" id="Subsidy_Control_Number" name="Subsidy_Control_Number"
                 type="text" aria-describedby="Subsidy_Control_Number-hint"
@@ -270,7 +265,7 @@
               </label>
 
               <div id="Subsidy_Measure_Title-hint" class="govuk-hint">
-                This is the name of the subsidy scheme that this award is related to
+                This is the name of the subsidy scheme that this award is related to.
               </div>
 
               <span class="govuk-error-message" id="Subsidy_Measure_Title_Error">
@@ -290,7 +285,7 @@
               </label>
 
               <div id="Subsidy_Measure_Title-hint" class="govuk-hint">
-                This is the name of the subsidy scheme that this award is related to
+                This is the name of the subsidy scheme that this award is related to.
               </div>
 
               <input class="govuk-input govuk-input--width-20" id="Subsidy_Measure_Title" name="Subsidy_Measure_Title"
@@ -299,6 +294,30 @@
             </div>
             <% }  %>
 
+            <h1 class="govuk-heading-l">Subsidy award details</h1>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="Subsidy_Measure_Title">
+                Is this for an ad hoc subsidy?
+              </label>
+
+              <div id="Subsidy_Measure_Title-hint" class="govuk-hint">
+                You will only be able to create one subsidy award under each ad hoc subsidy scheme.
+              </div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="adhoc-yes" name="adhoc-yes" type="radio" value="Yes">
+                <label class="govuk-label govuk-radios__label" for="adhoc-yes">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="adhoc-no" name="adhoc-no" type="radio" value="No">
+                <label class="govuk-label govuk-radios__label" for="adhoc-no">
+                  No
+                </label>
+              </div>
+            </div>
 
 
             <!-- *************************************  -->
@@ -1273,7 +1292,7 @@
                 <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
                   <span class="govuk-visually-hidden">Error:</span> Enter the Goods or Services
                 </span>
-                <div class="govuk-radios govuk-radios--inline">
+                <div class="govuk-radios ">
                   <div class="govuk-radios__item">
                     <% if( locals.Goods_or_Services_Global == 'Goods' ){ %>
                     <input class="govuk-radios__input" id="Goods_or_Services" name="Goods_or_Services" type="radio"
@@ -1318,7 +1337,7 @@
                   while a dentist provides services.
                 </div>
 
-                <div class="govuk-radios govuk-radios--inline">
+                <div class="govuk-radios">
                   <div class="govuk-radios__item">
                     <% if( locals.Goods_or_Services_Global == 'Goods' ){ %>
                     <input class="govuk-radios__input" id="Goods_or_Services" name="Goods_or_Services" type="radio"
@@ -1667,6 +1686,13 @@
                 <option value="Mining and quarrying">Mining and quarrying</option>
                 <% } %>
 
+                <% if( locals.Spending_Sector_Global == 'Other service activities' ){ %>
+                <option value="Other service activities" selected>Other service activities</option>
+                <% } else { %>
+                <option value="Other service activities">Other service activities</option>
+                <% } %>
+
+
                 <% if( locals.Spending_Sector_Global == 'Professional, scientific and technical activities' ){ %>
                 <option value="Professional, scientific and technical activities" selected>Professional, scientific and
                   technical activities</option>
@@ -1829,6 +1855,12 @@
                 <option value="Mining and quarrying">Mining and quarrying</option>
                 <% } %>
 
+                <% if( locals.Spending_Sector_Global == 'Other service activities' ){ %>
+                <option value="Other service activities" selected>Other service activities</option>
+                <% } else { %>
+                <option value="Other service activities">Other service activities</option>
+                <% } %>
+
                 <% if( locals.Spending_Sector_Global == 'Professional, scientific and technical activities' ){ %>
                 <option value="Professional, scientific and technical activities" selected>Professional, scientific and
                   technical activities</option>
@@ -1889,25 +1921,19 @@
             <!-- 
            <button class="govuk-button" id="buttonvalue" name="buttonvalue" value="cancel" data-module="govuk-button">
             </button> -->
-
-
-
           </form>
-
-
-
-
         </div>
       </div>
 
 
-      <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
-      <script src="/assets/javascripts/govuk-frontend.js"></script>
-      <script src="/assets/javascripts/example.js"></script>
+      <!-- <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script> -->
+
+      <!-- <script src="/assets/javascripts/example.js"></script> -->
 
     </main>
   </div>
   <%- include('../partials/footer.ejs') %>
+  <script src="/assets/javascripts/govuk-frontend.js"></script>
 </body>
 
 </html>

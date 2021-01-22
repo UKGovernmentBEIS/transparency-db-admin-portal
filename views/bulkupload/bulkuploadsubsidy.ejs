@@ -61,10 +61,6 @@
       </div>
 
 
-      <p> </p>
-      <p> </p>
-
-
       <h1 class="govuk-heading-xl">Add multiple subsidy awards</h1>
 
       <!-- *************************************************
@@ -180,11 +176,7 @@
 
 
                 <button class="govuk-button" data-module="govuk-button">Upload file </button>
-                <p> </p>
-                <p> </p>
-                <p> </p>
-                <p> </p>
-                <p> </p>
+
               </form>
 
               <% } else if( locals.isExcelFormat && !locals.isXlsxOk ){ %>
@@ -210,9 +202,9 @@
                   </label>
                 </div>
 
-                <p> </p>
+
                 <button class="govuk-button" data-module="govuk-button">Upload file </button>
-                <p> </p>
+
               </form>
               <hr />
               <div class="govuk-form-group govuk-form-group--error">
@@ -258,8 +250,7 @@
 
 
                 <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
-                  <p> </p>
-                  <p> </p>
+
                   <div class="govuk-grid-row">
                     <div class="govuk-grid-column-two-thirds">
                       <div class="govuk-panel govuk-relative-position govuk-panel--confirmation">
@@ -345,14 +336,9 @@
                     </label>
                   </div>
 
-                  <p> </p>
+
                   <button class="govuk-button" data-module="govuk-button">Upload file </button>
-                  <p> </p>
-                  <p> </p>
-                  <p> </p>
-                  <p> </p>
-                  <p> </p>
-                  <p> </p>
+
 
                   <% } %>
 
@@ -371,9 +357,7 @@
 
     </main>
   </div>
+  <%- include('../partials/footer.ejs') %>
 </body>
-
-<%- include('../partials/footer.ejs') %>
-
 
 </html>
