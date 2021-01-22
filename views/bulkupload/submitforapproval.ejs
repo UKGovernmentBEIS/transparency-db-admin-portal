@@ -1,49 +1,55 @@
-
-
 <!DOCTYPE html>
-<html>
-  <%- include('../partials/headersubsidy.ejs') %>
+<html lang="en">
 
-<div class="govuk-width-container">
-  <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <div class="govuk-panel govuk-panel--confirmation">
-          <h1 class="govuk-panel__title">
-            Award submitted for approval 
-          </h1>
-          <h3 class="govuk-panel__body">
-            Subsidy award number <%= locals.Subsidy_Control_Number_Global_Substring %>
-          </h3>
-         </div>
+<head>
+  <title>GOV.UK - Subsidy Measures search page</title>
+  <%- include('../partials/headercss.ejs') %>
+</head>
 
-         <p> </p>
 
-         <h2 class="govuk-heading-m">What happens next</h2>
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+  <%- include('../partials/header.ejs') %>
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <div class="govuk-panel govuk-panel--confirmation">
+            <h1 class="govuk-panel__title">
+              Award submitted for approval
+            </h1>
+            <h3 class="govuk-panel__body">
+              Subsidy award number <%= locals.Subsidy_Control_Number_Global_Substring %>
+            </h3>
+          </div>
 
-         <p class="govuk-body">1. The award has been submitted for approval and is now in 'Awaiting approval' state.</p>
-         <p class="govuk-body">2. Once approved, by an approver, it will be published.</p>
-         <p class="govuk-body">3. If rejected, you will receive the notification with the reason</p>
-         <p> </p>
-        <form action="/mysubsidyawards" method="GET" novalidate="">
-       <button class="govuk-button" data-module="govuk-button" >Proceed to My subsidy awards</button>
-       </form>
+          <p> </p>
 
-       <form action="/addsubsidyaward" method="GET"  >
-        <div>
-        <button class=" govuk-button_cancel_xl govuk-button--secondary " >
-          Add another award
-        </button>  
-      </div>     
-      </form> 
+          <h2 class="govuk-heading-m">What happens next</h2>
 
+          <p class="govuk-body">1. The award has been submitted for approval and is now in 'Awaiting approval' state.
+          </p>
+          <p class="govuk-body">2. Once approved, by an approver, it will be published.</p>
+          <p class="govuk-body">3. If rejected, you will receive the notification with the reason</p>
+          <p> </p>
+          <form action="/mysubsidyawards" method="GET" novalidate="">
+            <button class="govuk-button" data-module="govuk-button">Proceed to My subsidy awards</button>
+          </form>
+
+          <form action="/addsubsidyaward" method="GET">
+            <div>
+              <button class=" govuk-button_cancel_xl govuk-button--secondary ">
+                Add another award
+              </button>
+            </div>
+          </form>
+
+        </div>
       </div>
-    </div>
-  </main>
-</div>
+    </main>
+  </div>
+  <%- include('../partials/footer.ejs') %>
+</body>
 
-
-<%- include('../partials/footer.ejs') %>
 </html>
-
-

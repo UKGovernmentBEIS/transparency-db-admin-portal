@@ -25,7 +25,9 @@ test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
   global.beis_url_publicsearch =
     "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
   global.awardnumber = 22;
+  global.Get_Award_Status = "";
   global.fetchawarddetails = {
+    status: "",
     subsidyMeasure: {
       scNumber: "",
       subsidyMeasureTitle: "",
@@ -51,6 +53,7 @@ test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
   axios.get.mockResolvedValue({
     status: 200,
     data: {
+      status: "",
       subsidyMeasure: {
         scNumber: "",
         subsidyMeasureTitle: "",

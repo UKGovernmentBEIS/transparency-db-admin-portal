@@ -25,8 +25,10 @@ test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
   global.beis_url_publicsearch =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Filter results by status";
+  global.Get_Award_Status = "";
   global.frontend_totalRecordsPerPage = 10;
   global.fetchawarddetails = {
+    status: "",
     subsidyMeasure: {
       scNumber: "",
       subsidyMeasureTitle: "",
@@ -52,6 +54,7 @@ test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
   axios.get.mockResolvedValue({
     status: 200,
     data: {
+      status: "",
       subsidyMeasure: {
         scNumber: "",
         subsidyMeasureTitle: "",

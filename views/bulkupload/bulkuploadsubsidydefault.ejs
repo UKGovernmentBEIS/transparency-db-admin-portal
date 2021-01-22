@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <%- include('../partials/headersubsidy.ejs') %>
 
 
@@ -9,6 +9,7 @@
       <!-- <body class="govuk-template__body app-example-page js-enabled"> -->
       <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
       <!-- Disable browser validation for any examples that include form elements -->
+      <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full">
           <nav aria-label="Sub navigation">
@@ -57,9 +58,9 @@
 
       <p> </p>
       <p> </p>
-   
 
-      
+
+
       <h1 class="govuk-heading-xl">Add multiple subsidy awards</h1>
 
       <div class="govuk-tabs" data-module="govuk-tabs">
@@ -105,7 +106,7 @@
                 </p>
                 <button class="govuk-button" data-module="govuk-button">Download template file </button>
                 <a class="govuk-link govuk-cancel-button-link" href="/mysubsidyawards"> Cancel </a>
-                 </form>
+              </form>
             </div>
           </div>
         </div>
@@ -149,7 +150,11 @@
                 </div>
                 <p> </p>
                 <button class="govuk-button" data-module="govuk-button">Upload file </button>
-                <p> </p> <p> </p> <p> </p> <p> </p> <p> </p>
+                <p> </p>
+                <p> </p>
+                <p> </p>
+                <p> </p>
+                <p> </p>
 
                 <% } else if( locals.isExcelFormat){ %>
 
@@ -183,7 +188,8 @@
 
                 <p> </p>
                 <button class="govuk-button" data-module="govuk-button">Upload file </button>
-                <p> </p> <p> </p>
+                <p> </p>
+                <p> </p>
 
                 <div class="govuk-form-group govuk-form-group--error">
                   <span id="file-upload-1-error" class="govuk-error-message">
@@ -320,7 +326,11 @@
 
                 <p> </p>
                 <button class="govuk-button" data-module="govuk-button">Upload file </button>
-                <p> </p> <p> </p> <p> </p> <p> </p> <p> </p>
+                <p> </p>
+                <p> </p>
+                <p> </p>
+                <p> </p>
+                <p> </p>
 
                 <% } %>
 

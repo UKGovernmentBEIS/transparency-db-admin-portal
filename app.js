@@ -242,6 +242,9 @@ app.use("/useraddedsuccessfully", useraddedsuccessfully);
 var userindividualdetails = require("./routes/user-individual-detail");
 app.use("/userindividualdetails", userindividualdetails);
 
+var userdeactivate = require("./routes/user-deactivate");
+app.use("/userdeactivate", userdeactivate);
+
 var userdeactivated = require("./routes/user-deactivated-successfully");
 app.use("/userdeactivated", userdeactivated);
 
