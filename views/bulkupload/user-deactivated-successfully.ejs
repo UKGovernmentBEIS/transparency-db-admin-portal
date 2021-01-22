@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%- include('../partials/headersubsidy.ejs') %>
+<head>
+    <title>GOV.UK - Add Subsidy Measures</title>
+    <%- include('../partials/headercss.ejs') %>
+</head>
 
-<body>
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+
+    <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
-            <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-full">
@@ -79,15 +85,10 @@
 
                 </div>
             </div>
+
+        </main>
     </div>
-
-    </main>
-    </div>
-
-
+    <%- include('../partials/footer.ejs') %>
 </body>
-
-<%- include('../partials/footer.ejs') %>
-
 
 </html>

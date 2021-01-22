@@ -81,14 +81,14 @@
                         <a class="govuk-breadcrumbs__link" href="/manageusers">Users</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active" href="#">Add a new user</a>
+                        <a class="govuk-breadcrumbs__link active" href="#">Edit user</a>
                     </li>
                 </ol>
             </div>
             <!-- bread crumbs ends here -->
 
             <h1 class="govuk-heading-xl">
-                Add a new user</h1>
+                Edit user</h1>
             <div id="sign-in-hint" class="govuk-hint">
                 Role
             </div>
@@ -189,7 +189,7 @@
                         <input class="govuk-input govuk-input--width-20" type="text">
                     </div>
                 </div> -->
-                <div class="govuk-table-responsive govuk-grid-column-full" style="display: none;">
+                <div class="govuk-table-responsive govuk-grid-column-full">
                     <table class="govuk-table">
                         <thead class="govuk-table__head">
                             <tr class="govuk-table__row">
@@ -231,6 +231,9 @@
                     <button class="govuk-button" data-module="govuk-button">
                         Continue
                     </button>
+                    <a href="/userdeactivate" class="govuk-button" data-module="govuk-button">
+                        Deactivate user
+                    </a>
                     <a class="govuk-link govuk-cancel-button-link" href="/canceluser">
                         Cancel
                     </a>
@@ -240,7 +243,6 @@
 
         </main>
     </div>
-
     <%- include('../partials/footer.ejs') %>
 </body>
 

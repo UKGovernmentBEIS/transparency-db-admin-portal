@@ -47,7 +47,7 @@
 
 <body class="govuk-template__body app-example-page">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-
+  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
     <main class="govuk-main-wrapper " id="main-content" role="main">
@@ -98,17 +98,19 @@
       </div>
 
 
-      <p> </p> <p> </p>
+      <p> </p>
+      <p> </p>
 
       <!-- bread crumbs start here -->
-     
+
 
       <h1 class="govuk-heading-xl">
         Subsidy awards</h1>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full govuk-grid-row">
           <label class="govuk-label govuk-grid-column-full">
-            You can search for specific subsidy schemes by entering a subsidy scheme title, control number, recipient or granting authority
+            You can search for specific subsidy schemes by entering a subsidy scheme title, control number, recipient or
+            granting authority
           </label>
         </div>
 
@@ -125,7 +127,7 @@
           </form>
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group govuk-padding-0">
-         
+
 
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
             <select class="govuk-select" id="sort" name="sort"
@@ -135,7 +137,7 @@
               <% } else { %>
               <option disabled value="Filter results by status ">Filter results by status</option>
               <% }  %>
-          
+
 
               <% if(awards_status  == "Awaiting Approval") { %>
               <option value="Awaiting Approval" selected>Awaiting Approval </option>
@@ -384,7 +386,7 @@
 
         </section>
         <p> </p>
-     
+
 
       </form>
 

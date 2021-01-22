@@ -5,7 +5,7 @@
     <%- include('../partials/headercss.ejs') %>
     <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    
+
     <script>
 
         //select all checkboxes
@@ -28,7 +28,6 @@
             });
 
             $(".round").on('click', function (event) {
-                alrt("pageination button click1")
                 $("input[type='checkbox']").attr("checked", false);
             });
 
@@ -37,10 +36,9 @@
     </script>
 </head>
 
-
 <body class="govuk-template__body app-example-page">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
@@ -56,7 +54,7 @@
                             </li>
 
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/managerusers">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/manageusers">
                                     Users
                                 </a>
                             </li>
@@ -90,7 +88,8 @@
 
             </div>
 
-            <p> </p> <p> </p>
+            <p> </p>
+            <p> </p>
 
             <!-- bread crumbs start here -->
             <div class="govuk-breadcrumbs ">
@@ -130,7 +129,7 @@
                     <div class="govuk-grid-column-one-half">
                         <select class="govuk-select" id="sort" name="filterbytype"
                             aria-label="Drop down list that shows Filter by type">
-                            <option value="" selected disabled>Filter by type</option>
+                            <option value="" selected disabled>Filter by role</option>
                             <option>BIES Administrators (6)</option>
                             <option>Granting Authority Administrators (72)</option>
                             <option>Granting Authority Approvers (144)</option>
@@ -162,12 +161,11 @@
                     </form>
                 </div>
 
-                <div class="govuk-grid-column-one-half govuk-form-group">
+                <div class="govuk-grid-column-two-thirds govuk-form-group">
                     <!-- <a href="/" style="color : black; text-decoration: none"> -->
-                    <button class="govuk-button" onclick="window.location.href='/addsubsidyaward'"
-                        data-module="govuk-button">
+                    <a href="/adduser" class="govuk-button" data-module="govuk-button">
                         Add a new user
-                    </button>
+                    </a>
                     <!-- </a> -->
                     <!-- <a href=""> -->
                     <!-- <button class="govuk-button" onclick="window.location.href='/bulkuploadsubsidy'"
@@ -180,7 +178,8 @@
                     </button>
                 </div>
 
-                <div class="govuk-grid-column-one-half govuk-form-group govuk-display-flex" style="text-align: right;">
+                <div class="govuk-grid-column-one-third govuk-form-group govuk-display-flex govuk-padding-0"
+                    style="text-align: right;">
                     <label>Results per page</label>
                     <form class="govuk-padding-0 govuk-!-width-one-quarter" action="/awardspageperroute" method="GET">
                         <select class="govuk-select" id="sort" name="sort" aria-label="Results per page"
@@ -243,12 +242,12 @@
                                     </div>
                                 </th>
 
-                                <th scope="col" class="govuk-table__header app-custom-class">Username
+                                <th scope="col" class="govuk-table__header app-custom-class">Name
                                 </th>
                                 <th scope="col" class="govuk-table__header app-custom-class">Role</th>
                                 <th scope="col" class="govuk-table__header app-custom-class">Status</th>
                                 <th scope="col" class="govuk-table__header app-custom-class">Granting autority</th>
-                                <th scope="col" class="govuk-table__header app-custom-class">Last logged in</th>
+                                <th scope="col" class="govuk-table__header app-custom-class">Email address</th>
                             </tr>
                         </thead>
                         <tbody class="govuk-table__body">
