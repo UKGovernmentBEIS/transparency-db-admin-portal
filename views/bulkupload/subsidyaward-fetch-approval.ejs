@@ -6,236 +6,227 @@
   <%- include('../partials/headercss.ejs') %>
 </head>
 
-<body>
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
-  <body class="govuk-template__body app-example-page">
-    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+  <%- include('../partials/header.ejs') %>
 
-    <%- include('../partials/header.ejs') %>
+  <div class="govuk-width-container ">
 
-    <div class="govuk-width-container ">
+    <main class="govuk-main-wrapper " id="main-content" role="main">
 
-      <main class="govuk-main-wrapper " id="main-content" role="main">
+      <div class="govuk-grid-row govuk-form-group">
+        <div class="govuk-grid-column-full">
+          <nav aria-label="Sub navigation">
+            <ul class="govuk-sub-navigation__list">
+              <li class="govuk-sub-navigation__item">
+                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                  Granting Authorities
+                </a>
+              </li>
 
-        <div class="govuk-grid-row govuk-form-group">
-          <div class="govuk-grid-column-full">
-            <nav aria-label="Sub navigation">
-              <ul class="govuk-sub-navigation__list">
-                <li class="govuk-sub-navigation__item">
-                  <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
-                    Granting Authorities
-                  </a>
-                </li>
+              <li class="govuk-sub-navigation__item">
+                <a class="govuk-sub-navigation__link" href="/manageusers">
+                  Users
+                </a>
+              </li>
+              <li class="govuk-sub-navigation__item">
+                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
+                  Subsidy Schemes
+                </a>
+              </li>
+              <li class="govuk-sub-navigation__item">
+                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidyawards">
+                  Subsidy Awards
+                </a>
+              </li>
 
-                <li class="govuk-sub-navigation__item">
-                  <a class="govuk-sub-navigation__link" href="/manageusers">
-                    Users
-                  </a>
-                </li>
-                <li class="govuk-sub-navigation__item">
-                  <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                    Subsidy Schemes
-                  </a>
-                </li>
-                <li class="govuk-sub-navigation__item">
-                  <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidyawards">
-                    Subsidy Awards
-                  </a>
-                </li>
+              <li class="govuk-sub-navigation__item head-right">
+                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                  Sign out
+                </a>
+              </li>
+              <li class="govuk-sub-navigation__item head-right">
+                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                  My account
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
 
-
-
-                <li class="govuk-sub-navigation__item head-right">
-                  <a class="govuk-sub-navigation__link" href="/logintransparency">
-                    Sign out
-                  </a>
-                </li>
-                <li class="govuk-sub-navigation__item head-right">
-                  <a class="govuk-sub-navigation__link" href="/logintransparency">
-                    My account
-                  </a>
-                </li>
-              </ul>
-            </nav>
-
-          </div>
-
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-three-quarters">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl">
+              Review subsidy award information before sending for approval
+            </h1>
+          </legend>
         </div>
 
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-three-quarters">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl">
-                Review subsidy award information before sending for approval
-              </h1>
-            </legend>
+      </div>
+
+
+
+      <h2 class="govuk-heading-m">
+        Subsidy details
+      </h2>
+
+      <form action="/subsidyawardaction" method="POST">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Subsidy control (SC) number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= fetchawarddetails.subsidyMeasure.scNumber %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Subsidy scheme name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= fetchawarddetails.subsidyMeasure.subsidyMeasureTitle %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Subsidy purpose
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= fetchawarddetails.subsidyObjective %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Subsidy type
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= fetchawarddetails.subsidyInstrument%>
+            </dd>
+          </div>
+          <% if (fetchawarddetails.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Subsidy range
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= fetchawarddetails.subsidyFullAmountRange%>
+            </dd>
+          </div>
+          <% } else { %>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Subsidy amount
+            </dt>
+            <dd class="govuk-summary-list__value">
+              £<%= fetchawarddetails.subsidyFullAmountExact%>
+            </dd>
+          </div>
+          <% } %>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Granting Authority
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= fetchawarddetails.grantingAuthorityResponse.grantingAuthorityName  %>
+            </dd>
           </div>
 
-        </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Award date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= fetchawarddetails.legalGrantingDate %>
+            </dd>
+          </div>
+        </dl>
 
-      
 
         <h2 class="govuk-heading-m">
-          Subsidy details
+          Recipient details
         </h2>
 
-        <form action="/subsidyawardaction" method="POST">
-          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Subsidy control (SC) number
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= fetchawarddetails.subsidyMeasure.scNumber %>
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Subsidy scheme name
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= fetchawarddetails.subsidyMeasure.subsidyMeasureTitle %>
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Subsidy purpose
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= fetchawarddetails.subsidyObjective %>
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Subsidy type
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= fetchawarddetails.subsidyInstrument%>
-              </dd>
-            </div>
-            <% if (fetchawarddetails.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Subsidy range
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= fetchawarddetails.subsidyFullAmountRange%>
-              </dd>
-            </div>
-            <% } else { %>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Subsidy amount
-              </dt>
-              <dd class="govuk-summary-list__value">
-                £<%= fetchawarddetails.subsidyFullAmountExact%>
-              </dd>
-            </div>
-            <% } %>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Granting Authority
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= fetchawarddetails.grantingAuthorityResponse.grantingAuthorityName  %>
-              </dd>
-            </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Organisation name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= fetchawarddetails.beneficiary.beneficiaryName  %>
+            </dd>
+          </div>
 
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Award date
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= fetchawarddetails.legalGrantingDate %>
-              </dd>
-            </div>
-          </dl>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Organisation size
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= fetchawarddetails.beneficiary.orgSize %>
+            </dd>
+          </div>
 
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              ID Type
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= fetchawarddetails.beneficiary.nationalIdType   %>
+            </dd>
+          </div>
 
-          <h2 class="govuk-heading-m">
-            Recipient details
-          </h2>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              ID number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= fetchawarddetails.beneficiary.nationalId  %>
+            </dd>
+          </div>
 
-          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Provider of (good or services)
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= fetchawarddetails.goodsServicesFilter %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Region
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= fetchawarddetails.spendingRegion %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Sector
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= fetchawarddetails.spendingSector %>
+            </dd>
+          </div>
 
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Organisation name
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= fetchawarddetails.beneficiary.beneficiaryName  %>
-              </dd>
-            </div>
+        </dl>
 
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Organisation size
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= fetchawarddetails.beneficiary.orgSize %>
-              </dd>
-            </div>
+        <button class="govuk-button" data-module="govuk-button" name="Award_status" id="Award_status" value="Published">
+          Approve </button>
+        <button class="govuk-button govuk-button--warning" data-module="govuk-button" name="Award_status"
+          id="Award_status" value="Rejected">
+          Reject </button>
 
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                ID Type
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= fetchawarddetails.beneficiary.nationalIdType   %>
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                ID number
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= fetchawarddetails.beneficiary.nationalId  %>
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Provider of (good or services)
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= fetchawarddetails.goodsServicesFilter %>
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Region
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= fetchawarddetails.spendingRegion %>
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Sector
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= fetchawarddetails.spendingSector %>
-              </dd>
-            </div>
-
-          </dl>
-
-          <div>
-            <button class="govuk-button" data-module="govuk-button" name="Award_status" id="Award_status"
-              value="Published">
-              Approve </button>
-            <button class="govuk-button govuk-button--warning" data-module="govuk-button" name="Award_status"
-              id="Award_status" value="Rejected">
-              Reject </button>
-
-            <a value="Cancel" href="/subsidyawardfetchcancel" class="govuk-button-cancel" name="Award_status">Cancel</a>
-        </form>
-      </main>
-
-
-      <%- include('../partials/footer.ejs') %>
-  </body>
+        <a value="Cancel" href="/subsidyawardfetchcancel" class="govuk-button-cancel" name="Award_status">Cancel</a>
+      </form>
+    </main>
+  </div>
+  <%- include('../partials/footer.ejs') %>
+</body>
 
 </html>
