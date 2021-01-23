@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <title>GOV.UK - Add Subsidy Award</title>
@@ -105,7 +105,7 @@
 <body class="govuk-template__body app-example-page"
   onload="getSubsidyInstrument('<%= locals.Subsidy_Instrument_Global %>')">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-
+  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
     <main class="govuk-main-wrapper " id="main-content" role="main">
@@ -153,10 +153,6 @@
 
       </div>
 
-
-      <p> </p> <p> </p>
-
-
       <!-- bread crumbs start here -->
       <div class="govuk-breadcrumbs ">
         <ol class="govuk-breadcrumbs__list">
@@ -172,8 +168,6 @@
         </ol>
       </div>
       <!-- bread crumbs ends here -->
-
-      <p> </p>  <p> </p>
 
       <!-- Error display -->
 
@@ -327,60 +321,77 @@
                 <% } else { %>
                 <option value="Empty">Select subsidy purpose (11) </option>
                 <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'Research and development' ){ %>
-                <option value="Research and development" selected>Research and development </option>
-                <% } else { %>
-                <option value="Research and development">Research and development </option>
-                <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'Environmental protection' ){ %>
-                <option value="Environmental protection" selected>Environmental protection </option>
-                <% } else { %>
-                <option value="Environmental protection">Environmental protection </option>
-                <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'Energy efficiency' ){ %>
-                <option value="Energy efficiency" selected>Energy efficiency </option>
-                <% } else { %>
-                <option value="Energy efficiency">Energy efficiency </option>
-                <% } %>
                 <% if( locals.Subsidy_Objective_Global == 'Culture heritage' ){ %>
-                <option value="Culture heritage" selected>Culture/Heritage </option>
+                <option value="Culture heritage" selected>Culture or heritage​ </option>
                 <% } else { %>
-                <option value="Culture heritage">Culture/Heritage </option>
+                <option value="Culture heritage">Culture or heritage​ </option>
                 <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'SME support' ){ %>
-                <option value="SME support" selected>SME support </option>
+
+                <% if( locals.Subsidy_Objective_Global == 'Employment' ){ %>
+                <option value="Employment" selected>Employment​ </option>
                 <% } else { %>
-                <option value="SME support">SME support </option>
+                <option value="Employment">Employment​ </option>
                 <% } %>
+
+                <% if( locals.Subsidy_Objective_Global == 'Energy efficiency' ){ %>
+                <option value="Energy efficiency" selected>Energy efficiency​ </option>
+                <% } else { %>
+                <option value="Energy efficiency">Energy efficiency​ </option>
+                <% } %>
+
+                <% if( locals.Subsidy_Objective_Global == 'Environmental protection' ){ %>
+                <option value="Environmental protection" selected>Environmental protection​ </option>
+                <% } else { %>
+                <option value="Environmental protection">Environmental protection​ </option>
+                <% } %>
+
+                <% if( locals.Subsidy_Objective_Global == 'Infrastructure' ){ %>
+                <option value="Infrastructure" selected>Infrastructure​ </option>
+                <% } else { %>
+                <option value="Infrastructure">Infrastructure​ </option>
+                <% } %>
+
                 <% if( locals.Subsidy_Objective_Global == 'Regional development' ){ %>
-                <option value="Regional development" selected>Regional development </option>
+                <option value="Regional development" selected>Regional development​ </option>
                 <% } else { %>
-                <option value="Regional development">Regional development </option>
+                <option value="Regional development">Regional development​ </option>
                 <% } %>
+
+                <% if( locals.Subsidy_Objective_Global == 'Rescue aid' ){ %>
+                <option value="Rescue aid" selected>Rescue aid ​ </option>
+                <% } else { %>
+                <option value="Rescue aid">Rescue aid ​ </option>
+                <% } %>
+
+                <% if( locals.Subsidy_Objective_Global == 'Research and development' ){ %>
+                <option value="Research and development" selected>Research and development​ </option>
+                <% } else { %>
+                <option value="Research and development">Research and development​ </option>
+                <% } %>
+
+                <% if( locals.Subsidy_Objective_Global == 'Services of Public Economic Interest' ){ %>
+                <option value="Services of Public Economic Interest" selected>Services of Public Economic Interest
+                </option>
+                <% } else { %>
+                <option value="Services of Public Economic Interest">Services of Public Economic Interest </option>
+                <% } %>
+
+                <% if( locals.Subsidy_Objective_Global == 'SME support' ){ %>
+                <option value="SME support" selected>SME (Small/Medium-sized enterprise) support​ </option>
+                <% } else { %>
+                <option value="SME support">SME (Small/Medium-sized enterprise) support​ </option>
+                <% } %>
+
                 <% if( locals.Subsidy_Objective_Global == 'Training' ){ %>
                 <option value="Training" selected>Training </option>
                 <% } else { %>
                 <option value="Training">Training </option>
                 <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'Employment' ){ %>
-                <option value="Employment" selected>Employment </option>
-                <% } else { %>
-                <option value="Employment">Employment </option>
-                <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'Infrastructure' ){ %>
-                <option value="Infrastructure" selected>Infrastructure </option>
-                <% } else { %>
-                <option value="Infrastructure">Infrastructure </option>
-                <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'Rescue aid' ){ %>
-                <option value="Rescue aid" selected>Rescue aid </option>
-                <% } else { %>
-                <option value="Rescue aid">Rescue aid </option>
-                <% } %>
+
                 <% if( locals.Subsidy_Objective_Global == 'Other' ){ %>
-                <option value="Other" selected>Other </option>
+                <option value="Other" selected> Other</option>
                 <% } else { %>
-                <option value="Other">Other </option>
+                <option value="Other"> Other</option>
                 <% } %>
               </select>
             </div>
@@ -399,60 +410,77 @@
                 <% } else { %>
                 <option value="Empty">Select subsidy purpose (11) </option>
                 <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'Research and development' ){ %>
-                <option value="Research and development" selected>Research and development </option>
-                <% } else { %>
-                <option value="Research and development">Research and development </option>
-                <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'Environmental protection' ){ %>
-                <option value="Environmental protection" selected>Environmental protection </option>
-                <% } else { %>
-                <option value="Environmental protection">Environmental protection </option>
-                <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'Energy efficiency' ){ %>
-                <option value="Energy efficiency" selected>Energy efficiency </option>
-                <% } else { %>
-                <option value="Energy efficiency">Energy efficiency </option>
-                <% } %>
                 <% if( locals.Subsidy_Objective_Global == 'Culture heritage' ){ %>
-                <option value="Culture heritage" selected>Culture/Heritage </option>
+                <option value="Culture heritage" selected>Culture or heritage​ </option>
                 <% } else { %>
-                <option value="Culture heritage">Culture/Heritage </option>
+                <option value="Culture heritage">Culture or heritage​ </option>
                 <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'SME support' ){ %>
-                <option value="SME support" selected>SME support </option>
+
+                <% if( locals.Subsidy_Objective_Global == 'Employment' ){ %>
+                <option value="Employment" selected>Employment​ </option>
                 <% } else { %>
-                <option value="SME support">SME support </option>
+                <option value="Employment">Employment​ </option>
                 <% } %>
+
+                <% if( locals.Subsidy_Objective_Global == 'Energy efficiency' ){ %>
+                <option value="Energy efficiency" selected>Energy efficiency​ </option>
+                <% } else { %>
+                <option value="Energy efficiency">Energy efficiency​ </option>
+                <% } %>
+
+                <% if( locals.Subsidy_Objective_Global == 'Environmental protection' ){ %>
+                <option value="Environmental protection" selected>Environmental protection​ </option>
+                <% } else { %>
+                <option value="Environmental protection">Environmental protection​ </option>
+                <% } %>
+
+                <% if( locals.Subsidy_Objective_Global == 'Infrastructure' ){ %>
+                <option value="Infrastructure" selected>Infrastructure​ </option>
+                <% } else { %>
+                <option value="Infrastructure">Infrastructure​ </option>
+                <% } %>
+
                 <% if( locals.Subsidy_Objective_Global == 'Regional development' ){ %>
-                <option value="Regional development" selected>Regional development </option>
+                <option value="Regional development" selected>Regional development​ </option>
                 <% } else { %>
-                <option value="Regional development">Regional development </option>
+                <option value="Regional development">Regional development​ </option>
                 <% } %>
+
+                <% if( locals.Subsidy_Objective_Global == 'Rescue aid' ){ %>
+                <option value="Rescue aid" selected>Rescue aid ​ </option>
+                <% } else { %>
+                <option value="Rescue aid">Rescue aid ​ </option>
+                <% } %>
+
+                <% if( locals.Subsidy_Objective_Global == 'Research and development' ){ %>
+                <option value="Research and development" selected>Research and development​ </option>
+                <% } else { %>
+                <option value="Research and development">Research and development​ </option>
+                <% } %>
+
+                <% if( locals.Subsidy_Objective_Global == 'Services of Public Economic Interest' ){ %>
+                <option value="Services of Public Economic Interest" selected>Services of Public Economic Interest
+                </option>
+                <% } else { %>
+                <option value="Services of Public Economic Interest">Services of Public Economic Interest </option>
+                <% } %>
+
+                <% if( locals.Subsidy_Objective_Global == 'SME support' ){ %>
+                <option value="SME support" selected>SME (Small/Medium-sized enterprise) support​ </option>
+                <% } else { %>
+                <option value="SME support">SME (Small/Medium-sized enterprise) support​ </option>
+                <% } %>
+
                 <% if( locals.Subsidy_Objective_Global == 'Training' ){ %>
                 <option value="Training" selected>Training </option>
                 <% } else { %>
                 <option value="Training">Training </option>
                 <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'Employment' ){ %>
-                <option value="Employment" selected>Employment </option>
-                <% } else { %>
-                <option value="Employment">Employment </option>
-                <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'Infrastructure' ){ %>
-                <option value="Infrastructure" selected>Infrastructure </option>
-                <% } else { %>
-                <option value="Infrastructure">Infrastructure </option>
-                <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'Rescue aid' ){ %>
-                <option value="Rescue aid" selected>Rescue aid </option>
-                <% } else { %>
-                <option value="Rescue aid">Rescue aid </option>
-                <% } %>
+
                 <% if( locals.Subsidy_Objective_Global == 'Other' ){ %>
-                <option value="Other" selected>Other </option>
+                <option value="Other" selected> Other</option>
                 <% } else { %>
-                <option value="Other">Other </option>
+                <option value="Other"> Other</option>
                 <% } %>
               </select>
             </div>
@@ -481,15 +509,14 @@
                 onchange="changeSubsidyType(event)">
                 <option value="">Select subsidy type (8)</option>
                 <option value="Direct Grant">Direct Grant</option>
-                <option value="Loan">Loan</option>
                 <option value="Equity">Equity</option>
                 <option value="Guarantee">Guarantee</option>
-                <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit or tax/duty
-                  exemption)</option>
-                <option value="Provision of goods">Provision of goods or services below market prices</option>
+                <option value="Loan">Loan</option>
                 <option value="Purchase of goods">Purchase of goods services above market prices</option>
+                <option value="Provision of goods">Provision of goods or services below market prices</option>
+                <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit, or tax/duty
+                  exemption)</option>
                 <option value="Other">Other</option>
-             
               </select>
             </div>
 
@@ -501,16 +528,14 @@
               </label>
               <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument"
                 onchange="changeSubsidyType(event)">
-                
-                <option value="">Select subsidy type (8)</option>
                 <option value="Direct Grant">Direct Grant</option>
-                <option value="Loan">Loan</option>
                 <option value="Equity">Equity</option>
                 <option value="Guarantee">Guarantee</option>
-                <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit or tax/duty
-                  exemption)</option>
-                <option value="Provision of goods">Provision of goods or services below market prices</option>
+                <option value="Loan">Loan</option>
                 <option value="Purchase of goods">Purchase of goods services above market prices</option>
+                <option value="Provision of goods">Provision of goods or services below market prices</option>
+                <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit, or tax/duty
+                  exemption)</option>
                 <option value="Other" data-target="#Not_Tax_measures">Other</option>
               </select>
             </div>
@@ -641,7 +666,7 @@
                     <option value="£30,000,001 or more">£30,000,001 or more</option>
                     <% } %>
                   </select>
-                  </fieldset>
+                </fieldset>
               </div>
 
               <% } %>
@@ -1545,9 +1570,9 @@
                 <% } %>
 
                 <% if( locals.Spending_Sector_Global == 'Accommodation' ){ %>
-                <option value="Accommodation" selected>Accommodation</option>
+                <option value="Accommodation" selected>Accommodation and food service activities</option>
                 <% } else { %>
-                <option value="Accommodation">Accommodation</option>
+                <option value="Accommodation">Accommodation and food service activities</option>
                 <% } %>
 
                 <% if( locals.Spending_Sector_Global == 'Activities of extraterritorial organisations and bodies' ){ %>
@@ -1556,6 +1581,16 @@
                 <% } else { %>
                 <option value="Activities of extraterritorial organisations and bodies">Activities of extraterritorial
                   organisations and bodies</option>
+                <% } %>
+
+                <% if( locals.Spending_Sector_Global == 'Undifferentiated goods and services-producing activities of households for own use' ){ %>
+                <option value="Undifferentiated goods and services-producing activities of households for own use"
+                  selected>Activities of households as employers; undifferentiated goods- and services-producing
+                  activities of households for own use</option>
+                <% } else { %>
+                <option value="Undifferentiated goods and services-producing activities of households for own use">
+                  Activities of households as employers; undifferentiated goods- and services-producing activities of
+                  households for own use</option>
                 <% } %>
 
                 <% if( locals.Spending_Sector_Global == 'Administrative and support service activities' ){ %>
@@ -1661,13 +1696,7 @@
                 <option value="Transportation and storage">Transportation and storage</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Undifferentiated goods and services-producing activities of households for own use' ){ %>
-                <option value="Undifferentiated goods and services-producing activities of households for own use"
-                  selected>Undifferentiated goods and services-producing activities of households for own use</option>
-                <% } else { %>
-                <option value="Undifferentiated goods and services-producing activities of households for own use">
-                  Undifferentiated goods and services-producing activities of households for own use</option>
-                <% } %>
+
 
                 <% if( locals.Spending_Sector_Global == 'Water supply; sewerage, waste management and remediation activities' ){ %>
                 <option value="Water supply; sewerage, waste management and remediation activities" selected>Water
@@ -1703,9 +1732,9 @@
                 <% } %>
 
                 <% if( locals.Spending_Sector_Global == 'Accommodation' ){ %>
-                <option value="Accommodation" selected>Accommodation</option>
+                <option value="Accommodation" selected>Accommodation and food service activities</option>
                 <% } else { %>
-                <option value="Accommodation">Accommodation</option>
+                <option value="Accommodation">Accommodation and food service activities</option>
                 <% } %>
 
                 <% if( locals.Spending_Sector_Global == 'Activities of extraterritorial organisations and bodies' ){ %>
@@ -1714,6 +1743,16 @@
                 <% } else { %>
                 <option value="Activities of extraterritorial organisations and bodies">Activities of extraterritorial
                   organisations and bodies</option>
+                <% } %>
+
+                <% if( locals.Spending_Sector_Global == 'Undifferentiated goods and services-producing activities of households for own use' ){ %>
+                <option value="Undifferentiated goods and services-producing activities of households for own use"
+                  selected>Activities of households as employers; undifferentiated goods- and services-producing
+                  activities of households for own use</option>
+                <% } else { %>
+                <option value="Undifferentiated goods and services-producing activities of households for own use">
+                  Activities of households as employers; undifferentiated goods- and services-producing activities of
+                  households for own use</option>
                 <% } %>
 
                 <% if( locals.Spending_Sector_Global == 'Administrative and support service activities' ){ %>
@@ -1819,14 +1858,6 @@
                 <option value="Transportation and storage">Transportation and storage</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Undifferentiated goods and services-producing activities of households for own use' ){ %>
-                <option value="Undifferentiated goods and services-producing activities of households for own use"
-                  selected>Undifferentiated goods and services-producing activities of households for own use</option>
-                <% } else { %>
-                <option value="Undifferentiated goods and services-producing activities of households for own use">
-                  Undifferentiated goods and services-producing activities of households for own use</option>
-                <% } %>
-
                 <% if( locals.Spending_Sector_Global == 'Water supply; sewerage, waste management and remediation activities' ){ %>
                 <option value="Water supply; sewerage, waste management and remediation activities" selected>Water
                   supply; sewerage, waste management and remediation activities</option>
@@ -1848,17 +1879,17 @@
 
             <% } %>
 
-            <div>
-              <button class="govuk-button" id="buttonvalue" name="buttonvalue" value="continue"
-                data-module="govuk-button">
-                Continue
-              </button>
-              <a class="govuk-link govuk-cancel-button-link" id="mylink" name="mylink" value="cancel" href="#"> Cancel
-              </a>
-              <!-- 
+
+            <button class="govuk-button" id="buttonvalue" name="buttonvalue" value="continue"
+              data-module="govuk-button">
+              Continue
+            </button>
+            <a class="govuk-link govuk-cancel-button-link" id="mylink" value="cancel" href="#"> Cancel
+            </a>
+            <!-- 
            <button class="govuk-button" id="buttonvalue" name="buttonvalue" value="cancel" data-module="govuk-button">
             </button> -->
-            </div>
+
 
 
           </form>

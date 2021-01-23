@@ -209,6 +209,13 @@ test("Unit testing for Choose Dashboard BEIS Admin Test for POST call", (done) =
     },
   });
 
+  axios.post.mockResolvedValue({
+    status: 200,
+    data: {
+      access_token: "",
+    },
+  });
+
   global.dashboardawards = {
     grantingAuthorityUserActionCount: {
       totalGrantingAuthority: 67,
@@ -1510,7 +1517,6 @@ test("Unit testing for Choose Dashboard Encoder Test for POST call", (done) => {
     .expect(200, done);
   // expect(abcd).toBe(200);
 });
-
 
 test("Unit testing for Choose Dashboard GA Admin Test for POST call", (done) => {
   axios.get.mockResolvedValue({

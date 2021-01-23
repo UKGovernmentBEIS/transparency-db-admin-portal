@@ -6,9 +6,9 @@
     <%- include('../partials/headercss.ejs') %>
 </head>
 
-
 <body class="govuk-template__body app-example-page">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
@@ -24,13 +24,13 @@
                                 </a>
                             </li>
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/manageusers">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/manageusers">
                                     Users
                                 </a>
                             </li>
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidymeasures">
-                                    Subsidy Measures
+                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
+                                    Subsidy Schemes
                                 </a>
                             </li>
                             <li class="govuk-sub-navigation__item">
@@ -55,7 +55,7 @@
             </div>
             <!-- Header pane starts here -->
 
-         
+
 
             <!-- Body header starts here -->
             <div class="govuk-body-cancel">
@@ -66,12 +66,12 @@
                 <!-- Body header ends here -->
                 <p class="govuk-body govuk-!-font-size-19">Are you sure you want to cancel?</p>
 
-                <a href="/managerusers">
-                    <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Yes, cancel</button>
+                <a href="/manageusers" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                    Yes, cancel
                 </a>
-                <a href="/reviewuser">
-                    <button class="govuk-button govuk-button_sm govuk-button--secondary"
-                        data-module="govuk-button">No</button>
+                <a href="/reviewuser" class="govuk-button govuk-button_sm govuk-button--secondary"
+                    data-module="govuk-button">
+                    No
                 </a>
             </div>
 
@@ -79,8 +79,8 @@
     </div>
 
     <%- include('../partials/footer.ejs') %>
-    <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
-    <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
+    <!-- <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script> -->
 
 </body>
 

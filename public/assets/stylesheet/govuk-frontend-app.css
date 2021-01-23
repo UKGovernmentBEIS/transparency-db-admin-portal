@@ -441,7 +441,7 @@ button.link {
   justify-content: flex-end;
 }
 .govuk-padding-0 {
-  padding: 0;
+  padding: 0 !important;
 }
 .govuk-margin-bottom {
   margin-bottom: 30px;

@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-<%- include('../partials/headersubsidy.ejs') %>
+<head>
+    <title>GOV.UK - Subsidy Award Reject page</title>
+    <%- include('../partials/headercss.ejs') %>
+</head>
 
-<body>
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
 
@@ -58,8 +64,9 @@
             </div>
 
 
-            <p> </p> <p> </p>
-        
+            <p> </p>
+            <p> </p>
+
 
             <p>
                 <a href="/subsidyawardfetch/?award=<%= awardnumber %>" class="govuk-back-link"> Back</a>
@@ -71,11 +78,13 @@
 
                     </h1>
                     <form action="/subsidyawardrejectreason" method="POST">
-                    <label class="govuk-label">Add feedback for the person who is working on this
-                        subsidy award. Your comments will not be visible to the public.</label>
-                    <textarea class="govuk-textarea" id="reject_reason_text" type="textarea" name="reject_reason_text" rows="6"></textarea>
-                    <p> </p> <p> </p>
-                    
+                        <label class="govuk-label">Add feedback for the person who is working on this
+                            subsidy award. Your comments will not be visible to the public.</label>
+                        <textarea class="govuk-textarea" id="reject_reason_text" type="textarea"
+                            name="reject_reason_text" rows="6"></textarea>
+                        <p> </p>
+                        <p> </p>
+
                         <div>
                             <button class="govuk-button govuk-button--warning" data-module="govuk-button">
                                 Reject subsidy award
