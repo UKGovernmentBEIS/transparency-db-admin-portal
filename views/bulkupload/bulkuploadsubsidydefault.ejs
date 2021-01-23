@@ -55,12 +55,6 @@
 
       </div>
 
-
-      <p> </p>
-      <p> </p>
-
-
-
       <h1 class="govuk-heading-xl">Add multiple subsidy awards</h1>
 
       <div class="govuk-tabs" data-module="govuk-tabs">
@@ -148,13 +142,8 @@
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                 </div>
-                <p> </p>
+
                 <button class="govuk-button" data-module="govuk-button">Upload file </button>
-                <p> </p>
-                <p> </p>
-                <p> </p>
-                <p> </p>
-                <p> </p>
 
                 <% } else if( locals.isExcelFormat){ %>
 
@@ -186,10 +175,9 @@
                   </label> -->
                 </div>
 
-                <p> </p>
+
                 <button class="govuk-button" data-module="govuk-button">Upload file </button>
-                <p> </p>
-                <p> </p>
+
 
                 <div class="govuk-form-group govuk-form-group--error">
                   <span id="file-upload-1-error" class="govuk-error-message">
@@ -324,13 +312,8 @@
 
                 </div>
 
-                <p> </p>
+
                 <button class="govuk-button" data-module="govuk-button">Upload file </button>
-                <p> </p>
-                <p> </p>
-                <p> </p>
-                <p> </p>
-                <p> </p>
 
                 <% } %>
 
@@ -343,15 +326,13 @@
 
 
       </div>
-      <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+      <!-- <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script> -->
       <script src="/assets/javascripts/govuk-frontend-tabdefault.js"></script>
       <script src="/assets/javascripts/example.js"></script>
 
     </main>
   </div>
+  <%- include('../partials/footer.ejs') %>
 </body>
-
-<%- include('../partials/footer.ejs') %>
-
 
 </html>
