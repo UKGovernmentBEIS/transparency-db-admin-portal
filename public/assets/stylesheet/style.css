@@ -123,15 +123,17 @@ table tbody tr:hover{
 #downarrow {
   position: absolute;
   transform: rotate(180deg);
-  bottom: 10px;
-  right: 11px;
+  /* bottom: 10px; */
+  top: 21px;
+  right: auto;
 }
 
 #uparrow {
   position: absolute;
-  bottom: 20px;
-  right: 11px;
+  /* bottom: 20px; */
+  top: 11px;
+  right: auto;
 }
-.govuk-table__row th {
+/* .govuk-table__row th {
   position: relative;
-}
+} */
