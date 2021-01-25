@@ -18,7 +18,7 @@ console.log("reject_reason : " + reject_reason_text);
 const data_request = 
 {
     "status": "Rejected",
-    "rejectReason": reject_reason_text
+    "reason": reject_reason_text
 };
 
 var data = JSON.parse(JSON.stringify(data_request));

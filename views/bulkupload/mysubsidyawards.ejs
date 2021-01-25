@@ -4,7 +4,7 @@
 <head>
   <%- include('../partials/headercss.ejs') %>
 
-  <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
+  <!-- <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css"> -->
   <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
   <script src="/assets/javascripts/vendor/modernizr.js"></script>
 
@@ -52,7 +52,7 @@
   <div class="govuk-width-container ">
     <main class="govuk-main-wrapper " id="main-content" role="main">
 
-      <div class="govuk-grid-row">
+      <div class="govuk-grid-row govuk-form-group">
         <div class="govuk-grid-column-full">
           <nav aria-label="Sub navigation">
             <ul class="govuk-sub-navigation__list">
@@ -104,12 +104,12 @@
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full govuk-grid-row">
           <label class="govuk-label govuk-grid-column-full">
-            You can search for specific subsidy schemes by entering a subsidy scheme title, control number, recipient or
-            granting authority
+            You can search for specific subsidy awards by entering a subsidy award name, number, recipient or granting
+            authority.
           </label>
         </div>
 
-        <div class="govuk-grid-column-one-half govuk-form-group">
+        <div class="govuk-grid-column-one-half ">
           <form class="govuk-!-width-full govuk-padding-0" action="/subsidyawardsearch" method="POST">
 
             <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text" name="search_award_text"
@@ -121,11 +121,9 @@
             </button>
           </form>
         </div>
-        <div class="govuk-grid-column-one-third govuk-form-group govuk-padding-0">
-
-
+        <div class="govuk-grid-column-one-quarter govuk-padding-0">
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
-            <select class="govuk-select" id="sort" name="sort"
+            <select class="govuk-!-width-full govuk-select" id="sort" name="sort"
               aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
               <% if(awards_status  == "Filter results by status") { %>
               <option disabled value="Filter results by status" selected>Filter results by status </option>
@@ -168,7 +166,7 @@
           </form>
         </div>
 
-        <div class="govuk-grid-column-full govuk-form-group">
+        <div class="govuk-grid-column-full">
           <!-- <a href="/" style="color : black; text-decoration: none"> -->
           <button class="govuk-button" onclick="window.location.href='/addsubsidyaward'" data-module="govuk-button">
             Add a new subsidy award
@@ -180,38 +178,40 @@
           </button>
           <!-- </a> -->
           <button class="govuk-button" data-module="govuk-button" disabled>
-            Delete Selected
+            Delete award
           </button>
+          <div class="govuk-grid-column-one-quarter govuk-form-group govuk-display-flex govuk-padding-0"
+            style="float:right;text-align: right;">
+            <label>Results per page</label>
+            <form class="govuk-padding-0 govuk-!-width-one-third" action="/awardspageperroute" method="GET">
+              <select class="govuk-select" id="sort" name="sort" aria-label="Results per page"
+                onchange="this.form.submit()">
+                <% if(frontend_totalRecordsPerPage  == 10) { %>
+                <option value="10" selected>10</option>
+                <% } else { %>
+                <option value="10">10</option>
+                <% }  %>
+                <% if(frontend_totalRecordsPerPage  == 20) { %>
+                <option value="20" selected>20</option>
+                <% } else { %>
+                <option value="20">20</option>
+                <% }  %>
+                <% if(frontend_totalRecordsPerPage  == 50) { %>
+                <option value="50" selected>50</option>
+                <% } else { %>
+                <option value="50">50</option>
+                <% }  %>
+                <% if(frontend_totalRecordsPerPage  == 100) { %>
+                <option value="1000" selected>100</option>
+                <% } else { %>
+                <option value="100">100</option>
+                <% }  %>
+              </select>
+            </form>
+          </div>
         </div>
 
-        <div class="govuk-grid-column-full govuk-form-group govuk-display-flex" style="text-align: right;">
-          <label>Results per page</label>
-          <form class="govuk-padding-0 govuk-width-8" action="/awardspageperroute" method="GET">
-            <select class="govuk-select" id="sort" name="sort" aria-label="Results per page"
-              onchange="this.form.submit()">
-              <% if(frontend_totalRecordsPerPage  == 10) { %>
-              <option value="10" selected>10</option>
-              <% } else { %>
-              <option value="10">10</option>
-              <% }  %>
-              <% if(frontend_totalRecordsPerPage  == 20) { %>
-              <option value="20" selected>20</option>
-              <% } else { %>
-              <option value="20">20</option>
-              <% }  %>
-              <% if(frontend_totalRecordsPerPage  == 50) { %>
-              <option value="50" selected>50</option>
-              <% } else { %>
-              <option value="50">50</option>
-              <% }  %>
-              <% if(frontend_totalRecordsPerPage  == 100) { %>
-              <option value="1000" selected>100</option>
-              <% } else { %>
-              <option value="100">100</option>
-              <% }  %>
-            </select>
-          </form>
-        </div>
+
       </div>
 
 
@@ -239,18 +239,95 @@
                       <input class="govuk-checkboxes__input Subsidy_awardno_head" id="select_all" name="Subsidy_awardNo"
                         type="checkbox" value="Subsidy_awardNo">
                       <label class="govuk-label govuk-checkboxes__label_padding govuk-checkboxes__label "
-                        for="Subsidy awardNo" id='Subsidy_awardno_lb'>
-                        <!-- <b>Subsidy Name</b>-->
+                        for="Subsidy awardNo" id='Subsidy_awardno_lb' style="padding: 0 15px; font-weight: bold;">
+                        <p style="position: relative;margin: 0;">Subsidy Control number
+                          <a href="#" style="float: right;">
+                            <svg version="1.1" width="8px" height="8px" id="uparrow">
+                              <g transform="matrix(1 0 0 1 0 -5 )">
+                                <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
+                                  stroke="none" />
+                              </g>
+                            </svg>
+
+                            <svg version="1.1" id="downarrow" width="8px" height="8px">
+                              <g transform="matrix(1 0 0 1 0 -5 )">
+                                <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
+                                  stroke="none" />
+                              </g>
+                            </svg>
+                          </a></p>
                       </label>
                     </div>
                   </div>
                 </th>
 
-                <th scope="col" class="govuk-table__header app-custom-class">Subsidy Control number.</th>
-                <th scope="col" class="govuk-table__header app-custom-class">Scheme name</th>
-                <th scope="col" class="govuk-table__header app-custom-class">Status</th>
-                <th scope="col" class="govuk-table__header app-custom-class">Recipient</th>
-                <th scope="col" class="govuk-table__header app-custom-class">Granting authority</th>
+                <!-- <th scope="col" class="govuk-table__header app-custom-class">
+                  
+                </th> -->
+                <th scope="col" class="govuk-table__header app-custom-class">
+                  <p style="position: relative;margin: 0;">Scheme name
+                    <a href="#" style="float: right;">
+                      <svg version="1.1" width="8px" height="8px" id="uparrow">
+                        <g transform="matrix(1 0 0 1 0 -5 )">
+                          <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
+                            stroke="none" />
+                        </g>
+                      </svg>
+                    </a>
+                  </p>
+                </th>
+                <th scope="col" class="govuk-table__header app-custom-class">
+                  <p style="position: relative;margin: 0;">Status <a href="#" style="float: right;">
+                      <svg version="1.1" width="8px" height="8px" id="uparrow">
+                        <g transform="matrix(1 0 0 1 0 -5 )">
+                          <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
+                            stroke="none" />
+                        </g>
+                      </svg>
+
+                      <svg version="1.1" id="downarrow" width="8px" height="8px">
+                        <g transform="matrix(1 0 0 1 0 -5 )">
+                          <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
+                            stroke="none" />
+                        </g>
+                      </svg>
+                    </a></p>
+                </th>
+                <th scope="col" class="govuk-table__header app-custom-class receipent-th">
+                  <p style="position: relative;margin: 0;">Recipient<a href="#" style="float: right;">
+                      <svg version="1.1" width="8px" height="8px" id="uparrow">
+                        <g transform="matrix(1 0 0 1 0 -5 )">
+                          <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
+                            stroke="none" />
+                        </g>
+                      </svg>
+
+                      <svg version="1.1" id="downarrow" width="8px" height="8px">
+                        <g transform="matrix(1 0 0 1 0 -5 )">
+                          <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
+                            stroke="none" />
+                        </g>
+                      </svg>
+                    </a></p>
+                </th>
+                <th scope="col" class="govuk-table__header app-custom-class">
+                  <p style="position: relative;margin: 0;">Granting authority
+                    <a href="#" style="float: right;">
+                      <svg version="1.1" width="8px" height="8px" id="uparrow">
+                        <g transform="matrix(1 0 0 1 0 -5 )">
+                          <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
+                            stroke="none" />
+                        </g>
+                      </svg>
+
+                      <svg version="1.1" id="downarrow" width="8px" height="8px">
+                        <g transform="matrix(1 0 0 1 0 -5 )">
+                          <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
+                            stroke="none" />
+                        </g>
+                      </svg>
+                    </a></p>
+                </th>
                 <th scope="col" class="govuk-table__header app-custom-class">Subsidy amount</th>
               </tr>
             </thead>
@@ -263,16 +340,15 @@
                       <input class="govuk-checkboxes__input checkbox Subsidy_awardNo" id="Subsidy_awardNo"
                         name="check[]" type="checkbox" value="Subsidy awardNo">
                       <label class="govuk-label govuk-checkboxes__label" for="waste">
-
+                        <a href="/subsidyawardfetch/?award=<%= item.awardNumber %>"><%= item.scNumber %></a>
                       </label>
                     </div>
                   </div>
 
                 </td>
 
-                <td class="govuk-table__cell"><a
-                    href="/subsidyawardfetch/?award=<%= item.awardNumber %>"><%= item.scNumber %></a>
-                </td>
+                <!-- <td class="govuk-table__cell">
+                </td> -->
                 <td class="govuk-table__cell">
                   <%= item.subsidyMeasureTitle %>
                 </td>
