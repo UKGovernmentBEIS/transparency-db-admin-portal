@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
   if ( Subsidy_Adhoc_Global_Check == true) { Subsidy_Adhoc_Global = 'Yes';  }
   else if( Subsidy_Adhoc_Global_Check == false) { Subsidy_Adhoc_Global = 'No';}
   Subsidy_Objective_Global = fetchawarddetails.subsidyObjective;
-  Subsidy_Objective_Global = "Other-test subsidy purpose";
+  
   var subsidy_objective_split = Subsidy_Objective_Global.split("-");
   var subsidy_objective_split_check =  subsidy_objective_split[0].toLowerCase();
   if (subsidy_objective_split_check  == 'other') { 
@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
   }
   Subsidy_Instrument_Global = fetchawarddetails.subsidyInstrument;
   console.log("instrument: " + Subsidy_Instrument_Global);
-  Subsidy_Instrument_Global = "Other-test subsidy type";
+ 
   var subsidy_instrument_split = Subsidy_Instrument_Global.split("-");
   var subsidy_instrument_split_check =  subsidy_instrument_split[0].toLowerCase();
   if (subsidy_instrument_split_check  == 'other') { 
