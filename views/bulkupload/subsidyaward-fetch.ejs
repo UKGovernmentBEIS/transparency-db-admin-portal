@@ -242,7 +242,7 @@
                 <% if(Get_Award_Status.toLowerCase() =="awaiting approval") { %>
                 <button class="govuk-button" data-module="govuk-button" name="Award_status" id="Award_status"
                     value="Published">
-                    Approve </button>
+                    Approve and publish </button>
                 <button class="govuk-button govuk-button--warning" data-module="govuk-button" name="Award_status"
                     id="Award_status" value="Rejected">
                     Reject </button>
@@ -257,9 +257,10 @@
                 <!-- <button class="govuk-button" data-module="govuk-button" name="Award_status" id="Award_status"
                     value="Editaward">
                     Edit</button> -->
-                <a href="/addsubsidyeditaward" style="color : rgb(250, 245, 245); text-decoration: none"
-                class="govuk-button" data-module="govuk-button">Edit
-               </a>
+                <a href="/editsubsidyaward?award=<%= awardnumber%>"
+                    style="color : rgb(250, 245, 245); text-decoration: none" class="govuk-button"
+                    data-module="govuk-button">Edit
+                </a>
                 <button class="govuk-button govuk-button--warning" data-module="govuk-button" name="Award_status"
                     id="Award_status" value="Rejected">
                     Reject </button>
