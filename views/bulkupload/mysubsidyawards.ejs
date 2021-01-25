@@ -104,8 +104,8 @@
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full govuk-grid-row">
           <label class="govuk-label govuk-grid-column-full">
-            You can search for specific subsidy schemes by entering a subsidy scheme title, control number, recipient or
-            granting authority
+            You can search for specific subsidy awards by entering a subsidy award name, number, recipient or granting
+            authority.
           </label>
         </div>
 
@@ -121,11 +121,9 @@
             </button>
           </form>
         </div>
-        <div class="govuk-grid-column-one-third govuk-padding-0">
-
-
+        <div class="govuk-grid-column-one-quarter govuk-padding-0">
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
-            <select class="govuk-select" id="sort" name="sort"
+            <select class="govuk-!-width-full govuk-select" id="sort" name="sort"
               aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
               <% if(awards_status  == "Filter results by status") { %>
               <option disabled value="Filter results by status" selected>Filter results by status </option>
@@ -180,7 +178,7 @@
           </button>
           <!-- </a> -->
           <button class="govuk-button" data-module="govuk-button" disabled>
-            Delete Selected
+            Delete award
           </button>
           <div class="govuk-grid-column-one-quarter govuk-form-group govuk-display-flex govuk-padding-0"
             style="float:right;text-align: right;">
