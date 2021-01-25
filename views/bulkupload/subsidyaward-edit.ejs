@@ -4,16 +4,36 @@
 <head>
     <title>GOV.UK - Add Subsidy Measures</title>
     <%- include('../partials/headercss.ejs') %>
+    <script>
+        getSubsidyInstrument = (subsidyValue, purposeValue) => {
+            var objSelect = document.getElementById("Subsidy_Instrument");
+            setSelectedValue(objSelect, subsidyValue);
+
+            if (subsidyValue == 'Tax measures (tax credit, or tax/duty exemption)') {
+                $('.amount_subsidy_tax').show();
+                $('.amount_subsidy_nottax').hide();
+            }
+            else {
+                $('.amount_subsidy_tax').hide();
+                $('.amount_subsidy_nottax').show();
+            }
+            if (event.target.value == 'Other')
+                document.getElementById("other_type").style.display = "block";
+            else
+                document.getElementById("other_type").style.display = "none";
+        }
+    </script>
 </head>
 
-<body class="govuk-template__body app-example-page">
+<body class="govuk-template__body app-example-page"
+    onload="getSubsidyInstrument('<%= Subsidy_Instrument %>','<%=Subsidy_Objective %>')">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
 
-            <div class="govuk-grid-row">
+            <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
                     <nav aria-label="Sub navigation">
                         <ul class="govuk-sub-navigation__list">
@@ -66,7 +86,7 @@
                 Subsidy details
             </label>
             <form action="/reviewedit-subsidyaward" method="POST">
-                <section class="govuk-grid-row">
+                <section class="  govuk-form-group">
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                         <label class="govuk-label" for="Subsidy_Control_Number">
@@ -191,11 +211,13 @@
                             <% } else { %>
                             <option value="Guarantee">Guarantee</option>
                             <% } %>
-                            <% if( Subsidy_Instrument == 'Tax measures' ){ %>
-                            <option value="Tax measures" selected>Tax measures (tax credit or tax/duty exemption)
+                            <% if( Subsidy_Instrument == 'Tax measures (tax credit, or tax/duty exemption)' ){ %>
+                            <option value="Tax measures (tax credit, or tax/duty exemption)" selected>Tax measures (tax
+                                credit or tax/duty exemption)
                             </option>
                             <% } else { %>
-                            <option value="Tax measures">Tax measures (tax credit or tax/duty exemption)</option>
+                            <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit or
+                                tax/duty exemption)</option>
                             <% } %>
                             <% if( Subsidy_Instrument == 'Provision of goods' ){ %>
                             <option value="Provision of goods" selected>Provision of goods or services below market
@@ -217,7 +239,17 @@
                             <% } %>
                         </select>
                     </div>
-                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                    <div id="other_type" class="govuk-form-group" style="display: none;">
+                        <label class="govuk-label" for="Subsidy_Instrument_Other">
+                            Other type
+                        </label>
+
+                        <input class="govuk-input govuk-input--width-20" id="Subsidy_Instrument_Other"
+                            name="Subsidy_Instrument_Other" type="text" aria-describedby="Subsidy_Instrument_Other-hint"
+                            <% if(locals.Subsidy_Instrument_Other_Global) {%>
+                            value="<%= locals.Subsidy_Instrument_Other_Global %>" <% } %> />
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds amount_subsidy_tax">
                         <label class="govuk-label" for="address-line-1">
                             Subsidy Full Amount Range (£)
                         </label>

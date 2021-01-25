@@ -57,9 +57,9 @@
         document.getElementById("other_purpose").style.display = "none";
     };
 
-    getSubsidyInstrument = (subsidyValue) => {
-      var objSelect = document.getElementById("Subsidy_Instrument");
-      setSelectedValue(objSelect, subsidyValue);
+    getSubsidyInstrument = (subsidyValue, purposeValue) => {
+      // var objSelect = document.getElementById("Subsidy_Instrument");
+      // setSelectedValue(objSelect, subsidyValue);
 
       if (subsidyValue == 'Tax measures (tax credit, or tax/duty exemption)') {
         $('.amount_subsidy_tax').show();
@@ -69,20 +69,25 @@
         $('.amount_subsidy_tax').hide();
         $('.amount_subsidy_nottax').show();
       }
-      if (event.target.value == 'Other')
+      if (subsidyValue == 'Other')
         document.getElementById("other_type").style.display = "block";
       else
         document.getElementById("other_type").style.display = "none";
+
+      if (purposeValue == 'Other')
+        document.getElementById("other_purpose").style.display = "block";
+      else
+        document.getElementById("other_purpose").style.display = "none";
     }
 
-    function setSelectedValue(selectObj, valueToSet) {
-      for (var i = 0; i < selectObj.options.length; i++) {
-        if (selectObj.options[i].value == valueToSet) {
-          selectObj.options[i].selected = true;
-          return;
-        }
-      }
-    }
+    // function setSelectedValue(selectObj, valueToSet) {
+    //   for (var i = 0; i < selectObj.options.length; i++) {
+    //     if (selectObj.options[i].value == valueToSet) {
+    //       selectObj.options[i].selected = true;
+    //       return;
+    //     }
+    //   }
+    // }
 
     changeSubsidyType = (event) => {
 
@@ -103,7 +108,7 @@
 </head>
 
 <body class="govuk-template__body app-example-page"
-  onload="getSubsidyInstrument('<%= locals.Subsidy_Instrument_Global %>')">
+  onload="getSubsidyInstrument('<%= locals.Subsidy_Instrument_Global %>','<%= locals.Subsidy_Objective_Global %>')">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/header.ejs') %>
