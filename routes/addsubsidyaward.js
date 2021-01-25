@@ -4,7 +4,9 @@ const router = express.Router();
 router.get("/", (req, res) => {
   Subsidy_Control_Number_Global = "";
   Subsidy_Measure_Title_Global = "";
+  Subsidy_Adhoc_Global ="";
   Subsidy_Objective_Global = "";
+  Subsidy_Objective_Other_Global ="";
   Subsidy_Instrument_Global = "";
   Subsidy_Element_Full_Amount_Global = "";
   National_ID_Type_Global = "";
@@ -18,6 +20,7 @@ router.get("/", (req, res) => {
   Goods_or_Services_Global = "";
   Spending_Region_Global = "";
   Spending_Sector_Global = "";
+  
 
   var isAddSubsidyPrimarycall = true;
   res.render("bulkupload/addsubsidyaward", { isAddSubsidyPrimarycall });

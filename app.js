@@ -31,9 +31,15 @@ app.locals.awards = require("./views/bulkupload/awards.json");
 app.locals.Subsidy_Control_Number_Global;
 app.locals.Subsidy_Control_Number_Global_Substring;
 app.locals.Subsidy_Measure_Title_Global;
+app.locals.Subsidy_Adhoc_Global;
 app.locals.Subsidy_Objective_Global;
+app.locals.Subsidy_Objective_Other_Global;
+app.locals.Subsidy_Objective_Plus_Other_Global;
 app.locals.Subsidy_Instrument_Global;
+app.locals.Subsidy_Instrument_Other_Global;
+app.locals.Subsidy_Instrument_Plus_Other_Global;
 app.locals.Subsidy_Element_Full_Amount_Global;
+app.locals.Subsidy_Element_Full_Amount_Global_Trim;
 app.locals.National_ID_Type_Global;
 app.locals.National_ID_Number_Global;
 app.locals.Beneficiary_Name_Global;
@@ -155,6 +161,9 @@ app.use("/cancelmysubsidy", cancelmysubsidy);
 
 var addsubsidyreview = require("./routes/addsubsidyreview");
 app.use("/addsubsidyreview", addsubsidyreview);
+
+var addsubsidyeditaward = require("./routes/addsubsidyeditaward");
+app.use("/addsubsidyeditaward", addsubsidyeditaward);
 
 var submitforapproval = require("./routes/submitforapproval");
 app.use("/submitforapproval", submitforapproval);

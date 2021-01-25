@@ -10,8 +10,11 @@ router.post("/", (req, res) => {
   var SubsidyArraySize = 0;
   var Subsidy_Control_Number_Error = false;
   var Subsidy_Measure_Title_Error = false;
+  var Subsidy_Adhoc_Error = false;
   var Subsidy_Objective_Error = false;
+  var Subsidy_Objective_Other_Error = false;
   var Subsidy_Instrument_Error = false;
+  var Subsidy_Instrument_Other_Error = false;
   var Subsidy_Element_Full_Amount_Error = false;
   var Subsidy_Full_Amount_Range_Error = false;
   var National_ID_Type_Error = false;
@@ -29,8 +32,11 @@ router.post("/", (req, res) => {
   const {
     Subsidy_Control_Number,
     Subsidy_Measure_Title,
+    Subsidy_Adhoc,
     Subsidy_Objective,
+    Subsidy_Objective_Other,
     Subsidy_Instrument,
+    Subsidy_Instrument_Other,
     Subsidy_Element_Full_Amount,
     Subsidy_Full_Amount_Range,
     National_ID_Type,
@@ -52,11 +58,15 @@ router.post("/", (req, res) => {
   console.log("Subsidy_Instrument :" + Subsidy_Instrument);
   console.log("buttonvalue:" + buttonvalue);
   console.log("mylink:" + mylink);
+  console.log("  Subsidy_Adhoc :" +   Subsidy_Adhoc);
 
   Subsidy_Control_Number_Global = Subsidy_Control_Number;
   Subsidy_Measure_Title_Global = Subsidy_Measure_Title;
+  Subsidy_Adhoc_Global = Subsidy_Adhoc;
   Subsidy_Objective_Global = Subsidy_Objective;
+  Subsidy_Objective_Other_Global = Subsidy_Objective_Other;
   Subsidy_Instrument_Global = Subsidy_Instrument;
+  Subsidy_Instrument_Other_Global = Subsidy_Instrument_Other;
   Subsidy_Element_Full_Amount_Global = Subsidy_Element_Full_Amount;
   Subsidy_Full_Amount_Range_Global = Subsidy_Full_Amount_Range;
   National_ID_Type_Global = National_ID_Type;
@@ -132,20 +142,43 @@ router.post("/", (req, res) => {
     // if (!Subsidy_Measure_Title) {
      
     // }
+    if (!Subsidy_Adhoc ) {
+      Subsidy_Adhoc_Error = true;
+      SubsidyErrors[Additem] = "     Select the adhoc subsidy scheme";
+      SubsidyFocus[Additem] = "#Subsidy_Adhoc";
+      Additem = Additem + 1;
+    }
+
 
     if (Subsidy_Objective == "Empty") {
       Subsidy_Objective_Error = true;
-      SubsidyErrors[Additem] = "     Select the subsidy objective";
+      SubsidyErrors[Additem] = "     Select the subsidy purpose";
       SubsidyFocus[Additem] = "#Subsidy_Objective";
       Additem = Additem + 1;
     }
 
+    if (Subsidy_Objective == "Other" && Subsidy_Objective_Other =="") {
+      Subsidy_Objective_Other_Error = true;
+      SubsidyErrors[Additem] = "     Enter the subsidy purpose for other category";
+      SubsidyFocus[Additem] = "#Subsidy_Objective_Other";
+      Additem = Additem + 1;
+    }
+
+
     if (Subsidy_Instrument == "Empty") {
       Subsidy_Instrument_Error = true;
-      SubsidyErrors[Additem] = "     Select the subsidy instrument";
+      SubsidyErrors[Additem] = "     Select the subsidy type";
       SubsidyFocus[Additem] = "#Subsidy_Instrument";
       Additem = Additem + 1;
     }
+
+    if (Subsidy_Instrument == "Other" && Subsidy_Instrument_Other =="") {
+      Subsidy_Instrument_Other_Error = true;
+      SubsidyErrors[Additem] = "     Enter the subsidy type for other category";
+      SubsidyFocus[Additem] = "#Subsidy_Instrument_Other";
+      Additem = Additem + 1;
+    }
+
 
     console.log("subsidy element full amot : " + Subsidy_Element_Full_Amount);
     console.log("Subsidy_Full_Amount_Range : " + Subsidy_Full_Amount_Range);
@@ -306,8 +339,11 @@ router.post("/", (req, res) => {
     if (
       Subsidy_Control_Number_Error ||
       Subsidy_Measure_Title_Error ||
+      Subsidy_Adhoc_Error ||
       Subsidy_Objective_Error ||
+      Subsidy_Objective_Other_Error ||
       Subsidy_Instrument_Error ||
+      Subsidy_Instrument_Other_Error ||
       Subsidy_Element_Full_Amount_Error ||
       Subsidy_Full_Amount_Range_Error ||
       National_ID_Type_Error ||
@@ -325,8 +361,11 @@ router.post("/", (req, res) => {
       res.render("bulkupload/addsubsidyaward", {
         Subsidy_Control_Number_Global,
         Subsidy_Measure_Title_Global,
+        Subsidy_Adhoc_Global,
         Subsidy_Objective_Global,
+        Subsidy_Objective_Other_Global,
         Subsidy_Instrument_Global,
+        Subsidy_Instrument_Other_Global,
         Subsidy_Element_Full_Amount_Global,
         Subsidy_Full_Amount_Range_Global,
         National_ID_Type_Global,
@@ -343,8 +382,11 @@ router.post("/", (req, res) => {
 
         Subsidy_Control_Number_Error,
         Subsidy_Measure_Title_Error,
+        Subsidy_Adhoc_Error,
         Subsidy_Objective_Error,
+        Subsidy_Objective_Other_Error,
         Subsidy_Instrument_Error,
+        Subsidy_Instrument_Other_Error,
         Subsidy_Element_Full_Amount_Error,
         Subsidy_Full_Amount_Range_Error,
         National_ID_Type_Error,
@@ -366,12 +408,31 @@ router.post("/", (req, res) => {
         isAddSubsidyPrimarycall,
       });
     } else {
+
+      if (Subsidy_Objective_Global == "Other") {
+        Subsidy_Objective_Plus_Other_Global  = Subsidy_Objective_Global + '-' + Subsidy_Objective_Other_Global;
+      }
+      else {
+        Subsidy_Objective_Plus_Other_Global =  Subsidy_Objective_Global;
+      }
+
+      if (Subsidy_Instrument_Global == "Other") {
+        Subsidy_Instrument_Plus_Other_Global  = Subsidy_Instrument_Global + '-' + Subsidy_Instrument_Other_Global;
+      }
+      else {
+        Subsidy_Instrument_Plus_Other_Global =  Subsidy_Instrument_Global;
+      }
       res.render("bulkupload/reviewdetail", {
         Subsidy_Control_Number_Global,
         Subsidy_Control_Number_Global_Substring,
         Subsidy_Measure_Title_Global,
+        Subsidy_Adhoc_Global,
         Subsidy_Objective_Global,
+        Subsidy_Objective_Other_Global,
+        Subsidy_Objective_Plus_Other_Global,
         Subsidy_Instrument_Global,
+        Subsidy_Instrument_Other_Global,
+        Subsidy_Instrument_Plus_Other_Global,
         Subsidy_Element_Full_Amount_Global,
         Subsidy_Full_Amount_Range_Global,
         National_ID_Type_Global,
