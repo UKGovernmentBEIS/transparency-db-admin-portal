@@ -18,7 +18,7 @@ console.log("reject_reason : " + reject_reason_text);
 const data_request = 
 {
     "status": "Rejected",
-    "reason": reject_reason_text
+    "rejectReason": reject_reason_text
 };
 
 var data = JSON.parse(JSON.stringify(data_request));
@@ -30,7 +30,7 @@ var awardendpoint = beis_url_accessmanagement + '/accessmanagement/' + awardnumb
         const awardapidata = await axios.put(awardendpoint,data);
         console.log(`Status: ${awardapidata.status}`);
         console.log('Body: ', awardapidata.data);
-        // fetchawarddetails = awardapidata.data;
+       console.log("awardendpoint:" + awardendpoint);
 
 
         try {
