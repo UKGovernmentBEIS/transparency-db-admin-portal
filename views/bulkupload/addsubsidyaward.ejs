@@ -154,7 +154,7 @@
       </div>
 
       <!-- bread crumbs start here -->
-      <div class="govuk-breadcrumbs ">
+      <!-- <div class="govuk-breadcrumbs ">
         <ol class="govuk-breadcrumbs__list">
           <li class="govuk-breadcrumbs__list-item">
             <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
@@ -166,7 +166,7 @@
             <a1 class="govuk-breadcrumbs__link" href="#">Add a subsidy awards</a1>
           </li>
         </ol>
-      </div>
+      </div> -->
       <!-- bread crumbs ends here -->
 
       <!-- Error display -->
@@ -222,7 +222,7 @@
               </div>
 
               <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
-                <span class="govuk-visually-hidden">Error:</span> Enter the subsidy control number
+                <span class="govuk-visually-hidden">Error:</span> Enter a valid subsidy control number
               </span>
 
               <input class="govuk-input govuk-input--width-5 govuk-input--error" id="Subsidy_Control_Number"
@@ -269,7 +269,7 @@
               </div>
 
               <span class="govuk-error-message" id="Subsidy_Measure_Title_Error">
-                <span class="govuk-visually-hidden">Error:</span> Enter the subsidy scheme name
+                <span class="govuk-visually-hidden">Error:</span> Enter a valid subsidy scheme name
               </span>
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Measure_Title"
@@ -296,6 +296,10 @@
 
             <h1 class="govuk-heading-l">Subsidy award details</h1>
 
+            <!-- *********************
+            Subsidy measure adhoc 
+            ********************* -->
+<!-- 
             <div class="govuk-form-group">
               <label class="govuk-label" for="Subsidy_Measure_Title">
                 Is this for an ad hoc subsidy?
@@ -317,7 +321,104 @@
                   No
                 </label>
               </div>
-            </div>
+            </div> -->
+
+            <!-- ************************************  -->
+            <!-- Get the subsdy adhoc from user  -->
+            <!-- ************************************  -->
+
+            <% if( locals.Subsidy_Adhoc_Error ) { %>
+              <div class="govuk-form-group govuk-form-group--error">
+                <fieldset class="govuk-fieldset" aria-describedby="Subsidy_Adhoc-hint">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <h1 class="govuk-label">
+                      Is this for an ad hoc subsidy?
+                    </h1>
+                  </legend>
+  
+                  <div id="Subsidy_Adhoc-hint" class="govuk-hint">
+                    You will only be able to create one subsidy award under each ad hoc subsidy scheme.
+                  </div>
+  
+                  <span class="govuk-error-message" id="Subsidy_adhoc_Error">
+                    <span class="govuk-visually-hidden">Error:</span> Enter a valid adhoc subsidy scheme 
+                  </span>
+                  <div class="govuk-radios ">
+                    <div class="govuk-radios__item">
+                      <% if( locals.Subsidy_Adhoc_Global == 'Yes' ){ %>
+                      <input class="govuk-radios__input" id="Subsidy_Adhoc" name="Subsidy_Adhoc" type="radio"
+                        value="Yes" checked>
+                      <% } else { %>
+                      <input class="govuk-radios__input" id="Subsidy_Adhoc" name="Subsidy_Adhoc" type="radio"
+                        value="Yes">
+                      <% } %>
+                      <label class="govuk-label govuk-radios__label" for="Subsidy_Adhoc">
+                        Yes
+                      </label>
+  
+                    </div>
+                    <div class="govuk-radios__item">
+                      <% if( locals.Subsidy_Adhoc_Global == 'No' ){ %>
+                      <input class="govuk-radios__input" id="Subsidy_Adhoc-2" name="Subsidy_Adhoc" type="radio"
+                        value="No" checked>
+                      <% } else { %>
+                      <input class="govuk-radios__input" id="Subsidy_Adhoc-2" name="Subsidy_Adhoc" type="radio"
+                        value="No">
+  
+                      <% } %>
+                      <label class="govuk-label govuk-radios__label" for="Subsidy_Adhoc-2">
+                        No
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+  
+              <% } else { %>
+  
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="Subsidy_Adhoc-hint">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <h1 class="govuk-label">
+                      Is this for an ad hoc subsidy?
+                    </h1>
+                  </legend>
+                  <div id="Subsidy_Adhoc-hint" class="govuk-hint">
+                    You will only be able to create one subsidy award under each ad hoc subsidy scheme.
+                  </div>
+  
+                  <div class="govuk-radios ">
+                    <div class="govuk-radios__item">
+                      <% if( locals.Subsidy_Adhoc_Global == 'Yes' ){ %>
+                      <input class="govuk-radios__input" id="Subsidy_Adhoc" name="Subsidy_Adhoc" type="radio"
+                        value="Yes" checked>
+                      <% } else { %>
+                      <input class="govuk-radios__input" id="Subsidy_Adhoc" name="Subsidy_Adhoc" type="radio"
+                        value="Yes">
+                      <% } %>
+                      <label class="govuk-label govuk-radios__label" for="Subsidy_Adhoc">
+                        Yes
+                      </label>
+  
+                    </div>
+                    <div class="govuk-radios__item">
+                      <% if( locals.Subsidy_Adhoc_Global == 'No' ){ %>
+                      <input class="govuk-radios__input" id="Subsidy_Adhoc-2" name="Subsidy_Adhoc" type="radio"
+                        value="No" checked>
+                      <% } else { %>
+                      <input class="govuk-radios__input" id="Subsidy_Adhoc-2" name="Subsidy_Adhoc" type="radio"
+                        value="No">
+  
+                      <% } %>
+                      <label class="govuk-label govuk-radios__label" for="Subsidy_Adhoc-2">
+                        No
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+  
+              <% } %>
 
 
             <!-- *************************************  -->
@@ -340,10 +441,10 @@
                 <% } else { %>
                 <option value="Empty">Select subsidy purpose (11) </option>
                 <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'Culture heritage' ){ %>
-                <option value="Culture heritage" selected>Culture or heritage​ </option>
+                <% if( locals.Subsidy_Objective_Global == 'Culture or Heritage​' ){ %>
+                <option value="Culture or Heritage​" selected>Culture or Heritage​ </option>
                 <% } else { %>
-                <option value="Culture heritage">Culture or heritage​ </option>
+                <option value="Culture or Heritage​">Culture or Heritage​ </option>
                 <% } %>
 
                 <% if( locals.Subsidy_Objective_Global == 'Employment' ){ %>
@@ -429,10 +530,10 @@
                 <% } else { %>
                 <option value="Empty">Select subsidy purpose (11) </option>
                 <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'Culture heritage' ){ %>
-                <option value="Culture heritage" selected>Culture or heritage​ </option>
+                <% if( locals.Subsidy_Objective_Global == 'Culture or Heritage​' ){ %>
+                <option value="Culture or Heritage​" selected>Culture or Heritage​ </option>
                 <% } else { %>
-                <option value="Culture heritage">Culture or heritage​ </option>
+                <option value="Culture or Heritage​">Culture or heritage​ </option>
                 <% } %>
 
                 <% if( locals.Subsidy_Objective_Global == 'Employment' ){ %>
@@ -505,12 +606,48 @@
             </div>
 
             <% } %>
-            <div id="other_purpose" class="govuk-form-group" style="display: none;">
+            <!-- <div id="other_purpose" class="govuk-form-group" style="display: none;">
               <label class="govuk-label" for="Subsidy_Objective">
                 Other purpose
               </label>
               <input class="govuk-input govuk-input--width-20" type="text">
+            </div> -->
+
+            
+            <!-- *****************************************  -->
+            <!-- Get the  Subsidy objective other category  -->
+            <!-- *****************************************  -->
+
+            <% if( locals.Subsidy_Objective_Other_Error ){ %>
+              <div id="other_purpose" class="govuk-form-group govuk-form-group--error" style="display: none;">
+                <label class="govuk-label" for="Subsidy_Objective_Other">
+                  Other purpose
+                </label>
+             
+                <span class="govuk-error-message" id="Subsidy_Objective_Other_Error">
+                  <span class="govuk-visually-hidden">Error:</span> Enter a subsidy purpose for other category
+                </span>
+  
+                <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Objective_Other"
+                  name="Subsidy_Objective_Other" type="text" aria-describedby="Subsidy_Objective_Other-hint"
+                  <% if(locals.Subsidy_Objective_Other_Global) {%> value="<%= locals.Subsidy_Objective_Other_Global %>"
+                  <% } %> />
+              </div>
+              <% } else { %>
+  
+                <div id="other_purpose" class="govuk-form-group" style="display: none;">
+                  <label class="govuk-label" for="Subsidy_Objective_Other">
+                    Other purpose
+                  </label>
+              
+                <input class="govuk-input govuk-input--width-20" id="Subsidy_Objective_Other"
+                name="Subsidy_Objective_Other" type="text" aria-describedby="Subsidy_Objective_Other-hint"
+                <% if(locals.Subsidy_Objective_Other_Global) {%> value="<%= locals.Subsidy_Objective_Other_Global %>"
+                <% } %> />
             </div>
+              <% }  %>
+
+
             <!-- *************************************  -->
             <!-- Get the  Subsidy Instrument from user  -->
             <!-- *************************************  -->
@@ -526,16 +663,51 @@
 
               <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument"
                 onchange="changeSubsidyType(event)">
-                <option value="">Select subsidy type (8)</option>
+                <% if( locals.Subsidy_Instrument_Global == '' ) { %>
+                <option value="" selected>Select subsidy type (8)</option>
+                <% } else { %>
+                <option value="" >Select subsidy type (8)</option>
+                <% } %>
+                <% if( locals.Subsidy_Instrument_Global == 'Direct Grant' ) { %>
+                <option value="Direct Grant" selected>Direct Grant</option>
+                <% } else { %>
                 <option value="Direct Grant">Direct Grant</option>
+                <% } %>
+                <% if( locals.Subsidy_Instrument_Global == 'Equity' ) { %>
+                <option value="Equity" selected>Equity</option>
+                <% } else { %>
                 <option value="Equity">Equity</option>
-                <option value="Guarantee">Guarantee</option>
+                <% } %>
+                <% if( locals.Subsidy_Instrument_Global == 'Guarantee' ) { %>
+                <option value="Guarantee" selected>Guarantee</option>
+                <% } else { %>
+                <option value="Guarantee">Guarantee</option> 
+                <% } %>
+                <% if( locals.Subsidy_Instrument_Global == 'Loan' ) { %>
+                <option value="Loan" selected>Loan</option>
+                <% } else { %>
                 <option value="Loan">Loan</option>
-                <option value="Purchase of goods">Purchase of goods services above market prices</option>
-                <option value="Provision of goods">Provision of goods or services below market prices</option>
-                <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit, or tax/duty
-                  exemption)</option>
+                <% } %>
+                <% if( locals.Subsidy_Instrument_Global == 'Purchase of goods services above market prices' ) { %>
+                <option value="Purchase of goods services above market prices" selected>Purchase of goods services above market prices</option>
+                <% } else { %>
+                <option value="Purchase of goods services above market prices">Purchase of goods services above market prices</option>
+                <% } %>
+                <% if( locals.Subsidy_Instrument_Global == 'Provision of goods or services below market prices' ) { %>
+                <option value="Provision of goods or services below market prices" selected>Provision of goods or services below market prices</option>
+                <% } else { %>
+                <option value="Provision of goods or services below market prices" selected>Provision of goods or services below market prices</option>
+                <% } %>
+                <% if( locals.Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)' ) { %>
+                <option value="Tax measures (tax credit, or tax/duty exemption)" selected>Tax measures (tax credit, or tax/duty exemption)</option>
+                <% } else { %>
+                <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit, or tax/duty exemption)</option>
+                <% } %>
+                <% if( locals.Subsidy_Instrument_Global == 'Other' ) { %>
+                <option value="Other" selected>Other</option>
+                <% } else { %>
                 <option value="Other">Other</option>
+                <% } %>
               </select>
             </div>
 
@@ -547,25 +719,96 @@
               </label>
               <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument"
                 onchange="changeSubsidyType(event)">
-                <option value="Direct Grant">Direct Grant</option>
-                <option value="Equity">Equity</option>
-                <option value="Guarantee">Guarantee</option>
-                <option value="Loan">Loan</option>
-                <option value="Purchase of goods">Purchase of goods services above market prices</option>
-                <option value="Provision of goods">Provision of goods or services below market prices</option>
-                <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit, or tax/duty
-                  exemption)</option>
-                <option value="Other" data-target="#Not_Tax_measures">Other</option>
+                <% if( locals.Subsidy_Instrument_Global == '' ) { %>
+                  <option value="" selected>Select subsidy type (8)</option>
+                  <% } else { %>
+                  <option value="" >Select subsidy type (8)</option>
+                  <% } %>
+                  <% if( locals.Subsidy_Instrument_Global == 'Direct Grant' ) { %>
+                  <option value="Direct Grant" selected>Direct Grant</option>
+                  <% } else { %>
+                  <option value="Direct Grant">Direct Grant</option>
+                  <% } %>
+                  <% if( locals.Subsidy_Instrument_Global == 'Equity' ) { %>
+                  <option value="Equity" selected>Equity</option>
+                  <% } else { %>
+                  <option value="Equity">Equity</option>
+                  <% } %>
+                  <% if( locals.Subsidy_Instrument_Global == 'Guarantee' ) { %>
+                  <option value="Guarantee" selected>Guarantee</option>
+                  <% } else { %>
+                  <option value="Guarantee">Guarantee</option> 
+                  <% } %>
+                  <% if( locals.Subsidy_Instrument_Global == 'Loan' ) { %>
+                  <option value="Loan" selected>Loan</option>
+                  <% } else { %>
+                  <option value="Loan">Loan</option>
+                  <% } %>
+                  <% if( locals.Subsidy_Instrument_Global == 'Purchase of goods services above market prices' ) { %>
+                  <option value="Purchase of goods services above market prices" selected>Purchase of goods services above market prices</option>
+                  <% } else { %>
+                  <option value="Purchase of goods services above market prices">Purchase of goods services above market prices</option>
+                  <% } %>
+                  <% if( locals.Subsidy_Instrument_Global == 'Provision of goods or services below market prices' ) { %>
+                  <option value="Provision of goods or services below market prices" selected>Provision of goods or services below market prices</option>
+                  <% } else { %>
+                  <option value="Provision of goods or services below market prices" selected>Provision of goods or services below market prices</option>
+                  <% } %>
+                  <% if( locals.Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)' ) { %>
+                  <option value="Tax measures (tax credit, or tax/duty exemption)" selected>Tax measures (tax credit, or tax/duty exemption)</option>
+                  <% } else { %>
+                  <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit, or tax/duty exemption)</option>
+                  <% } %>
+                  <% if( locals.Subsidy_Instrument_Global == 'Other' ) { %>
+                  <option value="Other" selected>Other</option>
+                  <% } else { %>
+                  <option value="Other">Other</option>
+                  <% } %>
               </select>
             </div>
 
             <% } %>
-            <div id="other_type" class="govuk-form-group" style="display: none;">
+            <!-- <div id="other_type" class="govuk-form-group" style="display: none;">
               <label class="govuk-label" for="Subsidy_Objective">
                 Other type
               </label>
               <input class="govuk-input govuk-input--width-20" type="text">
+            </div> -->
+
+
+             
+            <!-- *****************************************  -->
+            <!-- Get the  Subsidy instrument other category  -->
+            <!-- *****************************************  -->
+
+            <% if( locals.Subsidy_Instrument_Other_Error ){ %>
+              <div id="other_type" class="govuk-form-group govuk-form-group--error" style="display: none;">
+                <label class="govuk-label" for="Subsidy_Instrument_Other">
+                  Other type
+                </label>
+             
+                <span class="govuk-error-message" id="Subsidy_Instrument_Other_Error">
+                  <span class="govuk-visually-hidden">Error:</span> Enter a subsidy type for other category
+                </span>
+  
+                <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Instrument_Other"
+                  name="Subsidy_Instrument_Other" type="text" aria-describedby="Subsidy_Instrument_Other-hint"
+                  <% if(locals.Subsidy_Instrument_Other_Global) {%> value="<%= locals.Subsidy_Instrument_Other_Global %>"
+                  <% } %> />
+              </div>
+              <% } else { %>
+  
+                <div id="other_type" class="govuk-form-group" style="display: none;">
+                  <label class="govuk-label" for="Subsidy_Instrument_Other">
+                    Other type
+                  </label>
+              
+                <input class="govuk-input govuk-input--width-20" id="Subsidy_Instrument_Other"
+                name="Subsidy_Instrument_Other" type="text" aria-describedby="Subsidy_Instrument_Other-hint"
+                <% if(locals.Subsidy_Instrument_Other_Global) {%> value="<%= locals.Subsidy_Instrument_Other_Global %>"
+                <% } %> />
             </div>
+              <% }  %>
 
             <!-- ***************************************  -->
             <!-- Get the Subsidy Element Full Amount Range      -->
@@ -593,10 +836,15 @@
                     <% } else { %>
                     <option value="Empty"> Select subsidy range(8)</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£1 - £500,000' ) { %>
-                    <option value="£1 - £500,000" selected>£1 - £500,000</option>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£1 - £60,000' ) { %>
+                    <option value="£1 - £60,000" selected>£1 - £60,000</option>
                     <% } else { %>
-                    <option value="£1 - £500,000">£1 - £500,000</option>
+                    <option value="£1 - £60,000">£1 - £60,000</option>
+                    <% } %>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£60,001 - £500,000' ) { %>
+                    <option value="£60,001 - £500,000" selected>£60,001 - £500,000</option>
+                    <% } else { %>
+                    <option value="£60,001 - £500,000">£60,001 - £500,000</option>
                     <% } %>
                     <% if( locals.Subsidy_Full_Amount_Range_Global == '£500,001 - £1,000,000' ) { %>
                     <option value="£500,001 - £1,000,000" selected>£500,001 - £1,000,000</option>
@@ -649,10 +897,15 @@
                     <% } else { %>
                     <option value="Empty"> Select subsidy range(8)</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£1 - £500,000' ) { %>
-                    <option value="£1 - £500,000" selected>£1 - £500,000</option>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£1 - £60,000' ) { %>
+                    <option value="£1 - £60,000" selected>£1 - £60,000</option>
                     <% } else { %>
-                    <option value="£1 - £500,000">£1 - £500,000</option>
+                    <option value="£1 - £60,000">£1 - £60,000</option>
+                    <% } %>
+                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£60,001 - £500,000' ) { %>
+                    <option value="£60,001 - £500,000" selected>£60,001 - £500,000</option>
+                    <% } else { %>
+                    <option value="£60,001 - £500,000">£60,001 - £500,000</option>
                     <% } %>
                     <% if( locals.Subsidy_Full_Amount_Range_Global == '£500,001 - £1,000,000' ) { %>
                     <option value="£500,001 - £1,000,000" selected>£500,001 - £1,000,000</option>
@@ -743,7 +996,7 @@
               </label>
 
               <span class="govuk-error-message" id="Granting_Authority_Name_Error">
-                <span class="govuk-visually-hidden">Error:</span> Enter the granting authority name
+                <span class="govuk-visually-hidden">Error:</span> Enter a granting authority name
               </span>
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Granting_Authority_Name"
@@ -959,51 +1212,51 @@
 
                 <div class="govuk-radios">
                   <div class="govuk-radios__item">
-                    <% if( locals.Size_of_the_Organisation_Global == 'Micro organisation' ){ %>
+                    <% if( locals.Size_of_the_Organisation_Global == 'Micro (fewer than 10 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
-                      type="radio" value="Micro organisation" checked>
+                      type="radio" value="Micro (fewer than 10 employees)" checked>
 
                     <% } else { %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
-                      type="radio" value="Micro organisation">
+                      type="radio" value="Micro (fewer than 10 employees)">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation">
                       Micro (fewer than 10 employees)
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.Size_of_the_Organisation_Global == 'Small organisation' ){ %>
+                    <% if( locals.Size_of_the_Organisation_Global == 'Small (between 10 and 49 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
-                      type="radio" value="Small organisation" checked>
+                      type="radio" value="Small (between 10 and 49 employees)" checked>
 
                     <% } else { %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
-                      type="radio" value="Small organisation">
+                      type="radio" value="Small (between 10 and 49 employees)">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-2">
                       Small (between 10 and 49 employees)
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.Size_of_the_Organisation_Global == 'Medium organisation' ){ %>
+                    <% if( locals.Size_of_the_Organisation_Global == 'Medium (between 50 and 249 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
-                      type="radio" value="Medium organisation" checked>
+                      type="radio" value="Medium (between 50 and 249 employees)" checked>
 
                     <% } else { %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
-                      type="radio" value="Medium organisation">
+                      type="radio" value="Medium (between 50 and 249 employees)">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-3">
                       Medium (between 50 and 249 employees)
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.Size_of_the_Organisation_Global == 'Large organisation' ){ %>
+                    <% if( locals.Size_of_the_Organisation_Global == 'Large (more than 250 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                      type="radio" value="Large organisation" checked>
+                      type="radio" value="Large (more than 250 employees)" checked>
                     <% } else { %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                      type="radio" value="Large organisation">
+                      type="radio" value="Large (more than 250 employees)">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-4">
                       Large (more than 250 employees)
@@ -1026,51 +1279,51 @@
 
                 <div class="govuk-radios">
                   <div class="govuk-radios__item">
-                    <% if( locals.Size_of_the_Organisation_Global == 'Micro organisation' ){ %>
+                    <% if( locals.Size_of_the_Organisation_Global == 'Micro (fewer than 10 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
-                      type="radio" value="Micro organisation" checked>
+                      type="radio" value="Micro (fewer than 10 employees)" checked>
 
                     <% } else { %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
-                      type="radio" value="Micro organisation">
+                      type="radio" value="Micro (fewer than 10 employees)">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation">
                       Micro (fewer than 10 employees)
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.Size_of_the_Organisation_Global == 'Small organisation' ){ %>
+                    <% if( locals.Size_of_the_Organisation_Global == 'Small (between 10 and 49 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
-                      type="radio" value="Small organisation" checked>
+                      type="radio" value="Small (between 10 and 49 employees)" checked>
 
                     <% } else { %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
-                      type="radio" value="Small organisation">
+                      type="radio" value="Small (between 10 and 49 employees)">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-2">
                       Small (between 10 and 49 employees)
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.Size_of_the_Organisation_Global == 'Medium organisation' ){ %>
+                    <% if( locals.Size_of_the_Organisation_Global == 'Medium (between 50 and 249 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
-                      type="radio" value="Medium organisation" checked>
+                      type="radio" value="Medium (between 50 and 249 employees)" checked>
 
                     <% } else { %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
-                      type="radio" value="Medium organisation">
+                      type="radio" value="Medium (between 50 and 249 employees)">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-3">
                       Medium (between 50 and 249 employees)
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.Size_of_the_Organisation_Global == 'Large organisation' ){ %>
+                    <% if( locals.Size_of_the_Organisation_Global == 'Large (more than 250 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                      type="radio" value="Large organisation" checked>
+                      type="radio" value="Large (more than 250 employees)" checked>
                     <% } else { %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                      type="radio" value="Large organisation">
+                      type="radio" value="Large (more than 250 employees)">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-4">
                       Large (more than 250 employees)
@@ -1289,7 +1542,7 @@
                   while a dentist provides services.
                 </div>
 
-                <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
+                <span class="govuk-error-message" id="Goods_or_Services_Error">
                   <span class="govuk-visually-hidden">Error:</span> Enter the Goods or Services
                 </span>
                 <div class="govuk-radios ">
