@@ -30,7 +30,7 @@ var awardendpoint = beis_url_accessmanagement + '/accessmanagement/' + awardnumb
         const awardapidata = await axios.put(awardendpoint,data);
         console.log(`Status: ${awardapidata.status}`);
         console.log('Body: ', awardapidata.data);
-        // fetchawarddetails = awardapidata.data;
+       console.log("awardendpoint:" + awardendpoint);
 
 
         try {

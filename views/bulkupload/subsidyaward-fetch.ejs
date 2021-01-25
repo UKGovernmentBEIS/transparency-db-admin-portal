@@ -81,7 +81,7 @@
                 </div>
                 <div class="app-example__frame">
                     <% if(fetchawarddetails.status) { %>
-                    <p> <%= fetchawarddetails.status %></p>
+                    <p> <%= fetchawarddetails.rejectReason %></p>
                     <% } else { %>
                     <p>The subsidy award reject reason not mentioned by the approver </p>
                     <% } %>
@@ -272,7 +272,7 @@
                     value="Editaward">
                     Edit</button> -->
                 <!-- <a href="/editsubsidyaward?award=<%= awardnumber%>" -->
-                <a href="/addsubsidyaward" style="color : rgb(250, 245, 245); text-decoration: none"
+                <a href="/addsubsidyeditaward" style="color : rgb(250, 245, 245); text-decoration: none"
                     class="govuk-button" data-module="govuk-button">Edit
                 </a>
                 <button class="govuk-button govuk-button--warning" data-module="govuk-button" name="Award_status"
