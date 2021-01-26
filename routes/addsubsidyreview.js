@@ -11,6 +11,7 @@ router.get("/", (req, res) => {
     Subsidy_Objective_Other_Global ,
     Subsidy_Instrument_Global,
     Subsidy_Element_Full_Amount_Global,
+    Subsidy_Full_Amount_Range_Global,
     National_ID_Type_Global,
     National_ID_Number_Global,
     Beneficiary_Name_Global,

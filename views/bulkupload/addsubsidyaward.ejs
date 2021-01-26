@@ -195,7 +195,11 @@
 
       <% } %>
 
+      <% if( locals.isAddSubsidyPrimarycall) { %>
       <h1 class="govuk-heading-xl">Add a subsidy award</h1>
+      <% } else {  %>
+        <h1 class="govuk-heading-xl">Edit subsidy award</h1>
+        <% } %>
 
       <!-- <a rel="external" target="_blank" class="govuk-link head-right govuk-relative-position_title" href="./assets/files/HelpDocumentAddSubsidyAwards.pdf" >
         <p >Download the help file </p>
@@ -536,7 +540,7 @@
                 <% if( locals.Subsidy_Objective_Global == 'Culture or Heritage​' ){ %>
                 <option value="Culture or Heritage​" selected>Culture or Heritage​ </option>
                 <% } else { %>
-                <option value="Culture or Heritage​">Culture or heritage​ </option>
+                <option value="Culture or Heritage​">Culture or Heritage​ </option>
                 <% } %>
 
                 <% if( locals.Subsidy_Objective_Global == 'Employment' ){ %>
@@ -702,7 +706,7 @@
                 <option value="Provision of goods or services below market prices" selected>Provision of goods or
                   services below market prices</option>
                 <% } else { %>
-                <option value="Provision of goods or services below market prices" selected>Provision of goods or
+                <option value="Provision of goods or services below market prices" >Provision of goods or
                   services below market prices</option>
                 <% } %>
                 <% if( locals.Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)' ) { %>
@@ -764,7 +768,7 @@
                 <option value="Provision of goods or services below market prices" selected>Provision of goods or
                   services below market prices</option>
                 <% } else { %>
-                <option value="Provision of goods or services below market prices" selected>Provision of goods or
+                <option value="Provision of goods or services below market prices" >Provision of goods or
                   services below market prices</option>
                 <% } %>
                 <% if( locals.Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)' ) { %>

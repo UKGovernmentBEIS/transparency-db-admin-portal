@@ -41,6 +41,12 @@ router.post("/", async (req, res) => {
   var Spending_Region_Error = false;
   var Spending_Sector_Error = false;
 
+  if (Subsidy_Full_Amount_Range_Global == "Empty") { 
+
+    Subsidy_Full_Amount_Range_Global_Trim = "NA";
+  }
+
+  else { Subsidy_Full_Amount_Range_Global_Trim =  Subsidy_Full_Amount_Range_Global;}
   Subsidy_Element_Full_Amount_Global_Trim = parseFloat(Subsidy_Element_Full_Amount_Global.replace(/\,/g,""));
   
   console.log("Subsidy_Element_Full_Amount_Global_Trim:" +Subsidy_Element_Full_Amount_Global_Trim );
@@ -54,7 +60,7 @@ router.post("/", async (req, res) => {
     orgSize: Size_of_the_Organisation_Global,
     subsidyInstrument: Subsidy_Instrument_Global,
     subsidyObjective: Subsidy_Objective_Global,
-    subsidyAmountRange: Subsidy_Full_Amount_Range_Global,
+    subsidyAmountRange: Subsidy_Full_Amount_Range_Global_Trim,
     subsidyAmountExact: Subsidy_Element_Full_Amount_Global_Trim,
     legalGrantingDate: subsidy_legal_granting_date,
     grantingAuthorityName: Granting_Authority_Name_Global,

@@ -182,7 +182,7 @@ router.post("/", (req, res) => {
 
     console.log("subsidy element full amot : " + Subsidy_Element_Full_Amount);
     console.log("Subsidy_Full_Amount_Range : " + Subsidy_Full_Amount_Range);
-    if (!Subsidy_Element_Full_Amount && Subsidy_Instrument != "Tax measures") {
+    if (!Subsidy_Element_Full_Amount && Subsidy_Instrument != "Tax measures (tax credit, or tax/duty exemption)") {
       Subsidy_Element_Full_Amount_Error = true;
       SubsidyErrors[Additem] = "     Enter the subsidy element full amount";
       SubsidyFocus[Additem] = "#Subsidy_Element_Full_Amount";

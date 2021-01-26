@@ -29,6 +29,7 @@ app.use(
 );
 app.locals.awards = require("./views/bulkupload/awards.json");
 app.locals.Subsidy_Control_Number_Global;
+app.locals.isAddSubsidyPrimarycall;
 app.locals.Subsidy_Control_Number_Global_Substring;
 app.locals.Subsidy_Measure_Title_Global;
 app.locals.Subsidy_Adhoc_Global;
