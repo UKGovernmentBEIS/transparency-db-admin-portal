@@ -67,8 +67,21 @@ router.post("/", (req, res) => {
   Subsidy_Objective_Other_Global = Subsidy_Objective_Other;
   Subsidy_Instrument_Global = Subsidy_Instrument;
   Subsidy_Instrument_Other_Global = Subsidy_Instrument_Other;
-  Subsidy_Element_Full_Amount_Global = Subsidy_Element_Full_Amount;
-  Subsidy_Full_Amount_Range_Global = Subsidy_Full_Amount_Range;
+  
+  if ( Subsidy_Instrument_Global !== 'Tax measures (tax credit, or tax/duty exemption)') {
+    Subsidy_Element_Full_Amount_Global = Subsidy_Element_Full_Amount;
+  }
+  else {
+    Subsidy_Element_Full_Amount_Global = 'NA';
+  }
+
+  if ( Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)') {
+    Subsidy_Full_Amount_Range_Global = Subsidy_Full_Amount_Range;
+  }
+  else {
+    Subsidy_Full_Amount_Range_Global = 'NA';
+  }
+
   National_ID_Type_Global = National_ID_Type;
   National_ID_Number_Global = National_ID_Number;
   Beneficiary_Name_Global = Beneficiary_Name;
