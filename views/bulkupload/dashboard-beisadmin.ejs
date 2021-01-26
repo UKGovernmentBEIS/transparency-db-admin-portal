@@ -75,7 +75,7 @@
           <h1 class="govuk-fieldset__heading"><%= dashboard_user_name %></h1>
         </legend>
       </div>
-      <div class="govuk-border-top">
+      <div class="">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
           <h2 class="govuk-fieldset_sub-heading">Granting Authority</h2>
         </legend>
@@ -135,18 +135,17 @@
                 users</p>
             </div>
           </div>
-          <div class="govuk-grid-column-one-half govuk-form-group">
+          <!-- <div class="govuk-grid-column-one-half govuk-form-group">
             <div class="govuk-background">
-              <!-- <label>Deactive</label>
-            <p>Total granting authorities that are not active</p> -->
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
-              </legend>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">New users
-                awaiting approval</p>
-            </div>
-          </div>
-          <div class="govuk-grid-column-one-third govuk-form-group">
+              
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+            <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
+          </legend>
+          <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">New users
+            awaiting approval</p>
+        </div>
+      </div> -->
+          <div class="govuk-grid-column-one-half govuk-form-group">
             <div class="govuk-background">
               <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
@@ -157,7 +156,7 @@
               </p>
             </div>
           </div>
-          <div class="govuk-grid-column-one-third govuk-form-group">
+          <div class="govuk-grid-column-one-half govuk-form-group">
             <div class="govuk-background">
               <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
@@ -167,7 +166,7 @@
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Approvers</p>
             </div>
           </div>
-          <div class="govuk-grid-column-one-third govuk-form-group">
+          <div class="govuk-grid-column-one-half govuk-form-group">
             <div class="govuk-background">
               <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
@@ -179,12 +178,12 @@
           </div>
         </div>
         <div class="govuk-addGA form-group">
-          <button class="govuk-button govuk-button--success" id="getFilterTags">
+          <a href="/manageusers" class="govuk-button govuk-button--success" id="getFilterTags">
             View all Users
-          </button>
-          <button class="govuk-button govuk-button--success btn-md" id="getFilterTags">
+          </a>
+          <a href="/adduser" class="govuk-button govuk-button--success btn-md" id="getFilterTags">
             Add a new user
-          </button>
+          </a>
         </div>
 
       </div>
@@ -193,7 +192,7 @@
           <h2 class="govuk-fieldset_sub-heading">Subsidy schemes</h2>
         </legend>
         <div class="govuk-grid-row">
-          <div class="govuk-grid-column-one-half govuk-form-group">
+          <div class="govuk-grid-column-one-third govuk-form-group">
             <div class="govuk-background">
               <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
@@ -204,10 +203,9 @@
                 schemes</p>
             </div>
           </div>
-          <div class="govuk-grid-column-one-half govuk-form-group">
+          <!-- <div class="govuk-grid-column-one-half govuk-form-group">
             <div class="govuk-background">
-              <!-- <label>Deactive</label>
-            <p>Total granting authorities that are not active</p> -->
+              
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalAwaitingSubsidyMeasures %>
               </legend>
@@ -215,18 +213,17 @@
                 approval
               </p>
             </div>
-          </div>
-          <div class="govuk-grid-column-one-third govuk-form-group">
+          </div> -->
+          <!-- <div class="govuk-grid-column-one-third govuk-form-group">
             <div class="govuk-background">
-              <!-- <label>Deactive</label>
-            <p>Total granting authorities that are not active</p> -->
+             
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalPublishedSubsidyMeasures %>
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Published
               </p>
             </div>
-          </div>
+          </div> -->
           <div class="govuk-grid-column-one-third govuk-form-group">
             <div class="govuk-background">
               <!-- <label>Deactive</label>
@@ -234,7 +231,7 @@
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalDraftSubsidyMeasures %>
               </legend>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Rejected</p>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Active</p>
             </div>
           </div>
           <div class="govuk-grid-column-one-third govuk-form-group">
