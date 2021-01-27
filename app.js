@@ -112,7 +112,7 @@ app.locals.Spending_Sector_Error;
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
-app.post("/", async (req, res) => {
+app.get("/", async (req, res) => {
   Environment_variable = process.argv[2];
   if (Environment_variable == "env=dev") {
     beis_url_publishing = "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
@@ -150,7 +150,7 @@ app.post("/", async (req, res) => {
   // *******************
   frontend_totalRecordsPerPage = 1;
 
-  var {id_token}  = req.body;
+  var id_token = req.body.id_token;
   console.log("id_token "+id_token);
   var id_token_decoded = jwt_decode(id_token);
 
