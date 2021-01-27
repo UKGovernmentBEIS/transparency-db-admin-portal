@@ -112,7 +112,7 @@ app.locals.Spending_Sector_Error;
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
-app.post("/", async (req, res) => {
+app.get("/", async (req, res) => {
   Environment_variable = process.argv[2];
   if (Environment_variable == "env=dev") {
     beis_url_publishing = "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
@@ -285,10 +285,6 @@ app.post("/", async (req, res) => {
       console.log("response_error_message catch : " + response_error_message);
     }
   }
-});
-
-app.get("/", async (req, res) => {
-  res.redirect("/choosedashboard");
 });
 
 var logintransparency = require("./routes/logintransparency");
