@@ -129,7 +129,7 @@ app.locals.Spending_Sector_Error;
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
-app.post("/", async(req, res) => {
+app.get("/", async(req, res) => {
 
   Environment_variable = process.argv[2];
   if (Environment_variable == "env=dev") {
