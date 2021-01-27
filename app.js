@@ -287,6 +287,10 @@ app.post("/", async (req, res) => {
   }
 });
 
+app.get("/", async (req, res) => {
+  res.redirect("/choosedashboard");
+});
+
 var logintransparency = require("./routes/logintransparency");
 app.use("/logintransparency", logintransparency);
 
