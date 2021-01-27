@@ -108,7 +108,7 @@
 </head>
 
 <body class="govuk-template__body app-example-page"
-  onload="getSubsidyInstrument('<%= locals.Subsidy_Instrument_Global %>','<%= locals.Subsidy_Objective_Global %>')">
+  onload="getSubsidyInstrument('<%= Subsidy_Instrument_Global %>','<%= Subsidy_Objective_Global %>')">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/header.ejs') %>
@@ -158,35 +158,18 @@
 
       </div>
 
-      <!-- bread crumbs start here -->
-      <!-- <div class="govuk-breadcrumbs ">
-        <ol class="govuk-breadcrumbs__list">
-          <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
-          </li>
-          <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
-          </li>
-          <li class="govuk-breadcrumbs__list-item">
-            <a1 class="govuk-breadcrumbs__link" href="#">Add a subsidy awards</a1>
-          </li>
-        </ol>
-      </div> -->
-      <!-- bread crumbs ends here -->
 
-      <!-- Error display -->
-
-      <% if( locals.SubsidyArraySize > 0 ){ %>
+      <% if( SubsidyArraySize > 0 ){ %>
 
       <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
         data-module="govuk-error-summary">
         <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
 
         <div class="govuk-error-summary__body">
-          <% for(var i=0; i < locals.SubsidyArraySize  ; i++) {%>
+          <% for(var i=0; i < SubsidyArraySize  ; i++) {%>
           <ul class="govuk-list govuk-error-summary__list">
 
-            <li> <a href="<%= locals.SubsidyFocus[i] %>"> <%= locals.SubsidyErrors[i] %> </a> </li>
+            <li> <a href="<%= SubsidyFocus[i] %>"> <%= SubsidyErrors[i] %> </a> </li>
           </ul>
           <% } %>
         </div>
@@ -195,8 +178,11 @@
 
       <% } %>
 
+      <%  if(isCallfromEditAward ) { %>
+      <h1 class="govuk-heading-xl">Edit subsidy award  <%= Edit_Award_Number_global %></h1>
+      <% } else { %>
       <h1 class="govuk-heading-xl">Add a subsidy award</h1>
-
+       <% } %>
       <!-- <a rel="external" target="_blank" class="govuk-link head-right govuk-relative-position_title" href="./assets/files/HelpDocumentAddSubsidyAwards.pdf" >
         <p >Download the help file </p>
       </a> -->
@@ -217,7 +203,7 @@
             <!-- ************************************  -->
             <!-- Get the Subsidy Control Number from user  -->
             <!-- ************************************  -->
-            <% if( locals.Subsidy_Control_Number_Error ){ %>
+            <% if( Subsidy_Control_Number_Error ){ %>
             <div class="govuk-form-group govuk-form-group--error">
               <label class="govuk-label" for="Subsidy_Control_Number">
                 Subsidy control number
@@ -232,7 +218,7 @@
 
               <input class="govuk-input govuk-input--width-5 govuk-input--error" id="Subsidy_Control_Number"
                 name="Subsidy_Control_Number" type="text" aria-describedby="Subsidy_Control_Number-hint"
-                <% if(locals.Subsidy_Control_Number_Global) {%> value="<%= locals.Subsidy_Control_Number_Global%>"
+                <% if(Subsidy_Control_Number_Global) {%> value="<%= Subsidy_Control_Number_Global%>"
                 <% } %> />
             </div>
             <% } else { %>
@@ -246,7 +232,7 @@
               </div>
               <input class="govuk-input govuk-input--width-5" id="Subsidy_Control_Number" name="Subsidy_Control_Number"
                 type="text" aria-describedby="Subsidy_Control_Number-hint"
-                <% if(locals.Subsidy_Control_Number_Global) {%> value="<%= locals.Subsidy_Control_Number_Global %>"
+                <% if(Subsidy_Control_Number_Global) {%> value="<%= Subsidy_Control_Number_Global %>"
                 <% } %> />
             </div>
             <% }  %>
@@ -261,7 +247,7 @@
             </div>
 
 
-            <% if( locals.Subsidy_Measure_Title_Error ){ %>
+            <% if( Subsidy_Measure_Title_Error ){ %>
             <div class="govuk-form-group  govuk-form-group--error">
 
 
@@ -279,7 +265,7 @@
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Measure_Title"
                 name="Subsidy_Measure_Title" type="text" aria-describedby="Subsidy_Measure_Title-hint"
-                <% if(locals.Subsidy_Measure_Title_Global) {%> value="<%= locals.Subsidy_Measure_Title_Global %>"
+                <% if(Subsidy_Measure_Title_Global) {%> value="<%= Subsidy_Measure_Title_Global %>"
                 <% } %> />
             </div>
             <% } else { %>
@@ -294,45 +280,20 @@
               </div>
 
               <input class="govuk-input govuk-input--width-20" id="Subsidy_Measure_Title" name="Subsidy_Measure_Title"
-                type="text" aria-describedby="Subsidy_Measure_Title-hint" <% if(locals.Subsidy_Measure_Title_Global) {%>
-                value="<%= locals.Subsidy_Measure_Title_Global%>" <% } %> />
+                type="text" aria-describedby="Subsidy_Measure_Title-hint" <% if(Subsidy_Measure_Title_Global) {%>
+                value="<%= Subsidy_Measure_Title_Global%>" <% } %> />
             </div>
             <% }  %>
 
             <h1 class="govuk-heading-l">Subsidy award details</h1>
 
-            <!-- *********************
-            Subsidy measure adhoc 
-            ********************* -->
-            <!-- 
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="Subsidy_Measure_Title">
-                Is this for an ad hoc subsidy?
-              </label>
-
-              <div id="Subsidy_Measure_Title-hint" class="govuk-hint">
-                You will only be able to create one subsidy award under each ad hoc subsidy scheme.
-              </div>
-
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="adhoc-yes" name="adhoc-yes" type="radio" value="Yes">
-                <label class="govuk-label govuk-radios__label" for="adhoc-yes">
-                  Yes
-                </label>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="adhoc-no" name="adhoc-no" type="radio" value="No">
-                <label class="govuk-label govuk-radios__label" for="adhoc-no">
-                  No
-                </label>
-              </div>
-            </div> -->
+          
 
             <!-- ************************************  -->
             <!-- Get the subsdy adhoc from user  -->
             <!-- ************************************  -->
 
-            <% if( locals.Subsidy_Adhoc_Error ) { %>
+            <% if( Subsidy_Adhoc_Error ) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <fieldset class="govuk-fieldset" aria-describedby="Subsidy_Adhoc-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -350,7 +311,7 @@
                 </span>
                 <div class="govuk-radios ">
                   <div class="govuk-radios__item">
-                    <% if( locals.Subsidy_Adhoc_Global == 'Yes' ){ %>
+                    <% if( Subsidy_Adhoc_Global == 'Yes' ){ %>
                     <input class="govuk-radios__input" id="Subsidy_Adhoc" name="Subsidy_Adhoc" type="radio" value="Yes"
                       checked>
                     <% } else { %>
@@ -362,7 +323,7 @@
 
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.Subsidy_Adhoc_Global == 'No' ){ %>
+                    <% if( Subsidy_Adhoc_Global == 'No' ){ %>
                     <input class="govuk-radios__input" id="Subsidy_Adhoc-2" name="Subsidy_Adhoc" type="radio" value="No"
                       checked>
                     <% } else { %>
@@ -393,7 +354,7 @@
 
                 <div class="govuk-radios ">
                   <div class="govuk-radios__item">
-                    <% if( locals.Subsidy_Adhoc_Global == 'Yes' ){ %>
+                    <% if( Subsidy_Adhoc_Global == 'Yes' ){ %>
                     <input class="govuk-radios__input" id="Subsidy_Adhoc" name="Subsidy_Adhoc" type="radio" value="Yes"
                       checked>
                     <% } else { %>
@@ -405,7 +366,7 @@
 
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.Subsidy_Adhoc_Global == 'No' ){ %>
+                    <% if( Subsidy_Adhoc_Global == 'No' ){ %>
                     <input class="govuk-radios__input" id="Subsidy_Adhoc-2" name="Subsidy_Adhoc" type="radio" value="No"
                       checked>
                     <% } else { %>
@@ -427,7 +388,7 @@
             <!-- *************************************  -->
             <!-- Get the  Subsidy Objective  from user  -->
             <!-- *************************************  -->
-            <% if( locals.Subsidy_Objective_Error && !locals.isAddSubsidyPrimarycall ) { %>
+            <% if( Subsidy_Objective_Error && !isAddSubsidyPrimarycall ) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <label class="govuk-label" for="Subsidy_Objective">
                 Subsidy purpose
@@ -439,79 +400,79 @@
 
               <select class="govuk-select" id="Subsidy_Objective" name="Subsidy_Objective"
                 onChange=changeSubsidyPurpose(event)>
-                <% if( locals.Subsidy_Objective_Global == '' ){ %>
+                <% if( Subsidy_Objective_Global == '' ){ %>
                 <option value="Empty" selected>Select subsidy purpose (11) </option>
                 <% } else { %>
                 <option value="Empty">Select subsidy purpose (11) </option>
                 <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'Culture or Heritage​' ){ %>
+                <% if( Subsidy_Objective_Global == 'Culture or Heritage​' ){ %>
                 <option value="Culture or Heritage​" selected>Culture or Heritage​ </option>
                 <% } else { %>
                 <option value="Culture or Heritage​">Culture or Heritage​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Employment' ){ %>
+                <% if( Subsidy_Objective_Global == 'Employment' ){ %>
                 <option value="Employment" selected>Employment​ </option>
                 <% } else { %>
                 <option value="Employment">Employment​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Energy efficiency' ){ %>
+                <% if( Subsidy_Objective_Global == 'Energy efficiency' ){ %>
                 <option value="Energy efficiency" selected>Energy efficiency​ </option>
                 <% } else { %>
                 <option value="Energy efficiency">Energy efficiency​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Environmental protection' ){ %>
+                <% if( Subsidy_Objective_Global == 'Environmental protection' ){ %>
                 <option value="Environmental protection" selected>Environmental protection​ </option>
                 <% } else { %>
                 <option value="Environmental protection">Environmental protection​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Infrastructure' ){ %>
+                <% if( Subsidy_Objective_Global == 'Infrastructure' ){ %>
                 <option value="Infrastructure" selected>Infrastructure​ </option>
                 <% } else { %>
                 <option value="Infrastructure">Infrastructure​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Regional development' ){ %>
+                <% if( Subsidy_Objective_Global == 'Regional development' ){ %>
                 <option value="Regional development" selected>Regional development​ </option>
                 <% } else { %>
                 <option value="Regional development">Regional development​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Rescue aid' ){ %>
+                <% if( Subsidy_Objective_Global == 'Rescue aid' ){ %>
                 <option value="Rescue aid" selected>Rescue aid ​ </option>
                 <% } else { %>
                 <option value="Rescue aid">Rescue aid ​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Research and development' ){ %>
+                <% if( Subsidy_Objective_Global == 'Research and development' ){ %>
                 <option value="Research and development" selected>Research and development​ </option>
                 <% } else { %>
                 <option value="Research and development">Research and development​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Services of Public Economic Interest' ){ %>
+                <% if( Subsidy_Objective_Global == 'Services of Public Economic Interest' ){ %>
                 <option value="Services of Public Economic Interest" selected>Services of Public Economic Interest
                 </option>
                 <% } else { %>
                 <option value="Services of Public Economic Interest">Services of Public Economic Interest </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'SME support' ){ %>
+                <% if( Subsidy_Objective_Global == 'SME support' ){ %>
                 <option value="SME support" selected>SME (Small/Medium-sized enterprise) support​ </option>
                 <% } else { %>
                 <option value="SME support">SME (Small/Medium-sized enterprise) support​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Training' ){ %>
+                <% if( Subsidy_Objective_Global == 'Training' ){ %>
                 <option value="Training" selected>Training </option>
                 <% } else { %>
                 <option value="Training">Training </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Other' ){ %>
+                <% if( Subsidy_Objective_Global == 'Other' ){ %>
                 <option value="Other" selected> Other</option>
                 <% } else { %>
                 <option value="Other"> Other</option>
@@ -528,79 +489,79 @@
 
               <select class="govuk-select" id="Subsidy_Objective" name="Subsidy_Objective"
                 onChange=changeSubsidyPurpose(event)>
-                <% if( locals.Subsidy_Objective_Global == '' ){ %>
+                <% if( Subsidy_Objective_Global == '' ){ %>
                 <option value="Empty" selected>Select subsidy purpose (11) </option>
                 <% } else { %>
                 <option value="Empty">Select subsidy purpose (11) </option>
                 <% } %>
-                <% if( locals.Subsidy_Objective_Global == 'Culture or Heritage​' ){ %>
+                <% if( Subsidy_Objective_Global == 'Culture or Heritage​' ){ %>
                 <option value="Culture or Heritage​" selected>Culture or Heritage​ </option>
                 <% } else { %>
-                <option value="Culture or Heritage​">Culture or heritage​ </option>
+                <option value="Culture or Heritage​">Culture or Heritage​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Employment' ){ %>
+                <% if( Subsidy_Objective_Global == 'Employment' ){ %>
                 <option value="Employment" selected>Employment​ </option>
                 <% } else { %>
                 <option value="Employment">Employment​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Energy efficiency' ){ %>
+                <% if( Subsidy_Objective_Global == 'Energy efficiency' ){ %>
                 <option value="Energy efficiency" selected>Energy efficiency​ </option>
                 <% } else { %>
                 <option value="Energy efficiency">Energy efficiency​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Environmental protection' ){ %>
+                <% if( Subsidy_Objective_Global == 'Environmental protection' ){ %>
                 <option value="Environmental protection" selected>Environmental protection​ </option>
                 <% } else { %>
                 <option value="Environmental protection">Environmental protection​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Infrastructure' ){ %>
+                <% if( Subsidy_Objective_Global == 'Infrastructure' ){ %>
                 <option value="Infrastructure" selected>Infrastructure​ </option>
                 <% } else { %>
                 <option value="Infrastructure">Infrastructure​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Regional development' ){ %>
+                <% if( Subsidy_Objective_Global == 'Regional development' ){ %>
                 <option value="Regional development" selected>Regional development​ </option>
                 <% } else { %>
                 <option value="Regional development">Regional development​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Rescue aid' ){ %>
+                <% if( Subsidy_Objective_Global == 'Rescue aid' ){ %>
                 <option value="Rescue aid" selected>Rescue aid ​ </option>
                 <% } else { %>
                 <option value="Rescue aid">Rescue aid ​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Research and development' ){ %>
+                <% if( Subsidy_Objective_Global == 'Research and development' ){ %>
                 <option value="Research and development" selected>Research and development​ </option>
                 <% } else { %>
                 <option value="Research and development">Research and development​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Services of Public Economic Interest' ){ %>
+                <% if( Subsidy_Objective_Global == 'Services of Public Economic Interest' ){ %>
                 <option value="Services of Public Economic Interest" selected>Services of Public Economic Interest
                 </option>
                 <% } else { %>
                 <option value="Services of Public Economic Interest">Services of Public Economic Interest </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'SME support' ){ %>
+                <% if( Subsidy_Objective_Global == 'SME support' ){ %>
                 <option value="SME support" selected>SME (Small/Medium-sized enterprise) support​ </option>
                 <% } else { %>
                 <option value="SME support">SME (Small/Medium-sized enterprise) support​ </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Training' ){ %>
+                <% if( Subsidy_Objective_Global == 'Training' ){ %>
                 <option value="Training" selected>Training </option>
                 <% } else { %>
                 <option value="Training">Training </option>
                 <% } %>
 
-                <% if( locals.Subsidy_Objective_Global == 'Other' ){ %>
+                <% if( Subsidy_Objective_Global == 'Other' ){ %>
                 <option value="Other" selected> Other</option>
                 <% } else { %>
                 <option value="Other"> Other</option>
@@ -621,7 +582,7 @@
             <!-- Get the  Subsidy objective other category  -->
             <!-- *****************************************  -->
 
-            <% if( locals.Subsidy_Objective_Other_Error ){ %>
+            <% if( Subsidy_Objective_Other_Error ){ %>
             <div id="other_purpose" class="govuk-form-group govuk-form-group--error" style="display: none;">
               <label class="govuk-label" for="Subsidy_Objective_Other">
                 Other purpose
@@ -633,7 +594,7 @@
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Objective_Other"
                 name="Subsidy_Objective_Other" type="text" aria-describedby="Subsidy_Objective_Other-hint"
-                <% if(locals.Subsidy_Objective_Other_Global) {%> value="<%= locals.Subsidy_Objective_Other_Global %>"
+                <% if(Subsidy_Objective_Other_Global) {%> value="<%= Subsidy_Objective_Other_Global %>"
                 <% } %> />
             </div>
             <% } else { %>
@@ -645,7 +606,7 @@
 
               <input class="govuk-input govuk-input--width-20" id="Subsidy_Objective_Other"
                 name="Subsidy_Objective_Other" type="text" aria-describedby="Subsidy_Objective_Other-hint"
-                <% if(locals.Subsidy_Objective_Other_Global) {%> value="<%= locals.Subsidy_Objective_Other_Global %>"
+                <% if(Subsidy_Objective_Other_Global) {%> value="<%= Subsidy_Objective_Other_Global %>"
                 <% } %> />
             </div>
             <% }  %>
@@ -654,7 +615,7 @@
             <!-- *************************************  -->
             <!-- Get the  Subsidy Instrument from user  -->
             <!-- *************************************  -->
-            <% if( locals.Subsidy_Instrument_Error && !locals.isAddSubsidyPrimarycall ) { %>
+            <% if( Subsidy_Instrument_Error && !isAddSubsidyPrimarycall ) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <label class="govuk-label" for="Subsidy_Instrument">
                 Subsidy type
@@ -666,53 +627,53 @@
 
               <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument"
                 onchange="changeSubsidyType(event)">
-                <% if( locals.Subsidy_Instrument_Global == '' ) { %>
+                <% if( Subsidy_Instrument_Global == '' ) { %>
                 <option value="" selected>Select subsidy type (8)</option>
                 <% } else { %>
                 <option value="">Select subsidy type (8)</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Direct Grant' ) { %>
+                <% if( Subsidy_Instrument_Global == 'Direct Grant' ) { %>
                 <option value="Direct Grant" selected>Direct Grant</option>
                 <% } else { %>
                 <option value="Direct Grant">Direct Grant</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Equity' ) { %>
+                <% if( Subsidy_Instrument_Global == 'Equity' ) { %>
                 <option value="Equity" selected>Equity</option>
                 <% } else { %>
                 <option value="Equity">Equity</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Guarantee' ) { %>
+                <% if( Subsidy_Instrument_Global == 'Guarantee' ) { %>
                 <option value="Guarantee" selected>Guarantee</option>
                 <% } else { %>
                 <option value="Guarantee">Guarantee</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Loan' ) { %>
+                <% if( Subsidy_Instrument_Global == 'Loan' ) { %>
                 <option value="Loan" selected>Loan</option>
                 <% } else { %>
                 <option value="Loan">Loan</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Purchase of goods services above market prices' ) { %>
+                <% if( Subsidy_Instrument_Global == 'Purchase of goods services above market prices' ) { %>
                 <option value="Purchase of goods services above market prices" selected>Purchase of goods services above
                   market prices</option>
                 <% } else { %>
                 <option value="Purchase of goods services above market prices">Purchase of goods services above market
                   prices</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Provision of goods or services below market prices' ) { %>
+                <% if( Subsidy_Instrument_Global == 'Provision of goods or services below market prices' ) { %>
                 <option value="Provision of goods or services below market prices" selected>Provision of goods or
                   services below market prices</option>
                 <% } else { %>
-                <option value="Provision of goods or services below market prices" selected>Provision of goods or
+                <option value="Provision of goods or services below market prices" >Provision of goods or
                   services below market prices</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)' ) { %>
+                <% if( Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)' ) { %>
                 <option value="Tax measures (tax credit, or tax/duty exemption)" selected>Tax measures (tax credit, or
                   tax/duty exemption)</option>
                 <% } else { %>
                 <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit, or tax/duty
                   exemption)</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Other' ) { %>
+                <% if( Subsidy_Instrument_Global == 'Other' ) { %>
                 <option value="Other" selected>Other</option>
                 <% } else { %>
                 <option value="Other">Other</option>
@@ -728,53 +689,53 @@
               </label>
               <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument"
                 onchange="changeSubsidyType(event)">
-                <% if( locals.Subsidy_Instrument_Global == '' ) { %>
+                <% if( Subsidy_Instrument_Global == '' ) { %>
                 <option value="" selected>Select subsidy type (8)</option>
                 <% } else { %>
                 <option value="">Select subsidy type (8)</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Direct Grant' ) { %>
+                <% if( Subsidy_Instrument_Global == 'Direct Grant' ) { %>
                 <option value="Direct Grant" selected>Direct Grant</option>
                 <% } else { %>
                 <option value="Direct Grant">Direct Grant</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Equity' ) { %>
+                <% if( Subsidy_Instrument_Global == 'Equity' ) { %>
                 <option value="Equity" selected>Equity</option>
                 <% } else { %>
                 <option value="Equity">Equity</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Guarantee' ) { %>
+                <% if( Subsidy_Instrument_Global == 'Guarantee' ) { %>
                 <option value="Guarantee" selected>Guarantee</option>
                 <% } else { %>
                 <option value="Guarantee">Guarantee</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Loan' ) { %>
+                <% if( Subsidy_Instrument_Global == 'Loan' ) { %>
                 <option value="Loan" selected>Loan</option>
                 <% } else { %>
                 <option value="Loan">Loan</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Purchase of goods services above market prices' ) { %>
+                <% if( Subsidy_Instrument_Global == 'Purchase of goods services above market prices' ) { %>
                 <option value="Purchase of goods services above market prices" selected>Purchase of goods services above
                   market prices</option>
                 <% } else { %>
                 <option value="Purchase of goods services above market prices">Purchase of goods services above market
                   prices</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Provision of goods or services below market prices' ) { %>
+                <% if( Subsidy_Instrument_Global == 'Provision of goods or services below market prices' ) { %>
                 <option value="Provision of goods or services below market prices" selected>Provision of goods or
                   services below market prices</option>
                 <% } else { %>
-                <option value="Provision of goods or services below market prices" selected>Provision of goods or
+                <option value="Provision of goods or services below market prices" >Provision of goods or
                   services below market prices</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)' ) { %>
+                <% if( Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)' ) { %>
                 <option value="Tax measures (tax credit, or tax/duty exemption)" selected>Tax measures (tax credit, or
                   tax/duty exemption)</option>
                 <% } else { %>
                 <option value="Tax measures (tax credit, or tax/duty exemption)">Tax measures (tax credit, or tax/duty
                   exemption)</option>
                 <% } %>
-                <% if( locals.Subsidy_Instrument_Global == 'Other' ) { %>
+                <% if( Subsidy_Instrument_Global == 'Other' ) { %>
                 <option value="Other" selected>Other</option>
                 <% } else { %>
                 <option value="Other">Other</option>
@@ -796,7 +757,7 @@
             <!-- Get the  Subsidy instrument other category  -->
             <!-- *****************************************  -->
 
-            <% if( locals.Subsidy_Instrument_Other_Error ){ %>
+            <% if( Subsidy_Instrument_Other_Error ){ %>
             <div id="other_type" class="govuk-form-group govuk-form-group--error" style="display: none;">
               <label class="govuk-label" for="Subsidy_Instrument_Other">
                 Other type
@@ -808,7 +769,7 @@
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Instrument_Other"
                 name="Subsidy_Instrument_Other" type="text" aria-describedby="Subsidy_Instrument_Other-hint"
-                <% if(locals.Subsidy_Instrument_Other_Global) {%> value="<%= locals.Subsidy_Instrument_Other_Global %>"
+                <% if(Subsidy_Instrument_Other_Global) {%> value="<%= Subsidy_Instrument_Other_Global %>"
                 <% } %> />
             </div>
             <% } else { %>
@@ -820,7 +781,7 @@
 
               <input class="govuk-input govuk-input--width-20" id="Subsidy_Instrument_Other"
                 name="Subsidy_Instrument_Other" type="text" aria-describedby="Subsidy_Instrument_Other-hint"
-                <% if(locals.Subsidy_Instrument_Other_Global) {%> value="<%= locals.Subsidy_Instrument_Other_Global %>"
+                <% if(Subsidy_Instrument_Other_Global) {%> value="<%= Subsidy_Instrument_Other_Global %>"
                 <% } %> />
             </div>
             <% }  %>
@@ -831,7 +792,7 @@
 
 
             <div id="Tax_measures" class="amount_subsidy_tax">
-              <% if( locals.Subsidy_Full_Amount_Range_Error ) { %>
+              <% if( Subsidy_Full_Amount_Range_Error ) { %>
 
               <div class="govuk-form-group govuk-form-group--error">
                 <fieldset class="govuk-fieldset">
@@ -846,47 +807,47 @@
                   </span>
 
                   <select class="govuk-select" id="Subsidy_Full_Amount_Range" name="Subsidy_Full_Amount_Range">
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '' ) { %>
                     <option selected value="Empty"> Select subsidy range(8)</option>
                     <% } else { %>
                     <option value="Empty"> Select subsidy range(8)</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£1 - £60,000' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '£1 - £60,000' ) { %>
                     <option value="£1 - £60,000" selected>£1 - £60,000</option>
                     <% } else { %>
                     <option value="£1 - £60,000">£1 - £60,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£60,001 - £500,000' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '£60,001 - £500,000' ) { %>
                     <option value="£60,001 - £500,000" selected>£60,001 - £500,000</option>
                     <% } else { %>
                     <option value="£60,001 - £500,000">£60,001 - £500,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£500,001 - £1,000,000' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '£500,001 - £1,000,000' ) { %>
                     <option value="£500,001 - £1,000,000" selected>£500,001 - £1,000,000</option>
                     <% } else { %>
                     <option value="£500,001 - £1,000,000">£500,001 - £1,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£1,000,001 - £2,000,000' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '£1,000,001 - £2,000,000' ) { %>
                     <option value="£1,000,001 - £2,000,000" selected>£1,000,001 - £2,000,000</option>
                     <% } else { %>
                     <option value="£1,000,001 - £2,000,000">£1,000,001 - £2,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£2,000,001 - £5,000,000' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '£2,000,001 - £5,000,000' ) { %>
                     <option value="£2,000,001 - £5,000,000" selected>£2,000,001 - £5,000,000</option>
                     <% } else { %>
                     <option value="£2,000,001 - £5,000,000">£2,000,001 - £5,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£5,000,001 - £10,000,000' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '£5,000,001 - £10,000,000' ) { %>
                     <option value="£5,000,001 - £10,000,000" selected>£5,000,001 - £10,000,000</option>
                     <% } else { %>
                     <option value="£5,000,001 - £10,000,000">£5,000,001 - £10,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£10,000,001 - £30,000,000' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '£10,000,001 - £30,000,000' ) { %>
                     <option value="£10,000,001 - £30,000,000" selected>£10,000,001 - £30,000,000</option>
                     <% } else { %>
                     <option value="£10,000,001 - £30,000,000">£10,000,001 - £30,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£30,000,001 or more' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '£30,000,001 or more' ) { %>
                     <option value="£30,000,001 or more" selected>£30,000,001 or more</option>
                     <% } else { %>
                     <option value="£30,000,001 or more">£30,000,001 or more</option>
@@ -907,47 +868,47 @@
                   </legend>
 
                   <select class="govuk-select" id="Subsidy_Full_Amount_Range" name="Subsidy_Full_Amount_Range">
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '' ) { %>
                     <option selected value="Empty"> Select subsidy range(8)</option>
                     <% } else { %>
                     <option value="Empty"> Select subsidy range(8)</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£1 - £60,000' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '£1 - £60,000' ) { %>
                     <option value="£1 - £60,000" selected>£1 - £60,000</option>
                     <% } else { %>
                     <option value="£1 - £60,000">£1 - £60,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£60,001 - £500,000' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '£60,001 - £500,000' ) { %>
                     <option value="£60,001 - £500,000" selected>£60,001 - £500,000</option>
                     <% } else { %>
                     <option value="£60,001 - £500,000">£60,001 - £500,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£500,001 - £1,000,000' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '£500,001 - £1,000,000' ) { %>
                     <option value="£500,001 - £1,000,000" selected>£500,001 - £1,000,000</option>
                     <% } else { %>
                     <option value="£500,001 - £1,000,000">£500,001 - £1,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£1,000,001 - £2,000,000' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '£1,000,001 - £2,000,000' ) { %>
                     <option value="£1,000,001 - £2,000,000" selected>£1,000,001 - £2,000,000</option>
                     <% } else { %>
                     <option value="£1,000,001 - £2,000,000">£1,000,001 - £2,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£2,000,001 - £5,000,000' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '£2,000,001 - £5,000,000' ) { %>
                     <option value="£2,000,001 - £5,000,000" selected>£2,000,001 - £5,000,000</option>
                     <% } else { %>
                     <option value="£2,000,001 - £5,000,000">£2,000,001 - £5,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£5,000,001 - £10,000,000' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '£5,000,001 - £10,000,000' ) { %>
                     <option value="£5,000,001 - £10,000,000" selected>£5,000,001 - £10,000,000</option>
                     <% } else { %>
                     <option value="£5,000,001 - £10,000,000">£5,000,001 - £10,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£10,000,001 - £30,000,000' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '£10,000,001 - £30,000,000' ) { %>
                     <option value="£10,000,001 - £30,000,000" selected>£10,000,001 - £30,000,000</option>
                     <% } else { %>
                     <option value="£10,000,001 - £30,000,000">£10,000,001 - £30,000,000</option>
                     <% } %>
-                    <% if( locals.Subsidy_Full_Amount_Range_Global == '£30,000,001 or more' ) { %>
+                    <% if( Subsidy_Full_Amount_Range_Global == '£30,000,001 or more' ) { %>
                     <option value="£30,000,001 or more" selected>£30,000,001 or more</option>
                     <% } else { %>
                     <option value="£30,000,001 or more">£30,000,001 or more</option>
@@ -966,7 +927,7 @@
 
 
             <div id="Not_Tax_measures" class="amount_subsidy_nottax">
-              <% if( locals.Subsidy_Element_Full_Amount_Error ) { %>
+              <% if( Subsidy_Element_Full_Amount_Error ) { %>
               <div class="govuk-form-group govuk-form-group--error">
                 <label class="govuk-label" for="Subsidy_Element_Full_Amount">
                   Subsidy Element Full Amount (£)
@@ -978,8 +939,8 @@
 
                 <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
                   name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount-hint"
-                  <% if(locals.Subsidy_Element_Full_Amount_Global) {%>
-                  value="<%= locals.Subsidy_Element_Full_Amount_Global%>" <% } %> />
+                  <% if(Subsidy_Element_Full_Amount_Global) {%>
+                  value="<%= Subsidy_Element_Full_Amount_Global%>" <% } %> />
               </div>
 
               <% } else { %>
@@ -992,8 +953,8 @@
 
                 <input class="govuk-input govuk-input--width-20" id="Subsidy_Element_Full_Amount"
                   name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount-hint"
-                  <% if(locals.Subsidy_Element_Full_Amount_Global) {%>
-                  value="<%= locals.Subsidy_Element_Full_Amount_Global%>" <% } %> />
+                  <% if(Subsidy_Element_Full_Amount_Global) {%>
+                  value="<%= Subsidy_Element_Full_Amount_Global%>" <% } %> />
               </div>
 
               <% } %>
@@ -1004,7 +965,7 @@
             <!-- *****************************************  -->
             <!-- Get the Granting Authority Name from user  -->
             <!-- *****************************************  -->
-            <% if( locals.Granting_Authority_Name_Error ) { %>
+            <% if( Granting_Authority_Name_Error ) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <label class="govuk-label" for="Granting_Authority_Name">
                 Granting Authority Name
@@ -1016,7 +977,7 @@
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Granting_Authority_Name"
                 name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name-hint"
-                <% if(locals.Granting_Authority_Name_Global) {%> value="<%= locals.Granting_Authority_Name_Global%>"
+                <% if(Granting_Authority_Name_Global) {%> value="<%= Granting_Authority_Name_Global%>"
                 <% } %> />
             </div>
             <% } else { %>
@@ -1028,7 +989,7 @@
 
               <input class="govuk-input govuk-input--width-20" id="Granting_Authority_Name"
                 name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name-hint"
-                <% if(locals.Granting_Authority_Name_Global) {%> value="<%= locals.Granting_Authority_Name_Global%>"
+                <% if(Granting_Authority_Name_Global) {%> value="<%= Granting_Authority_Name_Global%>"
                 <% } %> />
             </div>
             <% }  %>
@@ -1037,7 +998,7 @@
             <!-- *****************************************  -->
             <!-- Get the Legal Granting Date     from user  -->
             <!-- *****************************************  -->
-            <% if( locals.Legal_Granting_Date_Day_Error || locals.Legal_Granting_Date_Month_Error || locals.Legal_Granting_Date_Year_Error) { %>
+            <% if( Legal_Granting_Date_Day_Error || Legal_Granting_Date_Month_Error || Legal_Granting_Date_Year_Error) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <fieldset class="govuk-fieldset" role="group" aria-describedby="Legal_Granting_Date-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -1059,16 +1020,16 @@
                       <label class="govuk-label govuk-date-input__label" for="Legal_Granting_Date_Day">
                         Day
                       </label>
-                      <% if( locals.Legal_Granting_Date_Day_Error) { %>
+                      <% if( Legal_Granting_Date_Day_Error) { %>
                       <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error"
                         id="Legal_Granting_Date_Day" name="Legal_Granting_Date_Day" type="text" pattern="[0-9]*"
-                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Day_Global) {%>
-                        value="<%= locals.Legal_Granting_Date_Day_Global%>" <% } %> />
+                        inputmode="numeric" <% if(Legal_Granting_Date_Day_Global) {%>
+                        value="<%= Legal_Granting_Date_Day_Global%>" <% } %> />
                       <% } else { %>
                       <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                         id="Legal_Granting_Date_Day" name="Legal_Granting_Date_Day" type="text" pattern="[0-9]*"
-                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Day_Global) {%>
-                        value="<%= locals.Legal_Granting_Date_Day_Global%>" <% } %> />
+                        inputmode="numeric" <% if(Legal_Granting_Date_Day_Global) {%>
+                        value="<%= Legal_Granting_Date_Day_Global%>" <% } %> />
                       <% } %>
                     </div>
                   </div>
@@ -1078,17 +1039,17 @@
                         Month
                       </label>
 
-                      <% if( locals.Legal_Granting_Date_Month_Error) { %>
+                      <% if( Legal_Granting_Date_Month_Error) { %>
                       <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error"
                         id="Legal_Granting_Date_Month" name="Legal_Granting_Date_Month" type="text" pattern="[0-9]*"
-                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Month_Global) {%>
-                        value="<%= locals.Legal_Granting_Date_Month_Global%>" <% } %> />
+                        inputmode="numeric" <% if(Legal_Granting_Date_Month_Global) {%>
+                        value="<%= Legal_Granting_Date_Month_Global%>" <% } %> />
                       <% } else { %>
 
                       <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                         id="Legal_Granting_Date_Month" name="Legal_Granting_Date_Month" type="text" pattern="[0-9]*"
-                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Month_Global) {%>
-                        value="<%= locals.Legal_Granting_Date_Month_Global%>" <% } %> />
+                        inputmode="numeric" <% if(Legal_Granting_Date_Month_Global) {%>
+                        value="<%= Legal_Granting_Date_Month_Global%>" <% } %> />
                       <% } %>
                     </div>
                   </div>
@@ -1097,16 +1058,16 @@
                       <label class="govuk-label govuk-date-input__label" for="Legal_Granting_Date_Year">
                         Year
                       </label>
-                      <% if( locals.Legal_Granting_Date_Year_Error) { %>
+                      <% if( Legal_Granting_Date_Year_Error) { %>
                       <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error"
                         id="Legal_Granting_Date_Year" name="Legal_Granting_Date_Year" type="text" pattern="[0-9]*"
-                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Year_Global) {%>
-                        value="<%= locals.Legal_Granting_Date_Year_Global%>" <% } %> />
+                        inputmode="numeric" <% if(Legal_Granting_Date_Year_Global) {%>
+                        value="<%= Legal_Granting_Date_Year_Global%>" <% } %> />
                       <% } else { %>
                       <input class="govuk-input govuk-date-input__input govuk-input--width-4"
                         id="Legal_Granting_Date_Year" name="Legal_Granting_Date_Year" type="text" pattern="[0-9]*"
-                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Year_Global) {%>
-                        value="<%= locals.Legal_Granting_Date_Year_Global%>" <% } %> />
+                        inputmode="numeric" <% if(Legal_Granting_Date_Year_Global) {%>
+                        value="<%= Legal_Granting_Date_Year_Global%>" <% } %> />
                       <% } %>
                     </div>
                   </div>
@@ -1134,8 +1095,8 @@
                       </label>
                       <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                         id="Legal_Granting_Date_Day" name="Legal_Granting_Date_Day" type="text" pattern="[0-9]*"
-                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Day_Global) {%>
-                        value="<%= locals.Legal_Granting_Date_Day_Global%>" <% } %> />
+                        inputmode="numeric" <% if(Legal_Granting_Date_Day_Global) {%>
+                        value="<%= Legal_Granting_Date_Day_Global%>" <% } %> />
                     </div>
                   </div>
                   <div class="govuk-date-input__item">
@@ -1145,8 +1106,8 @@
                       </label>
                       <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                         id="Legal_Granting_Date_Month" name="Legal_Granting_Date_Month" type="text" pattern="[0-9]*"
-                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Month_Global) {%>
-                        value="<%= locals.Legal_Granting_Date_Month_Global%>" <% } %> />
+                        inputmode="numeric" <% if(Legal_Granting_Date_Month_Global) {%>
+                        value="<%= Legal_Granting_Date_Month_Global%>" <% } %> />
                     </div>
                   </div>
                   <div class="govuk-date-input__item">
@@ -1156,8 +1117,8 @@
                       </label>
                       <input class="govuk-input govuk-date-input__input govuk-input--width-4"
                         id="Legal_Granting_Date_Year" name="Legal_Granting_Date_Year" type="text" pattern="[0-9]*"
-                        inputmode="numeric" <% if(locals.Legal_Granting_Date_Year_Global) {%>
-                        value="<%= locals.Legal_Granting_Date_Year_Global%>" <% } %> />
+                        inputmode="numeric" <% if(Legal_Granting_Date_Year_Global) {%>
+                        value="<%= Legal_Granting_Date_Year_Global%>" <% } %> />
                     </div>
                   </div>
                 </div>
@@ -1177,7 +1138,7 @@
             <!-- ************************************  -->
             <!-- Get the Beneficiary Name from user  -->
             <!-- ************************************  -->
-            <% if( locals.Beneficiary_Name_Error ) { %>
+            <% if( Beneficiary_Name_Error ) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <label class="govuk-label" for="Beneficiary_Name">
                 Recipient organisation name
@@ -1191,7 +1152,7 @@
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Beneficiary_Name"
                 name="Beneficiary_Name" type="text" aria-describedby="Beneficiary_Name-hint"
-                <% if(locals.Beneficiary_Name_Global) {%> value="<%= locals.Beneficiary_Name_Global%>" <% } %> />
+                <% if(Beneficiary_Name_Global) {%> value="<%= Beneficiary_Name_Global%>" <% } %> />
             </div>
 
             <% } else { %>
@@ -1201,15 +1162,15 @@
               </label>
 
               <input class="govuk-input govuk-input--width-20" id="Beneficiary_Name" name="Beneficiary_Name" type="text"
-                aria-describedby="Beneficiary_Name-hint" <% if(locals.Beneficiary_Name_Global) {%>
-                value="<%= locals.Beneficiary_Name_Global%>" <% } %> />
+                aria-describedby="Beneficiary_Name-hint" <% if(Beneficiary_Name_Global) {%>
+                value="<%= Beneficiary_Name_Global%>" <% } %> />
             </div>
             <% } %>
 
             <!-- ******************************************  -->
             <!-- Get the Size of the Organisation from user  -->
             <!-- ******************************************  -->
-            <% if( locals.Size_of_the_Organisation_Error ) { %>
+            <% if( Size_of_the_Organisation_Error ) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -1227,7 +1188,7 @@
 
                 <div class="govuk-radios">
                   <div class="govuk-radios__item">
-                    <% if( locals.Size_of_the_Organisation_Global == 'Micro (fewer than 10 employees)' ){ %>
+                    <% if( Size_of_the_Organisation_Global == 'Micro (fewer than 10 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
                       type="radio" value="Micro (fewer than 10 employees)" checked>
 
@@ -1240,7 +1201,7 @@
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.Size_of_the_Organisation_Global == 'Small (between 10 and 49 employees)' ){ %>
+                    <% if( Size_of_the_Organisation_Global == 'Small (between 10 and 49 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
                       type="radio" value="Small (between 10 and 49 employees)" checked>
 
@@ -1253,7 +1214,7 @@
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.Size_of_the_Organisation_Global == 'Medium (between 50 and 249 employees)' ){ %>
+                    <% if( Size_of_the_Organisation_Global == 'Medium (between 50 and 249 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
                       type="radio" value="Medium (between 50 and 249 employees)" checked>
 
@@ -1266,7 +1227,7 @@
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.Size_of_the_Organisation_Global == 'Large (more than 250 employees)' ){ %>
+                    <% if( Size_of_the_Organisation_Global == 'Large (more than 250 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
                       type="radio" value="Large (more than 250 employees)" checked>
                     <% } else { %>
@@ -1294,7 +1255,7 @@
 
                 <div class="govuk-radios">
                   <div class="govuk-radios__item">
-                    <% if( locals.Size_of_the_Organisation_Global == 'Micro (fewer than 10 employees)' ){ %>
+                    <% if( Size_of_the_Organisation_Global == 'Micro (fewer than 10 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
                       type="radio" value="Micro (fewer than 10 employees)" checked>
 
@@ -1307,7 +1268,7 @@
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.Size_of_the_Organisation_Global == 'Small (between 10 and 49 employees)' ){ %>
+                    <% if( Size_of_the_Organisation_Global == 'Small (between 10 and 49 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
                       type="radio" value="Small (between 10 and 49 employees)" checked>
 
@@ -1320,7 +1281,7 @@
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.Size_of_the_Organisation_Global == 'Medium (between 50 and 249 employees)' ){ %>
+                    <% if( Size_of_the_Organisation_Global == 'Medium (between 50 and 249 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
                       type="radio" value="Medium (between 50 and 249 employees)" checked>
 
@@ -1333,7 +1294,7 @@
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.Size_of_the_Organisation_Global == 'Large (more than 250 employees)' ){ %>
+                    <% if( Size_of_the_Organisation_Global == 'Large (more than 250 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
                       type="radio" value="Large (more than 250 employees)" checked>
                     <% } else { %>
@@ -1357,7 +1318,7 @@
 
 
 
-            <% if( locals.National_ID_Type_Error ) { %>
+            <% if( National_ID_Type_Error ) { %>
 
             <div class="govuk-form-group govuk-form-group--error">
 
@@ -1375,7 +1336,7 @@
 
                 <div class="govuk-radios">
                   <div class="govuk-radios__item">
-                    <% if( locals.National_ID_Type_Global == 'Company Registration Number' ) { %>
+                    <% if( National_ID_Type_Global == 'Company Registration Number' ) { %>
                     <input class="govuk-radios__input" id="National_ID_Type" name="National_ID_Type" type="radio"
                       value="Company Registration Number" checked>
 
@@ -1388,7 +1349,7 @@
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.National_ID_Type_Global == 'Charity Number' ) { %>
+                    <% if( National_ID_Type_Global == 'Charity Number' ) { %>
                     <input class="govuk-radios__input" id="National_ID_Type-2" name="National_ID_Type" type="radio"
                       value="Charity Number" checked>
 
@@ -1401,7 +1362,7 @@
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.National_ID_Type_Global == 'VAT Number' ){ %>
+                    <% if( National_ID_Type_Global == 'VAT Number' ){ %>
                     <input class="govuk-radios__input" id="National_ID_Type-3" name="National_ID_Type" type="radio"
                       value="VAT Number" checked>
                     <% } else { %>
@@ -1413,7 +1374,7 @@
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.National_ID_Type_Global == 'UTR Number' ){ %>
+                    <% if( National_ID_Type_Global == 'UTR Number' ){ %>
                     <input class="govuk-radios__input" id="National_ID_Type-4" name="National_ID_Type" type="radio"
                       value="UTR Number" checked>
 
@@ -1441,7 +1402,7 @@
                 </legend>
                 <div class="govuk-radios">
                   <div class="govuk-radios__item">
-                    <% if( locals.National_ID_Type_Global == 'Company Registration Number' ) { %>
+                    <% if( National_ID_Type_Global == 'Company Registration Number' ) { %>
                     <input class="govuk-radios__input" id="National_ID_Type" name="National_ID_Type" type="radio"
                       value="Company Registration Number" checked>
 
@@ -1454,7 +1415,7 @@
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.National_ID_Type_Global == 'Charity Number' ) { %>
+                    <% if( National_ID_Type_Global == 'Charity Number' ) { %>
                     <input class="govuk-radios__input" id="National_ID_Type-2" name="National_ID_Type" type="radio"
                       value="Charity Number" checked>
 
@@ -1467,7 +1428,7 @@
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.National_ID_Type_Global == 'VAT Number' ){ %>
+                    <% if( National_ID_Type_Global == 'VAT Number' ){ %>
                     <input class="govuk-radios__input" id="National_ID_Type-3" name="National_ID_Type" type="radio"
                       value="VAT Number" checked>
                     <% } else { %>
@@ -1479,7 +1440,7 @@
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.National_ID_Type_Global == 'UTR Number' ){ %>
+                    <% if( National_ID_Type_Global == 'UTR Number' ){ %>
                     <input class="govuk-radios__input" id="National_ID_Type-4" name="National_ID_Type" type="radio"
                       value="UTR Number" checked>
 
@@ -1501,7 +1462,7 @@
             <!-- Get the national id number from user  -->
             <!-- ************************************  -->
 
-            <% if( locals.National_ID_Number_Error ) { %>
+            <% if( National_ID_Number_Error ) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <label class="govuk-label" for="National_ID_Number">
                 ID Number
@@ -1518,7 +1479,7 @@
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="National_ID_Number"
                 name="National_ID_Number" type="text" aria-describedby="National_ID_Number-hint"
-                <% if(locals.National_ID_Number_Global) {%> value="<%= locals.National_ID_Number_Global%>" <% } %> />
+                <% if(National_ID_Number_Global) {%> value="<%= National_ID_Number_Global%>" <% } %> />
             </div>
 
             <% } else { %>
@@ -1531,8 +1492,8 @@
                 you must enter the recipient’s VAT number
               </div>
               <input class="govuk-input govuk-input--width-20" id="National_ID_Number" name="National_ID_Number"
-                type="text" aria-describedby="National_ID_Number-hint" <% if(locals.National_ID_Number_Global) {%>
-                value="<%= locals.National_ID_Number_Global%>" <% } %> />
+                type="text" aria-describedby="National_ID_Number-hint" <% if(National_ID_Number_Global) {%>
+                value="<%= National_ID_Number_Global%>" <% } %> />
             </div>
             <% } %>
 
@@ -1543,7 +1504,7 @@
             <!-- Get the Goods or Services  from user  -->
             <!-- ************************************  -->
 
-            <% if( locals.Goods_or_Services_Error ) { %>
+            <% if( Goods_or_Services_Error ) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <fieldset class="govuk-fieldset" aria-describedby="Goods_or_Services-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -1562,7 +1523,7 @@
                 </span>
                 <div class="govuk-radios ">
                   <div class="govuk-radios__item">
-                    <% if( locals.Goods_or_Services_Global == 'Goods' ){ %>
+                    <% if( Goods_or_Services_Global == 'Goods' ){ %>
                     <input class="govuk-radios__input" id="Goods_or_Services" name="Goods_or_Services" type="radio"
                       value="Goods" checked>
                     <% } else { %>
@@ -1575,7 +1536,7 @@
 
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.Goods_or_Services_Global == 'Services' ){ %>
+                    <% if( Goods_or_Services_Global == 'Services' ){ %>
                     <input class="govuk-radios__input" id="Goods_or_Services-2" name="Goods_or_Services" type="radio"
                       value="Services" checked>
                     <% } else { %>
@@ -1607,7 +1568,7 @@
 
                 <div class="govuk-radios">
                   <div class="govuk-radios__item">
-                    <% if( locals.Goods_or_Services_Global == 'Goods' ){ %>
+                    <% if( Goods_or_Services_Global == 'Goods' ){ %>
                     <input class="govuk-radios__input" id="Goods_or_Services" name="Goods_or_Services" type="radio"
                       value="Goods" checked>
                     <% } else { %>
@@ -1620,7 +1581,7 @@
 
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( locals.Goods_or_Services_Global == 'Services' ){ %>
+                    <% if( Goods_or_Services_Global == 'Services' ){ %>
                     <input class="govuk-radios__input" id="Goods_or_Services-2" name="Goods_or_Services" type="radio"
                       value="Services" checked>
                     <% } else { %>
@@ -1641,7 +1602,7 @@
             <!-- **********************************  -->
             <!-- Get the Spending Region  from user  -->
             <!-- **********************************  -->
-            <% if( locals.Spending_Region_Error && !locals.isAddSubsidyPrimarycall ) { %>
+            <% if( Spending_Region_Error && !isAddSubsidyPrimarycall ) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <label class="govuk-label" for="Spending_Region">
                 Region
@@ -1654,82 +1615,82 @@
               </span>
 
               <select class="govuk-select" id="Spending_Region" name="Spending_Region">
-                <% if( locals.Spending_Region_Global == '' ){ %>
+                <% if( Spending_Region_Global == '' ){ %>
                 <option value="Empty" selected>Select a region (8)</option>
                 <% } else { %>
                 <option value="Empty">Select a region (8)</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'North East' ){ %>
+                <% if( Spending_Region_Global == 'North East' ){ %>
                 <option value="North East" selected>North East</option>
                 <% } else { %>
                 <option value="North East">North East</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'North West' ){ %>
+                <% if( Spending_Region_Global == 'North West' ){ %>
                 <option value="North West" selected>North West</option>
                 <% } else { %>
                 <option value="North West">North West</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'Yorkshire and humber' ){ %>
+                <% if( Spending_Region_Global == 'Yorkshire and humber' ){ %>
                 <option value="Yorkshire and humber" selected>Yorkshire and humber</option>
                 <% } else { %>
                 <option value="Yorkshire and humber">Yorkshire and humber</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'East Midlands' ){ %>
+                <% if( Spending_Region_Global == 'East Midlands' ){ %>
                 <option value="East Midlands" selected>East Midlands</option>
                 <% } else { %>
                 <option value="East Midlands">East Midlands</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'West Midlands' ){ %>
+                <% if( Spending_Region_Global == 'West Midlands' ){ %>
                 <option value="West Midlands" selected>West Midlands</option>
                 <% } else { %>
                 <option value="West Midlands">West Midlands</option>
                 <% } %>
 
 
-                <% if( locals.Spending_Region_Global == 'East of England' ){ %>
+                <% if( Spending_Region_Global == 'East of England' ){ %>
                 <option value="East of England" selected>East of England</option>
                 <% } else { %>
                 <option value="East of England">East of England</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'London' ){ %>
+                <% if( Spending_Region_Global == 'London' ){ %>
                 <option value="London" selected>London</option>
                 <% } else { %>
                 <option value="London">London</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'South East' ){ %>
+                <% if( Spending_Region_Global == 'South East' ){ %>
                 <option value="South East" selected>South East</option>
                 <% } else { %>
                 <option value="South East">South East</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'South West' ){ %>
+                <% if( Spending_Region_Global == 'South West' ){ %>
                 <option value="South West" selected>South West</option>
                 <% } else { %>
                 <option value="South West">South West</option>
                 <% } %>
 
 
-                <% if( locals.Spending_Region_Global == 'Scotland' ){ %>
+                <% if( Spending_Region_Global == 'Scotland' ){ %>
                 <option value="Scotland" selected>Scotland</option>
                 <% } else { %>
                 <option value="Scotland">Scotland</option>
                 <% } %>
 
 
-                <% if( locals.Spending_Region_Global == 'Wales' ){ %>
+                <% if( Spending_Region_Global == 'Wales' ){ %>
                 <option value="Wales" selected>Wales</option>
                 <% } else { %>
                 <option value="Wales">Wales</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'Northern Ireland' ){ %>
+                <% if( Spending_Region_Global == 'Northern Ireland' ){ %>
                 <option value="Northern Ireland" selected>Northern Ireland</option>
                 <% } else { %>
                 <option value="Northern Ireland">Northern Ireland</option>
@@ -1749,82 +1710,82 @@
                 This is the region that the organisation is based in.
               </div>
               <select class="govuk-select" id="Spending_Region" name="Spending_Region">
-                <% if( locals.Spending_Region_Global == '' ){ %>
+                <% if( Spending_Region_Global == '' ){ %>
                 <option value="Empty" selected>Select a region (8)</option>
                 <% } else { %>
                 <option value="Empty">Select a region (8)</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'North East' ){ %>
+                <% if( Spending_Region_Global == 'North East' ){ %>
                 <option value="North East" selected>North East</option>
                 <% } else { %>
                 <option value="North East">North East</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'North West' ){ %>
+                <% if( Spending_Region_Global == 'North West' ){ %>
                 <option value="North West" selected>North West</option>
                 <% } else { %>
                 <option value="North West">North West</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'Yorkshire and humber' ){ %>
+                <% if( Spending_Region_Global == 'Yorkshire and humber' ){ %>
                 <option value="Yorkshire and humber" selected>Yorkshire and humber</option>
                 <% } else { %>
                 <option value="Yorkshire and humber">Yorkshire and humber</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'East Midlands' ){ %>
+                <% if( Spending_Region_Global == 'East Midlands' ){ %>
                 <option value="East Midlands" selected>East Midlands</option>
                 <% } else { %>
                 <option value="East Midlands">East Midlands</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'West Midlands' ){ %>
+                <% if( Spending_Region_Global == 'West Midlands' ){ %>
                 <option value="West Midlands" selected>West Midlands</option>
                 <% } else { %>
                 <option value="West Midlands">West Midlands</option>
                 <% } %>
 
 
-                <% if( locals.Spending_Region_Global == 'East of England' ){ %>
+                <% if( Spending_Region_Global == 'East of England' ){ %>
                 <option value="East of England" selected>East of England</option>
                 <% } else { %>
                 <option value="East of England">East of England</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'London' ){ %>
+                <% if( Spending_Region_Global == 'London' ){ %>
                 <option value="London" selected>London</option>
                 <% } else { %>
                 <option value="London">London</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'South East' ){ %>
+                <% if( Spending_Region_Global == 'South East' ){ %>
                 <option value="South East" selected>South East</option>
                 <% } else { %>
                 <option value="South East">South East</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'South West' ){ %>
+                <% if( Spending_Region_Global == 'South West' ){ %>
                 <option value="South West" selected>South West</option>
                 <% } else { %>
                 <option value="South West">South West</option>
                 <% } %>
 
 
-                <% if( locals.Spending_Region_Global == 'Scotland' ){ %>
+                <% if( Spending_Region_Global == 'Scotland' ){ %>
                 <option value="Scotland" selected>Scotland</option>
                 <% } else { %>
                 <option value="Scotland">Scotland</option>
                 <% } %>
 
 
-                <% if( locals.Spending_Region_Global == 'Wales' ){ %>
+                <% if( Spending_Region_Global == 'Wales' ){ %>
                 <option value="Wales" selected>Wales</option>
                 <% } else { %>
                 <option value="Wales">Wales</option>
                 <% } %>
 
-                <% if( locals.Spending_Region_Global == 'Northern Ireland' ){ %>
+                <% if( Spending_Region_Global == 'Northern Ireland' ){ %>
                 <option value="Northern Ireland" selected>Northern Ireland</option>
                 <% } else { %>
                 <option value="Northern Ireland">Northern Ireland</option>
@@ -1840,7 +1801,7 @@
             <!-- **********************************  -->
             <!-- Get the Spending sector  from user  -->
             <!-- **********************************  -->
-            <% if( locals.Spending_Sector_Error && !locals.isAddSubsidyPrimarycall ) { %>
+            <% if( Spending_Sector_Error && !isAddSubsidyPrimarycall ) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <label class="govuk-label" for="Spending_Sector">
                 Sector
@@ -1850,19 +1811,19 @@
               </span>
 
               <select class="govuk-select" id="Spending_Sector" name="Spending_Sector">
-                <% if( locals.Spending_Sector_Global == '' ){ %>
+                <% if( Spending_Sector_Global == '' ){ %>
                 <option value="Empty" selected>Select sector (20)</option>
                 <% } else { %>
                 <option value="Empty">Select sector (20)</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Accommodation' ){ %>
+                <% if( Spending_Sector_Global == 'Accommodation' ){ %>
                 <option value="Accommodation" selected>Accommodation and food service activities</option>
                 <% } else { %>
                 <option value="Accommodation">Accommodation and food service activities</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Activities of extraterritorial organisations and bodies' ){ %>
+                <% if( Spending_Sector_Global == 'Activities of extraterritorial organisations and bodies' ){ %>
                 <option value="Activities of extraterritorial organisations and bodies" selected>Activities of
                   extraterritorial organisations and bodies</option>
                 <% } else { %>
@@ -1870,7 +1831,7 @@
                   organisations and bodies</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Undifferentiated goods and services-producing activities of households for own use' ){ %>
+                <% if( Spending_Sector_Global == 'Undifferentiated goods and services-producing activities of households for own use' ){ %>
                 <option value="Undifferentiated goods and services-producing activities of households for own use"
                   selected>Activities of households as employers; undifferentiated goods- and services-producing
                   activities of households for own use</option>
@@ -1880,7 +1841,7 @@
                   households for own use</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Administrative and support service activities' ){ %>
+                <% if( Spending_Sector_Global == 'Administrative and support service activities' ){ %>
                 <option value="Administrative and support service activities" selected>Administrative and support
                   service activities</option>
                 <% } else { %>
@@ -1888,32 +1849,32 @@
                   activities</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Agriculture, forestry and fishing' ){ %>
+                <% if( Spending_Sector_Global == 'Agriculture, forestry and fishing' ){ %>
                 <option value="Agriculture, forestry and fishing" selected>Agriculture, forestry and fishing</option>
                 <% } else { %>
                 <option value="Agriculture, forestry and fishing">Agriculture, forestry and fishing</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Arts, entertainment and recreation' ){ %>
+                <% if( Spending_Sector_Global == 'Arts, entertainment and recreation' ){ %>
                 <option value="Arts, entertainment and recreation" selected>Arts, entertainment and recreation</option>
                 <% } else { %>
                 <option value="Arts, entertainment and recreation">Arts, entertainment and recreation</option>
                 <% } %>
 
 
-                <% if( locals.Spending_Sector_Global == 'Construction' ){ %>
+                <% if( Spending_Sector_Global == 'Construction' ){ %>
                 <option value="Construction" selected>Construction</option>
                 <% } else { %>
                 <option value="Construction">Construction</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Education' ){ %>
+                <% if( Spending_Sector_Global == 'Education' ){ %>
                 <option value="Education" selected>Education</option>
                 <% } else { %>
                 <option value="Education">Education</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Electricity, gas, steam and air conditioning supply' ){ %>
+                <% if( Spending_Sector_Global == 'Electricity, gas, steam and air conditioning supply' ){ %>
                 <option value="Electricity, gas, steam and air conditioning supply" selected>Electricity, gas, steam and
                   air conditioning supply</option>
                 <% } else { %>
@@ -1921,14 +1882,14 @@
                   conditioning supply</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Financial and insurance activities' ){ %>
+                <% if( Spending_Sector_Global == 'Financial and insurance activities' ){ %>
                 <option value="Financial and insurance activities" selected>Financial and insurance activities</option>
                 <% } else { %>
                 <option value="Financial and insurance activities">Financial and insurance activities</option>
                 <% } %>
 
 
-                <% if( locals.Spending_Sector_Global == 'Human health and social work activities' ){ %>
+                <% if( Spending_Sector_Global == 'Human health and social work activities' ){ %>
                 <option value="Human health and social work activities" selected>Human health and social work activities
                 </option>
                 <% } else { %>
@@ -1936,32 +1897,32 @@
                 <% } %>
 
 
-                <% if( locals.Spending_Sector_Global == 'Information and communication' ){ %>
+                <% if( Spending_Sector_Global == 'Information and communication' ){ %>
                 <option value="Information and communication" selected>Information and communication</option>
                 <% } else { %>
                 <option value="Information and communication">Information and communication</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Manufacturing' ){ %>
+                <% if( Spending_Sector_Global == 'Manufacturing' ){ %>
                 <option value="Manufacturing" selected>Manufacturing</option>
                 <% } else { %>
                 <option value="Manufacturing">Manufacturing</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Mining and quarrying' ){ %>
+                <% if( Spending_Sector_Global == 'Mining and quarrying' ){ %>
                 <option value="Mining and quarrying" selected>Mining and quarrying</option>
                 <% } else { %>
                 <option value="Mining and quarrying">Mining and quarrying</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Other service activities' ){ %>
+                <% if( Spending_Sector_Global == 'Other service activities' ){ %>
                 <option value="Other service activities" selected>Other service activities</option>
                 <% } else { %>
                 <option value="Other service activities">Other service activities</option>
                 <% } %>
 
 
-                <% if( locals.Spending_Sector_Global == 'Professional, scientific and technical activities' ){ %>
+                <% if( Spending_Sector_Global == 'Professional, scientific and technical activities' ){ %>
                 <option value="Professional, scientific and technical activities" selected>Professional, scientific and
                   technical activities</option>
                 <% } else { %>
@@ -1969,7 +1930,7 @@
                   activities</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Public administrative and defence; compulsory social security' ){ %>
+                <% if( Spending_Sector_Global == 'Public administrative and defence; compulsory social security' ){ %>
                 <option value="Public administrative and defence; compulsory social security" selected>Public
                   administrative and defence; compulsory social security</option>
                 <% } else { %>
@@ -1978,13 +1939,13 @@
                 <% } %>
 
 
-                <% if( locals.Spending_Sector_Global == 'Real estate activities' ){ %>
+                <% if( Spending_Sector_Global == 'Real estate activities' ){ %>
                 <option value="Real estate activities" selected>Real estate activities</option>
                 <% } else { %>
                 <option value="Real estate activities">Real estate activities</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Transportation and storage' ){ %>
+                <% if( Spending_Sector_Global == 'Transportation and storage' ){ %>
                 <option value="Transportation and storage" selected>Transportation and storage</option>
                 <% } else { %>
                 <option value="Transportation and storage">Transportation and storage</option>
@@ -1992,7 +1953,7 @@
 
 
 
-                <% if( locals.Spending_Sector_Global == 'Water supply; sewerage, waste management and remediation activities' ){ %>
+                <% if( Spending_Sector_Global == 'Water supply; sewerage, waste management and remediation activities' ){ %>
                 <option value="Water supply; sewerage, waste management and remediation activities" selected>Water
                   supply; sewerage, waste management and remediation activities</option>
                 <% } else { %>
@@ -2000,7 +1961,7 @@
                   sewerage, waste management and remediation activities</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Wholesale and retail trade; repair of motor vehicles and motorcycles' ){ %>
+                <% if( Spending_Sector_Global == 'Wholesale and retail trade; repair of motor vehicles and motorcycles' ){ %>
                 <option value="Wholesale and retail trade; repair of motor vehicles and motorcycles" selected>Wholesale
                   and retail trade; repair of motor vehicles and motorcycles</option>
                 <% } else { %>
@@ -2019,19 +1980,19 @@
               </label>
 
               <select class="govuk-select" id="Spending_Sector" name="Spending_Sector">
-                <% if( locals.Spending_Sector_Global == '' ){ %>
+                <% if( Spending_Sector_Global == '' ){ %>
                 <option value="Empty" selected>Select sector (20)</option>
                 <% } else { %>
                 <option value="Empty">Select sector (20)</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Accommodation' ){ %>
+                <% if( Spending_Sector_Global == 'Accommodation' ){ %>
                 <option value="Accommodation" selected>Accommodation and food service activities</option>
                 <% } else { %>
                 <option value="Accommodation">Accommodation and food service activities</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Activities of extraterritorial organisations and bodies' ){ %>
+                <% if( Spending_Sector_Global == 'Activities of extraterritorial organisations and bodies' ){ %>
                 <option value="Activities of extraterritorial organisations and bodies" selected>Activities of
                   extraterritorial organisations and bodies</option>
                 <% } else { %>
@@ -2039,7 +2000,7 @@
                   organisations and bodies</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Undifferentiated goods and services-producing activities of households for own use' ){ %>
+                <% if( Spending_Sector_Global == 'Undifferentiated goods and services-producing activities of households for own use' ){ %>
                 <option value="Undifferentiated goods and services-producing activities of households for own use"
                   selected>Activities of households as employers; undifferentiated goods- and services-producing
                   activities of households for own use</option>
@@ -2049,7 +2010,7 @@
                   households for own use</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Administrative and support service activities' ){ %>
+                <% if( Spending_Sector_Global == 'Administrative and support service activities' ){ %>
                 <option value="Administrative and support service activities" selected>Administrative and support
                   service activities</option>
                 <% } else { %>
@@ -2057,32 +2018,32 @@
                   activities</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Agriculture, forestry and fishing' ){ %>
+                <% if( Spending_Sector_Global == 'Agriculture, forestry and fishing' ){ %>
                 <option value="Agriculture, forestry and fishing" selected>Agriculture, forestry and fishing</option>
                 <% } else { %>
                 <option value="Agriculture, forestry and fishing">Agriculture, forestry and fishing</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Arts, entertainment and recreation' ){ %>
+                <% if( Spending_Sector_Global == 'Arts, entertainment and recreation' ){ %>
                 <option value="Arts, entertainment and recreation" selected>Arts, entertainment and recreation</option>
                 <% } else { %>
                 <option value="Arts, entertainment and recreation">Arts, entertainment and recreation</option>
                 <% } %>
 
 
-                <% if( locals.Spending_Sector_Global == 'Construction' ){ %>
+                <% if( Spending_Sector_Global == 'Construction' ){ %>
                 <option value="Construction" selected>Construction</option>
                 <% } else { %>
                 <option value="Construction">Construction</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Education' ){ %>
+                <% if( Spending_Sector_Global == 'Education' ){ %>
                 <option value="Education" selected>Education</option>
                 <% } else { %>
                 <option value="Education">Education</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Electricity, gas, steam and air conditioning supply' ){ %>
+                <% if( Spending_Sector_Global == 'Electricity, gas, steam and air conditioning supply' ){ %>
                 <option value="Electricity, gas, steam and air conditioning supply" selected>Electricity, gas, steam and
                   air conditioning supply</option>
                 <% } else { %>
@@ -2090,14 +2051,14 @@
                   conditioning supply</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Financial and insurance activities' ){ %>
+                <% if( Spending_Sector_Global == 'Financial and insurance activities' ){ %>
                 <option value="Financial and insurance activities" selected>Financial and insurance activities</option>
                 <% } else { %>
                 <option value="Financial and insurance activities">Financial and insurance activities</option>
                 <% } %>
 
 
-                <% if( locals.Spending_Sector_Global == 'Human health and social work activities' ){ %>
+                <% if( Spending_Sector_Global == 'Human health and social work activities' ){ %>
                 <option value="Human health and social work activities" selected>Human health and social work activities
                 </option>
                 <% } else { %>
@@ -2105,31 +2066,31 @@
                 <% } %>
 
 
-                <% if( locals.Spending_Sector_Global == 'Information and communication' ){ %>
+                <% if( Spending_Sector_Global == 'Information and communication' ){ %>
                 <option value="Information and communication" selected>Information and communication</option>
                 <% } else { %>
                 <option value="Information and communication">Information and communication</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Manufacturing' ){ %>
+                <% if( Spending_Sector_Global == 'Manufacturing' ){ %>
                 <option value="Manufacturing" selected>Manufacturing</option>
                 <% } else { %>
                 <option value="Manufacturing">Manufacturing</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Mining and quarrying' ){ %>
+                <% if( Spending_Sector_Global == 'Mining and quarrying' ){ %>
                 <option value="Mining and quarrying" selected>Mining and quarrying</option>
                 <% } else { %>
                 <option value="Mining and quarrying">Mining and quarrying</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Other service activities' ){ %>
+                <% if( Spending_Sector_Global == 'Other service activities' ){ %>
                 <option value="Other service activities" selected>Other service activities</option>
                 <% } else { %>
                 <option value="Other service activities">Other service activities</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Professional, scientific and technical activities' ){ %>
+                <% if( Spending_Sector_Global == 'Professional, scientific and technical activities' ){ %>
                 <option value="Professional, scientific and technical activities" selected>Professional, scientific and
                   technical activities</option>
                 <% } else { %>
@@ -2137,7 +2098,7 @@
                   activities</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Public administrative and defence; compulsory social security' ){ %>
+                <% if( Spending_Sector_Global == 'Public administrative and defence; compulsory social security' ){ %>
                 <option value="Public administrative and defence; compulsory social security" selected>Public
                   administrative and defence; compulsory social security</option>
                 <% } else { %>
@@ -2146,19 +2107,19 @@
                 <% } %>
 
 
-                <% if( locals.Spending_Sector_Global == 'Real estate activities' ){ %>
+                <% if( Spending_Sector_Global == 'Real estate activities' ){ %>
                 <option value="Real estate activities" selected>Real estate activities</option>
                 <% } else { %>
                 <option value="Real estate activities">Real estate activities</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Transportation and storage' ){ %>
+                <% if( Spending_Sector_Global == 'Transportation and storage' ){ %>
                 <option value="Transportation and storage" selected>Transportation and storage</option>
                 <% } else { %>
                 <option value="Transportation and storage">Transportation and storage</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Water supply; sewerage, waste management and remediation activities' ){ %>
+                <% if( Spending_Sector_Global == 'Water supply; sewerage, waste management and remediation activities' ){ %>
                 <option value="Water supply; sewerage, waste management and remediation activities" selected>Water
                   supply; sewerage, waste management and remediation activities</option>
                 <% } else { %>
@@ -2166,7 +2127,7 @@
                   sewerage, waste management and remediation activities</option>
                 <% } %>
 
-                <% if( locals.Spending_Sector_Global == 'Wholesale and retail trade; repair of motor vehicles and motorcycles' ){ %>
+                <% if( Spending_Sector_Global == 'Wholesale and retail trade; repair of motor vehicles and motorcycles' ){ %>
                 <option value="Wholesale and retail trade; repair of motor vehicles and motorcycles" selected>Wholesale
                   and retail trade; repair of motor vehicles and motorcycles</option>
                 <% } else { %>

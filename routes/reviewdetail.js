@@ -2,32 +2,32 @@ const express = require("express");
 const router = express.Router();
 
 router.post("/", (req, res) => {
-  var isAddSubsidyPrimarycall = false;
+  isAddSubsidyPrimarycall = false;
   GetMonthName = "";
-  var SubsidyErrors = [];
-  var SubsidyFocus = [];
-  var Additem = 0;
-  var SubsidyArraySize = 0;
-  var Subsidy_Control_Number_Error = false;
-  var Subsidy_Measure_Title_Error = false;
-  var Subsidy_Adhoc_Error = false;
-  var Subsidy_Objective_Error = false;
-  var Subsidy_Objective_Other_Error = false;
-  var Subsidy_Instrument_Error = false;
-  var Subsidy_Instrument_Other_Error = false;
-  var Subsidy_Element_Full_Amount_Error = false;
-  var Subsidy_Full_Amount_Range_Error = false;
-  var National_ID_Type_Error = false;
-  var National_ID_Number_Error = false;
-  var Beneficiary_Name_Error = false;
-  var Size_of_the_Organisation_Error = false;
-  var Granting_Authority_Name_Error = false;
-  var Legal_Granting_Date_Day_Error = false;
-  var Legal_Granting_Date_Month_Error = false;
-  var Legal_Granting_Date_Year_Error = false;
-  var Goods_or_Services_Error = false;
-  var Spending_Region_Error = false;
-  var Spending_Sector_Error = false;
+  SubsidyErrors = [];
+  SubsidyFocus = [];
+  Additem = 0;
+  SubsidyArraySize = 0;
+  Subsidy_Control_Number_Error = false;
+  Subsidy_Measure_Title_Error = false;
+  Subsidy_Adhoc_Error = false;
+  Subsidy_Objective_Error = false;
+  Subsidy_Objective_Other_Error = false;
+  Subsidy_Instrument_Error = false;
+  Subsidy_Instrument_Other_Error = false;
+  Subsidy_Element_Full_Amount_Error = false;
+  Subsidy_Full_Amount_Range_Error = false;
+  National_ID_Type_Error = false;
+  National_ID_Number_Error = false;
+  Beneficiary_Name_Error = false;
+  Size_of_the_Organisation_Error = false;
+  Granting_Authority_Name_Error = false;
+  Legal_Granting_Date_Day_Error = false;
+  Legal_Granting_Date_Month_Error = false;
+  Legal_Granting_Date_Year_Error = false;
+  Goods_or_Services_Error = false;
+  Spending_Region_Error = false;
+  Spending_Sector_Error = false;
 
   const {
     Subsidy_Control_Number,
@@ -67,8 +67,21 @@ router.post("/", (req, res) => {
   Subsidy_Objective_Other_Global = Subsidy_Objective_Other;
   Subsidy_Instrument_Global = Subsidy_Instrument;
   Subsidy_Instrument_Other_Global = Subsidy_Instrument_Other;
-  Subsidy_Element_Full_Amount_Global = Subsidy_Element_Full_Amount;
-  Subsidy_Full_Amount_Range_Global = Subsidy_Full_Amount_Range;
+  
+  if ( Subsidy_Instrument_Global !== 'Tax measures (tax credit, or tax/duty exemption)') {
+    Subsidy_Element_Full_Amount_Global = Subsidy_Element_Full_Amount;
+  }
+  else {
+    Subsidy_Element_Full_Amount_Global = 'NA';
+  }
+
+  if ( Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)') {
+    Subsidy_Full_Amount_Range_Global = Subsidy_Full_Amount_Range;
+  }
+  else {
+    Subsidy_Full_Amount_Range_Global = 'NA';
+  }
+
   National_ID_Type_Global = National_ID_Type;
   National_ID_Number_Global = National_ID_Number;
   Beneficiary_Name_Global = Beneficiary_Name;
@@ -165,7 +178,7 @@ router.post("/", (req, res) => {
     }
 
 
-    if (Subsidy_Instrument == "Empty") {
+    if (Subsidy_Instrument == '') {
       Subsidy_Instrument_Error = true;
       SubsidyErrors[Additem] = "     Select the subsidy type";
       SubsidyFocus[Additem] = "#Subsidy_Instrument";
@@ -182,7 +195,7 @@ router.post("/", (req, res) => {
 
     console.log("subsidy element full amot : " + Subsidy_Element_Full_Amount);
     console.log("Subsidy_Full_Amount_Range : " + Subsidy_Full_Amount_Range);
-    if (!Subsidy_Element_Full_Amount && Subsidy_Instrument != "Tax measures") {
+    if (!Subsidy_Element_Full_Amount && Subsidy_Instrument != "Tax measures (tax credit, or tax/duty exemption)") {
       Subsidy_Element_Full_Amount_Error = true;
       SubsidyErrors[Additem] = "     Enter the subsidy element full amount";
       SubsidyFocus[Additem] = "#Subsidy_Element_Full_Amount";
