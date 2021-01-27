@@ -4,7 +4,7 @@ const router = express.Router();
 const axios = require("axios");
 var request = require("request");
 
-router.post("/", async (req, res) => {
+router.get("/", async (req, res) => {
   // ********************************************************
   // Read environment property file and set the API URL end points
   // ********************************************************
