@@ -29,6 +29,7 @@ app.use(
 );
 app.locals.awards = require("./views/bulkupload/awards.json");
 app.locals.Subsidy_Control_Number_Global;
+app.locals.SubsidyArraySize;
 app.locals.isAddSubsidyPrimarycall;
 app.locals.Subsidy_Control_Number_Global_Substring;
 app.locals.Subsidy_Measure_Title_Global;
@@ -85,6 +86,27 @@ app.locals.Award_search_text;
 app.locals.beis_url_publishing;
 app.locals.beis_url_accessmanagement;
 app.locals.beis_url_publicsearch;
+
+app.locals.Subsidy_Control_Number_Error;
+app.locals.Subsidy_Measure_Title_Error;
+app.locals.Subsidy_Adhoc_Error;
+app.locals.Subsidy_Objective_Error;
+app.locals.Subsidy_Objective_Other_Error;
+app.locals.Subsidy_Instrument_Error;
+app.locals.Subsidy_Instrument_Other_Error;
+app.locals.Subsidy_Element_Full_Amount_Error;
+app.locals.Subsidy_Full_Amount_Range_Error;
+app.locals.National_ID_Type_Error;
+app.locals.National_ID_Number_Error;
+app.locals.Beneficiary_Name_Error;
+app.locals.Size_of_the_Organisation_Error;
+app.locals.Granting_Authority_Name_Error;
+app.locals.Legal_Granting_Date_Day_Error;
+app.locals.Legal_Granting_Date_Month_Error;
+app.locals.Legal_Granting_Date_Year_Error;
+app.locals.Goods_or_Services_Error;
+app.locals.Spending_Region_Error;
+app.locals.Spending_Sector_Error;
 
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
