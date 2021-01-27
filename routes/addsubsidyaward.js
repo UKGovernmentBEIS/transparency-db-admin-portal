@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
   Spending_Region_Global = "";
   Spending_Sector_Global = "";
   
-
+  isCallfromEditAward = false;
   var isAddSubsidyPrimarycall = true;
   res.render("bulkupload/addsubsidyaward", { isAddSubsidyPrimarycall });
 });

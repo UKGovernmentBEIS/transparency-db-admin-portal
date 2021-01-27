@@ -54,6 +54,7 @@ app.locals.Spending_Region_Global;
 app.locals.Spending_Sector_Global;
 app.locals.GetMonthName;
 app.locals.file_upload_name;
+app.locals.isCallfromEditAward;
 
 app.locals.email_addresspass;
 app.locals.formvalidationerrpass = [];

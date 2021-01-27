@@ -48,8 +48,10 @@ router.get("/", (req, res) => {
   National_ID_Type_Global = fetchawarddetails.beneficiary.nationalIdType;
   National_ID_Number_Global = fetchawarddetails.beneficiary.nationalId;
   Beneficiary_Name_Global = fetchawarddetails.beneficiary.beneficiaryName;
-  Size_of_the_Organisation_Global = fetchawarddetails.beneficiary.beneficiaryName.orgSize;
+  Size_of_the_Organisation_Global = fetchawarddetails.beneficiary.orgSize;
+  console.log("Size_of_the_Organisation_Global :" + Size_of_the_Organisation_Global);
   Granting_Authority_Name_Global = fetchawarddetails.grantingAuthorityResponse.grantingAuthorityName;
+  Edit_Award_Number_global = fetchawarddetails.awardNumber;
  
   Legal_granting_date = fetchawarddetails.legalGrantingDate;
   var Legal_date_split = Legal_granting_date.split(" ");
@@ -74,9 +76,9 @@ router.get("/", (req, res) => {
   Spending_Region_Global = fetchawarddetails.spendingRegion;
   Spending_Sector_Global = fetchawarddetails.spendingSector;
 
-  var isAddSubsidyPrimarycall = false;
+  isCallfromEditAward = true;
   res.render("bulkupload/addsubsidyaward", {
-    isAddSubsidyPrimarycall,
+    isCallfromEditAward ,
     Subsidy_Control_Number_Global,
     Subsidy_Measure_Title_Global,
     Subsidy_Adhoc_Global,

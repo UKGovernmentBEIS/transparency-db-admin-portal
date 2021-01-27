@@ -10,6 +10,7 @@ router.get("/", (req, res) => {
     Subsidy_Objective_Global,
     Subsidy_Objective_Other_Global ,
     Subsidy_Instrument_Global,
+    Subsidy_Instrument_Other_Global,
     Subsidy_Element_Full_Amount_Global,
     Subsidy_Full_Amount_Range_Global,
     National_ID_Type_Global,

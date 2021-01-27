@@ -5,11 +5,13 @@ var request = require("request");
 
 router.post("/", async (req, res) => {
   if (typeof Subsidy_Full_Amount_Range_Global == "undefined") {
-    Subsidy_Full_Amount_Range_Global = "";
+    Subsidy_Full_Amount_Range_Global = "NA";
   }
   if (typeof Subsidy_Element_Full_Amount_Global == "undefined") {
-    Subsidy_Element_Full_Amount_Global = "";
+    Subsidy_Element_Full_Amount_Global = "NA";
   }
+
+
 
   subsidy_legal_granting_date =
     Legal_Granting_Date_Day_Global +
@@ -50,6 +52,15 @@ router.post("/", async (req, res) => {
   Subsidy_Element_Full_Amount_Global_Trim = parseFloat(Subsidy_Element_Full_Amount_Global.replace(/\,/g,""));
   
   console.log("Subsidy_Element_Full_Amount_Global_Trim:" +Subsidy_Element_Full_Amount_Global_Trim );
+
+  if (Subsidy_Objective_Global !== "Other") {
+    Subsidy_Objective_Other_Global = "";
+  }
+
+  if (Subsidy_Instrument_Global !== "Other") {
+    Subsidy_Instrument_Other_Global = "";
+  }
+
 
   const addAwardRequest = {
     subsidyControlTitle: Subsidy_Measure_Title_Global,

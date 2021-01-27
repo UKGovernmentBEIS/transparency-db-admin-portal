@@ -158,23 +158,6 @@
 
       </div>
 
-      <!-- bread crumbs start here -->
-      <!-- <div class="govuk-breadcrumbs ">
-        <ol class="govuk-breadcrumbs__list">
-          <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
-          </li>
-          <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
-          </li>
-          <li class="govuk-breadcrumbs__list-item">
-            <a1 class="govuk-breadcrumbs__link" href="#">Add a subsidy awards</a1>
-          </li>
-        </ol>
-      </div> -->
-      <!-- bread crumbs ends here -->
-
-      <!-- Error display -->
 
       <% if( locals.SubsidyArraySize > 0 ){ %>
 
@@ -195,11 +178,11 @@
 
       <% } %>
 
-      
+      <%  if(isCallfromEditAward ) { %>
+      <h1 class="govuk-heading-xl">Edit subsidy award  <%= Edit_Award_Number_global %></h1>
+      <% } else { %>
       <h1 class="govuk-heading-xl">Add a subsidy award</h1>
-      
-       
-
+       <% } %>
       <!-- <a rel="external" target="_blank" class="govuk-link head-right govuk-relative-position_title" href="./assets/files/HelpDocumentAddSubsidyAwards.pdf" >
         <p >Download the help file </p>
       </a> -->
@@ -304,32 +287,7 @@
 
             <h1 class="govuk-heading-l">Subsidy award details</h1>
 
-            <!-- *********************
-            Subsidy measure adhoc 
-            ********************* -->
-            <!-- 
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="Subsidy_Measure_Title">
-                Is this for an ad hoc subsidy?
-              </label>
-
-              <div id="Subsidy_Measure_Title-hint" class="govuk-hint">
-                You will only be able to create one subsidy award under each ad hoc subsidy scheme.
-              </div>
-
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="adhoc-yes" name="adhoc-yes" type="radio" value="Yes">
-                <label class="govuk-label govuk-radios__label" for="adhoc-yes">
-                  Yes
-                </label>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="adhoc-no" name="adhoc-no" type="radio" value="No">
-                <label class="govuk-label govuk-radios__label" for="adhoc-no">
-                  No
-                </label>
-              </div>
-            </div> -->
+          
 
             <!-- ************************************  -->
             <!-- Get the subsdy adhoc from user  -->
