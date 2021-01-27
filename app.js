@@ -3,7 +3,6 @@
 // *************************************************************
 
 const express = require("express");
-const jwt_decode = require("jwt-decode");
 const app = express();
 const fs = require("fs");
 const request = require("request");
@@ -112,18 +111,8 @@ app.locals.Spending_Sector_Error;
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
-app.get("/", async (req, res) => {
-  req.post(
-    '/choosedashboard',
-    (error, res, body) => {
-      if (error) {
-        console.error(error)
-        return
-      }
-      console.log(`statusCode: ${res.statusCode}`)
-      console.log(body)
-    }
-  )
+app.get("/", (req, res) => {
+  res.render("bulkupload/logintransparency");
 });
 
 var logintransparency = require("./routes/logintransparency");
