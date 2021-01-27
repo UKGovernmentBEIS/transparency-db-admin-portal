@@ -150,7 +150,7 @@ app.get("/", async (req, res) => {
   // *******************
   frontend_totalRecordsPerPage = 1;
 
-  var id_token = req.body.id_token;
+  var {id_token}  = req.body;
   console.log("id_token "+id_token);
   var id_token_decoded = jwt_decode(id_token);
 
