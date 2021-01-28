@@ -180,6 +180,8 @@ app.get("/", async(req, res) => {
   // dashboard_user_name = dashboard_username;
   // dashboard_ga_name = dashboard_GA;
 
+  console.log("request body "+req.body);
+
   var id_token = req.body.id_token;
 
   console.log("id_token "+id_token);
