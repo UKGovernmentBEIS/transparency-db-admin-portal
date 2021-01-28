@@ -33,7 +33,7 @@ var multer = require('multer');
 const axios = require("axios");
 
 var upload = multer();
-
+ 
 // for parsing application/json
 app.use(express.json()); 
 const jwt_decode = require("jwt-decode");
@@ -129,8 +129,8 @@ app.locals.Spending_Sector_Error;
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
-app.get("/", async(req, res) => {
-
+app.post("/", async(req, res) => {  
+ 
   Environment_variable = process.argv[2];
   if (Environment_variable == "env=dev") {
     beis_url_publishing = "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
@@ -179,28 +179,51 @@ app.get("/", async(req, res) => {
 
   // dashboard_user_name = dashboard_username;
   // dashboard_ga_name = dashboard_GA;
+  // console.log("req body" + req.params.id_token);
 
-  var id_token = req.body.id_token;
+  // console.log(JSON.stringify(req.headers));
 
-  console.log("id_token "+id_token);
+  // inp_head =JSON.parse(JSON.stringify(req.headers));
 
-  var id_token_decoded = jwt_decode(id_token);
+  //var { id_token } = req.headers['id_token']; 
 
-  if(id_token_decoded.roles.includes("4aaddb97-dcb8-4988-b2e5-b045a4419d90")){
-    console.log("inside BEIS admin cond");
-    dashboard_roles = "BEIS Administrator";
-  }else if(id_token_decoded.roles.includes("3ee46dda-5f2b-4fd5-b92b-54c2cd8f2930")){
-    dashboard_roles = "Granting Authority Administrator";
-  }else if(id_token_decoded.roles.includes("058abc1f-c491-4ffa-bd52-885c4fb96943")){
-    dashboard_roles = "Granting Authority Approver";
-  }else if(id_token_decoded.roles.includes("e7f70439-02d4-4367-817e-52283a416ac3")){
-    dashboard_roles = "Granting Authority Encoder";
+  // id_token = inp_head.id_token; 
+  
+  console.log("req :" + JSON.stringify( req.body)); 
+
+  id_token_ret =   JSON.stringify( req.body);
+  id_token = id_token_ret.id_token
+   
+  console.log("id_token "+id_token);  
+  // id_token = 123456;
+  if (id_token == 123456) {
+
+    dashboard_roles = "BEIS Administrator"
   }
+ 
+  // var id_token_decoded = jwt_decode(id_token);
 
+  // if(id_token_decoded.roles.includes("4aaddb97-dcb8-4988-b2e5-b045a4419d90")){
+  //   console.log("inside BEIS admin cond");
+  //   dashboard_roles = "BEIS Administrator";
+  // }else if(id_token_decoded.roles.includes("3ee46dda-5f2b-4fd5-b92b-54c2cd8f2930")){
+  //   dashboard_roles = "Granting Authority Administrator";
+  // }else if(id_token_decoded.roles.includes("058abc1f-c491-4ffa-bd52-885c4fb96943")){
+  //   dashboard_roles = "Granting Authority Approver";
+  // }else if(id_token_decoded.roles.includes("e7f70439-02d4-4367-817e-52283a416ac3")){
+  //   dashboard_roles = "Granting Authority Encoder";
+  // }
+  
   if (dashboard_roles == "BEIS Administrator") {
-    const userPrincipleRequest =
-      '{"userName": "TEST","password": "password123","role": "BEIS Administrator","grantingAuthorityGroupId": "123","grantingAuthorityGroupName": "test"}';
-    var config = {
+    // const userPrincipleRequest =
+    //   '{"userName": "TEST","password": "password123","role": "BEIS Administrator","grantingAuthorityGroupId": "123","grantingAuthorityGroupName": "test"}';
+    dashboard_ga_name = 'HMRC';
+      const userPrincipleRequest =
+      '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Administrator","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
+      dashboard_ga_name +
+      '"}';
+    
+      var config = {
       headers: {
         userPrinciple: userPrincipleRequest
       },
