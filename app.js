@@ -129,8 +129,9 @@ app.locals.Spending_Sector_Error;
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
-app.get("/", async(req, res) => {  
- 
+
+app.post("/.auth/login/aad/callback", async(req, res) => { 
+
   Environment_variable = process.argv[2];
   if (Environment_variable == "env=dev") {
     beis_url_publishing = "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
@@ -187,32 +188,37 @@ app.get("/", async(req, res) => {
 
   //var { id_token } = req.headers['id_token']; 
 
-  // id_token = inp_head.id_token; 
+  // id_token = inp_head.id_token;
+  
+  var { id_token} = reg.body;
+  console.log("req :" + JSON.stringify( req.body));
+
+  console.log("id_token : " +id_token );
   
   console.log("req :" + JSON.stringify( req.body)); 
 
-  id_token_ret =   JSON.stringify( req.body);
-  id_token = id_token_ret.id_token
+  // id_token_ret =   JSON.stringify( req.body);
+  // id_token = id_token_ret.id_token
    
   console.log("id_token "+id_token);  
   // id_token = 123456;
-  if (id_token == 123456) {
+  // if (id_token == 123456) {
 
-    dashboard_roles = "BEIS Administrator"
-  }
- 
-  // var id_token_decoded = jwt_decode(id_token);
-
-  // if(id_token_decoded.roles.includes("4aaddb97-dcb8-4988-b2e5-b045a4419d90")){
-  //   console.log("inside BEIS admin cond");
-  //   dashboard_roles = "BEIS Administrator";
-  // }else if(id_token_decoded.roles.includes("3ee46dda-5f2b-4fd5-b92b-54c2cd8f2930")){
-  //   dashboard_roles = "Granting Authority Administrator";
-  // }else if(id_token_decoded.roles.includes("058abc1f-c491-4ffa-bd52-885c4fb96943")){
-  //   dashboard_roles = "Granting Authority Approver";
-  // }else if(id_token_decoded.roles.includes("e7f70439-02d4-4367-817e-52283a416ac3")){
-  //   dashboard_roles = "Granting Authority Encoder";
+  //   dashboard_roles = "BEIS Administrator"
   // }
+ 
+  var id_token_decoded = jwt_decode(id_token);
+
+  if(id_token_decoded.roles.includes("4aaddb97-dcb8-4988-b2e5-b045a4419d90")){
+    console.log("inside BEIS admin cond");
+    dashboard_roles = "BEIS Administrator";
+  }else if(id_token_decoded.roles.includes("3ee46dda-5f2b-4fd5-b92b-54c2cd8f2930")){
+    dashboard_roles = "Granting Authority Administrator";
+  }else if(id_token_decoded.roles.includes("058abc1f-c491-4ffa-bd52-885c4fb96943")){
+    dashboard_roles = "Granting Authority Approver";
+  }else if(id_token_decoded.roles.includes("e7f70439-02d4-4367-817e-52283a416ac3")){
+    dashboard_roles = "Granting Authority Encoder";
+  }
   
   if (dashboard_roles == "BEIS Administrator") {
     // const userPrincipleRequest =
@@ -251,6 +257,43 @@ app.get("/", async(req, res) => {
       console.log("response_error_message catch : " + response_error_message);
     }
   } 
+
+  // res.render("bulkupload/logintransparency");
+});
+
+app.get("/", async(req, res) => {  
+ 
+  Environment_variable = process.argv[2];
+  if (Environment_variable == "env=dev") {
+    beis_url_publishing = "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement = "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
+    beis_url_publicsearch = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
+    console.log(beis_url_publishing);
+    console.log(beis_url_accessmanagement);
+    console.log(beis_url_publicsearch);
+  } else if (Environment_variable == "env=integ") {
+    beis_url_publishing = "https://integ-transparency-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement = "https://integ-transparency-db-access-management-service.azurewebsites.net";
+    beis_url_publicsearch = "https://integ-transparency-db-public-search-service.azurewebsites.net";
+    console.log(beis_url_publishing);
+    console.log(beis_url_accessmanagement);
+    console.log(beis_url_publicsearch);
+  } else if (Environment_variable == "env=stag") {
+    beis_url_publishing = "https://stag-transparency-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement = "https://stag-transparency-db-access-management-service.azurewebsites.net";
+    beis_url_publicsearch = "https://stag-transparency-db-public-search-service.azurewebsites.net";
+    console.log(beis_url_publishing);
+    console.log(beis_url_accessmanagement);
+    console.log(beis_url_publicsearch);
+  } else if (Environment_variable == "env=prod") {
+    beis_url_publishing = "https://prod-transparency-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement = "https://prod-transparency-db-access-management-service.azurewebsites.net";
+    beis_url_publicsearch = "https://prod-transparency-db-public-search-service.azurewebsites.net";
+    console.log(beis_url_publishing);
+    console.log(beis_url_accessmanagement);
+    console.log(beis_url_publicsearch);
+  }
+
 
   // res.render("bulkupload/logintransparency");
 });
