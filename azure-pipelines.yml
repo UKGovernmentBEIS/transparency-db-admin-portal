@@ -47,3 +47,10 @@ stages:
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
 
+- task: Docker@2
+  inputs:
+    containerRegistry: 'BIESTPDBACR'
+    repository: 'tpdbadminportalimg'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: 'latest'
