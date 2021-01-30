@@ -3,6 +3,7 @@
 // *************************************************************
 
 const express = require("express");
+const cookierParser = require('cookie-parser');
 const app = express();
 const fs = require("fs");
 const request = require("request");
@@ -19,6 +20,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
+app.use(cookierParser(''));
 const users = [];
 // app.use(fileUpload());
 app.use(
@@ -130,139 +132,13 @@ app.locals.Spending_Sector_Error;
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
 
-app.post("/.auth/login/aad/callback", async(req, res) => { 
-
-  Environment_variable = process.argv[2];
-  if (Environment_variable == "env=dev") {
-    beis_url_publishing = "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
-    beis_url_accessmanagement = "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
-    beis_url_publicsearch = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
-    console.log(beis_url_publishing);
-    console.log(beis_url_accessmanagement);
-    console.log(beis_url_publicsearch);
-  } else if (Environment_variable == "env=integ") {
-    beis_url_publishing = "https://integ-transparency-db-publishing-subsidies-service.azurewebsites.net";
-    beis_url_accessmanagement = "https://integ-transparency-db-access-management-service.azurewebsites.net";
-    beis_url_publicsearch = "https://integ-transparency-db-public-search-service.azurewebsites.net";
-    console.log(beis_url_publishing);
-    console.log(beis_url_accessmanagement);
-    console.log(beis_url_publicsearch);
-  } else if (Environment_variable == "env=stag") {
-    beis_url_publishing = "https://stag-transparency-db-publishing-subsidies-service.azurewebsites.net";
-    beis_url_accessmanagement = "https://stag-transparency-db-access-management-service.azurewebsites.net";
-    beis_url_publicsearch = "https://stag-transparency-db-public-search-service.azurewebsites.net";
-    console.log(beis_url_publishing);
-    console.log(beis_url_accessmanagement);
-    console.log(beis_url_publicsearch);
-  } else if (Environment_variable == "env=prod") {
-    beis_url_publishing = "https://prod-transparency-db-publishing-subsidies-service.azurewebsites.net";
-    beis_url_accessmanagement = "https://prod-transparency-db-access-management-service.azurewebsites.net";
-    beis_url_publicsearch = "https://prod-transparency-db-public-search-service.azurewebsites.net";
-    console.log(beis_url_publishing);
-    console.log(beis_url_accessmanagement);
-    console.log(beis_url_publicsearch);
-  }
-
-
-  // *******************
-  // Globale declarations
-  // *******************
-  frontend_totalRecordsPerPage = 1;
-
-  // var {
-  //   dashboard_username,
-  //   dashboard_roles,
-  //   dashboard_GA
-  // } = req.body;
-
-  // console.log("dashboard_username:" + dashboard_username);
-  // console.log("dashboard_roles:" + dashboard_roles);
-
-  // dashboard_user_name = dashboard_username;
-  // dashboard_ga_name = dashboard_GA;
-  // console.log("req body" + req.params.id_token);
-
-  // console.log(JSON.stringify(req.headers));
-
-  // inp_head =JSON.parse(JSON.stringify(req.headers));
-
-  //var { id_token } = req.headers['id_token']; 
-
-  // id_token = inp_head.id_token;
-  
-  var { id_token} = reg.body;
-  console.log("req :" + JSON.stringify( req.body));
-
-  console.log("id_token : " +id_token );
-  
-  console.log("req :" + JSON.stringify( req.body)); 
-
-  // id_token_ret =   JSON.stringify( req.body);
-  // id_token = id_token_ret.id_token
-   
-  console.log("id_token "+id_token);  
-  // id_token = 123456;
-  // if (id_token == 123456) {
-
-  //   dashboard_roles = "BEIS Administrator"
-  // }
- 
-  var id_token_decoded = jwt_decode(id_token);
-
-  if(id_token_decoded.roles.includes("4aaddb97-dcb8-4988-b2e5-b045a4419d90")){
-    console.log("inside BEIS admin cond");
-    dashboard_roles = "BEIS Administrator";
-  }else if(id_token_decoded.roles.includes("3ee46dda-5f2b-4fd5-b92b-54c2cd8f2930")){
-    dashboard_roles = "Granting Authority Administrator";
-  }else if(id_token_decoded.roles.includes("058abc1f-c491-4ffa-bd52-885c4fb96943")){
-    dashboard_roles = "Granting Authority Approver";
-  }else if(id_token_decoded.roles.includes("e7f70439-02d4-4367-817e-52283a416ac3")){
-    dashboard_roles = "Granting Authority Encoder";
-  }
-  
-  if (dashboard_roles == "BEIS Administrator") {
-    // const userPrincipleRequest =
-    //   '{"userName": "TEST","password": "password123","role": "BEIS Administrator","grantingAuthorityGroupId": "123","grantingAuthorityGroupName": "test"}';
-    dashboard_ga_name = 'HMRC';
-      const userPrincipleRequest =
-      '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Administrator","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-      dashboard_ga_name +
-      '"}';
-    
-      var config = {
-      headers: {
-        userPrinciple: userPrincipleRequest
-      },
-    };
-
-    var data = JSON.parse(JSON.stringify(userPrincipleRequest));
-    console.log("request :" + JSON.stringify(data));
-
-    try {
-      const apidata = await axios.get(
-        beis_url_accessmanagement + "/accessmanagement/beisadmin",
-        config
-      );
-      console.log(`Status: ${apidata.status}`);
-      API_response_code = `${apidata.status}`;
-      console.log("API_response_code: try" + API_response_code);
-      console.log("Body: ", apidata.data);
-      dashboardawards = apidata.data;
-      res.render("bulkupload/dashboard-beisadmin", {
-        beis_url_accessmanagement
-      });
-    } catch (err) {
-      response_error_message = err;
-      console.log("message error : " + err);
-      console.log("response_error_message catch : " + response_error_message);
-    }
-  } 
-
-  // res.render("bulkupload/logintransparency");
-});
-
 app.get("/", async(req, res) => {  
  
+  if (req.signedCookies){
+    console.log("signedCookies "+req.signedCookies);
+  }else{
+    console.log("No signedCookies")
+  }
   Environment_variable = process.argv[2];
   // if (Environment_variable == "env=dev") {
   //   beis_url_publishing = "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
@@ -300,16 +176,6 @@ app.get("/", async(req, res) => {
 
 var logintransparency = require("./routes/logintransparency");
 app.use("/logintransparency", logintransparency);
-
-// app.get('/',(req, res) => {
-//   res.render('accessmanagement/enterotp')
-// })
-
-// var enterotp = require('./routes/enterotp');
-// app.use('/enterotp',enterotp);
-
-// var test = require("./routes/test");
-// app.use("/test", test);
 
 /****************************************************** */
 /* All Router declarations */
@@ -353,9 +219,6 @@ app.use("/addsubsidyaward", addsubsidyaward);
 
 var editsubsidyaward = require("./routes/subsidyaward-edit");
 app.use("/editsubsidyaward", editsubsidyaward);
-
-// var updatesubsidyaward = require("./routes/subsidyaward-update");
-// app.use("/updatesubsidyaward", updatesubsidyaward);
 
 var rejectsubsidyaward = require("./routes/subsidyaward-reject");
 app.use("/rejectsubsidyaward", rejectsubsidyaward);

@@ -14,6 +14,7 @@
   "dependencies": {
     "@types/express-fileupload": "^1.1.4",
     "axios": "^0.21.0",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
