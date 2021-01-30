@@ -20,7 +20,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
-app.use(cookierParser(''));
+app.use(cookierParser());
 const users = [];
 // app.use(fileUpload());
 app.use(
