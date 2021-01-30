@@ -135,7 +135,7 @@ app.locals.Spending_Sector_Error;
 app.get("/", async(req, res) => {  
  
   if (req.signedCookies){
-    console.log("signedCookies "+req.signedCookies);
+    console.log("signedCookies.user " + req.signedCookies.user);
   }else{
     console.log("No signedCookies");
   }
