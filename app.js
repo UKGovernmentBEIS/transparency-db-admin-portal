@@ -137,7 +137,7 @@ app.get("/", async(req, res) => {
   if (req.signedCookies){
     console.log("signedCookies "+req.signedCookies);
   }else{
-    console.log("No signedCookies")
+    console.log("No signedCookies");
   }
   Environment_variable = process.argv[2];
   // if (Environment_variable == "env=dev") {
