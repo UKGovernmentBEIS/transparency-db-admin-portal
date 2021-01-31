@@ -134,10 +134,12 @@ app.locals.Spending_Sector_Error;
 
 app.get("/", async(req, res) => {  
  
-  if (req.signedCookies){
-    console.log("signedCookies.user " + req.signedCookies.user);
+  if (req.isAuthenticated){
+    console.log("User authenticated!");
+    console.log('User info: ', req.user);
+    console.log('Validated claims: ', req.authInfo);
   }else{
-    console.log("No signedCookies");
+    console.log("User not authenticated!");
   }
   Environment_variable = process.argv[2];
   // if (Environment_variable == "env=dev") {
