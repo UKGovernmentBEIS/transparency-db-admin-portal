@@ -134,6 +134,8 @@ app.locals.Spending_Sector_Error;
 
 app.get("/", async(req, res) => {  
  
+  console.log(req.headers);
+  console.log("Value of X-MS-TOKEN-AAD-ACCESS-TOKEN: " + req.header("X-MS-TOKEN-AAD-ACCESS-TOKEN"));
   if (req.isAuthenticated){
     console.log("User authenticated!");
     console.log('User info: ', req.user);
