@@ -16,4 +16,4 @@ RUN npm install
 COPY . .
 
 EXPOSE 3000
-CMD [ "node", "server.js", "env=integ"]
+CMD [ "node", "server.js", "env=dev" ]
