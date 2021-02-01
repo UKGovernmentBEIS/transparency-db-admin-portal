@@ -190,7 +190,7 @@ app.get("/", async(req, res) => {
   console.log("logged in user "+id_token_decoded.name);
   console.log("id_token_decoded parsed "+JSON.stringify(id_token_decoded));
   var id_token_json = JSON.parse(JSON.stringify(id_token_decoded));
-  dashboard_username = id_token_decoded.name;
+  dashboard_user_name = id_token_decoded.name;
   if(id_token_json.roles.includes("4aaddb97-dcb8-4988-b2e5-b045a4419d90")){
     dashboard_roles = "BEIS Administrator";
   }else if(id_token_json.roles.includes("3ee46dda-5f2b-4fd5-b92b-54c2cd8f2930")){
@@ -224,7 +224,7 @@ app.get("/", async(req, res) => {
       console.log("Body: ", apidata.data);
       dashboardawards = apidata.data;
       res.render("bulkupload/dashboard-beisadmin", {
-        beis_url_accessmanagement,dashboard_username
+        beis_url_accessmanagement,dashboard_user_name
       });
     } catch (err) {
       response_error_message = err;
@@ -256,7 +256,7 @@ app.get("/", async(req, res) => {
       console.log("Body: ", apidata.data);
       dashboardawards = apidata.data;
       res.render("bulkupload/dashboard-gaadmin",{
-        beis_url_accessmanagement,dashboard_username
+        beis_url_accessmanagement,dashboard_user_name
       });
     } catch (err) {
       response_error_message = err;
@@ -288,7 +288,7 @@ app.get("/", async(req, res) => {
       console.log("Body: ", apidata.data);
       dashboardawards = apidata.data;
       res.render("bulkupload/dashboard-gaapprover",{
-        beis_url_accessmanagement,dashboard_username
+        beis_url_accessmanagement,dashboard_user_name
       });
     } catch (err) {
       response_error_message = err;
@@ -320,7 +320,7 @@ app.get("/", async(req, res) => {
       console.log("Body: ", apidata.data);
       dashboardawards = apidata.data;
       res.render("bulkupload/dashboard-gaencoder",{
-        beis_url_accessmanagement,dashboard_username
+        beis_url_accessmanagement,dashboard_user_name
       });
     } catch (err) {
       response_error_message = err;
