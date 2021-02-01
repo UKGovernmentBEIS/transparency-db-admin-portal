@@ -134,7 +134,7 @@ app.locals.Spending_Sector_Error;
 
 app.get("/", async(req, res) => {  
  
-  console.log("request headers "+req.headers);
+  console.log("request headers "+JSON.stringify(req.headers));
   console.log("Value of X-MS-TOKEN-AAD-ACCESS-TOKEN: " + req.header("X-MS-TOKEN-AAD-ACCESS-TOKEN"));
   var access_token = req.header("x-ms-client-principal");
   console.log("access_token "+access_token);
