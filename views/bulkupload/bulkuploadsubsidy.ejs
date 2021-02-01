@@ -107,7 +107,8 @@
                   You can use the template to fill in the required information for the subsidy awards you want to add.
                 </p>
                 <p class="govuk-body govuk-form-group">You can download the user guide for
-                  <a rel="external" target="_blank" class="govuk-link" href="./assets/files/HelpDocumentBulkUpload.docx">
+                  <a rel="external" target="_blank" class="govuk-link"
+                    href="./assets/files/HelpDocumentBulkUpload.docx">
                     help with adding multiple subsidy awards.
                   </a>
                 </p>
@@ -169,13 +170,13 @@
                     type="file" aria-describedby="file-upload-1-error"> -->
                   <div class="govuk-input__wrapper">
                     <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file">
+                      type="file" aria-describedby="Choose file">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                 </div>
 
 
-                <button class="govuk-button" data-module="govuk-button">Upload file </button>
+                <button class="govuk-button" data-module="govuk-button" value="Upload file">Upload file </button>
 
               </form>
 
@@ -196,14 +197,15 @@
 
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="file-upload-1"> Upload a file</label>
-                  <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file">
+                  <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
+                    aria-describedby="Choose file">
                   <label class="govuk-label-grey" for="file-upload-2">
                     <p> The file must be a CSV or Microsoft Excel spreadsheet</p>
                   </label>
                 </div>
 
 
-                <button class="govuk-button" data-module="govuk-button">Upload file </button>
+                <button class="govuk-button" data-module="govuk-button" value="Upload file">Upload file </button>
 
               </form>
               <hr />
@@ -216,12 +218,12 @@
                   You can also download a PDF of errors (opens in a new window or tab)
                 </label> -->
 
-                <script type="text/javascript"
+                <!-- <script type="text/javascript"
                   src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
                 <script type="text/javascript"
                   src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
                 <script type="text/javascript" src="/assets/javascripts/bulkuploadpdfgen.js"></script>
-
+ -->
 
                 <div>
                   <p> You can also
@@ -330,14 +332,15 @@
                 <form encType="multipart/form-data" action="/formvalidation" method="post" novalidate="">
                   <div class="govuk-form-group">
                     <label class="govuk-label" for="file-upload-1"> Upload a file</label>
-                    <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file">
+                    <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
+                      aria-describedby="Choose file">
                     <label class="govuk-label-grey" for="file-upload-2">
                       <p> The file must be a CSV or Microsoft Excel spreadsheet</p>
                     </label>
                   </div>
 
 
-                  <button class="govuk-button" data-module="govuk-button">Upload file </button>
+                  <button class="govuk-button" data-module="govuk-button" value="Upload file">Upload file </button>
 
 
                   <% } %>

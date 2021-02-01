@@ -94,7 +94,8 @@
                   You can use the template to fill in the required information for the subsidy awards you want to add.
                 </p>
                 <p class="govuk-body govuk-form-group">You can download the user guide for
-                  <a rel="external" target="_blank" class="govuk-link" href="./assets/files/HelpDocumentBulkUpload.docx">
+                  <a rel="external" target="_blank" class="govuk-link"
+                    href="./assets/files/HelpDocumentBulkUpload.docx">
                     help with adding multiple subsidy awards.
                   </a>
                 </p>
@@ -138,12 +139,12 @@
                   </span>
                   <div class="govuk-input__wrapper">
                     <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file">
+                      type="file" aria-describedby="Choose file">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                 </div>
 
-                <button class="govuk-button" data-module="govuk-button">Upload file </button>
+                <button class="govuk-button" data-module="govuk-button" value="Upload file">Upload file </button>
 
                 <% } else if( locals.isExcelFormat){ %>
 
@@ -165,8 +166,8 @@
                     <p> The file format must be .csv or .xlsx</p>
                   </label>
                   <div class="govuk-input__wrapper">
-                    <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file">
+                    <input class="govuk-input govuk-!-width-one-third" id="file-upload-1"
+                      name="file_upload_1"="Upload file">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
 
@@ -176,7 +177,7 @@
                 </div>
 
 
-                <button class="govuk-button" data-module="govuk-button">Upload file </button>
+                <button class="govuk-button" data-module="govuk-button" value="Upload file">Upload file </button>
 
 
                 <div class="govuk-form-group govuk-form-group--error">
@@ -304,7 +305,7 @@
                   </label>
                   <div class="govuk-input__wrapper">
                     <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file">
+                      type="file" aria-describedby="Choose file">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                   <p>Uploading will update the status of every subsidy award in the file to ‘Finalised’ and submit them
@@ -313,7 +314,7 @@
                 </div>
 
 
-                <button class="govuk-button" data-module="govuk-button">Upload file </button>
+                <button class="govuk-button" data-module="govuk-button" value="Upload file">Upload file </button>
 
                 <% } %>
 

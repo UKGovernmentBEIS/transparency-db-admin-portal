@@ -67,6 +67,7 @@ test("Unit testing for spending filter route - Test for GET call", (done) => {
   global.Spending_Sector_Global = "";
   global.Subsidy_Objective_Plus_Other_Global = "";
   global.Subsidy_Instrument_Plus_Other_Global = "";
+  global.isCallfromEditAward = "";
   const res = {};
   request(app)
     .get("/addsubsidyreview", (req, res))
@@ -74,6 +75,7 @@ test("Unit testing for spending filter route - Test for GET call", (done) => {
       Subsidy_Control_Number_Global: "",
       Subsidy_Measure_Title_Global: "",
       Subsidy_Objective_Global: "",
+      Subsidy_Adhoc_Global: "",
       Subsidy_Objective_Other_Global: "",
       Subsidy_Instrument_Other_Global: "",
       Subsidy_Instrument_Global: "",
