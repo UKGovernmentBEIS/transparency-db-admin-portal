@@ -134,8 +134,12 @@ app.locals.Spending_Sector_Error;
 
 app.get("/", async(req, res) => {  
  
-  console.log(req.headers);
+  console.log("request headers "+req.headers);
   console.log("Value of X-MS-TOKEN-AAD-ACCESS-TOKEN: " + req.header("X-MS-TOKEN-AAD-ACCESS-TOKEN"));
+  var access_token = req.header("x-ms-client-principal");
+  console.log("access_token "+access_token);
+  var id_token = req.header("x-ms-token-aad-id-token");
+  console.log("id_token "+id_token);
   if (req.isAuthenticated){
     console.log("User authenticated!");
     console.log('User info: ', req.user);
@@ -143,37 +147,6 @@ app.get("/", async(req, res) => {
   }else{
     console.log("User not authenticated!");
   }
-  Environment_variable = process.argv[2];
-  // if (Environment_variable == "env=dev") {
-  //   beis_url_publishing = "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
-  //   beis_url_accessmanagement = "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
-  //   beis_url_publicsearch = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
-  //   console.log(beis_url_publishing);
-  //   console.log(beis_url_accessmanagement);
-  //   console.log(beis_url_publicsearch);
-  // } else if (Environment_variable == "env=integ") {
-  //   beis_url_publishing = "https://integ-transparency-db-publishing-subsidies-service.azurewebsites.net";
-  //   beis_url_accessmanagement = "https://integ-transparency-db-access-management-service.azurewebsites.net";
-  //   beis_url_publicsearch = "https://integ-transparency-db-public-search-service.azurewebsites.net";
-  //   console.log(beis_url_publishing);
-  //   console.log(beis_url_accessmanagement);
-  //   console.log(beis_url_publicsearch);
-  // } else if (Environment_variable == "env=stag") {
-  //   beis_url_publishing = "https://stag-transparency-db-publishing-subsidies-service.azurewebsites.net";
-  //   beis_url_accessmanagement = "https://stag-transparency-db-access-management-service.azurewebsites.net";
-  //   beis_url_publicsearch = "https://stag-transparency-db-public-search-service.azurewebsites.net";
-  //   console.log(beis_url_publishing);
-  //   console.log(beis_url_accessmanagement);
-  //   console.log(beis_url_publicsearch);
-  // } else if (Environment_variable == "env=prod") {
-  //   beis_url_publishing = "https://prod-transparency-db-publishing-subsidies-service.azurewebsites.net";
-  //   beis_url_accessmanagement = "https://prod-transparency-db-access-management-service.azurewebsites.net";
-  //   beis_url_publicsearch = "https://prod-transparency-db-public-search-service.azurewebsites.net";
-  //   console.log(beis_url_publishing);
-  //   console.log(beis_url_accessmanagement);
-  //   console.log(beis_url_publicsearch);
-  // }
-
 
   res.render("bulkupload/logintransparency");
 });
