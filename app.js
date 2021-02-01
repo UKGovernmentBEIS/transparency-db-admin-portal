@@ -185,16 +185,8 @@ app.get("/", async(req, res) => {
   // *******************
   frontend_totalRecordsPerPage = 1;
 
-  var {
-    dashboard_username,
-    dashboard_roles,
-    dashboard_GA
-  } = req.body;
-
-  console.log("dashboard_username:" + dashboard_username);
-  console.log("dashboard_roles:" + dashboard_roles);
-
   var id_token_decoded = jwt_decode(id_token);
+  console.log("id_token_decoded "+id_token_decoded);
   dashboard_username = id_token_decoded.name;
   if(id_token_decoded.roles.includes("4aaddb97-dcb8-4988-b2e5-b045a4419d90")){
     dashboard_roles = "BEIS Administrator";
