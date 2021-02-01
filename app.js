@@ -190,15 +190,14 @@ app.get("/", async(req, res) => {
   console.log("logged in user "+id_token_decoded.name);
   console.log("id_token_decoded parsed "+JSON.stringify(id_token_decoded));
   var id_token_json = JSON.parse(JSON.stringify(id_token_decoded));
-  console.log("logged in user parsed"+id_token_json.name);
   dashboard_username = id_token_decoded.name;
-  if(id_token_decoded.roles.includes("4aaddb97-dcb8-4988-b2e5-b045a4419d90")){
+  if(id_token_json.roles.includes("4aaddb97-dcb8-4988-b2e5-b045a4419d90")){
     dashboard_roles = "BEIS Administrator";
-  }else if(id_token_decoded.roles.includes("3ee46dda-5f2b-4fd5-b92b-54c2cd8f2930")){
+  }else if(id_token_json.roles.includes("3ee46dda-5f2b-4fd5-b92b-54c2cd8f2930")){
     dashboard_roles = "Granting Authority Administrator";
-  }else if(id_token_decoded.roles.includes("058abc1f-c491-4ffa-bd52-885c4fb96943")){
+  }else if(id_token_json.roles.includes("058abc1f-c491-4ffa-bd52-885c4fb96943")){
     dashboard_roles = "Granting Authority Approver";
-  }else if(id_token_decoded.roles.includes("e7f70439-02d4-4367-817e-52283a416ac3")){
+  }else if(id_token_json.roles.includes("e7f70439-02d4-4367-817e-52283a416ac3")){
     dashboard_roles = "Granting Authority Encoder";
   }
 
