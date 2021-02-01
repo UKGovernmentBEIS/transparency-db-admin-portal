@@ -187,6 +187,10 @@ app.get("/", async(req, res) => {
 
   var id_token_decoded = jwt_decode(id_token);
   console.log("id_token_decoded "+id_token_decoded);
+  console.log("logged in user "+id_token_decoded.name);
+  console.log("id_token_decoded parsed "+JSON.stringify(id_token_decoded));
+  var id_token_json = JSON.parse(JSON.stringify(id_token_decoded));
+  console.log("logged in user parsed"+id_token_json.name);
   dashboard_username = id_token_decoded.name;
   if(id_token_decoded.roles.includes("4aaddb97-dcb8-4988-b2e5-b045a4419d90")){
     dashboard_roles = "BEIS Administrator";
