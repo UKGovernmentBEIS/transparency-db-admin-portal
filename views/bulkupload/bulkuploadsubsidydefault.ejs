@@ -142,12 +142,13 @@
                   </span>
                   <div class="govuk-input__wrapper">
                     <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file" aria-describedby="Choose file">
+                      type="file" aria-label="Choose file to upload">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                 </div>
 
-                <button class="govuk-button" data-module="govuk-button" value="Upload file">Upload file </button>
+                <button class="govuk-button" data-module="govuk-button" aria-label="Upload file"
+                  value="Upload file">Upload file </button>
 
                 <% } else if( locals.isExcelFormat){ %>
 
@@ -297,7 +298,7 @@
                   </label>
                   <div class="govuk-input__wrapper">
                     <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file" aria-describedby="Choose file">
+                      type="file" aria-label="Choose file to upload">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                   <p>Uploading will update the status of every subsidy award in the file to ‘Finalised’ and submit them
@@ -305,8 +306,8 @@
 
                 </div>
 
-
-                <button class="govuk-button" data-module="govuk-button" value="Upload file">Upload file </button>
+                <button class="govuk-button" data-module="govuk-button" aria-label="Upload file"
+                  value="Upload file">Upload file </button>
 
                 <% } %>
 
