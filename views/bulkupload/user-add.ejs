@@ -90,11 +90,12 @@
 
             <h1 class="govuk-heading-xl">
                 Add a new user</h1>
-            <div id="sign-in-hint" class="govuk-hint">
-                Role
-            </div>
+
 
             <div class="govuk-grid-row">
+                <div id="sign-in-hint" class="govuk-hint">
+                    Role
+                </div>
                 <div class="govuk-radios govuk-form-group">
                     <div class="govuk-radios__item">
                         <input class="govuk-radios__input" id="BEISAdmin" name="where-do-you-live" type="radio"
@@ -138,59 +139,71 @@
                         </div>
                     </div>
                 </div>
-                <div class="govuk-grid-column-full govuk-grid-row" id="ga-name-div" style="display: none;">
-                    <label class="govuk-label" for="width-20">
-                        Granting Authority name
-                    </label>
-                    <div class="govuk-form-group govuk-grid-column-two-thirds govuk-padding-0">
-                        <input class="govuk-input govuk-!-width-three-quarters" placeholder="Granting Authority name"
-                            type="text">
-                        <button class="govuk-button" data-module="govuk-button">
-                            Select
-                        </button>
-                    </div>
-                </div>
-                <div class="govuk-grid-column-full govuk-grid-row" id="full-name-div" style="display: none;">
+                <div class="govuk-form-group govuk-grid-column-full govuk-padding-0 " id="full-name-div"
+                    style="display: none;">
                     <label class="govuk-label" for="width-20">
                         Full name
                     </label>
-                    <div class="govuk-form-group govuk-grid-column-two-thirds govuk-padding-0">
-                        <input class="govuk-input govuk-!-width-one-half" type="text" placeholder="Start typing a name">
-                        <button class="govuk-button" data-module="govuk-button">
-                            Search
-                        </button>
-                    </div>
+                    <!-- <div class="govuk-form-group govuk-grid-column-two-thirds govuk-padding-0"> -->
+                    <input class="govuk-input govuk-!-width-one-half" type="text" placeholder="Start typing a name">
+                    <!-- 
+                    </div> -->
                 </div>
-                <!-- <div class="govuk-grid-column-full govuk-grid-row">
-                    <div class="govuk-form-group govuk-grid-column-one-third">
-                        <label class="govuk-label" for="width-20">
-                            Last name
-                        </label>
-                        <input class="govuk-input govuk-input--width-20" type="text">
-                    </div>
-
-                </div> -->
-                <!-- <div class="govuk-grid-column-full govuk-grid-row">
-                    <div class="govuk-form-group govuk-grid-column-one-third">
-                        <label class="govuk-label" for="width-20">
-                            Email address
-                        </label>
-                        <input class="govuk-input govuk-input--width-20" type="text">
-                    </div>
-
-                </div> -->
-                <!-- <div class="govuk-grid-column-full govuk-grid-row">
+                <div class="govuk-grid-row" id="ga-name-div">
                     <div class="govuk-form-group govuk-grid-column-full">
+                        <label class="govuk-label" for="width-20">
+                            Granting Authority name
+                        </label>
+                        <!-- <div class="govuk-form-group govuk-grid-column-one-half govuk-padding-0"> -->
+                        <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
+                            type="text">
+                        <!-- <button class="govuk-button" data-module="govuk-button">
+                                Select
+                            </button> -->
+                        <!-- </div> -->
+                    </div>
+                    <div class="govuk-grid-column-one-third">
+                        <div class="govuk-form-group govuk-grid-column-full govuk-padding-0 ">
+                            <label class="govuk-label" for="width-20">
+                                Full name
+                            </label>
+                            <!-- <div class="govuk-form-group govuk-grid-column-two-thirds govuk-padding-0"> -->
+                            <input class="govuk-input" type="text">
+                            <!-- <button class="govuk-button" data-module="govuk-button">
+                            Search
+                        </button> -->
+                            <!-- </div> -->
+                        </div>
+                        <div class="govuk-form-group govuk-grid-column-full govuk-padding-0">
+                            <!-- <div class="govuk-form-group govuk-grid-column-one-third"> -->
+                            <label class="govuk-label" for="width-20">
+                                Last name
+                            </label>
+                            <input class="govuk-input govuk-input--width-20" type="text">
+                            <!-- </div> -->
+                        </div>
+                        <div class="govuk-form-group govuk-grid-column-full govuk-padding-0">
+                            <!-- <div class="govuk-form-group govuk-grid-column-one-third"> -->
+                            <label class="govuk-label" for="width-20">
+                                Email address
+                            </label>
+                            <input class="govuk-input govuk-input--width-20" type="text">
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-full">
+                        <!-- <div class="govuk-form-group govuk-grid-column-full"> -->
                         <label class="govuk-label" for="width-20">
                             Mobile phone number
                         </label>
                         <div class="govuk-hint">
                             We will send a reset code to this phone number if the user forgets their password.
                         </div>
-                        <input class="govuk-input govuk-input--width-20" type="text">
+                        <input class="govuk-input govuk-input--width-10" type="text">
+                        <!-- </div> -->
                     </div>
-                </div> -->
-                <div class="govuk-table-responsive govuk-grid-column-full" style="display: none;">
+                </div>
+                <!-- <div class="govuk-table-responsive govuk-grid-column-full" style="display: none;">
                     <table class="govuk-table">
                         <thead class="govuk-table__head">
                             <tr class="govuk-table__row">
@@ -229,14 +242,14 @@
 
                         </tbody>
                     </table>
-                    <button class="govuk-button" data-module="govuk-button">
-                        Continue
-                    </button>
-                    <a class="govuk-link govuk-cancel-button-link" href="/canceluser">
-                        Cancel
-                    </a>
-                </div>
 
+                </div> -->
+                <button class="govuk-button" data-module="govuk-button">
+                    Continue
+                </button>
+                <a class="govuk-link govuk-cancel-button-link" href="/canceluser">
+                    Cancel
+                </a>
             </div>
 
         </main>
