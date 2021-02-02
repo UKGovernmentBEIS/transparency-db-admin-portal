@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Public user search page</title>
+  <title>GOV.UK - Granting Authority page</title>
   <%- include('../partials/headercss.ejs') %>
 </head>
 <!-- <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
@@ -162,63 +162,65 @@
           <!--  -->
         </ul>
       </div>
-      <table class="govuk-table">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" style="text-align: left" class="govuk-table__header app-custom-class">
-              Granting Authority ID
-              <a href="#">
+      <section class="govuk-table-responsive">
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" style="text-align: left" class="govuk-table__header app-custom-class">
+                Granting Authority ID
+                <a href="#">
+                  <svg version="1.1" width="8px" height="8px" id="uparrow">
+                    <g transform="matrix(1 0 0 1 0 -5 )">
+                      <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
+                    </g>
+                  </svg>
+
+                  <svg version="1.1" id="downarrow" width="8px" height="8px">
+                    <g transform="matrix(1 0 0 1 0 -5 )">
+                      <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
+                    </g>
+                  </svg>
+                </a>
+              </th>
+              <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
+                Granting Authority name
                 <svg version="1.1" width="8px" height="8px" id="uparrow">
                   <g transform="matrix(1 0 0 1 0 -5 )">
                     <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
                   </g>
                 </svg>
-
                 <svg version="1.1" id="downarrow" width="8px" height="8px">
                   <g transform="matrix(1 0 0 1 0 -5 )">
                     <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
                   </g>
                 </svg>
-              </a>
-            </th>
-            <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
-              Granting Authority name
-              <svg version="1.1" width="8px" height="8px" id="uparrow">
-                <g transform="matrix(1 0 0 1 0 -5 )">
-                  <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
-                </g>
-              </svg>
-              <svg version="1.1" id="downarrow" width="8px" height="8px">
-                <g transform="matrix(1 0 0 1 0 -5 )">
-                  <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
-                </g>
-              </svg>
-            </th>
-            <th scope="col" class="govuk-table__header app-custom-class">
-              Approved by
-            </th>
-            <th scope="col" class="govuk-table__header app-custom-class">
-              Status
-            </th>
-            <th scope="col" class="govuk-table__header app-custom-class">
-              Created on
-            </th>
-            <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
-              Last modified
-            </th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-          <tr>
-            <td style="text-align: center;"><a href="/editgrantingauthority">1</a></td>
-            <td><a href="/editgrantingauthority">Adur District Council</a></td>
-            <td>Albert Einstein</td>
-            <td>Draft</td>
-            <td>13:23 - 11 November 2020</td>
-            <td>11 November 2020</td>
-          </tr>
-        </tbody>
-      </table>
+              </th>
+              <th scope="col" class="govuk-table__header app-custom-class">
+                Approved by
+              </th>
+              <th scope="col" class="govuk-table__header app-custom-class">
+                Status
+              </th>
+              <th scope="col" class="govuk-table__header app-custom-class">
+                Created on
+              </th>
+              <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
+                Last modified
+              </th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr>
+              <td style="text-align: center;"><a href="/editgrantingauthority">1</a></td>
+              <td><a href="/editgrantingauthority">Adur District Council</a></td>
+              <td>Albert Einstein</td>
+              <td>Draft</td>
+              <td>13:23 - 11 November 2020</td>
+              <td>11 November 2020</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
       <!-- ********************** -->
       <!-- Pagination starts here -->
       <!-- ********************** -->

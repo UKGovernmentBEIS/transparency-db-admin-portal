@@ -30,13 +30,21 @@ const mockRequest = (sessionData, body) => ({
 });
 
 test("Unit testing for spending filter route - Test for POST call", (done) => {
+  const req = mockRequest();
   global.SubsidyArraySize = 0;
+  global.SubsidyErrors = [];
+  global.SubsidyFocus = [];
+  global.isAddSubsidyPrimarycall = "";
+  global.Edit_Award_Number_global = "";
   global.Subsidy_Control_Number_Error = "";
   global.Subsidy_Control_Number_Global = "";
+  global.Subsidy_Adhoc_Global = "";
   global.Subsidy_Measure_Title_Error = "";
   global.Subsidy_Measure_Title_Global = "";
+  global.Subsidy_Instrument_Other_Global = "";
   global.Subsidy_Objective_Error = "";
   global.Subsidy_Objective_Global = "";
+  global.Subsidy_Objective_Other_Global = "";
   global.Subsidy_Instrument_Error = "";
   global.Subsidy_Instrument_Global = "";
   global.Subsidy_Full_Amount_Range_Error = "";
@@ -66,9 +74,13 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
   global.Spending_Region_Error = "";
   global.Spending_Region_Global = "";
   global.Spending_Sector_Error = "";
+  global.Subsidy_Objective_Other_Error = "";
+  global.Subsidy_Instrument_Other_Error = "";
+  global.Subsidy_Adhoc_Error = "";
   global.Spending_Sector_Global = "";
-  const req = mockRequest();
-
+  global.Subsidy_Objective_Plus_Other_Global = "";
+  global.Subsidy_Instrument_Plus_Other_Global = "";
+  global.isCallfromEditAward = "";
   const res = {};
   request(app)
     .post("/addsubsidyaward", (req, res))
@@ -97,8 +109,6 @@ test("Unit testing for filter route Test for GET call", (done) => {
   global.Legal_Granting_Date_Month_Error = "";
   global.Legal_Granting_Date_Year_Error = "";
   global.Legal_Granting_Date_Day_Global = "";
-  global.Legal_Granting_Date_Month_Error = "";
-  global.Legal_Granting_Date_Year_Error = "";
   global.Legal_Granting_Date_Year_Global = "";
   global.Legal_Granting_Date_Month_Global = "";
   global.Beneficiary_Name_Error = "";

@@ -480,7 +480,7 @@ button.link {
   position: relative;
 }
 .govuk-description-text {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
   color: #1d70b8;
   font-family: "Arial Bold", "Arial";
   position: absolute;

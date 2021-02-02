@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Subsidy Measures search page</title>
+  <title>GOV.UK - Subsidy Award submit for approval page</title>
   <%- include('../partials/headercss.ejs') %>
 </head>
 
@@ -19,32 +19,32 @@
             <h1 class="govuk-panel__title">
               Award submitted for approval
             </h1>
-            <h3 class="govuk-panel__body">
+            <h2 class="govuk-panel__body">
               Subsidy award number <%= locals.Subsidy_Control_Number_Global_Substring %>
-            </h3>
+            </h2>
           </div>
 
 
 
-          <h2 class="govuk-heading-m">What happens next</h2>
+          <h3 class="govuk-heading-m">What happens next</h3>
 
           <p class="govuk-body">1. The award has been submitted for approval and is now in 'Awaiting approval' state.
           </p>
           <p class="govuk-body">2. Once approved, by an approver, it will be published.</p>
           <p class="govuk-body">3. If rejected, you will receive the notification with the reason</p>
-
-          <form action="/mysubsidyawards" method="GET" novalidate="">
-            <button class="govuk-button" data-module="govuk-button">Proceed to My subsidy awards</button>
-          </form>
-
-          <form action="/addsubsidyaward" method="GET">
-            <div>
-              <button class=" govuk-button_cancel_xl govuk-button--secondary ">
-                Add another award
-              </button>
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+              <form action="/mysubsidyawards" method="GET" novalidate=""
+                class="govuk-grid-column-one-half govuk-padding-0">
+                <button class="govuk-button" data-module="govuk-button">Proceed to My subsidy awards</button>
+              </form>
+              <form action="/addsubsidyaward" method="GET" class="govuk-grid-column-one-half govuk-padding-0">
+                <button class=" govuk-button govuk-button--secondary ">
+                  Add another award
+                </button>
+              </form>
             </div>
-          </form>
-
+          </div>
         </div>
       </div>
     </main>

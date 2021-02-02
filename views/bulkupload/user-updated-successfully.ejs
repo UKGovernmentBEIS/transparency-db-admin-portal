@@ -2,19 +2,19 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - User Deactivated Successfully page</title>
+    <title>GOV.UK - User added successfully page</title>
     <%- include('../partials/headercss.ejs') %>
 </head>
 
 <body class="govuk-template__body app-example-page">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
-
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
+            <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
-            <div class="govuk-grid-ro govuk-form-groupw">
+            <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
                     <nav aria-label="Sub navigation">
                         <ul class="govuk-sub-navigation__list">
@@ -59,18 +59,34 @@
 
             </div>
 
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Users</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a1 class="govuk-breadcrumbs__link active" href="#">Add a new user</a1>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
             <div class="govuk-grid-row">
 
                 <div class="govuk-grid-column-two-thirds govuk-form-group">
                     <div class="govuk-panel govuk-panel--confirmation">
                         <h1 class="govuk-panel__title">
-                            User deactivated
+                            User details updated
                         </h1>
                     </div>
                 </div>
                 <div class="govuk-grid-column-full govuk-form-group">
-                    <p class="govuk-body govuk-!-font-size-19">You have deactivated this user. They will no longer be
-                        able to sign in to this system.</p>
+                    <p class="govuk-body govuk-!-font-size-19">You have successfully updated the user details for Albert
+                        Einstein.</p>
+
                 </div>
                 <div class="govuk-grid-column-full govuk-form-group">
 
@@ -78,12 +94,18 @@
                         View all users
                     </a>
 
+                    <a class="govuk-button govuk-button--secondary" href="/adduser" data-module="govuk-button">Add
+                        another
+                        user</a>
+
                 </div>
             </div>
-
         </main>
     </div>
+
     <%- include('../partials/footer.ejs') %>
+
+
 </body>
 
 </html>

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - BEIS Admin Dashboard</title>
+  <title>GOV.UK - GA Admin Dashboard page</title>
   <%- include('../partials/headercss.ejs') %>
   <link href="/assets/stylesheet/govuk-transparencyDb.css" rel="stylesheet" type="text/css" />
 </head>
@@ -70,19 +70,20 @@
         </div>
       </div>
 
-      <div class="govuk-beis-heading">
+      <div class="govuk-beis-heading govuk-form-group">
         <legend class="form-group">
           <h2>Dashboard</h2>
         </legend>
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-fieldset__heading"><%= dashboard_user_name %></h1>
         </legend>
       </div>
-      <div class="">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
-          <h2 class="govuk-fieldset_sub-heading">Granting Authority: <%= dashboard_ga_name %> </h2>
-        </legend>
-        <!-- <div class="govuk-grid-row">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
+        <!-- <h2 class="govuk-fieldset_sub-heading"> -->
+        Granting Authority: <%= dashboard_ga_name %>
+        <!-- </h2> -->
+      </legend>
+      <!-- <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-quarter govuk-form-group">
           <label>All granting authorities</label>
           <p>Total granting authorities</p>
@@ -112,15 +113,15 @@
           </legend>
         </div>
       </div> -->
-        <!-- <p>
+      <!-- <p>
         My Granting authority is Cardiff Council (Granting authority ID 3)
       </p> -->
-        <!-- <div class="govuk-addGA form-group">
+      <!-- <div class="govuk-addGA form-group">
         <button class="govuk-button govuk-button--success" id="getFilterTags">
           View all granting authorities
         </button>
       </div> -->
-        <!-- <table class="govuk-table">
+      <!-- <table class="govuk-table">
         <caption class="govuk-table__caption govuk-GA-heading">
           My 5 last updated granting authorities
         </caption>
@@ -177,13 +178,13 @@
           </tr>
         </tbody>
       </table> -->
-      </div>
+
       <div class="govuk-border-top">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
           <h2 class="govuk-fieldset_sub-heading">Users</h2>
         </legend>
         <div class="govuk-grid-row">
-          <div class="govuk-grid-column-one-half govuk-form-group">
+          <div class="govuk-grid-column-one-third govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">20
               </legend>
@@ -192,7 +193,7 @@
             </div>
 
           </div>
-          <div class="govuk-grid-column-one-half govuk-form-group">
+          <!-- <div class="govuk-grid-column-one-half govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 1
@@ -201,8 +202,8 @@
                 awaiting
                 approval</p>
             </div>
-          </div>
-          <div class="govuk-grid-column-one-half govuk-form-group">
+          </div> -->
+          <div class="govuk-grid-column-one-third govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 5
@@ -210,7 +211,7 @@
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Approver</p>
             </div>
           </div>
-          <div class="govuk-grid-column-one-half govuk-form-group">
+          <div class="govuk-grid-column-one-third govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 15
@@ -220,12 +221,12 @@
           </div>
         </div>
         <div class="govuk-addGA form-group">
-          <button class="govuk-button govuk-button--success" id="getFilterTags">
+          <a href="/manageusers" class="govuk-button govuk-button--success" id="getFilterTags">
             View all users
-          </button>
-          <button class="govuk-button govuk-button--success btn-md" id="getFilterTags">
+          </a>
+          <a href="/adduser" class="govuk-button govuk-button--success" id="getFilterTags">
             Add a new user
-          </button>
+          </a>
         </div>
         <!-- <table class="govuk-table">
         <caption class="govuk-table__caption govuk-GA-heading">
@@ -290,7 +291,7 @@
           <h2 class="govuk-fieldset_sub-heading">Subsidy schemes</h2>
         </legend>
         <div class="govuk-grid-row">
-          <div class="govuk-grid-column-one-half govuk-form-group">
+          <div class="govuk-grid-column-one-third govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalSubsidyMeasures %> </legend>
@@ -298,7 +299,7 @@
                 schemes</p>
             </div>
           </div>
-          <div class="govuk-grid-column-one-half govuk-form-group">
+          <!-- <div class="govuk-grid-column-one-half govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalAwaitingSubsidyMeasures %> </legend>
@@ -313,14 +314,14 @@
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
                 Published</p>
             </div>
-          </div>
+          </div> -->
           <div class="govuk-grid-column-one-third govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalDraftSubsidyMeasures %>
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-                Rejected</p>
+                Active</p>
             </div>
           </div>
           <div class="govuk-grid-column-one-third govuk-form-group">
@@ -402,7 +403,7 @@
                 Awaiting approval</p>
             </div>
           </div>
-          <div class="govuk-grid-column-one-third govuk-form-group">
+          <div class="govuk-grid-column-one-half govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.awardUserActionCount.totalPublishedAward %>
@@ -411,7 +412,7 @@
                 Published</p>
             </div>
           </div>
-          <div class="govuk-grid-column-one-third govuk-form-group">
+          <!-- <div class="govuk-grid-column-one-third govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.awardUserActionCount.totalDraftAward %>
@@ -421,8 +422,8 @@
             </div>
 
 
-          </div>
-          <div class="govuk-grid-column-one-third govuk-form-group">
+          </div> -->
+          <div class="govuk-grid-column-one-half govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.awardUserActionCount.totalDeletedAward %>
@@ -433,12 +434,12 @@
           </div>
         </div>
         <div class="govuk-addGA form-group">
-          <button class="govuk-button govuk-button--success" id="getFilterTags">
+          <a href="/mysubsidyawards" class="govuk-button govuk-button--success" id="getFilterTags">
             View all subsidy award
-          </button>
-          <button class="govuk-button govuk-button--success btn-md" id="getFilterTags">
+          </a>
+          <a href="/addsubsidyaward" class="govuk-button govuk-button--success" id="getFilterTags">
             Add a new subsidy award
-          </button>
+          </a>
         </div>
 
       </div>

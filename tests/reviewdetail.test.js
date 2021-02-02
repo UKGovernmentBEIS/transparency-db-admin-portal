@@ -28,6 +28,8 @@ test("Unit testing for Review details Test for GET call", (done) => {
   global.Subsidy_Control_Number_Global = "";
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Objective_Global = "";
+  global.Subsidy_Objective_Other_Global = "";
+  global.Subsidy_Instrument_Other_Global = "";
   global.Subsidy_Full_Amount_Range_Global = "";
   global.Granting_Authority_Name_Global = "";
   global.Legal_Granting_Date_Day_Global = "";
@@ -41,11 +43,15 @@ test("Unit testing for Review details Test for GET call", (done) => {
   global.Spending_Region_Global = "";
   global.Spending_Sector_Global = "";
   global.Subsidy_Instrument_Global = "";
+
+  global.Subsidy_Objective_Plus_Other_Global = "";
+  global.Subsidy_Instrument_Plus_Other_Global = "";
+
   const res = {};
   request(app)
     .get("/reviewdetail", (req, res))
     .expect(200, done);
-  //   expect(abcd).toBe(200);
+  // expect(abcd).toBe(200);
 });
 test("Unit testing for Review details Test for POSt call", (done) => {
   const req = mockRequest();
