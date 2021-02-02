@@ -65,6 +65,12 @@ test("Unit testing for submit for approval Test for GET call", (done) => {
 
 test("Unit testing for Submit for approval Test for GET call", (done) => {
   const req = mockRequest();
+  global.SubsidyArraySize = 0;
+  global.SubsidyErrors = [];
+  global.SubsidyFocus = [];
+  global.isAddSubsidyPrimarycall = "";
+  global.Edit_Award_Number_global = "";
+  global.isCallfromEditAward = "";
   global.Subsidy_Full_Amount_Range_Global = "";
   global.Subsidy_Element_Full_Amount_Global = "";
   global.Subsidy_Adhoc_Global = "";
@@ -137,6 +143,12 @@ test("Unit testing for Submit for approval Test for GET call", (done) => {
 
 test("Unit testing for Submit for approval Test for GET call", (done) => {
   const req = mockRequest();
+  global.SubsidyArraySize = 0;
+  global.SubsidyErrors = [];
+  global.SubsidyFocus = [];
+  global.isAddSubsidyPrimarycall = "";
+  global.Edit_Award_Number_global = "";
+  global.isCallfromEditAward = "";
   global.Subsidy_Full_Amount_Range_Global = "";
   global.Subsidy_Element_Full_Amount_Global = "";
   global.Subsidy_Control_Number_Global = "";
