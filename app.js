@@ -421,11 +421,26 @@ app.use("/submitforapproval", submitforapproval);
 var mygrantingauthority = require("./routes/mygrantingauthority");
 app.use("/mygrantingauthority", mygrantingauthority);
 
-var editgrantingauthority = require("./routes/editgrantingauthority");
+var reviewgrantingauthority = require("./routes/grantingauthority-reviewdetails");
+app.use("/reviewgrantingauthority", reviewgrantingauthority);
+
+var editgrantingauthority = require("./routes/grantingauthority-edit");
 app.use("/editgrantingauthority", editgrantingauthority);
 
-var addgrantingauthority = require("./routes/addgrantingauthority");
+var editreviewgrantingauthority = require("./routes/grantingauthority-editreview");
+app.use("/editreviewgrantingauthority", editreviewgrantingauthority);
+
+var editgacancel = require("./routes/grantingauthority-editcancel");
+app.use("/editgacancel", editgacancel);
+
+var addsuccessgrantingauthority = require("./routes/grantingauthority-addsuccessfully");
+app.use("/addsuccessgrantingauthority", addsuccessgrantingauthority);
+
+var addgrantingauthority = require("./routes/grantingauthority-add");
 app.use("/addgrantingauthority", addgrantingauthority);
+
+var deactivategrantingauthority = require("./routes/grantingauthority-deactivate");
+app.use("/deactivategrantingauthority", deactivategrantingauthority);
 
 var choosedashboard = require("./routes/choosedashboard");
 app.use("/choosedashboard", choosedashboard);
