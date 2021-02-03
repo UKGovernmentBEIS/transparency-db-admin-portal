@@ -507,4 +507,7 @@ app.use("/userdeactivate", userdeactivate);
 var userdeactivated = require("./routes/user-deactivated-successfully");
 app.use("/userdeactivated", userdeactivated);
 
+var useraccount = require("./routes/user-account");
+app.use("/useraccount", useraccount);
+
 module.exports = app;

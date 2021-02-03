@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - User Deactivated Successfully page</title>
+    <title>GOV.UK - Review User page</title>
     <%- include('../partials/headercss.ejs') %>
 </head>
 
@@ -13,12 +13,11 @@
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
-
-            <div class="govuk-grid-ro govuk-form-groupw">
+            <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
                     <nav aria-label="Sub navigation">
                         <ul class="govuk-sub-navigation__list">
-                            <li class="govuk-sub-navigation__item">
+                            <!-- <li class="govuk-sub-navigation__item">
                                 <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
                                     Granting Authorities
                                 </a>
@@ -28,7 +27,7 @@
                                 <a class="govuk-sub-navigation__link" aria-current="page" href="/manageusers">
                                     Users
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="govuk-sub-navigation__item">
                                 <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
                                     Subsidy Measures
@@ -39,8 +38,6 @@
                                     Subsidy Awards
                                 </a>
                             </li>
-
-
 
                             <li class="govuk-sub-navigation__item head-right">
                                 <a class="govuk-sub-navigation__link" href="/logintransparency">
@@ -59,31 +56,57 @@
 
             </div>
 
+
+
             <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds-from-desktop">
+                    <!-- <br /> -->
 
-                <div class="govuk-grid-column-two-thirds govuk-form-group">
-                    <div class="govuk-panel govuk-panel--confirmation">
-                        <h1 class="govuk-panel__title">
-                            User deactivated
-                        </h1>
-                    </div>
-                </div>
-                <div class="govuk-grid-column-full govuk-form-group">
-                    <p class="govuk-body govuk-!-font-size-19">You have deactivated this user. They will no longer be
-                        able to sign in to this system.</p>
-                </div>
-                <div class="govuk-grid-column-full govuk-form-group">
+                    <!-- <h1 class="govuk-heading-xl">Review new user details</h1> -->
 
-                    <a class="govuk-button" href="/manageusers" data-module="govuk-button">
-                        View all users
+                    <!-- *************************************
+              Review for subsidy details tab
+              ************************************* -->
+                </div>
+                <div class="govuk-grid-column-full">
+                    <h1 class="govuk-heading-xl" name="subsidydetails" value="subsidydetails">Claire Smith</h1>
+                    <a rel="external" class="govuk-link head-right govuk-relative-position" href="/addsubsidyreview">
+                        <p>Change </p>
                     </a>
-
                 </div>
             </div>
+            <table class="govuk-table">
 
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">My Account</th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            <p>Update my details</p>
+                            <p><a href="/useraccountdetails" style="font-weight: normal;
+                                color: #169BD5;">Update your name, phone number and email
+                                    address</a></p>
+                        </th>
+                        <!-- <td class="govuk-table__cell">£109.80 per week</td> -->
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            <p>Change password</p>
+                            <p><a href="#" style="font-weight: normal;
+                                color: #169BD5;">Text Needed</a></p>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
         </main>
     </div>
     <%- include('../partials/footer.ejs') %>
 </body>
+
+
+
 
 </html>

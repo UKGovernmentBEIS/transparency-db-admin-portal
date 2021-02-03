@@ -53,7 +53,7 @@
                 </a>
               </li>
               <li class="govuk-sub-navigation__item head-right">
-                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                <a class="govuk-sub-navigation__link" href="/useraccount">
                   My account
                 </a>
               </li>
@@ -257,72 +257,68 @@
               <% } else if( locals.isXlsxOk){ %>
 
 
-              <!-- <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main"> -->
-
-              <div class="govuk-grid-row">
-                <div class="govuk-grid-column-two-thirds">
-                  <div class="govuk-panel govuk-relative-position govuk-panel--confirmation">
-                    <h1 class="govuk-panel__title ">
-                      File uploaded successfully
-                    </h1>
-                    <h2 class="govuk-panel__body">
-                      <%= locals.validationerrors.totalRows %> records have been submitted for approval and are now
-                      in 'Awaiting approval' state</h2>
-
-                  </div>
+              <!-- <div class="govuk-main-wrapper govuk-main-wrapper--l"> -->
 
 
-
-                  <section class="govuk-table-responsive">
-                    <table class="govuk-table" id="datatable">
-                      <thead class="govuk-table__head">
-                        <tr class="govuk-table__row">
-                          <th scope="col" class="govuk-table__header">File uploaded</th>
-                          <th scope="col" class="govuk-table__header govuk-table__cell--numeric">Number of records
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody class="govuk-table__body">
-                        <tr>
-                          <td class="govuk-table__cell"><%= file_upload_name %> </td>
-                          <td class="govuk-table__cell govuk-table__cell--numeric">
-                            <%= locals.validationerrors.totalRows %> </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </section>
-
-                  <h3 class="govuk-heading-m">What happens next</h3>
-                  <p class="govuk-body">1. The awards have been submitted for approval and is now in 'Awaiting
-                    approval'
-                    state.</p>
-                  <p class="govuk-body">2. Once approved,they will be published.</p>
-                  <p class="govuk-body">3. If rejected, you will receive the notification with the reason</p>
-                  <form action="/mysubsidyawards" method="GET">
-                    <div>
-                      <!-- <button class="govuk-button">Proceed to My subsidy awards &#62;</button> -->
-                      <button class="govuk-button" data-module="govuk-button">
-                        Proceed to My subsidy awards
-                        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5"
-                          height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-                          <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-                        </svg></a>
-                      </button>
-
-                    </div>
-                  </form>
-
-                  <form action="/bulkuploadsubsidy" method="GET">
-                    <div>
-                      <button class=" govuk-button_cancel_xxl govuk-button--secondary ">
-                        Upload another file
-                      </button>
-
-                    </div>
-                  </form>
+              <div class="govuk-grid-column-two-thirds">
+                <div class="govuk-panel govuk-panel--confirmation">
+                  <h1 class="govuk-panel__title ">
+                    File uploaded successfully
+                  </h1>
+                  <h2 class="govuk-panel__body">
+                    <%= locals.validationerrors.totalRows %> records have been submitted for approval and are now
+                    in 'Awaiting approval' state</h2>
 
                 </div>
+
+
+
+                <section class="govuk-table-responsive">
+                  <table class="govuk-table" id="datatable">
+                    <thead class="govuk-table__head">
+                      <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">File uploaded</th>
+                        <th scope="col" class="govuk-table__header govuk-table__cell--numeric">Number of records
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                      <tr>
+                        <td class="govuk-table__cell"><%= file_upload_name %> </td>
+                        <td class="govuk-table__cell govuk-table__cell--numeric">
+                          <%= locals.validationerrors.totalRows %> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </section>
+
+                <h3 class="govuk-heading-m">What happens next</h3>
+                <p class="govuk-body">1. The awards have been submitted for approval and is now in 'Awaiting
+                  approval'
+                  state.</p>
+                <p class="govuk-body">2. Once approved,they will be published.</p>
+                <p class="govuk-body">3. If rejected, you will receive the notification with the reason</p>
               </div>
+              <div class="govuk-grid-column-two-thirds govuk-padding-0 ">
+                <form action="/mysubsidyawards" method="GET" class="govuk-grid-column-one-half">
+
+                  <!-- <button class="govuk-button">Proceed to My subsidy awards &#62;</button> -->
+                  <button class="govuk-button" data-module="govuk-button">
+                    Proceed to My subsidy awards
+                    <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19"
+                      viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+                      <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                    </svg></a>
+                  </button>
+                </form>
+
+                <form action="/bulkuploadsubsidy" method="GET" class="govuk-grid-column-one-half">
+                  <button class=" govuk-button govuk-button--secondary ">
+                    Upload another file
+                  </button>
+                </form>
+              </div>
+              <!-- </div> -->
               <!-- </main> -->
 
 
