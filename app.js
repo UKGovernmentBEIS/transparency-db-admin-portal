@@ -133,20 +133,8 @@ app.locals.Spending_Sector_Error;
 /****************************************************** */
 
 app.get("/", async(req, res) => {  
- 
-  console.log("request headers "+JSON.stringify(req.headers));
-  console.log("Value of X-MS-TOKEN-AAD-ACCESS-TOKEN: " + req.header("X-MS-TOKEN-AAD-ACCESS-TOKEN"));
-  var access_token = req.header("x-ms-client-principal");
-  console.log("access_token "+access_token);
   var id_token = req.header("x-ms-token-aad-id-token");
   console.log("id_token "+id_token);
-  if (req.isAuthenticated){
-    console.log("User authenticated!");
-    console.log('User info: ', req.user);
-    console.log('Validated claims: ', req.authInfo);
-  }else{
-    console.log("User not authenticated!");
-  }
 
   Environment_variable = process.argv[2];
   if (Environment_variable == "env=dev") {
@@ -199,6 +187,12 @@ app.get("/", async(req, res) => {
     dashboard_roles = "Granting Authority Approver";
   }else if(id_token_json.roles.includes("e7f70439-02d4-4367-817e-52283a416ac3")){
     dashboard_roles = "Granting Authority Encoder";
+  }else if(id_token_json.roles.includes("4666e4f8-aa48-49c1-8de6-c322baa6de53")){
+    dashboard_ga_name = "test_ga_GrantingAuthorityEncoder";
+  }else if(id_token_json.roles.includes("00d2a3bb-d4ca-439b-b70b-98b657bbfd99")){
+    dashboard_ga_name = "test_ga_GrantingAuthorityApprover";
+  }else if(id_token_json.roles.includes("0e050820-e653-424a-a8ec-5357782c5a77")){
+    dashboard_ga_name = "test_ga_GrantingAuthorityAdministrator";
   }
 
   if (dashboard_roles == "BEIS Administrator") {
