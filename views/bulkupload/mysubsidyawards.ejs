@@ -88,7 +88,7 @@
                 </a>
               </li>
               <li class="govuk-sub-navigation__item head-right">
-                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                <a class="govuk-sub-navigation__link" href="/useraccount">
                   My account
                 </a>
               </li>
@@ -125,7 +125,7 @@
         </div>
         <div class="govuk-grid-column-one-quarter govuk-padding-0">
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
-            <select class="govuk-!-width-full govuk-select" id="sort" name="sort"
+            <select class="govuk-!-width-full govuk-select" name="sort"
               aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
               <% if(awards_status  == "Filter results by status") { %>
               <option disabled value="Filter results by status" selected>Filter results by status </option>
@@ -186,8 +186,7 @@
             style="float:right;text-align: right;">
             <label>Results per page</label>
             <form class="govuk-padding-0 govuk-!-width-one-third" action="/awardspageperroute" method="GET">
-              <select class="govuk-select" id="sort" name="sort" aria-label="Results per page"
-                onchange="this.form.submit()">
+              <select class="govuk-select" name="sort" aria-label="Results per page" onchange="this.form.submit()">
                 <% if(frontend_totalRecordsPerPage  == 10) { %>
                 <option value="10" selected>10</option>
                 <% } else { %>
@@ -242,16 +241,16 @@
                         type="checkbox" value="Subsidy_awardNo">
                       <label class="govuk-label govuk-checkboxes__label_padding govuk-checkboxes__label "
                         for="Subsidy awardNo" id='Subsidy_awardno_lb' style="padding: 0 15px; font-weight: bold;">
-                        <p style="position: relative;margin: 0;">Subsidy Control number
+                        <p style="position: relative;margin: 0;">Subsidy award number
                           <a href="#" style="float: right;">
-                            <svg version="1.1" width="8px" height="8px" id="uparrow">
+                            <svg version="1.1" width="8px" height="8px" class="uparrow">
                               <g transform="matrix(1 0 0 1 0 -5 )">
                                 <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                                   stroke="none" />
                               </g>
                             </svg>
 
-                            <svg version="1.1" id="downarrow" width="8px" height="8px">
+                            <svg version="1.1" class="downarrow" width="8px" height="8px">
                               <g transform="matrix(1 0 0 1 0 -5 )">
                                 <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                                   stroke="none" />
@@ -269,7 +268,7 @@
                 <th scope="col" class="govuk-table__header app-custom-class">
                   <p style="position: relative;margin: 0;">Scheme name
                     <a href="#" style="float: right;">
-                      <svg version="1.1" width="8px" height="8px" id="uparrow">
+                      <svg version="1.1" width="8px" height="8px" class="uparrow">
                         <g transform="matrix(1 0 0 1 0 -5 )">
                           <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                             stroke="none" />
@@ -280,14 +279,14 @@
                 </th>
                 <th scope="col" class="govuk-table__header app-custom-class">
                   <p style="position: relative;margin: 0;">Status <a href="#" style="float: right;">
-                      <svg version="1.1" width="8px" height="8px" id="uparrow">
+                      <svg version="1.1" width="8px" height="8px" class="uparrow">
                         <g transform="matrix(1 0 0 1 0 -5 )">
                           <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                             stroke="none" />
                         </g>
                       </svg>
 
-                      <svg version="1.1" id="downarrow" width="8px" height="8px">
+                      <svg version="1.1" class="downarrow" width="8px" height="8px">
                         <g transform="matrix(1 0 0 1 0 -5 )">
                           <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                             stroke="none" />
@@ -297,14 +296,14 @@
                 </th>
                 <th scope="col" class="govuk-table__header app-custom-class receipent-th">
                   <p style="position: relative;margin: 0;">Recipient<a href="#" style="float: right;">
-                      <svg version="1.1" width="8px" height="8px" id="uparrow">
+                      <svg version="1.1" width="8px" height="8px" class="uparrow">
                         <g transform="matrix(1 0 0 1 0 -5 )">
                           <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                             stroke="none" />
                         </g>
                       </svg>
 
-                      <svg version="1.1" id="downarrow" width="8px" height="8px">
+                      <svg version="1.1" class="downarrow" width="8px" height="8px">
                         <g transform="matrix(1 0 0 1 0 -5 )">
                           <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                             stroke="none" />
@@ -315,14 +314,14 @@
                 <th scope="col" class="govuk-table__header app-custom-class">
                   <p style="position: relative;margin: 0;">Granting authority
                     <a href="#" style="float: right;">
-                      <svg version="1.1" width="8px" height="8px" id="uparrow">
+                      <svg version="1.1" width="8px" height="8px" class="uparrow">
                         <g transform="matrix(1 0 0 1 0 -5 )">
                           <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                             stroke="none" />
                         </g>
                       </svg>
 
-                      <svg version="1.1" id="downarrow" width="8px" height="8px">
+                      <svg version="1.1" class="downarrow" width="8px" height="8px">
                         <g transform="matrix(1 0 0 1 0 -5 )">
                           <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                             stroke="none" />
@@ -342,7 +341,7 @@
                       <input class="govuk-checkboxes__input checkbox Subsidy_awardNo" id="Subsidy_awardNo"
                         name="check[]" type="checkbox" value="Subsidy awardNo">
                       <label class="govuk-label govuk-checkboxes__label" for="waste">
-                        <a href="/subsidyawardfetch/?award=<%= item.awardNumber %>"><%= item.scNumber %></a>
+                        <a href="/subsidyawardfetch/?award=<%= item.awardNumber %>"><%= item.awardNumber %></a>
                       </label>
                     </div>
                   </div>

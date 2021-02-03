@@ -37,7 +37,7 @@
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/header.ejs') %>
-  <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css" />
+  <!-- <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css" /> -->
   <div class="govuk-width-container">
     <!-- <div class="nav-tabs">
       <ul class="navbar">
@@ -88,7 +88,7 @@
               </a>
             </li>
             <li class="govuk-sub-navigation__item head-right">
-              <a class="govuk-sub-navigation__link" href="/logintransparency">
+              <a class="govuk-sub-navigation__link" href="/useraccount">
                 My account
               </a>
             </li>
@@ -123,29 +123,35 @@
             Search for Granting Authority Name or ID
           </p>
           <div class="govuk-grid-column-three-quarters govuk-filter-input-position-div govuk-p-0">
-            <div class="govuk-grid-column-two-thirds govuk-p-0">
+            <div class="govuk-grid-column-one-half govuk-p-0">
               <form action="/mygrantingauthority" method="POST">
                 <input class="govuk-input govuk-!-width-three-quarters" id="filter-input" name="one-half" type="text"
                   autocomplete="off" />
-                <span class="clear-all">
+                <!-- <span class="clear-all">
                   <img src="/assets/images/u1733.svg" alt="" />
-                </span>
+                </span> -->
                 <button class="govuk-button govuk-button--success" id="getFilterTags">
                   Search
                 </button>
               </form>
             </div>
-            <div class="govuk-grid-column-one-third">
-              <select class="govuk-select" name="sort" style="width: 100%">
+            <div class="govuk-grid-column-one-half">
+              <!-- <select class="govuk-select" name="sort" style="width: 100%">
                 <option value="" disabled selected>Only show me...</option>
                 <option value="">Draft</option>
                 <option value="">Finalized</option>
                 <option value="">Published</option>
                 <option value="">Deactivated</option>
+              </select> -->
+              <select class="govuk-select" name="sort" style="width: 100%">
+
+                <option value="">Active</option>
+                <option value="">Inactive</option>
+                <option value="" selected>Show all(72)</option>
               </select>
             </div>
           </div>
-          <div class="govuk-grid-column-one-quarter sorting-div govuk-p-0">
+          <div class="govuk-grid-column-one-quarter sorting-div govuk-p-0" style="text-align: right;">
             <label>Results per page</label>
             <select class="govuk-select" id="sort" name="sort">
               <option value="10">10</option>
@@ -167,36 +173,40 @@
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
               <th scope="col" style="text-align: left" class="govuk-table__header app-custom-class">
-                Granting Authority ID
-                <a href="#">
-                  <svg version="1.1" width="8px" height="8px" id="uparrow">
-                    <g transform="matrix(1 0 0 1 0 -5 )">
-                      <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
-                    </g>
-                  </svg>
+                <p style="position: relative;margin: 0;">Granting Authority ID
+                  <a href="#" style="float: right;">
+                    <svg version="1.1" width="8px" height="8px" class="uparrow">
+                      <g transform="matrix(1 0 0 1 0 -5 )">
+                        <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
+                      </g>
+                    </svg>
 
-                  <svg version="1.1" id="downarrow" width="8px" height="8px">
-                    <g transform="matrix(1 0 0 1 0 -5 )">
-                      <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
-                    </g>
-                  </svg>
-                </a>
+                    <svg version="1.1" class="downarrow" width="8px" height="8px">
+                      <g transform="matrix(1 0 0 1 0 -5 )">
+                        <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
+                      </g>
+                    </svg>
+                  </a>
+                </p>
               </th>
               <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
-                Granting Authority name
-                <svg version="1.1" width="8px" height="8px" id="uparrow">
-                  <g transform="matrix(1 0 0 1 0 -5 )">
-                    <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
-                  </g>
-                </svg>
-                <svg version="1.1" id="downarrow" width="8px" height="8px">
-                  <g transform="matrix(1 0 0 1 0 -5 )">
-                    <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
-                  </g>
-                </svg>
+                <p style="position: relative;margin: 0;"> Granting Authority name
+                  <a href="#" style="float: right;">
+                    <svg version="1.1" width="8px" height="8px" class="uparrow">
+                      <g transform="matrix(1 0 0 1 0 -5 )">
+                        <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
+                      </g>
+                    </svg>
+                    <svg version="1.1" class="downarrow" width="8px" height="8px">
+                      <g transform="matrix(1 0 0 1 0 -5 )">
+                        <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
+                      </g>
+                    </svg>
+                  </a>
+                </p>
               </th>
               <th scope="col" class="govuk-table__header app-custom-class">
-                Approved by
+                Added by
               </th>
               <th scope="col" class="govuk-table__header app-custom-class">
                 Status
@@ -282,7 +292,7 @@
 
   <%- include('../partials/footer.ejs') %>
   <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
-  <script src="/assets/javascripts/accordion/govuk-frontend.js"></script>
+  <!-- <script src="/assets/javascripts/accordion/govuk-frontend.js"></script> -->
   <!-- <link
     href="/assets/stylesheet/govuk-tabs.css"
     rel="stylesheet"

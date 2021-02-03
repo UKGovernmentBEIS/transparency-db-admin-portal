@@ -38,7 +38,7 @@ const axios = require("axios");
 
 // for parsing application/json
 app.use(express.json());
-const jwt_decode = require("jwt-decode");
+// const jwt_decode = require("jwt-decode");
 // for parsing application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
@@ -133,7 +133,6 @@ app.locals.Spending_Sector_Error;
 /****************************************************** */
 
 app.get("/", async (req, res) => {
-
   res.render("bulkupload/logintransparency");
   // console.log("request headers " + JSON.stringify(req.headers));
   // console.log(
@@ -507,5 +506,8 @@ app.use("/userdeactivate", userdeactivate);
 
 var userdeactivated = require("./routes/user-deactivated-successfully");
 app.use("/userdeactivated", userdeactivated);
+
+var useraccount = require("./routes/user-account");
+app.use("/useraccount", useraccount);
 
 module.exports = app;
