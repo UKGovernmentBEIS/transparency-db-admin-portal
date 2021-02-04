@@ -27,7 +27,7 @@ test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.searchawards = {
-    awards: [
+    schemes: [
       {
         awardNumber: 22,
         beneficiary: {
@@ -66,7 +66,7 @@ test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
       totalSearchResults: 10,
       currentPage: 1,
       totalPages: 1,
-      awards: [
+      schemes: [
         {
           awardNumber: 2,
           subsidyFullAmountExact: "0",
