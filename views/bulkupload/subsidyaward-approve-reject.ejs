@@ -250,24 +250,27 @@
                     </dd>
                 </div>
             </dl>
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-half govuk-padding-0" class="govuk-grid-column-one-half">
+                    <form action="/submitforapproval" method="post" novalidate>
 
-            <form action="/submitforapproval" method="post" novalidate>
+                        <input type="hidden" name="answers-checked" value="true">
 
-                <input type="hidden" name="answers-checked" value="true">
+                        <button class="govuk-button" data-module="govuk-button">
+                            Submit for Approval
+                        </button>
 
-                <button class="govuk-button" data-module="govuk-button">
-                    Submit for Approval
-                </button>
+                    </form>
 
-            </form>
+                    <form action="/addsubsidyaward" method="POST" class="govuk-grid-column-one-half">
 
-            <form action="/addsubsidyaward" method="POST">
-                <div>
-                    <button class=" govuk-button_cancel_lg govuk-button--secondary ">
-                        Cancel
-                    </button>
+                        <button class="govuk-button govuk-button--secondary ">
+                            Cancel
+                        </button>
+
+                    </form>
                 </div>
-            </form>
+            </div>
         </main>
     </div>
 

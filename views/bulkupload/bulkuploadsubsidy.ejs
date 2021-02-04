@@ -3,22 +3,21 @@
 
 <head>
   <title>GOV.UK - Bulk upload subsidy award page</title>
-  <%- include('../partials/headersubsidy.ejs') %>
-
+  <!-- <%- include('../partials/headersubsidy.ejs') %> -->
+  <%- include('../partials/headercss.ejs') %>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
   <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
   <script type="text/javascript" src="/assets/javascripts/bulkuploadpdfgen.js"></script>
 </head>
 
-<body>
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+  <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
     <main class="govuk-main-wrapper " id="main-content" role="main">
 
-      <!-- <body class="govuk-template__body app-example-page js-enabled"> -->
-      <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-      <!-- Disable browser validation for any examples that include form elements -->
-      <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
       <div class="govuk-grid-row govuk-form-group">
         <div class="govuk-grid-column-full">
           <nav aria-label="Sub navigation">

@@ -67,12 +67,17 @@ app.locals.National_ID_Number_Global;
 app.locals.Beneficiary_Name_Global;
 app.locals.Size_of_the_Organisation_Global;
 app.locals.Granting_Authority_Name_Global;
+app.locals.Legal_Basis_Global;
 app.locals.Legal_Granting_Date_Day_Global;
 app.locals.Legal_Granting_Date_Month_Global;
 app.locals.Legal_Granting_Date_Year_Global;
 app.locals.Goods_or_Services_Global;
 app.locals.Spending_Region_Global;
 app.locals.Spending_Sector_Global;
+app.locals.Granting_Authority_URL_Global;
+app.locals.Granting_Authority_Policy_Global;
+app.locals.Budget_Global;
+
 app.locals.GetMonthName;
 app.locals.file_upload_name;
 app.locals.isCallfromEditAward;
@@ -450,6 +455,12 @@ app.use("/mysubsidymeasures", mysubsidymeasures);
 
 var addsubsidymeasures = require("./routes/subsidymeasures-add");
 app.use("/addsubsidymeasures", addsubsidymeasures);
+
+var addreviewsubsidymeasures = require("./routes/subsidymeasure-add-review");
+app.use("/addreviewsubsidymeasures", addreviewsubsidymeasures);
+
+var subsidymeasurepublished = require("./routes/subsidymeasure-published");
+app.use("/subsidymeasurespublished", subsidymeasurepublished);
 
 var reviewsubsidymeasures = require("./routes/subsidymeasure-reviewdetails");
 app.use("/reviewsubsidymeasures", reviewsubsidymeasures);

@@ -115,8 +115,8 @@
           <form class="govuk-!-width-full govuk-padding-0" action="/subsidyawardsearch" method="POST">
 
             <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text" name="search_award_text"
-              aria-label="User input text box for Searching either Subsidy Measure Title, Subsidy Control number, or Granting Authority"
-              type="text" <% if(Award_search_text) {%> value="<%= Award_search_text%>" <% } %> />
+              aria-label="User input text box for Searching Subsidy Award" type="text" <% if(Award_search_text) {%>
+              value="<%= Award_search_text%>" <% } %> />
 
             <button class="govuk-button" data-module="govuk-button">
               Search
@@ -338,8 +338,8 @@
                 <td class="govuk-table__cell">
                   <div class="govuk-checkboxes">
                     <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input checkbox Subsidy_awardNo" id="Subsidy_awardNo"
-                        name="check[]" type="checkbox" value="Subsidy awardNo">
+                      <input class="govuk-checkboxes__input checkbox Subsidy_awardNo" name="check[]" type="checkbox"
+                        value="Subsidy awardNo">
                       <label class="govuk-label govuk-checkboxes__label" for="waste">
                         <a href="/subsidyawardfetch/?award=<%= item.awardNumber %>"><%= item.awardNumber %></a>
                       </label>

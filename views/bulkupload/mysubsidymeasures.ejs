@@ -64,7 +64,7 @@
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full govuk-grid-row">
-          <label class="govuk-label govuk-grid-column-one-third">
+          <label class="govuk-label">
             You can search for specific subsidy schemes by entering a subsidy scheme title, control number or granting
             authority.
           </label>
@@ -77,18 +77,15 @@
           </button>
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group">
-          <select class="govuk-select govuk-!-width-full">
-            <option disabled selected value="">Only show me</option>
-            <option value="">Draft (1)</option>
-            <option value="">Finalised (5)</option>
-            <option value="">Published (35)</option>
-            <option value="">Deactive (5) </option>
-            <option value="">Show all (46)</option>
+          <select class="govuk-select govuk-!-width-full" name="sort">
+            <option value="">Active ()</option>
+            <option value="">Inactive ()</option>
+            <option value="" selected>Show all (46)</option>
           </select>
         </div>
         <div class="govuk-grid-column-two-thirds govuk-form-group">
           <a href="/addsubsidymeasures"><button class="govuk-button" data-module="govuk-button">
-              Add subsidy scheme
+              Add a new subsidy scheme
             </button></a>
         </div>
         <div class="govuk-grid-column-one-third govuk-display-flex">
@@ -141,16 +138,16 @@
             </thead>
 
             <tbody class="govuk-table__body">
-              <% searchawards.awards.forEach(function(item) { %>
+              <% searchawards.schemes.forEach(function(item) { %>
               <tr>
-                <td class="govuk-table__cell"><a href="/editsubsidymeasure"> <%= item.beneficiaryName  %>
+                <td class="govuk-table__cell"><a href="/editsubsidymeasure"> <%= item.subsidyMeasureTitle  %>
                   </a> </td>
                 <td class="govuk-table__cell"><%= item.scNumber %></td>
                 <td class="govuk-table__cell"><%= item.gaName %></td>
-                <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
-                <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
-                <td class="govuk-table__cell">1 year</td>
-                <td class="govuk-table__cell" style="text-align:center"> £ 500,00</td>
+                <td class="govuk-table__cell" style="text-align:center"><%= item.startDate%></td>
+                <td class="govuk-table__cell" style="text-align:center"><%= item.endDate%></td>
+                <td class="govuk-table__cell"><%= item.duration%></td>
+                <td class="govuk-table__cell" style="text-align:center"> £ <%= item.budget%></td>
               </tr>
               <% } ); %>
             </tbody>

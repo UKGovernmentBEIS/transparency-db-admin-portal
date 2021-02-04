@@ -9,40 +9,56 @@ var request = require("request");
 
 router.get("/", async (req, res) => {
   frontend_totalRecordsPerPage = 10;
-
   const data_request = {
-    beneficiaryName: "",
-    subsidyMeasureTitle: "",
-    subsidyObjective: [],
-    spendingRegion: [],
-    subsidyInstrument: [],
-    spendingSector: [],
-    legalGrantingFromDate: "",
-    legalGrantingToDate: "",
+    subsidySchemeName: "",
+    scNumber: "",
+    gaName: "",
     pageNumber: 1,
     totalRecordsPerPage: frontend_totalRecordsPerPage,
-    sortBy: [""],
+    sortBy: [],
+    status: "",
   };
 
-  var data = JSON.parse(JSON.stringify(data_request));
+  // const data_request = {
+  //   beneficiaryName: "",
+  //   subsidyMeasureTitle: "",
+  //   subsidyObjective: [],
+  //   spendingRegion: [],
+  //   subsidyInstrument: [],
+  //   spendingSector: [],
+  //   legalGrantingFromDate: "",
+  //   legalGrantingToDate: "",
+  //   pageNumber: 1,
+  //   totalRecordsPerPage: frontend_totalRecordsPerPage,
+  //   sortBy: [""],
+  // };
 
-  console.log("request :" + JSON.stringify(data));
-  Base_URL = beis_url_accessmanagement + "/accessmanagement/searchresults";
+  // var data = JSON.parse(JSON.stringify(data_request));
+
+  console.log("request :" + JSON.stringify(data_request));
+  // Base_URL = beis_url_accessmanagement + "/scheme/search";
   try {
-    const apidata = await axios.post(Base_URL,
-      data
+    const apidata = await axios.post(
+      beis_url_accessmanagement + "/scheme/search",
+      data_request
     );
     console.log(`Status: ${apidata.status}`);
+
     API_response_code = `${apidata.status}`;
     console.log("API_response_code: try" + API_response_code);
     console.log("Body: ", apidata.data);
     searchawards = apidata.data;
+
+    allScheme = searchawards.allScheme;
+    activeScheme = searchawards.activeScheme;
+    inactiveScheme = searchawards.inactiveScheme;
+
     var searchawards_api = apidata.data;
     console.log("searchawards" + searchawards_api);
-    const seachawardstring = JSON.stringify(searchawards_api);
-    const seachawardJSON = JSON.parse(seachawardstring);
+    // const seachawardstring = JSON.stringify(searchawards_api);
+    // const seachawardJSON = JSON.parse(seachawardstring);
     totalrows = searchawards.totalSearchResults;
-    console.log(searchawards.awards[0].subsidyFullAmountExact);
+    // console.log(searchawards.schemes[0].subsidyFullAmountExact);
 
     pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
     console.log("totalrows :" + totalrows);
@@ -68,6 +84,9 @@ router.get("/", async (req, res) => {
       end_record,
       totalrows,
       current_page_active,
+      allScheme,
+      activeScheme,
+      inactiveScheme,
     });
   } catch (err) {
     pageCount = 10;
@@ -91,6 +110,9 @@ router.get("/", async (req, res) => {
       current_page_active,
       start_page,
       end_page,
+      allScheme,
+      activeScheme,
+      inactiveScheme,
     });
 
     // response_error_message = err;
