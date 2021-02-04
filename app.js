@@ -187,9 +187,9 @@ app.get("/", async(req, res) => {
     dashboard_roles = "Granting Authority Approver";
   }else if(id_token_json.roles.includes("e7f70439-02d4-4367-817e-52283a416ac3")){
     dashboard_roles = "Granting Authority Encoder";
-  }else if(id_token_json.roles.includes("622bee03-1e79-435b-9320-e853c966a04c")){
-    dashboard_ga_name = "HMRC";
   }
+    dashboard_ga_name = "Big Lottery Fund";
+  
 
   if (dashboard_roles == "BEIS Administrator") {
     const userPrincipleRequest =
