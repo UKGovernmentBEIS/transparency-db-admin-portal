@@ -2,30 +2,30 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - User Deactivated Successfully page</title>
+    <title>GOV.UK - User added successfully page</title>
     <%- include('../partials/headercss.ejs') %>
 </head>
 
 <body class="govuk-template__body app-example-page">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
-
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
+            <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
-            <div class="govuk-grid-ro govuk-form-groupw">
+            <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
                     <nav aria-label="Sub navigation">
                         <ul class="govuk-sub-navigation__list">
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mygrantingauthority">
                                     Granting Authorities
                                 </a>
                             </li>
 
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/manageusers">
+                                <a class="govuk-sub-navigation__link" href="/manageusers">
                                     Users
                                 </a>
                             </li>
@@ -59,31 +59,55 @@
 
             </div>
 
+            <!-- bread crumbs start here -->
+            <!-- <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Users</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a1 class="govuk-breadcrumbs__link active" href="#">Add a new user</a1>
+                    </li>
+                </ol>
+            </div> -->
+            <!-- bread crumbs ends here -->
             <div class="govuk-grid-row">
 
                 <div class="govuk-grid-column-two-thirds govuk-form-group">
+                    <!-- <h1 class="govuk-heading-xl">Add granting authority</h1> -->
+
                     <div class="govuk-panel govuk-panel--confirmation">
                         <h1 class="govuk-panel__title">
-                            User deactivated
+                            Subsidy scheme published
                         </h1>
+                        <div class="govuk-panel__body">
+                            Subsidy scheme number SC12345
+                        </div>
                     </div>
                 </div>
                 <div class="govuk-grid-column-full govuk-form-group">
-                    <p class="govuk-body govuk-!-font-size-19">You have deactivated this user. They will no longer be
-                        able to sign in to this system.</p>
+                    <p class="govuk-body govuk-!-font-size-19">You have published subsidy scheme SC12345.</p>
+
                 </div>
                 <div class="govuk-grid-column-full govuk-form-group">
-
-                    <a class="govuk-button" href="/manageusers" data-module="govuk-button">
-                        View all users
+                    <a class="govuk-button" href="/mysubsidymeasures" data-module="govuk-button">
+                        View all subsidy schemes
                     </a>
+
+                    <a class="govuk-button" href="/addsubsidymeasures" data-module="govuk-button">Add
+                        another subsidy scheme</a>
 
                 </div>
             </div>
-
         </main>
     </div>
+
     <%- include('../partials/footer.ejs') %>
+
+
 </body>
 
 </html>

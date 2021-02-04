@@ -30,7 +30,7 @@
                             </li>
                             <li class="govuk-sub-navigation__item">
                                 <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidymeasures">
-                                    Subsidy Measures
+                                    Subsidy schemes
                                 </a>
                             </li>
                             <li class="govuk-sub-navigation__item">
@@ -45,7 +45,7 @@
                                 </a>
                             </li>
                             <li class='govuk-sub-navigation__item head-right'>
-                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                <a class="govuk-sub-navigation__link" href="/useraccount">
                                     My account
                                 </a>
                             </li>
@@ -56,7 +56,7 @@
 
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
-                    <h1 class="govuk-heading-xl">Review subsidy measure information before sending for approval</h1>
+                    <h1 class="govuk-heading-xl">Review subsidy scheme before publishing</h1>
 
                     <!-- *************************************
               Review for subsidy details tab
@@ -64,9 +64,10 @@
 
                 </div>
                 <div class="govuk-grid-column-full">
-                    <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy measure details
+                    <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details
                     </h2>
-                    <a rel="external" class="govuk-link head-right govuk-relative-position" href="/addsubsidymeasures">
+                    <a rel="external" aria-label="Change subsidy scheme details"
+                        class="govuk-link head-right govuk-relative-position" href="/addreviewsubsidymeasures">
                         <p>Change </p>
                     </a>
                 </div>
@@ -75,53 +76,66 @@
                 <table class="govuk-table">
                     <tbody class="govuk-table__body">
                         <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Is this an ad hoc scheme</th>
+                            <td class="govuk-table__cell"><%= Subsidy_Adhoc_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Granting Authority</th>
                             <td class="govuk-table__cell">Cardiff Council</td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Subsidy measure name</th>
-                            <td class="govuk-table__cell">Air discount scheme</td>
+                            <th scope="row" class="govuk-table__header">Subsidy scheme name</th>
+                            <td class="govuk-table__cell"><%= Subsidy_Measure_Title_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Legal basis</th>
-                            <td class="govuk-table__cell">Research and development</td>
+                            <td class="govuk-table__cell"><%= Legal_Basis_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Weblink to Granting Authority Text
-                                of
-                                Subsidy</th>
-                            <td class="govuk-table__cell">Tax measures (tax credit, or tax/duty exemption)​
+                            <th scope="row" class="govuk-table__header">Granting authority policy URL </th>
+                            <td class="govuk-table__cell"><%= Granting_Authority_URL_Global %>
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Budget</th>
-                            <td class="govuk-table__cell">£1,000,000</td>
+                            <th scope="row" class="govuk-table__header">Granting authority policy page summary </th>
+                            <td class="govuk-table__cell"><%= Granting_Authority_Policy_Global %>
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Budget or amount</th>
+                            <td class="govuk-table__cell">£ <%= Budget_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Start Date</th>
-                            <td class="govuk-table__cell">25 June 2020</td>
+                            <td class="govuk-table__cell"><%= Scheme_Start_Day_Global %> <%= GetMonthName %>
+                                <%= Scheme_Start_Year_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">End Date</th>
-                            <td class="govuk-table__cell">24 June 2021</td>
+                            <td class="govuk-table__cell"><%= Scheme_End_Day_Global %> <%= GetMonthName %>
+                                <%= Scheme_End_Year_Global %></td>
                         </tr>
                     </tbody>
                 </table>
             </section>
-            <form action="/mysubsidymeasures" method="GET" novalidate>
-                <input type="hidden" name="answers-checked" value="true">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-half govuk-padding-0">
+                    <form action="/mysubsidymeasures" method="GET" novalidate class="govuk-grid-column-one-half">
+                        <input type="hidden" name="answers-checked" value="true">
 
-                <button class="govuk-button" data-module="govuk-button">
-                    Submit for Approval
-                </button>
+                        <button class="govuk-button" data-module="govuk-button">
+                            Publish subsidy scheme
+                        </button>
 
-            </form>
+                    </form>
 
-            <form action="/addsubsidymeasures" method="GET">
-                <button class=" govuk-button_cancel_lg govuk-button--secondary ">
-                    Cancel
-                </button>
-            </form>
+                    <form action="/addsubsidymeasures" method="GET" class="govuk-grid-column-one-half">
+                        <button class=" govuk-button govuk-button--secondary ">
+                            Cancel
+                        </button>
+                    </form>
+                </div>
+            </div>
         </main>
     </div>
 

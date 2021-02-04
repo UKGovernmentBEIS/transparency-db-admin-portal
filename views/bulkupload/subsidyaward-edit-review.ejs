@@ -46,7 +46,7 @@
                                 </a>
                             </li>
                             <li class="govuk-sub-navigation__item head-right">
-                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                <a class="govuk-sub-navigation__link" href="/useraccount">
                                     My account
                                 </a>
                             </li>
@@ -68,8 +68,8 @@
                 </div>
                 <div class="govuk-grid-column-full">
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy details</h2>
-                    <a rel="external" class="govuk-link head-right govuk-relative-position"
-                        href="/editsubsidyaward/?award=22">
+                    <a rel="external" aria-label="Change subsidy award details"
+                        class="govuk-link head-right govuk-relative-position" href="/editsubsidyaward/?award=22">
                         <p>Change </p>
                     </a>
                 </div>
@@ -144,8 +144,8 @@
 
             <h2 class="govuk-heading-m">Beneficiary details</h2>
             <!-- <a rel="external" class="govuk-link head-right govuk-relative-position" href="/beneficiarydetailsreview" >
-                <p >Change </p> -->
-            </a>
+                <p >Change </p> 
+            </a> -->
             <dl class="govuk-summary-list govuk-!-margin-bottom-9">
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
@@ -247,28 +247,28 @@
                     </dd>
                 </div>
             </dl>
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-half govuk-padding-0">
+                    <form action="/editsubmitforapproval" method="post" novalidate class="govuk-grid-column-one-half">
 
-            <form action="/editsubmitforapproval" method="post" novalidate>
+                        <input type="hidden" name="answers-checked" value="true">
 
-                <input type="hidden" name="answers-checked" value="true">
+                        <button class="govuk-button" data-module="govuk-button">
+                            Submit for Approval
+                        </button>
 
-                <button class="govuk-button" data-module="govuk-button">
-                    Submit for Approval
-                </button>
+                    </form>
 
-            </form>
-
-            <form action="/addsubsidyaward" method="POST">
-                <div>
-                    <button class=" govuk-button_cancel_lg govuk-button--secondary ">
-                        Cancel
-                    </button>
+                    <form action="/addsubsidyaward" method="POST" class="govuk-grid-column-one-half">
+                        <button class=" govuk-button govuk-button--secondary ">
+                            Cancel
+                        </button>
+                    </form>
                 </div>
-            </form>
+            </div>
 
-    </div>
 
-    </main>
+        </main>
     </div>
 
 

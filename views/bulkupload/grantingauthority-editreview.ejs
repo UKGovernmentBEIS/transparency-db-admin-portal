@@ -2,9 +2,10 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - Subsidy Award Reject page</title>
+    <title>GOV.UK - Subsidy Award review details page</title>
     <%- include('../partials/headercss.ejs') %>
 </head>
+
 
 <body class="govuk-template__body app-example-page">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
@@ -12,18 +13,16 @@
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
-
-
-
             <!-- <body class="govuk-template__body app-example-page js-enabled"> -->
             <!-- <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script> -->
             <!-- Disable browser validation for any examples that include form elements -->
+            <!-- <a href="#main-content" class="govuk-skip-link">Skip to main content</a> -->
             <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
                     <nav aria-label="Sub navigation">
                         <ul class="govuk-sub-navigation__list">
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mygrantingauthority">
                                     Granting Authorities
                                 </a>
                             </li>
@@ -39,7 +38,7 @@
                                 </a>
                             </li>
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidyawards">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
                                     Subsidy Awards
                                 </a>
                             </li>
@@ -63,57 +62,63 @@
 
             </div>
 
-            <p>
-                <a href="/subsidyawardfetch/?award=<%= awardnumber %>" class="govuk-back-link"> Back</a>
-            </p>
-            <!-- bread crumbs ends here -->
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
-                    <h1 class="govuk-heading-xl">Add comments</h1>
-                    <form action="/subsidyawardrejectreason" method="POST">
+                    <h1 class="govuk-heading-xl"> Edit granting authority</h1>
 
-                        <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="1000">
-                            <div class="govuk-form-group">
-                                <label class="govuk-label" for="label-as-page-heading">
-                                    Add feedback for the person who is working on this
-                                    subsidy award. Your comments will not be visible to the public.
-                                </label>
+                    <!-- *************************************
+              Review for subsidy details tab
+              ************************************* -->
+                </div>
+                <div class="govuk-grid-column-full">
+                    <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Granting authorty details
 
-                                <textarea class="govuk-textarea govuk-js-character-count" id="label-as-page-heading"
-                                    name="reject_reason_text" rows="6"
-                                    aria-describedby="label-as-page-heading-info"></textarea>
-                            </div>
 
-                            <div id="label-as-page-heading-info" class="govuk-hint govuk-character-count__message"
-                                aria-live="polite">
-                                You can enter up to 1,000 characters
-                            </div>
+                    </h2>
+                    <a rel="external" aria-label="Change granting authority details"
+                        class="govuk-link head-right govuk-relative-position" href="/editgrantingauthority">
+                        <p>Change </p>
+                    </a>
+                </div>
+            </div>
+            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Granting autority ID
+                    </dt>
+                    <dd class="govuk-summary-list__value">
 
-                        </div>
-                        <!-- <label class="govuk-label">Add feedback for the person who is working on this
-                            subsidy award. Your comments will not be visible to the public.</label>
-                        <textarea class="govuk-textarea" id="reject_reason_text" type="textarea"
-                            name="reject_reason_text" rows="6"></textarea> -->
+                    </dd>
 
-                        <button class="govuk-button govuk-button--warning" data-module="govuk-button">
-                            Reject subsidy award
-                        </button>
-
-                    </form>
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Granting authority name
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        Sean Martin
+                    </dd>
 
                 </div>
 
-            </div>
+            </dl>
 
+            <!-- <form action="/submitforapproval" method="post" novalidate> -->
+
+            <a class="govuk-button" href="/editgrantingauthority" data-module="govuk-button">
+                Edit granting authority
+            </a>
+            <a class="govuk-button" href="/deactivategrantingauthority" data-module="govuk-button">
+                Deactivate granting authority
+            </a>
+            <a class="govuk-link govuk-cancel-button-link" id="mylink" value="cancel" href="/editgacancel"> Cancel
+            </a>
+            <!-- </form> -->
+
+        </main>
     </div>
 
-    </main>
-    </div>
-
-
+    <%- include('../partials/footer.ejs') %>
 </body>
-
-<%- include('../partials/footer.ejs') %>
-<!-- <script src="/assets/javascripts/govuk-frontend.js"></script> -->
 
 </html>

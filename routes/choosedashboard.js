@@ -1,5 +1,5 @@
 const express = require("express");
-const jwt_decode = require("jwt-decode");
+// const jwt_decode = require("jwt-decode");
 const router = express.Router();
 const axios = require("axios");
 var request = require("request");
@@ -8,49 +8,56 @@ router.post("/", async (req, res) => {
   // ********************************************************
   // Read environment property file and set the API URL end points
   // ********************************************************
-  
+
   Environment_variable = process.argv[2];
   if (Environment_variable == "env=dev") {
-    beis_url_publishing = "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
-    beis_url_accessmanagement = "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
-    beis_url_publicsearch = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
+    beis_url_publishing =
+      "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement =
+      "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
+    beis_url_publicsearch =
+      "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
   } else if (Environment_variable == "env=integ") {
-    beis_url_publishing = "https://integ-transparency-db-publishing-subsidies-service.azurewebsites.net";
-    beis_url_accessmanagement = "https://integ-transparency-db-access-management-service.azurewebsites.net";
-    beis_url_publicsearch = "https://integ-transparency-db-public-search-service.azurewebsites.net";
+    beis_url_publishing =
+      "https://integ-transparency-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement =
+      "https://integ-transparency-db-access-management-service.azurewebsites.net";
+    beis_url_publicsearch =
+      "https://integ-transparency-db-public-search-service.azurewebsites.net";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
   } else if (Environment_variable == "env=stag") {
-    beis_url_publishing = "https://stag-transparency-db-publishing-subsidies-service.azurewebsites.net";
-    beis_url_accessmanagement = "https://stag-transparency-db-access-management-service.azurewebsites.net";
-    beis_url_publicsearch = "https://stag-transparency-db-public-search-service.azurewebsites.net";
+    beis_url_publishing =
+      "https://stag-transparency-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement =
+      "https://stag-transparency-db-access-management-service.azurewebsites.net";
+    beis_url_publicsearch =
+      "https://stag-transparency-db-public-search-service.azurewebsites.net";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
   } else if (Environment_variable == "env=prod") {
-    beis_url_publishing = "https://prod-transparency-db-publishing-subsidies-service.azurewebsites.net";
-    beis_url_accessmanagement = "https://prod-transparency-db-access-management-service.azurewebsites.net";
-    beis_url_publicsearch = "https://prod-transparency-db-public-search-service.azurewebsites.net";
+    beis_url_publishing =
+      "https://prod-transparency-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement =
+      "https://prod-transparency-db-access-management-service.azurewebsites.net";
+    beis_url_publicsearch =
+      "https://prod-transparency-db-public-search-service.azurewebsites.net";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
   }
-
 
   // *******************
   // Globale declarations
   // *******************
   frontend_totalRecordsPerPage = 1;
 
-  var {
-    dashboard_username,
-    dashboard_roles,
-    dashboard_GA
-  } = req.body;
+  var { dashboard_username, dashboard_roles, dashboard_GA } = req.body;
 
   console.log("dashboard_username:" + dashboard_username);
   console.log("dashboard_roles:" + dashboard_roles);
@@ -77,7 +84,7 @@ router.post("/", async (req, res) => {
       '{"userName": "TEST","password": "password123","role": "BEIS Administrator","grantingAuthorityGroupId": "123","grantingAuthorityGroupName": "test"}';
     var config = {
       headers: {
-        userPrinciple: userPrincipleRequest
+        userPrinciple: userPrincipleRequest,
       },
     };
 
@@ -95,7 +102,7 @@ router.post("/", async (req, res) => {
       console.log("Body: ", apidata.data);
       dashboardawards = apidata.data;
       res.render("bulkupload/dashboard-beisadmin", {
-        beis_url_accessmanagement
+        beis_url_accessmanagement,
       });
     } catch (err) {
       response_error_message = err;
@@ -109,7 +116,7 @@ router.post("/", async (req, res) => {
       '"}';
     var config = {
       headers: {
-        userPrinciple: userPrincipleRequest
+        userPrinciple: userPrincipleRequest,
       },
     };
 
@@ -139,7 +146,7 @@ router.post("/", async (req, res) => {
       '"}';
     var config = {
       headers: {
-        userPrinciple: userPrincipleRequest
+        userPrinciple: userPrincipleRequest,
       },
     };
 
@@ -169,7 +176,7 @@ router.post("/", async (req, res) => {
       '"}';
     var config = {
       headers: {
-        userPrinciple: userPrincipleRequest
+        userPrinciple: userPrincipleRequest,
       },
     };
 
