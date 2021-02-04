@@ -188,6 +188,8 @@ app.get("/", async(req, res) => {
   }else if(id_token_json.roles.includes("e7f70439-02d4-4367-817e-52283a416ac3")){
     dashboard_roles = "Granting Authority Encoder";
   }
+
+    console.log("dashboard_roles "+dashboard_roles);
     dashboard_ga_name = "Big Lottery Fund";
   
 
