@@ -62,7 +62,7 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   global.pageCount = "10";
   global.previous_page = 1;
   global.current_page_active = 1;
-
+  global.beis_url_accessmanagement = "";
   axios.post.mockResolvedValue({
     status: 200,
     data: {
@@ -131,7 +131,7 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   global.pageCount = "10";
   global.previous_page = 1;
   global.current_page_active = 1;
-
+  global.beis_url_accessmanagement = "";
   axios.post.mockResolvedValue({
     status: 200,
     data: {

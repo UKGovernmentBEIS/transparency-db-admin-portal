@@ -23,6 +23,7 @@ test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
   const req = mockRequest();
   const res = {};
   global.awardnumber = 22;
+  global.beis_url_accessmanagement = "";
   request(app)
     .get("/rejectsubsidyaward", (req, res))
     .expect(200, done);

@@ -2,6 +2,12 @@ const express = require("express");
 const router = express.Router();
 
 router.post("/", (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
   isAddSubsidyPrimarycall = false;
   GetMonthName = "";
   SubsidyErrors = [];
@@ -58,7 +64,7 @@ router.post("/", (req, res) => {
   console.log("Subsidy_Instrument :" + Subsidy_Instrument);
   console.log("buttonvalue:" + buttonvalue);
   console.log("mylink:" + mylink);
-  console.log("  Subsidy_Adhoc :" +   Subsidy_Adhoc);
+  console.log("  Subsidy_Adhoc :" + Subsidy_Adhoc);
 
   Subsidy_Control_Number_Global = Subsidy_Control_Number;
   Subsidy_Measure_Title_Global = Subsidy_Measure_Title;
@@ -67,19 +73,23 @@ router.post("/", (req, res) => {
   Subsidy_Objective_Other_Global = Subsidy_Objective_Other;
   Subsidy_Instrument_Global = Subsidy_Instrument;
   Subsidy_Instrument_Other_Global = Subsidy_Instrument_Other;
-  
-  if ( Subsidy_Instrument_Global !== 'Tax measures (tax credit, or tax/duty exemption)') {
+
+  if (
+    Subsidy_Instrument_Global !==
+    "Tax measures (tax credit, or tax/duty exemption)"
+  ) {
     Subsidy_Element_Full_Amount_Global = Subsidy_Element_Full_Amount;
-  }
-  else {
-    Subsidy_Element_Full_Amount_Global = 'NA';
+  } else {
+    Subsidy_Element_Full_Amount_Global = "NA";
   }
 
-  if ( Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)') {
+  if (
+    Subsidy_Instrument_Global ==
+    "Tax measures (tax credit, or tax/duty exemption)"
+  ) {
     Subsidy_Full_Amount_Range_Global = Subsidy_Full_Amount_Range;
-  }
-  else {
-    Subsidy_Full_Amount_Range_Global = 'NA';
+  } else {
+    Subsidy_Full_Amount_Range_Global = "NA";
   }
 
   National_ID_Type_Global = National_ID_Type;
@@ -141,9 +151,10 @@ router.post("/", (req, res) => {
   if (buttonvalue == "continue") {
     //Empty field validations
 
-    if (!Subsidy_Control_Number && !Subsidy_Measure_Title ) {
+    if (!Subsidy_Control_Number && !Subsidy_Measure_Title) {
       Subsidy_Control_Number_Error = true;
-      SubsidyErrors[Additem] = "     Enter the either subsidy control number (Or)";
+      SubsidyErrors[Additem] =
+        "     Enter the either subsidy control number (Or)";
       SubsidyFocus[Additem] = "#Subsidy_Control_Number";
       Additem = Additem + 1;
       Subsidy_Measure_Title_Error = true;
@@ -153,15 +164,14 @@ router.post("/", (req, res) => {
     }
 
     // if (!Subsidy_Measure_Title) {
-     
+
     // }
-    if (!Subsidy_Adhoc ) {
+    if (!Subsidy_Adhoc) {
       Subsidy_Adhoc_Error = true;
       SubsidyErrors[Additem] = "     Select the adhoc subsidy scheme";
       SubsidyFocus[Additem] = "#Subsidy_Adhoc";
       Additem = Additem + 1;
     }
-
 
     if (Subsidy_Objective == "Empty") {
       Subsidy_Objective_Error = true;
@@ -170,32 +180,34 @@ router.post("/", (req, res) => {
       Additem = Additem + 1;
     }
 
-    if (Subsidy_Objective == "Other" && Subsidy_Objective_Other =="") {
+    if (Subsidy_Objective == "Other" && Subsidy_Objective_Other == "") {
       Subsidy_Objective_Other_Error = true;
-      SubsidyErrors[Additem] = "     Enter the subsidy purpose for other category";
+      SubsidyErrors[Additem] =
+        "     Enter the subsidy purpose for other category";
       SubsidyFocus[Additem] = "#Subsidy_Objective_Other";
       Additem = Additem + 1;
     }
 
-
-    if (Subsidy_Instrument == '') {
+    if (Subsidy_Instrument == "") {
       Subsidy_Instrument_Error = true;
       SubsidyErrors[Additem] = "     Select the subsidy type";
       SubsidyFocus[Additem] = "#Subsidy_Instrument";
       Additem = Additem + 1;
     }
 
-    if (Subsidy_Instrument == "Other" && Subsidy_Instrument_Other =="") {
+    if (Subsidy_Instrument == "Other" && Subsidy_Instrument_Other == "") {
       Subsidy_Instrument_Other_Error = true;
       SubsidyErrors[Additem] = "     Enter the subsidy type for other category";
       SubsidyFocus[Additem] = "#Subsidy_Instrument_Other";
       Additem = Additem + 1;
     }
 
-
     console.log("subsidy element full amot : " + Subsidy_Element_Full_Amount);
     console.log("Subsidy_Full_Amount_Range : " + Subsidy_Full_Amount_Range);
-    if (!Subsidy_Element_Full_Amount && Subsidy_Instrument != "Tax measures (tax credit, or tax/duty exemption)") {
+    if (
+      !Subsidy_Element_Full_Amount &&
+      Subsidy_Instrument != "Tax measures (tax credit, or tax/duty exemption)"
+    ) {
       Subsidy_Element_Full_Amount_Error = true;
       SubsidyErrors[Additem] = "     Enter the subsidy element full amount";
       SubsidyFocus[Additem] = "#Subsidy_Element_Full_Amount";
@@ -421,19 +433,18 @@ router.post("/", (req, res) => {
         isAddSubsidyPrimarycall,
       });
     } else {
-
       if (Subsidy_Objective_Global == "Other") {
-        Subsidy_Objective_Plus_Other_Global  = Subsidy_Objective_Global + '-' + Subsidy_Objective_Other_Global;
-      }
-      else {
-        Subsidy_Objective_Plus_Other_Global =  Subsidy_Objective_Global;
+        Subsidy_Objective_Plus_Other_Global =
+          Subsidy_Objective_Global + "-" + Subsidy_Objective_Other_Global;
+      } else {
+        Subsidy_Objective_Plus_Other_Global = Subsidy_Objective_Global;
       }
 
       if (Subsidy_Instrument_Global == "Other") {
-        Subsidy_Instrument_Plus_Other_Global  = Subsidy_Instrument_Global + '-' + Subsidy_Instrument_Other_Global;
-      }
-      else {
-        Subsidy_Instrument_Plus_Other_Global =  Subsidy_Instrument_Global;
+        Subsidy_Instrument_Plus_Other_Global =
+          Subsidy_Instrument_Global + "-" + Subsidy_Instrument_Other_Global;
+      } else {
+        Subsidy_Instrument_Plus_Other_Global = Subsidy_Instrument_Global;
       }
       res.render("bulkupload/reviewdetail", {
         Subsidy_Control_Number_Global,
@@ -468,6 +479,12 @@ router.post("/", (req, res) => {
 });
 
 router.get("/", (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
   res.render("bulkupload/reviewdetail");
 });
 

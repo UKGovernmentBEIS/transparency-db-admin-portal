@@ -9,6 +9,12 @@ router.post("/", async (req, res) => {
   // Read environment property file and set the API URL end points
   // ********************************************************
 
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
   Environment_variable = process.argv[2];
   if (Environment_variable == "env=dev") {
     beis_url_publishing =

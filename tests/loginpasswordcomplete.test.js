@@ -23,7 +23,7 @@ const res = {};
 
 test("Unit testing for login password complete Test for GET call", (done) => {
   const req = mockRequest();
-
+  global.beis_url_accessmanagement = "";
   request(app)
     .get("/loginpasswordcomplete", (req, res))
     .expect(200, done);
@@ -67,11 +67,11 @@ test("Unit testing for update results page per route Test for POST call", (done)
 
 test("Unit testing for update results page per route Test for POST call", (done) => {
   const req = mockRequest();
-request(app)
+  request(app)
     .post("/loginpasswordcomplete", (req, res))
     .send({
       password: "123456888",
       password1: "123456888",
     })
-  .expect(200, done);
+    .expect(200, done);
 });

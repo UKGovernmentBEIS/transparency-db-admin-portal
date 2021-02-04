@@ -21,6 +21,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for Subsidy Award Review Cancel Test for GET call", (done) => {
   const req = mockRequest();
+  global.beis_url_accessmanagement = "";
   global.Subsidy_Control_Number_Global = "";
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Objective_Global = "";

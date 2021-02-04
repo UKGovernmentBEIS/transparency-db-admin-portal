@@ -21,6 +21,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for Review details Test for GET call", (done) => {
   const req = mockRequest();
+  global.beis_url_accessmanagement = "";
   global.Subsidy_Control_Number_Global_Substring = "";
   global.Subsidy_Instrument_Global = "";
   global.Subsidy_Element_Full_Amount_Global = "";
@@ -55,6 +56,7 @@ test("Unit testing for Review details Test for GET call", (done) => {
 });
 test("Unit testing for Review details Test for POSt call", (done) => {
   const req = mockRequest();
+  global.beis_url_accessmanagement = "";
   global.SubsidyArraySize = 0;
   global.SubsidyErrors = [];
   global.SubsidyFocus = [];
@@ -136,6 +138,7 @@ test("Unit testing for Review details Test for POSt call", (done) => {
   const req = mockRequest();
   global.SubsidyArraySize = 0;
   global.SubsidyErrors = [];
+  global.beis_url_accessmanagement = "";
   global.SubsidyFocus = [];
   global.isAddSubsidyPrimarycall = "";
   global.Edit_Award_Number_global = "";
@@ -214,6 +217,7 @@ test("Unit testing for Review details Test for POSt call", (done) => {
 test("Unit testing for Review details Test for POSt call", (done) => {
   const req = mockRequest();
   global.SubsidyArraySize = 0;
+  global.beis_url_accessmanagement = "";
   global.SubsidyErrors = [];
   global.SubsidyFocus = [];
   global.isAddSubsidyPrimarycall = "";

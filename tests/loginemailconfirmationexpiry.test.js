@@ -24,32 +24,35 @@ const res = {};
 test("Unit testing for login email confirmation Test for POST call", (done) => {
   const req = mockRequest();
   global.isEmailEmpty = "";
-request(app)
+  global.beis_url_accessmanagement = "";
+  request(app)
     .post("/loginemailconfirmationexpiry", (req, res))
     .send({
-        email_address: "",
+      email_address: "",
     })
-  .expect(200, done);
+    .expect(200, done);
 });
 
 test("Unit testing for login email confirmation expiry Test for POST call", (done) => {
-    const req = mockRequest();
-    global.isEmailValid = "";
+  const req = mockRequest();
+  global.isEmailValid = "";
+  global.beis_url_accessmanagement = "";
   request(app)
-      .post("/loginemailconfirmationexpiry", (req, res))
-      .send({
-          email_address: "2008389",
-      })
+    .post("/loginemailconfirmationexpiry", (req, res))
+    .send({
+      email_address: "2008389",
+    })
     .expect(200, done);
-  });
+});
 
-  test("Unit testing for login email confirmation expiry Test for POST call", (done) => {
-    const req = mockRequest();
-    global.email_addresspass="";
+test("Unit testing for login email confirmation expiry Test for POST call", (done) => {
+  const req = mockRequest();
+  global.email_addresspass = "";
+  global.beis_url_accessmanagement = "";
   request(app)
-      .post("/loginemailconfirmationexpiry", (req, res))
-      .send({
-          email_address: "2008389@cognizant.com",
-      })
+    .post("/loginemailconfirmationexpiry", (req, res))
+    .send({
+      email_address: "2008389@cognizant.com",
+    })
     .expect(200, done);
-  });
+});

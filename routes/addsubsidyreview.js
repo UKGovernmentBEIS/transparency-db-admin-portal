@@ -3,12 +3,19 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   console.log("subsiy details:" + Subsidy_Control_Number_Global);
+
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
   res.render("bulkupload/addsubsidyaward", {
     Subsidy_Control_Number_Global,
     Subsidy_Measure_Title_Global,
     Subsidy_Adhoc_Global,
     Subsidy_Objective_Global,
-    Subsidy_Objective_Other_Global ,
+    Subsidy_Objective_Other_Global,
     Subsidy_Instrument_Global,
     Subsidy_Instrument_Other_Global,
     Subsidy_Element_Full_Amount_Global,

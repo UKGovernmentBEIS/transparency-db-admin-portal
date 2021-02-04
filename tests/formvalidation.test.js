@@ -27,6 +27,7 @@ test("Unit testing for update results page per route Test for GET call", (done) 
   global.isNotCsvOrExcel = false;
   global.isExcelFormat = true;
   global.isCsvFormat = false;
+  global.beis_url_accessmanagement = "";
   global.validationerrors = {
     validationErrorResult: [
       {
@@ -50,6 +51,7 @@ test("Unit testing for update results page per route Test for GET call", (done) 
 test("Unit testing for update results page per route Test for POST call", (done) => {
   const req = mockRequest();
   global.isFileUploadEmpty = false;
+  global.beis_url_accessmanagement = "";
   global.isNotCsvOrExcel = false;
   global.isExcelFormat = true;
   global.isCsvFormat = false;

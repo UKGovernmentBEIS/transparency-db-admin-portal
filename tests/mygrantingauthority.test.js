@@ -22,6 +22,7 @@ const mockRequest = (sessionData, body) => ({
 test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   const req = mockRequest();
   const res = {};
+  global.beis_url_accessmanagement = "";
   request(app)
     .get("/mygrantingauthority", (req, res))
     .expect(200, done);

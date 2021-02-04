@@ -20,7 +20,7 @@ const mockRequest = (sessionData, body) => ({
 test("Unit testing for Login Reset password Test for GET call", (done) => {
   const req = mockRequest();
   const res = {};
-
+  global.beis_url_accessmanagement = "";
   request(app)
     .get("/loginresetpassword", (req, res))
     .expect(200, done);
@@ -30,7 +30,7 @@ test("Unit testing for Login Reset password Test for GET call", (done) => {
 test("Unit testing for Login Reset password test for Post call", (done) => {
   const req = mockRequest();
   const res = {};
-
+  global.beis_url_accessmanagement = "";
   request(app)
     .post("/loginresetpassword", (req, res))
     .expect(200, done);
