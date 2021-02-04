@@ -187,12 +187,8 @@ app.get("/", async(req, res) => {
     dashboard_roles = "Granting Authority Approver";
   }else if(id_token_json.roles.includes("e7f70439-02d4-4367-817e-52283a416ac3")){
     dashboard_roles = "Granting Authority Encoder";
-  }else if(id_token_json.roles.includes("4666e4f8-aa48-49c1-8de6-c322baa6de53")){
-    dashboard_ga_name = "test_ga_GrantingAuthorityEncoder";
-  }else if(id_token_json.roles.includes("00d2a3bb-d4ca-439b-b70b-98b657bbfd99")){
-    dashboard_ga_name = "test_ga_GrantingAuthorityApprover";
-  }else if(id_token_json.roles.includes("0e050820-e653-424a-a8ec-5357782c5a77")){
-    dashboard_ga_name = "test_ga_GrantingAuthorityAdministrator";
+  }else if(id_token_json.roles.includes("622bee03-1e79-435b-9320-e853c966a04c")){
+    dashboard_ga_name = "HMRC";
   }
 
   if (dashboard_roles == "BEIS Administrator") {
