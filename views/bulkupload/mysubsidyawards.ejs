@@ -115,8 +115,8 @@
           <form class="govuk-!-width-full govuk-padding-0" action="/subsidyawardsearch" method="POST">
 
             <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text" name="search_award_text"
-              aria-label="User input text box for Searching either Subsidy Measure Title, Subsidy Control number, or Granting Authority"
-              type="text" <% if(Award_search_text) {%> value="<%= Award_search_text%>" <% } %> />
+              aria-label="User input text box for Searching Subsidy Award" type="text" <% if(Award_search_text) {%>
+              value="<%= Award_search_text%>" <% } %> />
 
             <button class="govuk-button" data-module="govuk-button">
               Search
@@ -125,15 +125,13 @@
         </div>
         <div class="govuk-grid-column-one-quarter govuk-padding-0">
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
-            <select class="govuk-!-width-full govuk-select" name="sort"
+            <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
               aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
               <% if(awards_status  == "Filter results by status") { %>
               <option disabled value="Filter results by status" selected>Filter results by status </option>
               <% } else { %>
               <option disabled value="Filter results by status ">Filter results by status</option>
               <% }  %>
-
-
               <% if(awards_status  == "Awaiting Approval") { %>
               <option value="Awaiting Approval" selected>Awaiting Approval </option>
               <% } else { %>
@@ -166,6 +164,8 @@
 
             </select>
           </form>
+          <span id="status-message" style="display:none" aria-hidden="true">
+            On selecting, the page will reload and display the subsidy awards.</span>
         </div>
 
         <div class="govuk-grid-column-full">
@@ -186,7 +186,8 @@
             style="float:right;text-align: right;">
             <label>Results per page</label>
             <form class="govuk-padding-0 govuk-!-width-one-third" action="/awardspageperroute" method="GET">
-              <select class="govuk-select" name="sort" aria-label="Results per page" onchange="this.form.submit()">
+              <select class="govuk-select" aria-label="Results per page shown in current page"
+                aria-describedby="info-message" aria-autocomplete="list" name="sort" onchange="this.form.submit()">
                 <% if(frontend_totalRecordsPerPage  == 10) { %>
                 <option value="10" selected>10</option>
                 <% } else { %>
@@ -209,22 +210,11 @@
                 <% }  %>
               </select>
             </form>
+            <span id="info-message" style="display:none" aria-hidden="true">
+              On selecting, the page will reload and display the subsidy awards.</span>
           </div>
         </div>
-
-
       </div>
-
-
-
-
-
-      <!-- Body details header starts here -->
-
-
-      <!-- Body details header ends here -->
-
-
 
 
       <form action="/collectcheckbox" method="GET" novalidate="">
@@ -338,8 +328,8 @@
                 <td class="govuk-table__cell">
                   <div class="govuk-checkboxes">
                     <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input checkbox Subsidy_awardNo" id="Subsidy_awardNo"
-                        name="check[]" type="checkbox" value="Subsidy awardNo">
+                      <input class="govuk-checkboxes__input checkbox Subsidy_awardNo" name="check[]" type="checkbox"
+                        value="Subsidy awardNo">
                       <label class="govuk-label govuk-checkboxes__label" for="waste">
                         <a href="/subsidyawardfetch/?award=<%= item.awardNumber %>"><%= item.awardNumber %></a>
                       </label>
@@ -458,13 +448,11 @@
 
         </section>
       </form>
-
-
     </main>
   </div>
+  <%- include('../partials/footer.ejs') %>
 </body>
 
-<%- include('../partials/footer.ejs') %>
 <!-- 
 <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
 <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script> -->
