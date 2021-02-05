@@ -117,13 +117,12 @@
             <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text" name="search_award_text"
               aria-label="User input text box for Searching Subsidy Award" type="text" <% if(Award_search_text) {%>
               value="<%= Award_search_text%>" <% } %> />
-
             <button class="govuk-button" data-module="govuk-button">
               Search
             </button>
           </form>
         </div>
-        <div class="govuk-grid-column-one-quarter govuk-padding-0">
+        <div class="govuk-grid-column-one-third govuk-padding-0">
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
               aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
