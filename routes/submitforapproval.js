@@ -89,11 +89,47 @@ router.post("/", async (req, res) => {
     subsidyInstrumentOther: Subsidy_Instrument_Other_Global,
   };
 
-  var data = JSON.parse(JSON.stringify(addAwardRequest));
+
+  
+  const updateAwardRequest = {
+    awardNumber: Edit_Award_Number_global,
+    subsidyControlTitle: Subsidy_Measure_Title_Global,
+    subsidyControlNumber: Subsidy_Control_Number_Global,
+    nationalIdType: National_ID_Type_Global,
+    nationalId: National_ID_Number_Global,
+    beneficiaryName: Beneficiary_Name_Global,
+    orgSize: Size_of_the_Organisation_Global,
+    subsidyInstrument: Subsidy_Instrument_Global,
+    subsidyObjective: Subsidy_Objective_Global,
+    subsidyAmountRange: Subsidy_Full_Amount_Range_Global_Trim,
+    subsidyAmountExact: Subsidy_Element_Full_Amount_Global_Trim,
+    legalGrantingDate: subsidy_legal_granting_date,
+    grantingAuthorityName: Granting_Authority_Name_Global,
+    goodsOrServices: Goods_or_Services_Global,
+    spendingRegion: Spending_Region_Global,
+    spendingSector: Spending_Sector_Global,
+    subsidyObjectiveOther: Subsidy_Objective_Other_Global,
+    subsidyInstrumentOther: Subsidy_Instrument_Other_Global,
+  };
+
+  if (isCallfromEditAward)
+  {
+  var data = JSON.parse(JSON.stringify(updateAwardRequest));
   console.log("request :" + JSON.stringify(data));
+  } else {
+    var data = JSON.parse(JSON.stringify(addAwardRequest));
+    console.log("request :" + JSON.stringify(data));
+
+  }
 
   try {
-    const apidata = await axios.post(beis_url_publishing + "/addAward", data);
+
+    if (isCallfromEditAward) {
+    var apidata = await axios.put(beis_url_publishing + "/award", data);
+    } else {
+    var apidata = await axios.post(beis_url_publishing + "/addAward", data);
+    }
+
     console.log(`Status: ${apidata.status}`);
     API_response_code = `${apidata.status}`;
     console.log("API_response_code: " + API_response_code);
@@ -284,6 +320,7 @@ router.post("/", async (req, res) => {
         isAddSubsidyPrimarycall,
       });
     } else {
+      isCallfromEditAward = false;
       res.render("bulkupload/submitforapproval", {
         Subsidy_Control_Number_Global,
         Subsidy_Control_Number_Global_Substring,
