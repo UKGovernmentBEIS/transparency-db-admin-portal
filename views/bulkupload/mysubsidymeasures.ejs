@@ -63,26 +63,62 @@
       <!-- Body header ends here -->
 
       <div class="govuk-grid-row">
-        <div class="govuk-grid-column-full govuk-grid-row">
+        <div class="govuk-grid-column-full govuk-grid-row" id="subsidy_search_text">
           <label class="govuk-label">
             You can search for specific subsidy schemes by entering a subsidy scheme title, control number or granting
             authority.
           </label>
         </div>
-
+        
         <div class="govuk-grid-column-one-half">
-          <input class="govuk-input govuk-!-width-three-quarters" type="text">
-          <button class="govuk-button" data-module="govuk-button">
-            Search
-          </button>
+          <form action="/measuresearchroute" method="post" novalidate>
+              <!-- <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text" type="text">
+               -->
+              <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text"
+              type="text" aria-describedby="subsidy_search_text" <% if(Search_Text_Global) {%>
+              value="<%= Search_Text_Global%>" <% } %> />
+              
+              <button class="govuk-button" data-module="govuk-button">
+                Search
+              </button>
+          </form>
         </div>
-        <div class="govuk-grid-column-one-third govuk-form-group">
-          <select class="govuk-select govuk-!-width-full" name="sort">
-            <option value="">Active ()</option>
-            <option value="">Inactive ()</option>
-            <option value="" selected>Show all (46)</option>
-          </select>
+      
+
+        <div class="govuk-grid-column-one-quarter govuk-padding-0">
+          <form class="govuk-!-width-full govuk-padding-0" action="/measuresfilterroute" method="GET">
+            <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
+              aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
+              <% if(schemes_status  == "Filter results by status") { %>
+              <option disabled value="Filter results by status" selected>Filter results by status </option>
+              <% } else { %>
+              <option disabled value="Filter results by status ">Filter results by status</option>
+              <% }  %>
+              <% if(schemes_status  == "Active") { %>
+              <option value="Active" selected>Active (<%= searchschemes.activeScheme %>)</option>
+              <% } else { %>
+              <option value="Active">Active (<%= searchschemes.activeScheme %>)</option>
+              <% }  %>
+
+              <% if(schemes_status  == "Inactive") { %>
+              <option value="Inactive" selected>Inactive (<%= searchschemes.inactiveScheme %>)</option>
+              <% } else { %>
+              <option value="Inactive">Inactive (<%= searchschemes.inactiveScheme %>)</option>
+              <% }  %>
+
+              <% if(schemes_status == "Show all") { %>
+              <option value="Show all" selected>Show all (<%= searchschemes.allScheme %>) </option>
+              <% } else { %>
+              <option value="Show all">Show all (<%= searchschemes.allScheme %>)</option>
+              <% }  %>
+
+            </select>
+          </form>
+          <span id="status-message" style="display:none" aria-hidden="true">
+            On selecting, the page will reload and display the subsidy awards.</span>
         </div>
+
+
         <div class="govuk-grid-column-two-thirds govuk-form-group">
           <a href="/addsubsidymeasures"><button class="govuk-button" data-module="govuk-button">
               Add a new subsidy scheme
@@ -127,20 +163,119 @@
             </caption>
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header app-custom-class">Subsidy scheme name</th>
-                <th scope="col" class="govuk-table__header app-custom-class">Subsidy control no.</th>
-                <th scope="col" class="govuk-table__header app-custom-class">Granting authority</th>
-                <th scope="col" class="govuk-table__header app-custom-class">Start date</th>
-                <th scope="col" class="govuk-table__header app-custom-class">End date</th>
-                <th scope="col" class="govuk-table__header app-custom-class">Duration</th>
-                <th scope="col" class="govuk-table__header app-custom-class">Budget</th>
+                <th scope="col" class="govuk-table__header app-custom-class">
+                  <a href="/measuresortroute/?page=Scheme_Name" style="text-decoration: none">
+                    Subsidy scheme name
+                    <% if (subsidy_scheme_name_arrow == "upanddown" ) { %>
+                    <img id="subsidy_scheme_name_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Currently not sorted">
+                    <% } else if (subsidy_scheme_name_arrow == "downdecending" ) { %>
+                    <img id="subsidy_scheme_name_downarrow" src="/assets/images/DownArrow.jpg"
+                      alt="Currently sorted by Descending order">
+                    <% } else { %>
+                    <img id="subsidy_scheme_nameuparrow" src="/assets/images/UpArrow.jpg"
+                      alt="Currently sorted by Ascending order">
+                    <% } %>
+                  </a>
+                </th>
+
+                <th scope="col" class="govuk-table__header app-custom-class">
+                  <a href="/measuresortroute/?page=Control_Number" style="text-decoration: none">
+                    Subsidy control no.
+                    <% if (subsidy_control_no_arrow == "upanddown" ) { %>
+                    <img id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Currently not sorted">
+                    <% } else if (subsidy_control_no_arrow == "downdecending" ) { %>
+                    <img id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
+                      alt="Currently sorted by Descending order">
+                    <% } else { %>
+                    <img id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
+                      alt="Currently sorted by Ascending order">
+                    <% } %>
+                  </a>
+
+                </th>
+                <th scope="col" class="govuk-table__header app-custom-class">
+
+                  <a href="/measuresortroute/?page=Granting_Authority" style="text-decoration: none">
+                    Granting authority
+                    <% if (granting_authority_arrow == "upanddown" ) { %>
+                    <img id="granting_authority_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Currently not sorted">
+                    <% } else if (granting_authority_arrow == "downdecending" ) { %>
+                    <img id="granting_authority_downarrow" src="/assets/images/DownArrow.jpg"
+                      alt="Currently sorted by Descending order">
+                    <% } else { %>
+                    <img id="granting_authority_uparrow" src="/assets/images/UpArrow.jpg"
+                      alt="Currently sorted by Ascending order">
+                    <% } %>
+                  </a>
+
+
+                </th>
+                <th scope="col" class="govuk-table__header app-custom-class">
+                  <a href="/measuresortroute/?page=Start_Date" style="text-decoration: none">
+                    Start date
+                    <% if (start_date_arrow == "upanddown" ) { %>
+                    <img id="start_date_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Currently not sorted">
+                    <% } else if (start_date_arrow == "downdecending" ) { %>
+                    <img id="start_date_downarrow" src="/assets/images/DownArrow.jpg"
+                      alt="Currently sorted by Descending order">
+                    <% } else { %>
+                    <img id="start_date_uparrow" src="/assets/images/UpArrow.jpg"
+                      alt="Currently sorted by Ascending order">
+                    <% } %>
+                  </a>
+
+
+                </th>
+                <th scope="col" class="govuk-table__header app-custom-class">
+                  <a href="/measuresortroute/?page=End_Date" style="text-decoration: none">
+                    End date
+                    <% if (end_date_arrow == "upanddown" ) { %>
+                    <img id="end_date_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Currently not sorted">
+                    <% } else if (end_date_arrow == "downdecending" ) { %>
+                    <img id="end_date_downarrow" src="/assets/images/DownArrow.jpg"
+                      alt="Currently sorted by Descending order">
+                    <% } else { %>
+                    <img id="end_date_uparrow" src="/assets/images/UpArrow.jpg"
+                      alt="Currently sorted by Ascending order">
+                    <% } %>
+                  </a>
+
+                </th>
+                <th scope="col" class="govuk-table__header app-custom-class">
+                  <a href="/measuresortroute/?page=Duration" style="text-decoration: none">
+                    Duration
+                    <% if (duration_arrow == "upanddown" ) { %>
+                    <img id="duration_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Currently not sorted">
+                    <% } else if (duration_arrow == "downdecending" ) { %>
+                    <img id="duration_downarrow" src="/assets/images/DownArrow.jpg"
+                      alt="Currently sorted by Descending order">
+                    <% } else { %>
+                    <img id="duration_uparrow" src="/assets/images/UpArrow.jpg"
+                      alt="Currently sorted by Ascending order">
+                    <% } %>
+                  </a>
+                </th>
+                <th scope="col" class="govuk-table__header app-custom-class">
+                  <a href="/measuresortroute/?page=Budget" style="text-decoration: none">
+                    Budget
+                    <% if (budget_arrow == "upanddown" ) { %>
+                    <img id="budget_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Currently not sorted">
+                    <% } else if (budget_arrow == "downdecending" ) { %>
+                    <img id="budget_downarrow" src="/assets/images/DownArrow.jpg"
+                      alt="Currently sorted by Descending order">
+                    <% } else { %>
+                    <img id="budget_uparrow" src="/assets/images/UpArrow.jpg"
+                      alt="Currently sorted by Ascending order">
+                    <% } %>
+                  </a>
+                </th>
               </tr>
             </thead>
 
             <tbody class="govuk-table__body">
-              <% searchawards.schemes.forEach(function(item) { %>
+              <% searchschemes.schemes.forEach(function(item) { %>
               <tr>
-                <td class="govuk-table__cell"><a href="/editsubsidymeasure"> <%= item.subsidyMeasureTitle  %>
+                <td class="govuk-table__cell"><a href="/editreviewsubsidymeasure?scheme=<%= item.scNumber %>"> <%= item.subsidyMeasureTitle  %>
                   </a> </td>
                 <td class="govuk-table__cell"><%= item.scNumber %></td>
                 <td class="govuk-table__cell"><%= item.gaName %></td>

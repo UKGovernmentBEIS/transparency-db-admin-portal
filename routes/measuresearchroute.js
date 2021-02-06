@@ -7,22 +7,12 @@ const router = express.Router();
 const axios = require("axios");
 var request = require("request");
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
 
-  beis_url_publishing =
-  "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
-beis_url_accessmanagement =
-  "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
-beis_url_publicsearch =
-  "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
-beis_url_searchscheme =  
-  "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net";
-  
-console.log(beis_url_publishing);
-console.log(beis_url_accessmanagement);
-console.log(beis_url_publicsearch);
-console.log(beis_url_searchscheme);
+ var { search_text }  = req.body;
 
+  Search_Text_Global = search_text ;
+  console.log("Search_Text_Global :" + Search_Text_Global);
   frontend_totalRecordsPerPage = 10;
   subsidy_scheme_name_arrow = "upascending"
   subsidy_control_no_arrow = "upanddown";
@@ -42,8 +32,6 @@ console.log(beis_url_searchscheme);
   sorting_column = "[" + '"' + "subsidyMeasureTitle,asc" + '"' + "]";
   sorting_order_interium = sorting_column.replace(/^"(.*)"$/, "$1");
   sorting_order_pass = JSON.parse(sorting_order_interium);
-
-  Search_Text_Global ="";
 
   const data_request = {
     searchName: Search_Text_Global,

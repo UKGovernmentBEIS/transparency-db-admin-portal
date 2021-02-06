@@ -2,25 +2,25 @@ const express = require("express");
 const router = express.Router();
 
 router.post("/", (req, res) => {
-  isAddSubsidyPrimarycall = false;
-  GetMonthName = "";
-  SubsidyErrors = [];
-  SubsidyFocus = [];
-  Additem = 0;
-  SubsidyArraySize = 0;
-  var Subsidy_Measure_Title_Error = false;
-  var Subsidy_Adhoc_Error = false;
-  var Legal_Basis_Error = false;
-  var Granting_Authority_Name_Error = false;
-  var Granting_Authority_URL_Error = false;
-  var Granting_Authority_Policy_Error = false;
-  var Budget_Error = false;
-  var scheme_issued_start_year_Error = false;
-  var scheme_issued_start_month_Error = false;
-  var scheme_issued_start_day_Error = false;
-  var scheme_issued_end_year_Error = false;
-  var scheme_issued_end_month_Error = false;
-  var scheme_issued_end_day_Error = false;
+isAddSubsidyPrimarycall = false;
+GetMonthName = "";
+SubsidyErrors = [];
+SubsidyFocus = [];
+Additem = 0;
+SubsidyArraySize = 0;
+Subsidy_Measure_Title_Error = false;
+Subsidy_Adhoc_Error = false;
+Legal_Basis_Error = false;
+Granting_Authority_Name_Error = false;
+Granting_Authority_URL_Error = false;
+Granting_Authority_Policy_Error = false;
+Budget_Error = false;
+scheme_issued_start_year_Error = false;
+scheme_issued_start_month_Error = false;
+scheme_issued_start_day_Error = false;
+scheme_issued_end_year_Error = false;
+scheme_issued_end_month_Error = false;
+scheme_issued_end_day_Error = false;
 
   const {
     Subsidy_Adhoc,
@@ -39,10 +39,8 @@ router.post("/", (req, res) => {
     buttonvalue,
   } = req.body;
 
-  console.log("isAddSubsidyPrimarycall: " + isAddSubsidyPrimarycall);
 
   console.log("buttonvalue:" + buttonvalue);
-
   console.log("  Subsidy_Adhoc :" + Subsidy_Adhoc);
 
   Subsidy_Adhoc_Global = Subsidy_Adhoc;
@@ -117,7 +115,7 @@ router.post("/", (req, res) => {
 
   console.log("scheme_issued_start_month" + GetMonthName);
 
-  if (buttonvalue == "Continue") {
+  if (buttonvalue == "Update") {
     //Empty field validations
 
     if (!Subsidy_Measure_Title) {
@@ -259,7 +257,7 @@ router.post("/", (req, res) => {
       scheme_issued_end_month_Error ||
       scheme_issued_end_year_Error
     ) {
-      res.render("bulkupload/subsidymeasures-add", {
+      res.render("bulkupload/subsidymeasures-edit", {
         Subsidy_Measure_Title_Global,
         Subsidy_Adhoc_Global,
 
@@ -295,7 +293,7 @@ router.post("/", (req, res) => {
         isAddSubsidyPrimarycall,
       });
     } else {
-      res.render("bulkupload/subsidymeasure-reviewdetails", {
+      res.render("bulkupload/subsidymeasure-re-editreview", {
         Subsidy_Measure_Title_Global,
         Subsidy_Adhoc_Global,
         Legal_Basis_Global,
@@ -318,7 +316,7 @@ router.post("/", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  res.render("bulkupload/subsidymeasure-reviewdetails");
+  res.render("bulkupload/subsidymeasure-re-edit");
 });
 
 module.exports = router;

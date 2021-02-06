@@ -17,6 +17,9 @@ router.get("/", async (req, res) => {
   console.log("req.query.scheme: " + req.query.scheme);
   scnumber = req.query.scheme;
   console.log("scnumber : " + scnumber);
+  
+  scNumber_Global = scnumber ;
+
   var measureendpoint =
     beis_url_searchscheme + "/scheme/" + scnumber;
 
@@ -57,26 +60,10 @@ router.get("/", async (req, res) => {
       month.indexOf(date[1]) + 1 < 10
         ? "0" + (month.indexOf(date[1]) + 1)
         : month.indexOf(date[1]) + 1;
-        Scheme_Legal_Granting_End_Date_Day = date[0];
+        Scheme_Legal_Granting_End_Date_Day= date[0];
         Scheme_Legal_Granting_End_Date_Year = date[2];
 
-        SubsidyArraySize = 0;
-        
-        Subsidy_Measure_Title_Error = false;
-        Subsidy_Adhoc_Error = false;
-        Granting_Authority_Name_Error = false;
-        scheme_issued_start_day_Error = false;
-        scheme_issued_start_month_Error = false;
-        scheme_issued_start_year_Error = false;
-        Legal_Basis_Error = false;
-        Granting_Authority_URL_Error = false;
-        Granting_Authority_Policy_Error = false;
-        Budget_Error = false;
-        scheme_issued_end_day_Error = false;
-        scheme_issued_end_month_Error = false;
-        scheme_issued_end_year_Error = false;
-
-    res.render("bulkupload/subsidymeasures-edit");
+    res.render("bulkupload/subsidymeasure-editreview");
   } catch (err) {
     console.error(err);
   }

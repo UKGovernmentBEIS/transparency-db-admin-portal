@@ -17,9 +17,13 @@ router.post("/", async (req, res) => {
       "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
     beis_url_publicsearch =
       "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
+    beis_url_searchscheme =  
+      "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net";
+      
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
+    console.log(beis_url_searchscheme);
   } else if (Environment_variable == "env=integ") {
     beis_url_publishing =
       "https://integ-transparency-db-publishing-subsidies-service.azurewebsites.net";
