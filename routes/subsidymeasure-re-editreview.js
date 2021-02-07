@@ -257,7 +257,7 @@ scheme_issued_end_day_Error = false;
       scheme_issued_end_month_Error ||
       scheme_issued_end_year_Error
     ) {
-      res.render("bulkupload/subsidymeasures-edit", {
+      res.render("bulkupload/subsidymeasure-re-edit", {
         Subsidy_Measure_Title_Global,
         Subsidy_Adhoc_Global,
 

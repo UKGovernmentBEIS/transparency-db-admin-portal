@@ -162,6 +162,7 @@ router.post("/", (req, res) => {
       SubsidyFocus.push("#Granting_Authority_Policy");
       // Additem = Additem + 1;
     }
+
     if (!scheme_issued_start_day) {
       scheme_issued_start_day_Error = true;
       SubsidyErrors.push("     Enter the legal granting day of the date");
@@ -241,6 +242,87 @@ router.post("/", (req, res) => {
       SubsidyFocus.push("#scheme_issued_start_year");
       // Additem = Additem + 1;
     }
+
+    if (!scheme_issued_end_day) {
+      scheme_issued_end_day_Error = true;
+      SubsidyErrors.push("     Enter the legal granting day of the date");
+      SubsidyFocus.push("#scheme_issued_start_day");
+      // Additem = Additem + 1;
+    }
+
+    // day validation starts here
+
+    if (scheme_issued_end_day > 31 || scheme_issued_end_day < 1) {
+      scheme_issued_end_day_Error = true;
+      SubsidyErrors.push("     Enter the valid legal granting day of the date");
+      SubsidyFocus.push("#scheme_issued_start_day");
+      // Additem = Additem + 1;
+    }
+    
+    if (
+      scheme_issued_end_day == 31 &&
+      (scheme_issued_end_month == parseInt("02", 8) ||
+        scheme_issued_end_month == parseInt("04", 8) ||
+        scheme_issued_end_month == parseInt("06", 8) ||
+        scheme_issued_end_month == parseInt("09", 8) ||
+        scheme_issued_end_month == 11)
+    ) {
+      scheme_issued_end_day_Error = true;
+      SubsidyErrors.push("     Enter the valid day");
+      SubsidyFocus.push("#scheme_issued_start_day");
+      // Additem = Additem + 1;
+    }
+
+    if (
+      scheme_issued_end_day == 29 &&
+      scheme_issued_end_month == parseInt("02", 8)
+    ) {
+      if (
+        (scheme_issued_end_year % 4 == 0 &&
+          scheme_issued_end_year % 100 != 0) ||
+        scheme_issued_end_year % 400 == 0
+      ) {
+      } else {
+        scheme_issued_end_day_Error = true;
+        SubsidyErrors.push("     Enter the valid day");
+        SubsidyFocus.push("#scheme_issued_start_day");
+        // Additem = Additem + 1;
+      }
+    }
+
+    if (
+      scheme_issued_end_day == 30 &&
+      scheme_issued_end_month == parseInt("02", 8)
+    ) {
+      scheme_issued_end_day_Error = true;
+      SubsidyErrors.push("Enter the valid day");
+      SubsidyFocus.push("#scheme_issued_start_day");
+      // Additem = Additem + 1;
+    }
+
+    // day velidation ends here
+
+    if (!scheme_issued_end_month) {
+      scheme_issued_end_month_Error = true;
+      SubsidyErrors.push("     Enter the legal granting month of the date");
+      SubsidyFocus.push("#scheme_issued_start_month");
+      // Additem = Additem + 1;
+    }
+
+    if (scheme_issued_end_month > 12 || scheme_issued_end_month == 0) {
+      scheme_issued_end_month_Error = true;
+      SubsidyErrors.push("     Enter the legal granting month from 1 to 12");
+      SubsidyFocus.push("#scheme_issued_start_month");
+      // Additem = Additem + 1;
+    }
+
+    if (!scheme_issued_end_year) {
+      scheme_issued_end_year_Error = true;
+      SubsidyErrors.push("     Enter the legal granting year of the date");
+      SubsidyFocus.push("#scheme_issued_start_year");
+      // Additem = Additem + 1;
+    }
+
 
     var SubsidyArraySize = SubsidyErrors.length;
 

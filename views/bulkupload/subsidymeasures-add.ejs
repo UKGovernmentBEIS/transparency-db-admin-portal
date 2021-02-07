@@ -193,8 +193,8 @@
                                             this subsidy scheme is related to.</div>
                                         <% if( Granting_Authority_URL_Error ){ %>
                                         <span class="govuk-error-message" id="Granting_Authority_URL_Error">
-                                            <span class="govuk-visually-hidden">Error:</span> Enter a valid legal
-                                            basis
+                                            <span class="govuk-visually-hidden">Error:</span> Enter a valid granting authority policy URL
+                                            
                                         </span>
                                         <% }  %>
                                         <input class="govuk-input " name="Granting_Authority_URL"
@@ -215,7 +215,7 @@
                                             <% if( Granting_Authority_Policy_Error ){ %>
                                             <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
                                                 <span class="govuk-visually-hidden">Error:</span> Enter a valid
-                                                policy page description
+                                                granting authority policy page description
                                             </span>
                                             <% }  %>
                                             <input class="govuk-input" id="Granting_Authority_Policy"
@@ -236,8 +236,8 @@
                                                     For other subsidy schemes, enter the overall budget.</div>
                                                 <% if( Budget_Error ){ %>
                                                 <span class="govuk-error-message" id="Budget_Error">
-                                                    <span class="govuk-visually-hidden">Error:</span> Enter a valid
-                                                    policy page description
+                                                    <span class="govuk-visually-hidden">Error:</span> Enter a valid budget
+                                                    
                                                 </span>
                                                 <% }  %>
                                                 <div class="govuk-input__wrapper">
@@ -364,7 +364,7 @@
                                                                         for="scheme_issued_end_month">
                                                                         Month
                                                                     </label>
-                                                                    <% if( scheme_issued_start_month_Error ){ %>
+                                                                    <% if( scheme_issued_end_month_Error ){ %>
                                                                     <span class="govuk-error-message" id="Budget_Error">
                                                                         <span
                                                                             class="govuk-visually-hidden">Error:</span>
