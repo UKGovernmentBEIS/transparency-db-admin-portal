@@ -96,7 +96,7 @@
         </nav>
       </div>
     </div>
-    <div class="govuk-breadcrumbs ">
+    <!-- <div class="govuk-breadcrumbs ">
       <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
           <a class="govuk-breadcrumbs__link" href="#">Dashboard</a>
@@ -105,13 +105,13 @@
           <a class="govuk-breadcrumbs__link" href="#">Granting Authority</a>
         </li>
       </ol>
-    </div>
+    </div> -->
     <main class="govuk-main-wrapper" id="main-content" role="main">
       <!-- <div class="govuk-tabs" data-module="govuk-tabs">
         <div id="myGA" class="govuk-tabs__panel"> -->
-      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-margin-bottom">
-        <h1 class="govuk-fieldset__heading">Granting Authorities</h1>
-      </legend>
+      <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-margin-bottom"> -->
+      <h1 class="govuk-heading-xl">Granting Authorities</h1>
+      <!-- </legend> -->
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full">
@@ -123,8 +123,8 @@
           <div class="govuk-grid-column-three-quarters govuk-filter-input-position-div govuk-p-0">
             <div class="govuk-grid-column-one-half govuk-p-0">
               <form action="/mygrantingauthority" method="POST">
-                <input class="govuk-input govuk-!-width-three-quarters" id="filter-input" name="one-half" type="text"
-                  autocomplete="off" />
+                <input class="govuk-input govuk-!-width-three-quarters" id="filter-input" name="grantingAuthorityName"
+                  type="text" autocomplete="off" />
                 <!-- <span class="clear-all">
                   <img src="/assets/images/u1733.svg" alt="" />
                 </span> -->
@@ -133,36 +133,72 @@
                 </button>
               </form>
             </div>
-            <div class="govuk-grid-column-one-half">
-              <!-- <select class="govuk-select" name="sort" style="width: 100%">
+
+            <!-- <select class="govuk-select" name="sort" style="width: 100%">
                 <option value="" disabled selected>Only show me...</option>
                 <option value="">Draft</option>
                 <option value="">Finalized</option>
                 <option value="">Published</option>
                 <option value="">Deactivated</option>
               </select> -->
-              <select class="govuk-select" name="sort" style="width: 100%">
-
-                <option value="">Active</option>
-                <option value="">Inactive</option>
-                <option value="" selected>Show all(72)</option>
+            <form class="govuk-grid-column-one-half" action="/mygrantingauthority" method="POST">
+              <select class="govuk-select" name="sort" style="width: 100%" onchange="this.form.submit()"
+                aria-label="Results as per status shown in current page" aria-describedby="info-message"
+                aria-autocomplete="list">
+                <% if(sort == 'Active') { %>
+                <option value="Active" selected>Active </option>
+                <% } else {%>
+                <option value="Active">Active </option>
+                <% } %>
+                <% if(sort == 'Inactive') { %>
+                <option value="Inactive" selected>Inactive </option>
+                <% } else {%>
+                <option value="Inactive">Inactive </option>
+                <% } %>
+                <% if(sort == '') { %>
+                <option value="" selected>Show all </option>
+                <% } else {%>
+                <option value="">Show all </option>
+                <% } %>
+                <!-- <option value="">Inactive </option>
+                <option value="" selected>Show all</option> -->
               </select>
-            </div>
+            </form>
+
           </div>
-          <div class="govuk-grid-column-one-quarter sorting-div govuk-p-0" style="text-align: right;">
+          <form action="/mygrantingauthority" method="POST" class="govuk-grid-column-one-quarter sorting-div govuk-p-0"
+            style="text-align: right;">
             <label>Results per page</label>
-            <select class="govuk-select" id="sort" name="sort">
+            <select class="govuk-select" name="totalRecordsPerPage" onchange="this.form.submit()">
+              <% if(frontend_totalRecordsPerPage == '10') { %>
+              <option value="10" selected>10</option>
+              <% } else {%>
               <option value="10">10</option>
+              <% } %>
+              <% if(frontend_totalRecordsPerPage == '20') { %>
+              <option value="20" selected>20</option>
+              <% } else {%>
               <option value="20">20</option>
+              <% } %>
+              <% if(frontend_totalRecordsPerPage == '50') { %>
+              <option value="50" selected>50</option>
+              <% } else {%>
               <option value="50">50</option>
+              <% } %>
+              <% if(frontend_totalRecordsPerPage == '100') { %>
+              <option value="100" selected>100</option>
+              <% } else {%>
               <option value="100">100</option>
+              <% } %>
             </select>
-          </div>
-          <a href="/addgrantingauthority" class="govuk-button govuk-button--success" id="getFilterTags">
+          </form>
+          <a href="/addgrantingauthority?totalrecords=<%=totalrows%>" class="govuk-button govuk-button--success"
+            id="getFilterTags">
             Add a new granting authority
           </a>
           <!-- </form>  -->
         </div>
+
       </div>
       <!-- <div class="filter-list">
         <ul>
@@ -191,7 +227,7 @@
                   </a>
                 </p>
               </th>
-              <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
+              <th scope="col" class="govuk-table__header app-custom-class govuk-!-width-one-quarter" aria-sort="none">
                 <p style="position: relative;margin: 0;"> Granting Authority name
                   <a href="#" style="float: right;">
                     <svg version="1.1" width="8px" height="8px" class="uparrow">
@@ -222,14 +258,23 @@
             </tr>
           </thead>
           <tbody class="govuk-table__body">
+            <% grantingAuthority.gaList.forEach(function(item) { %>
             <tr>
-              <td style="text-align: center;"><a href="/editgrantingauthority">1</a></td>
-              <td><a href="/editgrantingauthority">Adur District Council</a></td>
-              <td>Albert Einstein</td>
-              <td>Draft</td>
-              <td>13:23 - 11 November 2020</td>
-              <td>11 November 2020</td>
+              <td style="text-align: center;" class="govuk-table__cell"><a
+                  href="/editreviewgrantingauthority?ga=<%=item.grantingAuthorityId %>_<%= item.grantingAuthorityName %>"><%=item.grantingAuthorityId %></a>
+              </td>
+              <td class="govuk-table__cell"><a
+                  href="/editreviewgrantingauthority?ga=<%=item.grantingAuthorityId %>_<%= item.grantingAuthorityName %>"><%= item.grantingAuthorityName %></a>
+              </td>
+              <td class="govuk-table__cell"><%= item.approvedBy %></td>
+              <td class="govuk-table__cell"><%= item.status %></td>
+              <!-- <td>13:23 - 11 November 2020</td>
+              <td>11 November 2020</td> -->
+              <td class="govuk-table__cell">
+                <%= item.createdTimestamp %></td>
+              <td class="govuk-table__cell"><%= item.lastModifiedTimestamp %></td>
             </tr>
+            <% }) %>
           </tbody>
         </table>
       </section>
@@ -238,7 +283,20 @@
       <!-- ********************** -->
 
       <div id="pagination1" class="pagination">
+        <% if (pageCount > 1) { %>
+
+        <div class="col first">
+          <p class="pagination-label">
+            Showing <span><%= start_record %></span> - <span><%= end_record %></span> of
+            <span><%= totalrows %></span>
+          </p>
+        </div>
+
+        <% } %>
         <div class="col last">
+          <% if (pageCount > 1) { %>
+
+          <% if (current_page_active != 1) { %>
           <svg version="1.1" width="19px" height="30px">
             <defs>
               <mask fill="white" id="clip2">
@@ -258,30 +316,44 @@
             </g>
           </svg>
           <a>Previous Page</a>
-          <a class="active">1</a>
-          <a>2</a>
-          <a>3</a>
-          <a>4</a>
-          <a>Next Page</a>
+          <% } %>
+          <% for (var i = start_page; i <= end_page; i++) { %>
+          <% if (current_page_active != i ) { %>
+          <a id="paginationlink<%= i %>" aria-label="go to subsidy awards search results page <%= i %>"
+            class="round btn-page" href="/awardspageroute/?page=<%= i %>"><%= i %></a>
+          <% } else { %>
+          <a id="paginationlink<%= i %>" aria-label="go to subsidy awards search results page <%= i %>"
+            class="round btn-page active" href="/awardspageroute/?page=<%= i %>"><%= i %></a>
+          <% } %>
+          <% } %>
 
-          <svg version="1.1" width="19px" height="30px" class="left-arrow">
-            <defs>
-              <mask fill="white" id="clip3">
+          <% if (current_page_active != pageCount) { %>
+          <a href="/awardspageroute/?page=<%= next_page %>" aria-label="go to subsidy awards search results next page"
+            id="paginationlink_next_page" class="next round">Next Page</a>
+          <a href="/awardspageroute/?page=<%= pageCount %>" aria-label="go to subsidy awards search results last page"
+            id="paginationlink_last_page" class="last round">
+            <svg version="1.1" width="19px" height="30px" class="left-arrow">
+              <defs>
+                <mask fill="white" id="clip3">
+                  <path
+                    d="M 18.5224184782609 8.84467265725289  C 18.8408061594203 9.14420196833547  19 9.52931108258451  19 10  C 19 10.4621309370988  18.8408061594203 10.8515190415062  18.5224184782609 11.1681643132221  L 10.1195652173913 19.5250320924262  C 9.78396739130435 19.8416773641421  9.3924365942029 20  8.94497282608696 20  C 8.50611413043478 20  8.11888586956522 19.8416773641421  7.78328804347826 19.5250320924262  L 6.81521739130435 18.5622593068036  C 6.48822463768116 18.2370560547711  6.32472826086957 17.8476679503637  6.32472826086957 17.3940949935815  C 6.32472826086957 16.9405220367993  6.48822463768116 16.551133932392  6.81521739130435 16.2259306803594  L 10.5971467391304 12.4646983311938  L 1.5101902173913 12.4646983311938  C 1.06272644927536 12.4646983311938  0.69916213768116 12.3042362002567  0.419497282608696 11.9833119383825  C 0.139832427536232 11.6623876765083  0 11.2751390671801  0 10.8215661103979  L 0 9.17843388960205  C 0 8.72486093281985  0.139832427536232 8.33761232349166  0.419497282608696 8.01668806161746  C 0.69916213768116 7.69576379974326  1.06272644927536 7.53530166880616  1.5101902173913 7.53530166880616  L 10.5971467391304 7.53530166880616  L 6.81521739130435 3.7612323491656  C 6.48822463768116 3.45314505776637  6.32472826086957 3.06803594351733  6.32472826086957 2.60590500641849  C 6.32472826086957 2.14377406931964  6.48822463768116 1.7586649550706  6.81521739130435 1.45057766367137  L 7.78328804347826 0.487804878048781  C 8.11028079710145 0.162601626016259  8.49750905797101 0  8.94497282608696 0  C 9.40104166666667 0  9.79257246376812 0.162601626016259  10.1195652173913 0.487804878048781  L 18.5224184782609 8.84467265725289  Z "
+                    fill-rule="evenodd" />
+                </mask>
+              </defs>
+              <g transform="matrix(1 0 0 1 -930 -1230 )">
                 <path
                   d="M 18.5224184782609 8.84467265725289  C 18.8408061594203 9.14420196833547  19 9.52931108258451  19 10  C 19 10.4621309370988  18.8408061594203 10.8515190415062  18.5224184782609 11.1681643132221  L 10.1195652173913 19.5250320924262  C 9.78396739130435 19.8416773641421  9.3924365942029 20  8.94497282608696 20  C 8.50611413043478 20  8.11888586956522 19.8416773641421  7.78328804347826 19.5250320924262  L 6.81521739130435 18.5622593068036  C 6.48822463768116 18.2370560547711  6.32472826086957 17.8476679503637  6.32472826086957 17.3940949935815  C 6.32472826086957 16.9405220367993  6.48822463768116 16.551133932392  6.81521739130435 16.2259306803594  L 10.5971467391304 12.4646983311938  L 1.5101902173913 12.4646983311938  C 1.06272644927536 12.4646983311938  0.69916213768116 12.3042362002567  0.419497282608696 11.9833119383825  C 0.139832427536232 11.6623876765083  0 11.2751390671801  0 10.8215661103979  L 0 9.17843388960205  C 0 8.72486093281985  0.139832427536232 8.33761232349166  0.419497282608696 8.01668806161746  C 0.69916213768116 7.69576379974326  1.06272644927536 7.53530166880616  1.5101902173913 7.53530166880616  L 10.5971467391304 7.53530166880616  L 6.81521739130435 3.7612323491656  C 6.48822463768116 3.45314505776637  6.32472826086957 3.06803594351733  6.32472826086957 2.60590500641849  C 6.32472826086957 2.14377406931964  6.48822463768116 1.7586649550706  6.81521739130435 1.45057766367137  L 7.78328804347826 0.487804878048781  C 8.11028079710145 0.162601626016259  8.49750905797101 0  8.94497282608696 0  C 9.40104166666667 0  9.79257246376812 0.162601626016259  10.1195652173913 0.487804878048781  L 18.5224184782609 8.84467265725289  Z "
-                  fill-rule="evenodd" />
-              </mask>
-            </defs>
-            <g transform="matrix(1 0 0 1 -930 -1230 )">
-              <path
-                d="M 18.5224184782609 8.84467265725289  C 18.8408061594203 9.14420196833547  19 9.52931108258451  19 10  C 19 10.4621309370988  18.8408061594203 10.8515190415062  18.5224184782609 11.1681643132221  L 10.1195652173913 19.5250320924262  C 9.78396739130435 19.8416773641421  9.3924365942029 20  8.94497282608696 20  C 8.50611413043478 20  8.11888586956522 19.8416773641421  7.78328804347826 19.5250320924262  L 6.81521739130435 18.5622593068036  C 6.48822463768116 18.2370560547711  6.32472826086957 17.8476679503637  6.32472826086957 17.3940949935815  C 6.32472826086957 16.9405220367993  6.48822463768116 16.551133932392  6.81521739130435 16.2259306803594  L 10.5971467391304 12.4646983311938  L 1.5101902173913 12.4646983311938  C 1.06272644927536 12.4646983311938  0.69916213768116 12.3042362002567  0.419497282608696 11.9833119383825  C 0.139832427536232 11.6623876765083  0 11.2751390671801  0 10.8215661103979  L 0 9.17843388960205  C 0 8.72486093281985  0.139832427536232 8.33761232349166  0.419497282608696 8.01668806161746  C 0.69916213768116 7.69576379974326  1.06272644927536 7.53530166880616  1.5101902173913 7.53530166880616  L 10.5971467391304 7.53530166880616  L 6.81521739130435 3.7612323491656  C 6.48822463768116 3.45314505776637  6.32472826086957 3.06803594351733  6.32472826086957 2.60590500641849  C 6.32472826086957 2.14377406931964  6.48822463768116 1.7586649550706  6.81521739130435 1.45057766367137  L 7.78328804347826 0.487804878048781  C 8.11028079710145 0.162601626016259  8.49750905797101 0  8.94497282608696 0  C 9.40104166666667 0  9.79257246376812 0.162601626016259  10.1195652173913 0.487804878048781  L 18.5224184782609 8.84467265725289  Z "
-                fill-rule="nonzero" fill="#1d70b8" stroke="none" transform="matrix(1 0 0 1 930 1241 )" />
-              <path
-                d="M 18.5224184782609 8.84467265725289  C 18.8408061594203 9.14420196833547  19 9.52931108258451  19 10  C 19 10.4621309370988  18.8408061594203 10.8515190415062  18.5224184782609 11.1681643132221  L 10.1195652173913 19.5250320924262  C 9.78396739130435 19.8416773641421  9.3924365942029 20  8.94497282608696 20  C 8.50611413043478 20  8.11888586956522 19.8416773641421  7.78328804347826 19.5250320924262  L 6.81521739130435 18.5622593068036  C 6.48822463768116 18.2370560547711  6.32472826086957 17.8476679503637  6.32472826086957 17.3940949935815  C 6.32472826086957 16.9405220367993  6.48822463768116 16.551133932392  6.81521739130435 16.2259306803594  L 10.5971467391304 12.4646983311938  L 1.5101902173913 12.4646983311938  C 1.06272644927536 12.4646983311938  0.69916213768116 12.3042362002567  0.419497282608696 11.9833119383825  C 0.139832427536232 11.6623876765083  0 11.2751390671801  0 10.8215661103979  L 0 9.17843388960205  C 0 8.72486093281985  0.139832427536232 8.33761232349166  0.419497282608696 8.01668806161746  C 0.69916213768116 7.69576379974326  1.06272644927536 7.53530166880616  1.5101902173913 7.53530166880616  L 10.5971467391304 7.53530166880616  L 6.81521739130435 3.7612323491656  C 6.48822463768116 3.45314505776637  6.32472826086957 3.06803594351733  6.32472826086957 2.60590500641849  C 6.32472826086957 2.14377406931964  6.48822463768116 1.7586649550706  6.81521739130435 1.45057766367137  L 7.78328804347826 0.487804878048781  C 8.11028079710145 0.162601626016259  8.49750905797101 0  8.94497282608696 0  C 9.40104166666667 0  9.79257246376812 0.162601626016259  10.1195652173913 0.487804878048781  L 18.5224184782609 8.84467265725289  Z "
-                stroke-width="2" stroke="#ffffff" fill="none" transform="matrix(1 0 0 1 930 1241 )"
-                mask="url(#clip3)" />
-            </g>
-          </svg>
+                  fill-rule="nonzero" fill="#1d70b8" stroke="none" transform="matrix(1 0 0 1 930 1241 )" />
+                <path
+                  d="M 18.5224184782609 8.84467265725289  C 18.8408061594203 9.14420196833547  19 9.52931108258451  19 10  C 19 10.4621309370988  18.8408061594203 10.8515190415062  18.5224184782609 11.1681643132221  L 10.1195652173913 19.5250320924262  C 9.78396739130435 19.8416773641421  9.3924365942029 20  8.94497282608696 20  C 8.50611413043478 20  8.11888586956522 19.8416773641421  7.78328804347826 19.5250320924262  L 6.81521739130435 18.5622593068036  C 6.48822463768116 18.2370560547711  6.32472826086957 17.8476679503637  6.32472826086957 17.3940949935815  C 6.32472826086957 16.9405220367993  6.48822463768116 16.551133932392  6.81521739130435 16.2259306803594  L 10.5971467391304 12.4646983311938  L 1.5101902173913 12.4646983311938  C 1.06272644927536 12.4646983311938  0.69916213768116 12.3042362002567  0.419497282608696 11.9833119383825  C 0.139832427536232 11.6623876765083  0 11.2751390671801  0 10.8215661103979  L 0 9.17843388960205  C 0 8.72486093281985  0.139832427536232 8.33761232349166  0.419497282608696 8.01668806161746  C 0.69916213768116 7.69576379974326  1.06272644927536 7.53530166880616  1.5101902173913 7.53530166880616  L 10.5971467391304 7.53530166880616  L 6.81521739130435 3.7612323491656  C 6.48822463768116 3.45314505776637  6.32472826086957 3.06803594351733  6.32472826086957 2.60590500641849  C 6.32472826086957 2.14377406931964  6.48822463768116 1.7586649550706  6.81521739130435 1.45057766367137  L 7.78328804347826 0.487804878048781  C 8.11028079710145 0.162601626016259  8.49750905797101 0  8.94497282608696 0  C 9.40104166666667 0  9.79257246376812 0.162601626016259  10.1195652173913 0.487804878048781  L 18.5224184782609 8.84467265725289  Z "
+                  stroke-width="2" stroke="#ffffff" fill="none" transform="matrix(1 0 0 1 930 1241 )"
+                  mask="url(#clip3)" />
+              </g>
+            </svg></a>
+          <% } %>
+          <% } %>
+
+
         </div>
       </div>
       <!-- ********************** -->

@@ -76,7 +76,8 @@
 
                     </h2>
                     <a rel="external" aria-label="Change granting authority details"
-                        class="govuk-link head-right govuk-relative-position" href="/editgrantingauthority">
+                        class="govuk-link head-right govuk-relative-position"
+                        href="/addgrantingauthority?change=<%=grantingAuthorityID_Global%>">
                         <p>Change </p>
                     </a>
                 </div>
@@ -87,7 +88,7 @@
                         Granting autority ID
                     </dt>
                     <dd class="govuk-summary-list__value">
-
+                        <%=grantingAuthorityID_Global%>
                     </dd>
 
                 </div>
@@ -105,9 +106,10 @@
 
             <!-- <form action="/submitforapproval" method="post" novalidate> -->
 
-            <a class="govuk-button" href="/editgrantingauthority" data-module="govuk-button">
-                Edit granting authority
+            <a class="govuk-button" href="/mygrantingauthority" data-module="govuk-button">
+                Back to granting authority list
             </a>
+
             <a class="govuk-button" href="/deactivategrantingauthority" data-module="govuk-button">
                 Deactivate granting authority
             </a>
