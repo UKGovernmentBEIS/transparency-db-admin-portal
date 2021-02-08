@@ -75,35 +75,43 @@
         <h1 class="govuk-fieldset__heading">Edit Granting Authorities</h1>
       </legend>
       <div class="govuk-grid-row">
-        <div class="govuk-grid-column-three-quarters govuk-form-group">
-          <!-- <form action="/filtersearch" method="POST" > -->
-          <p>Granting Authority ID</p>
-          <input class="govuk-input govuk-input--width-2" disabled id="width-2" name="width-2" type="text" />
-          <!-- </form>  -->
-        </div>
+        <form action="/editreviewgrantingauthority" method="POST">
+          <div class="govuk-grid-column-three-quarters govuk-form-group">
+            <!-- <form action="/filtersearch" method="POST" > -->
+            <p>Granting Authority ID</p>
+            <input class="govuk-input govuk-input--width-2" value="<%= grantingAuthorityID_Global%>" disabled
+              name="gaId" type="text" />
+            <!-- </form>  -->
+          </div>
 
-        <div class="govuk-grid-column-one-half govuk-form-group">
-          <!-- <form action="/filtersearch" method="POST" > -->
-          <p>Granting Authority Name</p>
-          <input class="govuk-input" id="width-2" name="width-2" type="text" />
-          <!-- </form>  -->
-        </div>
-        <div class="govuk-grid-column-three-quarters govuk-action-buttons">
-          <form action="/mygrantingauthority">
+          <div class="govuk-grid-column-one-half govuk-form-group">
+            <!-- <form action="/filtersearch" method="POST" > -->
+            <p>Granting Authority Name</p>
+            <input class="govuk-input" value="<%= grantingAuthorityName_Global%>" name="gaName" type="text" />
+            <!-- </form>  -->
+          </div>
+          <div class="govuk-grid-column-full">
+
+            <!-- <input type="hidden" value="<%= grantingAuthorityName_Global %>" name="gaName">
+            <input type="hidden" value="<%= grantingAuthorityID_Global %>" name="gaId"> -->
             <button class="govuk-button govuk-button--success">
-              Save Changes
+              Continue
             </button>
-            <button class="govuk-button govuk-button--warning">
-              Deactivate
-            </button>
-            <button class="govuk-button govuk-button--secondary">
-              Cancel
-            </button>
-          </form>
-        </div>
-      </div>
 
-    </main>
+            <a href="/mygrantingauthority" class="govuk-link govuk-cancel-button-link" id="mylink">
+              Cancel
+            </a>
+          </div>
+        </form>
+        <!-- <button class="govuk-button govuk-button--warning">
+              Deactivate
+            </button> -->
+
+
+      </div>
+  </div>
+
+  </main>
   </div>
 
   <%- include('../partials/footer.ejs') %>

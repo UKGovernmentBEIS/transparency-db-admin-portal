@@ -25,8 +25,9 @@ router.get("/", async (req, res) => {
     );
     const sort = "";
     var maxGAId = [];
+    var grantingAuthorityName = "";
     API_response_code = `${apidata.status}`;
-    grantingAuthority = apidata.data;
+    grantingAuthorityList = apidata.data;
     totalrows = grantingAuthority.totalSearchResults;
     apidata.data.gaList.forEach(function (item) {
       maxGAId.push(item.grantingAuthorityId);
@@ -55,8 +56,9 @@ router.get("/", async (req, res) => {
       next_page,
       nextId,
       start_record,
-      grantingAuthority,
+      grantingAuthorityList,
       sort,
+      grantingAuthorityName,
       end_record,
       totalrows,
       current_page_active,
@@ -106,8 +108,8 @@ router.post("/", async (req, res) => {
     );
     console.log("apidata", apidata);
     API_response_code = `${apidata.status}`;
-    grantingAuthority = apidata.data;
-    totalrows = grantingAuthority.totalSearchResults;
+    grantingAuthorityList = apidata.data;
+    totalrows = grantingAuthorityList.totalSearchResults;
 
     pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
     // console.log("totalrows :" + totalrows);
@@ -126,7 +128,7 @@ router.post("/", async (req, res) => {
       end_page = 9;
     }
     var maxGAId = [];
-    grantingAuthority.gaList.forEach(function (item) {
+    grantingAuthorityList.gaList.forEach(function (item) {
       maxGAId.push(item.grantingAuthorityId);
     });
     var nextId = Math.max(...maxGAId);
@@ -137,8 +139,9 @@ router.post("/", async (req, res) => {
       start_record,
       nextId,
       end_record,
+      grantingAuthorityName,
       sort,
-      grantingAuthority,
+      grantingAuthorityList,
       totalrows,
       current_page_active,
       frontend_totalRecordsPerPage,

@@ -114,6 +114,7 @@ app.locals.dashboardawards;
 app.locals.awardnumber;
 app.locals.fetchawarddetails;
 app.locals.Award_search_URL;
+app.locals.grantingAuthorityPublish_Global;
 
 app.locals.Award_selected_status;
 app.locals.awards_status;

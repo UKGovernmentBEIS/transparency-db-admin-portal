@@ -23,6 +23,107 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   const req = mockRequest();
   const res = {};
   global.beis_url_accessmanagement = "";
+  global.pageCount = "";
+  global.totalRecordsPerPage = "";
+  global.sort = "";
+  global.previous_page = "";
+  global.next_page = "";
+  global.start_record = "";
+  global.nextId = "";
+  global.end_record = "";
+  global.sort = "";
+  global.totalrows = "";
+  global.current_page_active = "";
+  global.frontend_totalRecordsPerPage = "";
+  global.grantingAuthorityName = "";
+  global.grantingAuthorityList = {
+    gaList: [
+      {
+        grantingAuthorityId: 2,
+        grantingAuthorityName: "0",
+        approvedBy: "£500,000 - £1,000,000",
+        status: "Research and development",
+        createdTimestamp: "Grant Assistance for the Historic Environment",
+        lastModifiedTimestamp: "Published",
+      },
+      ,
+    ],
+  };
+
+  axios.post.mockResolvedValue({
+    status: 200,
+    data: {
+      totalSearchResults: 10,
+      currentPage: 1,
+      totalPages: 1,
+      gaList: [
+        {
+          grantingAuthorityId: 2,
+          grantingAuthorityName: "0",
+          approvedBy: "£500,000 - £1,000,000",
+          status: "Research and development",
+          createdTimestamp: "Grant Assistance for the Historic Environment",
+          lastModifiedTimestamp: "Published",
+        },
+      ],
+    },
+  });
+
+  request(app)
+    .post("/mygrantingauthority", (req, res))
+    .expect(200, done);
+});
+
+test("Unit testing for BEIS Admin route Test for POST call", (done) => {
+  const req = mockRequest();
+  const res = {};
+  global.beis_url_accessmanagement = "";
+  global.pageCount = "";
+  global.totalRecordsPerPage = "";
+  global.sort = "";
+  global.previous_page = "";
+  global.next_page = "";
+  global.start_record = "";
+  global.nextId = "";
+  global.end_record = "";
+  global.sort = "";
+  global.totalrows = "";
+  global.current_page_active = "";
+  global.frontend_totalRecordsPerPage = "";
+  global.grantingAuthorityName = "";
+  global.grantingAuthorityList = {
+    gaList: [
+      {
+        grantingAuthorityId: 2,
+        grantingAuthorityName: "0",
+        approvedBy: "£500,000 - £1,000,000",
+        status: "Research and development",
+        createdTimestamp: "Grant Assistance for the Historic Environment",
+        lastModifiedTimestamp: "Published",
+      },
+      ,
+    ],
+  };
+
+  axios.post.mockResolvedValue({
+    status: 200,
+    data: {
+      totalSearchResults: 10,
+      currentPage: 1,
+      totalPages: 1,
+      gaList: [
+        {
+          grantingAuthorityId: 2,
+          grantingAuthorityName: "0",
+          approvedBy: "£500,000 - £1,000,000",
+          status: "Research and development",
+          createdTimestamp: "Grant Assistance for the Historic Environment",
+          lastModifiedTimestamp: "Published",
+        },
+      ],
+    },
+  });
+
   request(app)
     .get("/mygrantingauthority", (req, res))
     .expect(200, done);

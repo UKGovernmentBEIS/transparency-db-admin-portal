@@ -10,8 +10,6 @@ router.get("/", (req, res) => {
   console.log("totalrecords", req.query);
   // req.query = JSON.parse(JSON.stringify(req.query));
   if (req.query.hasOwnProperty("change")) {
-    // const change = req.query.change.split("_");
-    // if (change[0] == "yes") {
     const grantingAuthorityID_Global = req.query.change;
     console.log("grantingAuthorityID_Global", grantingAuthorityID_Global);
     console.log("grantingAuthorityName_Global", grantingAuthorityName_Global);
@@ -19,7 +17,6 @@ router.get("/", (req, res) => {
       grantingAuthorityID_Global,
       grantingAuthorityName_Global,
     });
-    // }
   } else {
     const grantingAuthorityID_Global = parseInt(req.query.totalrecords) + 1;
     grantingAuthorityName_Error = "";

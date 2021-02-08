@@ -58,7 +58,7 @@
       </ul>
     </div> -->
 
-    <div class="govuk-grid-row govuk-form-group">
+    <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
         <nav class="govuk-fieldset__legend--l " aria-label="Sub navigation">
           <ul class="govuk-sub-navigation__list">
@@ -124,7 +124,7 @@
             <div class="govuk-grid-column-one-half govuk-p-0">
               <form action="/mygrantingauthority" method="POST">
                 <input class="govuk-input govuk-!-width-three-quarters" id="filter-input" name="grantingAuthorityName"
-                  type="text" autocomplete="off" />
+                  type="text" value="<%= grantingAuthorityName%>" autocomplete="off" />
                 <!-- <span class="clear-all">
                   <img src="/assets/images/u1733.svg" alt="" />
                 </span> -->
@@ -258,13 +258,13 @@
             </tr>
           </thead>
           <tbody class="govuk-table__body">
-            <% grantingAuthority.gaList.forEach(function(item) { %>
+            <% grantingAuthorityList.gaList.forEach(function(item) { %>
             <tr>
               <td style="text-align: center;" class="govuk-table__cell"><a
-                  href="/editreviewgrantingauthority?ga=<%=item.grantingAuthorityId %>_<%= item.grantingAuthorityName %>"><%=item.grantingAuthorityId %></a>
+                  href="/editreviewgrantingauthority?gaid=<%=item.grantingAuthorityId %>&ganame=<%= item.grantingAuthorityName %>"><%=item.grantingAuthorityId %></a>
               </td>
               <td class="govuk-table__cell"><a
-                  href="/editreviewgrantingauthority?ga=<%=item.grantingAuthorityId %>_<%= item.grantingAuthorityName %>"><%= item.grantingAuthorityName %></a>
+                  href="/editreviewgrantingauthority?gaid=<%=item.grantingAuthorityId %>&ganame=<%= item.grantingAuthorityName %>"><%= item.grantingAuthorityName %></a>
               </td>
               <td class="govuk-table__cell"><%= item.approvedBy %></td>
               <td class="govuk-table__cell"><%= item.status %></td>
