@@ -23,6 +23,7 @@ const res = {};
 test("Unit testing for spending filter route - Test for GET call", (done) => {
   const req = mockRequest();
   global.SubsidyArraySize = 0;
+  global.beis_url_accessmanagement = "";
   global.Subsidy_Control_Number_Error = "";
   global.Subsidy_Control_Number_Global = "";
   global.Subsidy_Adhoc_Global = "";

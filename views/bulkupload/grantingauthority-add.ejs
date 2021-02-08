@@ -57,7 +57,7 @@
         </nav>
       </div>
     </div>
-    <div class="govuk-breadcrumbs ">
+    <!-- <div class="govuk-breadcrumbs ">
       <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
           <a class="govuk-breadcrumbs__link" href="#">Dashboard</a>
@@ -69,37 +69,50 @@
           <a class="govuk-breadcrumbs__link active" href="#">Add Granting Authority</a>
         </li>
       </ol>
-    </div>
+    </div> -->
+
     <main class="govuk-main-wrapper" id="main-content" role="main">
       <!-- <div class="govuk-tabs" data-module="govuk-tabs">
         <div class="govuk-tabs__panel" id="addGA"> -->
-      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
-        <h1 class="govuk-fieldset__heading">Add Granting Authority</h1>
-      </legend>
+      <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group"> -->
+      <h1 class="govuk-heading-l">Add Granting Authority</h1>
+      <!-- </legend> -->
       <div class="govuk-grid-row">
-        <div class="govuk-grid-column-three-quarters govuk-form-group">
-          <!-- <form action="/filtersearch" method="POST" > -->
-          <p>Granting Authority ID</p>
-          <input class="govuk-input govuk-input--width-2" id="width-2" name="width-2" type="text" />
-          <!-- </form>  -->
-        </div>
-
-        <div class="govuk-grid-column-one-half govuk-form-group">
-          <!-- <form action="/filtersearch" method="POST" > -->
-          <p>Granting Authority Name</p>
-          <input class="govuk-input" id="width-2" name="width-2" type="text" />
-          <!-- </form>  -->
-        </div>
-        <div class="govuk-grid-column-three-quarters">
-          <form action="/mygrantingauthority">
-            <button class="govuk-button govuk-button--success">
-              &nbsp; &nbsp; Add &nbsp; &nbsp;
-            </button>
-            <button class="govuk-button govuk-button--secondary">
-              Cancel
-            </button>
-          </form>
-        </div>
+        <form action="/reviewgrantingauthority" method="POST">
+          <div class="govuk-grid-column-three-quarters govuk-form-group">
+            <!-- <form action="/filtersearch" method="POST" > -->
+            <p>Granting Authority ID</p>
+            <input class="govuk-input govuk-input--width-2" value="<%= grantingAuthorityID_Global %>" readonly
+              name="gaNumber" type="text" />
+            <!-- </form>  -->
+          </div>
+          <% if( grantingAuthorityName_Error){ %>
+          <div class="govuk-grid-column-one-half govuk-form-group  govuk-form-group--error">
+            <% } else { %>
+            <div class="govuk-grid-column-one-half govuk-form-group ">
+              <% } %>
+              <!-- <form action="/filtersearch" method="POST" > -->
+              <p>Granting Authority Name</p>
+              <% if( grantingAuthorityName_Error){ %>
+              <span class="govuk-error-message" id="grantingAuthorityName_Error">
+                <span class="govuk-visually-hidden">Error:</span> Enter a Granting Authority Name
+              </span>
+              <% } %>
+              <input class="govuk-input" value="<%= grantingAuthorityName_Global %>" id="GAName"
+                name="grantingAuthorityName" type="text" />
+              <!-- </form>  -->
+            </div>
+            <div class="govuk-grid-column-three-quarters">
+              <!-- <form action="/mygrantingauthority"> -->
+              <button class="govuk-button govuk-button--success">
+                &nbsp; &nbsp; Add &nbsp; &nbsp;
+              </button>
+              <button class="govuk-button govuk-button--secondary">
+                Cancel
+              </button>
+              <!-- </form> -->
+            </div>
+        </form>
       </div>
       <!-- </div>
       </div> -->

@@ -76,7 +76,8 @@
 
                     </h2>
                     <a rel="external" aria-label="Change granting authority details"
-                        class="govuk-link head-right govuk-relative-position" href="/editgrantingauthority">
+                        class="govuk-link head-right govuk-relative-position"
+                        href="/editgrantingauthority?edit=<%=grantingAuthorityID_Global%>">
                         <p>Change </p>
                     </a>
                 </div>
@@ -87,7 +88,7 @@
                         Granting autority ID
                     </dt>
                     <dd class="govuk-summary-list__value">
-
+                        <%=grantingAuthorityID_Global%>
                     </dd>
 
                 </div>
@@ -96,7 +97,7 @@
                         Granting authority name
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        Sean Martin
+                        <%=grantingAuthorityName_Global%>
                     </dd>
 
                 </div>
@@ -104,17 +105,28 @@
             </dl>
 
             <!-- <form action="/submitforapproval" method="post" novalidate> -->
-
-            <a class="govuk-button" href="/editgrantingauthority" data-module="govuk-button">
-                Edit granting authority
+            <% if(grantingAuthorityPublish_Global) { %>
+            <form method="POST" action="/submitgrantingauthority">
+                <input type="hidden" name="editReview" value="true">
+                <input type="hidden" value="<%=grantingAuthorityID_Global%>" name="grantingAuthorityID">
+                <input type="hidden" value="<%=grantingAuthorityName_Global%>" name="grantingAuthorityName">
+                <button class="govuk-button" data-module="govuk-button">
+                    Publish
+                </button>
+            </form>
+            <% } else { %>
+            <a class="govuk-button" href="/mygrantingauthority" data-module="govuk-button">
+                Back to granting authority list
             </a>
-            <a class="govuk-button" href="/deactivategrantingauthority" data-module="govuk-button">
+
+            <a class="govuk-button govuk-button--warning" href="/deactivategrantingauthority"
+                data-module="govuk-button">
                 Deactivate granting authority
             </a>
             <a class="govuk-link govuk-cancel-button-link" id="mylink" value="cancel" href="/editgacancel"> Cancel
             </a>
             <!-- </form> -->
-
+            <% } %>
         </main>
     </div>
 

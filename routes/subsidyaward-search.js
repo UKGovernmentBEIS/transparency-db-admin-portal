@@ -8,30 +8,42 @@ const axios = require("axios");
 var request = require("request");
 
 router.post("/", async (req, res) => {
-
-  var    { search_award_text } = req.body;
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  var { search_award_text } = req.body;
   frontend_totalRecordsPerPage = 10;
-  awards_status = '';
+  awards_status = "";
 
   Award_search_text = search_award_text;
 
   Award_page = 1;
   Award_selected_status = awards_status;
 
-  Base_URL = beis_url_accessmanagement + '/accessmanagement/searchresults?';
-  Award_text  = 'searchName=' +  Award_search_text;
-  Award_status = 'status=' + Award_selected_status;
-  Award_concate = '&';
-  Award_page = 'page=' + Award_page
-  Award_recordsperpage = 'recordsPerPage=' + frontend_totalRecordsPerPage
+  Base_URL = beis_url_accessmanagement + "/accessmanagement/searchresults?";
+  Award_text = "searchName=" + Award_search_text;
+  Award_status = "status=" + Award_selected_status;
+  Award_concate = "&";
+  Award_page = "page=" + Award_page;
+  Award_recordsperpage = "recordsPerPage=" + frontend_totalRecordsPerPage;
 
-  Award_search_URL  = Base_URL  + Award_text + Award_concate + Award_status + Award_concate + Award_page + Award_concate + Award_recordsperpage ;
-  console.log("Award_search_URL   : " + Award_search_URL ) ;
+  Award_search_URL =
+    Base_URL +
+    Award_text +
+    Award_concate +
+    Award_status +
+    Award_concate +
+    Award_page +
+    Award_concate +
+    Award_recordsperpage;
+  console.log("Award_search_URL   : " + Award_search_URL);
 
-  awards_status  = "Filter results by status"
+  awards_status = "Filter results by status";
 
   try {
-    const apidata = await axios.get(Award_search_URL  );
+    const apidata = await axios.get(Award_search_URL);
     console.log(`Status: ${apidata.status}`);
     API_response_code = `${apidata.status}`;
     console.log("API_response_code: try" + API_response_code);
@@ -42,7 +54,6 @@ router.post("/", async (req, res) => {
     const seachawardstring = JSON.stringify(searchawards_api);
     const seachawardJSON = JSON.parse(seachawardstring);
     totalrows = searchawards.totalSearchResults;
-    
 
     pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
     console.log("totalrows :" + totalrows);
@@ -71,12 +82,9 @@ router.post("/", async (req, res) => {
       frontend_totalRecordsPerPage,
     });
   } catch (err) {
-    
-
     response_error_message = err;
     console.log("message error : " + err);
-    console.log("response_error_message catch : " + response_error_message );
-   
+    console.log("response_error_message catch : " + response_error_message);
   }
 
   // end of POST call

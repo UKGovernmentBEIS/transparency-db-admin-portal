@@ -4,11 +4,11 @@ const router = express.Router();
 router.get("/", (req, res) => {
   Subsidy_Control_Number_Global = "";
   Subsidy_Measure_Title_Global = "";
-  Subsidy_Adhoc_Global ="";
+  Subsidy_Adhoc_Global = "";
   Subsidy_Objective_Global = "";
-  Subsidy_Objective_Other_Global ="";
+  Subsidy_Objective_Other_Global = "";
   Subsidy_Instrument_Global = "";
-  Subsidy_Instrument_Other_Global="";
+  Subsidy_Instrument_Other_Global = "";
   Subsidy_Element_Full_Amount_Global = "";
   Subsidy_Full_Amount_Range_Global = "";
   National_ID_Type_Global = "";
@@ -23,7 +23,6 @@ router.get("/", (req, res) => {
   Spending_Region_Global = "";
   Spending_Sector_Global = "";
   SubsidyArraySize = 0;
-  
 
   Subsidy_Control_Number_Error = false;
   Subsidy_Measure_Title_Error = false;
@@ -45,13 +44,26 @@ router.get("/", (req, res) => {
   Goods_or_Services_Error = false;
   Spending_Region_Error = false;
   Spending_Sector_Error = false;
-  
+
   isCallfromEditAward = false;
   var isAddSubsidyPrimarycall = true;
+
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
   res.render("bulkupload/addsubsidyaward", { isAddSubsidyPrimarycall });
 });
 
 router.post("/", (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
   res.render("bulkupload/addsubsidyaward");
 });
 

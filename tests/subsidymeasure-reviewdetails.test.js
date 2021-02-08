@@ -20,6 +20,7 @@ const mockRequest = (sessionData, body) => ({
 test("Unit testing for Subsidy Scheme Review Test for GET call", (done) => {
   const req = mockRequest();
   const res = {};
+  global.beis_url_accessmanagement = "";
   Subsidy_Adhoc_Global = "";
   Subsidy_Measure_Title_Global = "";
   Legal_Basis_Global = "";

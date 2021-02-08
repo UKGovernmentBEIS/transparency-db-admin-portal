@@ -8,6 +8,12 @@ const axios = require("axios");
 var request = require("request");
 
 router.get("/", async (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
   console.log("req.query.page: " + req.query.page);
   routing_pagenumber = req.query.page;
   current_page = parseInt(routing_pagenumber);
@@ -110,6 +116,12 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
   res.render("bulkupload/mysubsidymeasures");
 });
 
