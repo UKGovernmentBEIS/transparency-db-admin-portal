@@ -21,7 +21,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for submit for approval Test for GET call", (done) => {
   const req = mockRequest();
-
+  global.beis_url_accessmanagement = "";
   global.Subsidy_Full_Amount_Range_Global = "";
   global.Subsidy_Element_Full_Amount_Global = "";
   global.Subsidy_Control_Number_Global = "";

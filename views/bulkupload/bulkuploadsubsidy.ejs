@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Bulk upload subsidy award page</title>
+  <title>GOV.UK - Bulk upload subsidy award uploaded page</title>
   <!-- <%- include('../partials/headersubsidy.ejs') %> -->
   <%- include('../partials/headercss.ejs') %>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
@@ -166,14 +166,11 @@
                     <% } %>
                   </span>
 
-
-
-
                   <!-- <input class="govuk-file-upload govuk-file-upload--error" id="file-upload-1" name="file_upload_1"
                     type="file" aria-describedby="file-upload-1-error"> -->
                   <div class="govuk-input__wrapper">
                     <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file" aria-label="Choose file to upload">
+                      type="file" aria-label="Choose file">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                 </div>
@@ -202,7 +199,7 @@
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="file-upload-1"> Upload a file</label>
                   <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
-                    aria-label="Choose file to upload">
+                    aria-label="Choose file">
                   <label class="govuk-label-grey" for="file-upload-2">
                     <p> The file must be a CSV or Microsoft Excel spreadsheet</p>
                   </label>
@@ -261,16 +258,14 @@
 
               <div class="govuk-grid-column-two-thirds">
                 <div class="govuk-panel govuk-panel--confirmation">
-                  <h1 class="govuk-panel__title ">
+                  <p class="govuk-panel__title ">
                     File uploaded successfully
-                  </h1>
-                  <h2 class="govuk-panel__body">
+                  </p>
+                  <div class="govuk-panel__body">
                     <%= locals.validationerrors.totalRows %> records have been submitted for approval and are now
-                    in 'Awaiting approval' state</h2>
+                    in 'Awaiting approval' state</div>
 
                 </div>
-
-
 
                 <section class="govuk-table-responsive">
                   <table class="govuk-table" id="datatable">
@@ -331,7 +326,7 @@
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="file-upload-1"> Upload a file</label>
                   <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
-                    aria-label="Choose file to upload">
+                    aria-label="Choose file">
                   <label class="govuk-label-grey" for="file-upload-2">
                     <p> The file must be a CSV or Microsoft Excel spreadsheet</p>
                   </label>

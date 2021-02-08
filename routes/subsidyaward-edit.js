@@ -9,11 +9,14 @@ var request = require("request");
 
 router.get("/", async (req, res) => {
   awardnumber = req.query.award;
-
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   try {
     const awardapidata = await axios.get(
-      beis_url_publicsearch  + "/searchResults/award/" +
-        awardnumber
+      beis_url_accessmanagement + "/searchResults/award/" + awardnumber
     );
     console.log(`Status: ${awardapidata.status}`);
     console.log("Body: ", awardapidata.data);

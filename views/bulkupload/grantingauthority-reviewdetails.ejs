@@ -73,8 +73,15 @@
                 <div class="govuk-grid-column-full">
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">New granting authorty
                         details</h2>
+                    <!-- <form action="/addgrantingauthority" method="POST"
+                        class="govuk-link head-right govuk-relative-position">
+                        <p aria-label="Change granting authority details">Change </p>
+                        <input type="hidden" value="<%=grantingAuthorityID_Global%>" name="gaNumber">
+                        <input type="hidden" value="<%=grantingAuthorityName_Global%>" name="grantingAuthorityName">
+                    </form> -->
                     <a rel="external" aria-label="Change granting authority details"
-                        class="govuk-link head-right govuk-relative-position" href="/addgrantingauthority">
+                        class="govuk-link head-right govuk-relative-position"
+                        href="/addgrantingauthority?change=<%=grantingAuthorityID_Global%>">
                         <p>Change </p>
                     </a>
                 </div>
@@ -85,7 +92,7 @@
                         Granting autority ID
                     </dt>
                     <dd class="govuk-summary-list__value">
-
+                        <%=grantingAuthorityID_Global%>
                     </dd>
 
                 </div>
@@ -94,22 +101,25 @@
                         Granting authority name
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        Sean Martin
+                        <%=grantingAuthorityName_Global%>
                     </dd>
 
                 </div>
 
             </dl>
+            <div class="govuk-grid-row">
+                <form action="/submitgrantingauthority" method="post" class="govuk-grid-column-one-third">
+                    <input type="hidden" id="GaId" name="GaId" value="<%=grantingAuthorityID_Global%>">
+                    <input type="hidden" id="GaName" name="GaName" value="<%=grantingAuthorityName_Global%>">
+                    <button class="govuk-button" data-module="govuk-button">
+                        Save granting authority
+                    </button>
+                    <a class="govuk-link govuk-cancel-button-link" id="mylink" value="cancel" href="#">
+                        Cancel
+                    </a>
+                </form>
 
-            <form action="/submitforapproval" method="post" novalidate>
-
-                <input type="hidden" name="answers-checked" value="true">
-
-                <button class="govuk-button" data-module="govuk-button">
-                    Publish granting authority
-                </button>
-
-            </form>
+            </div>
 
         </main>
     </div>

@@ -53,7 +53,6 @@
   <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
     <main class="govuk-main-wrapper " id="main-content" role="main">
-
       <div class="govuk-grid-row govuk-form-group">
         <div class="govuk-grid-column-full">
           <nav aria-label="Sub navigation">
@@ -63,7 +62,6 @@
                   Granting Authorities
                 </a>
               </li>
-
               <li class="govuk-sub-navigation__item">
                 <a class="govuk-sub-navigation__link" href="/manageusers">
                   Users
@@ -79,9 +77,6 @@
                   Subsidy Awards
                 </a>
               </li>
-
-
-
               <li class="govuk-sub-navigation__item head-right">
                 <a class="govuk-sub-navigation__link" href="/logintransparency">
                   Sign out
@@ -96,13 +91,8 @@
           </nav>
 
         </div>
-
       </div>
-      <!-- bread crumbs start here -->
-
-
-      <h1 class="govuk-heading-xl">
-        Subsidy awards</h1>
+      <h1 class="govuk-heading-xl"> Subsidy awards</h1>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full govuk-grid-row">
           <label class="govuk-label govuk-grid-column-full">
@@ -117,13 +107,12 @@
             <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text" name="search_award_text"
               aria-label="User input text box for Searching Subsidy Award" type="text" <% if(Award_search_text) {%>
               value="<%= Award_search_text%>" <% } %> />
-
             <button class="govuk-button" data-module="govuk-button">
               Search
             </button>
           </form>
         </div>
-        <div class="govuk-grid-column-one-quarter govuk-padding-0">
+        <div class="govuk-grid-column-one-third govuk-padding-0">
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
               aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
@@ -218,8 +207,6 @@
 
 
       <form action="/collectcheckbox" method="GET" novalidate="">
-
-
         <section class="govuk-table-responsive">
           <table class="govuk-table" id="datatable">
             <thead class="govuk-table__head">
@@ -251,10 +238,6 @@
                     </div>
                   </div>
                 </th>
-
-                <!-- <th scope="col" class="govuk-table__header app-custom-class">
-                  
-                </th> -->
                 <th scope="col" class="govuk-table__header app-custom-class">
                   <p style="position: relative;margin: 0;">Scheme name
                     <a href="#" style="float: right;">
@@ -445,7 +428,6 @@
               <% } %>
             </div>
           </div>
-
         </section>
       </form>
     </main>

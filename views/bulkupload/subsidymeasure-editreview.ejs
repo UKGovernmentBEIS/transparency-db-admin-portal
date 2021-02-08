@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - Subsidy Measures Review details page</title>
+    <title>GOV.UK - Subsidy Schemes Review details page</title>
     <%- include('../partials/headercss.ejs') %>
 </head>
 
@@ -67,8 +67,10 @@
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details
                     </h2>
                     <a rel="external" aria-label="Change subsidy scheme details"
+
                         class="govuk-link head-right govuk-relative-position" href="/editsubsidymeasure?scheme=<%= searchmeasuredetails.scNumber %>">
                         <!-- <p>Change </p> -->
+
                     </a>
                 </div>
             </div>
@@ -78,10 +80,10 @@
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Is this an ad hoc scheme</th>
                             <td class="govuk-table__cell">
-                               <% if(searchmeasuredetails.adhoc == true) { %>
+                                <% if(searchmeasuredetails.adhoc == true) { %>
                                 Yes
                                 <% } else { %>
-                                 No 
+                                No
                                 <% }  %>
                             </td>
                         </tr>
@@ -113,12 +115,14 @@
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Start Date</th>
-                            <td class="govuk-table__cell"><%= Scheme_Legal_Granting_Start_Date_Day %> <%= Scheme_Legal_Granting_Start_Date_Month %>
+                            <td class="govuk-table__cell"><%= Scheme_Legal_Granting_Start_Date_Day %>
+                                <%= Scheme_Legal_Granting_Start_Date_Month %>
                                 <%= Scheme_Legal_Granting_Start_Date_Year %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">End Date</th>
-                            <td class="govuk-table__cell"><%= Scheme_Legal_Granting_End_Date_Day %> <%= Scheme_Legal_Granting_End_Date_Month %>
+                            <td class="govuk-table__cell"><%= Scheme_Legal_Granting_End_Date_Day %>
+                                <%= Scheme_Legal_Granting_End_Date_Month %>
                                 <%= Scheme_Legal_Granting_End_Date_Year %></td>
                         </tr>
                     </tbody>
@@ -130,7 +134,7 @@
                         <input type="hidden" name="answers-checked" value="true">
 
                         <button class="govuk-button" data-module="govuk-button">
-                           Back to subsidy schemes
+                            Back to subsidy schemes
                         </button>
 
                     </form>

@@ -63,27 +63,27 @@
       <!-- Body header ends here -->
 
       <div class="govuk-grid-row">
-        <div class="govuk-grid-column-full govuk-grid-row" id="subsidy_search_text">
+        <div class="govuk-grid-column-full" id="subsidy_search_text">
           <label class="govuk-label">
             You can search for specific subsidy schemes by entering a subsidy scheme title, control number or granting
             authority.
           </label>
         </div>
-        
+
         <div class="govuk-grid-column-one-half">
           <form action="/measuresearchroute" method="post" novalidate>
-              <!-- <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text" type="text">
+            <!-- <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text" type="text">
                -->
-              <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text"
-              type="text" aria-describedby="subsidy_search_text" <% if(Search_Text_Global) {%>
-              value="<%= Search_Text_Global%>" <% } %> />
-              
-              <button class="govuk-button" data-module="govuk-button">
-                Search
-              </button>
+            <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text" type="text"
+              aria-describedby="subsidy_search_text" <% if(Search_Text_Global) {%> value="<%= Search_Text_Global%>"
+              <% } %> />
+
+            <button class="govuk-button" data-module="govuk-button">
+              Search
+            </button>
           </form>
         </div>
-      
+
 
         <div class="govuk-grid-column-one-quarter govuk-padding-0">
           <form class="govuk-!-width-full govuk-padding-0" action="/measuresfilterroute" method="GET">
@@ -167,7 +167,8 @@
                   <a href="/measuresortroute/?page=Scheme_Name" style="text-decoration: none">
                     Subsidy scheme name
                     <% if (subsidy_scheme_name_arrow == "upanddown" ) { %>
-                    <img id="subsidy_scheme_name_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Currently not sorted">
+                    <img id="subsidy_scheme_name_updownarrow" src="/assets/images/UpDownArrow.jpg"
+                      alt="Currently not sorted">
                     <% } else if (subsidy_scheme_name_arrow == "downdecending" ) { %>
                     <img id="subsidy_scheme_name_downarrow" src="/assets/images/DownArrow.jpg"
                       alt="Currently sorted by Descending order">
@@ -182,7 +183,8 @@
                   <a href="/measuresortroute/?page=Control_Number" style="text-decoration: none">
                     Subsidy control no.
                     <% if (subsidy_control_no_arrow == "upanddown" ) { %>
-                    <img id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Currently not sorted">
+                    <img id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
+                      alt="Currently not sorted">
                     <% } else if (subsidy_control_no_arrow == "downdecending" ) { %>
                     <img id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
                       alt="Currently sorted by Descending order">
@@ -198,7 +200,8 @@
                   <a href="/measuresortroute/?page=Granting_Authority" style="text-decoration: none">
                     Granting authority
                     <% if (granting_authority_arrow == "upanddown" ) { %>
-                    <img id="granting_authority_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Currently not sorted">
+                    <img id="granting_authority_updownarrow" src="/assets/images/UpDownArrow.jpg"
+                      alt="Currently not sorted">
                     <% } else if (granting_authority_arrow == "downdecending" ) { %>
                     <img id="granting_authority_downarrow" src="/assets/images/DownArrow.jpg"
                       alt="Currently sorted by Descending order">
@@ -264,8 +267,7 @@
                     <img id="budget_downarrow" src="/assets/images/DownArrow.jpg"
                       alt="Currently sorted by Descending order">
                     <% } else { %>
-                    <img id="budget_uparrow" src="/assets/images/UpArrow.jpg"
-                      alt="Currently sorted by Ascending order">
+                    <img id="budget_uparrow" src="/assets/images/UpArrow.jpg" alt="Currently sorted by Ascending order">
                     <% } %>
                   </a>
                 </th>
@@ -275,7 +277,8 @@
             <tbody class="govuk-table__body">
               <% searchschemes.schemes.forEach(function(item) { %>
               <tr>
-                <td class="govuk-table__cell"><a href="/editreviewsubsidymeasure?scheme=<%= item.scNumber %>"> <%= item.subsidyMeasureTitle  %>
+                <td class="govuk-table__cell"><a href="/editreviewsubsidymeasure?scheme=<%= item.scNumber %>">
+                    <%= item.subsidyMeasureTitle  %>
                   </a> </td>
                 <td class="govuk-table__cell"><%= item.scNumber %></td>
                 <td class="govuk-table__cell"><%= item.gaName %></td>

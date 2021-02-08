@@ -21,7 +21,8 @@ const res = {};
 
 test("Unit testing for login Forgot Password Test for GET call", (done) => {
   const req = mockRequest();
-request(app)
+  global.beis_url_accessmanagement = "";
+  request(app)
     .get("/loginnewpassword", (req, res))
-  .expect(200, done);
+    .expect(200, done);
 });

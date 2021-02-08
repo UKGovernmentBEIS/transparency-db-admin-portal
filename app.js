@@ -79,12 +79,14 @@ app.locals.Granting_Authority_Policy_Global;
 app.locals.Budget_Global;
 
 app.locals.Scheme_Start_Day_Global;
-app.locals.Scheme_Start_Month_Global ;
-app.locals.Scheme_Start_Year_Global  ;
+app.locals.Scheme_Start_Month_Global;
+app.locals.Scheme_Start_Year_Global;
 app.locals.Scheme_End_Day_Global;
-app.locals.Scheme_End_Month_Global ;
-app.locals.Scheme_End_Year_Global  ;
+app.locals.Scheme_End_Month_Global;
+app.locals.Scheme_End_Year_Global;
 
+app.locals.grantingAuthorityID_global;
+app.locals.grantingAuthorityName_Global;
 
 app.locals.GetMonthName;
 app.locals.file_upload_name;
@@ -112,6 +114,7 @@ app.locals.dashboardawards;
 app.locals.awardnumber;
 app.locals.fetchawarddetails;
 app.locals.Award_search_URL;
+app.locals.grantingAuthorityPublish_Global;
 
 app.locals.Award_selected_status;
 app.locals.awards_status;
@@ -147,6 +150,7 @@ app.locals.Legal_Granting_Date_Year_Error;
 app.locals.Goods_or_Services_Error;
 app.locals.Spending_Region_Error;
 app.locals.Spending_Sector_Error;
+app.locals.grantingAuthorityName_Error;
 
 app.locals.searchmeasuredetails;
 app.locals.Subsidy_Control_Number_Global_Text;
@@ -461,6 +465,9 @@ app.use("/mygrantingauthority", mygrantingauthority);
 var reviewgrantingauthority = require("./routes/grantingauthority-reviewdetails");
 app.use("/reviewgrantingauthority", reviewgrantingauthority);
 
+var submitgrantingauthority = require("./routes/grantingauthority-submit");
+app.use("/submitgrantingauthority", submitgrantingauthority);
+
 var editgrantingauthority = require("./routes/grantingauthority-edit");
 app.use("/editgrantingauthority", editgrantingauthority);
 
@@ -503,13 +510,11 @@ app.use("/editsubsidymeasure", editsubsidymeasures);
 var subsidymeasurereedit = require("./routes/subsidymeasure-re-edit");
 app.use("/subsidymeasurereedit", subsidymeasurereedit);
 
-
 var editreviewsubsidymeasure = require("./routes/subsidymeasure-editreview");
 app.use("/editreviewsubsidymeasure", editreviewsubsidymeasure);
 
 var subsidymeasurereditreview = require("./routes/subsidymeasure-re-editreview");
 app.use("/subsidymeasurereditreview", subsidymeasurereditreview);
-
 
 var awardspageroute = require("./routes/awardspageroute");
 app.use("/awardspageroute", awardspageroute);
@@ -522,7 +527,6 @@ app.use("/awardsfilterroute", awardsfilterroute);
 
 var measuresfilterroute = require("./routes/measuresfilterroute");
 app.use("/measuresfilterroute", measuresfilterroute);
-
 
 var measuresortroute = require("./routes/measuresortroute");
 app.use("/measuresortroute", measuresortroute);

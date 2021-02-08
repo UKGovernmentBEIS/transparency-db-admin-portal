@@ -120,6 +120,13 @@ router.get("/", (req, res) => {
   SubsidyArraySize = 0;
 
   isCallfromEditAward = true;
+
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
   res.render("bulkupload/addsubsidyaward", {
     isCallfromEditAward,
     Subsidy_Control_Number_Global,

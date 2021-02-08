@@ -2,7 +2,11 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - User added successfully page</title>
+    <% if(review == 'true') { %>
+    <title>GOV.UK - Granting authority updated successfully page</title>
+    <% } else { %>
+    <title>GOV.UK - Granting authority added successfully page</title>
+    <% } %>
     <%- include('../partials/headercss.ejs') %>
 </head>
 
@@ -77,32 +81,43 @@
             <div class="govuk-grid-row">
 
                 <div class="govuk-grid-column-two-thirds govuk-form-group">
+                    <% if(review == 'true') { %>
+                    <h1 class="govuk-heading-xl">Edit granting authority</h1>
+                    <% } else { %>
                     <h1 class="govuk-heading-xl">Add granting authority</h1>
-
+                    <% } %>
                     <div class="govuk-panel govuk-panel--confirmation">
                         <h1 class="govuk-panel__title">
+                            <% if(review == 'true') { %>
+                            Granting authority updated
+                            <% } else { %>
                             Granting authority added
+                            <% } %>
                         </h1>
                         <div class="govuk-panel__body">
-                            ID <strong>73</strong>
+                            ID <strong><%=gaID%></strong>
                         </div>
                     </div>
                 </div>
                 <div class="govuk-grid-column-full govuk-form-group">
-                    <p class="govuk-body govuk-!-font-size-19">You have added granting authority 73.</p>
+                    <% if(review == 'true') { %>
+                    <p class="govuk-body govuk-!-font-size-19">You have updated granting authority <%=gaID%>.</p>
+                    <% } else { %>
+                    <p class="govuk-body govuk-!-font-size-19">You have added granting authority <%=gaID%>.</p>
                     <p class="govuk-body govuk-!-font-size-19">You can now <a href="/adduser">add users</a> to this
                         granting authority.</p>
+                    <% } %>
                 </div>
                 <div class="govuk-grid-column-full govuk-form-group">
 
                     <a class="govuk-button" href="/mygrantingauthority" data-module="govuk-button">
                         View all granting authorities
                     </a>
-
+                    <% if(review != 'true') { %>
                     <a class="govuk-button" href="/addgrantingauthority" data-module="govuk-button">Add
                         another
                         granting authority</a>
-
+                    <% } %>
                 </div>
             </div>
         </main>
