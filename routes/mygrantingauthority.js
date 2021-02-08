@@ -27,6 +27,10 @@ router.get("/", async (req, res) => {
     API_response_code = `${apidata.status}`;
     grantingAuthority = apidata.data;
     totalrows = grantingAuthority.totalSearchResults;
+    grantingAuthority.schemes.forEacg(function (item) {
+      maxGAId.push(item.grantingAuthorityId);
+    });
+    var nextId = Math.max(...maxGAId);
 
     pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
     // console.log("totalrows :" + totalrows);
@@ -48,6 +52,7 @@ router.get("/", async (req, res) => {
       pageCount,
       previous_page,
       next_page,
+      nextId,
       start_record,
       grantingAuthority,
       sort,
@@ -119,11 +124,16 @@ router.post("/", async (req, res) => {
     } else {
       end_page = 9;
     }
+    grantingAuthority.schemes.forEacg(function (item) {
+      maxGAId.push(item.grantingAuthorityId);
+    });
+    var nextId = Math.max(...maxGAId);
     res.render("bulkupload/mygrantingauthority", {
       pageCount,
       previous_page,
       next_page,
       start_record,
+      nextId,
       end_record,
       sort,
       grantingAuthority,

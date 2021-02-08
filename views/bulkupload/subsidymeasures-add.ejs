@@ -98,9 +98,21 @@
                             <label class="govuk-label" for="address-line-1">
                                 Is this for an ad hoc subsidy?
                             </label>
-                            <div id="adhoc-subsidy-hint" class="govuk-hint">
+                            <details class="govuk-details" data-module="govuk-details">
+                                <summary class="govuk-details__summary">
+                                    <span class="govuk-details__summary-text">
+                                        What is an ad hoc subsidy?
+                                    </span>
+                                </summary>
+                                <div class="govuk-details__text">
+                                    An ad hoc subsidy scheme is a scheme created specifically for one subsidy award. If
+                                    you create an ad hoc subsidy scheme, you will only be able to add one subsidy award
+                                    under it.
+                                </div>
+                            </details>
+                            <!-- <div id="adhoc-subsidy-hint" class="govuk-hint">
                                 You will only be able to create one subsidy award under each ad hoc subsidy scheme.
-                            </div>
+                            </div> -->
                             <% if( Subsidy_Adhoc_Error ){ %>
                             <span class="govuk-error-message" id="Subsidy_adhoc_Error">
                                 <span class="govuk-visually-hidden">Error:</span> Enter a valid adhoc subsidy scheme
@@ -193,8 +205,9 @@
                                             this subsidy scheme is related to.</div>
                                         <% if( Granting_Authority_URL_Error ){ %>
                                         <span class="govuk-error-message" id="Granting_Authority_URL_Error">
-                                            <span class="govuk-visually-hidden">Error:</span> Enter a valid granting authority policy URL
-                                            
+                                            <span class="govuk-visually-hidden">Error:</span> Enter a valid granting
+                                            authority policy URL
+
                                         </span>
                                         <% }  %>
                                         <input class="govuk-input " name="Granting_Authority_URL"
@@ -209,8 +222,8 @@
                                             <label class="govuk-label" for="address-line-1">
                                                 Granting authority policy page description
                                             </label>
-                                            <div class="govuk-hint">A short summary of the policy page that you
-                                                provided the URL for. For example, Water Purity Scheme policy page.
+                                            <div class="govuk-hint">A short summary of the policy page that you provided
+                                                the URL for. For example, Water Purity Scheme policy page.
                                             </div>
                                             <% if( Granting_Authority_Policy_Error ){ %>
                                             <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
@@ -236,8 +249,9 @@
                                                     For other subsidy schemes, enter the overall budget.</div>
                                                 <% if( Budget_Error ){ %>
                                                 <span class="govuk-error-message" id="Budget_Error">
-                                                    <span class="govuk-visually-hidden">Error:</span> Enter a valid budget
-                                                    
+                                                    <span class="govuk-visually-hidden">Error:</span> Enter a valid
+                                                    budget
+
                                                 </span>
                                                 <% }  %>
                                                 <div class="govuk-input__wrapper">
@@ -334,7 +348,8 @@
                                                             End Date
                                                         </label>
                                                         <div class="govuk-hint">
-                                                            For example, 25 3 2021
+                                                            For example, 25 11 2021. If this is an ad hoc subsidy award,
+                                                            the end date must be the same as the start date.
                                                         </div>
                                                         <div class="govuk-date-input" id="scheme-issued">
                                                             <div class="govuk-date-input__item">
@@ -410,6 +425,7 @@
                                                             data-module="govuk-button" name="buttonvalue"
                                                             value="Cancel">Cancel</a>
                                                     </div>
+
                 </section>
 
             </form>
