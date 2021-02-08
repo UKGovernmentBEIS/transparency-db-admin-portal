@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
   scheme_issued_end_month_Error = false;
   scheme_issued_end_day_Error = false;
 
-  Granting_Authority_Name_Global = "Northern Ireland Screen"
+  Granting_Authority_Name_Global = "Big Lottery Fund"
   console.log("Subsidy_Adhoc_Global :" + Subsidy_Adhoc_Global);
   console.log("Granting_Authority_Name_Global :" + Granting_Authority_Name_Global);
   console.log("Subsidy_Measure_Title_Global :" + Subsidy_Measure_Title_Global);
@@ -68,20 +68,6 @@ router.post("/", async (req, res) => {
    
   };
 
-  const updateSchemeRequest = {
-    scNumber :scNumber_Global, 
-    adhoc: Subsidy_Adhoc_Global_Flag,
-    gaName: Granting_Authority_Name_Global,
-    subsidyMeasureTitle: Subsidy_Measure_Title_Global,
-    legalBasisText: Legal_Basis_Global,
-    gaSubsidyWebLink: Granting_Authority_URL_Global,
-    gaSubsidyWebLinkDescription: Granting_Authority_Policy_Global,
-    budget: Budget_Global,
-    startDate: subsidy_start_date,
-    endDate: subsidy_end_date,
-    status: "Active",
-   
-  };
 
   if (button_value == "add_measure") {
 
@@ -118,6 +104,22 @@ router.post("/", async (req, res) => {
   // this is for update existing subsidy measure using PUT call
 
   else {
+
+    
+  const updateSchemeRequest = {
+    scNumber :scNumber_Global, 
+    adhoc: Subsidy_Adhoc_Global_Flag,
+    gaName: Granting_Authority_Name_Global,
+    subsidyMeasureTitle: Subsidy_Measure_Title_Global,
+    legalBasisText: Legal_Basis_Global,
+    gaSubsidyWebLink: Granting_Authority_URL_Global,
+    gaSubsidyWebLinkDescription: Granting_Authority_Policy_Global,
+    budget: Budget_Global,
+    startDate: subsidy_start_date,
+    endDate: subsidy_end_date,
+    status: "Active",
+   
+  };
 
   updateSchemeUrl =  beis_url_searchscheme + "/scheme/update";
   console.log(" updateSchemeUrl : " +  updateSchemeUrl);
