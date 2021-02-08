@@ -24,10 +24,11 @@ router.get("/", async (req, res) => {
       data
     );
     const sort = "";
+    var maxGAId = [];
     API_response_code = `${apidata.status}`;
     grantingAuthority = apidata.data;
     totalrows = grantingAuthority.totalSearchResults;
-    grantingAuthority.schemes.forEacg(function (item) {
+    apidata.data.gaList.forEach(function (item) {
       maxGAId.push(item.grantingAuthorityId);
     });
     var nextId = Math.max(...maxGAId);
@@ -124,7 +125,8 @@ router.post("/", async (req, res) => {
     } else {
       end_page = 9;
     }
-    grantingAuthority.schemes.forEacg(function (item) {
+    var maxGAId = [];
+    grantingAuthority.gaList.forEach(function (item) {
       maxGAId.push(item.grantingAuthorityId);
     });
     var nextId = Math.max(...maxGAId);
