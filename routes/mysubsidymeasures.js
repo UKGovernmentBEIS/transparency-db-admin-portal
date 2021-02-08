@@ -9,19 +9,6 @@ var request = require("request");
 
 router.get("/", async (req, res) => {
 
-  beis_url_publishing =
-  "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
-beis_url_accessmanagement =
-  "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
-beis_url_publicsearch =
-  "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
-beis_url_searchscheme =  
-  "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net";
-  
-console.log(beis_url_publishing);
-console.log(beis_url_accessmanagement);
-console.log(beis_url_publicsearch);
-console.log(beis_url_searchscheme);
 
   frontend_totalRecordsPerPage = 10;
   subsidy_scheme_name_arrow = "upascending"
