@@ -88,7 +88,7 @@
                 Subsidy scheme details
             </label>
 
-            <form action="/reviewsubsidymeasures" method="POST">
+            <form action="/subsidymeasurereditreview" method="POST">
                 <section class="govuk-grid-row">
                     <% if( Subsidy_Adhoc_Error ){ %>
                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
@@ -179,7 +179,7 @@
                                     </span>
                                     <% }  %>
                                     <input class="govuk-input govuk-!-width-one-half" id="Legal_Basis"
-                                        name="Legal_Basis" type="text" value="<%= Legal_Basis_Global%>">
+                                        name="Legal_Basis" type="text" value="<%= Legal_Basis_Global %>">
                                 </div>
                                 <% if( Granting_Authority_URL_Error ){ %>
                                 <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
@@ -193,8 +193,8 @@
                                             this subsidy scheme is related to.</div>
                                         <% if( Granting_Authority_URL_Error ){ %>
                                         <span class="govuk-error-message" id="Granting_Authority_URL_Error">
-                                            <span class="govuk-visually-hidden">Error:</span> Enter a valid granting authority policy URL
-                                            
+                                            <span class="govuk-visually-hidden">Error:</span> Enter a valid legal
+                                            basis
                                         </span>
                                         <% }  %>
                                         <input class="govuk-input " name="Granting_Authority_URL"
@@ -215,7 +215,7 @@
                                             <% if( Granting_Authority_Policy_Error ){ %>
                                             <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
                                                 <span class="govuk-visually-hidden">Error:</span> Enter a valid
-                                                granting authority policy page description
+                                                policy page description
                                             </span>
                                             <% }  %>
                                             <input class="govuk-input" id="Granting_Authority_Policy"
@@ -236,8 +236,8 @@
                                                     For other subsidy schemes, enter the overall budget.</div>
                                                 <% if( Budget_Error ){ %>
                                                 <span class="govuk-error-message" id="Budget_Error">
-                                                    <span class="govuk-visually-hidden">Error:</span> Enter a valid budget
-                                                    
+                                                    <span class="govuk-visually-hidden">Error:</span> Enter a valid
+                                                    policy page description
                                                 </span>
                                                 <% }  %>
                                                 <div class="govuk-input__wrapper">
@@ -364,7 +364,7 @@
                                                                         for="scheme_issued_end_month">
                                                                         Month
                                                                     </label>
-                                                                    <% if( scheme_issued_end_month_Error ){ %>
+                                                                    <% if( scheme_issued_start_month_Error ){ %>
                                                                     <span class="govuk-error-message" id="Budget_Error">
                                                                         <span
                                                                             class="govuk-visually-hidden">Error:</span>
@@ -405,7 +405,7 @@
                                                     </div>
                                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                         <button class="govuk-button" data-module="govuk-button"
-                                                            name="buttonvalue" value="Continue">Continue</button>
+                                                            name="buttonvalue" value="Update">Update</button>
                                                         <a href="#" class="govuk-link govuk-cancel-button-link"
                                                             data-module="govuk-button" name="buttonvalue"
                                                             value="Cancel">Cancel</a>

@@ -23,52 +23,30 @@ router.get("/", async (req, res) => {
   current_page_active = current_page;
 
   const data_request = {
-    subsidySchemeName: "",
-    scNumber: "",
-    gaName: "",
+    searchName: Search_Text_Global,
     pageNumber: current_page,
     totalRecordsPerPage: frontend_totalRecordsPerPage,
-    sortBy: [],
+    sortBy: sorting_order_pass,
     status: "",
   };
 
-  //   const data_request =
-  //   {
-
-  //         "beneficiaryName": "",
-  //         "subsidyMeasureTitle": "",
-  //         "subsidyObjective": [],
-  //         "spendingRegion": [],
-  //         "subsidyInstrument": [],
-  //         "spendingSector":[],
-  //         "legalGrantingFromDate" :"",
-  //         "legalGrantingToDate" : "",
-  //         "pageNumber": current_page,
-  //         "totalRecordsPerPage" : frontend_totalRecordsPerPage,
-  //         "sortBy" : [""]
-
-  // };
 
   var data = JSON.parse(JSON.stringify(data_request));
   console.log("request data : " + data);
 
   try {
     const apidata = await axios.post(
-      "http://subsidy-search-service.azurewebsites.net/searchResults",
-      data
+      beis_url_searchscheme + "/scheme/search",
+      data_request
     );
     console.log(`Status: ${apidata.status}`);
     console.log("Body: ", apidata.data);
-    searchawards = apidata.data;
-    var searchawards_api = apidata.data;
-    console.log("searchawards" + searchawards_api);
-    const seachawardstring = JSON.stringify(searchawards_api);
-    // console.log('seachawardstring' + seachawardstring );
+    searchschemes = apidata.data;
+    var searchschemes_api = apidata.data;
+    console.log("searchschemes" + searchschemes_api);
+    const seachawardstring = JSON.stringify(searchschemes_api);
     const seachawardJSON = JSON.parse(seachawardstring);
-    // console.log('seachawardJSON ' + seachawardJSON.awards[0]  );
-    totalrows = parseInt(searchawards.totalSearchResults);
-    // console.log(searchawards.schemes[0].beneficiary.beneficiaryType);
-    // console.log(searchawards.schemes[0].subsidyFullAmountExact);
+    totalrows = parseInt(searchschemes.totalSearchResults);
     console.log("req.query.page: " + req.query.sort);
 
     if (current_page == 1) {
@@ -97,11 +75,6 @@ router.get("/", async (req, res) => {
       previous_page = current_page - 1;
       next_page = current_page + 1;
     }
-
-    console.log("page count :" + pageCount);
-    console.log("routing current page :" + current_page);
-    console.log("routing prev page :" + previous_page);
-    console.log("routing next page :" + next_page);
 
     // this is for page management section
 

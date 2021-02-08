@@ -78,6 +78,14 @@ app.locals.Granting_Authority_URL_Global;
 app.locals.Granting_Authority_Policy_Global;
 app.locals.Budget_Global;
 
+app.locals.Scheme_Start_Day_Global;
+app.locals.Scheme_Start_Month_Global ;
+app.locals.Scheme_Start_Year_Global  ;
+app.locals.Scheme_End_Day_Global;
+app.locals.Scheme_End_Month_Global ;
+app.locals.Scheme_End_Year_Global  ;
+
+
 app.locals.GetMonthName;
 app.locals.file_upload_name;
 app.locals.isCallfromEditAward;
@@ -108,9 +116,16 @@ app.locals.Award_search_URL;
 app.locals.Award_selected_status;
 app.locals.awards_status;
 app.locals.Award_search_text;
+
+app.locals.scheme_selected_status;
+app.locals.schemes_status;
+app.locals.Schemes_search_text;
+app.locals.scNumber_Global;
+
 app.locals.beis_url_publishing;
 app.locals.beis_url_accessmanagement;
 app.locals.beis_url_publicsearch;
+app.locals.beis_url_searchscheme;
 
 app.locals.Subsidy_Control_Number_Error;
 app.locals.Subsidy_Measure_Title_Error;
@@ -133,6 +148,23 @@ app.locals.Goods_or_Services_Error;
 app.locals.Spending_Region_Error;
 app.locals.Spending_Sector_Error;
 
+app.locals.searchmeasuredetails;
+app.locals.Subsidy_Control_Number_Global_Text;
+app.locals.Scheme_Legal_Granting_Start_Date_Month;
+app.locals.Scheme_Legal_Granting_Start_Date_Day;
+app.locals.Scheme_Legal_Granting_Start_Date_Year;
+app.locals.Scheme_Legal_Granting_End_Date_Month;
+app.locals.Scheme_Legal_Granting_End_Date_Day;
+app.locals.Scheme_Legal_Granting_End_Date_Year;
+app.locals.subsidy_scheme_name_sorting_order;
+app.locals.subsidy_control_no_sorting_order;
+app.locals.granting_authority_sorting_order;
+app.locals.start_date_sorting_order;
+app.locals.end_date_sorting_order;
+app.locals.duration_sorting_order;
+app.locals.budget_sorting_order;
+app.locals.sorting_order_pass;
+app.locals.Search_Text_Global;
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
@@ -460,13 +492,24 @@ var addreviewsubsidymeasures = require("./routes/subsidymeasure-add-review");
 app.use("/addreviewsubsidymeasures", addreviewsubsidymeasures);
 
 var subsidymeasurepublished = require("./routes/subsidymeasure-published");
-app.use("/subsidymeasurespublished", subsidymeasurepublished);
+app.use("/subsidymeasurepublished", subsidymeasurepublished);
 
 var reviewsubsidymeasures = require("./routes/subsidymeasure-reviewdetails");
 app.use("/reviewsubsidymeasures", reviewsubsidymeasures);
 
 var editsubsidymeasures = require("./routes/subsidymeasure-edit");
 app.use("/editsubsidymeasure", editsubsidymeasures);
+
+var subsidymeasurereedit = require("./routes/subsidymeasure-re-edit");
+app.use("/subsidymeasurereedit", subsidymeasurereedit);
+
+
+var editreviewsubsidymeasure = require("./routes/subsidymeasure-editreview");
+app.use("/editreviewsubsidymeasure", editreviewsubsidymeasure);
+
+var subsidymeasurereditreview = require("./routes/subsidymeasure-re-editreview");
+app.use("/subsidymeasurereditreview", subsidymeasurereditreview);
+
 
 var awardspageroute = require("./routes/awardspageroute");
 app.use("/awardspageroute", awardspageroute);
@@ -476,6 +519,16 @@ app.use("/awardspageperroute", awardspageperroute);
 
 var awardsfilterroute = require("./routes/awardsfilterroute");
 app.use("/awardsfilterroute", awardsfilterroute);
+
+var measuresfilterroute = require("./routes/measuresfilterroute");
+app.use("/measuresfilterroute", measuresfilterroute);
+
+
+var measuresortroute = require("./routes/measuresortroute");
+app.use("/measuresortroute", measuresortroute);
+
+var measuresearchroute = require("./routes/measuresearchroute");
+app.use("/measuresearchroute", measuresearchroute);
 
 var measurespageroute = require("./routes/measurespageroute");
 app.use("/measurespageroute", measurespageroute);

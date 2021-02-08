@@ -56,7 +56,7 @@
 
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
-                    <h1 class="govuk-heading-xl">Review subsidy scheme before publishing</h1>
+                    <h1 class="govuk-heading-xl">Review subsidy scheme </h1>
 
                     <!-- *************************************
               Review for subsidy details tab
@@ -67,7 +67,7 @@
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details
                     </h2>
                     <a rel="external" aria-label="Change subsidy scheme details"
-                        class="govuk-link head-right govuk-relative-position" href="/addreviewsubsidymeasures">
+                        class="govuk-link head-right govuk-relative-position" href="/editsubsidymeasure?scheme=<%= searchmeasuredetails.scNumber %>">
                         <p>Change </p>
                     </a>
                 </div>
@@ -77,43 +77,49 @@
                     <tbody class="govuk-table__body">
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Is this an ad hoc scheme</th>
-                            <td class="govuk-table__cell"><%= Subsidy_Adhoc_Global %></td>
+                            <td class="govuk-table__cell">
+                               <% if(searchmeasuredetails.adhoc == true) { %>
+                                Yes
+                                <% } else { %>
+                                 No 
+                                <% }  %>
+                            </td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Granting Authority</th>
-                            <td class="govuk-table__cell">Cardiff Council</td>
+                            <td class="govuk-table__cell"><%= searchmeasuredetails.gaName %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Subsidy scheme name</th>
-                            <td class="govuk-table__cell"><%= Subsidy_Measure_Title_Global %></td>
+                            <td class="govuk-table__cell"><%= searchmeasuredetails.subsidyMeasureTitle %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Legal basis</th>
-                            <td class="govuk-table__cell"><%= Legal_Basis_Global %></td>
+                            <td class="govuk-table__cell"><%= searchmeasuredetails.legalBasisText %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Granting authority policy URL </th>
-                            <td class="govuk-table__cell"><%= Granting_Authority_URL_Global %>
+                            <td class="govuk-table__cell"><%= searchmeasuredetails.gaSubsidyWebLink %>
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Granting authority policy page summary </th>
-                            <td class="govuk-table__cell"><%= Granting_Authority_Policy_Global %>
+                            <td class="govuk-table__cell"><%= searchmeasuredetails.gaSubsidyWebLinkDescription %>
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Budget or amount</th>
-                            <td class="govuk-table__cell">£ <%= Budget_Global %></td>
+                            <td class="govuk-table__cell">£ <%= searchmeasuredetails.budget %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Start Date</th>
-                            <td class="govuk-table__cell"><%= Scheme_Start_Day_Global %> <%= GetMonthName %>
-                                <%= Scheme_Start_Year_Global %></td>
+                            <td class="govuk-table__cell"><%= Scheme_Legal_Granting_Start_Date_Day %> <%= Scheme_Legal_Granting_Start_Date_Month %>
+                                <%= Scheme_Legal_Granting_Start_Date_Year %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">End Date</th>
-                            <td class="govuk-table__cell"><%= Scheme_End_Day_Global %> <%= GetMonthName %>
-                                <%= Scheme_End_Year_Global %></td>
+                            <td class="govuk-table__cell"><%= Scheme_Legal_Granting_End_Date_Day %> <%= Scheme_Legal_Granting_End_Date_Month %>
+                                <%= Scheme_Legal_Granting_End_Date_Year %></td>
                         </tr>
                     </tbody>
                 </table>
@@ -123,8 +129,8 @@
                     <form action="/subsidymeasurepublished" method="POST" novalidate class="govuk-grid-column-one-half">
                         <input type="hidden" name="answers-checked" value="true">
 
-                        <button class="govuk-button"  name="button_value" value="add_measure" data-module="govuk-button">
-                            Publish subsidy scheme
+                        <button class="govuk-button" data-module="govuk-button">
+                           Back to subsidy schemes
                         </button>
 
                     </form>

@@ -2,30 +2,25 @@ const express = require("express");
 const router = express.Router();
 
 router.post("/", (req, res) => {
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-  isAddSubsidyPrimarycall = false;
-  GetMonthName = "";
-  SubsidyErrors = [];
-  SubsidyFocus = [];
-  Additem = 0;
-  SubsidyArraySize = 0;
-  var Subsidy_Measure_Title_Error = false;
-  var Subsidy_Adhoc_Error = false;
-  var Legal_Basis_Error = false;
-  var Granting_Authority_Name_Error = false;
-  var Granting_Authority_URL_Error = false;
-  var Granting_Authority_Policy_Error = false;
-  var Budget_Error = false;
-  var scheme_issued_start_year_Error = false;
-  var scheme_issued_start_month_Error = false;
-  var scheme_issued_start_day_Error = false;
-  var scheme_issued_end_year_Error = false;
-  var scheme_issued_end_month_Error = false;
-  var scheme_issued_end_day_Error = false;
+isAddSubsidyPrimarycall = false;
+GetMonthName = "";
+SubsidyErrors = [];
+SubsidyFocus = [];
+Additem = 0;
+SubsidyArraySize = 0;
+Subsidy_Measure_Title_Error = false;
+Subsidy_Adhoc_Error = false;
+Legal_Basis_Error = false;
+Granting_Authority_Name_Error = false;
+Granting_Authority_URL_Error = false;
+Granting_Authority_Policy_Error = false;
+Budget_Error = false;
+scheme_issued_start_year_Error = false;
+scheme_issued_start_month_Error = false;
+scheme_issued_start_day_Error = false;
+scheme_issued_end_year_Error = false;
+scheme_issued_end_month_Error = false;
+scheme_issued_end_day_Error = false;
 
   const {
     Subsidy_Adhoc,
@@ -44,10 +39,8 @@ router.post("/", (req, res) => {
     buttonvalue,
   } = req.body;
 
-  console.log("isAddSubsidyPrimarycall: " + isAddSubsidyPrimarycall);
 
   console.log("buttonvalue:" + buttonvalue);
-
   console.log("  Subsidy_Adhoc :" + Subsidy_Adhoc);
 
   Subsidy_Adhoc_Global = Subsidy_Adhoc;
@@ -122,7 +115,7 @@ router.post("/", (req, res) => {
 
   console.log("scheme_issued_start_month" + GetMonthName);
 
-  if (buttonvalue == "Continue") {
+  if (buttonvalue == "Update") {
     //Empty field validations
 
     if (!Subsidy_Measure_Title) {
@@ -167,7 +160,6 @@ router.post("/", (req, res) => {
       SubsidyFocus.push("#Granting_Authority_Policy");
       // Additem = Additem + 1;
     }
-
     if (!scheme_issued_start_day) {
       scheme_issued_start_day_Error = true;
       SubsidyErrors.push("     Enter the legal granting day of the date");
@@ -248,87 +240,6 @@ router.post("/", (req, res) => {
       // Additem = Additem + 1;
     }
 
-    if (!scheme_issued_end_day) {
-      scheme_issued_end_day_Error = true;
-      SubsidyErrors.push("     Enter the legal granting day of the date");
-      SubsidyFocus.push("#scheme_issued_start_day");
-      // Additem = Additem + 1;
-    }
-
-    // day validation starts here
-
-    if (scheme_issued_end_day > 31 || scheme_issued_end_day < 1) {
-      scheme_issued_end_day_Error = true;
-      SubsidyErrors.push("     Enter the valid legal granting day of the date");
-      SubsidyFocus.push("#scheme_issued_start_day");
-      // Additem = Additem + 1;
-    }
-    
-    if (
-      scheme_issued_end_day == 31 &&
-      (scheme_issued_end_month == parseInt("02", 8) ||
-        scheme_issued_end_month == parseInt("04", 8) ||
-        scheme_issued_end_month == parseInt("06", 8) ||
-        scheme_issued_end_month == parseInt("09", 8) ||
-        scheme_issued_end_month == 11)
-    ) {
-      scheme_issued_end_day_Error = true;
-      SubsidyErrors.push("     Enter the valid day");
-      SubsidyFocus.push("#scheme_issued_start_day");
-      // Additem = Additem + 1;
-    }
-
-    if (
-      scheme_issued_end_day == 29 &&
-      scheme_issued_end_month == parseInt("02", 8)
-    ) {
-      if (
-        (scheme_issued_end_year % 4 == 0 &&
-          scheme_issued_end_year % 100 != 0) ||
-        scheme_issued_end_year % 400 == 0
-      ) {
-      } else {
-        scheme_issued_end_day_Error = true;
-        SubsidyErrors.push("     Enter the valid day");
-        SubsidyFocus.push("#scheme_issued_start_day");
-        // Additem = Additem + 1;
-      }
-    }
-
-    if (
-      scheme_issued_end_day == 30 &&
-      scheme_issued_end_month == parseInt("02", 8)
-    ) {
-      scheme_issued_end_day_Error = true;
-      SubsidyErrors.push("Enter the valid day");
-      SubsidyFocus.push("#scheme_issued_start_day");
-      // Additem = Additem + 1;
-    }
-
-    // day velidation ends here
-
-    if (!scheme_issued_end_month) {
-      scheme_issued_end_month_Error = true;
-      SubsidyErrors.push("     Enter the legal granting month of the date");
-      SubsidyFocus.push("#scheme_issued_start_month");
-      // Additem = Additem + 1;
-    }
-
-    if (scheme_issued_end_month > 12 || scheme_issued_end_month == 0) {
-      scheme_issued_end_month_Error = true;
-      SubsidyErrors.push("     Enter the legal granting month from 1 to 12");
-      SubsidyFocus.push("#scheme_issued_start_month");
-      // Additem = Additem + 1;
-    }
-
-    if (!scheme_issued_end_year) {
-      scheme_issued_end_year_Error = true;
-      SubsidyErrors.push("     Enter the legal granting year of the date");
-      SubsidyFocus.push("#scheme_issued_start_year");
-      // Additem = Additem + 1;
-    }
-
-
     var SubsidyArraySize = SubsidyErrors.length;
 
     if (
@@ -346,7 +257,7 @@ router.post("/", (req, res) => {
       scheme_issued_end_month_Error ||
       scheme_issued_end_year_Error
     ) {
-      res.render("bulkupload/subsidymeasures-add", {
+      res.render("bulkupload/subsidymeasure-re-edit", {
         Subsidy_Measure_Title_Global,
         Subsidy_Adhoc_Global,
 
@@ -382,7 +293,7 @@ router.post("/", (req, res) => {
         isAddSubsidyPrimarycall,
       });
     } else {
-      res.render("bulkupload/subsidymeasure-reviewdetails", {
+      res.render("bulkupload/subsidymeasure-re-editreview", {
         Subsidy_Measure_Title_Global,
         Subsidy_Adhoc_Global,
         Legal_Basis_Global,
@@ -405,12 +316,7 @@ router.post("/", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-  res.render("bulkupload/subsidymeasure-reviewdetails");
+  res.render("bulkupload/subsidymeasure-re-edit");
 });
 
 module.exports = router;
