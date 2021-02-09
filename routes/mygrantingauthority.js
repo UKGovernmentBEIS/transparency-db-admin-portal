@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
     var grantingAuthorityName = "";
     API_response_code = `${apidata.status}`;
     grantingAuthorityList = apidata.data;
-    totalrows = grantingAuthority.totalSearchResults;
+    totalrows = grantingAuthorityList.totalSearchResults;
     apidata.data.gaList.forEach(function (item) {
       maxGAId.push(item.grantingAuthorityId);
     });
