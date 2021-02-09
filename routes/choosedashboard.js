@@ -31,6 +31,11 @@ router.post("/", async (req, res) => {
       "https://integ-transparency-db-access-management-service.azurewebsites.net";
     beis_url_publicsearch =
       "https://integ-transparency-db-public-search-service.azurewebsites.net";
+
+    beis_url_searchscheme =  
+      "https://integ-transparency-db-ga-schemes-service.azurewebsites.net";
+
+      
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -41,6 +46,10 @@ router.post("/", async (req, res) => {
       "https://stag-transparency-db-access-management-service.azurewebsites.net";
     beis_url_publicsearch =
       "https://stag-transparency-db-public-search-service.azurewebsites.net";
+
+      beis_url_searchscheme =  
+      "https://stag-transparency-db-ga-schemes-service.azurewebsites.net";
+
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
