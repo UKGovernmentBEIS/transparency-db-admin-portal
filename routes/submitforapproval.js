@@ -91,29 +91,31 @@ router.post("/", async (req, res) => {
 
 
   
-  const updateAwardRequest = {
-    awardNumber: Edit_Award_Number_global,
-    subsidyControlTitle: Subsidy_Measure_Title_Global,
-    subsidyControlNumber: Subsidy_Control_Number_Global,
-    nationalIdType: National_ID_Type_Global,
-    nationalId: National_ID_Number_Global,
-    beneficiaryName: Beneficiary_Name_Global,
-    orgSize: Size_of_the_Organisation_Global,
-    subsidyInstrument: Subsidy_Instrument_Global,
-    subsidyObjective: Subsidy_Objective_Global,
-    subsidyAmountRange: Subsidy_Full_Amount_Range_Global_Trim,
-    subsidyAmountExact: Subsidy_Element_Full_Amount_Global_Trim,
-    legalGrantingDate: subsidy_legal_granting_date,
-    grantingAuthorityName: Granting_Authority_Name_Global,
-    goodsOrServices: Goods_or_Services_Global,
-    spendingRegion: Spending_Region_Global,
-    spendingSector: Spending_Sector_Global,
-    subsidyObjectiveOther: Subsidy_Objective_Other_Global,
-    subsidyInstrumentOther: Subsidy_Instrument_Other_Global,
-  };
 
   if (isCallfromEditAward)
   {
+
+    const updateAwardRequest = {
+      awardNumber: Edit_Award_Number_global,
+      subsidyControlTitle: Subsidy_Measure_Title_Global,
+      subsidyControlNumber: Subsidy_Control_Number_Global,
+      nationalIdType: National_ID_Type_Global,
+      nationalId: National_ID_Number_Global,
+      beneficiaryName: Beneficiary_Name_Global,
+      orgSize: Size_of_the_Organisation_Global,
+      subsidyInstrument: Subsidy_Instrument_Global,
+      subsidyObjective: Subsidy_Objective_Global,
+      subsidyAmountRange: Subsidy_Full_Amount_Range_Global_Trim,
+      subsidyAmountExact: Subsidy_Element_Full_Amount_Global_Trim,
+      legalGrantingDate: subsidy_legal_granting_date,
+      grantingAuthorityName: Granting_Authority_Name_Global,
+      goodsOrServices: Goods_or_Services_Global,
+      spendingRegion: Spending_Region_Global,
+      spendingSector: Spending_Sector_Global,
+      subsidyObjectiveOther: Subsidy_Objective_Other_Global,
+      subsidyInstrumentOther: Subsidy_Instrument_Other_Global,
+    };
+  
   var data = JSON.parse(JSON.stringify(updateAwardRequest));
   console.log("request :" + JSON.stringify(data));
   } else {
