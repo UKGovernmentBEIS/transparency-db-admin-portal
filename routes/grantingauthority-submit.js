@@ -16,7 +16,6 @@ router.post("/", async (req, res) => {
         }
       );
 
-      console.log("Status : " + apidata.status);
       res.set("X-Frame-Options", "DENY");
       res.set("X-Content-Type-Options", "nosniff");
       res.set("Content-Security-Policy", 'frame-ancestors "self"');
