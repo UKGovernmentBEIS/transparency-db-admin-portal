@@ -29,7 +29,7 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for cancel subsidy award Test for GET call", async () => {
+test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   const req = mockRequest();
   global.subsidy_scheme_name_arrow = "";
   global.subsidy_control_no_arrow = "";
@@ -65,7 +65,6 @@ test("Unit testing for cancel subsidy award Test for GET call", async () => {
     allScheme: "",
     activeScheme: "",
     inactiveScheme: "",
-    totalSearchResults: "",
     schemes: [
       {
         subsidyMeasureTitle: "",
@@ -78,39 +77,39 @@ test("Unit testing for cancel subsidy award Test for GET call", async () => {
       },
     ],
   };
+
   global.frontend_totalRecordsPerPage = "";
 
   const res = {};
   axios.post.mockResolvedValue({
     status: 200,
-    data: [
-      {
-        allScheme: "",
-        activeScheme: "",
-        inactiveScheme: "",
-        totalSearchResults: "",
-        schemes: [
-          {
-            scNumber: "",
-            subsidyMeasureTitle: "",
-            scNumber: "",
-            gaName: "",
-            startDate: "",
-            endDate: "",
-            duration: "",
-            budget: "",
-          },
-        ],
-      },
-    ],
+    data: {
+      allScheme: "",
+      activeScheme: "",
+      inactiveScheme: "",
+      totalSearchResults: "",
+      schemes: [
+        {
+          scNumber: "",
+          subsidyMeasureTitle: "",
+          scNumber: "",
+          gaName: "",
+          startDate: "",
+          endDate: "",
+          duration: "",
+          budget: "",
+        },
+      ],
+    },
   });
-  var abcd = await request(app)
+  request(app)
     .post("/measuresearchroute", (req, res))
     .send({
       search_text: "",
       grantingAuthorityID: "",
       grantingAuthorityName: "",
-    });
-  expect(abcd).toBe(200);
-  // .expect(200, done);
+      schemes: [],
+    })
+    // expect(abcd).toBe(200);
+    .expect(200, done);
 });

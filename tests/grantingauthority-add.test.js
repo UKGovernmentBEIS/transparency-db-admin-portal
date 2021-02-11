@@ -31,12 +31,12 @@ test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   const req = mockRequest();
   global.beis_url_accessmanagement = "";
   global.grantingAuthorityID_Global = "";
-  grantingAuthorityName_Global = "";
-  grantingAuthorityPublish_Global = "";
+  global.grantingAuthorityName_Error = "";
+  global.grantingAuthorityName_Global = "";
   const res = {};
   request(app)
-    .get("/editreviewgrantingauthority", (req, res))
-    .send({ gaName: "" })
+    .get("/addgrantingauthority", (req, res))
+    .query({ change: "70" })
     .expect(200, done);
 });
 
@@ -44,11 +44,11 @@ test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   const req = mockRequest();
   global.beis_url_accessmanagement = "";
   global.grantingAuthorityID_Global = "";
-  grantingAuthorityName_Global = "";
-  grantingAuthorityPublish_Global = "true";
+  global.grantingAuthorityName_Error = "";
+  global.grantingAuthorityName_Global = "";
   const res = {};
   request(app)
-    .post("/editreviewgrantingauthority", (req, res))
-    .send({ gaName: "" })
+    .get("/addgrantingauthority", (req, res))
+    .query({ totalrecords: "70" })
     .expect(200, done);
 });

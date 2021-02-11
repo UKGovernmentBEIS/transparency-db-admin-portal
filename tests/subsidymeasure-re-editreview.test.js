@@ -17,46 +17,50 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for Subsidy Scheme Review Details Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   const req = mockRequest();
   const res = {};
+  global.beis_url_publicsearch = "";
+  global.Subsidy_Measure_Title_Global = "";
+  global.Subsidy_Adhoc_Global = "";
 
-  global.isAddSubsidyPrimarycall = "";
-  global.beis_url_accessmanagement = "";
-  Subsidy_Adhoc_Global = "";
-  Subsidy_Measure_Title_Global = "";
-  Legal_Basis_Global = "";
-  Granting_Authority_URL_Global = "";
-  Granting_Authority_Policy_Global = "";
-  Budget_Global = "";
-  Scheme_Start_Day_Global = "";
-  GetMonthName = "";
-  Scheme_Start_Year_Global = "";
-  Scheme_End_Day_Global = "";
-  GetMonthName = "";
-  Scheme_End_Year_Global = "";
-  global.SubsidyErrors = [];
-  global.SubsidyArraySize = [];
-  global.SubsidyFocus = [];
+  global.Granting_Authority_Name_Global = "";
+  global.Scheme_Start_Day_Global = "";
+  global.Scheme_Start_Month_Global = "";
+  global.Scheme_Start_Year_Global = "";
+  global.Scheme_End_Day_Global = "";
+  global.Scheme_End_Month_Global = "";
+  global.Scheme_End_Year_Global = "";
+  global.Legal_Basis_Global = "";
+  global.Granting_Authority_URL_Global = "";
+  global.Granting_Authority_Policy_Global = "";
+  global.Budget_Global = "";
+  global.GetMonthName = "";
 
   global.Subsidy_Measure_Title_Error = "";
   global.Subsidy_Adhoc_Error = "";
-  global.Granting_Authority_Name_Error = "";
-  global.scheme_issued_start_day_Error = "";
-  global.scheme_issued_start_month_Error = "";
-  global.scheme_issued_start_year_Error = "";
   global.Legal_Basis_Error = "";
   global.Granting_Authority_URL_Error = "";
   global.Granting_Authority_Policy_Error = "";
   global.Budget_Error = "";
+  global.Granting_Authority_Name_Error = "";
+  global.scheme_issued_start_day_Error = "";
+  global.scheme_issued_start_month_Error = "";
+  global.scheme_issued_start_year_Error = "";
   global.scheme_issued_end_day_Error = "";
   global.scheme_issued_end_month_Error = "";
   global.scheme_issued_end_year_Error = "";
 
+  global.SubsidyErrors = [];
+  global.SubsidyArraySize = "";
+  global.SubsidyFocus = [];
+
+  global.isAddSubsidyPrimarycall = "";
+  global.beis_url_searchscheme = "";
+
   request(app)
-    .post("/reviewsubsidymeasures", (req, res))
+    .post("/subsidymeasurereditreview", (req, res))
     .send({
-      buttonvalue: "Continue",
       Subsidy_Adhoc: "",
       Granting_Authority_Name: "",
       Subsidy_Measure_Title: "",
@@ -70,37 +74,41 @@ test("Unit testing for Subsidy Scheme Review Details Test for GET call", (done) 
       scheme_issued_end_year: "",
       scheme_issued_end_month: "",
       scheme_issued_end_day: "",
+      buttonvalue: "Update",
     })
     .expect(200, done);
   //   expect(acd).toBe(200);
 });
 
-test("Unit testing for Subsidy Scheme Review Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   const req = mockRequest();
   const res = {};
+  global.beis_url_publicsearch = "";
+  global.Subsidy_Measure_Title_Global = "";
+  global.Subsidy_Adhoc_Global = "";
 
-  global.isAddSubsidyPrimarycall = "";
-  global.beis_url_accessmanagement = "";
-  Subsidy_Adhoc_Global = "";
-  Subsidy_Measure_Title_Global = "";
-  Legal_Basis_Global = "";
-  Granting_Authority_URL_Global = "";
-  Granting_Authority_Policy_Global = "";
-  Budget_Global = "";
-  Scheme_Start_Day_Global = "";
-  GetMonthName = "";
-  Scheme_Start_Year_Global = "";
-  Scheme_End_Day_Global = "";
-  GetMonthName = "";
-  Scheme_End_Year_Global = "";
+  global.Granting_Authority_Name_Global = "";
+  global.Scheme_Start_Day_Global = "";
+  global.Scheme_Start_Month_Global = "";
+  global.Scheme_Start_Year_Global = "";
+  global.Scheme_End_Day_Global = "";
+  global.Scheme_End_Month_Global = "";
+  global.Scheme_End_Year_Global = "";
+  global.Legal_Basis_Global = "";
+  global.Granting_Authority_URL_Global = "";
+  global.Granting_Authority_Policy_Global = "";
+  global.Budget_Global = "";
+
   global.SubsidyErrors = [];
-  global.SubsidyArraySize = [];
+  global.SubsidyArraySize = "";
   global.SubsidyFocus = [];
+  global.GetMonthName = "";
+  global.isAddSubsidyPrimarycall = "";
+  global.beis_url_searchscheme = "";
 
   request(app)
-    .post("/reviewsubsidymeasures", (req, res))
+    .post("/subsidymeasurereditreview", (req, res))
     .send({
-      buttonvalue: "",
       Subsidy_Adhoc: "",
       Granting_Authority_Name: "",
       Subsidy_Measure_Title: "",
@@ -114,6 +122,7 @@ test("Unit testing for Subsidy Scheme Review Test for GET call", (done) => {
       scheme_issued_end_year: "",
       scheme_issued_end_month: "",
       scheme_issued_end_day: "",
+      buttonvalue: "",
     })
     .expect(200, done);
   //   expect(acd).toBe(200);
