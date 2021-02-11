@@ -131,22 +131,22 @@
                 </table>
             </section>
             <div class="govuk-grid-row">
-                <div class="govuk-grid-column-one-half govuk-padding-0">
-                    <form action="/mysubsidymeasures" method="GET" novalidate class="govuk-grid-column-one-half">
-                        <input type="hidden" name="answers-checked" value="true">
+                <!-- <div class="govuk-grid-column-two-thirds govuk-padding-0"> -->
+                <form action="/mysubsidymeasures" method="GET" novalidate>
+                    <input type="hidden" name="answers-checked" value="true">
 
-                        <button class="govuk-button" data-module="govuk-button">
-                            Back to subsidy schemes
-                        </button>
+                    <button class="govuk-button" data-module="govuk-button">
+                        Back to subsidy schemes
+                    </button>
+                    <a href="/addsubsidymeasures" class=" govuk-button govuk-button--secondary ">
+                        Cancel
+                    </a>
+                </form>
 
-                    </form>
+                <!-- <form action="" method="GET" class="govuk-grid-column-one-half"> -->
 
-                    <form action="/addsubsidymeasures" method="GET" class="govuk-grid-column-one-half">
-                        <button class=" govuk-button govuk-button--secondary ">
-                            Cancel
-                        </button>
-                    </form>
-                </div>
+                <!-- </form> -->
+                <!-- </div> -->
             </div>
         </main>
     </div>

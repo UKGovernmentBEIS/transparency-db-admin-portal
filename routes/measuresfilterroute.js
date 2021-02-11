@@ -26,11 +26,12 @@ router.get("/", async (req, res) => {
     status: scheme_selected_status,
   };
 
-
+  console.log("data requ", data_request);
   try {
     const apidata = await axios.post(
-        beis_url_searchscheme + "/scheme/search",
-        data_request);
+      beis_url_searchscheme + "/scheme/search",
+      data_request
+    );
     console.log(`Status: ${apidata.status}`);
     API_response_code = `${apidata.status}`;
     console.log("API_response_code: try" + API_response_code);
