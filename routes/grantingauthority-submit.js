@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
     const gaID = req.body.grantingAuthorityID;
     try {
       const apidata = await axios.put(
-        `http://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority/${gaID}`,
+        `https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority/${gaID}`,
         {
           name: req.body.grantingAuthorityName,
         }
@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
   } else {
     try {
       const apidata = await axios.post(
-        "http://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority",
+        "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority",
         {
           name: req.body.GaName,
         },

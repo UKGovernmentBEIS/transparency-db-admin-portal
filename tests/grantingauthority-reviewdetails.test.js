@@ -32,10 +32,23 @@ test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   global.beis_url_accessmanagement = "";
   global.grantingAuthorityID_Global = "";
   global.grantingAuthorityName_Global = "";
-  global.grantingAuthorityName_Error = "";
+  global.grantingAuthorityName_Error = "false";
   const res = {};
   request(app)
     .post("/reviewgrantingauthority", (req, res))
-    .send({ gaName: "" })
+    .send({ gaNumber: "", grantingAuthorityName: "" })
+    .expect(200, done);
+});
+
+test("Unit testing for cancel subsidy award Test for GET call", (done) => {
+  const req = mockRequest();
+  global.beis_url_accessmanagement = "";
+  global.grantingAuthorityID_Global = "";
+  global.grantingAuthorityName_Global = "";
+  global.grantingAuthorityName_Error = "false";
+  const res = {};
+  request(app)
+    .post("/reviewgrantingauthority", (req, res))
+    .send({ gaNumber: "", grantingAuthorityName: "BEIS" })
     .expect(200, done);
 });
