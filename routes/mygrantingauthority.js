@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
   };
   try {
     const apidata = await axios.post(
-      "http://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/searchGrantingAuthority",
+      "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/searchGrantingAuthority",
       data
     );
     const sort = "";
@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
     var grantingAuthorityName = "";
     API_response_code = `${apidata.status}`;
     grantingAuthorityList = apidata.data;
-    totalrows = grantingAuthority.totalSearchResults;
+    totalrows = grantingAuthorityList.totalSearchResults;
     apidata.data.gaList.forEach(function (item) {
       maxGAId.push(item.grantingAuthorityId);
     });
@@ -103,7 +103,7 @@ router.post("/", async (req, res) => {
   };
   try {
     const apidata = await axios.post(
-      "http://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/searchGrantingAuthority",
+      "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/searchGrantingAuthority",
       data
     );
     console.log("apidata", apidata);

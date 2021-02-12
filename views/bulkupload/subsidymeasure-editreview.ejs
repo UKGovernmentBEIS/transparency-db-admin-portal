@@ -67,8 +67,8 @@
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details
                     </h2>
                     <a rel="external" aria-label="Change subsidy scheme details"
-
-                        class="govuk-link head-right govuk-relative-position" href="/editsubsidymeasure?scheme=<%= searchmeasuredetails.scNumber %>">
+                        class="govuk-link head-right govuk-relative-position"
+                        href="/editsubsidymeasure?scheme=<%= searchmeasuredetails.scNumber %>">
                         <!-- <p>Change </p> -->
 
                     </a>
@@ -106,7 +106,9 @@
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Granting authority policy page summary </th>
-                            <td class="govuk-table__cell"><%= searchmeasuredetails.gaSubsidyWebLinkDescription %>
+                            <td class="govuk-table__cell">
+                                <a
+                                    href="<%= searchmeasuredetails.gaSubsidyWebLink %>"><%= searchmeasuredetails.gaSubsidyWebLinkDescription %></a>
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
@@ -128,25 +130,24 @@
                     </tbody>
                 </table>
             </section>
-
-            ?
             <div class="govuk-grid-row">
-                <div class="govuk-grid-column-one-half govuk-padding-0">
-                    <form action="/mysubsidymeasures" method="GET" novalidate class="govuk-grid-column-one-half">
-                        <input type="hidden" name="answers-checked" value="true">
+                <!-- <div class="govuk-grid-column-two-thirds govuk-padding-0"> -->
+                <form action="/mysubsidymeasures" method="GET" novalidate>
+                    <input type="hidden" name="answers-checked" value="true">
 
-                        <button class="govuk-button" data-module="govuk-button">
-                            Back to subsidy schemes
-                        </button>
+                    <button class="govuk-button" data-module="govuk-button">
+                        Back to subsidy schemes
+                    </button>
+                    <a href="/cancelreviewsubsidymeasures?scheme=<%= searchmeasuredetails.scNumber %>"
+                        class="govuk-link govuk-cancel-button-link ">
+                        Cancel
+                    </a>
+                </form>
 
-                    </form>
+                <!-- <form action="" method="GET" class="govuk-grid-column-one-half"> -->
 
-                    <form action="/addsubsidymeasures" method="GET" class="govuk-grid-column-one-half">
-                        <button class=" govuk-button govuk-button--secondary ">
-                            Cancel
-                        </button>
-                    </form>
-                </div>
+                <!-- </form> -->
+                <!-- </div> -->
             </div>
         </main>
     </div>

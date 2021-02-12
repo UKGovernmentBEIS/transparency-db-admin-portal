@@ -486,6 +486,7 @@ button.link {
   position: absolute;
   bottom: 1rem;
   width: 89%;
+  text-decoration: none;
 }
 .govuk-description-text:active {
   background-color: rgb(255, 221, 0);

@@ -78,8 +78,8 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
               <%= dashboardawards.awardUserActionCount.totalSubsidyAward %>
             </legend>
-            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-              Total subsidy awards</p>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24">
+              <a href="/mysubsidyawards" class="govuk-description-text">Total subsidy awards </a></p>
           </div>
         </div>
         <div class="govuk-grid-column-one-half govuk-form-group">
@@ -120,10 +120,10 @@
         </div> -->
       </div>
       <div class="govuk-addGA form-group">
-        <a href="/mysubsidyawards" class="govuk-button govuk-button--success" id="getFilterTags">
+        <a href="/mysubsidyawards" class="govuk-button govuk-button--success">
           View all subsidy award
         </a>
-        <a href="/addsubsidyaward" class="govuk-button govuk-button--success" id="getFilterTags">
+        <a href="/addsubsidyaward" class="govuk-button govuk-button--success">
           Add a new subsidy award
         </a>
       </div>
@@ -137,8 +137,8 @@
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalSubsidyMeasures %> </legend>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Total subsidy
-                schemes</p>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text"><a
+                  href="/mysubsidymeasures" class="govuk-description-text">Total subsidy schemes </a> </p>
             </div>
           </div>
           <!-- <div class="govuk-grid-column-one-half govuk-form-group">
@@ -178,12 +178,12 @@
 
         </div>
         <div class="govuk-addGA form-group">
-          <button class="govuk-button govuk-button--success" id="getFilterTags">
+          <a href="/mysubsidymeasures" class="govuk-button govuk-button--success">
             View all subsidy schemes
-          </button>
-          <button class="govuk-button govuk-button--success" id="getFilterTags">
-            Add a new subsidy scheme
-          </button>
+          </a>
+          <a href="/addsubsidymeasures" class="govuk-button govuk-button--success">
+            Add a new subsidy schemes
+          </a>
         </div>
 
       </div>
@@ -199,7 +199,7 @@
                 20
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-                All users in Cardiff Council</p>
+                <a href="/manageusers" class="govuk-description-text">All users in Cardiff Council</a></p>
             </div>
 
           </div>
@@ -217,7 +217,7 @@
 
         </div>
         <div class="govuk-addGA form-group">
-          <button class="govuk-button govuk-button--success" id="getFilterTags">
+          <button class="govuk-button govuk-button--success">
             View all Users
           </button>
 
