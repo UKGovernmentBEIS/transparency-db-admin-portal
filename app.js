@@ -169,6 +169,14 @@ app.locals.duration_sorting_order;
 app.locals.budget_sorting_order;
 app.locals.sorting_order_pass;
 app.locals.Search_Text_Global;
+
+app.locals.gaId_no_arrow;
+app.locals.ganame_arrow;
+app.locals.added_by_arrow;
+app.locals.status_arrow;
+app.locals.created_on_arrow;
+app.locals.last_modified_arrow;
+
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */

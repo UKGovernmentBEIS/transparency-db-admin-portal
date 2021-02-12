@@ -11,20 +11,22 @@ router.post("/", async (req, res) => {
 
   gaId = req.body.gaid;
 
-  try {
-    await axios.delete(
-      `https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority/${gaId}`,
-      {
-        name: req.body.ganame,
-      }
-    );
-    res.render("bulkupload/grantingauthority-deactivated-successfully", {
-      gaId,
-    });
-  } catch (err) {
-    console.log("message error : " + err);
-    // res.render('publicusersearch/noresults');
-  }
+  // try {
+  const apidata = await axios.delete(
+    `https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority/${gaId}`,
+    {
+      name: req.body.ganame,
+    }
+  );
+  console.log("Status : " + apidata.status);
+  res.render("bulkupload/grantingauthority-deactivated-successfully", {
+    gaId,
+  });
+  // }
+  // } catch (err) {
+  //   console.log("message error : " + err);
+  // res.render('publicusersearch/noresults');
+  // }
 });
 
 module.exports = router;

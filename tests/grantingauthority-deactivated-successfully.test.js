@@ -40,6 +40,6 @@ test("Unit testing for deactivate GA Test for GET call", (done) => {
   request(app)
     .post("/gadeactivated", (req, res))
     .send({ gaid: "", ganame: "" })
-    //   expect(abcd).toBe(200);
+    // expect(abcd).toBe(200);
     .expect(200, done);
 });
