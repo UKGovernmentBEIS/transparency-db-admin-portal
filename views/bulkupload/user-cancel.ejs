@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - Add Subsidy Measures</title>
+    <title>GOV.UK - User cancel page</title>
     <%- include('../partials/headercss.ejs') %>
 </head>
 
@@ -45,7 +45,7 @@
                                 </a>
                             </li>
                             <li class='govuk-sub-navigation__item head-right'>
-                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                <a class="govuk-sub-navigation__link" href="/useraccount">
                                     My account
                                 </a>
                             </li>
@@ -69,10 +69,12 @@
                 <a href="/manageusers" class="govuk-button govuk-button--secondary" data-module="govuk-button">
                     Yes, cancel
                 </a>
-                <a href="/reviewuser" class="govuk-button govuk-button_sm govuk-button--secondary"
+                <!-- <a href="/reviewuser" class="govuk-button govuk-button_sm govuk-button--secondary"
+                    data-module="govuk-button"> -->
+                <button onclick="window.history.back()" class="govuk-button govuk-button_sm govuk-button--secondary"
                     data-module="govuk-button">
                     No
-                </a>
+                </button>
             </div>
 
         </main>

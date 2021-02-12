@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - Add Subsidy Measures</title>
+    <title>GOV.UK - Individual User Details page</title>
     <%- include('../partials/headercss.ejs') %>
 </head>
 
@@ -30,7 +30,7 @@
                             </li>
                             <li class="govuk-sub-navigation__item">
                                 <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                                    Subsidy Measures
+                                    Subsidy Schemes
                                 </a>
                             </li>
                             <li class="govuk-sub-navigation__item">
@@ -47,7 +47,7 @@
                                 </a>
                             </li>
                             <li class="govuk-sub-navigation__item head-right">
-                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                <a class="govuk-sub-navigation__link" href="/useraccount">
                                     My account
                                 </a>
                             </li>
@@ -144,10 +144,12 @@
               Review for beneficialry details tab
               ************************************* -->
 
-            <a href="/manageusers" class="govuk-button" data-module="govuk-button">
+            <!-- <a href="/manageusers" class="govuk-button" data-module="govuk-button">
                 View all users
+            </a> -->
+            <a href="/userupdated" class="govuk-button" data-module="govuk-button">
+                Save updates
             </a>
-
             <a href="/" class="govuk-link govuk-cancel-button-link">Deactivate</a>
 
     </div>

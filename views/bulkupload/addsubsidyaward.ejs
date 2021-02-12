@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Add Subsidy Award</title>
+  <title>GOV.UK - Add Subsidy Award page</title>
   <%- include('../partials/headercss.ejs') %>
 
   <!-- <script type="text/javascript" language="javascript"
@@ -10,13 +10,13 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
-
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
+  <script src="assets/javascripts/jquery.min.js"></script>
   <script>
     $(document).ready(function () {
-      $('.amount_subsidy_tax').hide();
-      $('.amount_subsidy_nottax').hide();
+      // $('.amount_subsidy_tax').hide();
+      // $('.amount_subsidy_nottax').hide();
 
       // $('#Subsidy_Instrument').change(function (e) {
 
@@ -147,7 +147,7 @@
                 </a>
               </li>
               <li class="govuk-sub-navigation__item head-right">
-                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                <a class="govuk-sub-navigation__link" href="/useraccount">
                   My account
                 </a>
               </li>
@@ -161,7 +161,7 @@
 
       <% if( SubsidyArraySize > 0 ){ %>
 
-      <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
+      <div class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
         data-module="govuk-error-summary">
         <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
 
@@ -179,10 +179,10 @@
       <% } %>
 
       <%  if(isCallfromEditAward ) { %>
-      <h1 class="govuk-heading-xl">Edit subsidy award  <%= Edit_Award_Number_global %></h1>
+      <h1 class="govuk-heading-xl">Edit subsidy award <%= Edit_Award_Number_global %></h1>
       <% } else { %>
       <h1 class="govuk-heading-xl">Add a subsidy award</h1>
-       <% } %>
+      <% } %>
       <!-- <a rel="external" target="_blank" class="govuk-link head-right govuk-relative-position_title" href="./assets/files/HelpDocumentAddSubsidyAwards.pdf" >
         <p >Download the help file </p>
       </a> -->
@@ -218,8 +218,7 @@
 
               <input class="govuk-input govuk-input--width-5 govuk-input--error" id="Subsidy_Control_Number"
                 name="Subsidy_Control_Number" type="text" aria-describedby="Subsidy_Control_Number-hint"
-                <% if(Subsidy_Control_Number_Global) {%> value="<%= Subsidy_Control_Number_Global%>"
-                <% } %> />
+                <% if(Subsidy_Control_Number_Global) {%> value="<%= Subsidy_Control_Number_Global%>" <% } %> />
             </div>
             <% } else { %>
 
@@ -231,9 +230,8 @@
                 For example, SC92138. This must match the subsidy scheme that this award is related to.
               </div>
               <input class="govuk-input govuk-input--width-5" id="Subsidy_Control_Number" name="Subsidy_Control_Number"
-                type="text" aria-describedby="Subsidy_Control_Number-hint"
-                <% if(Subsidy_Control_Number_Global) {%> value="<%= Subsidy_Control_Number_Global %>"
-                <% } %> />
+                type="text" aria-describedby="Subsidy_Control_Number-hint" <% if(Subsidy_Control_Number_Global) {%>
+                value="<%= Subsidy_Control_Number_Global %>" <% } %> />
             </div>
             <% }  %>
             <!-- ***************************************  -->
@@ -241,7 +239,7 @@
             <!-- ***************************************  -->
 
             <div class="govuk-form-group">
-              <label class="govuk-label govuk-!-font-weight-bold" for="Subsidy_Control_Number">
+              <label class="govuk-label govuk-!-font-weight-bold">
                 Or
               </label>
             </div>
@@ -265,8 +263,7 @@
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Measure_Title"
                 name="Subsidy_Measure_Title" type="text" aria-describedby="Subsidy_Measure_Title-hint"
-                <% if(Subsidy_Measure_Title_Global) {%> value="<%= Subsidy_Measure_Title_Global %>"
-                <% } %> />
+                <% if(Subsidy_Measure_Title_Global) {%> value="<%= Subsidy_Measure_Title_Global %>" <% } %> />
             </div>
             <% } else { %>
 
@@ -287,7 +284,7 @@
 
             <h1 class="govuk-heading-l">Subsidy award details</h1>
 
-          
+
 
             <!-- ************************************  -->
             <!-- Get the subsdy adhoc from user  -->
@@ -401,9 +398,9 @@
               <select class="govuk-select" id="Subsidy_Objective" name="Subsidy_Objective"
                 onChange=changeSubsidyPurpose(event)>
                 <% if( Subsidy_Objective_Global == '' ){ %>
-                <option value="Empty" selected>Select subsidy purpose (11) </option>
+                <option value="Empty" selected>Select subsidy purpose (12) </option>
                 <% } else { %>
-                <option value="Empty">Select subsidy purpose (11) </option>
+                <option value="Empty">Select subsidy purpose (12) </option>
                 <% } %>
                 <% if( Subsidy_Objective_Global == 'Culture or Heritage​' ){ %>
                 <option value="Culture or Heritage​" selected>Culture or Heritage​ </option>
@@ -490,9 +487,9 @@
               <select class="govuk-select" id="Subsidy_Objective" name="Subsidy_Objective"
                 onChange=changeSubsidyPurpose(event)>
                 <% if( Subsidy_Objective_Global == '' ){ %>
-                <option value="Empty" selected>Select subsidy purpose (11) </option>
+                <option value="Empty" selected>Select subsidy purpose (12) </option>
                 <% } else { %>
-                <option value="Empty">Select subsidy purpose (11) </option>
+                <option value="Empty">Select subsidy purpose (12) </option>
                 <% } %>
                 <% if( Subsidy_Objective_Global == 'Culture or Heritage​' ){ %>
                 <option value="Culture or Heritage​" selected>Culture or Heritage​ </option>
@@ -594,8 +591,7 @@
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Objective_Other"
                 name="Subsidy_Objective_Other" type="text" aria-describedby="Subsidy_Objective_Other-hint"
-                <% if(Subsidy_Objective_Other_Global) {%> value="<%= Subsidy_Objective_Other_Global %>"
-                <% } %> />
+                <% if(Subsidy_Objective_Other_Global) {%> value="<%= Subsidy_Objective_Other_Global %>" <% } %> />
             </div>
             <% } else { %>
 
@@ -606,8 +602,7 @@
 
               <input class="govuk-input govuk-input--width-20" id="Subsidy_Objective_Other"
                 name="Subsidy_Objective_Other" type="text" aria-describedby="Subsidy_Objective_Other-hint"
-                <% if(Subsidy_Objective_Other_Global) {%> value="<%= Subsidy_Objective_Other_Global %>"
-                <% } %> />
+                <% if(Subsidy_Objective_Other_Global) {%> value="<%= Subsidy_Objective_Other_Global %>" <% } %> />
             </div>
             <% }  %>
 
@@ -663,7 +658,7 @@
                 <option value="Provision of goods or services below market prices" selected>Provision of goods or
                   services below market prices</option>
                 <% } else { %>
-                <option value="Provision of goods or services below market prices" >Provision of goods or
+                <option value="Provision of goods or services below market prices">Provision of goods or
                   services below market prices</option>
                 <% } %>
                 <% if( Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)' ) { %>
@@ -725,7 +720,7 @@
                 <option value="Provision of goods or services below market prices" selected>Provision of goods or
                   services below market prices</option>
                 <% } else { %>
-                <option value="Provision of goods or services below market prices" >Provision of goods or
+                <option value="Provision of goods or services below market prices">Provision of goods or
                   services below market prices</option>
                 <% } %>
                 <% if( Subsidy_Instrument_Global == 'Tax measures (tax credit, or tax/duty exemption)' ) { %>
@@ -769,8 +764,7 @@
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Instrument_Other"
                 name="Subsidy_Instrument_Other" type="text" aria-describedby="Subsidy_Instrument_Other-hint"
-                <% if(Subsidy_Instrument_Other_Global) {%> value="<%= Subsidy_Instrument_Other_Global %>"
-                <% } %> />
+                <% if(Subsidy_Instrument_Other_Global) {%> value="<%= Subsidy_Instrument_Other_Global %>" <% } %> />
             </div>
             <% } else { %>
 
@@ -781,8 +775,7 @@
 
               <input class="govuk-input govuk-input--width-20" id="Subsidy_Instrument_Other"
                 name="Subsidy_Instrument_Other" type="text" aria-describedby="Subsidy_Instrument_Other-hint"
-                <% if(Subsidy_Instrument_Other_Global) {%> value="<%= Subsidy_Instrument_Other_Global %>"
-                <% } %> />
+                <% if(Subsidy_Instrument_Other_Global) {%> value="<%= Subsidy_Instrument_Other_Global %>" <% } %> />
             </div>
             <% }  %>
 
@@ -938,9 +931,9 @@
                 </span>
 
                 <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
-                  name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount-hint"
-                  <% if(Subsidy_Element_Full_Amount_Global) {%>
-                  value="<%= Subsidy_Element_Full_Amount_Global%>" <% } %> />
+                  name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount"
+                  <% if(Subsidy_Element_Full_Amount_Global) {%> value="<%= Subsidy_Element_Full_Amount_Global%>"
+                  <% } %> />
               </div>
 
               <% } else { %>
@@ -952,9 +945,9 @@
                 </label>
 
                 <input class="govuk-input govuk-input--width-20" id="Subsidy_Element_Full_Amount"
-                  name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount-hint"
-                  <% if(Subsidy_Element_Full_Amount_Global) {%>
-                  value="<%= Subsidy_Element_Full_Amount_Global%>" <% } %> />
+                  name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount"
+                  <% if(Subsidy_Element_Full_Amount_Global) {%> value="<%= Subsidy_Element_Full_Amount_Global%>"
+                  <% } %> />
               </div>
 
               <% } %>
@@ -976,9 +969,8 @@
               </span>
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Granting_Authority_Name"
-                name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name-hint"
-                <% if(Granting_Authority_Name_Global) {%> value="<%= Granting_Authority_Name_Global%>"
-                <% } %> />
+                name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name"
+                <% if(Granting_Authority_Name_Global) {%> value="<%= Granting_Authority_Name_Global%>" <% } %> />
             </div>
             <% } else { %>
 
@@ -988,9 +980,8 @@
               </label>
 
               <input class="govuk-input govuk-input--width-20" id="Granting_Authority_Name"
-                name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name-hint"
-                <% if(Granting_Authority_Name_Global) {%> value="<%= Granting_Authority_Name_Global%>"
-                <% } %> />
+                name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name"
+                <% if(Granting_Authority_Name_Global) {%> value="<%= Granting_Authority_Name_Global%>" <% } %> />
             </div>
             <% }  %>
 
@@ -1151,7 +1142,7 @@
 
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Beneficiary_Name"
-                name="Beneficiary_Name" type="text" aria-describedby="Beneficiary_Name-hint"
+                name="Beneficiary_Name" type="text" aria-describedby="Beneficiary_Name"
                 <% if(Beneficiary_Name_Global) {%> value="<%= Beneficiary_Name_Global%>" <% } %> />
             </div>
 
@@ -1162,7 +1153,7 @@
               </label>
 
               <input class="govuk-input govuk-input--width-20" id="Beneficiary_Name" name="Beneficiary_Name" type="text"
-                aria-describedby="Beneficiary_Name-hint" <% if(Beneficiary_Name_Global) {%>
+                aria-describedby="Beneficiary_Name" <% if(Beneficiary_Name_Global) {%>
                 value="<%= Beneficiary_Name_Global%>" <% } %> />
             </div>
             <% } %>
@@ -1616,9 +1607,9 @@
 
               <select class="govuk-select" id="Spending_Region" name="Spending_Region">
                 <% if( Spending_Region_Global == '' ){ %>
-                <option value="Empty" selected>Select a region (8)</option>
+                <option value="Empty" selected>Select a region (12)</option>
                 <% } else { %>
-                <option value="Empty">Select a region (8)</option>
+                <option value="Empty">Select a region (12)</option>
                 <% } %>
 
                 <% if( Spending_Region_Global == 'North East' ){ %>
@@ -1711,9 +1702,9 @@
               </div>
               <select class="govuk-select" id="Spending_Region" name="Spending_Region">
                 <% if( Spending_Region_Global == '' ){ %>
-                <option value="Empty" selected>Select a region (8)</option>
+                <option value="Empty" selected>Select a region (12)</option>
                 <% } else { %>
-                <option value="Empty">Select a region (8)</option>
+                <option value="Empty">Select a region (12)</option>
                 <% } %>
 
                 <% if( Spending_Region_Global == 'North East' ){ %>
@@ -1812,9 +1803,9 @@
 
               <select class="govuk-select" id="Spending_Sector" name="Spending_Sector">
                 <% if( Spending_Sector_Global == '' ){ %>
-                <option value="Empty" selected>Select sector (20)</option>
+                <option value="Empty" selected>Select sector (21)</option>
                 <% } else { %>
-                <option value="Empty">Select sector (20)</option>
+                <option value="Empty">Select sector (21)</option>
                 <% } %>
 
                 <% if( Spending_Sector_Global == 'Accommodation' ){ %>
@@ -1981,9 +1972,9 @@
 
               <select class="govuk-select" id="Spending_Sector" name="Spending_Sector">
                 <% if( Spending_Sector_Global == '' ){ %>
-                <option value="Empty" selected>Select sector (20)</option>
+                <option value="Empty" selected>Select sector (21)</option>
                 <% } else { %>
-                <option value="Empty">Select sector (20)</option>
+                <option value="Empty">Select sector (21)</option>
                 <% } %>
 
                 <% if( Spending_Sector_Global == 'Accommodation' ){ %>
@@ -2145,7 +2136,8 @@
               data-module="govuk-button">
               Continue
             </button>
-            <a class="govuk-link govuk-cancel-button-link" id="mylink" value="cancel" href="#"> Cancel
+            <a class="govuk-link govuk-cancel-button-link" id="mylink" value="cancel" href="/canceladdsubsidyaward">
+              Cancel
             </a>
             <!-- 
            <button class="govuk-button" id="buttonvalue" name="buttonvalue" value="cancel" data-module="govuk-button">
@@ -2162,7 +2154,7 @@
     </main>
   </div>
   <%- include('../partials/footer.ejs') %>
-  <script src="/assets/javascripts/govuk-frontend.js"></script>
+  <!-- <script src="/assets/javascripts/govuk-frontend.js"></script> -->
 </body>
 
 </html>

@@ -8,11 +8,15 @@ const axios = require("axios");
 var request = require("request");
 
 router.get("/", async (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
   console.log("req.query.page: " + req.query.page);
-  //  frontend_totalRecordsPerPage = 3;
   routing_pagenumber = req.query.page;
   current_page = parseInt(routing_pagenumber);
-  console.log("current_page pageroute : " + current_page);
 
   current_page_active = current_page;
 
@@ -26,44 +30,34 @@ router.get("/", async (req, res) => {
     previous_page = current_page - 1;
     next_page = current_page + 1;
   }
-  console.log("routing current page :" + current_page);
-  console.log("routing prev page :" + previous_page);
-  console.log("routing next page :" + next_page);
+
 
   const data_request = {
-    beneficiaryName: "",
-    subsidyMeasureTitle: "",
-    subsidyObjective: [],
-    spendingRegion: [],
-    subsidyInstrument: [],
-    spendingSector: [],
-    legalGrantingFromDate: "",
-    legalGrantingToDate: "",
+    searchName: Search_Text_Global,
     pageNumber: current_page,
     totalRecordsPerPage: frontend_totalRecordsPerPage,
-    sortBy: [""],
+    sortBy: sorting_order_pass,
+    status: "",
   };
+
 
   var data = JSON.parse(JSON.stringify(data_request));
   console.log("request data : " + data);
 
   try {
     const apidata = await axios.post(
-      "http://subsidy-search-service.azurewebsites.net/searchResults",
-      data
+      beis_url_searchscheme + "/scheme/search",
+      data_request
     );
     console.log(`Status: ${apidata.status}`);
     console.log("Body: ", apidata.data);
-    searchawards = apidata.data;
-    var searchawards_api = apidata.data;
-    console.log("searchawards" + searchawards_api);
-    const seachawardstring = JSON.stringify(searchawards_api);
-    // console.log('seachawardstring' + seachawardstring );
+    searchschemes = apidata.data;
+    var searchschemes_api = apidata.data;
+    console.log("searchschemes" + searchschemes_api);
+    const seachawardstring = JSON.stringify(searchschemes_api);
     const seachawardJSON = JSON.parse(seachawardstring);
-    // console.log('seachawardJSON ' + seachawardJSON.awards[0]  );
-    totalrows = parseInt(searchawards.totalSearchResults);
-    console.log(searchawards.awards[0].beneficiary.beneficiaryType);
-    console.log(searchawards.awards[0].subsidyFullAmountExact);
+    totalrows = parseInt(searchschemes.totalSearchResults);
+    
     console.log("req.query.page: " + req.query.page);
 
     if (current_page == 1) {
@@ -122,6 +116,12 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
   res.render("bulkupload/mysubsidymeasures");
 });
 

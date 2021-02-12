@@ -81,7 +81,7 @@ table tbody tr:hover{
   position: relative;
 }
 .govuk-p-0 {
-  padding: 0;
+  padding: 0 !important;
 }
 .clear-all {
   position: absolute;
@@ -120,7 +120,7 @@ table tbody tr:hover{
   -webkit-box-shadow: 0 0px 0 #0b0c0c;
   box-shadow: 0 0px 0 #0b0c0c;
 }
-#downarrow {
+.downarrow {
   position: absolute;
   transform: rotate(180deg);
   /* bottom: 10px; */
@@ -128,7 +128,7 @@ table tbody tr:hover{
   right: auto;
 }
 
-#uparrow {
+.uparrow {
   position: absolute;
   /* bottom: 20px; */
   top: 11px;

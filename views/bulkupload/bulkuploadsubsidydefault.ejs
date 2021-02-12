@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/headersubsidy.ejs') %>
 
+<head>
+  <title>GOV.UK - Bulk upload subsidy award page</title>
+  <!-- <%- include('../partials/headersubsidy.ejs') %> -->
+  <%- include('../partials/headercss.ejs') %>
+</head>
 
-<body>
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+  <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
     <main class="govuk-main-wrapper " id="main-content" role="main">
-      <!-- <body class="govuk-template__body app-example-page js-enabled"> -->
-      <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-      <!-- Disable browser validation for any examples that include form elements -->
-      <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+
       <div class="govuk-grid-row govuk-form-group">
         <div class="govuk-grid-column-full">
           <nav aria-label="Sub navigation">
@@ -27,7 +31,7 @@
               </li>
               <li class="govuk-sub-navigation__item">
                 <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                  Subsidy Measures
+                  Subsidy Schemes
                 </a>
               </li>
               <li class="govuk-sub-navigation__item">
@@ -44,7 +48,7 @@
                 </a>
               </li>
               <li class="govuk-sub-navigation__item head-right">
-                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                <a class="govuk-sub-navigation__link" href="/useraccount">
                   My account
                 </a>
               </li>
@@ -94,7 +98,8 @@
                   You can use the template to fill in the required information for the subsidy awards you want to add.
                 </p>
                 <p class="govuk-body govuk-form-group">You can download the user guide for
-                  <a rel="external" target="_blank" class="govuk-link" href="./assets/files/HelpDocumentBulkUpload.docx">
+                  <a rel="external" target="_blank" class="govuk-link"
+                    href="./assets/files/HelpDocumentBulkUpload.docx">
                     help with adding multiple subsidy awards.
                   </a>
                 </p>
@@ -111,7 +116,7 @@
         <div class="govuk-tabs__panel" id="upload-csv">
           <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
-              <form encType="multipart/form-data" action="/formvalidation" method="post" novalidate="">
+              <form enctype="multipart/form-data" action="/formvalidation" method="post" novalidate="">
 
                 <% if( locals.isFileUploadEmpty || locals.isNotCsvOrExcel){ %>
 
@@ -138,12 +143,13 @@
                   </span>
                   <div class="govuk-input__wrapper">
                     <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file">
+                      type="file" aria-label="Choose file">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                 </div>
 
-                <button class="govuk-button" data-module="govuk-button">Upload file </button>
+                <button class="govuk-button" data-module="govuk-button" aria-label="Upload file"
+                  value="Upload file">Upload file </button>
 
                 <% } else if( locals.isExcelFormat){ %>
 
@@ -165,8 +171,8 @@
                     <p> The file format must be .csv or .xlsx</p>
                   </label>
                   <div class="govuk-input__wrapper">
-                    <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file">
+                    <input class="govuk-input govuk-!-width-one-third" id="file-upload-1"
+                      name="file_upload_1"="Upload file">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
 
@@ -176,7 +182,7 @@
                 </div>
 
 
-                <button class="govuk-button" data-module="govuk-button">Upload file </button>
+                <button class="govuk-button" data-module="govuk-button" value="Upload file">Upload file </button>
 
 
                 <div class="govuk-form-group govuk-form-group--error">
@@ -190,7 +196,7 @@
                 </div>
 
 
-                <section>
+                <section class="govuk-table-responsive">
                   <table class="govuk-table" id="datatable">
                     <thead class="govuk-table__head">
                       <tr class="govuk-table__row">
@@ -247,16 +253,11 @@
                         <h1 class="govuk-panel__title">
                           File uploaded successfully
                         </h1>
-
-
-                        <h3 class="govuk-panel__body">
+                        <h2 class="govuk-panel__body">
                           100 records have been saved as draft
-                        </h3>
+                        </h2>
                       </div>
-
-
-
-                      <section>
+                      <section class="govuk-table-responsive">
                         <table class="govuk-table" id="datatable">
                           <thead class="govuk-table__head">
                             <tr class="govuk-table__row">
@@ -272,11 +273,7 @@
                           </tbody>
                         </table>
                       </section>
-
-                      <h2 class="govuk-heading-m">What happens next</h2>
-
-
-
+                      <h3 class="govuk-heading-m">What happens next</h3>
                       <p class="govuk-body">
                         All the records have been successfully uploaded and saved as draft under 'My subsidy awards'
                         tab. Proceed to 'My subsidy awards' for any further actions.
@@ -288,8 +285,6 @@
                     </div>
                   </div>
                 </main>
-
-
 
                 <!-- ************************************ -->
                 <!-- Default render of bulkupload section -->
@@ -304,7 +299,7 @@
                   </label>
                   <div class="govuk-input__wrapper">
                     <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file">
+                      type="file" aria-label="Choose file">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                   <p>Uploading will update the status of every subsidy award in the file to ‘Finalised’ and submit them
@@ -312,8 +307,8 @@
 
                 </div>
 
-
-                <button class="govuk-button" data-module="govuk-button">Upload file </button>
+                <button class="govuk-button" data-module="govuk-button" aria-label="Upload file"
+                  value="Upload file">Upload file </button>
 
                 <% } %>
 

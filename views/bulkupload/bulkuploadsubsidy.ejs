@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/headersubsidy.ejs') %>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-<script type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-<script type="text/javascript" src="/assets/javascripts/bulkuploadpdfgen.js"></script>
+<head>
+  <title>GOV.UK - Bulk upload subsidy award uploaded page</title>
+  <!-- <%- include('../partials/headersubsidy.ejs') %> -->
+  <%- include('../partials/headercss.ejs') %>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/bulkuploadpdfgen.js"></script>
+</head>
 
-<body>
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+  <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
     <main class="govuk-main-wrapper " id="main-content" role="main">
 
-      <!-- <body class="govuk-template__body app-example-page js-enabled"> -->
-      <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-      <!-- Disable browser validation for any examples that include form elements -->
-      <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
       <div class="govuk-grid-row govuk-form-group">
         <div class="govuk-grid-column-full">
           <nav aria-label="Sub navigation">
@@ -32,7 +35,7 @@
               </li>
               <li class="govuk-sub-navigation__item">
                 <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                  Subsidy Measures
+                  Subsidy Schemes
                 </a>
               </li>
               <li class="govuk-sub-navigation__item">
@@ -49,7 +52,7 @@
                 </a>
               </li>
               <li class="govuk-sub-navigation__item head-right">
-                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                <a class="govuk-sub-navigation__link" href="/useraccount">
                   My account
                 </a>
               </li>
@@ -107,7 +110,8 @@
                   You can use the template to fill in the required information for the subsidy awards you want to add.
                 </p>
                 <p class="govuk-body govuk-form-group">You can download the user guide for
-                  <a rel="external" target="_blank" class="govuk-link" href="./assets/files/HelpDocumentBulkUpload.docx">
+                  <a rel="external" target="_blank" class="govuk-link"
+                    href="./assets/files/HelpDocumentBulkUpload.docx">
                     help with adding multiple subsidy awards.
                   </a>
                 </p>
@@ -162,20 +166,18 @@
                     <% } %>
                   </span>
 
-
-
-
                   <!-- <input class="govuk-file-upload govuk-file-upload--error" id="file-upload-1" name="file_upload_1"
                     type="file" aria-describedby="file-upload-1-error"> -->
                   <div class="govuk-input__wrapper">
                     <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file">
+                      type="file" aria-label="Choose file">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                 </div>
 
 
-                <button class="govuk-button" data-module="govuk-button">Upload file </button>
+                <button class="govuk-button" data-module="govuk-button" aria-label="Upload file"
+                  value="Upload file">Upload file </button>
 
               </form>
 
@@ -196,14 +198,16 @@
 
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="file-upload-1"> Upload a file</label>
-                  <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file">
+                  <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
+                    aria-label="Choose file">
                   <label class="govuk-label-grey" for="file-upload-2">
                     <p> The file must be a CSV or Microsoft Excel spreadsheet</p>
                   </label>
                 </div>
 
 
-                <button class="govuk-button" data-module="govuk-button">Upload file </button>
+                <button class="govuk-button" data-module="govuk-button" aria-label="Upload file"
+                  value="Upload file">Upload file </button>
 
               </form>
               <hr />
@@ -216,12 +220,12 @@
                   You can also download a PDF of errors (opens in a new window or tab)
                 </label> -->
 
-                <script type="text/javascript"
+                <!-- <script type="text/javascript"
                   src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
                 <script type="text/javascript"
                   src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
                 <script type="text/javascript" src="/assets/javascripts/bulkuploadpdfgen.js"></script>
-
+ -->
 
                 <div>
                   <p> You can also
@@ -238,126 +242,117 @@
 
               </div>
 
-              <div>
-
-                <%- include('../partials/pagination.ejs') %>
-
-                <!-- ************************************ -->
-                <!-- CSV file uploaded section            -->
-                <!-- ************************************ -->
-
-                <% } else if( locals.isXlsxOk){ %>
 
 
-                <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+              <%- include('../partials/pagination.ejs') %>
 
-                  <div class="govuk-grid-row">
-                    <div class="govuk-grid-column-two-thirds">
-                      <div class="govuk-panel govuk-relative-position govuk-panel--confirmation">
-                        <h1 class="govuk-panel__title ">
-                          File uploaded successfully
-                        </h1>
-                        <h3 class="govuk-panel__body">
-                          <%= locals.validationerrors.totalRows %> records have been submitted for approval and are now
-                          in 'Awaiting approval' state</h3>
+              <!-- ************************************ -->
+              <!-- CSV file uploaded section            -->
+              <!-- ************************************ -->
 
-                      </div>
+              <% } else if( locals.isXlsxOk){ %>
 
 
-
-                      <section class="govuk-table-responsive">
-                        <table class="govuk-table" id="datatable">
-                          <thead class="govuk-table__head">
-                            <tr class="govuk-table__row">
-                              <th scope="col" class="govuk-table__header">File uploaded</th>
-                              <th scope="col" class="govuk-table__header govuk-table__cell--numeric">Number of records
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody class="govuk-table__body">
-                            <tr>
-                              <td class="govuk-table__cell"><%= file_upload_name %> </td>
-                              <td class="govuk-table__cell govuk-table__cell--numeric">
-                                <%= locals.validationerrors.totalRows %> </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </section>
-
-                      <h2 class="govuk-heading-m">What happens next</h2>
+              <!-- <div class="govuk-main-wrapper govuk-main-wrapper--l"> -->
 
 
+              <div class="govuk-grid-column-two-thirds">
+                <div class="govuk-panel govuk-panel--confirmation">
+                  <p class="govuk-panel__title ">
+                    File uploaded successfully
+                  </p>
+                  <div class="govuk-panel__body">
+                    <%= locals.validationerrors.totalRows %> records have been submitted for approval and are now
+                    in 'Awaiting approval' state</div>
 
-                      <p class="govuk-body">1. The awards have been submitted for approval and is now in 'Awaiting
-                        approval'
-                        state.</p>
-                      <p class="govuk-body">2. Once approved,they will be published.</p>
-                      <p class="govuk-body">3. If rejected, you will receive the notification with the reason</p>
-                      <form action="/mysubsidyawards" method="GET">
-                        <div>
-                          <!-- <button class="govuk-button">Proceed to My subsidy awards &#62;</button> -->
-                          <button class="govuk-button" data-module="govuk-button">
-                            Proceed to My subsidy awards
-                            <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5"
-                              height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-                              <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-                            </svg></a>
-                          </button>
+                </div>
 
-                        </div>
-                      </form>
+                <section class="govuk-table-responsive">
+                  <table class="govuk-table" id="datatable">
+                    <thead class="govuk-table__head">
+                      <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">File uploaded</th>
+                        <th scope="col" class="govuk-table__header govuk-table__cell--numeric">Number of records
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                      <tr>
+                        <td class="govuk-table__cell"><%= file_upload_name %> </td>
+                        <td class="govuk-table__cell govuk-table__cell--numeric">
+                          <%= locals.validationerrors.totalRows %> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </section>
 
-                      <form action="/bulkuploadsubsidy" method="GET">
-                        <div>
-                          <button class=" govuk-button_cancel_xxl govuk-button--secondary ">
-                            Upload another file
-                          </button>
+                <h3 class="govuk-heading-m">What happens next</h3>
+                <p class="govuk-body">1. The awards have been submitted for approval and is now in 'Awaiting
+                  approval'
+                  state.</p>
+                <p class="govuk-body">2. Once approved,they will be published.</p>
+                <p class="govuk-body">3. If rejected, you will receive the notification with the reason</p>
+              </div>
+              <div class="govuk-grid-column-two-thirds govuk-padding-0 ">
+                <form action="/mysubsidyawards" method="GET" class="govuk-grid-column-one-half">
 
-                        </div>
-                      </form>
+                  <!-- <button class="govuk-button">Proceed to My subsidy awards &#62;</button> -->
+                  <button class="govuk-button" data-module="govuk-button">
+                    Proceed to My subsidy awards
+                    <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19"
+                      viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+                      <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                    </svg></a>
+                  </button>
+                </form>
 
-                    </div>
-                  </div>
-                </main>
-
-
-
-                <!-- ************************************ -->
-                <!-- Default render of bulkupload section -->
-                <!-- ************************************ -->
-
-                <% } else { %>
-                <form encType="multipart/form-data" action="/formvalidation" method="post" novalidate="">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label" for="file-upload-1"> Upload a file</label>
-                    <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file">
-                    <label class="govuk-label-grey" for="file-upload-2">
-                      <p> The file must be a CSV or Microsoft Excel spreadsheet</p>
-                    </label>
-                  </div>
-
-
-                  <button class="govuk-button" data-module="govuk-button">Upload file </button>
-
-
-                  <% } %>
-
+                <form action="/bulkuploadsubsidy" method="GET" class="govuk-grid-column-one-half">
+                  <button class=" govuk-button govuk-button--secondary ">
+                    Upload another file
+                  </button>
                 </form>
               </div>
+              <!-- </div> -->
+              <!-- </main> -->
+
+
+
+              <!-- ************************************ -->
+              <!-- Default render of bulkupload section -->
+              <!-- ************************************ -->
+
+              <% } else { %>
+              <form encType="multipart/form-data" action="/formvalidation" method="post" novalidate="">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="file-upload-1"> Upload a file</label>
+                  <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
+                    aria-label="Choose file">
+                  <label class="govuk-label-grey" for="file-upload-2">
+                    <p> The file must be a CSV or Microsoft Excel spreadsheet</p>
+                  </label>
+                </div>
+
+
+                <button class="govuk-button" data-module="govuk-button" aria-label="Upload File"
+                  value="Upload file">Upload file </button>
+
+
+                <% } %>
+
+              </form>
+
             </div>
           </div>
 
-
-
-
         </div>
-        <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
-        <script src="/assets/javascripts/govuk-frontend.js"></script>
-        <script src="/assets/javascripts/example.js"></script>
+
 
     </main>
   </div>
   <%- include('../partials/footer.ejs') %>
+  <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+  <!-- <script src="/assets/javascripts/govuk-frontend.js"></script> -->
+  <script src="/assets/javascripts/example.js"></script>
 </body>
 
 </html>

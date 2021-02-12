@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Subsidy Measures search page</title>
+  <title>GOV.UK - Subsidy Award review details page</title>
   <%- include('../partials/headercss.ejs') %>
 </head>
 
@@ -14,9 +14,9 @@
   <div class="govuk-width-container ">
     <main class="govuk-main-wrapper " id="main-content" role="main">
       <!-- <body class="govuk-template__body app-example-page js-enabled"> -->
-      <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+      <!-- <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script> -->
       <!-- Disable browser validation for any examples that include form elements -->
-      <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+      <!-- <a href="#main-content" class="govuk-skip-link">Skip to main content</a> -->
       <div class="govuk-grid-row govuk-form-group">
         <div class="govuk-grid-column-full">
           <nav aria-label="Sub navigation">
@@ -34,7 +34,7 @@
               </li>
               <li class="govuk-sub-navigation__item">
                 <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                  Subsidy Measures
+                  Subsidy Schemes
                 </a>
               </li>
               <li class="govuk-sub-navigation__item">
@@ -51,7 +51,7 @@
                 </a>
               </li>
               <li class="govuk-sub-navigation__item head-right">
-                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                <a class="govuk-sub-navigation__link" href="/useraccount">
                   My account
                 </a>
               </li>
@@ -74,7 +74,8 @@
         </div>
         <div class="govuk-grid-column-full">
           <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy details</h2>
-          <a rel="external" class="govuk-link head-right govuk-relative-position" href="/addsubsidyreview">
+          <a rel="external" aria-label="Change subsidy details" class="govuk-link head-right govuk-relative-position"
+            href="/addsubsidyreview">
             <p>Change </p>
           </a>
         </div>
@@ -186,7 +187,8 @@
               ************************************* -->
 
       <h2 class="govuk-heading-m">Recipient details</h2>
-      <a rel="external" class="govuk-link head-right govuk-relative-position" href="/addsubsidyreview">
+      <a rel="external" aria-label="Change Recipient details" class="govuk-link head-right govuk-relative-position"
+        href="/addsubsidyreview">
         <p>Change </p>
       </a>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">

@@ -6,6 +6,13 @@ router.get("/", (req, res) => {
   let isFileUploadEmpty = false;
   let isNotCsvOrExcel = false;
   let isExcelFormat = false;
+
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
   res.render("bulkupload/bulkuploadsubsidy", {
     isFileUploadEmpty,
     isNotCsvOrExcel,
@@ -15,6 +22,12 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   let isFileUploadEmpty = false;
+
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
   console.log("formvalidation");
 
@@ -131,7 +144,7 @@ router.post("/", (req, res) => {
         validationerrors,
         errorsvalidationpass,
       });
-    }, 5000);
+    }, 15000);
   }
 });
 

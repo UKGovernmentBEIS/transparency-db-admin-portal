@@ -21,7 +21,8 @@ const res = {};
 
 test("Unit testing for login firstpage Test for GET call", (done) => {
   const req = mockRequest();
-request(app)
+  global.beis_url_accessmanagement = "";
+  request(app)
     .get("/loginfirstpage", (req, res))
-  .expect(200, done);
+    .expect(200, done);
 });

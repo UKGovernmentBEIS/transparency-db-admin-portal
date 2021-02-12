@@ -22,16 +22,42 @@ const mockRequest = (sessionData, body) => ({
 test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   const req = mockRequest();
   const res = {};
+  global.beis_url_searchscheme = "";
+  global.beis_url_accessmanagement = "";
+  global.subsidy_scheme_name_arrow = "";
+  global.subsidy_control_no_arrow = "";
+  global.granting_authority_arrow = "";
+  global.start_date_arrow = "";
+  global.end_date_arrow = "";
+  global.duration_arrow = "";
+  global.budget_arrow = "";
+  global.searchschemes = {
+    schemes: [
+      {
+        subsidyMeasureTitle: "",
+        scNumber: "",
+        gaName: "",
+        startDate: "",
+        endDate: "",
+        duration: "",
+        budget: "",
+      },
+    ],
+  };
+  global.Search_Text_Global = "";
+  global.sorting_order_pass = "";
   global.start_record = 1;
+  global.frontend_totalRecordsPerPage = "10";
+  global.sorting_order_pass = "";
   global.end_record = 10;
   global.totalrows = 10;
   global.start_page = 1;
   global.end_page = 10;
   global.next_page = 2;
-  global.pageCount = "10";
+  global.pageCount = "1";
+  global.schemes_status = "";
   global.previous_page = 1;
   global.current_page_active = 1;
-  global.frontend_totalRecordsPerPage = 10;
 
   axios.post.mockResolvedValue({
     status: 200,
@@ -39,28 +65,15 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
       totalSearchResults: 10,
       currentPage: 1,
       totalPages: 1,
-      awards: [
+      schemes: [
         {
-          awardNumber: 22,
-          beneficiary: {
-            beneficiaryName: "Absolem Productions Limited",
-          },
-          subsidyMeasure: {
-            subsidyMeasureTitle:
-              "COVID-19 Temporary Framework for UK authorities",
-            scNumber: "SC10033",
-            adhoc: false,
-            legalBasis: {
-              legalBasisText: "R&D&I Framework",
-            },
-          },
-          subsidyFullAmountRange: "£NA",
-          subsidyFullAmountExact: "597,336",
-          subsidyObjective: "Energy efficiency",
-          subsidyInstrument: "Direct Grant",
-          spendingSector: "Arts, entertainment and recreation",
-          legalGrantingDate: "13 October 2020",
-          spendingRegion: "Scotland",
+          subsidyMeasureTitle: "",
+          scNumber: "",
+          gaName: "",
+          startDate: "",
+          endDate: "",
+          duration: "",
+          budget: "",
         },
       ],
     },
@@ -74,16 +87,44 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
 test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   const req = mockRequest();
   const res = {};
+
+  global.beis_url_searchscheme = "";
+  global.beis_url_accessmanagement = "";
+  global.subsidy_scheme_name_arrow = "";
+  global.subsidy_control_no_arrow = "";
+  global.Search_Text_Global = "";
+  global.sorting_order_pass = "";
+  global.granting_authority_arrow = "";
+  global.start_date_arrow = "";
+  global.end_date_arrow = "";
+  global.duration_arrow = "";
+  global.budget_arrow = "";
+  global.searchschemes = {
+    schemes: [
+      {
+        subsidyMeasureTitle: "",
+        scNumber: "",
+        gaName: "",
+        startDate: "",
+        endDate: "",
+        duration: "",
+        budget: "",
+      },
+    ],
+  };
+
   global.start_record = 1;
+  global.frontend_totalRecordsPerPage = "10";
+  global.sorting_order_pass = "";
   global.end_record = 10;
   global.totalrows = 10;
   global.start_page = 1;
   global.end_page = 10;
   global.next_page = 2;
-  global.pageCount = 1;
+  global.pageCount = "1";
+  global.schemes_status = "";
   global.previous_page = 1;
   global.current_page_active = 1;
-  global.frontend_totalRecordsPerPage = 1;
 
   axios.post.mockResolvedValue({
     status: 200,
@@ -91,28 +132,15 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
       totalSearchResults: 10,
       currentPage: 1,
       totalPages: 1,
-      awards: [
+      schemes: [
         {
-          awardNumber: 22,
-          beneficiary: {
-            beneficiaryName: "Absolem Productions Limited",
-          },
-          subsidyMeasure: {
-            subsidyMeasureTitle:
-              "COVID-19 Temporary Framework for UK authorities",
-            scNumber: "SC10033",
-            adhoc: false,
-            legalBasis: {
-              legalBasisText: "R&D&I Framework",
-            },
-          },
-          subsidyFullAmountRange: "£NA",
-          subsidyFullAmountExact: "597,336",
-          subsidyObjective: "Energy efficiency",
-          subsidyInstrument: "Direct Grant",
-          spendingSector: "Arts, entertainment and recreation",
-          legalGrantingDate: "13 October 2020",
-          spendingRegion: "Scotland",
+          subsidyMeasureTitle: "",
+          scNumber: "",
+          gaName: "",
+          startDate: "",
+          endDate: "",
+          duration: "",
+          budget: "",
         },
       ],
     },

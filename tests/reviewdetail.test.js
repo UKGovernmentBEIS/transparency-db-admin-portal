@@ -21,6 +21,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for Review details Test for GET call", (done) => {
   const req = mockRequest();
+  global.beis_url_accessmanagement = "";
   global.Subsidy_Control_Number_Global_Substring = "";
   global.Subsidy_Instrument_Global = "";
   global.Subsidy_Element_Full_Amount_Global = "";
@@ -28,6 +29,8 @@ test("Unit testing for Review details Test for GET call", (done) => {
   global.Subsidy_Control_Number_Global = "";
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Objective_Global = "";
+  global.Subsidy_Objective_Other_Global = "";
+  global.Subsidy_Instrument_Other_Global = "";
   global.Subsidy_Full_Amount_Range_Global = "";
   global.Granting_Authority_Name_Global = "";
   global.Legal_Granting_Date_Day_Global = "";
@@ -41,15 +44,68 @@ test("Unit testing for Review details Test for GET call", (done) => {
   global.Spending_Region_Global = "";
   global.Spending_Sector_Global = "";
   global.Subsidy_Instrument_Global = "";
+
+  global.Subsidy_Objective_Plus_Other_Global = "";
+  global.Subsidy_Instrument_Plus_Other_Global = "";
+
   const res = {};
   request(app)
     .get("/reviewdetail", (req, res))
     .expect(200, done);
-  //   expect(abcd).toBe(200);
+  // expect(abcd).toBe(200);
 });
 test("Unit testing for Review details Test for POSt call", (done) => {
   const req = mockRequest();
+  global.beis_url_accessmanagement = "";
+  global.SubsidyArraySize = 0;
+  global.SubsidyErrors = [];
+  global.SubsidyFocus = [];
+  global.isAddSubsidyPrimarycall = "";
+  global.Edit_Award_Number_global = "";
+  global.isCallfromEditAward = "";
+  global.Subsidy_Control_Number_Global = "";
+  global.Subsidy_Control_Number_Global_Substring = "";
+  global.Subsidy_Measure_Title_Global = "";
+  global.Subsidy_Objective_Global = "";
+  global.Subsidy_Instrument_Global = "";
+  global.Subsidy_Element_Full_Amount_Global = "";
+  global.Subsidy_Full_Amount_Range_Global = "";
+  global.National_ID_Type_Global = "";
+  global.National_ID_Number_Global = "";
+  global.Beneficiary_Name_Global = "";
+  global.Size_of_the_Organisation_Global = "";
+  global.Granting_Authority_Name_Global = "";
+  global.Legal_Granting_Date_Day_Global = "";
+  global.Legal_Granting_Date_Month_Global = "";
+  global.Legal_Granting_Date_Year_Global = "";
+  global.Goods_or_Services_Global = "";
+  global.Spending_Region_Global = "";
+  global.Spending_Sector_Global = "";
+  global.GetMonthName = "";
 
+  global.Subsidy_Control_Number_Error = "";
+  global.Subsidy_Measure_Title_Error = "";
+  global.Subsidy_Objective_Error = "";
+  global.Subsidy_Instrument_Error = "";
+  global.Subsidy_Element_Full_Amount_Error = "";
+  global.Subsidy_Full_Amount_Range_Error = "";
+  global.National_ID_Type_Error = "";
+  global.National_ID_Number_Error = "";
+  global.Beneficiary_Name_Error = "";
+  global.Size_of_the_Organisation_Error = "";
+  global.Granting_Authority_Name_Error = "";
+  global.Legal_Granting_Date_Day_Error = "";
+  global.Legal_Granting_Date_Month_Error = "";
+  global.Legal_Granting_Date_Year_Error = "";
+  global.Goods_or_Services_Error = "";
+  global.Spending_Region_Error = "";
+  global.Spending_Sector_Error = "";
+
+  global.SubsidyErrors = "";
+  global.SubsidyArraySize = "";
+  global.SubsidyFocus = "";
+
+  global.isAddSubsidyPrimarycall = "";
   const res = {};
   request(app)
     .post("/reviewdetail", (req, res))
@@ -80,6 +136,13 @@ test("Unit testing for Review details Test for POSt call", (done) => {
 
 test("Unit testing for Review details Test for POSt call", (done) => {
   const req = mockRequest();
+  global.SubsidyArraySize = 0;
+  global.SubsidyErrors = [];
+  global.beis_url_accessmanagement = "";
+  global.SubsidyFocus = [];
+  global.isAddSubsidyPrimarycall = "";
+  global.Edit_Award_Number_global = "";
+  global.isCallfromEditAward = "";
   global.Subsidy_Control_Number_Global = "";
   global.Subsidy_Control_Number_Global_Substring = "";
   global.Subsidy_Measure_Title_Global = "";
@@ -100,6 +163,29 @@ test("Unit testing for Review details Test for POSt call", (done) => {
   global.Spending_Sector_Global = "";
   global.GetMonthName = "";
 
+  global.Subsidy_Control_Number_Error = "";
+  global.Subsidy_Measure_Title_Error = "";
+  global.Subsidy_Objective_Error = "";
+  global.Subsidy_Instrument_Error = "";
+  global.Subsidy_Element_Full_Amount_Error = "";
+  global.Subsidy_Full_Amount_Range_Error = "";
+  global.National_ID_Type_Error = "";
+  global.National_ID_Number_Error = "";
+  global.Beneficiary_Name_Error = "";
+  global.Size_of_the_Organisation_Error = "";
+  global.Granting_Authority_Name_Error = "";
+  global.Legal_Granting_Date_Day_Error = "";
+  global.Legal_Granting_Date_Month_Error = "";
+  global.Legal_Granting_Date_Year_Error = "";
+  global.Goods_or_Services_Error = "";
+  global.Spending_Region_Error = "";
+  global.Spending_Sector_Error = "";
+
+  global.SubsidyErrors = "";
+  global.SubsidyArraySize = "";
+  global.SubsidyFocus = "";
+
+  global.isAddSubsidyPrimarycall = "";
   const res = {};
   request(app)
     .post("/reviewdetail", (req, res))
@@ -130,6 +216,13 @@ test("Unit testing for Review details Test for POSt call", (done) => {
 
 test("Unit testing for Review details Test for POSt call", (done) => {
   const req = mockRequest();
+  global.SubsidyArraySize = 0;
+  global.beis_url_accessmanagement = "";
+  global.SubsidyErrors = [];
+  global.SubsidyFocus = [];
+  global.isAddSubsidyPrimarycall = "";
+  global.Edit_Award_Number_global = "";
+  global.isCallfromEditAward = "";
   global.Subsidy_Control_Number_Global = "";
   global.Subsidy_Control_Number_Global_Substring = "";
   global.Subsidy_Measure_Title_Global = "";

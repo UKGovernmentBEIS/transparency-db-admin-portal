@@ -22,7 +22,7 @@ const mockRequest = (sessionData, body) => ({
 test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
   const req = mockRequest();
   const res = {};
-  global.beis_url_publicsearch =
+  global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Filter results by status";
   global.frontend_totalRecordsPerPage = 10;
@@ -52,13 +52,9 @@ test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
       },
     },
   });
- request(app)
+  request(app)
     .get("/editsubsidyaward", (req, res))
-    .query({award : "22"})
+    .query({ award: "22" })
     // expect(abcd).toBe(200)
     .expect(200, done);
 });
-
-
-
-

@@ -31,7 +31,7 @@ const res = {};
 
 test("Add Granting Authority Get Call", (done) => {
   const req = mockRequest();
-
+  global.beis_url_accessmanagement = "";
   const res = {};
   request(app)
     .get("/addgrantingauthority", (req, res))

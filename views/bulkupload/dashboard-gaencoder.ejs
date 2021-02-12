@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - BEIS Admin Dashboard</title>
+  <title>GOV.UK - GA Encoder Dashboard page</title>
   <%- include('../partials/headercss.ejs') %>
   <link href="/assets/stylesheet/govuk-transparencyDb.css" rel="stylesheet" type="text/css" />
 </head>
@@ -39,7 +39,7 @@
                 </a>
               </li>
               <li class="govuk-sub-navigation__item head-right">
-                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                <a class="govuk-sub-navigation__link" href="/useraccount">
                   My account
                 </a>
               </li>
@@ -50,13 +50,76 @@
 
 
 
-      <div class="govuk-beis-heading">
-        <legend class="form-group">
+      <div class="govuk-beis-heading govuk-form-group">
+        <legend class="govuk-form-group">
           <h2>Dashboard</h2>
         </legend>
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l ">
           <h1 class="govuk-fieldset__heading"><%= dashboard_user_name %></h1>
         </legend>
+      </div>.
+
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-form-group">
+        <!-- <h2 class="govuk-fieldset_sub-heading"> -->
+        Subsidy Awards
+        <!-- </h2> -->
+      </legend>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half govuk-form-group">
+          <div class="govuk-background">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+              <%= dashboardawards.awardUserActionCount.totalSubsidyAward %>
+            </legend>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24">
+              <a href="/mysubsidyawards" class="govuk-description-text">Total subsidy awards </a></p>
+          </div>
+        </div>
+        <div class="govuk-grid-column-one-half govuk-form-group">
+          <div class="govuk-background">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+              <%= dashboardawards.awardUserActionCount.totalAwaitingAward %>
+            </legend>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+              Awaiting approval</p>
+          </div>
+        </div>
+        <div class="govuk-grid-column-one-third govuk-form-group">
+          <div class="govuk-background">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+              <%= dashboardawards.awardUserActionCount.totalPublishedAward %>
+            </legend>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+              Published</p>
+          </div>
+        </div>
+        <div class="govuk-grid-column-one-third govuk-form-group">
+          <div class="govuk-background">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+              <%= dashboardawards.awardUserActionCount.totalDraftAward %>
+            </legend>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+              Rejected</p>
+          </div>
+
+
+        </div>
+        <div class="govuk-grid-column-one-third govuk-form-group">
+          <div class="govuk-background">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+              <%= dashboardawards.awardUserActionCount.totalDeletedAward %>
+            </legend>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+              Inactive</p>
+          </div>
+        </div>
+      </div>
+      <div class="govuk-addGA form-group">
+        <a href="/mysubsidyawards" class="govuk-button govuk-button--success">
+          View all subsidy award
+        </a>
+        <a href="/addsubsidyaward" class="govuk-button govuk-button--success">
+          Add a new subsidy award
+        </a>
       </div>
 
       <div class="govuk-border-top">
@@ -68,11 +131,11 @@
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalSubsidyMeasures %> </legend>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Total subsidy
-                schemes</p>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                <a href="/mysubsidymeasures" class="govuk-description-text">Total subsidy schemes </a> </p>
             </div>
           </div>
-          <div class="govuk-grid-column-one-half govuk-form-group">
+          <!-- <div class="govuk-grid-column-one-half govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalAwaitingSubsidyMeasures %> </legend>
@@ -87,14 +150,14 @@
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
                 Published</p>
             </div>
-          </div>
+          </div> -->
           <div class="govuk-grid-column-one-third govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalDraftSubsidyMeasures %>
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-                Draft</p>
+                Active</p>
             </div>
           </div>
           <div class="govuk-grid-column-one-third govuk-form-group">
@@ -103,173 +166,23 @@
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalDeletedSubsidyMeasures %>
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-                Deleted</p>
-            </div>
-          </div>
-
-        </div>
-        <div class="govuk-addGA form-group">
-          <button class="govuk-button govuk-button--success" id="getFilterTags">
-            View all subsidy schemes
-          </button>
-          <button class="govuk-button govuk-button--success" id="getFilterTags">
-            Add a new subsidy scheme
-          </button>
-        </div>
-        <!-- <table class="govuk-table">
-        <caption class="govuk-table__caption govuk-GA-heading">
-          My 5 last updated subsidy measures
-        </caption>
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Subsidy name</th>
-            <th scope="col" class="govuk-table__header">
-              Subsidy control no.
-            </th>
-            <th scope="col" class="govuk-table__header">
-              Granting authority
-            </th>
-            <th scope="col" class="govuk-table__header">Start date</th>
-            <th scope="col" class="govuk-table__header">End date</th>
-            <th scope="col" class="govuk-table__header">Duration</th>
-            <th scope="col" class="govuk-table__header">Budget</th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <td scope="row" class="govuk-table__cell">
-              <a href="" class="govuk-editGA">Air discount scheme</a>
-            </td>
-            <td class="govuk-table__cell">SC12345</td>
-            <td class="govuk-table__cell">
-              Wholesale and retail trade; repair of motor vehicles and
-              motorcycles
-            </td>
-            <td scope="row" class="govuk-table__cell">1 December 2020</td>
-            <td class="govuk-table__cell">1 January 2021</td>
-            <td class="govuk-table__cell">1 year</td>
-            <td class="govuk-table__cell">£632,000</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="row" class="govuk-table__cell">
-              <a href="#" class="govuk-editGA">High-end television tax relief - United Kingdom</a>
-            </td>
-            <td class="govuk-table__cell">SC12345</td>
-            <td class="govuk-table__cell">
-              Agriculture, forestry and fishing​
-            </td>
-            <td scope="row" class="govuk-table__cell">1 November 2020</td>
-            <td class="govuk-table__cell">1 January 2021</td>
-            <td class="govuk-table__cell">1 year</td>
-            <td class="govuk-table__cell">£470,000</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="row" class="govuk-table__cell">
-              <a href="" class="govuk-editGA">Air discount scheme</a>
-            </td>
-            <td class="govuk-table__cell">SC12345</td>
-            <td class="govuk-table__cell">
-              Agriculture, forestry and fishing​
-            </td>
-            <td scope="row" class="govuk-table__cell">1 October 2020</td>
-            <td class="govuk-table__cell">1 January 2021</td>
-            <td class="govuk-table__cell">1 year</td>
-            <td class="govuk-table__cell">£500,000</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="row" class="govuk-table__cell">
-              <a href="" class="govuk-editGA">Air discount scheme</a>
-            </td>
-            <td class="govuk-table__cell">SC12345</td>
-            <td class="govuk-table__cell">
-              Wholesale and retail trade; repair of motor vehicles and
-              motorcycles
-            </td>
-            <td scope="row" class="govuk-table__cell">1 September 2020</td>
-            <td class="govuk-table__cell">1 January 2021</td>
-            <td class="govuk-table__cell">1 year</td>
-            <td class="govuk-table__cell">£632,000</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="row" class="govuk-table__cell">
-              <a href="" class="govuk-editGA">Air discount scheme</a>
-            </td>
-            <td class="govuk-table__cell">SC12345</td>
-            <td class="govuk-table__cell">
-              Wholesale and retail trade; repair of motor vehicles and
-              motorcycles
-            </td>
-            <td scope="row" class="govuk-table__cell">1 August 2020</td>
-            <td class="govuk-table__cell">1 January 2021</td>
-            <td class="govuk-table__cell">1 year</td>
-            <td class="govuk-table__cell">£632,000</td>
-          </tr>
-        </tbody>
-      </table> -->
-      </div>
-      <div class="govuk-border-top">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
-          <h2 class="govuk-fieldset_sub-heading">Subsidy Awards</h2>
-        </legend>
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-one-half govuk-form-group">
-            <div class="govuk-background">
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                <%= dashboardawards.awardUserActionCount.totalSubsidyAward %>
-              </legend>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-                Total subsidy awards</p>
-            </div>
-          </div>
-          <div class="govuk-grid-column-one-half govuk-form-group">
-            <div class="govuk-background">
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                <%= dashboardawards.awardUserActionCount.totalAwaitingAward %>
-              </legend>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-                Awaiting approval</p>
-            </div>
-          </div>
-          <div class="govuk-grid-column-one-third govuk-form-group">
-            <div class="govuk-background">
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                <%= dashboardawards.awardUserActionCount.totalPublishedAward %>
-              </legend>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-                Published</p>
-            </div>
-          </div>
-          <div class="govuk-grid-column-one-third govuk-form-group">
-            <div class="govuk-background">
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                <%= dashboardawards.awardUserActionCount.totalDraftAward %>
-              </legend>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-                Rejected</p>
-            </div>
-
-
-          </div>
-          <div class="govuk-grid-column-one-third govuk-form-group">
-            <div class="govuk-background">
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                <%= dashboardawards.awardUserActionCount.totalDeletedAward %>
-              </legend>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
                 Inactive</p>
             </div>
           </div>
+
         </div>
         <div class="govuk-addGA form-group">
-          <button class="govuk-button govuk-button--success" id="getFilterTags">
-            View all subsidy award
-          </button>
-          <button class="govuk-button govuk-button--success btn-md" id="getFilterTags">
-            Add a new subsidy award award
-          </button>
+          <a href="/mysubsidymeasures" class="govuk-button govuk-button--success">
+            View all subsidy schemes
+          </a>
+
+          <!-- <button class="govuk-button govuk-button--success">
+            Add a new subsidy scheme
+          </button> -->
         </div>
 
       </div>
+
     </main>
   </div>
 

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - Subsidy Schemes Review details page</title>
+    <%- include('../partials/headercss.ejs') %>
+</head>
+
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+            <!-- bread crumbs start here -->
+            <div class="govuk-grid-row govuk-form-group">
+                <div class="govuk-grid-column-full">
+                    <nav class="govuk-sub-navigation" aria-label="Sub navigation">
+                        <ul class="govuk-sub-navigation__list">
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                    Granting Authorities
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/manageusers">
+                                    Users
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidymeasures">
+                                    Subsidy schemes
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
+                                    Subsidy Awards
+                                </a>
+                            </li>
+
+                            <li class='govuk-sub-navigation__item head-right'>
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    Signout
+                                </a>
+                            </li>
+                            <li class='govuk-sub-navigation__item head-right'>
+                                <a class="govuk-sub-navigation__link" href="/useraccount">
+                                    My account
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds-from-desktop">
+                    <h1 class="govuk-heading-xl">Review subsidy scheme </h1>
+
+                    <!-- *************************************
+              Review for subsidy details tab
+              ************************************* -->
+
+                </div>
+                <div class="govuk-grid-column-full">
+                    <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details
+                    </h2>
+                    <a rel="external" aria-label="Change subsidy scheme details"
+                        class="govuk-link head-right govuk-relative-position"
+                        href="/editsubsidymeasure?scheme=<%= searchmeasuredetails.scNumber %>">
+                        <!-- <p>Change </p> -->
+
+                    </a>
+                </div>
+            </div>
+            <section class="govuk-table-responsive">
+                <table class="govuk-table">
+                    <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Is this an ad hoc scheme</th>
+                            <td class="govuk-table__cell">
+                                <% if(searchmeasuredetails.adhoc == true) { %>
+                                Yes
+                                <% } else { %>
+                                No
+                                <% }  %>
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Granting Authority</th>
+                            <td class="govuk-table__cell"><%= searchmeasuredetails.gaName %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Subsidy scheme name</th>
+                            <td class="govuk-table__cell"><%= searchmeasuredetails.subsidyMeasureTitle %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Legal basis</th>
+                            <td class="govuk-table__cell"><%= searchmeasuredetails.legalBasisText %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Granting authority policy URL </th>
+                            <td class="govuk-table__cell"><%= searchmeasuredetails.gaSubsidyWebLink %>
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Granting authority policy page summary </th>
+                            <td class="govuk-table__cell">
+                                <a
+                                    href="<%= searchmeasuredetails.gaSubsidyWebLink %>"><%= searchmeasuredetails.gaSubsidyWebLinkDescription %></a>
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Budget or amount</th>
+                            <td class="govuk-table__cell">£ <%= searchmeasuredetails.budget %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Start Date</th>
+                            <td class="govuk-table__cell"><%= Scheme_Legal_Granting_Start_Date_Day %>
+                                <%= Scheme_Legal_Granting_Start_Date_Month %>
+                                <%= Scheme_Legal_Granting_Start_Date_Year %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">End Date</th>
+                            <td class="govuk-table__cell"><%= Scheme_Legal_Granting_End_Date_Day %>
+                                <%= Scheme_Legal_Granting_End_Date_Month %>
+                                <%= Scheme_Legal_Granting_End_Date_Year %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <div class="govuk-grid-row">
+                <!-- <div class="govuk-grid-column-two-thirds govuk-padding-0"> -->
+                <form action="/mysubsidymeasures" method="GET" novalidate>
+                    <input type="hidden" name="answers-checked" value="true">
+
+                    <button class="govuk-button" data-module="govuk-button">
+                        Back to subsidy schemes
+                    </button>
+                    <a href="/cancelreviewsubsidymeasures?scheme=<%= searchmeasuredetails.scNumber %>"
+                        class="govuk-link govuk-cancel-button-link ">
+                        Cancel
+                    </a>
+                </form>
+
+                <!-- <form action="" method="GET" class="govuk-grid-column-one-half"> -->
+
+                <!-- </form> -->
+                <!-- </div> -->
+            </div>
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+
+</html>

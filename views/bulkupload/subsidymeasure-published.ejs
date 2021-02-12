@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - User added successfully page</title>
+    <%- include('../partials/headercss.ejs') %>
+</head>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+            <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+            <div class="govuk-grid-row govuk-form-group">
+                <div class="govuk-grid-column-full">
+                    <nav aria-label="Sub navigation">
+                        <ul class="govuk-sub-navigation__list">
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link"  href="/mygrantingauthority">
+                                    Granting Authorities
+                                </a>
+                            </li>
+
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/manageusers">
+                                    Users
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
+                                    Subsidy Schemes
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
+                                    Subsidy Awards
+                                </a>
+                            </li>
+
+
+
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    Sign out
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/useraccount">
+                                    My account
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+
+            <div class="govuk-grid-row">
+
+                <div class="govuk-grid-column-two-thirds govuk-form-group">
+                    <!-- <h1 class="govuk-heading-xl">Add granting authority</h1> -->
+
+                    <div class="govuk-panel govuk-panel--confirmation">
+                        <h1 class="govuk-panel__title">
+                            Subsidy scheme published
+                        </h1>
+                        <div class="govuk-panel__body">
+                            Subsidy scheme number <%=  Subsidy_Control_Number_Global_Text %>
+                        </div>
+                    </div>
+                </div>
+                <div class="govuk-grid-column-full govuk-form-group">
+                    <p class="govuk-body govuk-!-font-size-19">You have published subsidy scheme
+                        <%=  Subsidy_Control_Number_Global_Text %></p>
+
+                </div>
+                <div class="govuk-grid-column-full govuk-form-group">
+                    <a class="govuk-button" href="/mysubsidymeasures" data-module="govuk-button">
+                        View all subsidy schemes
+                    </a>
+
+                    <a class="govuk-button" href="/addsubsidymeasures" data-module="govuk-button" name="buttonvalue"
+                        value="add_measure">Add
+                        another subsidy scheme</a>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+
+
+</body>
+
+</html>

@@ -3,7 +3,7 @@
 // *************************************************************
 
 const express = require("express");
-const cookierParser = require('cookie-parser');
+// const cookierParser = require('cookie-parser');
 const app = express();
 const fs = require("fs");
 const request = require("request");
@@ -20,7 +20,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
-app.use(cookierParser());
+// app.use(cookierParser());
 const users = [];
 // app.use(fileUpload());
 app.use(
@@ -31,20 +31,20 @@ app.use(
 );
 
 //*************************************************************** */
-var multer = require('multer');
+// var multer = require("multer");
 const axios = require("axios");
 
-var upload = multer();
- 
+// var upload = multer();
+
 // for parsing application/json
-app.use(express.json()); 
-const jwt_decode = require("jwt-decode");
+app.use(express.json());
+// const jwt_decode = require("jwt-decode");
 // for parsing application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true })); 
+app.use(express.urlencoded({ extended: true }));
 
 // for parsing multipart/form-data
-app.use(upload.array()); 
-app.use(express.static('public'));
+// app.use(upload.array());
+app.use(express.static("public"));
 //*************************************************************** */
 
 app.locals.awards = require("./views/bulkupload/awards.json");
@@ -67,12 +67,27 @@ app.locals.National_ID_Number_Global;
 app.locals.Beneficiary_Name_Global;
 app.locals.Size_of_the_Organisation_Global;
 app.locals.Granting_Authority_Name_Global;
+app.locals.Legal_Basis_Global;
 app.locals.Legal_Granting_Date_Day_Global;
 app.locals.Legal_Granting_Date_Month_Global;
 app.locals.Legal_Granting_Date_Year_Global;
 app.locals.Goods_or_Services_Global;
 app.locals.Spending_Region_Global;
 app.locals.Spending_Sector_Global;
+app.locals.Granting_Authority_URL_Global;
+app.locals.Granting_Authority_Policy_Global;
+app.locals.Budget_Global;
+
+app.locals.Scheme_Start_Day_Global;
+app.locals.Scheme_Start_Month_Global;
+app.locals.Scheme_Start_Year_Global;
+app.locals.Scheme_End_Day_Global;
+app.locals.Scheme_End_Month_Global;
+app.locals.Scheme_End_Year_Global;
+
+app.locals.grantingAuthorityID_global;
+app.locals.grantingAuthorityName_Global;
+
 app.locals.GetMonthName;
 app.locals.file_upload_name;
 app.locals.isCallfromEditAward;
@@ -99,13 +114,21 @@ app.locals.dashboardawards;
 app.locals.awardnumber;
 app.locals.fetchawarddetails;
 app.locals.Award_search_URL;
+app.locals.grantingAuthorityPublish_Global;
 
 app.locals.Award_selected_status;
 app.locals.awards_status;
 app.locals.Award_search_text;
+
+app.locals.scheme_selected_status;
+app.locals.schemes_status;
+app.locals.Schemes_search_text;
+app.locals.scNumber_Global;
+
 app.locals.beis_url_publishing;
 app.locals.beis_url_accessmanagement;
 app.locals.beis_url_publicsearch;
+app.locals.beis_url_searchscheme;
 
 app.locals.Subsidy_Control_Number_Error;
 app.locals.Subsidy_Measure_Title_Error;
@@ -127,201 +150,32 @@ app.locals.Legal_Granting_Date_Year_Error;
 app.locals.Goods_or_Services_Error;
 app.locals.Spending_Region_Error;
 app.locals.Spending_Sector_Error;
+app.locals.grantingAuthorityName_Error;
 
+app.locals.searchmeasuredetails;
+app.locals.Subsidy_Control_Number_Global_Text;
+app.locals.Scheme_Legal_Granting_Start_Date_Month;
+app.locals.Scheme_Legal_Granting_Start_Date_Day;
+app.locals.Scheme_Legal_Granting_Start_Date_Year;
+app.locals.Scheme_Legal_Granting_End_Date_Month;
+app.locals.Scheme_Legal_Granting_End_Date_Day;
+app.locals.Scheme_Legal_Granting_End_Date_Year;
+app.locals.subsidy_scheme_name_sorting_order;
+app.locals.subsidy_control_no_sorting_order;
+app.locals.granting_authority_sorting_order;
+app.locals.start_date_sorting_order;
+app.locals.end_date_sorting_order;
+app.locals.duration_sorting_order;
+app.locals.budget_sorting_order;
+app.locals.sorting_order_pass;
+app.locals.Search_Text_Global;
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
 
-app.get("/", async(req, res) => {  
-  var id_token = req.header("x-ms-token-aad-id-token");
-  console.log("id_token "+id_token);
-
-  Environment_variable = process.argv[2];
-  if (Environment_variable == "env=dev") {
-    beis_url_publishing = "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
-    beis_url_accessmanagement = "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
-    beis_url_publicsearch = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
-    console.log(beis_url_publishing);
-    console.log(beis_url_accessmanagement);
-    console.log(beis_url_publicsearch);
-  } else if (Environment_variable == "env=integ") {
-    beis_url_publishing = "https://integ-transparency-db-publishing-subsidies-service.azurewebsites.net";
-    beis_url_accessmanagement = "https://integ-transparency-db-access-management-service.azurewebsites.net";
-    beis_url_publicsearch = "https://integ-transparency-db-public-search-service.azurewebsites.net";
-    console.log(beis_url_publishing);
-    console.log(beis_url_accessmanagement);
-    console.log(beis_url_publicsearch);
-  } else if (Environment_variable == "env=stag") {
-    beis_url_publishing = "https://stag-transparency-db-publishing-subsidies-service.azurewebsites.net";
-    beis_url_accessmanagement = "https://stag-transparency-db-access-management-service.azurewebsites.net";
-    beis_url_publicsearch = "https://stag-transparency-db-public-search-service.azurewebsites.net";
-    console.log(beis_url_publishing);
-    console.log(beis_url_accessmanagement);
-    console.log(beis_url_publicsearch);
-  } else if (Environment_variable == "env=prod") {
-    beis_url_publishing = "https://prod-transparency-db-publishing-subsidies-service.azurewebsites.net";
-    beis_url_accessmanagement = "https://prod-transparency-db-access-management-service.azurewebsites.net";
-    beis_url_publicsearch = "https://prod-transparency-db-public-search-service.azurewebsites.net";
-    console.log(beis_url_publishing);
-    console.log(beis_url_accessmanagement);
-    console.log(beis_url_publicsearch);
-  }
-
-
-  // *******************
-  // Globale declarations
-  // *******************
-  frontend_totalRecordsPerPage = 1;
-
-  var id_token_decoded = jwt_decode(id_token);
-  console.log("id_token_decoded "+id_token_decoded);
-  console.log("logged in user "+id_token_decoded.name);
-  console.log("id_token_decoded parsed "+JSON.stringify(id_token_decoded));
-  var id_token_json = JSON.parse(JSON.stringify(id_token_decoded));
-  dashboard_user_name = id_token_decoded.name;
-  if(id_token_json.roles.includes("4aaddb97-dcb8-4988-b2e5-b045a4419d90")){
-    dashboard_roles = "BEIS Administrator";
-  }else if(id_token_json.roles.includes("3ee46dda-5f2b-4fd5-b92b-54c2cd8f2930")){
-    dashboard_roles = "Granting Authority Administrator";
-  }else if(id_token_json.roles.includes("058abc1f-c491-4ffa-bd52-885c4fb96943")){
-    dashboard_roles = "Granting Authority Approver";
-  }else if(id_token_json.roles.includes("e7f70439-02d4-4367-817e-52283a416ac3")){
-    dashboard_roles = "Granting Authority Encoder";
-  }
-
-    console.log("dashboard_roles "+dashboard_roles);
-    dashboard_ga_name = "Big Lottery Fund";
-  
-
-  if (dashboard_roles == "BEIS Administrator") {
-    const userPrincipleRequest =
-      '{"userName": "TEST","password": "password123","role": "BEIS Administrator","grantingAuthorityGroupId": "123","grantingAuthorityGroupName": "test"}';
-    var config = {
-      headers: {
-        userPrinciple: userPrincipleRequest
-      },
-    };
-
-    var data = JSON.parse(JSON.stringify(userPrincipleRequest));
-    console.log("request :" + JSON.stringify(data));
-
-    try {
-      const apidata = await axios.get(
-        beis_url_accessmanagement + "/accessmanagement/beisadmin",
-        config
-      );
-      console.log(`Status: ${apidata.status}`);
-      API_response_code = `${apidata.status}`;
-      console.log("API_response_code: try" + API_response_code);
-      console.log("Body: ", apidata.data);
-      dashboardawards = apidata.data;
-      res.render("bulkupload/dashboard-beisadmin", {
-        beis_url_accessmanagement,dashboard_user_name
-      });
-    } catch (err) {
-      response_error_message = err;
-      console.log("message error : " + err);
-      console.log("response_error_message catch : " + response_error_message);
-    }
-  } else if (dashboard_roles == "Granting Authority Administrator") {
-    const userPrincipleRequest =
-      '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Administrator","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-      dashboard_ga_name +
-      '"}';
-    var config = {
-      headers: {
-        userPrinciple: userPrincipleRequest
-      },
-    };
-
-    var data = JSON.parse(JSON.stringify(userPrincipleRequest));
-    console.log("request :" + JSON.stringify(data));
-
-    try {
-      const apidata = await axios.get(
-        beis_url_accessmanagement + "/accessmanagement/gaadmin",
-        config
-      );
-      console.log(`Status: ${apidata.status}`);
-      API_response_code = `${apidata.status}`;
-      console.log("API_response_code: try" + API_response_code);
-      console.log("Body: ", apidata.data);
-      dashboardawards = apidata.data;
-      res.render("bulkupload/dashboard-gaadmin",{
-        beis_url_accessmanagement,dashboard_user_name
-      });
-    } catch (err) {
-      response_error_message = err;
-      console.log("message error : " + err);
-      console.log("response_error_message catch : " + response_error_message);
-    }
-  } else if (dashboard_roles == "Granting Authority Approver") {
-    const userPrincipleRequest =
-      '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-      dashboard_ga_name +
-      '"}';
-    var config = {
-      headers: {
-        userPrinciple: userPrincipleRequest
-      },
-    };
-
-    var data = JSON.parse(JSON.stringify(userPrincipleRequest));
-    console.log("request :" + JSON.stringify(data));
-
-    try {
-      const apidata = await axios.get(
-        beis_url_accessmanagement + "/accessmanagement/gaapprover",
-        config
-      );
-      console.log(`Status: ${apidata.status}`);
-      API_response_code = `${apidata.status}`;
-      console.log("API_response_code: try" + API_response_code);
-      console.log("Body: ", apidata.data);
-      dashboardawards = apidata.data;
-      res.render("bulkupload/dashboard-gaapprover",{
-        beis_url_accessmanagement,dashboard_user_name
-      });
-    } catch (err) {
-      response_error_message = err;
-      console.log("message error : " + err);
-      console.log("response_error_message catch : " + response_error_message);
-    }
-  } else if (dashboard_roles == "Granting Authority Encoder") {
-    const userPrincipleRequest =
-      '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Encoder","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-      dashboard_ga_name +
-      '"}';
-    var config = {
-      headers: {
-        userPrinciple: userPrincipleRequest
-      },
-    };
-
-    var data = JSON.parse(JSON.stringify(userPrincipleRequest));
-    console.log("request :" + JSON.stringify(data));
-
-    try {
-      const apidata = await axios.get(
-        beis_url_accessmanagement + "/accessmanagement/gaencoder",
-        config
-      );
-      console.log(`Status: ${apidata.status}`);
-      API_response_code = `${apidata.status}`;
-      console.log("API_response_code: try" + API_response_code);
-      console.log("Body: ", apidata.data);
-      dashboardawards = apidata.data;
-      res.render("bulkupload/dashboard-gaencoder",{
-        beis_url_accessmanagement,dashboard_user_name
-      });
-    } catch (err) {
-      response_error_message = err;
-      console.log("message error : " + err);
-      console.log("response_error_message catch : " + response_error_message);
-    }
-  }
+app.get("/", async (req, res) => {
+  res.render("bulkupload/logintransparency");
 });
-
 var logintransparency = require("./routes/logintransparency");
 app.use("/logintransparency", logintransparency);
 
@@ -365,6 +219,9 @@ app.use("/formvalidation", formvalidation);
 var addsubsidyaward = require("./routes/addsubsidyaward");
 app.use("/addsubsidyaward", addsubsidyaward);
 
+var canceladdsubsidyaward = require("./routes/subsidyaward-add-cancel");
+app.use("/canceladdsubsidyaward", canceladdsubsidyaward);
+
 var editsubsidyaward = require("./routes/subsidyaward-edit");
 app.use("/editsubsidyaward", editsubsidyaward);
 
@@ -389,11 +246,29 @@ app.use("/submitforapproval", submitforapproval);
 var mygrantingauthority = require("./routes/mygrantingauthority");
 app.use("/mygrantingauthority", mygrantingauthority);
 
-var editgrantingauthority = require("./routes/editgrantingauthority");
+var reviewgrantingauthority = require("./routes/grantingauthority-reviewdetails");
+app.use("/reviewgrantingauthority", reviewgrantingauthority);
+
+var submitgrantingauthority = require("./routes/grantingauthority-submit");
+app.use("/submitgrantingauthority", submitgrantingauthority);
+
+var editgrantingauthority = require("./routes/grantingauthority-edit");
 app.use("/editgrantingauthority", editgrantingauthority);
 
-var addgrantingauthority = require("./routes/addgrantingauthority");
+var editreviewgrantingauthority = require("./routes/grantingauthority-editreview");
+app.use("/editreviewgrantingauthority", editreviewgrantingauthority);
+
+var editgacancel = require("./routes/grantingauthority-editcancel");
+app.use("/editgacancel", editgacancel);
+
+var addsuccessgrantingauthority = require("./routes/grantingauthority-addsuccessfully");
+app.use("/addsuccessgrantingauthority", addsuccessgrantingauthority);
+
+var addgrantingauthority = require("./routes/grantingauthority-add");
 app.use("/addgrantingauthority", addgrantingauthority);
+
+var deactivategrantingauthority = require("./routes/grantingauthority-deactivate");
+app.use("/deactivategrantingauthority", deactivategrantingauthority);
 
 var choosedashboard = require("./routes/choosedashboard");
 app.use("/choosedashboard", choosedashboard);
@@ -404,11 +279,32 @@ app.use("/mysubsidymeasures", mysubsidymeasures);
 var addsubsidymeasures = require("./routes/subsidymeasures-add");
 app.use("/addsubsidymeasures", addsubsidymeasures);
 
+var canceladdsubsidymeasures = require("./routes/subsidymeasure-add-cancel");
+app.use("/canceladdsubsidymeasures", canceladdsubsidymeasures);
+
+var cancelreviewsubsidymeasures = require("./routes/subsidymeasure-review-cancel");
+app.use("/cancelreviewsubsidymeasures", cancelreviewsubsidymeasures);
+
+var addreviewsubsidymeasures = require("./routes/subsidymeasure-add-review");
+app.use("/addreviewsubsidymeasures", addreviewsubsidymeasures);
+
+var subsidymeasurepublished = require("./routes/subsidymeasure-published");
+app.use("/subsidymeasurepublished", subsidymeasurepublished);
+
 var reviewsubsidymeasures = require("./routes/subsidymeasure-reviewdetails");
 app.use("/reviewsubsidymeasures", reviewsubsidymeasures);
 
 var editsubsidymeasures = require("./routes/subsidymeasure-edit");
 app.use("/editsubsidymeasure", editsubsidymeasures);
+
+var subsidymeasurereedit = require("./routes/subsidymeasure-re-edit");
+app.use("/subsidymeasurereedit", subsidymeasurereedit);
+
+var editreviewsubsidymeasure = require("./routes/subsidymeasure-editreview");
+app.use("/editreviewsubsidymeasure", editreviewsubsidymeasure);
+
+var subsidymeasurereditreview = require("./routes/subsidymeasure-re-editreview");
+app.use("/subsidymeasurereditreview", subsidymeasurereditreview);
 
 var awardspageroute = require("./routes/awardspageroute");
 app.use("/awardspageroute", awardspageroute);
@@ -418,6 +314,15 @@ app.use("/awardspageperroute", awardspageperroute);
 
 var awardsfilterroute = require("./routes/awardsfilterroute");
 app.use("/awardsfilterroute", awardsfilterroute);
+
+var measuresfilterroute = require("./routes/measuresfilterroute");
+app.use("/measuresfilterroute", measuresfilterroute);
+
+var measuresortroute = require("./routes/measuresortroute");
+app.use("/measuresortroute", measuresortroute);
+
+var measuresearchroute = require("./routes/measuresearchroute");
+app.use("/measuresearchroute", measuresearchroute);
 
 var measurespageroute = require("./routes/measurespageroute");
 app.use("/measurespageroute", measurespageroute);
@@ -474,5 +379,8 @@ app.use("/userdeactivate", userdeactivate);
 
 var userdeactivated = require("./routes/user-deactivated-successfully");
 app.use("/userdeactivated", userdeactivated);
+
+var useraccount = require("./routes/user-account");
+app.use("/useraccount", useraccount);
 
 module.exports = app;

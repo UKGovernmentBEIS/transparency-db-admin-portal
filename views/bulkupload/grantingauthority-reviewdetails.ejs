@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - Subsidy Award review details page</title>
+    <%- include('../partials/headercss.ejs') %>
+</head>
+
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+            <!-- <body class="govuk-template__body app-example-page js-enabled"> -->
+            <!-- <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script> -->
+            <!-- Disable browser validation for any examples that include form elements -->
+            <!-- <a href="#main-content" class="govuk-skip-link">Skip to main content</a> -->
+            <div class="govuk-grid-row govuk-form-group">
+                <div class="govuk-grid-column-full">
+                    <nav aria-label="Sub navigation">
+                        <ul class="govuk-sub-navigation__list">
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mygrantingauthority">
+                                    Granting Authorities
+                                </a>
+                            </li>
+
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/manageusers">
+                                    Users
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
+                                    Subsidy Schemes
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
+                                    Subsidy Awards
+                                </a>
+                            </li>
+
+
+
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    Sign out
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/useraccount">
+                                    My account
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds-from-desktop">
+                    <h1 class="govuk-heading-xl">Add granting authority</h1>
+
+                    <!-- *************************************
+              Review for subsidy details tab
+              ************************************* -->
+                </div>
+                <div class="govuk-grid-column-full">
+                    <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">New granting authorty
+                        details</h2>
+                    <!-- <form action="/addgrantingauthority" method="POST"
+                        class="govuk-link head-right govuk-relative-position">
+                        <p aria-label="Change granting authority details">Change </p>
+                        <input type="hidden" value="<%=grantingAuthorityID_Global%>" name="gaNumber">
+                        <input type="hidden" value="<%=grantingAuthorityName_Global%>" name="grantingAuthorityName">
+                    </form> -->
+                    <a rel="external" aria-label="Change granting authority details"
+                        class="govuk-link head-right govuk-relative-position"
+                        href="/addgrantingauthority?change=<%=grantingAuthorityID_Global%>">
+                        <p>Change </p>
+                    </a>
+                </div>
+            </div>
+            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Granting autority ID
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%=grantingAuthorityID_Global%>
+                    </dd>
+
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Granting authority name
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%=grantingAuthorityName_Global%>
+                    </dd>
+
+                </div>
+
+            </dl>
+            <div class="govuk-grid-row">
+                <form action="/submitgrantingauthority" method="post" class="govuk-grid-column-one-third">
+                    <input type="hidden" id="GaId" name="GaId" value="<%=grantingAuthorityID_Global%>">
+                    <input type="hidden" id="GaName" name="GaName" value="<%=grantingAuthorityName_Global%>">
+                    <button class="govuk-button" data-module="govuk-button">
+                        Save granting authority
+                    </button>
+                    <a class="govuk-link govuk-cancel-button-link" id="mylink" value="cancel" href="#">
+                        Cancel
+                    </a>
+                </form>
+
+            </div>
+
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+
+
+
+
+</html>

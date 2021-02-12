@@ -23,12 +23,16 @@ const res = {};
 test("Unit testing for spending filter route - Test for GET call", (done) => {
   const req = mockRequest();
   global.SubsidyArraySize = 0;
+  global.beis_url_accessmanagement = "";
   global.Subsidy_Control_Number_Error = "";
   global.Subsidy_Control_Number_Global = "";
+  global.Subsidy_Adhoc_Global = "";
   global.Subsidy_Measure_Title_Error = "";
   global.Subsidy_Measure_Title_Global = "";
+  global.Subsidy_Instrument_Other_Global = "";
   global.Subsidy_Objective_Error = "";
   global.Subsidy_Objective_Global = "";
+  global.Subsidy_Objective_Other_Global = "";
   global.Subsidy_Instrument_Error = "";
   global.Subsidy_Instrument_Global = "";
   global.Subsidy_Full_Amount_Range_Error = "";
@@ -58,7 +62,13 @@ test("Unit testing for spending filter route - Test for GET call", (done) => {
   global.Spending_Region_Error = "";
   global.Spending_Region_Global = "";
   global.Spending_Sector_Error = "";
+  global.Subsidy_Objective_Other_Error = "";
+  global.Subsidy_Instrument_Other_Error = "";
+  global.Subsidy_Adhoc_Error = "";
   global.Spending_Sector_Global = "";
+  global.Subsidy_Objective_Plus_Other_Global = "";
+  global.Subsidy_Instrument_Plus_Other_Global = "";
+  global.isCallfromEditAward = "";
   const res = {};
   request(app)
     .get("/addsubsidyreview", (req, res))
@@ -66,6 +76,9 @@ test("Unit testing for spending filter route - Test for GET call", (done) => {
       Subsidy_Control_Number_Global: "",
       Subsidy_Measure_Title_Global: "",
       Subsidy_Objective_Global: "",
+      Subsidy_Adhoc_Global: "",
+      Subsidy_Objective_Other_Global: "",
+      Subsidy_Instrument_Other_Global: "",
       Subsidy_Instrument_Global: "",
       Subsidy_Element_Full_Amount_Global: "",
       National_ID_Type_Global: "",
@@ -76,6 +89,8 @@ test("Unit testing for spending filter route - Test for GET call", (done) => {
       Legal_Granting_Date_Day_Global: "",
       Legal_Granting_Date_Month_Global: "",
       Legal_Granting_Date_Year_Global: "",
+      Subsidy_Objective_Plus_Other_Global: "",
+      Subsidy_Instrument_Plus_Other_Global: "",
       Goods_or_Services_Global: "",
       Spending_Region_Global: "",
       Spending_Sector_Global: "",

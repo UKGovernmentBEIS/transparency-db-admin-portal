@@ -21,12 +21,14 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for submit for approval Test for GET call", (done) => {
   const req = mockRequest();
-
+  global.beis_url_accessmanagement = "";
   global.Subsidy_Full_Amount_Range_Global = "";
   global.Subsidy_Element_Full_Amount_Global = "";
   global.Subsidy_Control_Number_Global = "";
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Objective_Global = "";
+  global.Subsidy_Objective_Other_Global = "";
+  global.Subsidy_Instrument_Other_Global = "";
   global.Subsidy_Full_Amount_Range_Global = "";
   global.Granting_Authority_Name_Global = "";
   global.Legal_Granting_Date_Day_Global = "01";
@@ -42,6 +44,8 @@ test("Unit testing for submit for approval Test for GET call", (done) => {
   global.Subsidy_Instrument_Global = "";
   global.Subsidy_Control_Number_Global_Substring = "";
   global.beis_url_publishing = "";
+  global.isCallfromEditAward = "";
+  global.Edit_Award_Number_global = "";
   const res = {};
   axios.post.mockResolvedValue({
     status: 200,
@@ -58,21 +62,32 @@ test("Unit testing for submit for approval Test for GET call", (done) => {
   request(app)
     .post("/submitforapproval", (req, res))
     .expect(200, done);
-  //   expect(abcd).toBe(200);
+  // expect(abcd).toBe(200);
 });
 
 test("Unit testing for Submit for approval Test for GET call", (done) => {
   const req = mockRequest();
+  global.SubsidyArraySize = 0;
+  global.SubsidyErrors = [];
+  global.SubsidyFocus = [];
+  global.isAddSubsidyPrimarycall = "";
+  global.Edit_Award_Number_global = "";
+  global.isCallfromEditAward = "";
   global.Subsidy_Full_Amount_Range_Global = "";
   global.Subsidy_Element_Full_Amount_Global = "";
+  global.Subsidy_Adhoc_Global = "";
   global.Subsidy_Control_Number_Global = "";
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Objective_Global = "";
+  global.Subsidy_Objective_Other_Global = "";
+  global.Subsidy_Instrument_Other_Global = "";
   global.Subsidy_Full_Amount_Range_Global = "";
   global.Granting_Authority_Name_Global = "";
   global.Legal_Granting_Date_Day_Global = "01";
   global.Legal_Granting_Date_Month_Global = "01";
   global.Legal_Granting_Date_Year_Global = "2020";
+  global.Subsidy_Objective_Plus_Other_Global = "";
+  global.Subsidy_Instrument_Plus_Other_Global = "";
   global.Beneficiary_Name_Global = "";
   global.Size_of_the_Organisation_Global = "";
   global.National_ID_Type_Global = "";
@@ -92,6 +107,7 @@ test("Unit testing for Submit for approval Test for GET call", (done) => {
   global.National_ID_Type_Error = "";
   global.National_ID_Number_Error = "";
   global.Beneficiary_Name_Error = "";
+  global.Subsidy_Adhoc_Error = "";
   global.Size_of_the_Organisation_Error = "";
   global.Granting_Authority_Name_Error = "";
   global.Legal_Granting_Date_Day_Error = "";
@@ -99,6 +115,8 @@ test("Unit testing for Submit for approval Test for GET call", (done) => {
   global.Legal_Granting_Date_Year_Error = "";
   global.Goods_or_Services_Error = "";
   global.Spending_Region_Error = "";
+  global.Subsidy_Objective_Other_Error = "";
+  global.Subsidy_Instrument_Other_Error = "";
   global.Spending_Sector_Error = "";
   global.SubsidyErrors = "";
   global.SubsidyArraySize = "";
@@ -127,12 +145,20 @@ test("Unit testing for Submit for approval Test for GET call", (done) => {
 
 test("Unit testing for Submit for approval Test for GET call", (done) => {
   const req = mockRequest();
+  global.SubsidyArraySize = 0;
+  global.SubsidyErrors = [];
+  global.SubsidyFocus = [];
+  global.isAddSubsidyPrimarycall = "";
+  global.Edit_Award_Number_global = "";
+  global.isCallfromEditAward = "";
   global.Subsidy_Full_Amount_Range_Global = "";
   global.Subsidy_Element_Full_Amount_Global = "";
   global.Subsidy_Control_Number_Global = "";
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Objective_Global = "";
+  global.Subsidy_Objective_Other_Global = "";
   global.Subsidy_Full_Amount_Range_Global = "";
+  global.Subsidy_Instrument_Other_Global = "";
   global.Granting_Authority_Name_Global = "";
   global.Legal_Granting_Date_Day_Global = "01";
   global.Legal_Granting_Date_Month_Global = "01";

@@ -8,6 +8,12 @@ const axios = require("axios");
 var request = require("request");
 
 router.get("/", async (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
   console.log("req.query.page: " + req.query.sort);
   routing_pagenumber = req.query.sort;
 
@@ -53,29 +59,31 @@ router.get("/", async (req, res) => {
     if (current_page == 1) {
       start_record = 1;
       end_record = frontend_totalRecordsPerPage;
-    } else if (current_page == pageCount) {
-      start_record = (current_page - 1) * frontend_totalRecordsPerPage + 1;
-      end_record = totalrows;
-    } else {
-      start_record =
-        current_page * frontend_totalRecordsPerPage -
-        frontend_totalRecordsPerPage +
-        1;
-      end_record = current_page * frontend_totalRecordsPerPage;
     }
+    // else if (current_page == pageCount) {
+    //   start_record = (current_page - 1) * frontend_totalRecordsPerPage + 1;
+    //   end_record = totalrows;
+    // } else {
+    //   start_record =
+    //     current_page * frontend_totalRecordsPerPage -
+    //     frontend_totalRecordsPerPage +
+    //     1;
+    //   end_record = current_page * frontend_totalRecordsPerPage;
+    // }
 
     pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
 
     if (current_page == 1) {
       previous_page = 1;
       next_page = 2;
-    } else if (current_page == pageCount) {
-      previous_page = pageCount - 1;
-      next_page = pageCount;
-    } else {
-      previous_page = current_page - 1;
-      next_page = current_page + 1;
     }
+    //  else if (current_page == pageCount) {
+    //   previous_page = pageCount - 1;
+    //   next_page = pageCount;
+    // } else {
+    //   previous_page = current_page - 1;
+    //   next_page = current_page + 1;
+    // }
 
     console.log("page count :" + pageCount);
     console.log("routing current page :" + current_page);
@@ -90,18 +98,19 @@ router.get("/", async (req, res) => {
     } else if (current_page < 5 && pageCount <= 9) {
       start_page = 1;
       end_page = pageCount;
-    } else if (current_page >= 5 && pageCount <= 9) {
-      start_page = 1;
-      end_page = pageCount;
     }
-    if (current_page >= 5 && pageCount > 9) {
-      (start_page = current_page - 4), (end_page = current_page + 4);
-      nearby_last_page = pageCount - 4;
-      if (current_page >= nearby_last_page) {
-        end_page = pageCount;
-        start_page = pageCount - 9;
-      }
-    }
+    // else if (current_page >= 5 && pageCount <= 9) {
+    //   start_page = 1;
+    //   end_page = pageCount;
+    // }
+    // if (current_page >= 5 && pageCount > 9) {
+    //   (start_page = current_page - 4), (end_page = current_page + 4);
+    //   nearby_last_page = pageCount - 4;
+    //   if (current_page >= nearby_last_page) {
+    //     end_page = pageCount;
+    //     start_page = pageCount - 9;
+    //   }
+    // }
 
     console.log("Start Page :" + start_page);
     console.log("end page :" + end_page);

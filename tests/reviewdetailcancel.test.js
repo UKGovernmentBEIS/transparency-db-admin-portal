@@ -21,7 +21,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
   const req = mockRequest();
-
+  global.beis_url_accessmanagement = "";
   global.Subsidy_Control_Number_Global_Substring = "";
   global.Subsidy_Instrument_Global = "";
   global.Subsidy_Element_Full_Amount_Global = "";
@@ -29,6 +29,10 @@ test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
   global.Subsidy_Control_Number_Global = "";
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Objective_Global = "";
+  global.Subsidy_Objective_Plus_Other_Global = "";
+  global.Subsidy_Instrument_Plus_Other_Global = "";
+  global.Subsidy_Objective_Other_Global = "";
+  global.Subsidy_Instrument_Other_Global = "";
   global.Subsidy_Full_Amount_Range_Global = "";
   global.Granting_Authority_Name_Global = "";
   global.Legal_Granting_Date_Day_Global = "";

@@ -2,13 +2,15 @@
 <html lang="en">
 
 <head>
+  <title>GOV.UK - Subsidy Awards search page</title>
   <%- include('../partials/headercss.ejs') %>
 
   <!-- <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css"> -->
   <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
   <script src="/assets/javascripts/vendor/modernizr.js"></script>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="assets/javascripts/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
   <!-- <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
 
   <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
@@ -36,7 +38,7 @@
       });
 
       $(".round").on('click', function (event) {
-        alrt("pageination button click1")
+        //  alrt("pageination button click1")
         $("input[type='checkbox']").attr("checked", false);
       });
 
@@ -51,7 +53,6 @@
   <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
     <main class="govuk-main-wrapper " id="main-content" role="main">
-
       <div class="govuk-grid-row govuk-form-group">
         <div class="govuk-grid-column-full">
           <nav aria-label="Sub navigation">
@@ -61,7 +62,6 @@
                   Granting Authorities
                 </a>
               </li>
-
               <li class="govuk-sub-navigation__item">
                 <a class="govuk-sub-navigation__link" href="/manageusers">
                   Users
@@ -77,16 +77,13 @@
                   Subsidy Awards
                 </a>
               </li>
-
-
-
               <li class="govuk-sub-navigation__item head-right">
                 <a class="govuk-sub-navigation__link" href="/logintransparency">
                   Sign out
                 </a>
               </li>
               <li class="govuk-sub-navigation__item head-right">
-                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                <a class="govuk-sub-navigation__link" href="/useraccount">
                   My account
                 </a>
               </li>
@@ -94,13 +91,8 @@
           </nav>
 
         </div>
-
       </div>
-      <!-- bread crumbs start here -->
-
-
-      <h1 class="govuk-heading-xl">
-        Subsidy awards</h1>
+      <h1 class="govuk-heading-xl"> Subsidy awards</h1>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full govuk-grid-row">
           <label class="govuk-label govuk-grid-column-full">
@@ -113,25 +105,22 @@
           <form class="govuk-!-width-full govuk-padding-0" action="/subsidyawardsearch" method="POST">
 
             <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text" name="search_award_text"
-              aria-label="User input text box for Searching either Subsidy Measure Title, Subsidy Control number, or Granting Authority"
-              type="text" <% if(Award_search_text) {%> value="<%= Award_search_text%>" <% } %> />
-
+              aria-label="User input text box for Searching Subsidy Award" type="text" <% if(Award_search_text) {%>
+              value="<%= Award_search_text%>" <% } %> />
             <button class="govuk-button" data-module="govuk-button">
               Search
             </button>
           </form>
         </div>
-        <div class="govuk-grid-column-one-quarter govuk-padding-0">
+        <div class="govuk-grid-column-one-third govuk-padding-0">
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
-            <select class="govuk-!-width-full govuk-select" id="sort" name="sort"
+            <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
               aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
               <% if(awards_status  == "Filter results by status") { %>
               <option disabled value="Filter results by status" selected>Filter results by status </option>
               <% } else { %>
               <option disabled value="Filter results by status ">Filter results by status</option>
               <% }  %>
-
-
               <% if(awards_status  == "Awaiting Approval") { %>
               <option value="Awaiting Approval" selected>Awaiting Approval </option>
               <% } else { %>
@@ -164,6 +153,8 @@
 
             </select>
           </form>
+          <span id="status-message" style="display:none" aria-hidden="true">
+            On selecting, the page will reload and display the subsidy awards.</span>
         </div>
 
         <div class="govuk-grid-column-full">
@@ -184,8 +175,8 @@
             style="float:right;text-align: right;">
             <label>Results per page</label>
             <form class="govuk-padding-0 govuk-!-width-one-third" action="/awardspageperroute" method="GET">
-              <select class="govuk-select" id="sort" name="sort" aria-label="Results per page"
-                onchange="this.form.submit()">
+              <select class="govuk-select" aria-label="Results per page shown in current page"
+                aria-describedby="info-message" aria-autocomplete="list" name="sort" onchange="this.form.submit()">
                 <% if(frontend_totalRecordsPerPage  == 10) { %>
                 <option value="10" selected>10</option>
                 <% } else { %>
@@ -208,27 +199,14 @@
                 <% }  %>
               </select>
             </form>
+            <span id="info-message" style="display:none" aria-hidden="true">
+              On selecting, the page will reload and display the subsidy awards.</span>
           </div>
         </div>
-
-
       </div>
 
 
-
-
-
-      <!-- Body details header starts here -->
-
-
-      <!-- Body details header ends here -->
-
-
-
-
       <form action="/collectcheckbox" method="GET" novalidate="">
-
-
         <section class="govuk-table-responsive">
           <table class="govuk-table" id="datatable">
             <thead class="govuk-table__head">
@@ -240,16 +218,16 @@
                         type="checkbox" value="Subsidy_awardNo">
                       <label class="govuk-label govuk-checkboxes__label_padding govuk-checkboxes__label "
                         for="Subsidy awardNo" id='Subsidy_awardno_lb' style="padding: 0 15px; font-weight: bold;">
-                        <p style="position: relative;margin: 0;">Subsidy Control number
+                        <p style="position: relative;margin: 0;">Subsidy award number
                           <a href="#" style="float: right;">
-                            <svg version="1.1" width="8px" height="8px" id="uparrow">
+                            <svg version="1.1" width="8px" height="8px" class="uparrow">
                               <g transform="matrix(1 0 0 1 0 -5 )">
                                 <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                                   stroke="none" />
                               </g>
                             </svg>
 
-                            <svg version="1.1" id="downarrow" width="8px" height="8px">
+                            <svg version="1.1" class="downarrow" width="8px" height="8px">
                               <g transform="matrix(1 0 0 1 0 -5 )">
                                 <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                                   stroke="none" />
@@ -260,14 +238,10 @@
                     </div>
                   </div>
                 </th>
-
-                <!-- <th scope="col" class="govuk-table__header app-custom-class">
-                  
-                </th> -->
                 <th scope="col" class="govuk-table__header app-custom-class">
                   <p style="position: relative;margin: 0;">Scheme name
                     <a href="#" style="float: right;">
-                      <svg version="1.1" width="8px" height="8px" id="uparrow">
+                      <svg version="1.1" width="8px" height="8px" class="uparrow">
                         <g transform="matrix(1 0 0 1 0 -5 )">
                           <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                             stroke="none" />
@@ -278,14 +252,14 @@
                 </th>
                 <th scope="col" class="govuk-table__header app-custom-class">
                   <p style="position: relative;margin: 0;">Status <a href="#" style="float: right;">
-                      <svg version="1.1" width="8px" height="8px" id="uparrow">
+                      <svg version="1.1" width="8px" height="8px" class="uparrow">
                         <g transform="matrix(1 0 0 1 0 -5 )">
                           <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                             stroke="none" />
                         </g>
                       </svg>
 
-                      <svg version="1.1" id="downarrow" width="8px" height="8px">
+                      <svg version="1.1" class="downarrow" width="8px" height="8px">
                         <g transform="matrix(1 0 0 1 0 -5 )">
                           <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                             stroke="none" />
@@ -295,14 +269,14 @@
                 </th>
                 <th scope="col" class="govuk-table__header app-custom-class receipent-th">
                   <p style="position: relative;margin: 0;">Recipient<a href="#" style="float: right;">
-                      <svg version="1.1" width="8px" height="8px" id="uparrow">
+                      <svg version="1.1" width="8px" height="8px" class="uparrow">
                         <g transform="matrix(1 0 0 1 0 -5 )">
                           <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                             stroke="none" />
                         </g>
                       </svg>
 
-                      <svg version="1.1" id="downarrow" width="8px" height="8px">
+                      <svg version="1.1" class="downarrow" width="8px" height="8px">
                         <g transform="matrix(1 0 0 1 0 -5 )">
                           <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                             stroke="none" />
@@ -313,14 +287,14 @@
                 <th scope="col" class="govuk-table__header app-custom-class">
                   <p style="position: relative;margin: 0;">Granting authority
                     <a href="#" style="float: right;">
-                      <svg version="1.1" width="8px" height="8px" id="uparrow">
+                      <svg version="1.1" width="8px" height="8px" class="uparrow">
                         <g transform="matrix(1 0 0 1 0 -5 )">
                           <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                             stroke="none" />
                         </g>
                       </svg>
 
-                      <svg version="1.1" id="downarrow" width="8px" height="8px">
+                      <svg version="1.1" class="downarrow" width="8px" height="8px">
                         <g transform="matrix(1 0 0 1 0 -5 )">
                           <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
                             stroke="none" />
@@ -337,10 +311,10 @@
                 <td class="govuk-table__cell">
                   <div class="govuk-checkboxes">
                     <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input checkbox Subsidy_awardNo" id="Subsidy_awardNo"
-                        name="check[]" type="checkbox" value="Subsidy awardNo">
+                      <input class="govuk-checkboxes__input checkbox Subsidy_awardNo" name="check[]" type="checkbox"
+                        value="Subsidy awardNo">
                       <label class="govuk-label govuk-checkboxes__label" for="waste">
-                        <a href="/subsidyawardfetch/?award=<%= item.awardNumber %>"><%= item.scNumber %></a>
+                        <a href="/subsidyawardfetch/?award=<%= item.awardNumber %>"><%= item.awardNumber %></a>
                       </label>
                     </div>
                   </div>
@@ -454,16 +428,13 @@
               <% } %>
             </div>
           </div>
-
         </section>
       </form>
-
-
     </main>
   </div>
+  <%- include('../partials/footer.ejs') %>
 </body>
 
-<%- include('../partials/footer.ejs') %>
 <!-- 
 <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
 <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script> -->
