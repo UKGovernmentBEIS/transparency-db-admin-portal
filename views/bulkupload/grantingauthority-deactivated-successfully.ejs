@@ -2,35 +2,35 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - Deactivate User page</title>
+    <title>GOV.UK - Granting authority deactivated successfully page</title>
+
     <%- include('../partials/headercss.ejs') %>
 </head>
 
 <body class="govuk-template__body app-example-page">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
-
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
 
-            <!-- Header pane starts here -->
             <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
-                    <nav class="govuk-sub-navigation" aria-label="Sub navigation">
+                    <nav aria-label="Sub navigation">
                         <ul class="govuk-sub-navigation__list">
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mygrantingauthority">
                                     Granting Authorities
                                 </a>
                             </li>
+
                             <li class="govuk-sub-navigation__item">
                                 <a class="govuk-sub-navigation__link" href="/manageusers">
                                     Users
                                 </a>
                             </li>
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidymeasures">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
                                     Subsidy Schemes
                                 </a>
                             </li>
@@ -39,13 +39,12 @@
                                     Subsidy Awards
                                 </a>
                             </li>
-
-                            <li class='govuk-sub-navigation__item head-right'>
+                            <li class="govuk-sub-navigation__item head-right">
                                 <a class="govuk-sub-navigation__link" href="/logintransparency">
-                                    Signout
+                                    Sign out
                                 </a>
                             </li>
-                            <li class='govuk-sub-navigation__item head-right'>
+                            <li class="govuk-sub-navigation__item head-right">
                                 <a class="govuk-sub-navigation__link" href="/useraccount">
                                     My account
                                 </a>
@@ -54,7 +53,6 @@
                     </nav>
                 </div>
             </div>
-            <!-- Header pane starts here -->
 
             <!-- bread crumbs start here -->
             <div class="govuk-breadcrumbs ">
@@ -66,37 +64,41 @@
                         <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Granting Authority</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active" href="#">Edit Granting Authority</a>
+                        <a1 class="govuk-breadcrumbs__link active" href="#">Add granting authority</a1>
                     </li>
                 </ol>
             </div>
             <!-- bread crumbs ends here -->
+            <div class="govuk-grid-row">
 
-            <!-- Body header starts here -->
-            <div class="govuk-body-cancel">
-                <h1 class="govuk-heading-l">Edit granting authority</h1>
+                <div class="govuk-grid-column-two-thirds govuk-form-group">
 
-                <p class="govuk-body govuk-!-font-size-19 govuk-!-width-two-thirds">If you cancel editing this granting
-                    authority, you will loose any changes.</p>
-                <!-- Body header ends here -->
-                <p class="govuk-body govuk-!-font-size-19">Are you sure you want to cancel updating this granting
-                    authority?
-                </p>
+                    <h1 class="govuk-heading-xl">Deactivate granting authority</h1>
 
-                <a href="/mygrantingauthority" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-                    Yes, cancel updates
-                </a>
-                <a href="/editreviewgrantingauthority" class="govuk-button govuk-button_sm govuk-button--secondary"
-                    data-module="govuk-button">
-                    Cancel
-                </a>
+                    <div class="govuk-panel govuk-panel--confirmation">
+                        <h1 class="govuk-panel__title">
+                            Granting authority deactivated
+                        </h1>
+                        <div class="govuk-panel__body">
+                            ID <strong><%= gaId%></strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="govuk-grid-column-full govuk-form-group">
+                    <!-- <% if(review == 'true') { %> -->
+                    <p class="govuk-body govuk-!-font-size-19">You have deactivated granting authority <%= gaId%>. Users
+                        will no longer be able to add subsidy awards to it.</p>
+                </div>
+                <div class="govuk-grid-column-full govuk-form-group">
+                    <a class="govuk-button" href="/mygrantingauthority" data-module="govuk-button">
+                        View all granting authorities
+                    </a>
+                </div>
             </div>
         </main>
     </div>
 
     <%- include('../partials/footer.ejs') %>
-    <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
-    <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
 
 </body>
 

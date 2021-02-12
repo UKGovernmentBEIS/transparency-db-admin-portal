@@ -23,7 +23,7 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.beis_url_publicsearch = "";
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Adhoc_Global = "";
-
+  global.beis_url_accessmanagement = "";
   global.Granting_Authority_Name_Global = "";
   global.Scheme_Start_Day_Global = "";
   global.Scheme_Start_Month_Global = "";
@@ -84,6 +84,7 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.beis_url_publicsearch = "";
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Adhoc_Global = "";
+  global.beis_url_accessmanagement = "";
 
   global.Granting_Authority_Name_Global = "";
   global.Scheme_Start_Day_Global = "";

@@ -29,13 +29,17 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for cancel subsidy award Test for GET call", (done) => {
+test("Unit testing for deactivate GA Test for GET call", (done) => {
   const req = mockRequest();
   global.beis_url_accessmanagement = "";
-
+  global.gaId = "";
   const res = {};
+  axios.delete.mockResolvedValue({
+    status: 200,
+  });
   request(app)
-    .get("/deactivategrantingauthority", (req, res))
-    .query({ gaId: "", gaName: "" })
+    .post("/gadeactivated", (req, res))
+    .send({ gaid: "", ganame: "" })
+    //   expect(abcd).toBe(200);
     .expect(200, done);
 });
