@@ -22,7 +22,7 @@ const mockRequest = (sessionData, body) => ({
 test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
   const req = mockRequest();
   const res = {};
-  global.beis_url_accessmanagement =
+  global.beis_url_publicsearch =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Filter results by status";
   global.Get_Award_Status = "";
