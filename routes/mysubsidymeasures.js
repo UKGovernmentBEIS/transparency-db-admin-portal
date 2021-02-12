@@ -10,6 +10,64 @@ var request = require("request");
 router.get("/", async (req, res) => {
 
 
+
+  Environment_variable = process.argv[2];
+  if (Environment_variable == "env=dev") {
+    beis_url_publishing =
+      "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement =
+      "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
+    beis_url_publicsearch =
+      "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
+    beis_url_searchscheme =  
+      "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net";
+      
+    console.log(beis_url_publishing);
+    console.log(beis_url_accessmanagement);
+    console.log(beis_url_publicsearch);
+    console.log(beis_url_searchscheme);
+  } else if (Environment_variable == "env=integ") {
+    beis_url_publishing =
+      "https://integ-transparency-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement =
+      "https://integ-transparency-db-access-management-service.azurewebsites.net";
+    beis_url_publicsearch =
+      "https://integ-transparency-db-public-search-service.azurewebsites.net";
+
+    beis_url_searchscheme =  
+      "https://integ-transparency-db-ga-schemes-service.azurewebsites.net";
+
+      
+    console.log(beis_url_publishing);
+    console.log(beis_url_accessmanagement);
+    console.log(beis_url_publicsearch);
+  } else if (Environment_variable == "env=stag") {
+    beis_url_publishing =
+      "https://stag-transparency-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement =
+      "https://stag-transparency-db-access-management-service.azurewebsites.net";
+    beis_url_publicsearch =
+      "https://stag-transparency-db-public-search-service.azurewebsites.net";
+
+      beis_url_searchscheme =  
+      "https://stag-transparency-db-ga-schemes-service.azurewebsites.net";
+
+    console.log(beis_url_publishing);
+    console.log(beis_url_accessmanagement);
+    console.log(beis_url_publicsearch);
+  } else if (Environment_variable == "env=prod") {
+    beis_url_publishing =
+      "https://prod-transparency-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement =
+      "https://prod-transparency-db-access-management-service.azurewebsites.net";
+    beis_url_publicsearch =
+      "https://prod-transparency-db-public-search-service.azurewebsites.net";
+    console.log(beis_url_publishing);
+    console.log(beis_url_accessmanagement);
+    console.log(beis_url_publicsearch);
+  }
+
+
   frontend_totalRecordsPerPage = 10;
   subsidy_scheme_name_arrow = "upascending"
   subsidy_control_no_arrow = "upanddown";

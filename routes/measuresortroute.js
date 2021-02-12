@@ -71,7 +71,7 @@ router.get("/", async (req, res) => {
     
     if (granting_authority_sorting_order == "asc") {
       sorting_column =
-        "[" + '"' + "gaName,desc" + '"' + "]";
+        "[" + '"' + "grantingAuthority.grantingAuthorityName,desc" + '"' + "]";
       subsidy_scheme_name_arrow = "upanddown";
       subsidy_control_no_arrow = "upanddown";
       granting_authority_arrow = "downdecending";
@@ -82,7 +82,7 @@ router.get("/", async (req, res) => {
       granting_authority_sorting_order = "desc";
     } else {
       sorting_column =
-        "[" + '"' + "gaName,asc" + '"' + "]";
+        "[" + '"' + "grantingAuthority.grantingAuthorityName,asc" + '"' + "]";
       subsidy_scheme_name_arrow = "upanddown";
       subsidy_control_no_arrow = "upanddown";
       granting_authority_arrow = "upacending";
