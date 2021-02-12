@@ -44,6 +44,8 @@ test("Unit testing for submit for approval Test for GET call", (done) => {
   global.Subsidy_Instrument_Global = "";
   global.Subsidy_Control_Number_Global_Substring = "";
   global.beis_url_publishing = "";
+  global.isCallfromEditAward = "";
+  global.Edit_Award_Number_global = "";
   const res = {};
   axios.post.mockResolvedValue({
     status: 200,
@@ -60,7 +62,7 @@ test("Unit testing for submit for approval Test for GET call", (done) => {
   request(app)
     .post("/submitforapproval", (req, res))
     .expect(200, done);
-  //   expect(abcd).toBe(200);
+  // expect(abcd).toBe(200);
 });
 
 test("Unit testing for Submit for approval Test for GET call", (done) => {

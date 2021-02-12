@@ -89,7 +89,7 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   global.sort = "";
   global.totalrows = "";
   global.current_page_active = "";
-  global.frontend_totalRecordsPerPage = "";
+  global.frontend_totalRecordsPerPage = "10";
   global.grantingAuthorityName = "";
   global.grantingAuthorityList = {
     gaList: [
@@ -127,4 +127,5 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   request(app)
     .get("/mygrantingauthority", (req, res))
     .expect(200, done);
+  // expect(abcd).toBe(200);
 });

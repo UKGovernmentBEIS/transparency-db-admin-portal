@@ -173,7 +173,7 @@ app.locals.Search_Text_Global;
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
 
-app.get("/", async(req, res) => {  
+app.get("/", async (req, res) => {
   res.render("bulkupload/logintransparency");
 });
 var logintransparency = require("./routes/logintransparency");
@@ -218,6 +218,9 @@ app.use("/formvalidation", formvalidation);
 
 var addsubsidyaward = require("./routes/addsubsidyaward");
 app.use("/addsubsidyaward", addsubsidyaward);
+
+var canceladdsubsidyaward = require("./routes/subsidyaward-add-cancel");
+app.use("/canceladdsubsidyaward", canceladdsubsidyaward);
 
 var editsubsidyaward = require("./routes/subsidyaward-edit");
 app.use("/editsubsidyaward", editsubsidyaward);
@@ -275,6 +278,12 @@ app.use("/mysubsidymeasures", mysubsidymeasures);
 
 var addsubsidymeasures = require("./routes/subsidymeasures-add");
 app.use("/addsubsidymeasures", addsubsidymeasures);
+
+var canceladdsubsidymeasures = require("./routes/subsidymeasure-add-cancel");
+app.use("/canceladdsubsidymeasures", canceladdsubsidymeasures);
+
+var cancelreviewsubsidymeasures = require("./routes/subsidymeasure-review-cancel");
+app.use("/cancelreviewsubsidymeasures", cancelreviewsubsidymeasures);
 
 var addreviewsubsidymeasures = require("./routes/subsidymeasure-add-review");
 app.use("/addreviewsubsidymeasures", addreviewsubsidymeasures);
