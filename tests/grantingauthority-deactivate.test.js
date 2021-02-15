@@ -36,5 +36,6 @@ test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   const res = {};
   request(app)
     .get("/deactivategrantingauthority", (req, res))
+    .query({ gaId: "", gaName: "" })
     .expect(200, done);
 });

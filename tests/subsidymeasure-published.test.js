@@ -23,7 +23,7 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   const res = {};
   global.beis_url_publicsearch = "";
   global.beis_url_searchscheme = "";
-
+  global.beis_url_accessmanagement = "";
   global.scNumber_Global = "";
   global.Subsidy_Control_Number_Global_Text = "";
   global.Subsidy_Adhoc_Global = "";
@@ -80,6 +80,7 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   const res = {};
   global.beis_url_publicsearch = "";
   global.beis_url_searchscheme = "";
+  global.beis_url_accessmanagement = "";
 
   global.scNumber_Global = "";
   global.Subsidy_Adhoc_Global_Flag = "";

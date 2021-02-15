@@ -17,9 +17,9 @@ router.post("/", async (req, res) => {
       "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
     beis_url_publicsearch =
       "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
-    beis_url_searchscheme =  
+    beis_url_searchscheme =
       "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net";
-      
+
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -32,10 +32,9 @@ router.post("/", async (req, res) => {
     beis_url_publicsearch =
       "https://integ-transparency-db-public-search-service.azurewebsites.net";
 
-    beis_url_searchscheme =  
+    beis_url_searchscheme =
       "https://integ-transparency-db-ga-schemes-service.azurewebsites.net";
 
-      
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -47,7 +46,7 @@ router.post("/", async (req, res) => {
     beis_url_publicsearch =
       "https://stag-transparency-db-public-search-service.azurewebsites.net";
 
-      beis_url_searchscheme =  
+    beis_url_searchscheme =
       "https://stag-transparency-db-ga-schemes-service.azurewebsites.net";
 
     console.log(beis_url_publishing);
@@ -64,12 +63,6 @@ router.post("/", async (req, res) => {
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
   }
-
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
   // *******************
   // Globale declarations
@@ -120,6 +113,16 @@ router.post("/", async (req, res) => {
       console.log("API_response_code: try" + API_response_code);
       console.log("Body: ", apidata.data);
       dashboardawards = apidata.data;
+
+      res.set("X-Frame-Options", "DENY");
+      res.set("X-Content-Type-Options", "nosniff");
+      res.set("Content-Security-Policy", 'frame-ancestors "self"');
+      res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+      res.set(
+        "Strict-Transport-Security",
+        "max-age=31536000; includeSubDomains"
+      );
+
       res.render("bulkupload/dashboard-beisadmin", {
         beis_url_accessmanagement,
       });
@@ -152,6 +155,16 @@ router.post("/", async (req, res) => {
       console.log("API_response_code: try" + API_response_code);
       console.log("Body: ", apidata.data);
       dashboardawards = apidata.data;
+
+      res.set("X-Frame-Options", "DENY");
+      res.set("X-Content-Type-Options", "nosniff");
+      res.set("Content-Security-Policy", 'frame-ancestors "self"');
+      res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+      res.set(
+        "Strict-Transport-Security",
+        "max-age=31536000; includeSubDomains"
+      );
+
       res.render("bulkupload/dashboard-gaadmin");
     } catch (err) {
       response_error_message = err;
@@ -182,6 +195,16 @@ router.post("/", async (req, res) => {
       console.log("API_response_code: try" + API_response_code);
       console.log("Body: ", apidata.data);
       dashboardawards = apidata.data;
+
+      res.set("X-Frame-Options", "DENY");
+      res.set("X-Content-Type-Options", "nosniff");
+      res.set("Content-Security-Policy", 'frame-ancestors "self"');
+      res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+      res.set(
+        "Strict-Transport-Security",
+        "max-age=31536000; includeSubDomains"
+      );
+
       res.render("bulkupload/dashboard-gaapprover");
     } catch (err) {
       response_error_message = err;
@@ -212,6 +235,16 @@ router.post("/", async (req, res) => {
       console.log("API_response_code: try" + API_response_code);
       console.log("Body: ", apidata.data);
       dashboardawards = apidata.data;
+
+      res.set("X-Frame-Options", "DENY");
+      res.set("X-Content-Type-Options", "nosniff");
+      res.set("Content-Security-Policy", 'frame-ancestors "self"');
+      res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+      res.set(
+        "Strict-Transport-Security",
+        "max-age=31536000; includeSubDomains"
+      );
+
       res.render("bulkupload/dashboard-gaencoder");
     } catch (err) {
       response_error_message = err;

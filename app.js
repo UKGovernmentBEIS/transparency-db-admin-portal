@@ -3,7 +3,7 @@
 // *************************************************************
 
 const express = require("express");
-// const cookierParser = require('cookie-parser');
+const cookierParser = require("cookie-parser");
 const app = express();
 const fs = require("fs");
 const request = require("request");
@@ -20,7 +20,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
-// app.use(cookierParser());
+app.use(cookierParser());
 const users = [];
 // app.use(fileUpload());
 app.use(
@@ -31,14 +31,14 @@ app.use(
 );
 
 //*************************************************************** */
-// var multer = require("multer");
+var multer = require("multer");
 const axios = require("axios");
 
-// var upload = multer();
+var upload = multer();
 
 // for parsing application/json
 app.use(express.json());
-// const jwt_decode = require("jwt-decode");
+const jwt_decode = require("jwt-decode");
 // for parsing application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
@@ -169,11 +169,25 @@ app.locals.duration_sorting_order;
 app.locals.budget_sorting_order;
 app.locals.sorting_order_pass;
 app.locals.Search_Text_Global;
+
+app.locals.gaId_no_arrow;
+app.locals.ganame_arrow;
+app.locals.added_by_arrow;
+app.locals.status_arrow;
+app.locals.created_on_arrow;
+app.locals.last_modified_arrow;
+
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
 
 app.get("/", async (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  // res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
   res.render("bulkupload/logintransparency");
 });
 var logintransparency = require("./routes/logintransparency");
@@ -269,6 +283,9 @@ app.use("/addgrantingauthority", addgrantingauthority);
 
 var deactivategrantingauthority = require("./routes/grantingauthority-deactivate");
 app.use("/deactivategrantingauthority", deactivategrantingauthority);
+
+var deactivatedGA = require("./routes/grantingauthority-deactivated-successfully");
+app.use("/gadeactivated", deactivatedGA);
 
 var choosedashboard = require("./routes/choosedashboard");
 app.use("/choosedashboard", choosedashboard);

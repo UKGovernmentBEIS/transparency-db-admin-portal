@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - Deactivate User page</title>
+    <title>GOV.UK - Deactivate Granting Authority page</title>
     <%- include('../partials/headercss.ejs') %>
 </head>
 
@@ -20,7 +20,7 @@
                     <nav class="govuk-sub-navigation" aria-label="Sub navigation">
                         <ul class="govuk-sub-navigation__list">
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mygrantingauthority">
                                     Granting Authorities
                                 </a>
                             </li>
@@ -30,7 +30,7 @@
                                 </a>
                             </li>
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidymeasures">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
                                     Subsidy Schemes
                                 </a>
                             </li>
@@ -60,13 +60,13 @@
             <div class="govuk-breadcrumbs ">
                 <ol class="govuk-breadcrumbs__list">
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
+                        <a class="govuk-breadcrumbs__link" href="/choosedashboard">Dashboard</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" href="/manageusers">Users</a>
+                        <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Granting Authority</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active" href="#">User details</a>
+                        <a class="govuk-breadcrumbs__link active" href="#">Add granting authority </a>
                     </li>
                 </ol>
             </div>
@@ -81,14 +81,17 @@
                 <!-- Body header ends here -->
                 <p class="govuk-body govuk-!-font-size-19">Are you sure you want to deactivate this granting authority?
                 </p>
+                <form action="/gadeactivated" method="POST">
+                    <input type="hidden" name="gaid" value="<%= gaid %>">
+                    <input type="hidden" name="ganame" value="<%= ganame %>">
+                    <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                        Yes, deactivate granting authority</button>
+                    <a href="/editreviewgrantingauthority?gaid=<%= gaid %>&ganame=<%= ganame %>"
+                        data-module="govuk-button" class="govuk-button govuk-button_sm govuk-button--secondary">
+                        Cancel
+                    </a>
+                </form>
 
-                <a href="/mygrantingauthority" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-                    Yes, deactivate granting authority
-                </a>
-                <a href="/editreviewgrantingauthority" data-module="govuk-button"
-                    class="govuk-button govuk-button_sm govuk-button--secondary">
-                    Cancel
-                </a>
             </div>
 
         </main>
