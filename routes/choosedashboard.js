@@ -67,7 +67,7 @@ router.post("/", async (req, res) => {
   // *******************
   // Globale declarations
   // *******************
-  frontend_totalRecordsPerPage = 1;
+  frontend_totalRecordsPerPage = 10;
 
   var { dashboard_username, dashboard_roles, dashboard_GA } = req.body;
 

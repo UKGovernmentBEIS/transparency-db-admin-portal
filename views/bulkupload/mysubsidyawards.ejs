@@ -95,7 +95,7 @@
       <div class="govuk-breadcrumbs ">
         <ol class="govuk-breadcrumbs__list">
           <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/choosedashboard">Dashboard</a>
+            <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
           </li>
           <li class="govuk-breadcrumbs__list-item">
             <a class="govuk-breadcrumbs__link active" href="#">Subsidy awards</a>
@@ -127,10 +127,10 @@
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
               aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
-              <% if(awards_status  == "Filter results by status") { %>
-              <option disabled value="Filter results by status" selected>Filter results by status </option>
+              <% if(awards_status  == "") { %>
+              <option disabled value="" selected>Filter results by status </option>
               <% } else { %>
-              <option disabled value="Filter results by status ">Filter results by status</option>
+              <option disabled value="">Filter results by status</option>
               <% }  %>
               <% if(awards_status  == "Awaiting Approval") { %>
               <option value="Awaiting Approval" selected>Awaiting Approval </option>

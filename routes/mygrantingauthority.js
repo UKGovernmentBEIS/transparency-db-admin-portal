@@ -12,7 +12,8 @@ router.get("/", async (req, res) => {
   frontend_totalRecordsPerPage = 10;
 
   var data = {};
-
+  if (req.query.hasOwnProperty("status")) status = req.query.status;
+  else status = "";
   if (req.query.hasOwnProperty("sort")) {
     sort = req.query.sort;
     arrow = req.query.arrow;
@@ -134,7 +135,7 @@ router.get("/", async (req, res) => {
       grantingAuthorityName: "",
       grantingAuthorityID: "",
       pageNumber: 1,
-      status: "",
+      status: status,
       totalRecordsPerPage: frontend_totalRecordsPerPage,
       sortBy: [sorting_column],
     };
@@ -155,7 +156,7 @@ router.get("/", async (req, res) => {
       grantingAuthorityName: "",
       grantingAuthorityID: "",
       pageNumber: current_page,
-      status: "",
+      status: status,
       totalRecordsPerPage: frontend_totalRecordsPerPage,
       sortBy: [""],
     };
@@ -171,7 +172,7 @@ router.get("/", async (req, res) => {
       grantingAuthorityName: "",
       grantingAuthorityID: "",
       pageNumber: 1,
-      status: "",
+      status: status,
       totalRecordsPerPage: frontend_totalRecordsPerPage,
       sortBy: [""],
     };
@@ -183,7 +184,6 @@ router.get("/", async (req, res) => {
       "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/searchGrantingAuthority",
       data
     );
-    const sort = "";
     var maxGAId = [];
     var grantingAuthorityName = "";
     API_response_code = `${apidata.status}`;
@@ -256,7 +256,7 @@ router.get("/", async (req, res) => {
       nextId,
       start_record,
       grantingAuthorityList,
-      sort,
+      status,
 
       gaId_no_arrow,
       ganame_arrow,
@@ -301,7 +301,7 @@ router.post("/", async (req, res) => {
 
   if (req.body.hasOwnProperty("totalRecordsPerPage"))
     frontend_totalRecordsPerPage = req.body.totalRecordsPerPage;
-  if (req.body.hasOwnProperty("sort")) sort = req.body.sort;
+  if (req.body.hasOwnProperty("status")) status = req.body.status;
 
   if (req.body.hasOwnProperty("grantingAuthorityName")) {
     grantingAuthority = gatype.test(req.body.grantingAuthorityName);
@@ -355,7 +355,7 @@ router.post("/", async (req, res) => {
       nextId,
       end_record,
       grantingAuthorityName,
-      sort,
+      status,
 
       gaId_no_arrow,
       ganame_arrow,

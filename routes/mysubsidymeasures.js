@@ -14,7 +14,6 @@ router.get("/", async (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-
   Environment_variable = process.argv[2];
   if (Environment_variable == "env=dev") {
     beis_url_publishing =
@@ -23,9 +22,9 @@ router.get("/", async (req, res) => {
       "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
     beis_url_publicsearch =
       "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
-    beis_url_searchscheme =  
+    beis_url_searchscheme =
       "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net";
-      
+
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -38,10 +37,9 @@ router.get("/", async (req, res) => {
     beis_url_publicsearch =
       "https://integ-transparency-db-public-search-service.azurewebsites.net";
 
-    beis_url_searchscheme =  
+    beis_url_searchscheme =
       "https://integ-transparency-db-ga-schemes-service.azurewebsites.net";
 
-      
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -53,7 +51,7 @@ router.get("/", async (req, res) => {
     beis_url_publicsearch =
       "https://stag-transparency-db-public-search-service.azurewebsites.net";
 
-      beis_url_searchscheme =  
+    beis_url_searchscheme =
       "https://stag-transparency-db-ga-schemes-service.azurewebsites.net";
 
     console.log(beis_url_publishing);
@@ -70,7 +68,6 @@ router.get("/", async (req, res) => {
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
   }
-
 
   frontend_totalRecordsPerPage = 10;
   subsidy_scheme_name_arrow = "upascending";
@@ -93,13 +90,15 @@ router.get("/", async (req, res) => {
   sorting_order_pass = JSON.parse(sorting_order_interium);
 
   Search_Text_Global = "";
-
+  req.query = JSON.parse(JSON.stringify(req.query));
+  if (req.query.hasOwnProperty("sort")) schemes_status = req.query.sort;
+  else schemes_status = "";
   const data_request = {
     searchName: Search_Text_Global,
     pageNumber: 1,
     totalRecordsPerPage: frontend_totalRecordsPerPage,
     sortBy: sorting_order_pass,
-    status: "",
+    status: schemes_status,
   };
 
   console.log("request :" + JSON.stringify(data_request));

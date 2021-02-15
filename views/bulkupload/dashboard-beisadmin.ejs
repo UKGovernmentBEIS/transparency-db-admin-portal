@@ -95,7 +95,8 @@
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.grantingAuthorityUserActionCount.totalActiveGA %>
               </legend>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Active</p>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24"><a
+                  href="/mygrantingauthority?status=Active" class="govuk-description-text">Active</a></p>
             </div>
           </div>
           <div class="govuk-grid-column-one-third govuk-form-group">
@@ -104,7 +105,8 @@
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
               </legend>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Inactive</p>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text"><a
+                  href="/mygrantingauthority?status=Inactive" class="govuk-description-text">Inactive</a></p>
             </div>
           </div>
 
@@ -231,7 +233,8 @@
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalDraftSubsidyMeasures %>
               </legend>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Active</p>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 ">
+                <a href="/mysubsidymeasures?sort=Active" class="govuk-description-text">Active</a></p>
             </div>
           </div>
           <div class="govuk-grid-column-one-third govuk-form-group">
@@ -242,7 +245,7 @@
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalDeletedSubsidyMeasures %>
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-                Inactive</p>
+                <a href="/mysubsidymeasures?sort=Inactive" class="govuk-description-text">Inactive</a></p>
             </div>
           </div>
         </div>
@@ -309,8 +312,9 @@
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.awardUserActionCount.totalAwaitingAward %>
               </legend>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Awaiting
-                approval
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 ">
+                <a href="/mysubsidyawards?sort=Awaiting Approval" class="govuk-description-text">Awaiting
+                  approval</a>
               </p>
             </div>
           </div>
@@ -321,7 +325,8 @@
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.awardUserActionCount.totalPublishedAward %>
               </legend>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Published
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                <a href="/mysubsidyawards?sort=Published" class="govuk-description-text">Published</a>
               </p>
             </div>
           </div>
@@ -332,7 +337,8 @@
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.awardUserActionCount.totalDraftAward %>
               </legend>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Rejected</p>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                <a href="/mysubsidyawards?sort=Rejected" class="govuk-description-text">Rejected</a></p>
             </div>
           </div>
           <div class="govuk-grid-column-one-third govuk-form-group">
@@ -342,7 +348,8 @@
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
                 <%= dashboardawards.awardUserActionCount.totalDeletedAward %>
               </legend>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Inactive</p>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                <a href="/mysubsidyawards?sort=Deactive" class="govuk-description-text">Inactive</a></p>
             </div>
           </div>
 
