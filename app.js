@@ -379,6 +379,9 @@ app.use("/manageusers", manageusers);
 var manageusers = require("./routes/user-add");
 app.use("/adduser", manageusers);
 
+var edituser = require("./routes/user-edit");
+app.use("/edituser", edituser);
+
 var canceluser = require("./routes/user-cancel");
 app.use("/canceluser", canceluser);
 

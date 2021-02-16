@@ -17,6 +17,7 @@ router.get("/", async (req, res) => {
   frontend_totalRecordsPerPage = 10;
   Award_page = 1;
   // awards_status = "Filter results by status";
+  awards_status = "";
   req.query = JSON.parse(JSON.stringify(req.query));
 
   if (req.query.hasOwnProperty("sort")) awards_status = req.query.sort;
