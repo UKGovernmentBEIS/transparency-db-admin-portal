@@ -2,18 +2,18 @@
 // Gov.UK transparency database - App.js is the subset of server.js
 // *************************************************************
 
-const express = require("express");
-const cookierParser = require('cookie-parser');
-const app = express();
-const fs = require("fs");
-const request = require("request");
-const methodOverride = require("method-override");
-const path = require("path");
-const fileUpload = require("express-fileupload");
-const fetch = require("node-fetch");
-const { callbackify } = require("util");
-const { Http2ServerRequest } = require("http2");
-const { contains } = require("jquery");
+var express = require("express");
+var cookierParser = require('cookie-parser');
+var app = express();
+var fs = require("fs");
+var request = require("request");
+var methodOverride = require("method-override");
+var path = require("path");
+var fileUpload = require("express-fileupload");
+var fetch = require("node-fetch");
+var { callbackify } = require("util");
+var { Http2ServerRequest } = require("http2");
+var { contains } = require("jquery");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
 app.use(cookierParser());
-const users = [];
+var users = [];
 // app.use(fileUpload());
 app.use(
   fileUpload({
@@ -32,13 +32,13 @@ app.use(
 
 //*************************************************************** */
 var multer = require("multer");
-const axios = require("axios");
+var axios = require("axios");
 
 var upload = multer();
 
 // for parsing application/json
 app.use(express.json());
-const jwt_decode = require("jwt-decode");
+var jwt_decode = require("jwt-decode");
 // for parsing application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
@@ -98,6 +98,8 @@ app.locals.errorsvalidationpass = [];
 
 app.locals.dashboard_user_name;
 app.locals.dashboard_ga_name;
+app.locals.dashboard_roles;
+app.locals.dashbaord_ga_ID;
 app.locals.frontend_totalRecordsPerPage;
 
 app.locals.pageCount;
@@ -176,6 +178,22 @@ app.locals.isUserSlectIsPrimaryCall;
 app.locals.Granting_Authority_Selected;
 app.locals.GA_Selected;
 app.locals.GAUserList ;
+app.locals.UserPrincileObjectGlobal ;
+
+app.locals.User_Role_Global;
+app.locals.GA_Name_User_Global;
+app.locals.Full_Name_Global;
+app.locals.Last_Name_Global;
+app.locals.Email_Id_Global;
+app.locals.Phone_Number_Global;
+
+app.locals.User_Role_Single;
+app.locals.User_GA_Name;
+app.locals.User_Name_Single;
+app.locals.User_Last_Name_Single;
+app.locals.User_Email_Single;
+app.locals.User_Mobile_Single;
+app.locals.Delete_UserId;
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
@@ -239,7 +257,7 @@ app.locals.GAUserList ;
     console.log("dashboard_roles_object_id2:" + dashboard_roles_object_id2 );
 
     try {
-      const apiroles = await axios.get(
+      var apiroles = await axios.get(
       beis_url_accessmanagement + "/accessmanagement/allga",
       config
     );
@@ -255,6 +273,7 @@ app.locals.GAUserList ;
       if( dashboard_roles_object_id1 == apiroles_extract[i].azGrpId ) {
         console.log( "gaName id1 : " + apiroles_extract[i].gaName );
         apiroles_extract_object1 = apiroles_extract[i].gaName ;
+        dashbaord_ga_ID = apiroles_extract[i].gaId ;
 
       }
     }
@@ -278,47 +297,52 @@ app.locals.GAUserList ;
 
   if(apiroles_extract_object1.includes("BEIS Administrator")){
     dashboard_roles = "BEIS Administrator";
-    apiroles_extract_object2_length = apiroles_extract_object2.length  - 4 ;
-    dashboard_ga_name = apiroles_extract_object2.substr(4,apiroles_extract_object2_length)
+    dashboard_ga_name = apiroles_extract_object2;
   }else if(apiroles_extract_object1.includes("Granting Authority Administrator")){
     dashboard_roles = "Granting Authority Administrator";
-    apiroles_extract_object2_length = apiroles_extract_object2.length  - 4 ;
-    dashboard_ga_name = apiroles_extract_object2.substr(4,apiroles_extract_object2_length)
+    dashboard_ga_name = apiroles_extract_object2;
   }else if(apiroles_extract_object1.includes("Granting Authority Approver")){
     dashboard_roles = "Granting Authority Approver";
-    apiroles_extract_object2_length = apiroles_extract_object2.length  - 4 ;
-    dashboard_ga_name = apiroles_extract_object2.substr(4,apiroles_extract_object2_length)
+    dashboard_ga_name = apiroles_extract_object2;
   }else if(apiroles_extract_object1.includes("Granting Authority Encoder")){
     dashboard_roles = "Granting Authority Encoder";
-    apiroles_extract_object2_length = apiroles_extract_object2.length  - 4 ;
-    dashboard_ga_name = apiroles_extract_object2.substr(4,apiroles_extract_object2_length)
+    dashboard_ga_name = apiroles_extract_object2;
   }
 
   if(apiroles_extract_object2.includes("BEIS Administrator")){
     dashboard_roles = "BEIS Administrator";
-    apiroles_extract_object1_length = apiroles_extract_object1.length  - 4 ;
-    dashboard_ga_name = apiroles_extract_object1.substr(4,apiroles_extract_object1_length)
+    dashboard_ga_name = apiroles_extract_object1;
   }else if(apiroles_extract_object2.includes("Granting Authority Administrator")){
     dashboard_roles = "Granting Authority Administrator";
-    apiroles_extract_object1_length = apiroles_extract_object1.length  - 4 ;
-    dashboard_ga_name = apiroles_extract_object1.substr(4,apiroles_extract_object1_length)
+    dashboard_ga_name = apiroles_extract_object1;
   }else if(apiroles_extract_object2.includes("Granting Authority Approver")){
     dashboard_roles = "Granting Authority Approver";
-    apiroles_extract_object1_length = apiroles_extract_object1.length  - 4 ;
-    dashboard_ga_name = apiroles_extract_object1.substr(4,apiroles_extract_object1_length)
+    dashboard_ga_name = apiroles_extract_object1;
   }else if(apiroles_extract_object2.includes("Granting Authority Encoder")){
     dashboard_roles = "Granting Authority Encoder";
-    apiroles_extract_object1_length = apiroles_extract_object1.length  - 4 ;
-    dashboard_ga_name = apiroles_extract_object1.substr(4,apiroles_extract_object1_length)
+    dashboard_ga_name = apiroles_extract_object1;
   }
 
   console.log("dashboard_roles : " + dashboard_roles);
   console.log("dashboard_ga_name : " + dashboard_ga_name);
-  dashboard_ga_name = "HMRC";
+  
+
+  var userPrincipleRequest =
+  '{"userName":"SYSTEM","password":"password123",' + '"role":"' + dashboard_roles
+  + '","grantingAuthorityGroupId":"' + dashbaord_ga_ID + '","grantingAuthorityGroupName":"' +
+  dashboard_ga_name +
+  '"}';
+  
+  console.log("userprincile: " + userPrincipleRequest );
+  UserPrincileObjectGlobal = {
+  headers: {
+    userPrinciple: userPrincipleRequest
+  },
+  };
   
   
     if (dashboard_roles == "BEIS Administrator") {
-      const userPrincipleRequest =
+      var userPrincipleRequest =
         '{"userName": "TEST","password": "password123","role": "BEIS Administrator","grantingAuthorityGroupId": "123","grantingAuthorityGroupName": "test"}';
       var config = {
         headers: {
@@ -330,7 +354,7 @@ app.locals.GAUserList ;
       console.log("request :" + JSON.stringify(data));
   
       try {
-          const apidata = await axios.get(
+          var apidata = await axios.get(
           beis_url_accessmanagement + "/accessmanagement/beisadmin",
           config
         );
@@ -348,7 +372,7 @@ app.locals.GAUserList ;
         console.log("response_error_message catch : " + response_error_message);
       }
     } else if (dashboard_roles == "Granting Authority Administrator") {
-      const userPrincipleRequest =
+      var userPrincipleRequest =
         '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Administrator","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
         dashboard_ga_name +
         '"}';
@@ -362,7 +386,7 @@ app.locals.GAUserList ;
       console.log("request :" + JSON.stringify(data));
   
       try {
-        const apidata = await axios.get(
+        var apidata = await axios.get(
           beis_url_accessmanagement + "/accessmanagement/gaadmin",
           config
         );
@@ -380,7 +404,7 @@ app.locals.GAUserList ;
         console.log("response_error_message catch : " + response_error_message);
       }
     } else if (dashboard_roles == "Granting Authority Approver") {
-      const userPrincipleRequest =
+      var userPrincipleRequest =
         '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
         dashboard_ga_name +
         '"}';
@@ -394,7 +418,7 @@ app.locals.GAUserList ;
       console.log("request :" + JSON.stringify(data));
   
       try {
-        const apidata = await axios.get(
+        var apidata = await axios.get(
           beis_url_accessmanagement + "/accessmanagement/gaapprover",
           config
         );
@@ -412,7 +436,7 @@ app.locals.GAUserList ;
         console.log("response_error_message catch : " + response_error_message);
       }
     } else if (dashboard_roles == "Granting Authority Encoder") {
-      const userPrincipleRequest =
+      var userPrincipleRequest =
         '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Encoder","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
         dashboard_ga_name +
         '"}';
@@ -426,7 +450,7 @@ app.locals.GAUserList ;
       console.log("request :" + JSON.stringify(data));
   
       try {
-        const apidata = await axios.get(
+        var apidata = await axios.get(
           beis_url_accessmanagement + "/accessmanagement/gaencoder",
           config
         );
@@ -635,14 +659,17 @@ app.use("/manageusers", manageusers);
 var userselect = require("./routes/user-select");
 app.use("/userselect", userselect);
 
-var manageusers = require("./routes/user-add");
-app.use("/adduser", manageusers);
+var usersubmit = require("./routes/user-submit");
+app.use("/usersubmit", usersubmit);
+
+var adduser= require("./routes/user-add");
+app.use("/adduser", adduser);
 
 var canceluser = require("./routes/user-cancel");
 app.use("/canceluser", canceluser);
 
-var canceluser = require("./routes/user-review");
-app.use("/reviewuser", canceluser);
+var userreview = require("./routes/user-review");
+app.use("/userreview", userreview);
 
 var useraddedsuccessfully = require("./routes/user-added-successfully");
 app.use("/useraddedsuccessfully", useraddedsuccessfully);

@@ -76,18 +76,23 @@
                 </div>
             </div>
             <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Role
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= User_Role_Single %>
+                    </dd>
+                </div>
+
+
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
                         Granting Authority name
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        Adur District Council
-
-                        Bath and North East Somerset Council
-
-                        Cardiff Council
-
-                        Cheltenham Borough Council
+                        <%= User_GA_Name %>
                     </dd>
 
                 </div>
@@ -96,7 +101,7 @@
                         First name
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        Albert
+                        <%= User_Name_Single %>
                     </dd>
 
                 </div>
@@ -105,7 +110,7 @@
                         Last name
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        Einstein
+                        <%= User_Last_Name_Single %>
                     </dd>
 
                 </div>
@@ -115,7 +120,7 @@
                         Email address
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        rachael@abc.com
+                        <%= User_Email_Single %>
                     </dd>
                 </div>
 
@@ -124,33 +129,24 @@
                         Contact number
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        07711223344
+                        <%= User_Mobile_Single %>
                     </dd>
 
                 </div>
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Role
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        BEIS Administrator
-                    </dd>
-                </div>
-
+               
 
             </dl>
 
-            <!-- *************************************
-              Review for beneficialry details tab
-              ************************************* -->
-
-            <!-- <a href="/manageusers" class="govuk-button" data-module="govuk-button">
-                View all users
-            </a> -->
+           
             <a href="/userupdated" class="govuk-button" data-module="govuk-button">
                 Save updates
             </a>
-            <a href="/" class="govuk-link govuk-cancel-button-link">Deactivate</a>
+            <!-- <a href="/" class="govuk-link govuk-cancel-button-link">Deactivate</a> -->
+            <form action="/userdeactivate" method="POST">
+             <button class="govuk-button" data-module="govuk-button">
+                Deactivate
+             </button>
+             </form>
 
     </div>
     </main>
