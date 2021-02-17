@@ -6,7 +6,6 @@
     <%- include('../partials/headercss.ejs') %>
     <script>
         const formatter = new Intl.NumberFormat("en-GB");
-
         getFormatedCurrency = (budget) => {
             // formatedCurrency = "$" + budget.replace(/\d(?=(\ d{3})+\. )/g, "$&,");
             formatedCurrency = formatter.format(parseInt(budget))
