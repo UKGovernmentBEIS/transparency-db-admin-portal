@@ -162,7 +162,13 @@
                                
 
                                 <td class="govuk-table__cell">
+                                <% if ( GA_Selected == 'Granting Authority Administrator' || GA_Selected == 'Granting Authority Approver' || GA_Selected == 'Granting Authority Encoder' ) {  %>  
+                                    NA 
+                                <% } else if (GA_Selected == 'BEIS Administrator' ) {  %>
+                                    Department for Business, Energy & Industrial Strategy  
+                                <% } else { %> 
                                     <%= GA_Selected %>
+                                <% } %>      
                                 </td>
 
                                 <td class="govuk-table__cell">

@@ -30,7 +30,10 @@ router.post("/", async(req, res) => {
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
   var { Granting_Authority_Selected }  = req.body;
+
   GA_Selected  = Granting_Authority_Selected ;
+  
+
   console.log("Granting_Authority_Selected :" + Granting_Authority_Selected);
 
   for (var i = 0; i < apiroles_total_objects; i++) { 
@@ -41,23 +44,22 @@ router.post("/", async(req, res) => {
     }
   }
 
-  const userPrincipleRequest =
-  '{"userName":"SYSTEM","password":"password123",' + '"role":"' + GA_Selected  + '","grantingAuthorityGroupId":"' + GA_Group_Id + '","grantingAuthorityGroupName":"' +
-  dashboard_ga_name +
-  '"}';
+//   const userPrincipleRequest =
+//   '{"userName":"SYSTEM","password":"password123",' + '"role":"' + GA_Selected  + '","grantingAuthorityGroupId":"' + GA_Group_Id + '","grantingAuthorityGroupName":"' +
+//   dashboard_ga_name +  '"}';
 
-  console.log("userprincile: " + userPrincipleRequest );
-var config = {
-  headers: {
-    userPrinciple: userPrincipleRequest
-  },
-};
+//   console.log("userprincile: " + userPrincipleRequest );
+// var config = {
+//   headers: {
+//     userPrinciple: userPrincipleRequest
+//   },
+// };
 
 
   try {
     const apidata = await axios.get(
     beis_url_accessmanagement + "/usermanagement/groups/" + GA_Object_Id ,
-    config
+    UserPrincileObjectGlobal
   );
   console.log(`Status: ${apidata.status}`);
   API_response_code = `${apidata.status}`;
