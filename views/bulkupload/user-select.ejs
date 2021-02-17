@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - Manage Users page</title>
+    <%- include('../partials/headercss.ejs') %>
+    <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script src="assets/javascripts/jquery.min.js"></script>
+ 
+</head>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+
+            <div class="govuk-grid-row govuk-form-group">
+                <div class="govuk-grid-column-full">
+                    <nav aria-label="Sub navigation">
+                        <ul class="govuk-sub-navigation__list">
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                    Granting Authorities
+                                </a>
+                            </li>
+
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/manageusers">
+                                    Users
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
+                                    Subsidy Schemes
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
+                                    Subsidy Awards
+                                </a>
+                            </li>
+
+
+
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    Sign out
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/useraccount">
+                                    My account
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/homepage">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link active" href="#">Users</a>
+                    </li>
+                </ol>
+            </div>
+
+
+            <h1 class="govuk-heading-xl">
+                Users</h1>
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full govuk-grid-row">
+                    <label class="govuk-label govuk-grid-column-one-third">
+                        Search
+                    </label>
+                </div>
+                  
+                
+              <form action="/userselect" method="POST">
+                <div class="govuk-grid-column-three-quarters">
+                    <div class="govuk-grid-column-one-half govuk-padding-0">
+                        <select class="govuk-select" id="sort" name="Granting_Authority_Selected"
+                        aria-label="Drop down list that shows Filter by type">
+                        <!-- <option value="" selected disabled>Filter by role</option> -->
+            
+                        <% if ( isUserSelectIsPrimaryCall ) { %>
+                                <% for (var i = 0; i < apiroles_total_objects; i++) { %>
+                                <option value="<%= apiroles_extract[i].gaName %>"> <%= apiroles_extract[i].gaName %> </option>
+                                <% } %>
+                        <% } else { %>
+                            <% for (var i = 0; i < apiroles_total_objects; i++) { %>
+                               <% if ( GA_Selected == apiroles_extract[i].gaName) { %>
+                               <option value="<%= apiroles_extract[i].gaName %>" selected> <%= apiroles_extract[i].gaName %> </option>
+                               <% } else { %>
+                                <option value="<%= apiroles_extract[i].gaName %>"> <%= apiroles_extract[i].gaName %> </option>
+                                <% } %>
+                             <% } %>
+                        <% } %>       
+
+                    
+                    </select>
+                    </div>
+                  
+                </div>
+
+              <p></p> 
+
+                <div class="govuk-grid-column-two-thirds">
+                    <!-- <a href="/" style="color : black; text-decoration: none"> -->
+                    <p></p> 
+                    <!-- <a href="/user-list" class="govuk-button" data-module="govuk-button">
+                        List users
+                    </a> -->
+
+                     <button class="govuk-button" data-module="govuk-button">
+                        List users
+                     </button>
+
+                     <a href="/adduser" class="govuk-button" data-module="govuk-button">
+                        Add a new user
+                    </a>
+               
+                </div>
+                </form>
+                <div class="govuk-grid-column-full">
+                <% if ( ! isUserSelectIsPrimaryCall ) { %>
+                <section class="govuk-table-responsive">
+                    <table class="govuk-table" id="datatable">
+                        <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header app-custom-class">Name </th>
+                                <th scope="col" class="govuk-table__header app-custom-class">Role</th>
+                                <th scope="col" class="govuk-table__header app-custom-class">Status</th>
+                                <th scope="col" class="govuk-table__header app-custom-class">Granting autority</th>
+                                <th scope="col" class="govuk-table__header app-custom-class">Email address</th>
+                            </tr>
+                        </thead>
+                        <tbody class="govuk-table__body">
+                            <% GAUserList.value.forEach(function(item) { %>
+                            <tr>
+                                <td class="govuk-table__cell">
+                                    <%= item.displayName %>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <%= item.userPrincipalName %>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    Active
+                                </td>
+                               
+
+                                <td class="govuk-table__cell">
+                                    HMRC
+                                </td>
+
+                                <td class="govuk-table__cell">
+                                    Test@beis.uk.com
+                                </td>
+                               
+                            </tr>
+
+                            <% } ); %>
+
+                        </tbody>
+
+                    </table>
+                  <% } %>
+             </section>
+             </div>
+            </div>
+     
+
+
+        </main>
+    </div>
+
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+
+</html>
