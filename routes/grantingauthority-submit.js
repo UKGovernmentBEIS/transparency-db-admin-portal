@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
 
   if (req.body.editReview == "true") {
     const gaName = req.body.grantingAuthorityName.replace(/ /g, "");
-
+    var gaID = req.body.grantingAuthorityID;
     try {
       const apidata = await axios.put(
         `https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority/${gaID}`,
@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
           az_group_name: env[1] + "_" + gaName,
         }
       );
-      const gaID = apidata.gaId;
+      // const gaID = apidata.gaId;
       res.set("X-Frame-Options", "DENY");
       res.set("X-Content-Type-Options", "nosniff");
       res.set("Content-Security-Policy", 'frame-ancestors "self"');

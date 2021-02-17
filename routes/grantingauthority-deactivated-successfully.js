@@ -10,23 +10,23 @@ router.post("/", async (req, res) => {
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
   gaId = req.body.gaid;
-  Environment_variable = process.argv[2];
-  const env = Environment_variable.split("=");
-  const gaName = req.body.ganame.replace(/ /g, "");
+  var azGrpId = req.body.azGrpId;
+  console.log("azGrpId", azGrpId);
+  console.log("req.body.userIds", req.body.userIds);
   try {
-    const apidata = await axios.get(
-      `https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority/${gaId}`,
+    const apidata = await axios.delete(
+      `http://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/group/${azGrpId}`,
       {
-        name: req.body.ganame,
-        az_group_name: env[1] + "_" + gaName,
+        userIds: req.body.userIds,
       }
     );
-    console.log("Status : " + apidata.status);
+    console.log("Body : ", JSON.stringify(apidata.data));
+
     res.render("bulkupload/grantingauthority-deactivated-successfully", {
       gaId,
     });
   } catch (err) {
-    console.log("message error : " + err);
+    console.log("message error deactivate GA : " + err);
     // res.render("publicusersearch/noresults");
   }
 });

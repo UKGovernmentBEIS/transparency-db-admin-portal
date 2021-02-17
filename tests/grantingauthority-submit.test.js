@@ -46,6 +46,7 @@ test("Unit testing for cancel subsidy award Test for GET call", (done) => {
     .post("/submitgrantingauthority", (req, res))
     .send({
       editReview: "true",
+      grantingAuthorityID: "22",
       grantingAuthorityName: "BEIS HMRC",
     })
     // expect(abcd).toBe(200);

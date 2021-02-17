@@ -140,6 +140,10 @@ test("Unit testing for Review details Test for POSt call", (done) => {
   global.SubsidyErrors = [];
   global.beis_url_accessmanagement = "";
   global.SubsidyFocus = [];
+
+  global.Subsidy_Adhoc_Global = "";
+  global.Subsidy_Adhoc_Error = "";
+
   global.isAddSubsidyPrimarycall = "";
   global.Edit_Award_Number_global = "";
   global.isCallfromEditAward = "";
@@ -211,7 +215,7 @@ test("Unit testing for Review details Test for POSt call", (done) => {
       buttonvalue: "continue",
     })
     .expect(200, done);
-  //   expect(abcd).toBe(200);
+  // expect(abcd).toBe(200);
 });
 
 test("Unit testing for Review details Test for POSt call", (done) => {
@@ -220,6 +224,8 @@ test("Unit testing for Review details Test for POSt call", (done) => {
   global.beis_url_accessmanagement = "";
   global.SubsidyErrors = [];
   global.SubsidyFocus = [];
+  global.Subsidy_Adhoc_Global = "";
+  global.Subsidy_Adhoc_Error = "";
   global.isAddSubsidyPrimarycall = "";
   global.Edit_Award_Number_global = "";
   global.isCallfromEditAward = "";
@@ -273,6 +279,8 @@ test("Unit testing for Review details Test for POSt call", (done) => {
     .send({
       Subsidy_Control_Number: "",
       Subsidy_Measure_Title: "",
+      Subsidy_Adhoc_Global: "",
+      Subsidy_Adhoc_Error: "",
       Subsidy_Objective: "",
       Subsidy_Instrument: "",
       Subsidy_Element_Full_Amount: "",
