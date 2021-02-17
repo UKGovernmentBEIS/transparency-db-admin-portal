@@ -95,6 +95,7 @@
                         <!-- <option value="" selected disabled>Filter by role</option> -->
             
                         <% if ( isUserSelectIsPrimaryCall ) { %>
+                                <option value="" selected disabled>Filter by role</option> 
                                 <% for (var i = 0; i < apiroles_total_objects; i++) { %>
                                 <option value="<%= apiroles_extract[i].gaName %>"> <%= apiroles_extract[i].gaName %> </option>
                                 <% } %>
@@ -142,7 +143,7 @@
                                 <th scope="col" class="govuk-table__header app-custom-class">Name </th>
                                 <th scope="col" class="govuk-table__header app-custom-class">Role</th>
                                 <th scope="col" class="govuk-table__header app-custom-class">Status</th>
-                                <th scope="col" class="govuk-table__header app-custom-class">Granting autority</th>
+                                <th scope="col" class="govuk-table__header app-custom-class">Granting authority</th>
                                 <th scope="col" class="govuk-table__header app-custom-class">Email address</th>
                             </tr>
                         </thead>
@@ -150,10 +151,10 @@
                             <% GAUserList.value.forEach(function(item) { %>
                             <tr>
                                 <td class="govuk-table__cell">
-                                    <%= item.displayName %>
+                                    <a href="/userindividualdetails/?userObject=<%= item.id %>"><%= item.displayName %></a>
                                 </td>
                                 <td class="govuk-table__cell">
-                                    <%= item.userPrincipalName %>
+                                    <%= item.roleName%>
                                 </td>
                                 <td class="govuk-table__cell">
                                     Active
@@ -161,11 +162,11 @@
                                
 
                                 <td class="govuk-table__cell">
-                                    HMRC
+                                    <%= GA_Selected %>
                                 </td>
 
                                 <td class="govuk-table__cell">
-                                    Test@beis.uk.com
+                                    <%= item.userPrincipalName %>
                                 </td>
                                
                             </tr>
