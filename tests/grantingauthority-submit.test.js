@@ -32,20 +32,21 @@ const mockRequest = (sessionData, body) => ({
 test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   const req = mockRequest();
   global.beis_url_accessmanagement = "";
-  global.gaID = "";
+  global.process.argv = ["", "", "env=dev"];
   global.grantingAuthorityName_Global = "";
   global.grantingAuthorityName_Error = "";
-  global.review = "";
+  global.review = "true";
+  global.gaID = "";
   const res = {};
   axios.put.mockResolvedValue({
     status: 200,
+    gaId: "",
   });
   request(app)
     .post("/submitgrantingauthority", (req, res))
     .send({
       editReview: "true",
-      grantingAuthorityID: "",
-      grantingAuthorityName: "",
+      grantingAuthorityName: "BEIS HMRC",
     })
     // expect(abcd).toBe(200);
     .expect(200, done);
@@ -55,18 +56,19 @@ test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   const req = mockRequest();
   global.beis_url_accessmanagement = "";
   global.gaID = "";
+  global.process.argv = ["", "", "env=dev"];
   global.grantingAuthorityName_Global = "";
   global.grantingAuthorityName_Error = "";
   global.review = "";
   const res = {};
   axios.post.mockResolvedValue({
     status: 200,
+    gaId: "",
   });
   request(app)
     .post("/submitgrantingauthority", (req, res))
     .send({
       editReview: "",
-      GaId: "",
       GaName: "",
     })
     // expect(abcd).toBe(200);

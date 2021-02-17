@@ -6,16 +6,21 @@ router.post("/", async (req, res) => {
   // const data = {
   //   name: req.body.GaName,
   // };
+  Environment_variable = process.argv[2];
+  const env = Environment_variable.split("=");
+
   if (req.body.editReview == "true") {
-    const gaID = req.body.grantingAuthorityID;
+    const gaName = req.body.grantingAuthorityName.replace(/ /g, "");
+
     try {
       const apidata = await axios.put(
         `https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority/${gaID}`,
         {
           name: req.body.grantingAuthorityName,
+          az_group_name: env[1] + "_" + gaName,
         }
       );
-
+      const gaID = apidata.gaId;
       res.set("X-Frame-Options", "DENY");
       res.set("X-Content-Type-Options", "nosniff");
       res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -37,10 +42,14 @@ router.post("/", async (req, res) => {
     }
   } else {
     try {
+      const gaName = req.body.GaName.replace(/ /g, "");
+      // console.log("granting authority", gaName);
+
       const apidata = await axios.post(
         "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority",
         {
           name: req.body.GaName,
+          az_group_name: env[1] + "_" + gaName,
         },
         {
           headers: {
@@ -48,8 +57,8 @@ router.post("/", async (req, res) => {
           },
         }
       );
-      const gaID = req.body.GaId;
-      console.log("Status : " + apidata.status);
+      const gaID = apidata.gaId;
+      console.log("Status : " + apidata.gaId);
       res.set("X-Frame-Options", "DENY");
       res.set("X-Content-Type-Options", "nosniff");
       res.set("Content-Security-Policy", 'frame-ancestors "self"');

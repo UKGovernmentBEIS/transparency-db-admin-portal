@@ -9,20 +9,21 @@ router.get("/", (req, res) => {
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   console.log("totalrecords", req.query);
   // req.query = JSON.parse(JSON.stringify(req.query));
+
   if (req.query.hasOwnProperty("change")) {
-    const grantingAuthorityID_Global = req.query.change;
-    console.log("grantingAuthorityID_Global", grantingAuthorityID_Global);
+    // const grantingAuthorityID_Global = req.query.change;
+    // console.log("grantingAuthorityID_Global", grantingAuthorityID_Global);
     console.log("grantingAuthorityName_Global", grantingAuthorityName_Global);
     res.render("bulkupload/grantingauthority-add", {
-      grantingAuthorityID_Global,
+      // grantingAuthorityID_Global,
       grantingAuthorityName_Global,
     });
   } else {
-    const grantingAuthorityID_Global = parseInt(req.query.totalrecords) + 1;
+    // const grantingAuthorityID_Global = parseInt(req.query.totalrecords) + 1;
     grantingAuthorityName_Error = "";
     grantingAuthorityName_Global = "";
     res.render("bulkupload/grantingauthority-add", {
-      grantingAuthorityID_Global,
+      // grantingAuthorityID_Global,
     });
   }
 });
