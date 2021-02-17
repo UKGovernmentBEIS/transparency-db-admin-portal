@@ -72,7 +72,7 @@
                 </div>
                 <div class="govuk-grid-column-full">
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">New user details</h2>
-                    <a rel="external" class="govuk-link head-right govuk-relative-position" href="/addsubsidyreview">
+                    <a rel="external" class="govuk-link head-right govuk-relative-position" href="/adduser">
                         <p>Change </p>
                     </a>
                 </div>
@@ -83,7 +83,7 @@
                         Role
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        Granting Authority Encoder
+                        <%= User_Role_Global %>
                     </dd>
 
                 </div>
@@ -92,7 +92,7 @@
                         Granting Authority name
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        Cardiff Council
+                        <%= GA_Name_User_Global %>
                     </dd>
 
                 </div>
@@ -101,7 +101,7 @@
                         First name
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        Rachael
+                        <%= Full_Name_Global %>
                     </dd>
 
                 </div>
@@ -111,7 +111,7 @@
                         Last name
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        Stevens
+                        <%= Last_Name_Global %>
                     </dd>
                 </div>
 
@@ -121,7 +121,7 @@
                         Email address
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        rachael@abc.com
+                        <%= Email_Id_Global %>
                     </dd>
                 </div>
 
@@ -133,7 +133,7 @@
                         Contact number
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        07711223344
+                        <%= Phone_Number_Global %>
                     </dd>
 
                 </div>
@@ -146,7 +146,7 @@
               Review for beneficialry details tab
               ************************************* -->
 
-            <form action="/submitforapproval" method="post" novalidate>
+            <form action="/usersubmit" method="post" novalidate>
                 <button class="govuk-button" data-module="govuk-button">
                     Add user
                 </button>

@@ -10,6 +10,14 @@ router.get("/", (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   GA_Selected = "";
+  
+  User_Role_Global = '';
+  GA_Name_User_Global =  '';
+  Full_Name_Global = '';
+  Last_Name_Global = '';
+  Email_Id_Global = '';
+  Phone_Number_Global = '';
+  
   isUserSelectIsPrimaryCall = true;
   res.render("bulkupload/user-select");
 });
@@ -57,6 +65,14 @@ var config = {
   console.log("Body: ", apidata.data);
   GAUserList = apidata.data;
   isUserSelectIsPrimaryCall = false;
+
+  User_Role_Global = '';
+  GA_Name_User_Global =  '';
+  Full_Name_Global = '';
+  Last_Name_Global = '';
+  Email_Id_Global = '';
+  Phone_Number_Global = '';
+
   res.render("bulkupload/user-select");
 } catch (err) {
   response_error_message = err;
