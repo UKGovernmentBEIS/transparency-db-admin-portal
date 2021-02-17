@@ -11,7 +11,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
-
+const axios = require("axios");
+jest.mock("axios");
 const mockRequest = (sessionData, body) => ({
   session: { data: sessionData },
   body,
@@ -21,6 +22,16 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   const req = mockRequest();
   const res = {};
   global.beis_url_accessmanagement = "";
+  global.Delete_UserId = "";
+  global.UserPrincileObjectGlobal = "";
+  axios.delete.mockResolvedValue({
+    status: 200,
+    data: {
+      totalSearchResults: 10,
+      currentPage: 1,
+      totalPages: 1,
+    },
+  });
   request(app)
     .get("/userdeactivated", (req, res))
     .expect(200, done);
