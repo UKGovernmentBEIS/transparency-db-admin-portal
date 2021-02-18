@@ -89,12 +89,7 @@ router.post("/", async (req, res) => {
     subsidyInstrumentOther: Subsidy_Instrument_Other_Global,
   };
 
-
-  
-
-  if (isCallfromEditAward)
-  {
-
+  if (isCallfromEditAward) {
     const updateAwardRequest = {
       awardNumber: Edit_Award_Number_global,
       subsidyControlTitle: Subsidy_Measure_Title_Global,
@@ -115,21 +110,19 @@ router.post("/", async (req, res) => {
       subsidyObjectiveOther: Subsidy_Objective_Other_Global,
       subsidyInstrumentOther: Subsidy_Instrument_Other_Global,
     };
-  
-  var data = JSON.parse(JSON.stringify(updateAwardRequest));
-  console.log("request :" + JSON.stringify(data));
+
+    var data = JSON.parse(JSON.stringify(updateAwardRequest));
+    console.log("request :" + JSON.stringify(data));
   } else {
     var data = JSON.parse(JSON.stringify(addAwardRequest));
     console.log("request :" + JSON.stringify(data));
-
   }
 
   try {
-
     if (isCallfromEditAward) {
-    var apidata = await axios.put(beis_url_publishing + "/award", data);
+      var apidata = await axios.put(beis_url_publishing + "/award", data);
     } else {
-    var apidata = await axios.post(beis_url_publishing + "/addAward", data);
+      var apidata = await axios.post(beis_url_publishing + "/addAward", data);
     }
 
     console.log(`Status: ${apidata.status}`);
@@ -275,7 +268,7 @@ router.post("/", async (req, res) => {
       res.render("bulkupload/addsubsidyaward", {
         Subsidy_Control_Number_Global,
         Subsidy_Measure_Title_Global,
-        Subsidy_Adhoc_Global,
+        // Subsidy_Adhoc_Global,
         Subsidy_Objective_Global,
         Subsidy_Objective_Other_Global,
         Subsidy_Instrument_Global,
@@ -296,7 +289,7 @@ router.post("/", async (req, res) => {
 
         Subsidy_Control_Number_Error,
         Subsidy_Measure_Title_Error,
-        Subsidy_Adhoc_Error,
+        // Subsidy_Adhoc_Error,
         Subsidy_Objective_Error,
         Subsidy_Objective_Other_Error,
         Subsidy_Instrument_Error,

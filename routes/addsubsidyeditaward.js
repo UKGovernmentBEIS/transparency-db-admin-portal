@@ -5,12 +5,12 @@ router.get("/", (req, res) => {
   Subsidy_Control_Number_Global = fetchawarddetails.subsidyMeasure.scNumber;
   Subsidy_Measure_Title_Global =
     fetchawarddetails.subsidyMeasure.subsidyMeasureTitle;
-  Subsidy_Adhoc_Global_Check = fetchawarddetails.subsidyMeasure.adhoc;
-  if (Subsidy_Adhoc_Global_Check == true) {
-    Subsidy_Adhoc_Global = "Yes";
-  } else if (Subsidy_Adhoc_Global_Check == false) {
-    Subsidy_Adhoc_Global = "No";
-  }
+  // Subsidy_Adhoc_Global_Check = fetchawarddetails.subsidyMeasure.adhoc;
+  // if (Subsidy_Adhoc_Global_Check == true) {
+  //   Subsidy_Adhoc_Global = "Yes";
+  // } else if (Subsidy_Adhoc_Global_Check == false) {
+  //   Subsidy_Adhoc_Global = "No";
+  // }
   Subsidy_Objective_Global = fetchawarddetails.subsidyObjective;
 
   var subsidy_objective_split = Subsidy_Objective_Global.split("-");
@@ -131,7 +131,7 @@ router.get("/", (req, res) => {
     isCallfromEditAward,
     Subsidy_Control_Number_Global,
     Subsidy_Measure_Title_Global,
-    Subsidy_Adhoc_Global,
+    // Subsidy_Adhoc_Global,
     Subsidy_Objective_Global,
     Subsidy_Objective_Other_Global,
     Subsidy_Instrument_Global,

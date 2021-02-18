@@ -21,8 +21,38 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   const req = mockRequest();
   const res = {};
   global.beis_url_accessmanagement = "";
+  global.User_Role_Global = "";
+  global.GA_Name_User_Global = "";
+  global.Full_Name_Global = "";
+  global.Last_Name_Global = "";
+  global.Email_Id_Global = "";
+  global.Phone_Number_Global = "";
   request(app)
-    .get("/reviewuser", (req, res))
+    .get("/userreview", (req, res))
+    .expect(200, done);
+  //   expect(acd).toBe(200);
+});
+
+test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+  const req = mockRequest();
+  const res = {};
+  global.beis_url_accessmanagement = "";
+  global.User_Role_Global = "";
+  global.GA_Name_User_Global = "";
+  global.Full_Name_Global = "";
+  global.Last_Name_Global = "";
+  global.Email_Id_Global = "";
+  global.Phone_Number_Global = "";
+  request(app)
+    .post("/userreview", (req, res))
+    .send({
+      userRole: "",
+      GA_Name_User: "",
+      Full_Name: "",
+      Last_Name: "",
+      Email_Id: "",
+      Phone_Number: "",
+    })
     .expect(200, done);
   //   expect(acd).toBe(200);
 });

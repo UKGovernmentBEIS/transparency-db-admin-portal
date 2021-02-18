@@ -8,15 +8,24 @@ const axios = require("axios");
 var request = require("request");
 
 router.get("/", async (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
   frontend_totalRecordsPerPage = 10;
   Award_page = 1;
-  awards_status = "Filter results by status";
-  Award_selected_status = "";
-  Award_search_text = "";
+  // awards_status = "Filter results by status";
+  awards_status = "";
+  req.query = JSON.parse(JSON.stringify(req.query));
 
+  if (req.query.hasOwnProperty("sort")) awards_status = req.query.sort;
+  else awards_status = "";
+
+  Award_search_text = "";
   Base_URL = beis_url_accessmanagement + "/accessmanagement/searchresults?";
-  Award_status = "status=" + Award_selected_status;
+  Award_status = "status=" + awards_status;
   Award_concate = "&";
   Award_page = "page=" + Award_page;
   Award_recordsperpage = "recordsPerPage=" + frontend_totalRecordsPerPage;

@@ -2,12 +2,21 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - Subsidy Schemes Review details page</title>
+    <title>GOV.UK - <%= searchmeasuredetails.subsidyMeasureTitle %> scheme details page</title>
     <%- include('../partials/headercss.ejs') %>
+    <script>
+        const formatter = new Intl.NumberFormat("en-GB");
+        getFormatedCurrency = (budget) => {
+            // formatedCurrency = "$" + budget.replace(/\d(?=(\ d{3})+\. )/g, "$&,");
+            formatedCurrency = formatter.format(parseInt(budget))
+            // formatedCurrency = budget.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            // alert(formatedCurrency);
+            document.getElementById("formatText").textContent = '£ ' + formatedCurrency;
+        }
+    </script>
 </head>
 
-
-<body class="govuk-template__body app-example-page">
+<body class="govuk-template__body app-example-page" onload="getFormatedCurrency('<%= searchmeasuredetails.budget %>')">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
@@ -24,7 +33,7 @@
                                 </a>
                             </li>
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/manageusers">
+                                <a class="govuk-sub-navigation__link" href="/userselect">
                                     Users
                                 </a>
                             </li>
@@ -53,11 +62,26 @@
                     </nav>
                 </div>
             </div>
-
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mysubsidymeasures">Subsidy schemes</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link active"
+                            href="#"><%= searchmeasuredetails.subsidyMeasureTitle %></a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
-                    <h1 class="govuk-heading-xl">Review subsidy scheme </h1>
-
+                    <!-- <h1 class="govuk-heading-xl">Review subsidy scheme </h1> -->
+                    <h1 class="govuk-heading-xl"><%= searchmeasuredetails.subsidyMeasureTitle %></h1>
                     <!-- *************************************
               Review for subsidy details tab
               ************************************* -->
@@ -113,16 +137,16 @@
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Budget or amount</th>
-                            <td class="govuk-table__cell">£ <%= searchmeasuredetails.budget %></td>
+                            <td class="govuk-table__cell" id="formatText">£ <%= searchmeasuredetails.budget %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Start Date</th>
+                            <th scope="row" class="govuk-table__header">Start date</th>
                             <td class="govuk-table__cell"><%= Scheme_Legal_Granting_Start_Date_Day %>
                                 <%= Scheme_Legal_Granting_Start_Date_Month %>
                                 <%= Scheme_Legal_Granting_Start_Date_Year %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">End Date</th>
+                            <th scope="row" class="govuk-table__header">End date</th>
                             <td class="govuk-table__cell"><%= Scheme_Legal_Granting_End_Date_Day %>
                                 <%= Scheme_Legal_Granting_End_Date_Month %>
                                 <%= Scheme_Legal_Granting_End_Date_Year %></td>

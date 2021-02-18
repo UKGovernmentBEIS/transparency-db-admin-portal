@@ -16,7 +16,7 @@ router.post("/", (req, res) => {
   SubsidyArraySize = 0;
   Subsidy_Control_Number_Error = false;
   Subsidy_Measure_Title_Error = false;
-  Subsidy_Adhoc_Error = false;
+  // Subsidy_Adhoc_Error = false;
   Subsidy_Objective_Error = false;
   Subsidy_Objective_Other_Error = false;
   Subsidy_Instrument_Error = false;
@@ -38,7 +38,7 @@ router.post("/", (req, res) => {
   const {
     Subsidy_Control_Number,
     Subsidy_Measure_Title,
-    Subsidy_Adhoc,
+    // Subsidy_Adhoc,
     Subsidy_Objective,
     Subsidy_Objective_Other,
     Subsidy_Instrument,
@@ -64,11 +64,11 @@ router.post("/", (req, res) => {
   console.log("Subsidy_Instrument :" + Subsidy_Instrument);
   console.log("buttonvalue:" + buttonvalue);
   console.log("mylink:" + mylink);
-  console.log("  Subsidy_Adhoc :" + Subsidy_Adhoc);
+  // console.log("  Subsidy_Adhoc :" + Subsidy_Adhoc);
 
   Subsidy_Control_Number_Global = Subsidy_Control_Number;
   Subsidy_Measure_Title_Global = Subsidy_Measure_Title;
-  Subsidy_Adhoc_Global = Subsidy_Adhoc;
+  // Subsidy_Adhoc_Global = Subsidy_Adhoc;
   Subsidy_Objective_Global = Subsidy_Objective;
   Subsidy_Objective_Other_Global = Subsidy_Objective_Other;
   Subsidy_Instrument_Global = Subsidy_Instrument;
@@ -166,12 +166,12 @@ router.post("/", (req, res) => {
     // if (!Subsidy_Measure_Title) {
 
     // }
-    if (!Subsidy_Adhoc) {
-      Subsidy_Adhoc_Error = true;
-      SubsidyErrors[Additem] = "     Select the adhoc subsidy scheme";
-      SubsidyFocus[Additem] = "#Subsidy_Adhoc";
-      Additem = Additem + 1;
-    }
+    // if (!Subsidy_Adhoc) {
+    //   Subsidy_Adhoc_Error = true;
+    //   SubsidyErrors[Additem] = "     Select the adhoc subsidy scheme";
+    //   SubsidyFocus[Additem] = "#Subsidy_Adhoc";
+    //   Additem = Additem + 1;
+    // }
 
     if (Subsidy_Objective == "Empty") {
       Subsidy_Objective_Error = true;
@@ -364,7 +364,7 @@ router.post("/", (req, res) => {
     if (
       Subsidy_Control_Number_Error ||
       Subsidy_Measure_Title_Error ||
-      Subsidy_Adhoc_Error ||
+      // Subsidy_Adhoc_Error ||
       Subsidy_Objective_Error ||
       Subsidy_Objective_Other_Error ||
       Subsidy_Instrument_Error ||
@@ -386,7 +386,7 @@ router.post("/", (req, res) => {
       res.render("bulkupload/addsubsidyaward", {
         Subsidy_Control_Number_Global,
         Subsidy_Measure_Title_Global,
-        Subsidy_Adhoc_Global,
+        // Subsidy_Adhoc_Global,
         Subsidy_Objective_Global,
         Subsidy_Objective_Other_Global,
         Subsidy_Instrument_Global,
@@ -407,7 +407,7 @@ router.post("/", (req, res) => {
 
         Subsidy_Control_Number_Error,
         Subsidy_Measure_Title_Error,
-        Subsidy_Adhoc_Error,
+        // Subsidy_Adhoc_Error,
         Subsidy_Objective_Error,
         Subsidy_Objective_Other_Error,
         Subsidy_Instrument_Error,
@@ -450,7 +450,7 @@ router.post("/", (req, res) => {
         Subsidy_Control_Number_Global,
         Subsidy_Control_Number_Global_Substring,
         Subsidy_Measure_Title_Global,
-        Subsidy_Adhoc_Global,
+        // Subsidy_Adhoc_Global,
         Subsidy_Objective_Global,
         Subsidy_Objective_Other_Global,
         Subsidy_Objective_Plus_Other_Global,

@@ -26,7 +26,7 @@
                                 </a>
                             </li>
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/manageusers">
+                                <a class="govuk-sub-navigation__link" href="/userselect">
                                     Users
                                 </a>
                             </li>
@@ -56,7 +56,21 @@
                 </div>
             </div>
             <!-- Header pane starts here -->
-
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mysubsidymeasures">Subsidy schemes</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link active" href="#">Add a subsidy scheme</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
             <% if( SubsidyArraySize > 0 ){ %>
 
             <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"

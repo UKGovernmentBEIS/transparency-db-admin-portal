@@ -32,6 +32,20 @@ const res = {};
 test("Add Granting Authority Get Call", (done) => {
   const req = mockRequest();
   global.beis_url_accessmanagement = "";
+  global.grantingAuthorityName_Global = "";
+  global.grantingAuthorityName_Error = "";
+  const res = {};
+  request(app)
+    .get("/addgrantingauthority", (req, res))
+    .query({ change: 23 })
+    .expect(200, done);
+});
+
+test("Add Granting Authority Get Call", (done) => {
+  const req = mockRequest();
+  global.beis_url_accessmanagement = "";
+  global.grantingAuthorityName_Global = "";
+  global.grantingAuthorityName_Error = "";
   const res = {};
   request(app)
     .get("/addgrantingauthority", (req, res))
