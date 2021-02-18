@@ -21,6 +21,7 @@ const res = {};
 
 test("Unit testing for edit granting authority", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
   global.grantingAuthorityID_Global = "";
   global.grantingAuthorityName_Global = "";

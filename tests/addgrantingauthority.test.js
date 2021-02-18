@@ -31,6 +31,7 @@ const res = {};
 
 test("Add Granting Authority Get Call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
   global.grantingAuthorityName_Global = "";
   global.grantingAuthorityName_Error = "";
@@ -43,6 +44,7 @@ test("Add Granting Authority Get Call", (done) => {
 
 test("Add Granting Authority Get Call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
   global.grantingAuthorityName_Global = "";
   global.grantingAuthorityName_Error = "";

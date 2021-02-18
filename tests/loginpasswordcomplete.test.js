@@ -23,6 +23,7 @@ const res = {};
 
 test("Unit testing for login password complete Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
   request(app)
     .get("/loginpasswordcomplete", (req, res))
@@ -31,6 +32,7 @@ test("Unit testing for login password complete Test for GET call", (done) => {
 
 test("Unit testing for login password complete empty Test for POST call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.isPasswordEmpty = "";
   request(app)
     .post("/loginpasswordcomplete", (req, res))
@@ -43,6 +45,7 @@ test("Unit testing for login password complete empty Test for POST call", (done)
 
 test("Unit testing for login password complete length less than 8 Test for POST call ", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.isPasswordLengthLessThanTen = "";
   request(app)
     .post("/loginpasswordcomplete", (req, res))
@@ -55,6 +58,7 @@ test("Unit testing for login password complete length less than 8 Test for POST 
 
 test("Unit testing for update results page per route Test for POST call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.isBothPasswordNotMatching = "";
   request(app)
     .post("/loginpasswordcomplete", (req, res))
@@ -67,6 +71,7 @@ test("Unit testing for update results page per route Test for POST call", (done)
 
 test("Unit testing for update results page per route Test for POST call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   request(app)
     .post("/loginpasswordcomplete", (req, res))
     .send({

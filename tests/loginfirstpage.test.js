@@ -21,6 +21,7 @@ const res = {};
 
 test("Unit testing for login firstpage Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
   request(app)
     .get("/loginfirstpage", (req, res))

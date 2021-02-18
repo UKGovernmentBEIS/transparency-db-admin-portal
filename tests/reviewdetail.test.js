@@ -21,6 +21,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for Review details Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
   global.Subsidy_Control_Number_Global_Substring = "";
   global.Subsidy_Instrument_Global = "";
@@ -56,6 +57,7 @@ test("Unit testing for Review details Test for GET call", (done) => {
 });
 test("Unit testing for Review details Test for POSt call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
   global.SubsidyArraySize = 0;
   global.SubsidyErrors = [];
@@ -136,6 +138,7 @@ test("Unit testing for Review details Test for POSt call", (done) => {
 
 test("Unit testing for Review details Test for POSt call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.SubsidyArraySize = 0;
   global.SubsidyErrors = [];
   global.beis_url_accessmanagement = "";
@@ -220,6 +223,7 @@ test("Unit testing for Review details Test for POSt call", (done) => {
 
 test("Unit testing for Review details Test for POSt call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.SubsidyArraySize = 0;
   global.beis_url_accessmanagement = "";
   global.SubsidyErrors = [];

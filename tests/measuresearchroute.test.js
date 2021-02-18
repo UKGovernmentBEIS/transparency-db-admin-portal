@@ -31,6 +31,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.subsidy_scheme_name_arrow = "";
   global.subsidy_control_no_arrow = "";
   global.granting_authority_arrow = "";

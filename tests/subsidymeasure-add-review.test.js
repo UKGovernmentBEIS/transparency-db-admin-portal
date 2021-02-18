@@ -19,6 +19,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   const res = {};
   global.beis_url_accessmanagement = "";
   global.Subsidy_Measure_Title_Global = "";

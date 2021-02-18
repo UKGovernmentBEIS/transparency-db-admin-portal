@@ -21,6 +21,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   const res = {};
   global.beis_url_publicsearch =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
