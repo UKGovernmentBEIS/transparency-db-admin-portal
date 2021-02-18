@@ -15,15 +15,16 @@ router.get("/", (req, res) => {
     // console.log("grantingAuthorityID_Global", grantingAuthorityID_Global);
     console.log("grantingAuthorityName_Global", grantingAuthorityName_Global);
     res.render("bulkupload/grantingauthority-add", {
-      // grantingAuthorityID_Global,
       grantingAuthorityName_Global,
     });
-  } else {
-    // const grantingAuthorityID_Global = parseInt(req.query.totalrecords) + 1;
+  } else if (req.query.hasOwnProperty("totalrecords")) {
     grantingAuthorityName_Error = "";
     grantingAuthorityName_Global = "";
+    res.render("bulkupload/grantingauthority-add");
+  } else {
+    grantingAuthorityName_Error = "";
     res.render("bulkupload/grantingauthority-add", {
-      // grantingAuthorityID_Global,
+      grantingAuthorityName_Global,
     });
   }
 });

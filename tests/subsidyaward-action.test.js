@@ -28,6 +28,7 @@ test("Unit testing for login password complete Test for GET call", (done) => {
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.frontend_totalRecordsPerPage = 10;
+
   global.searchawards = {
     awards: [
       {

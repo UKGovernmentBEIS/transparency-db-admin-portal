@@ -43,7 +43,7 @@ router.post("/", async (req, res) => {
   } else {
     try {
       const gaName = req.body.GaName.replace(/ /g, "");
-      // console.log("granting authority", gaName);
+      console.log("granting authority", env[1]);
 
       const apidata = await axios.post(
         "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority",
@@ -76,7 +76,14 @@ router.post("/", async (req, res) => {
       response_error_message = err;
       console.log("message error : " + err);
       console.log("response_error_message catch : " + response_error_message);
-      // res.render('publicusersearch/noresults');
+      grantingAuthorityName_Error = true;
+      grantingAuthorityName_Error_Msg = "Granting Authority already added";
+      grantingAuthorityName_Global = req.body.GaName;
+      res.render("bulkupload/grantingauthority-add", {
+        grantingAuthorityName_Error,
+        grantingAuthorityName_Error_Msg,
+        grantingAuthorityName_Global,
+      });
     }
   }
 });

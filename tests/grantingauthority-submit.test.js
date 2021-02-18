@@ -33,6 +33,7 @@ test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
+  global.grantingAuthorityName_Error_Msg = "";
   global.process.argv = ["", "", "env=dev"];
   global.grantingAuthorityName_Global = "";
   global.grantingAuthorityName_Error = "";
@@ -59,6 +60,7 @@ test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
   global.gaID = "";
+  global.grantingAuthorityName_Error_Msg = "";
   global.process.argv = ["", "", "env=dev"];
   global.grantingAuthorityName_Global = "";
   global.grantingAuthorityName_Error = "";

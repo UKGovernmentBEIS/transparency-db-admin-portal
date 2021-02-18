@@ -112,6 +112,7 @@
                 </button>
             </form>
             <% } else { %>
+
             <a class="govuk-button" href="/mygrantingauthority" data-module="govuk-button">
                 Back to granting authority list
             </a>
@@ -121,7 +122,9 @@
                 data-module="govuk-button">
                 Deactivate granting authority
             </a>
-            <a class="govuk-link govuk-cancel-button-link" id="mylink" value="cancel" href="/editgacancel"> Cancel
+            <a class="govuk-link govuk-cancel-button-link" id="mylink" value="cancel"
+                href="/editgacancel?gaId=<%=grantingAuthorityID_Global%>&gaName=<%=grantingAuthorityName_Global%>">
+                Cancel
             </a>
             <!-- </form> -->
             <% } %>
