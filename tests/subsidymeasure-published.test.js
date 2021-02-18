@@ -20,6 +20,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   const res = {};
   global.beis_url_publicsearch = "";
   global.beis_url_searchscheme = "";
@@ -77,6 +78,7 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
 
 test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   const res = {};
   global.beis_url_publicsearch = "";
   global.beis_url_searchscheme = "";

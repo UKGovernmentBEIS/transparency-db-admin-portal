@@ -395,6 +395,7 @@ test("Unit testing for Choose Dashboard BEIS Admin Test for POST call", (done) =
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   const req = mockRequest();
+  global.dashboard_roles = "";
 
   const res = {};
   request(app)
@@ -765,6 +766,7 @@ test("Unit testing for Choose Dashboard GA Admin Test for POST call", (done) => 
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   const req = mockRequest();
+  global.dashboard_roles = "";
 
   const res = {};
   request(app)
@@ -1135,6 +1137,7 @@ test("Unit testing for Choose Dashboard GA Approver Test for POST call", (done) 
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   const req = mockRequest();
+  global.dashboard_roles = "";
 
   const res = {};
   request(app)
@@ -1505,6 +1508,7 @@ test("Unit testing for Choose Dashboard Encoder Test for POST call", (done) => {
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   const req = mockRequest();
+  global.dashboard_roles = "";
 
   const res = {};
   request(app)
@@ -1875,6 +1879,7 @@ test("Unit testing for Choose Dashboard GA Admin Test for POST call", (done) => 
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   const req = mockRequest();
+  global.dashboard_roles = "";
 
   const res = {};
   request(app)
@@ -2245,6 +2250,7 @@ test("Unit testing for Choose Dashboard GA Approver Test for POST call", (done) 
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   const req = mockRequest();
+  global.dashboard_roles = "";
 
   const res = {};
   request(app)
@@ -2615,6 +2621,7 @@ test("Unit testing for Choose Dashboard Encoder Test for POST call", (done) => {
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   const req = mockRequest();
+  global.dashboard_roles = "";
 
   const res = {};
   request(app)
@@ -2985,6 +2992,7 @@ test("Unit testing for Choose Dashboard GA Admin Test for POST call", (done) => 
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   const req = mockRequest();
+  global.dashboard_roles = "";
 
   const res = {};
   request(app)
@@ -3355,6 +3363,7 @@ test("Unit testing for Choose Dashboard GA Approver Test for POST call", (done) 
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   const req = mockRequest();
+  global.dashboard_roles = "";
 
   const res = {};
   request(app)
@@ -3725,6 +3734,7 @@ test("Unit testing for Choose Dashboard Encoder Test for POST call", (done) => {
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   const req = mockRequest();
+  global.dashboard_roles = "";
 
   const res = {};
   request(app)

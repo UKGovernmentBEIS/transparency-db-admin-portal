@@ -13,6 +13,7 @@
   <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container">
     <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+      <%- include('../partials/navigationbar.ejs') %>
       <!-- bread crumbs start here -->
       <div class="govuk-breadcrumbs ">
         <ol class="govuk-breadcrumbs__list">
@@ -67,6 +68,9 @@
     </main>
   </div>
   <%- include('../partials/footer.ejs') %>
+  <script>
+    document.getElementById('subsidyaward-li').firstElementChild.setAttribute("aria-current", 'page');
+  </script>
 </body>
 
 </html>

@@ -13,11 +13,8 @@
   <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
     <main class="govuk-main-wrapper " id="main-content" role="main">
-      <!-- <body class="govuk-template__body app-example-page js-enabled"> -->
-      <!-- <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script> -->
-      <!-- Disable browser validation for any examples that include form elements -->
-      <!-- <a href="#main-content" class="govuk-skip-link">Skip to main content</a> -->
-      <div class="govuk-grid-row govuk-form-group">
+      <%- include('../partials/navigationbar.ejs') %>
+      <!-- <div class="govuk-grid-row govuk-form-group">
         <div class="govuk-grid-column-full">
           <nav aria-label="Sub navigation">
             <ul class="govuk-sub-navigation__list">
@@ -60,7 +57,7 @@
 
         </div>
 
-      </div>
+      </div> -->
 
       <!-- bread crumbs start here -->
       <div class="govuk-breadcrumbs ">
@@ -307,10 +304,12 @@
   </main>
   </div>
 
-
+  <%- include('../partials/footer.ejs') %>
+  <script>
+    document.getElementById('subsidyaward-li').firstElementChild.setAttribute("aria-current", 'page');
+  </script>
 </body>
 
-<%- include('../partials/footer.ejs') %>
 
 
 </html>

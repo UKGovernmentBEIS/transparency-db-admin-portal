@@ -13,7 +13,7 @@
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
-            <div class="govuk-grid-row govuk-form-group">
+            <!-- <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
                     <nav aria-label="Sub navigation">
                         <ul class="govuk-sub-navigation__list">
@@ -56,8 +56,8 @@
 
                 </div>
 
-            </div>
-
+            </div> -->
+            <%- include('../partials/navigationbar.ejs') %>
 
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
@@ -162,6 +162,8 @@
 </body>
 
 <%- include('../partials/footer.ejs') %>
-
+<script>
+    document.getElementById('user-li').firstElementChild.setAttribute("aria-current", 'page');
+</script>
 
 </html>

@@ -21,6 +21,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   const res = {};
   global.awards_status = "Filter results by status";
   global.frontend_totalRecordsPerPage = 10;

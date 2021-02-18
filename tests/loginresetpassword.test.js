@@ -19,6 +19,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for Login Reset password Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   const res = {};
   global.beis_url_accessmanagement = "";
   request(app)
@@ -29,6 +30,7 @@ test("Unit testing for Login Reset password Test for GET call", (done) => {
 
 test("Unit testing for Login Reset password test for Post call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   const res = {};
   global.beis_url_accessmanagement = "";
   request(app)

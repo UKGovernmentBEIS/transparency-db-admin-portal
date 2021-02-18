@@ -23,6 +23,7 @@ const res = {};
 
 test("Unit testing for login email confirmation Test for POST call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.isEmailEmpty = "";
   global.beis_url_accessmanagement = "";
   request(app)
@@ -35,6 +36,7 @@ test("Unit testing for login email confirmation Test for POST call", (done) => {
 
 test("Unit testing for login email confirmation expiry Test for POST call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.isEmailValid = "";
   global.beis_url_accessmanagement = "";
   request(app)
@@ -47,6 +49,7 @@ test("Unit testing for login email confirmation expiry Test for POST call", (don
 
 test("Unit testing for login email confirmation expiry Test for POST call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.email_addresspass = "";
   global.beis_url_accessmanagement = "";
   request(app)
