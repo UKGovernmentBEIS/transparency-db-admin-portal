@@ -19,7 +19,9 @@
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container">
-    <div class="govuk-grid-row govuk-form-group">
+    <main class="govuk-main-wrapper" id="main-content" role="main">
+      <%- include('../partials/navigationbar.ejs') %>
+      <!-- <div class="govuk-grid-row govuk-form-group">
       <div class="govuk-grid-column-full">
         <nav class="govuk-sub-navigation" aria-label="Sub navigation">
           <ul class="govuk-sub-navigation__list">
@@ -56,22 +58,22 @@
           </ul>
         </nav>
       </div>
-    </div>
-    <div class="govuk-breadcrumbs ">
-      <ol class="govuk-breadcrumbs__list">
-        <li class="govuk-breadcrumbs__list-item">
-          <a class="govuk-breadcrumbs__link" href="#">Dashboard</a>
-        </li>
-        <li class="govuk-breadcrumbs__list-item">
-          <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Granting Authority</a>
-        </li>
-        <li class="govuk-breadcrumbs__list-item">
-          <a class="govuk-breadcrumbs__link active" href="#">Add granting authority</a>
-        </li>
-      </ol>
-    </div>
+    </div> -->
+      <div class="govuk-breadcrumbs ">
+        <ol class="govuk-breadcrumbs__list">
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="#">Dashboard</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Granting Authority</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link active" href="#">Add granting authority</a>
+          </li>
+        </ol>
+      </div>
 
-    <main class="govuk-main-wrapper" id="main-content" role="main">
+
       <!-- <div class="govuk-tabs" data-module="govuk-tabs">
         <div class="govuk-tabs__panel" id="addGA"> -->
       <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group"> -->
@@ -122,7 +124,9 @@
   <%- include('../partials/footer.ejs') %>
   <!-- <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script> -->
   <!-- <script src="/assets/javascripts/accordion/govuk-frontend.js"></script> -->
-
+  <script>
+    document.getElementById('ga-li').firstElementChild.setAttribute("aria-current", 'page');
+  </script>
 </body>
 
 </html>

@@ -4,6 +4,7 @@
 <head>
     <title>GOV.UK - Review User page</title>
     <%- include('../partials/headercss.ejs') %>
+
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -13,7 +14,8 @@
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
-            <div class="govuk-grid-row govuk-form-group">
+            <%- include('../partials/navigationbar.ejs') %>
+            <!-- <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
                     <nav aria-label="Sub navigation">
                         <ul class="govuk-sub-navigation__list">
@@ -56,7 +58,7 @@
 
                 </div>
 
-            </div>
+            </div> -->
 
             <!-- bread crumbs start here -->
             <div class="govuk-breadcrumbs ">
@@ -188,5 +190,8 @@
 
 <%- include('../partials/footer.ejs') %>
 
+<script>
+    document.getElementById('user-li').firstElementChild.setAttribute("aria-current", 'page');
+</script>
 
 </html>

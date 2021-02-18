@@ -32,8 +32,8 @@
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
-
-            <div class="govuk-grid-row govuk-form-group">
+            <%- include('../partials/navigationbar.ejs') %>
+            <!-- <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
                     <nav aria-label="Sub navigation">
                         <ul class="govuk-sub-navigation__list">
@@ -76,7 +76,7 @@
 
                 </div>
 
-            </div>
+            </div> -->
             <!-- bread crumbs start here -->
             <div class="govuk-breadcrumbs ">
                 <ol class="govuk-breadcrumbs__list">
@@ -708,9 +708,11 @@
     </div>
 
 
+    <%- include('../partials/footer.ejs') %>
+    <script>
+        document.getElementById('subsidyaward-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
 </body>
-
-<%- include('../partials/footer.ejs') %>
 
 
 </html>

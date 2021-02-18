@@ -4,6 +4,7 @@
 <head>
     <title>GOV.UK - User Deactivated Successfully page</title>
     <%- include('../partials/headercss.ejs') %>
+
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -13,8 +14,8 @@
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
-
-            <div class="govuk-grid-ro govuk-form-groupw">
+            <%- include('../partials/navigationbar.ejs') %>
+            <!-- <div class="govuk-grid-ro govuk-form-groupw">
                 <div class="govuk-grid-column-full">
                     <nav aria-label="Sub navigation">
                         <ul class="govuk-sub-navigation__list">
@@ -57,7 +58,8 @@
 
                 </div>
 
-            </div>
+            </div> -->
+
             <!-- bread crumbs start here -->
             <div class="govuk-breadcrumbs ">
                 <ol class="govuk-breadcrumbs__list">
@@ -98,6 +100,9 @@
         </main>
     </div>
     <%- include('../partials/footer.ejs') %>
+    <script>
+        document.getElementById('user-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
 </body>
 
 </html>

@@ -531,3 +531,6 @@ button.link {
   color: white;
   margin-bottom: 0;
 }
+.pagination-style-modified a {
+  padding: 8px 3px !important;
+}

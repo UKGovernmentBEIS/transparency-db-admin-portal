@@ -8,7 +8,13 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <script src="assets/javascripts/jquery.min.js"></script>
+    <!-- <script>
+        $(document).ready(function () {
+            $("#user-li a").attr('aria-current', 'page');
+            // document.getElementById('user-li').setAttribute("aria-current", 'page');
+        })
 
+    </script> -->
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -18,7 +24,7 @@
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
 
-            <div class="govuk-grid-row govuk-form-group">
+            <!-- <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
                     <nav aria-label="Sub navigation">
                         <ul class="govuk-sub-navigation__list">
@@ -29,7 +35,7 @@
                             </li>
 
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/userselect">
+                                <a class="govuk-sub-navigation__link" href="/userselect">
                                     Users
                                 </a>
                             </li>
@@ -61,9 +67,9 @@
 
                 </div>
 
-            </div>
+            </div> -->
 
-
+            <%- include('../partials/navigationbar.ejs') %>
             <!-- bread crumbs start here -->
             <div class="govuk-breadcrumbs ">
                 <ol class="govuk-breadcrumbs__list">
@@ -198,6 +204,9 @@
 
 
     <%- include('../partials/footer.ejs') %>
+    <script>
+        document.getElementById('user-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
 </body>
 
 </html>

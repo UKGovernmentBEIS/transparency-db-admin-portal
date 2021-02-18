@@ -16,7 +16,8 @@
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
             <!-- Header pane starts here -->
-            <div class="govuk-grid-row govuk-form-group">
+            <%- include('../partials/navigationbar.ejs') %>
+            <!-- <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
                     <nav class="govuk-sub-navigation" aria-label="Sub navigation">
                         <ul class="govuk-sub-navigation__list">
@@ -54,7 +55,7 @@
                         </ul>
                     </nav>
                 </div>
-            </div>
+            </div> -->
             <!-- Header pane starts here -->
 
             <!-- bread crumbs start here -->
@@ -98,7 +99,9 @@
     <%- include('../partials/footer.ejs') %>
     <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
     <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
-
+    <script>
+        document.getElementById('subsidyaward-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
 </body>
 
 </html>
