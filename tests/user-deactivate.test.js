@@ -22,7 +22,7 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   const res = {};
   global.beis_url_accessmanagement = "";
   request(app)
-    .get("/userdeactivate", (req, res))
+    .post("/userdeactivate", (req, res))
     .expect(200, done);
   //   expect(acd).toBe(200);
 });

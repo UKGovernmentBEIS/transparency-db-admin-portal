@@ -3,7 +3,7 @@
 // *************************************************************
 
 var express = require("express");
-var cookierParser = require('cookie-parser');
+var cookierParser = require("cookie-parser");
 var app = express();
 var fs = require("fs");
 var request = require("request");
@@ -177,8 +177,15 @@ app.locals.apiroles_total_objects;
 app.locals.isUserSlectIsPrimaryCall;
 app.locals.Granting_Authority_Selected;
 app.locals.GA_Selected;
-app.locals.GAUserList ;
-app.locals.UserPrincileObjectGlobal ;
+app.locals.GAUserList;
+
+app.locals.gaId_no_arrow;
+app.locals.ganame_arrow;
+app.locals.added_by_arrow;
+app.locals.status_arrow;
+app.locals.created_on_arrow;
+app.locals.last_modified_arrow;
+app.locals.UserPrincileObjectGlobal;
 
 app.locals.User_Role_Global;
 app.locals.GA_Name_User_Global;
@@ -194,73 +201,84 @@ app.locals.User_Last_Name_Single;
 app.locals.User_Email_Single;
 app.locals.User_Mobile_Single;
 app.locals.Delete_UserId;
+
+app.locals.GaListArr_Global;
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
 
+app.get("/", async (req, res) => {
+  // var id_token = req.header("x-ms-token-aad-id-token");
+  // console.log("id_token " + id_token);
 
-  app.get("/", async(req, res) => {  
-    //  var id_token = req.header("x-ms-token-aad-id-token");
-    //  console.log("id_token "+id_token);
+  id_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiI1YjgxN2U1Yi1mNWQ1LTQwODUtODY2Mi1jMzViN2I2ZGVlYmUiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC80NDk0Y2MxZS1mYjE0LTRhMmQtYmI1ZS1iZjE2NGQ5MTQxY2YvIiwiaWF0IjoxNjEzNDc5OTA5LCJuYmYiOjE2MTM0Nzk5MDksImV4cCI6MTYxMzQ4MzgwOSwiYWNjdCI6MCwiYWlvIjoiQVNRQTIvOFRBQUFBMERFY1NFNG4rSm9ad1hiTHV0S3JySUFZN0NvY3ZXSmg1MDcxYitQZ1JCND0iLCJhbXIiOlsicHdkIl0sImF1dGhfdGltZSI6MTYxMzQ4MDIwOCwiZmFtaWx5X25hbWUiOiJkZXZobXJjZ2FhcHByb3ZlckxOIiwiZ2l2ZW5fbmFtZSI6ImRldmhtcmNnYWFwcHJvdmVyRk4iLCJpcGFkZHIiOiIxOTQuNTMuMTg2LjI5IiwibmFtZSI6ImRldmhtcmNnYWFwcHJvdmVyIiwibm9uY2UiOiI3NTgwZTVjYjg5NjY0NGE2ODhhZDIyYjJiYTUyMTY3NV8yMDIxMDIxNjEzMDEyMiIsIm9pZCI6IjkxMWMwNzAxLWEwMjgtNDBkZC05NDY1LTdjOWQ0YmQwYjdjOCIsInJoIjoiMC5BQUFBSHN5VVJCVDdMVXE3WHI4V1RaRkJ6MXQtZ1Z2VjlZVkFobUxEVzN0dDdyNTVBQ3cuIiwicm9sZXMiOlsiMjEyZDlmNDAtYTk2ZC00MjgzLThhNTYtMTBmNzc2ZDhkZTZkIiwiN2E2ZmQ5Y2QtMWI4NC00NjY1LTk2MzYtYmRjYmI1ZWVjZWJhIl0sInNpZCI6IjNkMzM5NmVhLTEyM2UtNDgzNy1hMGI5LTIwMWQzODZhZTQ3NCIsInN1YiI6IlVpNDZIRGNYTFNPWkFhQklMMU1pVTFkaHJpZzJ0NzAyTTlzVUpDdE1vdzQiLCJ0ZW5hbnRfY3RyeSI6IkdCIiwidGVuYW50X3JlZ2lvbl9zY29wZSI6IkVVIiwidGlkIjoiNDQ5NGNjMWUtZmIxNC00YTJkLWJiNWUtYmYxNjRkOTE0MWNmIiwidW5pcXVlX25hbWUiOiJkZXZobXJjZ2FhcHByb3ZlckBiZWlzZGV2Y3RzLm9ubWljcm9zb2Z0LmNvbSIsInVwbiI6ImRldmhtcmNnYWFwcHJvdmVyQGJlaXNkZXZjdHMub25taWNyb3NvZnQuY29tIiwidXRpIjoiQlBYLUhjeFpkVXlOclZNYlhaeXJBQSIsInZlciI6IjEuMCIsInhtc190cGwiOiJlbiJ9.eo1WYKQwIR0dBS7t0GCL2Jokp9BH8LPykx_24IS4Al0niTvn7NDkRCRqPeEHS2zXMowEjFoCTOkkUocIgJPc_rVFzii57Y3T6dIyr6DGBfJHM_JEd9ChzO6ZjKqOKeBQVng-rCSRHjkPrVI_xJ4ZgYBJoT7Bl12aiyaVJLJRdoFrtBxw9aBdCzkL8akO5J5eaWFP4G4WmMekxGScWaa2gNtt4XwOxTOnYWe8ImIBMxjLPavPVjs9fHXlkBBb1xO0OYaHTHQhJJ0uvCFv9naK1eJ5Bv8IiSKqVNRejqxzLlrWwX443xmcy3KVtubmmDgB_KS56W5J_Iha2iSmTmmnsg";
 
-    id_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiI1YjgxN2U1Yi1mNWQ1LTQwODUtODY2Mi1jMzViN2I2ZGVlYmUiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC80NDk0Y2MxZS1mYjE0LTRhMmQtYmI1ZS1iZjE2NGQ5MTQxY2YvIiwiaWF0IjoxNjEzNDc5OTA5LCJuYmYiOjE2MTM0Nzk5MDksImV4cCI6MTYxMzQ4MzgwOSwiYWNjdCI6MCwiYWlvIjoiQVNRQTIvOFRBQUFBMERFY1NFNG4rSm9ad1hiTHV0S3JySUFZN0NvY3ZXSmg1MDcxYitQZ1JCND0iLCJhbXIiOlsicHdkIl0sImF1dGhfdGltZSI6MTYxMzQ4MDIwOCwiZmFtaWx5X25hbWUiOiJkZXZobXJjZ2FhcHByb3ZlckxOIiwiZ2l2ZW5fbmFtZSI6ImRldmhtcmNnYWFwcHJvdmVyRk4iLCJpcGFkZHIiOiIxOTQuNTMuMTg2LjI5IiwibmFtZSI6ImRldmhtcmNnYWFwcHJvdmVyIiwibm9uY2UiOiI3NTgwZTVjYjg5NjY0NGE2ODhhZDIyYjJiYTUyMTY3NV8yMDIxMDIxNjEzMDEyMiIsIm9pZCI6IjkxMWMwNzAxLWEwMjgtNDBkZC05NDY1LTdjOWQ0YmQwYjdjOCIsInJoIjoiMC5BQUFBSHN5VVJCVDdMVXE3WHI4V1RaRkJ6MXQtZ1Z2VjlZVkFobUxEVzN0dDdyNTVBQ3cuIiwicm9sZXMiOlsiMjEyZDlmNDAtYTk2ZC00MjgzLThhNTYtMTBmNzc2ZDhkZTZkIiwiN2E2ZmQ5Y2QtMWI4NC00NjY1LTk2MzYtYmRjYmI1ZWVjZWJhIl0sInNpZCI6IjNkMzM5NmVhLTEyM2UtNDgzNy1hMGI5LTIwMWQzODZhZTQ3NCIsInN1YiI6IlVpNDZIRGNYTFNPWkFhQklMMU1pVTFkaHJpZzJ0NzAyTTlzVUpDdE1vdzQiLCJ0ZW5hbnRfY3RyeSI6IkdCIiwidGVuYW50X3JlZ2lvbl9zY29wZSI6IkVVIiwidGlkIjoiNDQ5NGNjMWUtZmIxNC00YTJkLWJiNWUtYmYxNjRkOTE0MWNmIiwidW5pcXVlX25hbWUiOiJkZXZobXJjZ2FhcHByb3ZlckBiZWlzZGV2Y3RzLm9ubWljcm9zb2Z0LmNvbSIsInVwbiI6ImRldmhtcmNnYWFwcHJvdmVyQGJlaXNkZXZjdHMub25taWNyb3NvZnQuY29tIiwidXRpIjoiQlBYLUhjeFpkVXlOclZNYlhaeXJBQSIsInZlciI6IjEuMCIsInhtc190cGwiOiJlbiJ9.eo1WYKQwIR0dBS7t0GCL2Jokp9BH8LPykx_24IS4Al0niTvn7NDkRCRqPeEHS2zXMowEjFoCTOkkUocIgJPc_rVFzii57Y3T6dIyr6DGBfJHM_JEd9ChzO6ZjKqOKeBQVng-rCSRHjkPrVI_xJ4ZgYBJoT7Bl12aiyaVJLJRdoFrtBxw9aBdCzkL8akO5J5eaWFP4G4WmMekxGScWaa2gNtt4XwOxTOnYWe8ImIBMxjLPavPVjs9fHXlkBBb1xO0OYaHTHQhJJ0uvCFv9naK1eJ5Bv8IiSKqVNRejqxzLlrWwX443xmcy3KVtubmmDgB_KS56W5J_Iha2iSmTmmnsg";
-     
+  Environment_variable = process.argv[2];
+  console.log("id_token " + id_token);
 
-     Environment_variable = process.argv[2];
-    console.log("id_token "+id_token);
-   
-    if (Environment_variable == "env=dev") {
-      beis_url_publishing = "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
-      beis_url_accessmanagement = "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
-      beis_url_publicsearch = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
-      console.log(beis_url_publishing);
-      console.log(beis_url_accessmanagement);
-      console.log(beis_url_publicsearch);
-    } else if (Environment_variable == "env=integ") {
-      beis_url_publishing = "https://integ-transparency-db-publishing-subsidies-service.azurewebsites.net";
-      beis_url_accessmanagement = "https://integ-transparency-db-access-management-service.azurewebsites.net";
-      beis_url_publicsearch = "https://integ-transparency-db-public-search-service.azurewebsites.net";
-      console.log(beis_url_publishing);
-      console.log(beis_url_accessmanagement);
-      console.log(beis_url_publicsearch);
-    } else if (Environment_variable == "env=stag") {
-      beis_url_publishing = "https://stag-transparency-db-publishing-subsidies-service.azurewebsites.net";
-      beis_url_accessmanagement = "https://stag-transparency-db-access-management-service.azurewebsites.net";
-      beis_url_publicsearch = "https://stag-transparency-db-public-search-service.azurewebsites.net";
-      console.log(beis_url_publishing);
-      console.log(beis_url_accessmanagement);
-      console.log(beis_url_publicsearch);
-    } else if (Environment_variable == "env=prod") {
-      beis_url_publishing = "https://prod-transparency-db-publishing-subsidies-service.azurewebsites.net";
-      beis_url_accessmanagement = "https://prod-transparency-db-access-management-service.azurewebsites.net";
-      beis_url_publicsearch = "https://prod-transparency-db-public-search-service.azurewebsites.net";
-      console.log(beis_url_publishing);
-      console.log(beis_url_accessmanagement);
-      console.log(beis_url_publicsearch);
-    }
-  
-  
-    // *******************
-    // Globale declarations
-    // *******************
-    frontend_totalRecordsPerPage = 10;
-  
-    var id_token_decoded = jwt_decode(id_token);
-    console.log("id_token_decoded "+id_token_decoded);
-    console.log("logged in user "+id_token_decoded.name);
-    console.log("id_token_decoded parsed "+JSON.stringify(id_token_decoded));
-    var id_token_json = JSON.parse(JSON.stringify(id_token_decoded));
-    dashboard_user_name = id_token_decoded.name;
-    dashboard_roles_object = JSON.stringify(id_token_json.roles);
-    console.log("roles :" + dashboard_roles_object );
-    dashboard_roles_object_id1 = dashboard_roles_object.substr(2,36);
-    dashboard_roles_object_id2 = dashboard_roles_object.substr(41,36);
+  if (Environment_variable == "env=dev") {
+    beis_url_publishing =
+      "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement =
+      "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
+    beis_url_publicsearch =
+      "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
+    console.log(beis_url_publishing);
+    console.log(beis_url_accessmanagement);
+    console.log(beis_url_publicsearch);
+  } else if (Environment_variable == "env=integ") {
+    beis_url_publishing =
+      "https://integ-transparency-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement =
+      "https://integ-transparency-db-access-management-service.azurewebsites.net";
+    beis_url_publicsearch =
+      "https://integ-transparency-db-public-search-service.azurewebsites.net";
+    console.log(beis_url_publishing);
+    console.log(beis_url_accessmanagement);
+    console.log(beis_url_publicsearch);
+  } else if (Environment_variable == "env=stag") {
+    beis_url_publishing =
+      "https://stag-transparency-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement =
+      "https://stag-transparency-db-access-management-service.azurewebsites.net";
+    beis_url_publicsearch =
+      "https://stag-transparency-db-public-search-service.azurewebsites.net";
+    console.log(beis_url_publishing);
+    console.log(beis_url_accessmanagement);
+    console.log(beis_url_publicsearch);
+  } else if (Environment_variable == "env=prod") {
+    beis_url_publishing =
+      "https://prod-transparency-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement =
+      "https://prod-transparency-db-access-management-service.azurewebsites.net";
+    beis_url_publicsearch =
+      "https://prod-transparency-db-public-search-service.azurewebsites.net";
+    console.log(beis_url_publishing);
+    console.log(beis_url_accessmanagement);
+    console.log(beis_url_publicsearch);
+  }
 
-    console.log("dashboard_roles_object_id1:" + dashboard_roles_object_id1 );
-    console.log("dashboard_roles_object_id2:" + dashboard_roles_object_id2 );
+  // *******************
+  // Globale declarations
+  // *******************
+  frontend_totalRecordsPerPage = 10;
 
-    try {
-      var apiroles = await axios.get(
+  var id_token_decoded = jwt_decode(id_token);
+  console.log("id_token_decoded " + id_token_decoded);
+  console.log("logged in user " + id_token_decoded.name);
+  console.log("id_token_decoded parsed " + JSON.stringify(id_token_decoded));
+  var id_token_json = JSON.parse(JSON.stringify(id_token_decoded));
+  dashboard_user_name = id_token_decoded.name;
+  dashboard_roles_object = JSON.stringify(id_token_json.roles);
+  console.log("roles :" + dashboard_roles_object);
+  dashboard_roles_object_id1 = dashboard_roles_object.substr(2, 36);
+  dashboard_roles_object_id2 = dashboard_roles_object.substr(41, 36);
+
+  console.log("dashboard_roles_object_id1:" + dashboard_roles_object_id1);
+  console.log("dashboard_roles_object_id2:" + dashboard_roles_object_id2);
+
+  try {
+    var apiroles = await axios.get(
       beis_url_accessmanagement + "/accessmanagement/allga",
       config
     );
@@ -270,210 +288,212 @@ app.locals.Delete_UserId;
     console.log("Body: ", apiroles.data);
     apiroles_extract = apiroles.data;
     apiroles_total_objects = Object.keys(apiroles_extract).length;
-    console.log(" apiroles_total_objects: ",  apiroles_total_objects);
+    console.log(" apiroles_total_objects: ", apiroles_total_objects);
 
-    for (var i = 0; i < apiroles_total_objects; i++) { 
-      if( dashboard_roles_object_id1 == apiroles_extract[i].azGrpId ) {
-        console.log( "gaName id1 : " + apiroles_extract[i].gaName );
-        apiroles_extract_object1 = apiroles_extract[i].gaName ;
-        dashbaord_ga_ID = apiroles_extract[i].gaId ;
-
+    for (var i = 0; i < apiroles_total_objects; i++) {
+      if (dashboard_roles_object_id1 == apiroles_extract[i].azGrpId) {
+        console.log("gaName id1 : " + apiroles_extract[i].gaName);
+        apiroles_extract_object1 = apiroles_extract[i].gaName;
+        dashbaord_ga_ID = apiroles_extract[i].gaId;
       }
     }
 
-    for (var i = 0; i < apiroles_total_objects; i++) { 
-      if( dashboard_roles_object_id2 == apiroles_extract[i].azGrpId ) {
-        console.log( "gaName id2 : " + apiroles_extract[i].gaName );
-        apiroles_extract_object2 = apiroles_extract[i].gaName ;
+    for (var i = 0; i < apiroles_total_objects; i++) {
+      if (dashboard_roles_object_id2 == apiroles_extract[i].azGrpId) {
+        console.log("gaName id2 : " + apiroles_extract[i].gaName);
+        apiroles_extract_object2 = apiroles_extract[i].gaName;
       }
     }
-
-
-  
   } catch (err) {
     response_error_message = err;
     console.log("message error : " + err);
     console.log("response_error_message catch : " + response_error_message);
   }
 
-  
-
-  if(apiroles_extract_object1.includes("BEIS Administrator")){
+  if (apiroles_extract_object1.includes("BEIS Administrator")) {
     dashboard_roles = "BEIS Administrator";
     dashboard_ga_name = apiroles_extract_object2;
-  }else if(apiroles_extract_object1.includes("Granting Authority Administrator")){
+  } else if (
+    apiroles_extract_object1.includes("Granting Authority Administrator")
+  ) {
     dashboard_roles = "Granting Authority Administrator";
     dashboard_ga_name = apiroles_extract_object2;
-  }else if(apiroles_extract_object1.includes("Granting Authority Approver")){
+  } else if (apiroles_extract_object1.includes("Granting Authority Approver")) {
     dashboard_roles = "Granting Authority Approver";
     dashboard_ga_name = apiroles_extract_object2;
-  }else if(apiroles_extract_object1.includes("Granting Authority Encoder")){
+  } else if (apiroles_extract_object1.includes("Granting Authority Encoder")) {
     dashboard_roles = "Granting Authority Encoder";
     dashboard_ga_name = apiroles_extract_object2;
   }
 
-  if(apiroles_extract_object2.includes("BEIS Administrator")){
+  if (apiroles_extract_object2.includes("BEIS Administrator")) {
     dashboard_roles = "BEIS Administrator";
     dashboard_ga_name = apiroles_extract_object1;
-  }else if(apiroles_extract_object2.includes("Granting Authority Administrator")){
+  } else if (
+    apiroles_extract_object2.includes("Granting Authority Administrator")
+  ) {
     dashboard_roles = "Granting Authority Administrator";
     dashboard_ga_name = apiroles_extract_object1;
-  }else if(apiroles_extract_object2.includes("Granting Authority Approver")){
+  } else if (apiroles_extract_object2.includes("Granting Authority Approver")) {
     dashboard_roles = "Granting Authority Approver";
     dashboard_ga_name = apiroles_extract_object1;
-  }else if(apiroles_extract_object2.includes("Granting Authority Encoder")){
+  } else if (apiroles_extract_object2.includes("Granting Authority Encoder")) {
     dashboard_roles = "Granting Authority Encoder";
     dashboard_ga_name = apiroles_extract_object1;
   }
 
   console.log("dashboard_roles : " + dashboard_roles);
   console.log("dashboard_ga_name : " + dashboard_ga_name);
-  
 
   var userPrincipleRequest =
-  '{"userName":"SYSTEM","password":"password123",' + '"role":"' + dashboard_roles
-  + '","grantingAuthorityGroupId":"' + dashbaord_ga_ID + '","grantingAuthorityGroupName":"' +
-  dashboard_ga_name +
-  '"}';
-  
-  console.log("userprincile: " + userPrincipleRequest );
+    '{"userName":"SYSTEM","password":"password123",' +
+    '"role":"' +
+    dashboard_roles +
+    '","grantingAuthorityGroupId":"' +
+    dashbaord_ga_ID +
+    '","grantingAuthorityGroupName":"' +
+    dashboard_ga_name +
+    '"}';
+
+  console.log("userprincile: " + userPrincipleRequest);
   UserPrincileObjectGlobal = {
-  headers: {
-    userPrinciple: userPrincipleRequest
-  },
+    headers: {
+      userPrinciple: userPrincipleRequest,
+    },
   };
-  
-  
-    if (dashboard_roles == "BEIS Administrator") {
-      var userPrincipleRequest =
-        '{"userName": "TEST","password": "password123","role": "BEIS Administrator","grantingAuthorityGroupId": "123","grantingAuthorityGroupName": "test"}';
-      var config = {
-        headers: {
-          userPrinciple: userPrincipleRequest
-        },
-      };
-  
-      var data = JSON.parse(JSON.stringify(userPrincipleRequest));
-      console.log("request :" + JSON.stringify(data));
-  
-      try {
-          var apidata = await axios.get(
-          beis_url_accessmanagement + "/accessmanagement/beisadmin",
-          config
-        );
-        console.log(`Status: ${apidata.status}`);
-        API_response_code = `${apidata.status}`;
-        console.log("API_response_code: try" + API_response_code);
-        console.log("Body: ", apidata.data);
-        dashboardawards = apidata.data;
-        res.render("bulkupload/dashboard-beisadmin", {
-          beis_url_accessmanagement,dashboard_user_name
-        });
-      } catch (err) {
-        response_error_message = err;
-        console.log("message error : " + err);
-        console.log("response_error_message catch : " + response_error_message);
-      }
-    } else if (dashboard_roles == "Granting Authority Administrator") {
-      var userPrincipleRequest =
-        '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Administrator","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-        dashboard_ga_name +
-        '"}';
-      var config = {
-        headers: {
-          userPrinciple: userPrincipleRequest
-        },
-      };
-  
-      var data = JSON.parse(JSON.stringify(userPrincipleRequest));
-      console.log("request :" + JSON.stringify(data));
-  
-      try {
-        var apidata = await axios.get(
-          beis_url_accessmanagement + "/accessmanagement/gaadmin",
-          config
-        );
-        console.log(`Status: ${apidata.status}`);
-        API_response_code = `${apidata.status}`;
-        console.log("API_response_code: try" + API_response_code);
-        console.log("Body: ", apidata.data);
-        dashboardawards = apidata.data;
-        res.render("bulkupload/dashboard-gaadmin",{
-          beis_url_accessmanagement,dashboard_user_name
-        });
-      } catch (err) {
-        response_error_message = err;
-        console.log("message error : " + err);
-        console.log("response_error_message catch : " + response_error_message);
-      }
-    } else if (dashboard_roles == "Granting Authority Approver") {
-      var userPrincipleRequest =
-        '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-        dashboard_ga_name +
-        '"}';
-      var config = {
-        headers: {
-          userPrinciple: userPrincipleRequest
-        },
-      };
-  
-      var data = JSON.parse(JSON.stringify(userPrincipleRequest));
-      console.log("request :" + JSON.stringify(data));
-  
-      try {
-        var apidata = await axios.get(
-          beis_url_accessmanagement + "/accessmanagement/gaapprover",
-          config
-        );
-        console.log(`Status: ${apidata.status}`);
-        API_response_code = `${apidata.status}`;
-        console.log("API_response_code: try" + API_response_code);
-        console.log("Body: ", apidata.data);
-        dashboardawards = apidata.data;
-        res.render("bulkupload/dashboard-gaapprover",{
-          beis_url_accessmanagement,dashboard_user_name
-        });
-      } catch (err) {
-        response_error_message = err;
-        console.log("message error : " + err);
-        console.log("response_error_message catch : " + response_error_message);
-      }
-    } else if (dashboard_roles == "Granting Authority Encoder") {
-      var userPrincipleRequest =
-        '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Encoder","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-        dashboard_ga_name +
-        '"}';
-      var config = {
-        headers: {
-          userPrinciple: userPrincipleRequest
-        },
-      };
-  
-      var data = JSON.parse(JSON.stringify(userPrincipleRequest));
-      console.log("request :" + JSON.stringify(data));
-  
-      try {
-        var apidata = await axios.get(
-          beis_url_accessmanagement + "/accessmanagement/gaencoder",
-          config
-        );
-        console.log(`Status: ${apidata.status}`);
-        API_response_code = `${apidata.status}`;
-        console.log("API_response_code: try" + API_response_code);
-        console.log("Body: ", apidata.data);
-        dashboardawards = apidata.data;
-        res.render("bulkupload/dashboard-gaencoder",{
-          beis_url_accessmanagement,dashboard_user_name
-        });
-      } catch (err) {
-        response_error_message = err;
-        console.log("message error : " + err);
-        console.log("response_error_message catch : " + response_error_message);
-      }
+
+  if (dashboard_roles == "BEIS Administrator") {
+    var userPrincipleRequest =
+      '{"userName": "TEST","password": "password123","role": "BEIS Administrator","grantingAuthorityGroupId": "123","grantingAuthorityGroupName": "test"}';
+    var config = {
+      headers: {
+        userPrinciple: userPrincipleRequest,
+      },
+    };
+
+    var data = JSON.parse(JSON.stringify(userPrincipleRequest));
+    console.log("request :" + JSON.stringify(data));
+
+    try {
+      var apidata = await axios.get(
+        beis_url_accessmanagement + "/accessmanagement/beisadmin",
+        config
+      );
+      console.log(`Status: ${apidata.status}`);
+      API_response_code = `${apidata.status}`;
+      console.log("API_response_code: try" + API_response_code);
+      console.log("Body: ", apidata.data);
+      dashboardawards = apidata.data;
+      res.render("bulkupload/dashboard-beisadmin", {
+        beis_url_accessmanagement,
+        dashboard_user_name,
+      });
+    } catch (err) {
+      response_error_message = err;
+      console.log("message error : " + err);
+      console.log("response_error_message catch : " + response_error_message);
     }
-  
-    
-  
+  } else if (dashboard_roles == "Granting Authority Administrator") {
+    var userPrincipleRequest =
+      '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Administrator","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
+      dashboard_ga_name +
+      '"}';
+    var config = {
+      headers: {
+        userPrinciple: userPrincipleRequest,
+      },
+    };
+
+    var data = JSON.parse(JSON.stringify(userPrincipleRequest));
+    console.log("request :" + JSON.stringify(data));
+
+    try {
+      var apidata = await axios.get(
+        beis_url_accessmanagement + "/accessmanagement/gaadmin",
+        config
+      );
+      console.log(`Status: ${apidata.status}`);
+      API_response_code = `${apidata.status}`;
+      console.log("API_response_code: try" + API_response_code);
+      console.log("Body: ", apidata.data);
+      dashboardawards = apidata.data;
+      res.render("bulkupload/dashboard-gaadmin", {
+        beis_url_accessmanagement,
+        dashboard_user_name,
+      });
+    } catch (err) {
+      response_error_message = err;
+      console.log("message error : " + err);
+      console.log("response_error_message catch : " + response_error_message);
+    }
+  } else if (dashboard_roles == "Granting Authority Approver") {
+    var userPrincipleRequest =
+      '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
+      dashboard_ga_name +
+      '"}';
+    var config = {
+      headers: {
+        userPrinciple: userPrincipleRequest,
+      },
+    };
+
+    var data = JSON.parse(JSON.stringify(userPrincipleRequest));
+    console.log("request :" + JSON.stringify(data));
+
+    try {
+      var apidata = await axios.get(
+        beis_url_accessmanagement + "/accessmanagement/gaapprover",
+        config
+      );
+      console.log(`Status: ${apidata.status}`);
+      API_response_code = `${apidata.status}`;
+      console.log("API_response_code: try" + API_response_code);
+      console.log("Body: ", apidata.data);
+      dashboardawards = apidata.data;
+      res.render("bulkupload/dashboard-gaapprover", {
+        beis_url_accessmanagement,
+        dashboard_user_name,
+      });
+    } catch (err) {
+      response_error_message = err;
+      console.log("message error : " + err);
+      console.log("response_error_message catch : " + response_error_message);
+    }
+  } else if (dashboard_roles == "Granting Authority Encoder") {
+    var userPrincipleRequest =
+      '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Encoder","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
+      dashboard_ga_name +
+      '"}';
+    var config = {
+      headers: {
+        userPrinciple: userPrincipleRequest,
+      },
+    };
+
+    var data = JSON.parse(JSON.stringify(userPrincipleRequest));
+    console.log("request :" + JSON.stringify(data));
+
+    try {
+      var apidata = await axios.get(
+        beis_url_accessmanagement + "/accessmanagement/gaencoder",
+        config
+      );
+      console.log(`Status: ${apidata.status}`);
+      API_response_code = `${apidata.status}`;
+      console.log("API_response_code: try" + API_response_code);
+      console.log("Body: ", apidata.data);
+      dashboardawards = apidata.data;
+      res.render("bulkupload/dashboard-gaencoder", {
+        beis_url_accessmanagement,
+        dashboard_user_name,
+      });
+    } catch (err) {
+      response_error_message = err;
+      console.log("message error : " + err);
+      console.log("response_error_message catch : " + response_error_message);
+    }
+  }
+
   // res.render("bulkupload/logintransparency");
 });
 var logintransparency = require("./routes/logintransparency");
@@ -570,6 +590,9 @@ app.use("/addgrantingauthority", addgrantingauthority);
 var deactivategrantingauthority = require("./routes/grantingauthority-deactivate");
 app.use("/deactivategrantingauthority", deactivategrantingauthority);
 
+var deactivatedGA = require("./routes/grantingauthority-deactivated-successfully");
+app.use("/gadeactivated", deactivatedGA);
+
 var choosedashboard = require("./routes/choosedashboard");
 app.use("/choosedashboard", choosedashboard);
 
@@ -665,8 +688,11 @@ app.use("/userselect", userselect);
 var usersubmit = require("./routes/user-submit");
 app.use("/usersubmit", usersubmit);
 
-var adduser= require("./routes/user-add");
+var adduser = require("./routes/user-add");
 app.use("/adduser", adduser);
+
+var edituser = require("./routes/user-edit");
+app.use("/edituser", edituser);
 
 var canceluser = require("./routes/user-cancel");
 app.use("/canceluser", canceluser);

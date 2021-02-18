@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - User added successfully page</title>
+    <title>GOV.UK - Granting authority deactivated successfully page</title>
+
     <%- include('../partials/headercss.ejs') %>
 </head>
 
@@ -12,20 +13,19 @@
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
-            <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
             <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
                     <nav aria-label="Sub navigation">
                         <ul class="govuk-sub-navigation__list">
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mygrantingauthority">
                                     Granting Authorities
                                 </a>
                             </li>
 
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/userselect">
+                                <a class="govuk-sub-navigation__link" href="/userselect">
                                     Users
                                 </a>
                             </li>
@@ -39,9 +39,6 @@
                                     Subsidy Awards
                                 </a>
                             </li>
-
-
-
                             <li class="govuk-sub-navigation__item head-right">
                                 <a class="govuk-sub-navigation__link" href="/logintransparency">
                                     Sign out
@@ -54,9 +51,7 @@
                             </li>
                         </ul>
                     </nav>
-
                 </div>
-
             </div>
 
             <!-- bread crumbs start here -->
@@ -66,10 +61,10 @@
                         <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" href="/userselect">Users</a>
+                        <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Granting Authority</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a1 class="govuk-breadcrumbs__link active" href="#">Update user</a1>
+                        <a1 class="govuk-breadcrumbs__link active" href="#">Add granting authority</a1>
                     </li>
                 </ol>
             </div>
@@ -77,34 +72,33 @@
             <div class="govuk-grid-row">
 
                 <div class="govuk-grid-column-two-thirds govuk-form-group">
+
+                    <h1 class="govuk-heading-xl">Deactivate granting authority</h1>
+
                     <div class="govuk-panel govuk-panel--confirmation">
                         <h1 class="govuk-panel__title">
-                            User details updated
+                            Granting authority deactivated
                         </h1>
+                        <div class="govuk-panel__body">
+                            ID <strong><%= gaId%></strong>
+                        </div>
                     </div>
                 </div>
                 <div class="govuk-grid-column-full govuk-form-group">
-                    <p class="govuk-body govuk-!-font-size-19">You have successfully updated the user details for Albert
-                        Einstein.</p>
-
+                    <!-- <% if(review == 'true') { %> -->
+                    <p class="govuk-body govuk-!-font-size-19">You have deactivated granting authority <%= gaId%>. Users
+                        will no longer be able to add subsidy awards to it.</p>
                 </div>
                 <div class="govuk-grid-column-full govuk-form-group">
-
-                    <a class="govuk-button" href="/userselect" data-module="govuk-button">
-                        View all users
+                    <a class="govuk-button" href="/mygrantingauthority" data-module="govuk-button">
+                        View all granting authorities
                     </a>
-
-                    <a class="govuk-button govuk-button--secondary" href="/adduser" data-module="govuk-button">Add
-                        another
-                        user</a>
-
                 </div>
             </div>
         </main>
     </div>
 
     <%- include('../partials/footer.ejs') %>
-
 
 </body>
 

@@ -56,7 +56,7 @@ test("Unit testing for filter route Test for GET call", (done) => {
   };
 
   global.isCallfromEditAward = "";
-
+  global.Subsidy_Adhoc_Global = "";
   global.beis_url_accessmanagement = "";
   global.Subsidy_Control_Number_Error = "";
   global.Subsidy_Control_Number_Global = "";

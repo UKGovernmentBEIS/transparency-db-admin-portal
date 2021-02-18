@@ -62,7 +62,7 @@
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
 
-                    <h1 class="govuk-heading-xl">  <%= User_Name_Single %>  &nbsp <%= User_Last_Name_Single %> </h1>
+                    <h1 class="govuk-heading-xl"> <%= User_Name_Single %> &nbsp <%= User_Last_Name_Single %> </h1>
 
                     <!-- *************************************
               Review for subsidy details tab
@@ -92,12 +92,12 @@
                         Granting Authority name
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        <% if ( GA_Selected == 'Granting Authority Administrator' || GA_Selected == 'Granting Authority Approver' || GA_Selected == 'Granting Authority Encoder' ) {  %>  
-                            NA 
+                        <% if ( GA_Selected == 'Granting Authority Administrator' || GA_Selected == 'Granting Authority Approver' || GA_Selected == 'Granting Authority Encoder' ) {  %>
+                        NA
                         <% } else if (GA_Selected == 'BEIS Administrator' ) {  %>
-                            Department for Business, Energy & Industrial Strategy  
-                        <% } else { %> 
-                            <%= GA_Selected %>
+                        Department for Business, Energy & Industrial Strategy
+                        <% } else { %>
+                        <%= GA_Selected %>
                         <% } %>
                     </dd>
 
@@ -139,20 +139,20 @@
                     </dd>
 
                 </div>
-               
+
 
             </dl>
 
-           
-            <a href="/userupdated" class="govuk-button" data-module="govuk-button">
-                Save updates
-            </a>
-            <!-- <a href="/" class="govuk-link govuk-cancel-button-link">Deactivate</a> -->
             <form action="/userdeactivate" method="POST">
-             <button class="govuk-button" data-module="govuk-button">
-                Deactivate
-             </button>
-             </form>
+                <a href="/userupdated" class="govuk-button" data-module="govuk-button">
+                    Save updates
+                </a>
+                <!-- <a href="/" class="govuk-link govuk-cancel-button-link">Deactivate</a> -->
+
+                <button class="govuk-button govuk-button--warning" data-module="govuk-button">
+                    Deactivate
+                </button>
+            </form>
 
     </div>
     </main>

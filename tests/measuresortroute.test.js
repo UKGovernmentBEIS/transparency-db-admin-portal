@@ -22,7 +22,7 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   const req = mockRequest();
   const res = {};
   global.beis_url_searchscheme = "";
-
+  global.beis_url_accessmanagement = "";
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Adhoc_Global = "";
 

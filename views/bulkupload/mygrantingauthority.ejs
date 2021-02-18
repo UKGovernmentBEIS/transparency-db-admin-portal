@@ -10,27 +10,7 @@
 <script src="/assets/javascripts/vendor/modernizr.js"></script> -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
-<script>
-    // mygrantingauthorityList = [];
-    // $(document).ready(function () {
-    // $("#filter-input").on("keyup", function () {
-    //   $(".clear-all").show();
-    // });
-    // $(".clear-all").on("click", function () {
-    //   $("#filter-input").val("");
-    //   $(".clear-all").hide();
-    // });
-    // $("#getFilterTags").on('click', function () {
-    //     var tags = $("#filter-input").val();
-    // if (!mygrantingauthorityList.includes(tags)) {
-    //     mygrantingauthorityList.push(tags);
-    // }
-    // else
-    //     return false;
-    // console.log(mygrantingauthorityList);
-    // });
-    // });
-</script>
+
 <!-- <%- include('../partials/headersubsidy.ejs') %> -->
 
 <body class="govuk-template__body app-example-page">
@@ -39,25 +19,6 @@
   <%- include('../partials/header.ejs') %>
   <!-- <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css" /> -->
   <div class="govuk-width-container">
-    <!-- <div class="nav-tabs">
-      <ul class="navbar">
-        <li class="grantingAuthorityDiv active" data-id="myGA">
-          <a href="javascript:void(0)">Manage Granting Authorities</a>
-        </li>
-        <li class="grantingAuthorityDiv" data-id="addGA">
-          <a href="javascript:void(0)">Add a Granting Authority</a>
-        </li>
-      </ul>
-      <ul class="navbar">
-        <li>
-          <a href="#">My account</a>
-        </li>
-        <li>
-          <a href="#">Sign out</a>
-        </li>
-      </ul>
-    </div> -->
-
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
         <nav class="govuk-fieldset__legend--l " aria-label="Sub navigation">
@@ -96,16 +57,16 @@
         </nav>
       </div>
     </div>
-    <!-- <div class="govuk-breadcrumbs ">
+    <div class="govuk-breadcrumbs ">
       <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
-          <a class="govuk-breadcrumbs__link" href="#">Dashboard</a>
+          <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a class="govuk-breadcrumbs__link" href="#">Granting Authority</a>
+          <a class="govuk-breadcrumbs__link active" href="#">Granting Authority</a>
         </li>
       </ol>
-    </div> -->
+    </div>
     <main class="govuk-main-wrapper" id="main-content" role="main">
       <!-- <div class="govuk-tabs" data-module="govuk-tabs">
         <div id="myGA" class="govuk-tabs__panel"> -->
@@ -142,23 +103,23 @@
                 <option value="">Deactivated</option>
               </select> -->
             <form class="govuk-grid-column-one-half" action="/mygrantingauthority" method="POST">
-              <select class="govuk-select" name="sort" style="width: 100%" onchange="this.form.submit()"
+              <select class="govuk-select" name="status" style="width: 100%" onchange="this.form.submit()"
                 aria-label="Results as per status shown in current page" aria-describedby="info-message"
                 aria-autocomplete="list">
-                <% if(sort == 'Active') { %>
-                <option value="Active" selected>Active </option>
+                <% if(status == 'Active') { %>
+                <option value="Active" selected>Active(<%=grantingAuthorityList.activeCount%>) </option>
                 <% } else {%>
-                <option value="Active">Active </option>
+                <option value="Active">Active(<%=grantingAuthorityList.activeCount%>) </option>
                 <% } %>
-                <% if(sort == 'Inactive') { %>
-                <option value="Inactive" selected>Inactive </option>
+                <% if(status == 'Inactive') { %>
+                <option value="Inactive" selected>Inactive(<%=grantingAuthorityList.inActiveCount%>) </option>
                 <% } else {%>
-                <option value="Inactive">Inactive </option>
+                <option value="Inactive">Inactive(<%=grantingAuthorityList.inActiveCount%>) </option>
                 <% } %>
-                <% if(sort == '') { %>
-                <option value="" selected>Show all </option>
+                <% if(status == '') { %>
+                <option value="" selected>Show all (<%=grantingAuthorityList.totalSearchResults%>)</option>
                 <% } else {%>
-                <option value="">Show all </option>
+                <option value="">Show all (<%=grantingAuthorityList.totalSearchResults%>)</option>
                 <% } %>
                 <!-- <option value="">Inactive </option>
                 <option value="" selected>Show all</option> -->
@@ -210,8 +171,25 @@
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
               <th scope="col" style="text-align: left" class="govuk-table__header app-custom-class">
-                <p style="position: relative;margin: 0;">Granting Authority ID
-                  <a href="#" style="float: right;">
+                <p style="position: relative;margin: 0;">
+                  <a href="/mygrantingauthority?sort=gaId" style="text-decoration: none">
+                    Granting Authority ID
+                    <% if (gaId_no_arrow == "upanddown" ) { %>
+                    <a href="/mygrantingauthority?sort=gaId&arrow=upanddown" style="text-decoration: none"><img
+                        id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
+                        alt="Currently not sorted"></a>
+                    <% } else if (gaId_no_arrow == "downdecending" ) { %>
+                    <a href="/mygrantingauthority?sort=gaId&arrow=downdecending" style="text-decoration: none"><img
+                        id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
+                        alt="Currently sorted by Descending order"></a>
+                    <% } else { %>
+                    <a href="/mygrantingauthority?sort=gaId&arrow=upacending" style="text-decoration: none"><img
+                        id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
+                        alt="Currently sorted by Ascending order"></a>
+                    <% } %>
+
+
+                    <!-- <a href="" style="float: right;">
                     <svg version="1.1" width="8px" height="8px" class="uparrow">
                       <g transform="matrix(1 0 0 1 0 -5 )">
                         <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
@@ -223,36 +201,95 @@
                         <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
                       </g>
                     </svg>
-                  </a>
+                  </a> -->
                 </p>
               </th>
               <th scope="col" class="govuk-table__header app-custom-class govuk-!-width-one-quarter" aria-sort="none">
-                <p style="position: relative;margin: 0;"> Granting Authority name
-                  <a href="#" style="float: right;">
-                    <svg version="1.1" width="8px" height="8px" class="uparrow">
-                      <g transform="matrix(1 0 0 1 0 -5 )">
-                        <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
-                      </g>
-                    </svg>
-                    <svg version="1.1" class="downarrow" width="8px" height="8px">
-                      <g transform="matrix(1 0 0 1 0 -5 )">
-                        <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8" stroke="none" />
-                      </g>
-                    </svg>
-                  </a>
-                </p>
+
+                Granting Authority name
+                <% if (ganame_arrow == "upanddown" ) { %>
+                <a href="/mygrantingauthority?sort=gaName&arrow=upanddown" style="text-decoration: none"><img
+                    id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
+                    alt="Currently not sorted"></a>
+                <% } else if (ganame_arrow == "downdecending" ) { %>
+                <a href="/mygrantingauthority?sort=gaName&arrow=downdecending" style="text-decoration: none"><img
+                    id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
+                    alt="Currently sorted by Descending order"></a>
+                <% } else { %>
+                <a href="/mygrantingauthority?sort=gaName&arrow=upacending" style="text-decoration: none"><img
+                    id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
+                    alt="Currently sorted by Ascending order"></a>
+                <% } %>
+
               </th>
               <th scope="col" class="govuk-table__header app-custom-class">
                 Added by
+                <% if (added_by_arrow == "upanddown" ) { %>
+                <a href="/mygrantingauthority?sort=added_by&arrow=upanddown" style="text-decoration: none"><img
+                    id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
+                    alt="Currently not sorted"></a>
+                <% } else if (added_by_arrow == "downdecending" ) { %>
+                <a href="/mygrantingauthority?sort=added_by&arrow=downdecending" style="text-decoration: none"><img
+                    id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
+                    alt="Currently sorted by Descending order"></a>
+                <% } else { %>
+                <a href="/mygrantingauthority?sort=added_by&arrow=upacending" style="text-decoration: none"><img
+                    id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
+                    alt="Currently sorted by Ascending order"></a>
+                <% } %>
+
               </th>
               <th scope="col" class="govuk-table__header app-custom-class">
+
                 Status
+                <% if (status_arrow == "upanddown" ) { %>
+                <a href="/mygrantingauthority?sort=status&arrow=upanddown" style="text-decoration: none"><img
+                    id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
+                    alt="Currently not sorted"></a>
+                <% } else if (status_arrow == "downdecending" ) { %>
+                <a href="/mygrantingauthority?sort=status&arrow=downdecending" style="text-decoration: none"><img
+                    id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
+                    alt="Currently sorted by Descending order"></a>
+                <% } else { %>
+                <a href="/mygrantingauthority?sort=status&arrow=upacending" style="text-decoration: none"><img
+                    id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
+                    alt="Currently sorted by Ascending order"></a>
+                <% } %>
+
               </th>
               <th scope="col" class="govuk-table__header app-custom-class">
+
                 Created on
+                <% if (created_on_arrow == "upanddown" ) { %>
+                <a href="/mygrantingauthority?sort=created_on&arrow=upanddown" style="text-decoration: none"><img
+                    id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
+                    alt="Currently not sorted"></a>
+                <% } else if (created_on_arrow == "downdecending" ) { %>
+                <a href="/mygrantingauthority?sort=created_on&arrow=downdecending" style="text-decoration: none"><img
+                    id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
+                    alt="Currently sorted by Descending order"></a>
+                <% } else { %>
+                <a href="/mygrantingauthority?sort=created_on&arrow=upacending" style="text-decoration: none"><img
+                    id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
+                    alt="Currently sorted by Ascending order"></a>
+                <% } %>
               </th>
               <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
+
                 Last modified
+                <% if (last_modified_arrow == "upanddown" ) { %>
+                <a href="/mygrantingauthority?sort=last_modified&arrow=upanddown" style="text-decoration: none"><img
+                    id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
+                    alt="Currently not sorted"></a>
+                <% } else if (last_modified_arrow == "downdecending" ) { %>
+                <a href="/mygrantingauthority?sort=last_modified&arrow=downdecending" style="text-decoration: none"><img
+                    id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
+                    alt="Currently sorted by Descending order"></a>
+                <% } else { %>
+                <a href="/mygrantingauthority?sort=last_modified&arrow=upacending" style="text-decoration: none"><img
+                    id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
+                    alt="Currently sorted by Ascending order"></a>
+                <% } %>
               </th>
             </tr>
           </thead>
@@ -295,42 +332,46 @@
         <div class="col last">
           <% if (pageCount > 1) { %>
 
-          <% if (current_page_active != 1) { %>
-          <svg version="1.1" width="19px" height="30px">
-            <defs>
-              <mask fill="white" id="clip2">
+          <% if (current_page != 1) { %>
+          <a href="/mygrantingauthority/?page=1" id="paginationlink" class="first round">
+            <svg version="1.1" width="19px" height="30px">
+              <defs>
+                <mask fill="white" id="clip2">
+                  <path
+                    d="M 18.5805027173913 8.01668806161746  C 18.8601675724638 8.33761232349166  19 8.72486093281985  19 9.17843388960205  L 19 10.8215661103979  C 19 11.2751390671801  18.8601675724638 11.6623876765083  18.5805027173913 11.9833119383825  C 18.3008378623188 12.3042362002567  17.9372735507246 12.4646983311938  17.4898097826087 12.4646983311938  L 8.40285326086956 12.4646983311938  L 12.1847826086957 16.2387676508344  C 12.5117753623188 16.5468549422336  12.6752717391304 16.9319640564827  12.6752717391304 17.3940949935815  C 12.6752717391304 17.8562259306804  12.5117753623188 18.2413350449294  12.1847826086957 18.5494223363286  L 11.2167119565217 19.5250320924262  C 10.8983242753623 19.8416773641421  10.5110960144928 20  10.055027173913 20  C 9.6075634057971 20  9.21603260869565 19.8416773641421  8.8804347826087 19.5250320924262  L 0.47758152173913 11.1553273427471  C 0.15919384057971 10.8386820710312  0 10.4535729567822  0 10  C 0 9.55498502353445  0.15919384057971 9.16559691912709  0.47758152173913 8.83183568677792  L 8.8804347826087 0.487804878048781  C 9.20742753623188 0.162601626016259  9.59895833333333 0  10.055027173913 0  C 10.502490942029 0  10.8897192028986 0.162601626016259  11.2167119565217 0.487804878048781  L 12.1847826086957 1.43774069319641  C 12.5117753623188 1.76294394522893  12.6752717391304 2.15233204963628  12.6752717391304 2.60590500641849  C 12.6752717391304 3.05947796320068  12.5117753623188 3.44886606760804  12.1847826086957 3.77406931964057  L 8.40285326086956 7.53530166880616  L 17.4898097826087 7.53530166880616  C 17.9372735507246 7.53530166880616  18.3008378623188 7.69576379974326  18.5805027173913 8.01668806161746  Z "
+                    fill-rule="evenodd" />
+                </mask>
+              </defs>
+              <g transform="matrix(1 0 0 1 -456 -1241 )">
                 <path
                   d="M 18.5805027173913 8.01668806161746  C 18.8601675724638 8.33761232349166  19 8.72486093281985  19 9.17843388960205  L 19 10.8215661103979  C 19 11.2751390671801  18.8601675724638 11.6623876765083  18.5805027173913 11.9833119383825  C 18.3008378623188 12.3042362002567  17.9372735507246 12.4646983311938  17.4898097826087 12.4646983311938  L 8.40285326086956 12.4646983311938  L 12.1847826086957 16.2387676508344  C 12.5117753623188 16.5468549422336  12.6752717391304 16.9319640564827  12.6752717391304 17.3940949935815  C 12.6752717391304 17.8562259306804  12.5117753623188 18.2413350449294  12.1847826086957 18.5494223363286  L 11.2167119565217 19.5250320924262  C 10.8983242753623 19.8416773641421  10.5110960144928 20  10.055027173913 20  C 9.6075634057971 20  9.21603260869565 19.8416773641421  8.8804347826087 19.5250320924262  L 0.47758152173913 11.1553273427471  C 0.15919384057971 10.8386820710312  0 10.4535729567822  0 10  C 0 9.55498502353445  0.15919384057971 9.16559691912709  0.47758152173913 8.83183568677792  L 8.8804347826087 0.487804878048781  C 9.20742753623188 0.162601626016259  9.59895833333333 0  10.055027173913 0  C 10.502490942029 0  10.8897192028986 0.162601626016259  11.2167119565217 0.487804878048781  L 12.1847826086957 1.43774069319641  C 12.5117753623188 1.76294394522893  12.6752717391304 2.15233204963628  12.6752717391304 2.60590500641849  C 12.6752717391304 3.05947796320068  12.5117753623188 3.44886606760804  12.1847826086957 3.77406931964057  L 8.40285326086956 7.53530166880616  L 17.4898097826087 7.53530166880616  C 17.9372735507246 7.53530166880616  18.3008378623188 7.69576379974326  18.5805027173913 8.01668806161746  Z "
-                  fill-rule="evenodd" />
-              </mask>
-            </defs>
-            <g transform="matrix(1 0 0 1 -456 -1230 )">
-              <path
-                d="M 18.5805027173913 8.01668806161746  C 18.8601675724638 8.33761232349166  19 8.72486093281985  19 9.17843388960205  L 19 10.8215661103979  C 19 11.2751390671801  18.8601675724638 11.6623876765083  18.5805027173913 11.9833119383825  C 18.3008378623188 12.3042362002567  17.9372735507246 12.4646983311938  17.4898097826087 12.4646983311938  L 8.40285326086956 12.4646983311938  L 12.1847826086957 16.2387676508344  C 12.5117753623188 16.5468549422336  12.6752717391304 16.9319640564827  12.6752717391304 17.3940949935815  C 12.6752717391304 17.8562259306804  12.5117753623188 18.2413350449294  12.1847826086957 18.5494223363286  L 11.2167119565217 19.5250320924262  C 10.8983242753623 19.8416773641421  10.5110960144928 20  10.055027173913 20  C 9.6075634057971 20  9.21603260869565 19.8416773641421  8.8804347826087 19.5250320924262  L 0.47758152173913 11.1553273427471  C 0.15919384057971 10.8386820710312  0 10.4535729567822  0 10  C 0 9.55498502353445  0.15919384057971 9.16559691912709  0.47758152173913 8.83183568677792  L 8.8804347826087 0.487804878048781  C 9.20742753623188 0.162601626016259  9.59895833333333 0  10.055027173913 0  C 10.502490942029 0  10.8897192028986 0.162601626016259  11.2167119565217 0.487804878048781  L 12.1847826086957 1.43774069319641  C 12.5117753623188 1.76294394522893  12.6752717391304 2.15233204963628  12.6752717391304 2.60590500641849  C 12.6752717391304 3.05947796320068  12.5117753623188 3.44886606760804  12.1847826086957 3.77406931964057  L 8.40285326086956 7.53530166880616  L 17.4898097826087 7.53530166880616  C 17.9372735507246 7.53530166880616  18.3008378623188 7.69576379974326  18.5805027173913 8.01668806161746  Z "
-                fill-rule="nonzero" fill="#1d70b8" stroke="none" transform="matrix(1 0 0 1 456 1241 )" />
-              <path
-                d="M 18.5805027173913 8.01668806161746  C 18.8601675724638 8.33761232349166  19 8.72486093281985  19 9.17843388960205  L 19 10.8215661103979  C 19 11.2751390671801  18.8601675724638 11.6623876765083  18.5805027173913 11.9833119383825  C 18.3008378623188 12.3042362002567  17.9372735507246 12.4646983311938  17.4898097826087 12.4646983311938  L 8.40285326086956 12.4646983311938  L 12.1847826086957 16.2387676508344  C 12.5117753623188 16.5468549422336  12.6752717391304 16.9319640564827  12.6752717391304 17.3940949935815  C 12.6752717391304 17.8562259306804  12.5117753623188 18.2413350449294  12.1847826086957 18.5494223363286  L 11.2167119565217 19.5250320924262  C 10.8983242753623 19.8416773641421  10.5110960144928 20  10.055027173913 20  C 9.6075634057971 20  9.21603260869565 19.8416773641421  8.8804347826087 19.5250320924262  L 0.47758152173913 11.1553273427471  C 0.15919384057971 10.8386820710312  0 10.4535729567822  0 10  C 0 9.55498502353445  0.15919384057971 9.16559691912709  0.47758152173913 8.83183568677792  L 8.8804347826087 0.487804878048781  C 9.20742753623188 0.162601626016259  9.59895833333333 0  10.055027173913 0  C 10.502490942029 0  10.8897192028986 0.162601626016259  11.2167119565217 0.487804878048781  L 12.1847826086957 1.43774069319641  C 12.5117753623188 1.76294394522893  12.6752717391304 2.15233204963628  12.6752717391304 2.60590500641849  C 12.6752717391304 3.05947796320068  12.5117753623188 3.44886606760804  12.1847826086957 3.77406931964057  L 8.40285326086956 7.53530166880616  L 17.4898097826087 7.53530166880616  C 17.9372735507246 7.53530166880616  18.3008378623188 7.69576379974326  18.5805027173913 8.01668806161746  Z "
-                stroke-width="2" stroke="#ffffff" fill="none" transform="matrix(1 0 0 1 456 1241 )"
-                mask="url(#clip2)" />
-            </g>
-          </svg>
-          <a>Previous Page</a>
+                  fill-rule="nonzero" fill="#1d70b8" stroke="none" transform="matrix(1 0 0 1 456 1241 )" />
+                <path
+                  d="M 18.5805027173913 8.01668806161746  C 18.8601675724638 8.33761232349166  19 8.72486093281985  19 9.17843388960205  L 19 10.8215661103979  C 19 11.2751390671801  18.8601675724638 11.6623876765083  18.5805027173913 11.9833119383825  C 18.3008378623188 12.3042362002567  17.9372735507246 12.4646983311938  17.4898097826087 12.4646983311938  L 8.40285326086956 12.4646983311938  L 12.1847826086957 16.2387676508344  C 12.5117753623188 16.5468549422336  12.6752717391304 16.9319640564827  12.6752717391304 17.3940949935815  C 12.6752717391304 17.8562259306804  12.5117753623188 18.2413350449294  12.1847826086957 18.5494223363286  L 11.2167119565217 19.5250320924262  C 10.8983242753623 19.8416773641421  10.5110960144928 20  10.055027173913 20  C 9.6075634057971 20  9.21603260869565 19.8416773641421  8.8804347826087 19.5250320924262  L 0.47758152173913 11.1553273427471  C 0.15919384057971 10.8386820710312  0 10.4535729567822  0 10  C 0 9.55498502353445  0.15919384057971 9.16559691912709  0.47758152173913 8.83183568677792  L 8.8804347826087 0.487804878048781  C 9.20742753623188 0.162601626016259  9.59895833333333 0  10.055027173913 0  C 10.502490942029 0  10.8897192028986 0.162601626016259  11.2167119565217 0.487804878048781  L 12.1847826086957 1.43774069319641  C 12.5117753623188 1.76294394522893  12.6752717391304 2.15233204963628  12.6752717391304 2.60590500641849  C 12.6752717391304 3.05947796320068  12.5117753623188 3.44886606760804  12.1847826086957 3.77406931964057  L 8.40285326086956 7.53530166880616  L 17.4898097826087 7.53530166880616  C 17.9372735507246 7.53530166880616  18.3008378623188 7.69576379974326  18.5805027173913 8.01668806161746  Z "
+                  stroke-width="2" stroke="#ffffff" fill="none" transform="matrix(1 0 0 1 456 1241 )"
+                  mask="url(#clip2)" />
+              </g>
+            </svg>
+          </a>
+          <a aria-label="go to subsidy awards search results previous page" id="paginationlink_previous_page"
+            class="previous round" href="/mygrantingauthority?page=<%= previous_page %>">Previous Page</a>
           <% } %>
           <% for (var i = start_page; i <= end_page; i++) { %>
-          <% if (current_page_active != i ) { %>
+          <% if (current_page != i ) { %>
           <a id="paginationlink<%= i %>" aria-label="go to subsidy awards search results page <%= i %>"
-            class="round btn-page" href="/awardspageroute/?page=<%= i %>"><%= i %></a>
+            class="round btn-page" href="/mygrantingauthority?page=<%= i %>"><%= i %></a>
           <% } else { %>
           <a id="paginationlink<%= i %>" aria-label="go to subsidy awards search results page <%= i %>"
-            class="round btn-page active" href="/awardspageroute/?page=<%= i %>"><%= i %></a>
+            class="round btn-page active" href="/mygrantingauthority?page=<%= i %>"><%= i %></a>
           <% } %>
           <% } %>
 
-          <% if (current_page_active != pageCount) { %>
-          <a href="/awardspageroute/?page=<%= next_page %>" aria-label="go to subsidy awards search results next page"
-            id="paginationlink_next_page" class="next round">Next Page</a>
-          <a href="/awardspageroute/?page=<%= pageCount %>" aria-label="go to subsidy awards search results last page"
-            id="paginationlink_last_page" class="last round">
+          <% if (current_page != pageCount) { %>
+          <a href="/mygrantingauthority?page=<%= next_page %>"
+            aria-label="go to subsidy awards search results next page" id="paginationlink_next_page"
+            class="next round">Next Page</a>
+          <a href="/mygrantingauthority/?page=<%= pageCount %>"
+            aria-label="go to subsidy awards search results last page" id="paginationlink_last_page" class="last round">
             <svg version="1.1" width="19px" height="30px" class="left-arrow">
               <defs>
                 <mask fill="white" id="clip3">
@@ -339,7 +380,7 @@
                     fill-rule="evenodd" />
                 </mask>
               </defs>
-              <g transform="matrix(1 0 0 1 -930 -1230 )">
+              <g transform="matrix(1 0 0 1 -930 -1241 )">
                 <path
                   d="M 18.5224184782609 8.84467265725289  C 18.8408061594203 9.14420196833547  19 9.52931108258451  19 10  C 19 10.4621309370988  18.8408061594203 10.8515190415062  18.5224184782609 11.1681643132221  L 10.1195652173913 19.5250320924262  C 9.78396739130435 19.8416773641421  9.3924365942029 20  8.94497282608696 20  C 8.50611413043478 20  8.11888586956522 19.8416773641421  7.78328804347826 19.5250320924262  L 6.81521739130435 18.5622593068036  C 6.48822463768116 18.2370560547711  6.32472826086957 17.8476679503637  6.32472826086957 17.3940949935815  C 6.32472826086957 16.9405220367993  6.48822463768116 16.551133932392  6.81521739130435 16.2259306803594  L 10.5971467391304 12.4646983311938  L 1.5101902173913 12.4646983311938  C 1.06272644927536 12.4646983311938  0.69916213768116 12.3042362002567  0.419497282608696 11.9833119383825  C 0.139832427536232 11.6623876765083  0 11.2751390671801  0 10.8215661103979  L 0 9.17843388960205  C 0 8.72486093281985  0.139832427536232 8.33761232349166  0.419497282608696 8.01668806161746  C 0.69916213768116 7.69576379974326  1.06272644927536 7.53530166880616  1.5101902173913 7.53530166880616  L 10.5971467391304 7.53530166880616  L 6.81521739130435 3.7612323491656  C 6.48822463768116 3.45314505776637  6.32472826086957 3.06803594351733  6.32472826086957 2.60590500641849  C 6.32472826086957 2.14377406931964  6.48822463768116 1.7586649550706  6.81521739130435 1.45057766367137  L 7.78328804347826 0.487804878048781  C 8.11028079710145 0.162601626016259  8.49750905797101 0  8.94497282608696 0  C 9.40104166666667 0  9.79257246376812 0.162601626016259  10.1195652173913 0.487804878048781  L 18.5224184782609 8.84467265725289  Z "
                   fill-rule="nonzero" fill="#1d70b8" stroke="none" transform="matrix(1 0 0 1 930 1241 )" />

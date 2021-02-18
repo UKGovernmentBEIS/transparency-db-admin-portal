@@ -8,8 +8,11 @@ const axios = require("axios");
 var request = require("request");
 
 router.get("/", async (req, res) => {
-
-
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
   Environment_variable = process.argv[2];
   if (Environment_variable == "env=dev") {
@@ -19,9 +22,9 @@ router.get("/", async (req, res) => {
       "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
     beis_url_publicsearch =
       "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
-    beis_url_searchscheme =  
+    beis_url_searchscheme =
       "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net";
-      
+
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -34,10 +37,9 @@ router.get("/", async (req, res) => {
     beis_url_publicsearch =
       "https://integ-transparency-db-public-search-service.azurewebsites.net";
 
-    beis_url_searchscheme =  
+    beis_url_searchscheme =
       "https://integ-transparency-db-ga-schemes-service.azurewebsites.net";
 
-      
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -49,7 +51,7 @@ router.get("/", async (req, res) => {
     beis_url_publicsearch =
       "https://stag-transparency-db-public-search-service.azurewebsites.net";
 
-      beis_url_searchscheme =  
+    beis_url_searchscheme =
       "https://stag-transparency-db-ga-schemes-service.azurewebsites.net";
 
     console.log(beis_url_publishing);
@@ -67,16 +69,15 @@ router.get("/", async (req, res) => {
     console.log(beis_url_publicsearch);
   }
 
-
   frontend_totalRecordsPerPage = 10;
-  subsidy_scheme_name_arrow = "upascending"
+  subsidy_scheme_name_arrow = "upascending";
   subsidy_control_no_arrow = "upanddown";
   granting_authority_arrow = "upanddown";
   start_date_arrow = "upanddown";
   end_date_arrow = "upanddown";
   duration_arrow = "upanddown";
   budget_arrow = "upanddown";
-  subsidy_scheme_name_sorting_order = 'asc';
+  subsidy_scheme_name_sorting_order = "asc";
   subsidy_control_no_sorting_order = "desc";
   granting_authority_sorting_order = "desc";
   start_date_sorting_order = "desc";
@@ -88,20 +89,20 @@ router.get("/", async (req, res) => {
   sorting_order_interium = sorting_column.replace(/^"(.*)"$/, "$1");
   sorting_order_pass = JSON.parse(sorting_order_interium);
 
-  Search_Text_Global ="";
-
+  Search_Text_Global = "";
+  req.query = JSON.parse(JSON.stringify(req.query));
+  if (req.query.hasOwnProperty("sort")) schemes_status = req.query.sort;
+  else schemes_status = "";
   const data_request = {
     searchName: Search_Text_Global,
     pageNumber: 1,
     totalRecordsPerPage: frontend_totalRecordsPerPage,
     sortBy: sorting_order_pass,
-    status: "",
+    status: schemes_status,
   };
 
- 
-
   console.log("request :" + JSON.stringify(data_request));
-  
+
   try {
     const apidata = await axios.post(
       beis_url_searchscheme + "/scheme/search",
@@ -120,7 +121,7 @@ router.get("/", async (req, res) => {
 
     var searchschemes_api = apidata.data;
     console.log("searchschemes" + searchschemes_api);
- 
+
     totalrows = searchschemes.totalSearchResults;
 
     pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
@@ -150,18 +151,13 @@ router.get("/", async (req, res) => {
       allScheme,
       activeScheme,
       inactiveScheme,
-      searchschemes
-      
+      searchschemes,
     });
   } catch (err) {
-    
     response_error_message = err;
     console.log("message error : " + err);
-    console.log("response_error_message catch : " + response_error_message );
-  
+    console.log("response_error_message catch : " + response_error_message);
   }
-
-
 });
 
 module.exports = router;

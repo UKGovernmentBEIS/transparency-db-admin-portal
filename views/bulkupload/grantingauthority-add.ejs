@@ -57,19 +57,19 @@
         </nav>
       </div>
     </div>
-    <!-- <div class="govuk-breadcrumbs ">
+    <div class="govuk-breadcrumbs ">
       <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
           <a class="govuk-breadcrumbs__link" href="#">Dashboard</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a class="govuk-breadcrumbs__link" href="#">Granting Authority</a>
+          <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Granting Authority</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a class="govuk-breadcrumbs__link active" href="#">Add Granting Authority</a>
+          <a class="govuk-breadcrumbs__link active" href="#">Add granting authority</a>
         </li>
       </ol>
-    </div> -->
+    </div>
 
     <main class="govuk-main-wrapper" id="main-content" role="main">
       <!-- <div class="govuk-tabs" data-module="govuk-tabs">
@@ -79,13 +79,13 @@
       <!-- </legend> -->
       <div class="govuk-grid-row">
         <form action="/reviewgrantingauthority" method="POST">
-          <div class="govuk-grid-column-three-quarters govuk-form-group">
-            <!-- <form action="/filtersearch" method="POST" > -->
+          <!-- <div class="govuk-grid-column-three-quarters govuk-form-group">
+           
             <p>Granting Authority ID</p>
-            <input class="govuk-input govuk-input--width-2" value="<%= grantingAuthorityID_Global %>" readonly
+            <input class="govuk-input govuk-input--width-2" value="" readonly
               name="gaNumber" type="text" />
-            <!-- </form>  -->
-          </div>
+            
+          </div> -->
           <% if( grantingAuthorityName_Error){ %>
           <div class="govuk-grid-column-one-half govuk-form-group  govuk-form-group--error">
             <% } else { %>
