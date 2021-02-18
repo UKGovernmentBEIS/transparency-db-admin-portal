@@ -19,6 +19,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for Subsidy Scheme Review Details Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   const res = {};
 
   global.isAddSubsidyPrimarycall = "";
@@ -77,6 +78,7 @@ test("Unit testing for Subsidy Scheme Review Details Test for GET call", (done) 
 
 test("Unit testing for Subsidy Scheme Review Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   const res = {};
 
   global.isAddSubsidyPrimarycall = "";

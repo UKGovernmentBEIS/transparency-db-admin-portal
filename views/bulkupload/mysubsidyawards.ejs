@@ -9,13 +9,7 @@
   <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
   <script src="/assets/javascripts/vendor/modernizr.js"></script>
   <script src="assets/javascripts/jquery.min.js"></script>
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-  <!-- <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
 
-  <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
-  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
   <script>
 
     //select all checkboxes
@@ -53,7 +47,8 @@
   <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
     <main class="govuk-main-wrapper " id="main-content" role="main">
-      <div class="govuk-grid-row govuk-form-group">
+      <%- include('../partials/navigationbar.ejs') %>
+      <!-- <div class="govuk-grid-row govuk-form-group">
         <div class="govuk-grid-column-full">
           <nav aria-label="Sub navigation">
             <ul class="govuk-sub-navigation__list">
@@ -90,7 +85,7 @@
             </ul>
           </nav>
         </div>
-      </div>
+      </div> -->
 
       <div class="govuk-breadcrumbs ">
         <ol class="govuk-breadcrumbs__list">
@@ -185,7 +180,39 @@
           <div class="govuk-grid-column-one-quarter govuk-form-group govuk-display-flex govuk-padding-0"
             style="float:right;text-align: right;">
             <label>Results per page</label>
-            <form class="govuk-padding-0 govuk-!-width-one-third" action="/awardspageperroute" method="GET">
+            <ul class="pagination govuk-grid-column-one-third pagination-style-modified"
+              style="display: inline;  margin: 0;  padding: 0;">
+              <!-- <form class="govuk-grid-column-one-third" action="/awardspageperroute" method="GET"> -->
+              <% if(frontend_totalRecordsPerPage  == 10) { %>
+              <a aria-label="10 records per page " class="round btn-page active"
+                href="/awardspageperroute/?sort=10">10</a>
+              <!-- <li class="hmcts-pagination__item hmcts-pagination__item--active">10</li> -->
+              <% } else { %>
+              <a aria-label="10 records per page " class="round btn-page" href="/awardspageperroute/?sort=10">10</a>
+              <% }  %>
+              <% if(frontend_totalRecordsPerPage  == 20) { %>
+              <a aria-label="20 records per page " class="round btn-page active"
+                href="/awardspageperroute/?sort=20">20</a>
+              <% } else { %>
+              <a aria-label="20 records per page " class="round btn-page" href="/awardspageperroute/?sort=20">20</a>
+              <% }  %>
+
+              <% if(frontend_totalRecordsPerPage  == 50) { %>
+              <a aria-label="50 records per page " class="round btn-page active"
+                href="/awardspageperroute/?sort=50">50</a>
+              <% } else { %>
+              <a aria-label="50 records per page " class="round btn-page" href="/awardspageperroute/?sort=50">50</a>
+              <% }  %>
+
+              <% if(frontend_totalRecordsPerPage  == 100) { %>
+              <a aria-label="100 records per page " class="round btn-page active"
+                href="/awardspageperroute/?sort=100">100</a>
+              <% } else { %>
+              <a aria-label="100 records per page " class="round btn-page" href="/awardspageperroute/?sort=100">100</a>
+              <% }  %>
+            </ul>
+
+            <!-- <form class="govuk-padding-0 govuk-!-width-one-third" action="/awardspageperroute" method="GET">
               <select class="govuk-select" aria-label="Results per page shown in current page"
                 aria-describedby="info-message" aria-autocomplete="list" name="sort" onchange="this.form.submit()">
                 <% if(frontend_totalRecordsPerPage  == 10) { %>
@@ -209,13 +236,12 @@
                 <option value="100">100</option>
                 <% }  %>
               </select>
-            </form>
-            <span id="info-message" style="display:none" aria-hidden="true">
-              On selecting, the page will reload and display the subsidy awards.</span>
+            </form> -->
+            <!-- <span id="info-message" style="display:none" aria-hidden="true">
+              On selecting, the page will reload and display the subsidy awards.</span> -->
           </div>
         </div>
       </div>
-
 
       <form action="/collectcheckbox" method="GET" novalidate="">
         <section class="govuk-table-responsive">
@@ -444,6 +470,9 @@
     </main>
   </div>
   <%- include('../partials/footer.ejs') %>
+  <script>
+    document.getElementById('subsidyaward-li').firstElementChild.setAttribute("aria-current", 'page');
+  </script>
 </body>
 
 <!-- 

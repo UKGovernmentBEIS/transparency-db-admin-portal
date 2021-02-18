@@ -23,6 +23,7 @@ const res = {};
 
 test("Unit testing for update results page per route Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.isFileUploadEmpty = false;
   global.isNotCsvOrExcel = false;
   global.isExcelFormat = true;
@@ -50,6 +51,7 @@ test("Unit testing for update results page per route Test for GET call", (done) 
 
 test("Unit testing for update results page per route Test for POST call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.isFileUploadEmpty = false;
   global.beis_url_accessmanagement = "";
   global.isNotCsvOrExcel = false;
@@ -78,6 +80,7 @@ test("Unit testing for update results page per route Test for POST call", (done)
 
 test("Unit testing for update results page per route Test for POST call", async () => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.isFileUploadEmpty = false;
   global.isNotCsvOrExcel = false;
   global.isExcelFormat = true;

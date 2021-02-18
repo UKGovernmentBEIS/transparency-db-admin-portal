@@ -31,6 +31,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for Login Transparency route Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
   const res = {};
   request(app)

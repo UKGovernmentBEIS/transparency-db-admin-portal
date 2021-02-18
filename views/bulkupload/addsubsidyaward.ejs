@@ -114,8 +114,8 @@
   <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
     <main class="govuk-main-wrapper " id="main-content" role="main">
-
-      <div class="govuk-grid-row govuk-form-group">
+      <%- include('../partials/navigationbar.ejs') %>
+      <!-- <div class="govuk-grid-row govuk-form-group">
         <div class="govuk-grid-column-full">
           <nav aria-label="Sub navigation">
             <ul class="govuk-sub-navigation__list">
@@ -156,7 +156,7 @@
 
         </div>
 
-      </div>
+      </div> -->
 
       <!-- bread crumbs start here -->
       <div class="govuk-breadcrumbs ">
@@ -1933,11 +1933,11 @@
                   activities</option>
                 <% } %>
 
-                <% if( Spending_Sector_Global == 'Public administrative and defence; compulsory social security' ){ %>
-                <option value="Public administrative and defence; compulsory social security" selected>Public
+                <% if( Spending_Sector_Global == 'Public administration  and defence; compulsory social security' ){ %>
+                <option value="Public administration  and defence; compulsory social security" selected>Public
                   administrative and defence; compulsory social security</option>
                 <% } else { %>
-                <option value="Public administrative and defence; compulsory social security">Public administrative and
+                <option value="Public administration  and defence; compulsory social security">Public administration and
                   defence; compulsory social security</option>
                 <% } %>
 
@@ -2101,11 +2101,11 @@
                   activities</option>
                 <% } %>
 
-                <% if( Spending_Sector_Global == 'Public administrative and defence; compulsory social security' ){ %>
-                <option value="Public administrative and defence; compulsory social security" selected>Public
+                <% if( Spending_Sector_Global == 'Public administration  and defence; compulsory social security' ){ %>
+                <option value="Public administration  and defence; compulsory social security" selected>Public
                   administrative and defence; compulsory social security</option>
                 <% } else { %>
-                <option value="Public administrative and defence; compulsory social security">Public administrative and
+                <option value="Public administration  and defence; compulsory social security">Public administration and
                   defence; compulsory social security</option>
                 <% } %>
 
@@ -2166,6 +2166,9 @@
     </main>
   </div>
   <%- include('../partials/footer.ejs') %>
+  <script>
+    document.getElementById('subsidyaward-li').firstElementChild.setAttribute("aria-current", 'page');
+  </script>
   <!-- <script src="/assets/javascripts/govuk-frontend.js"></script> -->
 </body>
 

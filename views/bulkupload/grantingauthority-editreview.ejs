@@ -13,11 +13,8 @@
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
-            <!-- <body class="govuk-template__body app-example-page js-enabled"> -->
-            <!-- <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script> -->
-            <!-- Disable browser validation for any examples that include form elements -->
-            <!-- <a href="#main-content" class="govuk-skip-link">Skip to main content</a> -->
-            <div class="govuk-grid-row govuk-form-group">
+            <%- include('../partials/navigationbar.ejs') %>
+            <!-- <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
                     <nav aria-label="Sub navigation">
                         <ul class="govuk-sub-navigation__list">
@@ -60,7 +57,7 @@
 
                 </div>
 
-            </div>
+            </div> -->
 
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
@@ -71,7 +68,7 @@
               ************************************* -->
                 </div>
                 <div class="govuk-grid-column-full">
-                    <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Granting authorty details
+                    <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Granting authority details
 
 
                     </h2>
@@ -85,7 +82,7 @@
             <dl class="govuk-summary-list govuk-!-margin-bottom-9">
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Granting autority ID
+                        Granting authority ID
                     </dt>
                     <dd class="govuk-summary-list__value">
                         <%=grantingAuthorityID_Global%>
@@ -115,6 +112,7 @@
                 </button>
             </form>
             <% } else { %>
+
             <a class="govuk-button" href="/mygrantingauthority" data-module="govuk-button">
                 Back to granting authority list
             </a>
@@ -124,7 +122,9 @@
                 data-module="govuk-button">
                 Deactivate granting authority
             </a>
-            <a class="govuk-link govuk-cancel-button-link" id="mylink" value="cancel" href="/editgacancel"> Cancel
+            <a class="govuk-link govuk-cancel-button-link" id="mylink" value="cancel"
+                href="/editgacancel?gaId=<%=grantingAuthorityID_Global%>&gaName=<%=grantingAuthorityName_Global%>">
+                Cancel
             </a>
             <!-- </form> -->
             <% } %>
@@ -132,6 +132,9 @@
     </div>
 
     <%- include('../partials/footer.ejs') %>
+    <script>
+        document.getElementById('ga-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
 </body>
 
 </html>

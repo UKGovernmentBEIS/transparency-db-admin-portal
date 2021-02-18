@@ -29,6 +29,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for filter route Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.fetchawarddetails = {
     subsidyMeasure: {
       scNumber: "",

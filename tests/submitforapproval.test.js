@@ -21,6 +21,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for submit for approval Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
   global.Subsidy_Full_Amount_Range_Global = "";
   global.Subsidy_Element_Full_Amount_Global = "";
@@ -67,6 +68,7 @@ test("Unit testing for submit for approval Test for GET call", (done) => {
 
 test("Unit testing for Submit for approval Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.SubsidyArraySize = 0;
   global.SubsidyErrors = [];
   global.SubsidyFocus = [];
@@ -145,6 +147,7 @@ test("Unit testing for Submit for approval Test for GET call", (done) => {
 
 test("Unit testing for Submit for approval Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.SubsidyArraySize = 0;
   global.SubsidyErrors = [];
   global.SubsidyFocus = [];

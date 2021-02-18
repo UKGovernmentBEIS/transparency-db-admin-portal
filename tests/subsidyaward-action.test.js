@@ -23,10 +23,12 @@ const res = {};
 
 test("Unit testing for login password complete Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
 
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.frontend_totalRecordsPerPage = 10;
+
   global.searchawards = {
     awards: [
       {
@@ -109,6 +111,7 @@ test("Unit testing for login password complete Test for GET call", (done) => {
 
 test("Unit testing for login password complete Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
 
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";

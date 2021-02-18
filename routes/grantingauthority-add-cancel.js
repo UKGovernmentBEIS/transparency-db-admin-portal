@@ -7,12 +7,8 @@ router.get("/", (req, res) => {
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-  grantingAuthorityID_Global = req.query.gaId;
-  grantingAuthorityName_Global = req.query.gaName;
-  res.render("bulkupload/grantingauthority-editcancel", {
-    grantingAuthorityID_Global,
-    grantingAuthorityName_Global,
-  });
+
+  res.render("bulkupload/grantingauthority-add-cancel");
 });
 
 module.exports = router;

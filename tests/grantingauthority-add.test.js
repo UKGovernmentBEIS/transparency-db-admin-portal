@@ -29,6 +29,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
   global.grantingAuthorityID_Global = "";
   global.grantingAuthorityName_Error = "";
@@ -42,6 +43,7 @@ test("Unit testing for cancel subsidy award Test for GET call", (done) => {
 
 test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
   global.grantingAuthorityID_Global = "";
   global.grantingAuthorityName_Error = "";

@@ -21,6 +21,7 @@ const res = {};
 
 test("Unit testing for no results route - Test for POST call", (done) => {
   const req = mockRequest();
+  global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
   global.isFileUploadEmpty = false;
   global.isNotCsvOrExcel = false;
