@@ -11,13 +11,17 @@ router.post("/", async (req, res) => {
 
   gaId = req.body.gaid;
   var azGrpId = req.body.azGrpId;
+  var userIds = [];
   console.log("azGrpId", azGrpId);
-  console.log("req.body.userIds", req.body.userIds);
+  console.log("req.body.userIds", GaListArr_Global);
+  GaListArr_Global.forEach(function (ids) {
+    userIds.push(ids.gaId);
+  });
   try {
     const apidata = await axios.delete(
-      `http://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/group/${azGrpId}`,
+      `https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/group/${azGrpId}`,
       {
-        userIds: req.body.userIds,
+        userIds: userIds,
       }
     );
     console.log("Body : ", JSON.stringify(apidata.data));

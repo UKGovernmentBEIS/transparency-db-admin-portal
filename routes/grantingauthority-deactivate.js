@@ -28,25 +28,22 @@ router.get("/", async (req, res) => {
       );
 
       var gaListArr = [];
-      if (apidata.data.value.length > 0) {
-        apidata.data.value.forEach(function (gaList) {
-          var gaListObj = new Object();
-          gaListObj.gaId = gaList.id;
-          gaListObj.gaName = gaList.displayName;
-          gaListArr.push(gaListObj);
-        });
-      } else gaListArr = [];
+      if (apidata.data.hasOwnProperty("value")) {
+        if (apidata.data.value.length > 0) {
+          apidata.data.value.forEach(function (gaList) {
+            var gaListObj = new Object();
+            gaListObj.gaId = gaList.id;
+            gaListObj.gaName = gaList.displayName;
+            gaListArr.push(gaListObj);
+          });
+        } else gaListArr = [];
+      }
+      GaListArr_Global = gaListArr;
       res.render("bulkupload/grantingauthority-deactivate", {
         gaid,
         ganame,
-        gaListArr,
+        GaListArr_Global,
         azGrpId,
-      });
-      res.render("bulkupload/grantingauthority-deactivate", {
-        gaid,
-        ganame,
-        azGrpId,
-        gaListArr,
       });
     } catch (err) {
       console.log("message error deactivate GA : " + err);

@@ -75,18 +75,18 @@
                 <!-- Body header starts here -->
                 <div class="govuk-body-cancel">
                     <h1 class="govuk-heading-l">Deactivate granting authority</h1>
-                    <% if(gaListArr.length > 0) { %>
+                    <% if(GaListArr_Global.length > 0) { %>
                     <div class="govuk-grid-column-full govuk-grid-row">
                         <p class="govuk-body govuk-!-font-size-19 govuk-grid-column-two-thirds">To deactivate this
                             granting authority, you must first remove the following users from it:</p>
                     </div>
                     <ul class="govuk-list">
-                        <% gaListArr.forEach(function(item) { %>
-                        <input type="hidden" value="<%= item.gaId %>" name="userIds">
+                        <% GaListArr_Global.forEach(function(item) { %>
+
                         <li style="color: white;"><%= item.gaName%></li>
                         <% } ); %>
                     </ul>
-                    <input type="hidden" value="<%= azGrpId%>" name="azGrpId">
+
                     <div class="govuk-checkboxes govuk-form-group">
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="userList" name="userList" type="checkbox"
@@ -97,6 +97,8 @@
                         </div>
                     </div>
 
+                    <% } else {%>
+                    <input type="hidden" value="[]" name="userIds">
                     <% } %>
                     <p class="govuk-body govuk-!-font-size-19 govuk-!-width-two-thirds">If you deactivate this
                         granting
@@ -105,7 +107,7 @@
                     <p class="govuk-body govuk-!-font-size-19">Are you sure you want to deactivate this granting
                         authority?
                     </p>
-
+                    <input type="hidden" value="<%= azGrpId%>" name="azGrpId">
                     <input type="hidden" name="gaid" value="<%= gaid %>">
                     <input type="hidden" name="ganame" value="<%= ganame %>">
 
