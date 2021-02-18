@@ -24,7 +24,7 @@
                             </li>
 
                             <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/manageusers">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/userselect">
                                     Users
                                 </a>
                             </li>
@@ -62,7 +62,7 @@
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
 
-                    <h1 class="govuk-heading-xl">Albert Einstein</h1>
+                    <h1 class="govuk-heading-xl">  <%= User_Name_Single %>  &nbsp <%= User_Last_Name_Single %> </h1>
 
                     <!-- *************************************
               Review for subsidy details tab
@@ -92,7 +92,13 @@
                         Granting Authority name
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        <%= User_GA_Name %>
+                        <% if ( GA_Selected == 'Granting Authority Administrator' || GA_Selected == 'Granting Authority Approver' || GA_Selected == 'Granting Authority Encoder' ) {  %>  
+                            NA 
+                        <% } else if (GA_Selected == 'BEIS Administrator' ) {  %>
+                            Department for Business, Energy & Industrial Strategy  
+                        <% } else { %> 
+                            <%= GA_Selected %>
+                        <% } %>
                     </dd>
 
                 </div>
