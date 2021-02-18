@@ -52,6 +52,25 @@ router.post("/", (req, res) => {
     console.log("content type:" + file.type);
     // var errorsvalidationpass =[];
 
+    if (file.size < 70000) {
+
+      timeout_intervel = 5000;
+    }
+
+    else if (file.size > 70000 && file.size < 120000) {
+      timeout_intervel = 9000;
+
+    }
+
+    else if ( file.size > 120000 && file.size < 200000) {
+      timeout_intervel = 15000;
+    }
+
+    else {
+      timeout_intervel = 20000;
+    }
+
+
     function toBuffer(ab) {
       var buffer = new Buffer.alloc(ab.byteLength);
       var view = new Uint8Array(ab);
@@ -144,7 +163,7 @@ router.post("/", (req, res) => {
         validationerrors,
         errorsvalidationpass,
       });
-    }, 15000);
+    }, timeout_intervel);
   }
 });
 
