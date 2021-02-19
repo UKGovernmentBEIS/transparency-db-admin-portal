@@ -19,6 +19,7 @@ router.get("/", async (req, res) => {
     arrow = req.query.arrow;
     if (sort == "gaId") {
       gaId_no_arrow = arrow;
+
       ganame_arrow = "upanddown";
       added_by_arrow = "upanddown";
       status_arrow = "upanddown";
@@ -29,11 +30,11 @@ router.get("/", async (req, res) => {
         sorting_column = "gaId,asc";
         gaId_no_arrow = "downdecending";
       } else if (gaId_no_arrow == "upacending") {
-        sorting_column = "gaId,desc";
-        gaId_no_arrow = "upacending";
-      } else {
         sorting_column = "gaId,asc";
         gaId_no_arrow = "downdecending";
+      } else {
+        sorting_column = "gaId,desc";
+        gaId_no_arrow = "upacending";
       }
     }
 
@@ -45,14 +46,14 @@ router.get("/", async (req, res) => {
       created_on_arrow = "downdecending";
 
       if (ganame_arrow == "upanddown") {
-        sorting_column = "grantingAuthorityName,desc";
-        ganame_arrow = "downdecending";
-      } else if (ganame_arrow == "upacending") {
-        sorting_column = "grantingAuthorityName,desc";
-        ganame_arrow = "upacending";
-      } else {
         sorting_column = "grantingAuthorityName,asc";
         ganame_arrow = "downdecending";
+      } else if (ganame_arrow == "upacending") {
+        sorting_column = "grantingAuthorityName,asc";
+        ganame_arrow = "downdecending";
+      } else {
+        sorting_column = "grantingAuthorityName,desc";
+        ganame_arrow = "upacending";
       }
     }
     if (sort == "added_by") {
@@ -62,16 +63,15 @@ router.get("/", async (req, res) => {
       status_arrow = "upanddown";
       created_on_arrow = "downdecending";
       last_modified_arrow = "upanddown";
-
       if (added_by_arrow == "upanddown") {
-        sorting_column = "approvedBy,desc";
-        added_by_arrow = "downdecending";
-      } else if (added_by_arrow == "upacending") {
-        sorting_column = "approvedBy,desc";
-        added_by_arrow = "upacending";
-      } else {
         sorting_column = "approvedBy,asc";
         added_by_arrow = "downdecending";
+      } else if (added_by_arrow == "upacending") {
+        sorting_column = "approvedBy,asc";
+        added_by_arrow = "downdecending";
+      } else {
+        sorting_column = "approvedBy,desc";
+        added_by_arrow = "upacending";
       }
     }
     if (sort == "status") {
@@ -83,14 +83,14 @@ router.get("/", async (req, res) => {
       last_modified_arrow = "upanddown";
 
       if (status_arrow == "upanddown") {
-        sorting_column = "status,desc";
-        status_arrow = "downdecending";
-      } else if (status_arrow == "upacending") {
-        sorting_column = "status,desc";
-        status_arrow = "upacending";
-      } else {
         sorting_column = "status,asc";
         status_arrow = "downdecending";
+      } else if (status_arrow == "upacending") {
+        sorting_column = "status,asc";
+        status_arrow = "downdecending";
+      } else {
+        sorting_column = "status,desc";
+        status_arrow = "upacending";
       }
     }
     if (sort == "created_on") {
@@ -102,14 +102,14 @@ router.get("/", async (req, res) => {
       last_modified_arrow = "upanddown";
 
       if (created_on_arrow == "upanddown") {
-        sorting_column = "createdTimestamp,desc";
-        created_on_arrow = "downdecending";
-      } else if (created_on_arrow == "upacending") {
-        sorting_column = "createdTimestamp,desc";
-        created_on_arrow = "upacending";
-      } else {
         sorting_column = "createdTimestamp,asc";
         created_on_arrow = "downdecending";
+      } else if (created_on_arrow == "upacending") {
+        sorting_column = "createdTimestamp,asc";
+        created_on_arrow = "downdecending";
+      } else {
+        sorting_column = "createdTimestamp,desc";
+        created_on_arrow = "upacending";
       }
     }
     if (sort == "last_modified") {
@@ -121,14 +121,14 @@ router.get("/", async (req, res) => {
       last_modified_arrow = arrow;
 
       if (last_modified_arrow == "upanddown") {
-        sorting_column = "lastModifiedTimestamp,desc";
-        last_modified_arrow = "downdecending";
-      } else if (last_modified_arrow == "upacending") {
-        sorting_column = "lastModifiedTimestamp,desc";
-        last_modified_arrow = "upacending";
-      } else {
         sorting_column = "lastModifiedTimestamp,asc";
         last_modified_arrow = "downdecending";
+      } else if (last_modified_arrow == "upacending") {
+        sorting_column = "lastModifiedTimestamp,asc";
+        last_modified_arrow = "downdecending";
+      } else {
+        sorting_column = "lastModifiedTimestamp,desc";
+        last_modified_arrow = "upacending";
       }
     }
     data = {
