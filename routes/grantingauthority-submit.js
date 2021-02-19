@@ -79,15 +79,16 @@ router.post("/", async (req, res) => {
     } catch (err) {
       response_error_message = err;
       console.log("message error : " + err);
-      console.log("response_error_message catch : " + response_error_message);
-      grantingAuthorityName_Error = true;
-      grantingAuthorityName_Error_Msg = "Granting Authority already added";
-      grantingAuthorityName_Global = req.body.GaName;
-      res.render("bulkupload/grantingauthority-add", {
-        grantingAuthorityName_Error,
-        grantingAuthorityName_Error_Msg,
-        grantingAuthorityName_Global,
-      });
+      if (err.includes("417")) {
+        grantingAuthorityName_Error = true;
+        grantingAuthorityName_Error_Msg = "Granting Authority already added";
+        grantingAuthorityName_Global = req.body.GaName;
+        res.render("bulkupload/grantingauthority-add", {
+          grantingAuthorityName_Error,
+          grantingAuthorityName_Error_Msg,
+          grantingAuthorityName_Global,
+        });
+      }
     }
   }
 });
