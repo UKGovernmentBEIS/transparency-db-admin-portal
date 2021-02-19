@@ -54,11 +54,11 @@ router.post("/", (req, res) => {
 
     if (file.size < 70000) {
 
-      timeout_intervel = 5000;
+      timeout_intervel = 15000;
     }
 
     else if (file.size > 70000 && file.size < 120000) {
-      timeout_intervel = 9000;
+      timeout_intervel = 15000;
 
     }
 
@@ -163,7 +163,7 @@ router.post("/", (req, res) => {
         validationerrors,
         errorsvalidationpass,
       });
-    }, timeout_intervel);
+    }, 15000);
   }
 });
 
