@@ -164,7 +164,15 @@
                                             href="/userindividualdetails/?userObject=<%= item.id %>"><%= item.displayName %></a>
                                     </td>
                                     <td class="govuk-table__cell">
-                                        <%= item.roleName%>
+                                        <% var role = item.roleName.split("_"); if(role[1] == 'GrantingAuthorityAdministrators') { %>
+                                        Granting Authority Administrators
+                                        <% } else if(role[1] == 'GrantingAuthorityEncoders') {%>
+                                        Granting Authority Encoders
+                                        <% } else if(role[1] == 'BEISAdministrators') {%>
+                                        BEIS Administrators
+                                        <% } else  {%>
+                                        Granting Authority Approvers
+                                        <% } %>
                                     </td>
                                     <td class="govuk-table__cell">
                                         Active
