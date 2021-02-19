@@ -12,12 +12,14 @@ router.post("/", async (req, res) => {
   if (req.body.editReview == "true") {
     const gaName = req.body.grantingAuthorityName.replace(/ /g, "");
     var gaID = req.body.grantingAuthorityID;
+    var azGroupName = gaName;
+    if (env[1] != "prod") env[1] + "_" + gaName;
     try {
       const apidata = await axios.put(
         `https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority/${gaID}`,
         {
           name: req.body.grantingAuthorityName,
-          az_group_name: env[1] + "_" + gaName,
+          az_group_name: azGroupName,
         }
       );
       // const gaID = apidata.gaId;
@@ -43,13 +45,15 @@ router.post("/", async (req, res) => {
   } else {
     try {
       const gaName = req.body.GaName.replace(/ /g, "");
+      var azGroupName = gaName;
       console.log("granting authority", env[1]);
+      if (env[1] != "prod") env[1] + "_" + gaName;
 
       const apidata = await axios.post(
         "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority",
         {
           name: req.body.GaName,
-          az_group_name: env[1] + "_" + gaName,
+          az_group_name: azGroupName,
         },
         {
           headers: {
