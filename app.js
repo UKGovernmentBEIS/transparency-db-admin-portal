@@ -210,8 +210,8 @@ app.locals.GaListArr_Global;
 app.get("/", async (req, res) => {
   var id_token = req.header("x-ms-token-aad-id-token");
   console.log("id_token " + id_token);
-
-  Environment_variable = process.argv[2];
+  
+ Environment_variable = process.argv[2];
   console.log("id_token " + id_token);
 
   if (Environment_variable == "env=dev") {
