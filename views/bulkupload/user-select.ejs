@@ -136,11 +136,11 @@
                         <button class="govuk-button" data-module="govuk-button">
                             List users
                         </button>
-
+                        <% if(dashboard_roles == 'BEIS Administrator' || dashboard_roles == 'Granting Authority Administrator') { %>
                         <a href="/adduser" class="govuk-button" data-module="govuk-button">
                             Add a new user
                         </a>
-
+                        <% } %>
                     </div>
                 </form>
                 <div class="govuk-grid-column-full">

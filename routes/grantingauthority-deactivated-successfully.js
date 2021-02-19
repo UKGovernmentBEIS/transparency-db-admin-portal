@@ -22,7 +22,8 @@ router.post("/", async (req, res) => {
       `https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/group/${azGrpId}`,
       {
         userIds: userIds,
-      }
+      },
+      UserPrincileObjectGlobal
     );
     console.log("Body : ", JSON.stringify(apidata.data));
 

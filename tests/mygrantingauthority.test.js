@@ -21,6 +21,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   const req = mockRequest();
+  global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
   const res = {};
   global.beis_url_accessmanagement = "";
@@ -51,7 +52,7 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
     ],
   };
 
-  axios.post.mockResolvedValue({
+  axios.put.mockResolvedValue({
     status: 200,
     data: {
       totalSearchResults: 10,
@@ -72,11 +73,13 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
 
   request(app)
     .post("/mygrantingauthority", (req, res))
+    .send({ editReview: "true" })
     .expect(200, done);
 });
 
 test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   const req = mockRequest();
+  global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
   const res = {};
   global.beis_url_accessmanagement = "";

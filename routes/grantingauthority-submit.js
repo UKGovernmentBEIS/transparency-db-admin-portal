@@ -6,21 +6,22 @@ router.post("/", async (req, res) => {
   // const data = {
   //   name: req.body.GaName,
   // };
-  Environment_variable = process.argv[2];
-  const env = Environment_variable.split("=");
+  // Environment_variable = process.argv[2];
+  // const env = Environment_variable.split("=");
 
   if (req.body.editReview == "true") {
-    const gaName = req.body.grantingAuthorityName.replace(/ /g, "");
+    // const gaName = req.body.grantingAuthorityName.replace(/ /g, "");
     var gaID = req.body.grantingAuthorityID;
-    var azGroupName = gaName;
-    if (env[1] != "prod") env[1] + "_" + gaName;
+    // var azGroupName = gaName;
+    // if (env[1] != "prod") env[1] + "_" + gaName;
     try {
       const apidata = await axios.put(
         `https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority/${gaID}`,
         {
           name: req.body.grantingAuthorityName,
-          az_group_name: azGroupName,
-        }
+          // az_group_name: azGroupName,
+        },
+        UserPrincileObjectGlobal
       );
       // const gaID = apidata.gaId;
       res.set("X-Frame-Options", "DENY");
@@ -44,17 +45,18 @@ router.post("/", async (req, res) => {
     }
   } else {
     try {
-      const gaName = req.body.GaName.replace(/ /g, "");
-      var azGroupName = gaName;
-      console.log("granting authority", env[1]);
-      if (env[1] != "prod") env[1] + "_" + gaName;
+      // const gaName = req.body.GaName.replace(/ /g, "");
+      // var azGroupName = gaName;
+      // console.log("granting authority", env[1]);
+      // if (env[1] != "prod") env[1] + "_" + gaName;
 
       const apidata = await axios.post(
         "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority",
         {
           name: req.body.GaName,
-          az_group_name: azGroupName,
+          // az_group_name: azGroupName,
         },
+        UserPrincileObjectGlobal,
         {
           headers: {
             "Content-Type": "application/json;charset=utf-8",

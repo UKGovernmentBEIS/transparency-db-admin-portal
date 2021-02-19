@@ -94,7 +94,11 @@ router.post("/", async (req, res) => {
     console.log("addSchemeRequest :" + JSON.stringify(addSchemeRequest));
 
     try {
-      const apidata = await axios.post(addSchemeUrl, addSchemeRequest);
+      const apidata = await axios.post(
+        addSchemeUrl,
+        addSchemeRequest,
+        UserPrincileObjectGlobal
+      );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
       console.log("API_response_code: " + API_response_code);
@@ -134,7 +138,11 @@ router.post("/", async (req, res) => {
     console.log("updateSchemeRequest :" + JSON.stringify(updateSchemeRequest));
 
     try {
-      const apidata = await axios.post(updateSchemeUrl, updateSchemeRequest);
+      const apidata = await axios.post(
+        updateSchemeUrl,
+        updateSchemeRequest,
+        UserPrincileObjectGlobal
+      );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
       console.log("API_response_code: " + API_response_code);

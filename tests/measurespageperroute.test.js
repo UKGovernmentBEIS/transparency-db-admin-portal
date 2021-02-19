@@ -21,6 +21,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   const req = mockRequest();
+  global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
   const res = {};
   global.beis_url_searchscheme = "";
@@ -88,6 +89,7 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
 
 test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   const req = mockRequest();
+  global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
   const res = {};
   global.beis_url_searchscheme = "";

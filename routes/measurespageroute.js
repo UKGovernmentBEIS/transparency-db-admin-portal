@@ -31,7 +31,6 @@ router.get("/", async (req, res) => {
     next_page = current_page + 1;
   }
 
-
   const data_request = {
     searchName: Search_Text_Global,
     pageNumber: current_page,
@@ -40,14 +39,14 @@ router.get("/", async (req, res) => {
     status: "",
   };
 
-
   var data = JSON.parse(JSON.stringify(data_request));
   console.log("request data : " + data);
 
   try {
     const apidata = await axios.post(
       beis_url_searchscheme + "/scheme/search",
-      data_request
+      data_request,
+      UserPrincileObjectGlobal
     );
     console.log(`Status: ${apidata.status}`);
     console.log("Body: ", apidata.data);
@@ -57,7 +56,7 @@ router.get("/", async (req, res) => {
     const seachawardstring = JSON.stringify(searchschemes_api);
     const seachawardJSON = JSON.parse(seachawardstring);
     totalrows = parseInt(searchschemes.totalSearchResults);
-    
+
     console.log("req.query.page: " + req.query.page);
 
     if (current_page == 1) {

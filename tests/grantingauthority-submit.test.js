@@ -36,6 +36,7 @@ test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   global.grantingAuthorityName_Error_Msg = "";
   global.process.argv = ["", "", "env=dev"];
   global.grantingAuthorityName_Global = "";
+  global.UserPrincileObjectGlobal = {};
   global.grantingAuthorityName_Error = "";
   global.review = "true";
   global.gaID = "";
@@ -64,6 +65,7 @@ test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   global.process.argv = ["", "", "env=dev"];
   global.grantingAuthorityName_Global = "";
   global.grantingAuthorityName_Error = "";
+  global.UserPrincileObjectGlobal = {};
   global.review = "";
   const res = {};
   axios.post.mockResolvedValue({

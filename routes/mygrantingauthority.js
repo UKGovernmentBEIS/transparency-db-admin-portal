@@ -182,7 +182,8 @@ router.get("/", async (req, res) => {
   try {
     const apidata = await axios.post(
       "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/searchGrantingAuthority",
-      data
+      data,
+      UserPrincileObjectGlobal
     );
     var maxGAId = [];
     var grantingAuthorityName = "";

@@ -24,7 +24,10 @@ router.get("/", async (req, res) => {
   var measureendpoint = beis_url_searchscheme + "/scheme/" + scnumber;
 
   try {
-    const measureapidata = await axios.get(measureendpoint);
+    const measureapidata = await axios.get(
+      measureendpoint,
+      UserPrincileObjectGlobal
+    );
     console.log(`Status: ${measureapidata.status}`);
     console.log("Body: ", measureapidata.data);
     searchmeasuredetails = measureapidata.data;

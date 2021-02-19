@@ -24,7 +24,8 @@ router.get("/", async (req, res) => {
 
     try {
       const apidata = await axios.get(
-        `http://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority/${azGrpId}`
+        `http://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority/${azGrpId}`,
+        UserPrincileObjectGlobal
       );
 
       var gaListArr = [];

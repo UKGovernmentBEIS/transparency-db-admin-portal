@@ -130,17 +130,17 @@
             On selecting, the page will reload and display the subsidy awards.</span>
         </div>
 
-
+        <% if(dashboard_roles != 'Granting Authority Approver' || dashboard_roles != 'Granting Authority Encoder') { %>
         <div class="govuk-grid-column-two-thirds">
-          <a href="/addsubsidymeasures"><button class="govuk-button" data-module="govuk-button">
-              Add a new subsidy scheme
-            </button></a>
+          <a href="/addsubsidymeasures" class="govuk-button" data-module="govuk-button">
+            Add a new subsidy scheme
+          </a>
         </div>
+        <% } %>
         <div class="govuk-grid-column-one-third govuk-display-flex">
           <label class="govuk-grid-column-two-thirds">
             Results per page
           </label>
-
           <form class="govuk-grid-column-one-third govuk-padding-0" action="/measurespageperroute" method="GET">
             <select class="govuk-select" id="sort" name="sort" onchange="this.form.submit()">
               <% if(frontend_totalRecordsPerPage  == 10) { %>

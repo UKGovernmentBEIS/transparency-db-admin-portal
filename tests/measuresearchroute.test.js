@@ -39,6 +39,7 @@ test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   global.end_date_arrow = "";
   global.duration_arrow = "";
   global.budget_arrow = "";
+  global.UserPrincileObjectGlobal = {};
   global.subsidy_scheme_name_sorting_order = "";
   global.subsidy_control_no_sorting_order = "";
   global.granting_authority_sorting_order = "";

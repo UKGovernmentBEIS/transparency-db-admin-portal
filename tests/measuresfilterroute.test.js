@@ -24,6 +24,7 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   global.dashboard_roles = "";
   const res = {};
   global.beis_url_searchscheme = "";
+  global.UserPrincileObjectGlobal = {};
 
   global.frontend_totalRecordsPerPage = "10";
   global.sorting_order_pass = "";
@@ -91,6 +92,7 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   global.dashboard_roles = "";
   const res = {};
   global.beis_url_searchscheme = "";
+  global.UserPrincileObjectGlobal = {};
 
   global.Search_Text_Global = "";
   global.current_page = "";

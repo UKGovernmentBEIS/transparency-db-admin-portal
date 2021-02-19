@@ -97,9 +97,9 @@
                             <%  if(User_Role_Global == 'BEIS Administrator') { %>
                             <input class="govuk-radios__input" id="BEISAdmin" name="userRole" type="radio"
                                 value="BEIS Administrator" checked>
-                            <% } else { %>
+                            <% } else if(User_Role_Global != 'BEIS Administrator'){ %>
                             <input class="govuk-radios__input" id="BEISAdmin" name="userRole" type="radio"
-                                value="BEIS Administrator">
+                                value="BEIS Administrator" disabled>
                             <% } %>
                             <label class="govuk-label govuk-radios__label" for="BEISAdmin">
                                 BEIS Administrator
