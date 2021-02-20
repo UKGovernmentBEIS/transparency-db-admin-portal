@@ -274,7 +274,7 @@ router.get("/", async (req, res) => {
       frontend_totalRecordsPerPage,
     });
   } catch (err) {
-    if (err.includes("404")) {
+    if (err == "Error: Request failed with status code 404") {
       noGrantingAuthority = "No granting authority available";
       noresult = true;
       res.render("bulkupload/mygrantingauthority", {
@@ -381,7 +381,7 @@ router.post("/", async (req, res) => {
       frontend_totalRecordsPerPage,
     });
   } catch (err) {
-    if (err.includes("404")) {
+    if (err == "Error: Request failed with status code 404") {
       noGrantingAuthority = "No granting authority available";
       noresult = true;
       res.render("bulkupload/mygrantingauthority", {
