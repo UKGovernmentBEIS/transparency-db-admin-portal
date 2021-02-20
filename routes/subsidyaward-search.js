@@ -43,7 +43,7 @@ router.post("/", async (req, res) => {
   awards_status = "Filter results by status";
 
   try {
-    const apidata = await axios.get(Award_search_URL);
+    const apidata = await axios.get(Award_search_URL, UserPrincileObjectGlobal);
     console.log(`Status: ${apidata.status}`);
     API_response_code = `${apidata.status}`;
     console.log("API_response_code: try" + API_response_code);
@@ -71,17 +71,29 @@ router.post("/", async (req, res) => {
     } else {
       end_page = 9;
     }
+    nodata = "";
+    noresult = false;
     res.render("bulkupload/mysubsidyawards", {
       pageCount,
       previous_page,
       next_page,
       start_record,
+      nodata,
+      noresult,
       end_record,
       totalrows,
       current_page_active,
       frontend_totalRecordsPerPage,
     });
   } catch (err) {
+    if (err == "Error: Request failed with status code 404") {
+      noresult = true;
+      nodata = "No data available for searched criteria";
+      res.render("bulkupload/mysubsidyawards", {
+        noresult,
+        nodata,
+      });
+    }
     response_error_message = err;
     console.log("message error : " + err);
     console.log("response_error_message catch : " + response_error_message);

@@ -141,6 +141,7 @@ router.get("/", async (req, res) => {
     } else {
       end_page = 9;
     }
+    nodata = "";
     noresult = false;
     res.render("bulkupload/mysubsidymeasures", {
       pageCount,
@@ -152,6 +153,7 @@ router.get("/", async (req, res) => {
       totalrows,
       current_page_active,
       allScheme,
+      nodata,
       activeScheme,
       inactiveScheme,
       searchschemes,
@@ -159,8 +161,10 @@ router.get("/", async (req, res) => {
   } catch (err) {
     if (err == "Error: Request failed with status code 404") {
       noresult = true;
+      nodata = "No subsidy scheme available";
       res.render("bulkupload/mysubsidymeasures", {
         noresult,
+        nodata,
       });
     }
     response_error_message = err;
