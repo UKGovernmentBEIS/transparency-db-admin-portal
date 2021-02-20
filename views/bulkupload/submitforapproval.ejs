@@ -33,7 +33,7 @@
         <div class="govuk-grid-column-two-thirds">
           <div class="govuk-panel govuk-panel--confirmation">
             <h1 class="govuk-panel__title">
-              Subsidy award submitted for approval
+              Subsidy award submitted <% if(dashboard_roles == 'Granting Authority Encoder'){ %> for approval <% } %>
             </h1>
             <!-- <h2 class="govuk-panel__body">
               Subsidy award number <%= locals.Subsidy_Control_Number_Global_Substring %>
@@ -41,7 +41,11 @@
           </div>
 
           <p class="govuk-body">You have successfully submitted subsidy award
-            <%= locals.Subsidy_Control_Number_Global_Substring %> for approval</p>
+            <%= locals.Subsidy_Control_Number_Global_Substring %>
+            <% if(dashboard_roles == 'Granting Authority Encoder'){ %>
+            for approval
+            <% } %>
+          </p>
 
           <h2 class="govuk-heading-m">What happens next</h2>
           <p class="govuk-body">We have sent a notification to an approver so they can review the subsidy award. You

@@ -120,9 +120,17 @@ router.post("/", async (req, res) => {
 
   try {
     if (isCallfromEditAward) {
-      var apidata = await axios.put(beis_url_publishing + "/award", data);
+      var apidata = await axios.put(
+        beis_url_publishing + "/award",
+        data,
+        UserPrincileObjectGlobal
+      );
     } else {
-      var apidata = await axios.post(beis_url_publishing + "/addAward", data);
+      var apidata = await axios.post(
+        beis_url_publishing + "/addAward",
+        data,
+        UserPrincileObjectGlobal
+      );
     }
 
     console.log(`Status: ${apidata.status}`);

@@ -58,7 +58,7 @@ router.get("/", async (req, res) => {
   console.log("Award_search_URL   : " + Award_search_URL);
 
   try {
-    const apidata = await axios.get(Award_search_URL);
+    const apidata = await axios.get(Award_search_URL, UserPrincileObjectGlobal);
     console.log(`Status: ${apidata.status}`);
     console.log("Body: ", apidata.data);
     searchawards = apidata.data;

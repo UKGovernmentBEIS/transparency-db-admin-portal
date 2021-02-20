@@ -266,7 +266,7 @@
                     </div>
 
                 </dl>
-
+                <% if(dashboard_roles != 'Granting Authority Encoder') { %>
                 <% if(Get_Award_Status.toLowerCase() =="awaiting approval") { %>
                 <button class="govuk-button" data-module="govuk-button" name="Award_status" id="Award_status"
                     value="Published">
@@ -280,7 +280,18 @@
                     name="Award_status">Cancel</a> -->
 
                 <% } %>
+                <% if(Get_Award_Status.toLowerCase() =="published") { %>
+                <button class="govuk-button" data-module="govuk-button" name="Award_status" id="Award_status"
+                    value="Published">
+                    Delete </button>
+                <!-- <button class="govuk-button govuk-button--warning" data-module="govuk-button" name="Award_status"
+                  id="Award_status" value="Rejected">
+                  Reject </button> -->
 
+                <!-- <a value="Cancel" href="/subsidyawardfetchcancel" class="govuk-button-cancel"
+                        name="Award_status">Cancel</a> -->
+                <% } %>
+                <% } %>
                 <% if(Get_Award_Status.toLowerCase() =="rejected") { %>
                 <!-- <button class="govuk-button" data-module="govuk-button" name="Award_status" id="Award_status"
                     value="Editaward">
@@ -297,17 +308,7 @@
                    >Cancel</a> -->
                 <% } %>
 
-                <% if(Get_Award_Status.toLowerCase() =="published") { %>
-                <button class="govuk-button" data-module="govuk-button" name="Award_status" id="Award_status"
-                    value="Published">
-                    Delete </button>
-                <!-- <button class="govuk-button govuk-button--warning" data-module="govuk-button" name="Award_status"
-              id="Award_status" value="Rejected">
-              Reject </button> -->
 
-                <!-- <a value="Cancel" href="/subsidyawardfetchcancel" class="govuk-button-cancel"
-                    name="Award_status">Cancel</a> -->
-                <% } %>
 
                 <a value="Cancel" href="/subsidyawardfetchcancel" class="govuk-button-cancel" name="Award_status"
                     aria-label="cancel the current award rejection page ">Cancel</a>
