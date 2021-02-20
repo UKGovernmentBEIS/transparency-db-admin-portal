@@ -23,6 +23,7 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
   const res = {};
+  global.noresult = "";
   global.beis_url_searchscheme = "";
   global.beis_url_accessmanagement = "";
   global.Subsidy_Measure_Title_Global = "";
@@ -107,6 +108,7 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
   const res = {};
+  global.noresult = "";
   global.beis_url_searchscheme = "";
   global.beis_url_accessmanagement = "";
 
@@ -195,7 +197,7 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
   const res = {};
-
+  global.noresult = "";
   global.beis_url_searchscheme = "";
 
   global.Subsidy_Measure_Title_Global = "";
@@ -283,6 +285,7 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
   const res = {};
+  global.noresult = "";
   global.beis_url_searchscheme = "";
   global.beis_url_accessmanagement = "";
 

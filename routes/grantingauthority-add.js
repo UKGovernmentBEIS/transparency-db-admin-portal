@@ -17,15 +17,16 @@ router.get("/", (req, res) => {
     res.render("bulkupload/grantingauthority-add", {
       grantingAuthorityName_Global,
     });
-  } else if (req.query.hasOwnProperty("totalrecords")) {
+  }
+  // else if (req.query.hasOwnProperty("totalrecords")) {
+  //   grantingAuthorityName_Error = "";
+  //   grantingAuthorityName_Global = "";
+  //   res.render("bulkupload/grantingauthority-add");
+  // }
+  else {
     grantingAuthorityName_Error = "";
     grantingAuthorityName_Global = "";
     res.render("bulkupload/grantingauthority-add");
-  } else {
-    grantingAuthorityName_Error = "";
-    res.render("bulkupload/grantingauthority-add", {
-      grantingAuthorityName_Global,
-    });
   }
 });
 

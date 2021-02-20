@@ -99,6 +99,19 @@
       </div>
 
       <h1 class="govuk-heading-xl"> Subsidy awards</h1>
+      <% if(noresult) { %>
+      <h2 class="govuk-heading-m">No subsidy awards available</h2>
+
+      <a class="govuk-button" href="/addsubsidyaward" data-module="govuk-button">
+        Add a new subsidy award
+      </a>
+
+      <a class="govuk-button" href="/bulkuploadsubsidy" data-module="govuk-button">
+        Add multiple subsidy awards
+      </a>
+
+      <% } else { %>
+
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full govuk-grid-row">
           <label class="govuk-label govuk-grid-column-full">
@@ -470,6 +483,7 @@
           </div>
         </section>
       </form>
+      <% } %>
     </main>
   </div>
   <%- include('../partials/footer.ejs') %>

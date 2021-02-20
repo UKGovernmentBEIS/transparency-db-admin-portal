@@ -29,7 +29,7 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   global.frontend_totalRecordsPerPage = "10";
   global.sorting_order_pass = "";
   global.Search_Text_Global = "";
-
+  global.noresult = "";
   global.start_record = 1;
   global.end_record = 10;
   global.totalrows = 10;
@@ -92,6 +92,7 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
   const res = {};
+  global.noresult = "";
   global.beis_url_searchscheme = "";
 
   global.subsidy_scheme_name_arrow = "";

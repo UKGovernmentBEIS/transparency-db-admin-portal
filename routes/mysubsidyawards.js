@@ -68,17 +68,25 @@ router.get("/", async (req, res) => {
     } else {
       end_page = 9;
     }
+    noresult = false;
     res.render("bulkupload/mysubsidyawards", {
       pageCount,
       previous_page,
       next_page,
       start_record,
+      noresult,
       end_record,
       totalrows,
       current_page_active,
       frontend_totalRecordsPerPage,
     });
   } catch (err) {
+    if (err.includes("404")) {
+      noresult = true;
+      res.render("bulkupload/mysubsidyawards", {
+        noresult,
+      });
+    }
     response_error_message = err;
     console.log("message error : " + err);
     console.log("response_error_message catch : " + response_error_message);

@@ -250,6 +250,7 @@ router.get("/", async (req, res) => {
         end_page = 9;
       }
     }
+    noresult = false;
     res.render("bulkupload/mygrantingauthority", {
       pageCount,
       previous_page,
@@ -258,7 +259,7 @@ router.get("/", async (req, res) => {
       start_record,
       grantingAuthorityList,
       status,
-
+      noresult,
       gaId_no_arrow,
       ganame_arrow,
       added_by_arrow,
@@ -273,6 +274,14 @@ router.get("/", async (req, res) => {
       frontend_totalRecordsPerPage,
     });
   } catch (err) {
+    if (err.includes("404")) {
+      noGrantingAuthority = "No granting authority available";
+      noresult = true;
+      res.render("bulkupload/mygrantingauthority", {
+        noGrantingAuthority,
+        noresult,
+      });
+    }
     response_error_message = err;
     console.log("message error : " + err);
     console.log("response_error_message catch : " + response_error_message);
@@ -343,21 +352,22 @@ router.post("/", async (req, res) => {
     } else {
       end_page = 9;
     }
-    var maxGAId = [];
-    grantingAuthorityList.gaList.forEach(function (item) {
-      maxGAId.push(item.grantingAuthorityId);
-    });
-    var nextId = Math.max(...maxGAId);
+    // var maxGAId = [];
+    // grantingAuthorityList.gaList.forEach(function (item) {
+    //   maxGAId.push(item.grantingAuthorityId);
+    // });
+    // var nextId = Math.max(...maxGAId);
+    noresult = false;
     res.render("bulkupload/mygrantingauthority", {
       pageCount,
       previous_page,
       next_page,
       start_record,
-      nextId,
+      // nextId,
       end_record,
       grantingAuthorityName,
       status,
-
+      noresult,
       gaId_no_arrow,
       ganame_arrow,
       added_by_arrow,
@@ -371,6 +381,14 @@ router.post("/", async (req, res) => {
       frontend_totalRecordsPerPage,
     });
   } catch (err) {
+    if (err.includes("404")) {
+      noGrantingAuthority = "No granting authority available";
+      noresult = true;
+      res.render("bulkupload/mygrantingauthority", {
+        noGrantingAuthority,
+        noresult,
+      });
+    }
     response_error_message = err;
     console.log("message error : " + err);
     console.log("response_error_message catch : " + response_error_message);

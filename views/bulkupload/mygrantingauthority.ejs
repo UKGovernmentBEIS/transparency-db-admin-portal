@@ -75,7 +75,12 @@
       <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-margin-bottom"> -->
       <h1 class="govuk-heading-xl">Granting Authorities</h1>
       <!-- </legend> -->
-
+      <% if(noresult) { %>
+      <h2 class="govuk-heading-m">No granting authority available</h2>
+      <a href="/addgrantingauthority" class="govuk-button govuk-button--success">
+        Add a new granting authority
+      </a>
+      <% } else {%>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full">
           <!-- <form action="/filtersearch" method="POST" > -->
@@ -88,22 +93,13 @@
               <form action="/mygrantingauthority" method="POST">
                 <input class="govuk-input govuk-!-width-three-quarters" id="filter-input" name="grantingAuthorityName"
                   type="text" value="<%= grantingAuthorityName%>" autocomplete="off" />
-                <!-- <span class="clear-all">
-                  <img src="/assets/images/u1733.svg" alt="" />
-                </span> -->
+
                 <button class="govuk-button govuk-button--success" id="getFilterTags">
                   Search
                 </button>
               </form>
             </div>
 
-            <!-- <select class="govuk-select" name="sort" style="width: 100%">
-                <option value="" disabled selected>Only show me...</option>
-                <option value="">Draft</option>
-                <option value="">Finalized</option>
-                <option value="">Published</option>
-                <option value="">Deactivated</option>
-              </select> -->
             <form class="govuk-grid-column-one-half" action="/mygrantingauthority" method="POST">
               <select class="govuk-select" name="status" style="width: 100%" onchange="this.form.submit()"
                 aria-label="Results as per status shown in current page" aria-describedby="info-message"
@@ -155,7 +151,7 @@
               <% } %>
             </select>
           </form>
-          <a href="/addgrantingauthority?totalrecords=<%=nextId%>" class="govuk-button govuk-button--success">
+          <a href="/addgrantingauthority" class="govuk-button govuk-button--success">
             Add a new granting authority
           </a>
           <!-- </form>  -->
@@ -398,6 +394,7 @@
 
         </div>
       </div>
+      <% } %>
       <!-- ********************** -->
       <!-- Pagination ends here -->
       <!-- ********************** -->

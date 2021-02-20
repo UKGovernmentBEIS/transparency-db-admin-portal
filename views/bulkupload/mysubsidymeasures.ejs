@@ -73,7 +73,17 @@
       <!-- Body header starts here -->
       <h1 class="govuk-heading-xl">Subsidy schemes</h1>
       <!-- Body header ends here -->
+      <% if(noresult) { %>
+      <h2 class="govuk-heading-m">No subsidy schemes available</h2>
 
+      <% if(dashboard_roles == 'Granting Authority Administrator' || dashboard_roles == 'BEIS Administrator') { %>
+      <div class="govuk-grid-column-two-thirds"><a href="/addsubsidymeasures" class="govuk-button"
+          data-module="govuk-button">
+          Add a new subsidy scheme
+        </a>
+      </div>
+      <% } %>
+      <% } else { %>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full" id="subsidy_search_text">
           <label class="govuk-label">
@@ -142,7 +152,38 @@
           <label class="govuk-grid-column-two-thirds">
             Results per page
           </label>
-          <form class="govuk-grid-column-one-third govuk-padding-0" action="/measurespageperroute" method="GET">
+          <ul class="pagination pagination-style-modified govuk-padding-0 govuk-!-width-one-half"
+            style="display: inline;  margin: 0;">
+            <!-- <form class="govuk-grid-column-one-third" action="/measurespageperroute" method="GET"> -->
+            <% if(frontend_totalRecordsPerPage  == 10) { %>
+            <a aria-label="10 records per page " class="round btn-page active"
+              href="/measurespageperroute/?sort=10">10</a>
+
+            <% } else { %>
+            <a aria-label="10 records per page " class="round btn-page" href="/measurespageperroute/?sort=10">10</a>
+            <% }  %>
+            <% if(frontend_totalRecordsPerPage  == 20) { %>
+            <a aria-label="20 records per page " class="round btn-page active"
+              href="/measurespageperroute/?sort=20">20</a>
+            <% } else { %>
+            <a aria-label="20 records per page " class="round btn-page" href="/measurespageperroute/?sort=20">20</a>
+            <% }  %>
+
+            <% if(frontend_totalRecordsPerPage  == 50) { %>
+            <a aria-label="50 records per page " class="round btn-page active"
+              href="/measurespageperroute/?sort=50">50</a>
+            <% } else { %>
+            <a aria-label="50 records per page " class="round btn-page" href="/measurespageperroute/?sort=50">50</a>
+            <% }  %>
+
+            <% if(frontend_totalRecordsPerPage  == 100) { %>
+            <a aria-label="100 records per page " class="round btn-page active"
+              href="/measurespageperroute/?sort=100">100</a>
+            <% } else { %>
+            <a aria-label="100 records per page " class="round btn-page" href="/measurespageperroute/?sort=100">100</a>
+            <% }  %>
+          </ul>
+          <!-- <form class="govuk-grid-column-one-third govuk-padding-0" action="/measurespageperroute" method="GET">
             <select class="govuk-select" id="sort" name="sort" onchange="this.form.submit()">
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <option value="10" selected>10</option>
@@ -165,7 +206,7 @@
               <option value="100">100</option>
               <% }  %>
             </select>
-          </form>
+          </form> -->
         </div>
       </div>
       <form action="/homepage" method="POST">
@@ -393,7 +434,7 @@
         <!-- Pagination ends here -->
         <!-- ********************** -->
       </form>
-
+      <% } %>
     </main>
   </div>
 
