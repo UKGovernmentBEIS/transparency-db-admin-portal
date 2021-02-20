@@ -24,7 +24,7 @@ const res = {};
 test("Unit testing for login password complete Test for GET call", (done) => {
   const req = mockRequest();
   global.dashboard_roles = "";
-
+  global.noresult = "";
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.frontend_totalRecordsPerPage = 10;

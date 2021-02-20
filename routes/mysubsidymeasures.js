@@ -106,7 +106,8 @@ router.get("/", async (req, res) => {
   try {
     const apidata = await axios.post(
       beis_url_searchscheme + "/scheme/search",
-      data_request
+      data_request,
+      UserPrincileObjectGlobal
     );
     console.log(`Status: ${apidata.status}`);
 
@@ -140,12 +141,14 @@ router.get("/", async (req, res) => {
     } else {
       end_page = 9;
     }
+    noresult = false;
     res.render("bulkupload/mysubsidymeasures", {
       pageCount,
       previous_page,
       next_page,
       start_record,
       end_record,
+      noresult,
       totalrows,
       current_page_active,
       allScheme,
@@ -154,6 +157,12 @@ router.get("/", async (req, res) => {
       searchschemes,
     });
   } catch (err) {
+    if (err.includes("404")) {
+      noresult = true;
+      res.render("bulkupload/mysubsidymeasures", {
+        noresult,
+      });
+    }
     response_error_message = err;
     console.log("message error : " + err);
     console.log("response_error_message catch : " + response_error_message);

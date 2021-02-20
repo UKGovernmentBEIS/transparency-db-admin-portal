@@ -49,6 +49,7 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
   global.current_page_active = 1;
   global.previous_page = "";
   global.next_page = 2;
+  global.noresult = "";
   global.start_record = 1;
   global.end_record = 10;
   global.totalrows = 10;

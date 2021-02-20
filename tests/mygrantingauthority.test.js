@@ -21,6 +21,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   const req = mockRequest();
+  global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
   const res = {};
   global.beis_url_accessmanagement = "";
@@ -30,13 +31,19 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   global.previous_page = "";
   global.next_page = "";
   global.start_record = "";
-  global.nextId = "";
+  global.noresult = "";
   global.end_record = "";
   global.sort = "";
   global.totalrows = "";
   global.current_page_active = "";
   global.frontend_totalRecordsPerPage = "";
   global.grantingAuthorityName = "";
+  global.gaId_no_arrow = "";
+  global.ganame_arrow = "";
+  global.added_by_arrow = "";
+  global.status_arrow = "";
+  global.created_on_arrow = "";
+  global.last_modified_arrow = "";
   global.grantingAuthorityList = {
     gaList: [
       {
@@ -72,11 +79,13 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
 
   request(app)
     .post("/mygrantingauthority", (req, res))
+    .send({ totalRecordsPerPage: "", status: "", grantingAuthorityName: "" })
     .expect(200, done);
 });
 
 test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   const req = mockRequest();
+  global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
   const res = {};
   global.beis_url_accessmanagement = "";
@@ -86,13 +95,21 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   global.previous_page = "";
   global.next_page = "";
   global.start_record = "";
-  global.nextId = "";
+  global.noresult = "";
   global.end_record = "";
   global.sort = "";
   global.totalrows = "";
   global.current_page_active = "";
   global.frontend_totalRecordsPerPage = "10";
   global.grantingAuthorityName = "";
+
+  global.gaId_no_arrow = "";
+  global.ganame_arrow = "";
+  global.added_by_arrow = "";
+  global.status_arrow = "";
+  global.created_on_arrow = "";
+  global.last_modified_arrow = "";
+
   global.grantingAuthorityList = {
     gaList: [
       {

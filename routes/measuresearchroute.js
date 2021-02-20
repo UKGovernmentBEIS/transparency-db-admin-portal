@@ -51,7 +51,8 @@ router.post("/", async (req, res) => {
   try {
     const apidata = await axios.post(
       beis_url_searchscheme + "/scheme/search",
-      data_request
+      data_request,
+      UserPrincileObjectGlobal
     );
     console.log(`Status: ${apidata.status}`);
 

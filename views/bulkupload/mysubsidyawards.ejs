@@ -99,6 +99,19 @@
       </div>
 
       <h1 class="govuk-heading-xl"> Subsidy awards</h1>
+      <% if(noresult) { %>
+      <h2 class="govuk-heading-m">No subsidy awards available</h2>
+
+      <a class="govuk-button" href="/addsubsidyaward" data-module="govuk-button">
+        Add a new subsidy award
+      </a>
+
+      <a class="govuk-button" href="/bulkuploadsubsidy" data-module="govuk-button">
+        Add multiple subsidy awards
+      </a>
+
+      <% } else { %>
+
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full govuk-grid-row">
           <label class="govuk-label govuk-grid-column-full">
@@ -163,56 +176,57 @@
             On selecting, the page will reload and display the subsidy awards.</span>
         </div>
 
-        <div class="govuk-grid-column-full">
-          <!-- <a href="/" style="color : black; text-decoration: none"> -->
-          <button class="govuk-button" onclick="window.location.href='/addsubsidyaward'" data-module="govuk-button">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <a class="govuk-button" href="/addsubsidyaward" data-module="govuk-button">
             Add a new subsidy award
-          </button>
-          <!-- </a> -->
-          <!-- <a href=""> -->
-          <button class="govuk-button" onclick="window.location.href='/bulkuploadsubsidy'" data-module="govuk-button">
+          </a>
+
+          <a class="govuk-button" href="/bulkuploadsubsidy" data-module="govuk-button">
             Add multiple subsidy awards
-          </button>
-          <!-- </a> -->
-          <button class="govuk-button" data-module="govuk-button" disabled>
+          </a>
+
+          <!-- <button class="govuk-button" data-module="govuk-button" disabled>
             Delete award
-          </button>
-          <div class="govuk-grid-column-one-quarter govuk-form-group govuk-display-flex govuk-padding-0"
-            style="float:right;text-align: right;">
-            <label>Results per page</label>
-            <ul class="pagination govuk-grid-column-one-third pagination-style-modified"
-              style="display: inline;  margin: 0;  padding: 0;">
-              <!-- <form class="govuk-grid-column-one-third" action="/awardspageperroute" method="GET"> -->
-              <% if(frontend_totalRecordsPerPage  == 10) { %>
-              <a aria-label="10 records per page " class="round btn-page active"
-                href="/awardspageperroute/?sort=10">10</a>
-              <!-- <li class="hmcts-pagination__item hmcts-pagination__item--active">10</li> -->
-              <% } else { %>
-              <a aria-label="10 records per page " class="round btn-page" href="/awardspageperroute/?sort=10">10</a>
-              <% }  %>
-              <% if(frontend_totalRecordsPerPage  == 20) { %>
-              <a aria-label="20 records per page " class="round btn-page active"
-                href="/awardspageperroute/?sort=20">20</a>
-              <% } else { %>
-              <a aria-label="20 records per page " class="round btn-page" href="/awardspageperroute/?sort=20">20</a>
-              <% }  %>
+          </button> -->
+        </div>
+        <div class="govuk-grid-column-one-third govuk-form-group govuk-display-flex govuk-padding-0"
+          style="float:right;text-align: right;">
+          <label>Results per page</label>
+          <ul class="pagination pagination-style-modified govuk-padding-0 govuk-!-width-one-half"
+            style="display: inline;  margin: 0;">
+            <!-- <form class="govuk-grid-column-one-third" action="/awardspageperroute" method="GET"> -->
+            <% if(frontend_totalRecordsPerPage  == 10) { %>
+            <a aria-label="10 records per page " class="round btn-page active"
+              href="/awardspageperroute/?sort=10">10</a>
 
-              <% if(frontend_totalRecordsPerPage  == 50) { %>
-              <a aria-label="50 records per page " class="round btn-page active"
-                href="/awardspageperroute/?sort=50">50</a>
-              <% } else { %>
-              <a aria-label="50 records per page " class="round btn-page" href="/awardspageperroute/?sort=50">50</a>
-              <% }  %>
+            <% } else { %>
+            <a aria-label="10 records per page " class="round btn-page" href="/awardspageperroute/?sort=10">10</a>
+            <% }  %>
+            <% if(frontend_totalRecordsPerPage  == 20) { %>
+            <a aria-label="20 records per page " class="round btn-page active"
+              href="/awardspageperroute/?sort=20">20</a>
+            <% } else { %>
+            <a aria-label="20 records per page " class="round btn-page" href="/awardspageperroute/?sort=20">20</a>
+            <% }  %>
 
-              <% if(frontend_totalRecordsPerPage  == 100) { %>
-              <a aria-label="100 records per page " class="round btn-page active"
-                href="/awardspageperroute/?sort=100">100</a>
-              <% } else { %>
-              <a aria-label="100 records per page " class="round btn-page" href="/awardspageperroute/?sort=100">100</a>
-              <% }  %>
-            </ul>
+            <% if(frontend_totalRecordsPerPage  == 50) { %>
+            <a aria-label="50 records per page " class="round btn-page active"
+              href="/awardspageperroute/?sort=50">50</a>
+            <% } else { %>
+            <a aria-label="50 records per page " class="round btn-page" href="/awardspageperroute/?sort=50">50</a>
+            <% }  %>
 
-            <!-- <form class="govuk-padding-0 govuk-!-width-one-third" action="/awardspageperroute" method="GET">
+            <% if(frontend_totalRecordsPerPage  == 100) { %>
+            <a aria-label="100 records per page " class="round btn-page active"
+              href="/awardspageperroute/?sort=100">100</a>
+            <% } else { %>
+            <a aria-label="100 records per page " class="round btn-page" href="/awardspageperroute/?sort=100">100</a>
+            <% }  %>
+          </ul>
+
+          <!-- <form class="govuk-padding-0 govuk-!-width-one-third" action="/awardspageperroute" method="GET">
               <select class="govuk-select" aria-label="Results per page shown in current page"
                 aria-describedby="info-message" aria-autocomplete="list" name="sort" onchange="this.form.submit()">
                 <% if(frontend_totalRecordsPerPage  == 10) { %>
@@ -237,10 +251,10 @@
                 <% }  %>
               </select>
             </form> -->
-            <!-- <span id="info-message" style="display:none" aria-hidden="true">
+          <!-- <span id="info-message" style="display:none" aria-hidden="true">
               On selecting, the page will reload and display the subsidy awards.</span> -->
-          </div>
         </div>
+
       </div>
 
       <form action="/collectcheckbox" method="GET" novalidate="">
@@ -249,31 +263,32 @@
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
                 <th scope="col" class="govuk-table__header">
-                  <div class="govuk-checkboxes">
+                  <p style="position: relative;margin: 0;"> Subsidy award number
+                    <a href="#" style="float: right;">
+                      <svg version="1.1" width="8px" height="8px" class="uparrow">
+                        <g transform="matrix(1 0 0 1 0 -5 )">
+                          <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
+                            stroke="none" />
+                        </g>
+                      </svg>
+
+                      <svg version="1.1" class="downarrow" width="8px" height="8px">
+                        <g transform="matrix(1 0 0 1 0 -5 )">
+                          <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
+                            stroke="none" />
+                        </g>
+                      </svg>
+                    </a></p>
+                  <!-- <div class="govuk-checkboxes">
                     <div class="govuk-checkboxes__item">
                       <input class="govuk-checkboxes__input Subsidy_awardno_head" id="select_all" name="Subsidy_awardNo"
                         type="checkbox" value="Subsidy_awardNo">
                       <label class="govuk-label govuk-checkboxes__label_padding govuk-checkboxes__label "
                         for="Subsidy awardNo" id='Subsidy_awardno_lb' style="padding: 0 15px; font-weight: bold;">
-                        <p style="position: relative;margin: 0;">Subsidy award number
-                          <a href="#" style="float: right;">
-                            <svg version="1.1" width="8px" height="8px" class="uparrow">
-                              <g transform="matrix(1 0 0 1 0 -5 )">
-                                <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
-                                  stroke="none" />
-                              </g>
-                            </svg>
-
-                            <svg version="1.1" class="downarrow" width="8px" height="8px">
-                              <g transform="matrix(1 0 0 1 0 -5 )">
-                                <path d="M 0 13  L 4 5  L 8 13  L 0 13  Z " fill-rule="nonzero" fill="#1d70b8"
-                                  stroke="none" />
-                              </g>
-                            </svg>
-                          </a></p>
+                        
                       </label>
                     </div>
-                  </div>
+                  </div> -->
                 </th>
                 <th scope="col" class="govuk-table__header app-custom-class">
                   <p style="position: relative;margin: 0;">Scheme name
@@ -346,15 +361,16 @@
               <% searchawards.awards.forEach(function(item) { %>
               <tr>
                 <td class="govuk-table__cell">
-                  <div class="govuk-checkboxes">
+                  <a href="/subsidyawardfetch/?award=<%= item.awardNumber %>"><%= item.awardNumber %></a>
+                  <!-- <div class="govuk-checkboxes">
                     <div class="govuk-checkboxes__item">
                       <input class="govuk-checkboxes__input checkbox Subsidy_awardNo" name="check[]" type="checkbox"
                         value="Subsidy awardNo">
                       <label class="govuk-label govuk-checkboxes__label" for="waste">
-                        <a href="/subsidyawardfetch/?award=<%= item.awardNumber %>"><%= item.awardNumber %></a>
+                        
                       </label>
                     </div>
-                  </div>
+                  </div> -->
 
                 </td>
 
@@ -467,6 +483,7 @@
           </div>
         </section>
       </form>
+      <% } %>
     </main>
   </div>
   <%- include('../partials/footer.ejs') %>

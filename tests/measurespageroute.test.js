@@ -21,6 +21,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   const req = mockRequest();
+  global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
   const res = {};
   global.beis_url_searchscheme = "";
@@ -45,6 +46,7 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
       },
     ],
   };
+  global.noresult = "";
   global.Search_Text_Global = "";
   global.sorting_order_pass = "";
   global.start_record = 1;
@@ -87,9 +89,10 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
 
 test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   const req = mockRequest();
+  global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
   const res = {};
-
+  global.noresult = "";
   global.beis_url_searchscheme = "";
   global.beis_url_accessmanagement = "";
   global.subsidy_scheme_name_arrow = "";

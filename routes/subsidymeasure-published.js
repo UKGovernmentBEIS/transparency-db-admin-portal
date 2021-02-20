@@ -91,10 +91,16 @@ router.post("/", async (req, res) => {
   if (button_value == "add_measure") {
     addSchemeUrl = beis_url_searchscheme + "/scheme/add";
     console.log(" addSchemeUrl : " + addSchemeUrl);
-    console.log("addSchemeRequest :" + JSON.stringify(addSchemeRequest));
+    console.log(
+      "addSchemeRequest :" + JSON.stringify(UserPrincileObjectGlobal)
+    );
 
     try {
-      const apidata = await axios.post(addSchemeUrl, addSchemeRequest);
+      const apidata = await axios.post(
+        addSchemeUrl,
+        addSchemeRequest,
+        UserPrincileObjectGlobal
+      );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
       console.log("API_response_code: " + API_response_code);
@@ -134,7 +140,11 @@ router.post("/", async (req, res) => {
     console.log("updateSchemeRequest :" + JSON.stringify(updateSchemeRequest));
 
     try {
-      const apidata = await axios.post(updateSchemeUrl, updateSchemeRequest);
+      const apidata = await axios.post(
+        updateSchemeUrl,
+        updateSchemeRequest,
+        UserPrincileObjectGlobal
+      );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
       console.log("API_response_code: " + API_response_code);
@@ -148,8 +158,11 @@ router.post("/", async (req, res) => {
       });
     } catch (err) {
       response_error_message = err;
+      // if (err.includes("401")) {
+      //   res.render("bulkupload/subsidymeasure-notauthorized");
+      // }
       console.log("message error : " + err);
-      console.log("response_error_message catch : " + response_error_message);
+      console.log("response_error_message catch : " + err.message);
     }
   }
 });
