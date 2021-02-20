@@ -24,9 +24,11 @@ test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
   global.dashboard_roles = "";
   const res = {};
   global.noresult = "";
+  global.nodata = "";
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Filter results by status";
+  global.UserPrincileObjectGlobal = {};
   global.searchawards = {
     awards: [
       {
