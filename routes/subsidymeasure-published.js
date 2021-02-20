@@ -91,7 +91,9 @@ router.post("/", async (req, res) => {
   if (button_value == "add_measure") {
     addSchemeUrl = beis_url_searchscheme + "/scheme/add";
     console.log(" addSchemeUrl : " + addSchemeUrl);
-    console.log("addSchemeRequest :" + JSON.stringify(addSchemeRequest));
+    console.log(
+      "addSchemeRequest :" + JSON.stringify(UserPrincileObjectGlobal)
+    );
 
     try {
       const apidata = await axios.post(
@@ -156,8 +158,11 @@ router.post("/", async (req, res) => {
       });
     } catch (err) {
       response_error_message = err;
+      // if (err.includes("401")) {
+      //   res.render("bulkupload/subsidymeasure-notauthorized");
+      // }
       console.log("message error : " + err);
-      console.log("response_error_message catch : " + response_error_message);
+      console.log("response_error_message catch : " + err.message);
     }
   }
 });

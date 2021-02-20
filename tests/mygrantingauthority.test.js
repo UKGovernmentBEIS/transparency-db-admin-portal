@@ -38,6 +38,12 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   global.current_page_active = "";
   global.frontend_totalRecordsPerPage = "";
   global.grantingAuthorityName = "";
+  global.gaId_no_arrow = "";
+  global.ganame_arrow = "";
+  global.added_by_arrow = "";
+  global.status_arrow = "";
+  global.created_on_arrow = "";
+  global.last_modified_arrow = "";
   global.grantingAuthorityList = {
     gaList: [
       {
@@ -73,7 +79,7 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
 
   request(app)
     .post("/mygrantingauthority", (req, res))
-    .send({ editReview: "true" })
+    .send({ totalRecordsPerPage: "", status: "", grantingAuthorityName: "" })
     .expect(200, done);
 });
 
@@ -96,6 +102,14 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   global.current_page_active = "";
   global.frontend_totalRecordsPerPage = "10";
   global.grantingAuthorityName = "";
+
+  global.gaId_no_arrow = "";
+  global.ganame_arrow = "";
+  global.added_by_arrow = "";
+  global.status_arrow = "";
+  global.created_on_arrow = "";
+  global.last_modified_arrow = "";
+
   global.grantingAuthorityList = {
     gaList: [
       {

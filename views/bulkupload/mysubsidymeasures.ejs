@@ -97,7 +97,7 @@
         </div>
 
 
-        <div class="govuk-grid-column-one-quarter govuk-padding-0">
+        <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
           <form class="govuk-!-width-full govuk-padding-0" action="/measuresfilterroute" method="GET">
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
               aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
@@ -130,14 +130,15 @@
             On selecting, the page will reload and display the subsidy awards.</span>
         </div>
 
-        <% if(dashboard_roles != 'Granting Authority Approver' || dashboard_roles != 'Granting Authority Encoder') { %>
-        <div class="govuk-grid-column-two-thirds">
-          <a href="/addsubsidymeasures" class="govuk-button" data-module="govuk-button">
+        <% if(dashboard_roles == 'Granting Authority Administrator' || dashboard_roles == 'BEIS Administrator') { %>
+        <div class="govuk-grid-column-two-thirds"><a href="/addsubsidymeasures" class="govuk-button"
+            data-module="govuk-button">
             Add a new subsidy scheme
           </a>
         </div>
         <% } %>
-        <div class="govuk-grid-column-one-third govuk-display-flex">
+
+        <div class="govuk-grid-column-one-third govuk-display-flex govuk-form-group" style="float: right;">
           <label class="govuk-grid-column-two-thirds">
             Results per page
           </label>

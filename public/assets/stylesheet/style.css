@@ -91,12 +91,19 @@ table tbody tr:hover{
   top: 6px;
   display: none;
 }
-.pagination a:hover,
+/* .pagination a:hover,
+.pagination a.active {
+   background-color: rgb(229, 235, 236); 
+  text-decoration: none;
+} */
+.pagination a:hover {
+  color: rgb(86, 148, 202);
+}
 .pagination a.active {
   /* background-color: rgb(229, 235, 236); */
   text-decoration: none;
+  color: black;
 }
-
 .pagination span:last-child {
   font-weight: bold;
 }
