@@ -74,7 +74,19 @@
       <h1 class="govuk-heading-xl">Subsidy schemes</h1>
       <!-- Body header ends here -->
       <% if(noresult) { %>
-      <h2 class="govuk-heading-m">No subsidy schemes available</h2>
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+        data-module="govuk-error-summary">
+
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <%= nodata%>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+      <!-- <h2 class="govuk-heading-m"><%= nodata%></h2> -->
 
       <% if(dashboard_roles == 'Granting Authority Administrator' || dashboard_roles == 'BEIS Administrator') { %>
       <div class="govuk-grid-column-two-thirds"><a href="/addsubsidymeasures" class="govuk-button"
@@ -83,7 +95,8 @@
         </a>
       </div>
       <% } %>
-      <% } else { %>
+
+      <% }  %>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full" id="subsidy_search_text">
           <label class="govuk-label">
@@ -434,7 +447,7 @@
         <!-- Pagination ends here -->
         <!-- ********************** -->
       </form>
-      <% } %>
+
     </main>
   </div>
 

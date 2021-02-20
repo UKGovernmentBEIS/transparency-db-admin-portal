@@ -100,17 +100,29 @@
 
       <h1 class="govuk-heading-xl"> Subsidy awards</h1>
       <% if(noresult) { %>
-      <h2 class="govuk-heading-m">No subsidy awards available</h2>
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+        data-module="govuk-error-summary">
 
-      <a class="govuk-button" href="/addsubsidyaward" data-module="govuk-button">
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a><%= nodata%></a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+      <!-- <h2 class="govuk-heading-m"><%= nodata%></h2> -->
+
+      <!-- <a class="govuk-button" href="/addsubsidyaward" data-module="govuk-button">
         Add a new subsidy award
       </a>
 
       <a class="govuk-button" href="/bulkuploadsubsidy" data-module="govuk-button">
         Add multiple subsidy awards
-      </a>
+      </a> -->
 
-      <% } else { %>
+      <% } %>
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full govuk-grid-row">
@@ -483,7 +495,6 @@
           </div>
         </section>
       </form>
-      <% } %>
     </main>
   </div>
   <%- include('../partials/footer.ejs') %>

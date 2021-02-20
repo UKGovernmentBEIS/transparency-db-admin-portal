@@ -86,11 +86,15 @@ router.post("/", async (req, res) => {
     } else {
       end_page = 9;
     }
+    nodata = "";
+    noresult = false;
     res.render("bulkupload/mysubsidymeasures", {
       pageCount,
       previous_page,
       next_page,
       start_record,
+      noresult,
+      nodata,
       end_record,
       totalrows,
       current_page_active,
@@ -100,6 +104,14 @@ router.post("/", async (req, res) => {
       searchschemes,
     });
   } catch (err) {
+    if (err == "Error: Request failed with status code 404") {
+      noresult = true;
+      nodata = "No data available for filtered criteria";
+      res.render("bulkupload/mysubsidymeasures", {
+        noresult,
+        nodata,
+      });
+    }
     response_error_message = err;
     console.log("message error : " + err);
     console.log("response_error_message catch : " + response_error_message);

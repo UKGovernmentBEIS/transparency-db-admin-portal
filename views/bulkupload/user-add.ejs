@@ -163,10 +163,15 @@
                                 Granting Authority name
                             </label>
                             <!-- <div class="govuk-form-group govuk-grid-column-one-half govuk-padding-0"> -->
+                            <%  if(User_Role_Global == 'BEIS Administrator') { %>
                             <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
                                 type="text" id="GA_Name_User" name="GA_Name_User" <% if(GA_Name_User_Global) {%>
                                 value="<%= GA_Name_User_Global %>" <% } %>>
-
+                            <% } else { %>
+                            <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
+                                type="text" id="GA_Name_User" name="GA_Name_User" <% if(GA_Name_User_Global) {%>
+                                value="<%= GA_Name_User_Global %>" <% } %>>
+                            <% } %>
                         </div>
                         <div class="govuk-grid-column-one-third">
                             <div class="govuk-form-group govuk-grid-column-full govuk-padding-0 ">
