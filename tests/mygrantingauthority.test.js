@@ -58,7 +58,7 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
     ],
   };
 
-  axios.put.mockResolvedValue({
+  axios.post.mockResolvedValue({
     status: 200,
     data: {
       totalSearchResults: 10,
