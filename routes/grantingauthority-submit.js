@@ -81,7 +81,7 @@ router.post("/", async (req, res) => {
     } catch (err) {
       response_error_message = err;
       console.log("message error : " + err);
-      if (err.includes("417")) {
+      if (err.toString().includes("417")) {
         grantingAuthorityName_Error = true;
         grantingAuthorityName_Error_Msg = "Granting Authority already added";
         grantingAuthorityName_Global = req.body.GaName;

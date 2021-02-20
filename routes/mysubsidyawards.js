@@ -81,7 +81,7 @@ router.get("/", async (req, res) => {
       frontend_totalRecordsPerPage,
     });
   } catch (err) {
-    if (err.includes("404")) {
+    if (err == "Error: Request failed with status code 404") {
       noresult = true;
       res.render("bulkupload/mysubsidyawards", {
         noresult,
