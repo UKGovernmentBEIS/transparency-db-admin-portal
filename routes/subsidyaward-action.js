@@ -32,13 +32,20 @@ router.post("/", async (req, res) => {
     beis_url_accessmanagement + "/accessmanagement/" + awardnumber;
 
   try {
-    const awardapidata = await axios.put(awardendpoint, data);
+    const awardapidata = await axios.put(
+      awardendpoint,
+      data,
+      UserPrincileObjectGlobal
+    );
     console.log(`Status: ${awardapidata.status}`);
     console.log("Body: ", awardapidata.data);
     // fetchawarddetails = awardapidata.data;
 
     try {
-      const apidata = await axios.get(Award_search_URL);
+      const apidata = await axios.get(
+        Award_search_URL,
+        UserPrincileObjectGlobal
+      );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
       console.log("API_response_code: try" + API_response_code);

@@ -19,7 +19,10 @@ router.get("/", async (req, res) => {
     beis_url_accessmanagement + "/searchResults/award/" + awardnumber;
 
   try {
-    const awardapidata = await axios.get(awardendpoint);
+    const awardapidata = await axios.get(
+      awardendpoint,
+      UserPrincileObjectGlobal
+    );
     console.log(`Status: ${awardapidata.status}`);
     console.log("Body: ", awardapidata.data);
     fetchawarddetails = awardapidata.data;

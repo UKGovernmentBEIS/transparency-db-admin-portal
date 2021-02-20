@@ -16,7 +16,8 @@ router.get("/", async (req, res) => {
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   try {
     const awardapidata = await axios.get(
-      beis_url_accessmanagement + "/searchResults/award/" + awardnumber
+      beis_url_accessmanagement + "/searchResults/award/" + awardnumber,
+      UserPrincileObjectGlobal
     );
     console.log(`Status: ${awardapidata.status}`);
     console.log("Body: ", awardapidata.data);

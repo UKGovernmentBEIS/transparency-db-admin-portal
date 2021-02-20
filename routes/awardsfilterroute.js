@@ -43,7 +43,7 @@ router.get("/", async (req, res) => {
   console.log("Actual_URL  : " + Actual_URL);
 
   try {
-    const apidata = await axios.get(Actual_URL);
+    const apidata = await axios.get(Actual_URL, UserPrincileObjectGlobal);
     console.log(`Status: ${apidata.status}`);
     API_response_code = `${apidata.status}`;
     console.log("API_response_code: try" + API_response_code);

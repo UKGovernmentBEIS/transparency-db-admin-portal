@@ -50,21 +50,21 @@ router.get("/", async (req, res) => {
       "November",
       "December",
     ];
+    console.log("Scheme_Start_Date", Scheme_Start_Date);
+    // Scheme_Legal_Granting_Start_Date_Month =
+    //   month.indexOf(date[1]) + 1 < 10
+    //     ? "0" + (month.indexOf(date[1]) + 1)
+    //     : month.indexOf(date[1]) + 1;
+    // Scheme_Legal_Granting_Start_Date_Day = date[0];
+    // Scheme_Legal_Granting_Start_Date_Year = date[2];
 
-    Scheme_Legal_Granting_Start_Date_Month =
-      month.indexOf(date[1]) + 1 < 10
-        ? "0" + (month.indexOf(date[1]) + 1)
-        : month.indexOf(date[1]) + 1;
-    Scheme_Legal_Granting_Start_Date_Day = date[0];
-    Scheme_Legal_Granting_Start_Date_Year = date[2];
-
-    var date = Scheme_End_Date.split(" ");
-    Scheme_Legal_Granting_End_Date_Month =
-      month.indexOf(date[1]) + 1 < 10
-        ? "0" + (month.indexOf(date[1]) + 1)
-        : month.indexOf(date[1]) + 1;
-    Scheme_Legal_Granting_End_Date_Day = date[0];
-    Scheme_Legal_Granting_End_Date_Year = date[2];
+    // var date = Scheme_End_Date.split(" ");
+    // Scheme_Legal_Granting_End_Date_Month =
+    //   month.indexOf(date[1]) + 1 < 10
+    //     ? "0" + (month.indexOf(date[1]) + 1)
+    //     : month.indexOf(date[1]) + 1;
+    // Scheme_Legal_Granting_End_Date_Day = date[0];
+    // Scheme_Legal_Granting_End_Date_Year = date[2];
 
     res.render("bulkupload/subsidymeasure-editreview");
   } catch (err) {

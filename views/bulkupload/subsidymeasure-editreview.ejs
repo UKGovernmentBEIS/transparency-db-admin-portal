@@ -132,8 +132,8 @@
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Granting authority policy page summary </th>
                             <td class="govuk-table__cell">
-                                <a
-                                    href="<%= searchmeasuredetails.gaSubsidyWebLink %>"><%= searchmeasuredetails.gaSubsidyWebLinkDescription %></a>
+                                <a href="<%= searchmeasuredetails.gaSubsidyWebLink %>"
+                                    target="_blank"><%= searchmeasuredetails.gaSubsidyWebLinkDescription %></a>
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
@@ -142,15 +142,19 @@
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Start date</th>
-                            <td class="govuk-table__cell"><%= Scheme_Legal_Granting_Start_Date_Day %>
+                            <!-- <td class="govuk-table__cell"><%= Scheme_Legal_Granting_Start_Date_Day %>
                                 <%= Scheme_Legal_Granting_Start_Date_Month %>
-                                <%= Scheme_Legal_Granting_Start_Date_Year %></td>
+                                <%= Scheme_Legal_Granting_Start_Date_Year %></td> -->
+                            <td class="govuk-table__cell"><%= Scheme_Start_Date%></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">End date</th>
-                            <td class="govuk-table__cell"><%= Scheme_Legal_Granting_End_Date_Day %>
+                            <!-- <td class="govuk-table__cell"><%= Scheme_Legal_Granting_End_Date_Day %>
                                 <%= Scheme_Legal_Granting_End_Date_Month %>
-                                <%= Scheme_Legal_Granting_End_Date_Year %></td>
+                                <%= Scheme_Legal_Granting_End_Date_Year %></td> -->
+
+                            <td class="govuk-table__cell">
+                                <%= Scheme_End_Date%></td>
                         </tr>
                     </tbody>
                 </table>
@@ -163,10 +167,15 @@
                     <button class="govuk-button" data-module="govuk-button">
                         Back to subsidy schemes
                     </button>
-                    <a href="/cancelreviewsubsidymeasures?scheme=<%= searchmeasuredetails.scNumber %>"
+                    <% if(dashboard_roles != 'Granting Authority Encoder') { %>
+                    <a class="govuk-button govuk-button--secondary" href="/addsubsidyaward" data-module="govuk-button">
+                        Add a subsidy award to this scheme
+                    </a>
+                    <% } %>
+                    <!-- <a href="/cancelreviewsubsidymeasures?scheme=<%= searchmeasuredetails.scNumber %>"
                         class="govuk-link govuk-cancel-button-link ">
                         Cancel
-                    </a>
+                    </a> -->
                 </form>
 
                 <!-- <form action="" method="GET" class="govuk-grid-column-one-half"> -->
