@@ -27,6 +27,7 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Draft";
+  global.UserPrincileObjectGlobal = {};
   global.frontend_totalRecordsPerPage = 10;
   global.searchawards = {
     awards: [

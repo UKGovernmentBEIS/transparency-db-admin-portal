@@ -23,6 +23,9 @@ test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
   const req = mockRequest();
   global.dashboard_roles = "";
   const res = {};
+  global.nodata = "";
+  global.noresult = "";
+  global.UserPrincileObjectGlobal = {};
   global.beis_url_publicsearch =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Filter results by status";

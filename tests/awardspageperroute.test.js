@@ -47,6 +47,7 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
       },
     ],
   };
+  global.UserPrincileObjectGlobal = {};
   global.Award_search_text = "";
   global.pageCount = 10;
   global.current_page_active = 1;

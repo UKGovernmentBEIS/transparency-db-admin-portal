@@ -24,7 +24,9 @@ const res = {};
 test("Unit testing for hide filter route Test for GET call", (done) => {
   const req = mockRequest();
   global.dashboard_roles = "";
+  global.nodata = "";
   global.noresult = "";
+  global.UserPrincileObjectGlobal = {};
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Draft";
@@ -88,7 +90,9 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
 test("Unit testing for filter route Test for GET call", (done) => {
   const req = mockRequest();
   global.dashboard_roles = "";
+  global.nodata = "";
   global.noresult = "";
+  global.UserPrincileObjectGlobal = {};
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Filter results by status";
