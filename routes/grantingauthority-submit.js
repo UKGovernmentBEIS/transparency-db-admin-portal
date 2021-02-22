@@ -49,33 +49,40 @@ router.post("/", async (req, res) => {
       // var azGroupName = gaName;
       // console.log("granting authority", env[1]);
       // if (env[1] != "prod") env[1] + "_" + gaName;
-      var userPrincipleRequest = "";
-      if (dashboard_roles == "BEIS Administrator") {
-        userPrincipleRequest =
-          '{"userName": "TEST","password": "password123","role": "BEIS Administrator","grantingAuthorityGroupId": "123","grantingAuthorityGroupName": "test"}';
-      } else if (dashboard_roles == "Granting Authority Approver") {
-        userPrincipleRequest =
-          '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-          dashboard_ga_name +
-          '"}';
-      } else if (dashboard_roles == "Granting Authority Approver") {
-        userPrincipleRequest =
-          '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-          dashboard_ga_name +
-          '"}';
-      } else if (dashboard_roles == "Granting Authority Encoder") {
-        userPrincipleRequest =
-          '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Encoder","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-          dashboard_ga_name +
-          '"}';
-      }
+      var userPrincipleRequest = new Object();
+      userPrincipleRequest.password = "password123";
+      userPrincipleRequest.role = dashboard_roles;
+      userPrincipleRequest.grantingAuthorityGroupId = dashbaord_ga_ID;
+      userPrincipleRequest.grantingAuthorityGroupName = dashboard_ga_name;
 
-      console.log("userPrincipleRequest", userPrincipleRequest);
+      if (dashboard_roles == "BEIS Administrator") {
+        userPrincipleRequest.userName = "TEST";
+        // userPrincipleRequest =
+        //   '{"userName": "TEST","password": "password123","role": "BEIS Administrator","grantingAuthorityGroupId": "123","grantingAuthorityGroupName": "test"}';
+      } else if (dashboard_roles == "Granting Authority Approver") {
+        userPrincipleRequest.userName = "SYSTEM";
+        // userPrincipleRequest =
+        //   '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
+        //   dashboard_ga_name +
+        //   '"}';
+      } else if (dashboard_roles == "Granting Authority Approver") {
+        userPrincipleRequest.userName = "SYSTEM";
+        // userPrincipleRequest =
+        //   '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
+        //   dashboard_ga_name +
+        //   '"}';
+      } else if (dashboard_roles == "Granting Authority Encoder") {
+        userPrincipleRequest.userName = "SYSTEM";
+        // userPrincipleRequest =
+        //   '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Encoder","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
+        //   dashboard_ga_name +
+        //   '"}';
+      }
+      console.log("userPrincipleRequest", JSON.stringify(userPrincipleRequest));
       const apidata = await axios.post(
         "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority",
         {
           name: req.body.GaName,
-          // az_group_name: azGroupName,
         },
         {
           headers: {
