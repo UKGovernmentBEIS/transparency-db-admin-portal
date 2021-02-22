@@ -64,7 +64,7 @@
         <div class="govuk-grid-column-one-half govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.awardUserActionCount.totalDraftAward %>
+              <%= dashboardawards.awardUserActionCount.totalRejectedAward %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
               <a href="/mysubsidyawards?sort=Rejected" class="govuk-description-text">Rejected</a></p>
@@ -97,7 +97,7 @@
           <div class="govuk-grid-column-one-third govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                <%= dashboardawards.subsidyMeasureUserActionCount.totalSubsidyMeasures %> </legend>
+                <%= dashboardawards.subsidyMeasureUserActionCount.totalSubsidyScheme %> </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text"><a
                   href="/mysubsidymeasures" class="govuk-description-text">Total subsidy schemes </a> </p>
             </div>
@@ -121,7 +121,7 @@
           <div class="govuk-grid-column-one-third govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                <%= dashboardawards.subsidyMeasureUserActionCount.totalDraftSubsidyMeasures %>
+                <%= dashboardawards.subsidyMeasureUserActionCount.totalActiveScheme %>
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
                 <a href="/mysubsidymeasures?sort=Active" class="govuk-description-text">Active</a></p>
@@ -130,7 +130,7 @@
           <div class="govuk-grid-column-one-third govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                <%= dashboardawards.subsidyMeasureUserActionCount.totalDeletedSubsidyMeasures %>
+                <%= dashboardawards.subsidyMeasureUserActionCount.totalInactiveScheme %>
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
                 <a href="/mysubsidymeasures?sort=Inactive" class="govuk-description-text">Inactive</a></p>
@@ -160,7 +160,7 @@
                 20
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-                <a href="/userselect" class="govuk-description-text">All users in Cardiff Council</a></p>
+                <a href="/userselect" class="govuk-description-text">All users in <%=dashboard_ga_name%></a></p>
             </div>
 
           </div>

@@ -73,6 +73,7 @@ router.get("/", async (req, res) => {
     }
     nodata = "";
     noresult = false;
+    noawards = false;
     res.render("bulkupload/mysubsidyawards", {
       pageCount,
       previous_page,
@@ -80,6 +81,7 @@ router.get("/", async (req, res) => {
       start_record,
       end_record,
       nodata,
+      noawards,
       noresult,
       totalrows,
       current_page_active,
@@ -88,10 +90,12 @@ router.get("/", async (req, res) => {
   } catch (err) {
     if (err == "Error: Request failed with status code 404") {
       noresult = true;
+      noawards = false;
       nodata = "No data available for filtered criteria";
       res.render("bulkupload/mysubsidyawards", {
         noresult,
         nodata,
+        noawards,
       });
     }
     response_error_message = err;

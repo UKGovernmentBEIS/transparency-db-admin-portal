@@ -46,6 +46,8 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
       },
     ],
   };
+  global.noscheme = "";
+  global.nodata = "";
   global.noresult = "";
   global.Search_Text_Global = "";
   global.sorting_order_pass = "";
@@ -92,6 +94,8 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
   const res = {};
+  global.noscheme = "";
+  global.nodata = "";
   global.noresult = "";
   global.beis_url_searchscheme = "";
   global.beis_url_accessmanagement = "";
