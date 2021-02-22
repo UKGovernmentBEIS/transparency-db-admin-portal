@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
   console.log("Award_search_URL   : " + Award_search_URL);
 
   awards_status = "Filter results by status";
-
+  console.log("UserPrincileObjectGlobal", UserPrincileObjectGlobal);
   try {
     const apidata = await axios.get(Award_search_URL, UserPrincileObjectGlobal);
     console.log(`Status: ${apidata.status}`);
@@ -73,12 +73,14 @@ router.post("/", async (req, res) => {
     }
     nodata = "";
     noresult = false;
+    noawards = false;
     res.render("bulkupload/mysubsidyawards", {
       pageCount,
       previous_page,
       next_page,
       start_record,
       nodata,
+      noawards,
       noresult,
       end_record,
       totalrows,
@@ -88,10 +90,12 @@ router.post("/", async (req, res) => {
   } catch (err) {
     if (err == "Error: Request failed with status code 404") {
       noresult = true;
+      noawards = false;
       nodata = "No data available for searched criteria";
       res.render("bulkupload/mysubsidyawards", {
         noresult,
         nodata,
+        noawards,
       });
     }
     response_error_message = err;

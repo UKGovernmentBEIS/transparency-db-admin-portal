@@ -99,7 +99,7 @@
       </div>
 
       <h1 class="govuk-heading-xl"> Subsidy awards</h1>
-      <% if(noresult) { %>
+      <% if(noresult && noawards ) { %>
       <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
         data-module="govuk-error-summary">
 
@@ -114,16 +114,29 @@
       </div>
       <!-- <h2 class="govuk-heading-m"><%= nodata%></h2> -->
 
-      <!-- <a class="govuk-button" href="/addsubsidyaward" data-module="govuk-button">
+      <a class="govuk-button" href="/addsubsidyaward" data-module="govuk-button">
         Add a new subsidy award
       </a>
 
       <a class="govuk-button" href="/bulkuploadsubsidy" data-module="govuk-button">
         Add multiple subsidy awards
-      </a> -->
+      </a>
 
+      <% } else { %>
+      <% if(noresult) { %>
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+        data-module="govuk-error-summary">
+
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a><%= nodata%></a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
       <% } %>
-
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full govuk-grid-row">
           <label class="govuk-label govuk-grid-column-full">
@@ -495,6 +508,7 @@
           </div>
         </section>
       </form>
+      <% } %>
     </main>
   </div>
   <%- include('../partials/footer.ejs') %>

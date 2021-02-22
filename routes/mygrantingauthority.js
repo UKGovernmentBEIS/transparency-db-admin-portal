@@ -185,6 +185,7 @@ router.get("/", async (req, res) => {
       data,
       UserPrincileObjectGlobal
     );
+    console.log("apidata", apidata.data);
     var maxGAId = [];
     var grantingAuthorityName = "";
     API_response_code = `${apidata.status}`;
@@ -329,9 +330,10 @@ router.post("/", async (req, res) => {
   try {
     const apidata = await axios.post(
       "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/searchGrantingAuthority",
-      data
+      data,
+      UserPrincileObjectGlobal
     );
-    console.log("apidata", apidata);
+    console.log("apidata", apidata.data);
     API_response_code = `${apidata.status}`;
     grantingAuthorityList = apidata.data;
     totalrows = grantingAuthorityList.totalSearchResults;
