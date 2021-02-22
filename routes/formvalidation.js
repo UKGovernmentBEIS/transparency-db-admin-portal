@@ -1,6 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const request = require("request");
+const axios = require("axios");
+
+const FormData = require("form-data");
+const fs = require("fs");
+const path = require("path");
 
 router.get("/", (req, res) => {
   let isFileUploadEmpty = false;
@@ -20,7 +25,7 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   let isFileUploadEmpty = false;
 
   res.set("X-Frame-Options", "DENY");
@@ -30,12 +35,7 @@ router.post("/", (req, res) => {
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
   console.log("formvalidation");
-
-  setTimeout(() => {
-    if (req.files == null) {
-      console.log("status:" + req.files);
-    }
-  }, 3000);
+  API_data_received = "no";
 
   if (req.files == null) {
     isFileUploadEmpty = true;
@@ -47,29 +47,6 @@ router.post("/", (req, res) => {
     var file_upload_name = file.name;
     var filedata = file.data;
     var validationerrors = [];
-    console.log("testfilename=" + file.name);
-    console.log("file size:" + file.size);
-    console.log("content type:" + file.type);
-    // var errorsvalidationpass =[];
-
-    if (file.size < 70000) {
-
-      timeout_intervel = 15000;
-    }
-
-    else if (file.size > 70000 && file.size < 120000) {
-      timeout_intervel = 15000;
-
-    }
-
-    else if ( file.size > 120000 && file.size < 200000) {
-      timeout_intervel = 15000;
-    }
-
-    else {
-      timeout_intervel = 20000;
-    }
-
 
     function toBuffer(ab) {
       var buffer = new Buffer.alloc(ab.byteLength);
@@ -82,30 +59,19 @@ router.post("/", (req, res) => {
 
     var url = beis_url_publishing + "/uploadBulkAwards";
 
+    // var config = {
+
+    //   headers: {
+    //   "userPrinciple": UserPrincipleObject }
+    // }
     var errorsvalidationpass;
-    var req = request.post(url, function (err, resp, body) {
-      if (err) {
-        console.log(
-          "Application Programming Interface (API) is Down at this moment"
-        );
-      } else {
-        validationerrors = JSON.parse(body);
 
-        console.log("URL: " + body);
-        console.log("type:" + validationerrors);
-        console.log(validationerrors.errorRows);
-        errorsvalidationpass = JSON.stringify(
-          validationerrors.validationErrorResult
-        );
-        console.log("type:" + errorsvalidationpass);
-      }
-    });
-    var form = req.form();
+    // console.log("file path" + file.path);
 
-    form.append("file", toBuffer(file.data), {
-      filename: file.name,
-      contentType: file.type,
-    });
+    // form1.append("file", toBuffer(file.data), {
+    //   filename: file.name,
+    //   contentType: file.type,
+    // });
 
     let isFileUploadEmpty = false;
     let isUploadSectionIsActive = true;
@@ -146,24 +112,51 @@ router.post("/", (req, res) => {
 
     console.log("isUploadSectionIsActive :" + isUploadSectionIsActive);
 
-    setTimeout(() => {
-      if (validationerrors.errorRows == 0) {
-        isXlsxOk = true;
-      } else {
-        isXlsxOk = false;
+    var req = request.post(
+      url,
+      UserPrincileObjectGlobal,
+      function (err, resp, body) {
+        if (err) {
+          console.log(
+            "Application Programming Interface (API) is Down at this moment"
+          );
+        } else {
+          validationerrors = JSON.parse(body);
+
+          console.log("URL: " + body);
+          console.log("type:" + validationerrors);
+          console.log(validationerrors.errorRows);
+          API_data_received = "yes";
+          errorsvalidationpass = JSON.stringify(
+            validationerrors.validationErrorResult
+          );
+          console.log("type:" + errorsvalidationpass);
+
+          if (validationerrors.errorRows == 0) {
+            isXlsxOk = true;
+          } else {
+            isXlsxOk = false;
+          }
+          res.render("bulkupload/bulkuploadsubsidy", {
+            file_upload_name,
+            isUploadSectionIsActive,
+            isFileUploadEmpty,
+            isNotCsvOrExcel,
+            isExcelFormat,
+            isCsvFormat,
+            isXlsxOk,
+            validationerrors,
+            errorsvalidationpass,
+          });
+        }
       }
-      res.render("bulkupload/bulkuploadsubsidy", {
-        file_upload_name,
-        isUploadSectionIsActive,
-        isFileUploadEmpty,
-        isNotCsvOrExcel,
-        isExcelFormat,
-        isCsvFormat,
-        isXlsxOk,
-        validationerrors,
-        errorsvalidationpass,
-      });
-    }, 15000);
+    );
+    var form = req.form();
+
+    form.append("file", toBuffer(file.data), {
+      filename: file.name,
+      contentType: file.type,
+    });
   }
 });
 
