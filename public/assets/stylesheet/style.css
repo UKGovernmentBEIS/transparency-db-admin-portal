@@ -74,7 +74,7 @@ table tbody tr:hover{
 .pagination a {
   border: solid 1px #ffffff;
   padding: 8px 10px;
-  text-decoration: underline;
+  text-decoration: none;
   color: #005da6;
 }
 .govuk-filter-input-position-div {

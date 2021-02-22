@@ -88,11 +88,10 @@
         </div>
       </div>
       <% if(dashboard_roles == 'Granting Authority Administrator' || dashboard_roles == 'BEIS Administrator') { %>
-      <div class="govuk-grid-column-two-thirds"><a href="/addsubsidymeasures" class="govuk-button"
-          data-module="govuk-button">
-          Add a new subsidy scheme
-        </a>
-      </div>
+      <a href="/addsubsidymeasures" class="govuk-button" data-module="govuk-button">
+        Add a new subsidy scheme
+      </a>
+
       <% } %>
       <% } else {%>
       <!-- <h2 class="govuk-heading-m"><%= nodata%></h2> -->
@@ -105,18 +104,15 @@
             <li>
               <%= nodata%>
             </li>
-
           </ul>
-
         </div>
       </div>
       <% } %>
       <% if(dashboard_roles == 'Granting Authority Administrator' || dashboard_roles == 'BEIS Administrator') { %>
-      <div class="govuk-grid-column-two-thirds"><a href="/addsubsidymeasures" class="govuk-button"
-          data-module="govuk-button">
-          Add a new subsidy scheme
-        </a>
-      </div>
+      <a href="/addsubsidymeasures" class="govuk-button" data-module="govuk-button">
+        Add a new subsidy scheme
+      </a>
+
       <% } %>
 
 
