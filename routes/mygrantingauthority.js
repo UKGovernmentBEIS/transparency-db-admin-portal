@@ -157,8 +157,6 @@ router.get("/", async (req, res) => {
       grantingAuthorityName = grantingAuthorityName_Global;
     else grantingAuthorityName = grantingAuthorityID_global;
 
-    console.log("grantingAuthorityName", grantingAuthorityName);
-
     data = {
       grantingAuthorityName: grantingAuthorityName_Global,
       grantingAuthorityID: grantingAuthorityID_global,
@@ -193,15 +191,15 @@ router.get("/", async (req, res) => {
       UserPrincileObjectGlobal
     );
     console.log("apidata", apidata.data);
-    var maxGAId = [];
+    // var maxGAId = [];
     var grantingAuthorityName = "";
     API_response_code = `${apidata.status}`;
     grantingAuthorityList = apidata.data;
     totalrows = grantingAuthorityList.totalSearchResults;
-    apidata.data.gaList.forEach(function (item) {
-      maxGAId.push(item.grantingAuthorityId);
-    });
-    var nextId = Math.max(...maxGAId);
+    // apidata.data.gaList.forEach(function (item) {
+    //   maxGAId.push(item.grantingAuthorityId);
+    // });
+    // var nextId = Math.max(...maxGAId);
     if (req.query.hasOwnProperty("page")) {
       var current_page = req.query.page;
       if (current_page == 1) {
@@ -277,7 +275,6 @@ router.get("/", async (req, res) => {
       pageCount,
       previous_page,
       next_page,
-      nextId,
       month,
       start_record,
       grantingAuthorityList,
