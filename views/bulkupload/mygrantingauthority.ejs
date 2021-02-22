@@ -142,7 +142,6 @@
 
               <ul class="pagination pagination-style-modified govuk-!-width-one-half"
                 style="display: inline;  margin: 0;">
-                <!-- <form class="govuk-grid-column-one-third" action="/awardspageperroute" method="GET"> -->
                 <% if(frontend_totalRecordsPerPage  == 10) { %>
                 <a aria-label="10 records per page " class="round btn-page active"
                   href="/mygrantingauthority/?totalRecordsPerPage=10">10</a>
@@ -174,28 +173,7 @@
                   href="/mygrantingauthority/?totalRecordsPerPage=100">100</a>
                 <% }  %>
               </ul>
-              <!-- <select class="govuk-select" name="totalRecordsPerPage" onchange="this.form.submit()">
-                  <% if(frontend_totalRecordsPerPage == '10') { %>
-                  <option value="10" selected>10</option>
-                  <% } else {%>
-                  <option value="10">10</option>
-                  <% } %>
-                  <% if(frontend_totalRecordsPerPage == '20') { %>
-                  <option value="20" selected>20</option>
-                  <% } else {%>
-                  <option value="20">20</option>
-                  <% } %>
-                  <% if(frontend_totalRecordsPerPage == '50') { %>
-                  <option value="50" selected>50</option>
-                  <% } else {%>
-                  <option value="50">50</option>
-                  <% } %>
-                  <% if(frontend_totalRecordsPerPage == '100') { %>
-                  <option value="100" selected>100</option>
-                  <% } else {%>
-                  <option value="100">100</option>
-                  <% } %>
-                </select> -->
+
             </div>
           </div>
         </div>
