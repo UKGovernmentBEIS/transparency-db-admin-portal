@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-
   // res.set("X-Frame-Options", "DENY");
   // res.set("X-Content-Type-Options", "nosniff");
   // res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -28,13 +27,12 @@ router.get("/", (req, res) => {
   SubsidyArraySize = 0;
 
   Subsidy_Adhoc_Global = "";
-  Granting_Authority_Name_Global = "";
+  Granting_Authority_Name_Measure_Global = "";
   Subsidy_Measure_Title_Global = "";
   Legal_Basis_Global = "";
   Granting_Authority_URL_Global = "";
   Granting_Authority_Policy_Global = "";
   Budget_Global = "";
-  Granting_Authority_Name_Global = "";
   Scheme_Start_Day_Global = "";
   Scheme_Start_Month_Global = "";
   Scheme_Start_Year_Global = "";

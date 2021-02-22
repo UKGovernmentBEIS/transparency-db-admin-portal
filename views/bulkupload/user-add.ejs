@@ -94,12 +94,15 @@
                     </div>
                     <div class="govuk-radios govuk-form-group">
                         <div class="govuk-radios__item">
-                            <%  if(User_Role_Global == 'BEIS Administrator') { %>
+                            <%  if(User_Role_Global == 'BEIS Administrator' || dashboard_roles == 'BEIS Administrator') { %>
                             <input class="govuk-radios__input" id="BEISAdmin" name="userRole" type="radio"
                                 value="BEIS Administrator" checked>
-                            <% } else if(User_Role_Global != 'BEIS Administrator'){ %>
+                            <% } if(dashboard_roles != 'BEIS Administrator'){ %>
                             <input class="govuk-radios__input" id="BEISAdmin" name="userRole" type="radio"
                                 value="BEIS Administrator" disabled>
+                            <% } else { %>
+                            <input class="govuk-radios__input" id="BEISAdmin" name="userRole" type="radio"
+                                value="BEIS Administrator">
                             <% } %>
                             <label class="govuk-label govuk-radios__label" for="BEISAdmin">
                                 BEIS Administrator

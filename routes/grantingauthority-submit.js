@@ -57,50 +57,36 @@ router.post("/", async (req, res) => {
 
       if (dashboard_roles == "BEIS Administrator") {
         userPrincipleRequest.userName = "TEST";
-        // userPrincipleRequest =
-        //   '{"userName": "TEST","password": "password123","role": "BEIS Administrator","grantingAuthorityGroupId": "123","grantingAuthorityGroupName": "test"}';
       } else if (dashboard_roles == "Granting Authority Approver") {
         userPrincipleRequest.userName = "SYSTEM";
-        // userPrincipleRequest =
-        //   '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-        //   dashboard_ga_name +
-        //   '"}';
       } else if (dashboard_roles == "Granting Authority Approver") {
         userPrincipleRequest.userName = "SYSTEM";
-        // userPrincipleRequest =
-        //   '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-        //   dashboard_ga_name +
-        //   '"}';
       } else if (dashboard_roles == "Granting Authority Encoder") {
         userPrincipleRequest.userName = "SYSTEM";
-        // userPrincipleRequest =
-        //   '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Encoder","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-        //   dashboard_ga_name +
-        //   '"}';
       }
-      console.log("userPrincipleRequest", JSON.stringify(userPrincipleRequest));
-      const apidata = await axios.post(
-        "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority",
-        {
-          name: req.body.GaName,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json;charset=utf-8",
-            userPrinciple: userPrincipleRequest,
-          },
-        }
-      );
-      const gaID = apidata.gaId;
-      console.log("Status : " + JSON.stringify(apidata));
       res.set("X-Frame-Options", "DENY");
-      res.set("X-Content-Type-Options", "nosniff");
       res.set("Content-Security-Policy", 'frame-ancestors "self"');
       res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
       res.set(
         "Strict-Transport-Security",
         "max-age=31536000; includeSubDomains"
       );
+      console.log("userPrincipleRequest", JSON.stringify(userPrincipleRequest));
+      const apidata = await axios.post(
+        "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority",
+        {
+          headers: {
+            userPrinciple: JSON.stringify(userPrincipleRequest),
+            "Content-Type": "application/json;charset=utf-8",
+          },
+        },
+        {
+          name: req.body.GaName,
+        }
+      );
+      const gaID = apidata.gaId;
+      console.log("Status : " + JSON.stringify(apidata));
+
       const review = "";
       res.render("bulkupload/grantingauthority-addsuccessfully", {
         gaID,

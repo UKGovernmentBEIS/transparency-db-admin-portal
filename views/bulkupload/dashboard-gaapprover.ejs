@@ -73,7 +73,7 @@
         <!-- <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.awardUserActionCount.totalDeletedAward %>
+              <%= dashboardawards.awardUserActionCount.totalInactiveAward %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
               Inactive</p>
@@ -157,7 +157,7 @@
           <div class="govuk-grid-column-one-half govuk-charts govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                20
+                <%= gaTotalCount_Global %>
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
                 <a href="/userselect" class="govuk-description-text">All users in <%=dashboard_ga_name%></a></p>
@@ -167,7 +167,7 @@
           <div class="govuk-grid-column-one-half govuk-charts govuk-form-group">
             <div class="govuk-background">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                16
+                <%=gaEncoderCount_Global%>
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
                 Encoders</p>
