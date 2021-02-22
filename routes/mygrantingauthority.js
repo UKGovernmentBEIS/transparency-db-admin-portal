@@ -9,9 +9,11 @@ router.get("/", async (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   req.query = JSON.parse(JSON.stringify(req.query));
-  frontend_totalRecordsPerPage = 10;
+  // frontend_totalRecordsPerPage = 10;
 
   var data = {};
+  if (req.query.hasOwnProperty("totalRecordsPerPage"))
+    frontend_totalRecordsPerPage = req.query.totalRecordsPerPage;
   if (req.query.hasOwnProperty("status")) status = req.query.status;
   else status = "";
   if (req.query.hasOwnProperty("sort")) {
@@ -151,10 +153,15 @@ router.get("/", async (req, res) => {
       previous_page = current_page - 1;
       next_page = current_page + 1;
     }
+    if (grantingAuthorityName_Global)
+      grantingAuthorityName = grantingAuthorityName_Global;
+    else grantingAuthorityName = grantingAuthorityID_global;
+
+    console.log("grantingAuthorityName", grantingAuthorityName);
 
     data = {
-      grantingAuthorityName: "",
-      grantingAuthorityID: "",
+      grantingAuthorityName: grantingAuthorityName_Global,
+      grantingAuthorityID: grantingAuthorityID_global,
       pageNumber: current_page,
       status: status,
       totalRecordsPerPage: frontend_totalRecordsPerPage,
@@ -173,7 +180,7 @@ router.get("/", async (req, res) => {
       grantingAuthorityID: "",
       pageNumber: 1,
       status: status,
-      totalRecordsPerPage: frontend_totalRecordsPerPage,
+      totalRecordsPerPage: 10,
       sortBy: [""],
     };
   }
@@ -251,12 +258,27 @@ router.get("/", async (req, res) => {
         end_page = 9;
       }
     }
+    var month = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
     noresult = false;
     res.render("bulkupload/mygrantingauthority", {
       pageCount,
       previous_page,
       next_page,
       nextId,
+      month,
       start_record,
       grantingAuthorityList,
       status,
@@ -309,19 +331,29 @@ router.post("/", async (req, res) => {
   status_arrow = "upanddown";
   created_on_arrow = "downdecending";
   last_modified_arrow = "upanddown";
-
+  grantingAuthorityName_Global = "";
+  grantingAuthorityID_global = "";
   if (req.body.hasOwnProperty("totalRecordsPerPage"))
     frontend_totalRecordsPerPage = req.body.totalRecordsPerPage;
   if (req.body.hasOwnProperty("status")) status = req.body.status;
 
   if (req.body.hasOwnProperty("grantingAuthorityName")) {
     grantingAuthority = gatype.test(req.body.grantingAuthorityName);
-    if (grantingAuthority) grantingAuthorityID = req.body.grantingAuthorityName;
-    else grantingAuthorityName = req.body.grantingAuthorityName;
+    if (grantingAuthority) {
+      grantingAuthorityID_global = req.body.grantingAuthorityName;
+      grantingAuthorityName = req.body.grantingAuthorityName;
+      grantingAuthorityName_Global = "";
+    }
+    // grantingAuthorityID_global = req.body.grantingAuthorityName;
+    else {
+      grantingAuthorityID_global = "";
+      grantingAuthorityName_Global = req.body.grantingAuthorityName;
+      grantingAuthorityName = req.body.grantingAuthorityName;
+    }
   }
   const data = {
-    grantingAuthorityName: grantingAuthorityName,
-    grantingAuthorityID: grantingAuthorityID,
+    grantingAuthorityName: grantingAuthorityName_Global,
+    grantingAuthorityID: grantingAuthorityID_global,
     pageNumber: 1,
     status: sort,
     totalRecordsPerPage: frontend_totalRecordsPerPage,
@@ -360,12 +392,27 @@ router.post("/", async (req, res) => {
     // });
     // var nextId = Math.max(...maxGAId);
     noresult = false;
+    var month = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
     res.render("bulkupload/mygrantingauthority", {
       pageCount,
       previous_page,
       next_page,
       start_record,
       // nextId,
+      month,
       end_record,
       grantingAuthorityName,
       status,

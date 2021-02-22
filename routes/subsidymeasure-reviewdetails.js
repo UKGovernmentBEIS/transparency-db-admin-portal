@@ -51,13 +51,12 @@ router.post("/", (req, res) => {
   console.log("  Subsidy_Adhoc :" + Subsidy_Adhoc);
 
   Subsidy_Adhoc_Global = Subsidy_Adhoc;
-  Granting_Authority_Name_Global = Granting_Authority_Name;
+  Granting_Authority_Name_Measure_Global = Granting_Authority_Name;
   Subsidy_Measure_Title_Global = Subsidy_Measure_Title;
   Legal_Basis_Global = Legal_Basis;
   Granting_Authority_URL_Global = Granting_Authority_URL;
   Granting_Authority_Policy_Global = Granting_Authority_Policy;
   Budget_Global = Budget;
-  Granting_Authority_Name_Global = Granting_Authority_Name;
   Scheme_Start_Day_Global = scheme_issued_start_day;
   Scheme_Start_Month_Global = scheme_issued_start_month;
   Scheme_Start_Year_Global = scheme_issued_start_year;
@@ -66,22 +65,26 @@ router.post("/", (req, res) => {
   Scheme_End_Year_Global = scheme_issued_end_year;
 
   console.log("Subsidy_Adhoc_Global :" + Subsidy_Adhoc_Global);
-  console.log("Granting_Authority_Name_Global :" + Granting_Authority_Name_Global);
+  console.log(
+    "Granting_Authority_Name_Measure_Global :" +
+      Granting_Authority_Name_Measure_Global
+  );
   console.log("Subsidy_Measure_Title_Global :" + Subsidy_Measure_Title_Global);
-  console.log("Legal_Basis_Global  :" + Legal_Basis_Global );
-  console.log("Granting_Authority_URL_Global :" + Granting_Authority_URL_Global);
-  console.log("Granting_Authority_Policy_Global :" + Granting_Authority_Policy_Global);
+  console.log("Legal_Basis_Global  :" + Legal_Basis_Global);
+  console.log(
+    "Granting_Authority_URL_Global :" + Granting_Authority_URL_Global
+  );
+  console.log(
+    "Granting_Authority_Policy_Global :" + Granting_Authority_Policy_Global
+  );
   console.log("Budget_Global :" + Budget_Global);
-  console.log("Granting_Authority_Name_Global:" + Granting_Authority_Name_Global);
+
   console.log("Scheme_Start_Day_Global :" + Scheme_Start_Day_Global);
   console.log("Scheme_Start_Month_Global :" + Scheme_Start_Month_Global);
-  console.log("Scheme_Start_Year_Global  :" + Scheme_Start_Year_Global );
+  console.log("Scheme_Start_Year_Global  :" + Scheme_Start_Year_Global);
   console.log("Scheme_End_Day_Global :" + Scheme_End_Day_Global);
   console.log("Scheme_End_Month_Global :" + Scheme_End_Month_Global);
-  console.log("Scheme_End_Year_Global  :" + Scheme_End_Year_Global );
-
-
- 
+  console.log("Scheme_End_Year_Global  :" + Scheme_End_Year_Global);
 
   if (scheme_issued_start_month == 1) {
     GetMonthName = "January";
@@ -263,7 +266,7 @@ router.post("/", (req, res) => {
       SubsidyFocus.push("#scheme_issued_start_day");
       // Additem = Additem + 1;
     }
-    
+
     if (
       scheme_issued_end_day == 31 &&
       (scheme_issued_end_month == parseInt("02", 8) ||
@@ -328,7 +331,6 @@ router.post("/", (req, res) => {
       // Additem = Additem + 1;
     }
 
-
     var SubsidyArraySize = SubsidyErrors.length;
 
     if (
@@ -350,7 +352,7 @@ router.post("/", (req, res) => {
         Subsidy_Measure_Title_Global,
         Subsidy_Adhoc_Global,
 
-        Granting_Authority_Name_Global,
+        Granting_Authority_Name_Measure_Global,
         Scheme_Start_Day_Global,
         Scheme_Start_Month_Global,
         Scheme_Start_Year_Global,
@@ -389,7 +391,7 @@ router.post("/", (req, res) => {
         Granting_Authority_URL_Global,
         Granting_Authority_Policy_Global,
         Budget_Global,
-        Granting_Authority_Name_Global,
+        Granting_Authority_Name_Measure_Global,
         Scheme_Start_Day_Global,
         Scheme_Start_Month_Global,
         Scheme_Start_Year_Global,

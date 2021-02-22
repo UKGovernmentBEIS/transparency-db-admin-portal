@@ -49,30 +49,44 @@ router.post("/", async (req, res) => {
       // var azGroupName = gaName;
       // console.log("granting authority", env[1]);
       // if (env[1] != "prod") env[1] + "_" + gaName;
+      var userPrincipleRequest = new Object();
+      userPrincipleRequest.password = "password123";
+      userPrincipleRequest.role = dashboard_roles;
+      userPrincipleRequest.grantingAuthorityGroupId = dashbaord_ga_ID;
+      userPrincipleRequest.grantingAuthorityGroupName = dashboard_ga_name;
 
-      const apidata = await axios.post(
-        "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority",
-        {
-          name: req.body.GaName,
-          // az_group_name: azGroupName,
-        },
-        UserPrincileObjectGlobal,
-        {
-          headers: {
-            "Content-Type": "application/json;charset=utf-8",
-          },
-        }
-      );
-      const gaID = apidata.gaId;
-      console.log("Status : " + apidata.gaId);
+      if (dashboard_roles == "BEIS Administrator") {
+        userPrincipleRequest.userName = "TEST";
+      } else if (dashboard_roles == "Granting Authority Approver") {
+        userPrincipleRequest.userName = "SYSTEM";
+      } else if (dashboard_roles == "Granting Authority Approver") {
+        userPrincipleRequest.userName = "SYSTEM";
+      } else if (dashboard_roles == "Granting Authority Encoder") {
+        userPrincipleRequest.userName = "SYSTEM";
+      }
       res.set("X-Frame-Options", "DENY");
-      res.set("X-Content-Type-Options", "nosniff");
       res.set("Content-Security-Policy", 'frame-ancestors "self"');
       res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
       res.set(
         "Strict-Transport-Security",
         "max-age=31536000; includeSubDomains"
       );
+      console.log("userPrincipleRequest", JSON.stringify(userPrincipleRequest));
+      const apidata = await axios.post(
+        "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority",
+        {
+          headers: {
+            userPrinciple: JSON.stringify(userPrincipleRequest),
+            "Content-Type": "application/json;charset=utf-8",
+          },
+        },
+        {
+          name: req.body.GaName,
+        }
+      );
+      const gaID = apidata.gaId;
+      console.log("Status : " + JSON.stringify(apidata));
+
       const review = "";
       res.render("bulkupload/grantingauthority-addsuccessfully", {
         gaID,

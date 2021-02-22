@@ -71,6 +71,8 @@ router.post("/", async (req, res) => {
   //   },
   // };
 
+  console.log("GA_Object_Id", GA_Object_Id);
+
   try {
     const apidata = await axios.get(
       beis_url_accessmanagement + "/usermanagement/groups/" + GA_Object_Id,

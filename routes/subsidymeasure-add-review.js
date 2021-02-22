@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
     Granting_Authority_URL_Global,
     Granting_Authority_Policy_Global,
     Budget_Global,
-    Granting_Authority_Name_Global,
+    Granting_Authority_Name_Measure_Global,
     Scheme_Start_Day_Global,
     Scheme_Start_Month_Global,
     Scheme_Start_Year_Global,

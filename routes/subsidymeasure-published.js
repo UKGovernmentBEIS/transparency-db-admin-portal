@@ -52,10 +52,10 @@ router.post("/", async (req, res) => {
   scheme_issued_end_month_Error = false;
   scheme_issued_end_day_Error = false;
 
-  Granting_Authority_Name_Global = "Big Lottery Fund";
+  // Granting_Authority_Name_Global = "Big Lottery Fund";
   console.log("Subsidy_Adhoc_Global :" + Subsidy_Adhoc_Global);
   console.log(
-    "Granting_Authority_Name_Global :" + Granting_Authority_Name_Global
+    "Granting_Authority_Name_Global :" + Granting_Authority_Name_Measure_Global
   );
   console.log("Subsidy_Measure_Title_Global :" + Subsidy_Measure_Title_Global);
   console.log("Legal_Basis_Global :" + Legal_Basis_Global);
@@ -77,7 +77,7 @@ router.post("/", async (req, res) => {
 
   const addSchemeRequest = {
     adhoc: Subsidy_Adhoc_Global_Flag,
-    gaName: Granting_Authority_Name_Global,
+    gaName: Granting_Authority_Name_Measure_Global,
     subsidyMeasureTitle: Subsidy_Measure_Title_Global,
     legalBasisText: Legal_Basis_Global,
     gaSubsidyWebLink: Granting_Authority_URL_Global,
@@ -124,7 +124,7 @@ router.post("/", async (req, res) => {
     const updateSchemeRequest = {
       scNumber: scNumber_Global,
       adhoc: Subsidy_Adhoc_Global_Flag,
-      gaName: Granting_Authority_Name_Global,
+      gaName: Granting_Authority_Name_Measure_Global,
       subsidyMeasureTitle: Subsidy_Measure_Title_Global,
       legalBasisText: Legal_Basis_Global,
       gaSubsidyWebLink: Granting_Authority_URL_Global,

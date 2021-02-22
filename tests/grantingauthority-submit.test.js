@@ -36,6 +36,8 @@ test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   global.grantingAuthorityName_Error_Msg = "";
   global.process.argv = ["", "", "env=dev"];
   global.grantingAuthorityName_Global = "";
+  global.dashbaord_ga_ID = "";
+  global.dashboard_ga_name = "";
   global.UserPrincileObjectGlobal = {};
   global.grantingAuthorityName_Error = "";
   global.review = "true";

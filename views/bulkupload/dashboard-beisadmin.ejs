@@ -132,7 +132,7 @@
               <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
+                <%= gaTotalCount_Global %>
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 "><a href="/userselect"
                   class="govuk-description-text">Total active users </a></p>
@@ -153,7 +153,7 @@
               <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
+                <%= gaAdminCount_Global %>
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Administrators
               </p>
@@ -164,7 +164,7 @@
               <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
+                <%= gaApproverCount_Global %>
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Approvers</p>
             </div>
@@ -174,7 +174,7 @@
               <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
+                <%= gaEncoderCount_Global %>
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">Encoders</p>
             </div>
@@ -336,7 +336,7 @@
               <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                <%= dashboardawards.awardUserActionCount.totalDraftAward %>
+                <%= dashboardawards.awardUserActionCount.totalRejectedAward %>
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
                 <a href="/mysubsidyawards?sort=Rejected" class="govuk-description-text">Rejected</a></p>
@@ -347,10 +347,10 @@
               <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-                <%= dashboardawards.awardUserActionCount.totalDeletedAward %>
+                <%= dashboardawards.awardUserActionCount.totalInactiveAward %>
               </legend>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-                <a href="/mysubsidyawards?sort=Deactive" class="govuk-description-text">Inactive</a></p>
+                <a href="/mysubsidyawards?sort=Deactive" class="govuk-description-text">Deleted</a></p>
             </div>
           </div>
 

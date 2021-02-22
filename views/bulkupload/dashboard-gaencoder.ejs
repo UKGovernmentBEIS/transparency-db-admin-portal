@@ -64,21 +64,19 @@
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.awardUserActionCount.totalDraftAward %>
+              <%= dashboardawards.awardUserActionCount.totalRejectedAward %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
               <a href="/mysubsidyawards?sort=Rejected" class="govuk-description-text">Rejected</a></p>
           </div>
-
-
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
-              <%= dashboardawards.awardUserActionCount.totalDeletedAward %>
+              <%= dashboardawards.awardUserActionCount.totalInactiveAward %>
             </legend>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
-              <a href="/mysubsidyawards?sort=Deactive" class="govuk-description-text">Inactive</a></p>
+              <a href="/mysubsidyawards?sort=Deactive" class="govuk-description-text">Deleted</a></p>
           </div>
         </div>
       </div>

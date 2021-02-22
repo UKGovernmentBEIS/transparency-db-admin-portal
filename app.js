@@ -153,6 +153,7 @@ app.locals.Goods_or_Services_Error;
 app.locals.Spending_Region_Error;
 app.locals.Spending_Sector_Error;
 app.locals.grantingAuthorityName_Error;
+app.locals.grantingAuthorityName_Error_Msg;
 
 app.locals.searchmeasuredetails;
 app.locals.Subsidy_Control_Number_Global_Text;
@@ -175,6 +176,7 @@ app.locals.Search_Text_Global;
 app.locals.apiroles_extract;
 app.locals.apiroles_total_objects;
 app.locals.isUserSlectIsPrimaryCall;
+app.locals.Granting_Authority_Name_Measure_Global;
 app.locals.Granting_Authority_Selected;
 app.locals.GA_Selected;
 app.locals.GAUserList;
@@ -203,6 +205,11 @@ app.locals.User_Mobile_Single;
 app.locals.Delete_UserId;
 
 app.locals.GaListArr_Global;
+
+app.locals.gaAdminCount_Global;
+app.locals.gaApproverCount_Global;
+app.locals.gaEncoderCount_Global;
+app.locals.gaTotalCount_Global;
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
@@ -210,8 +217,8 @@ app.locals.GaListArr_Global;
 app.get("/", async (req, res) => {
   var id_token = req.header("x-ms-token-aad-id-token");
   console.log("id_token " + id_token);
-  
- Environment_variable = process.argv[2];
+
+  Environment_variable = process.argv[2];
   console.log("id_token " + id_token);
 
   if (Environment_variable == "env=dev") {
@@ -274,11 +281,10 @@ app.get("/", async (req, res) => {
 
   console.log("dashboard_roles_object_id1:" + dashboard_roles_object_id1);
   console.log("dashboard_roles_object_id2:" + dashboard_roles_object_id2);
-
+  console.log("config", config);
   try {
     var apiroles = await axios.get(
-      beis_url_accessmanagement + "/accessmanagement/allga",
-      config
+      beis_url_accessmanagement + "/accessmanagement/allga"
     );
     console.log(`Status: ${apiroles.status}`);
     API_response_code = `${apiroles.status}`;
@@ -359,6 +365,44 @@ app.get("/", async (req, res) => {
       userPrinciple: userPrincipleRequest,
     },
   };
+  console.log("dashbaord_ga_ID", dashboard_roles_object_id2);
+  try {
+    const apidata = await axios.get(
+      beis_url_accessmanagement +
+        "/usermanagement/groups/" +
+        dashboard_roles_object_id2,
+      {
+        headers: {
+          userPrinciple:
+            '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
+            dashboard_ga_name +
+            '"}',
+        },
+      }
+    );
+    console.log(`Status: ${apidata.status}`);
+    API_response_code = `${apidata.status}`;
+    console.log("Body GROUPS: ", apidata.data.value);
+    gaAdminCount_Global = 0;
+    gaApproverCount_Global = 0;
+    gaEncoderCount_Global = 0;
+    gaTotalCount_Global = 0;
+    apidata.data.value.forEach(function (items) {
+      if (items.roleName == "Dev_GrantingAuthorityAdministrators")
+        gaAdminCount_Global++;
+      if (items.roleName == "Dev_GrantingAuthorityApprovers")
+        gaApproverCount_Global++;
+      if (items.roleName == "Dev_GrantingAuthorityEncoders")
+        gaEncoderCount_Global++;
+    });
+    gaTotalCount_Global = apidata.data.value.length;
+  } catch (err) {
+    response_error_message = err;
+    console.log("message error : " + err);
+    console.log(
+      "response_error_message catchGROUPS : " + response_error_message
+    );
+  }
 
   if (dashboard_roles == "BEIS Administrator") {
     var userPrincipleRequest =
@@ -385,6 +429,10 @@ app.get("/", async (req, res) => {
       res.render("bulkupload/dashboard-beisadmin", {
         beis_url_accessmanagement,
         dashboard_user_name,
+        gaAdminCount_Global,
+        gaApproverCount_Global,
+        gaEncoderCount_Global,
+        gaTotalCount_Global,
       });
     } catch (err) {
       response_error_message = err;
@@ -418,6 +466,10 @@ app.get("/", async (req, res) => {
       res.render("bulkupload/dashboard-gaadmin", {
         beis_url_accessmanagement,
         dashboard_user_name,
+        gaAdminCount_Global,
+        gaApproverCount_Global,
+        gaEncoderCount_Global,
+        gaTotalCount_Global,
       });
     } catch (err) {
       response_error_message = err;
@@ -447,10 +499,18 @@ app.get("/", async (req, res) => {
       API_response_code = `${apidata.status}`;
       console.log("API_response_code: try" + API_response_code);
       console.log("Body: ", apidata.data);
+      console.log("gaAdminCount_Global", gaAdminCount_Global);
+      console.log("gaApproverCount_Global", gaApproverCount_Global);
+      console.log("gaEncoderCount_Global", gaEncoderCount_Global);
+      console.log("gaTotalCount_Global", gaTotalCount_Global);
       dashboardawards = apidata.data;
       res.render("bulkupload/dashboard-gaapprover", {
         beis_url_accessmanagement,
         dashboard_user_name,
+        gaAdminCount_Global,
+        gaApproverCount_Global,
+        gaEncoderCount_Global,
+        gaTotalCount_Global,
       });
     } catch (err) {
       response_error_message = err;
@@ -484,6 +544,10 @@ app.get("/", async (req, res) => {
       res.render("bulkupload/dashboard-gaencoder", {
         beis_url_accessmanagement,
         dashboard_user_name,
+        gaAdminCount_Global,
+        gaApproverCount_Global,
+        gaEncoderCount_Global,
+        gaTotalCount_Global,
       });
     } catch (err) {
       response_error_message = err;
@@ -572,6 +636,9 @@ app.use("/submitgrantingauthority", submitgrantingauthority);
 
 var editgrantingauthority = require("./routes/grantingauthority-edit");
 app.use("/editgrantingauthority", editgrantingauthority);
+
+var cancelgrantingauthority = require("./routes/grantingauthority-add-cancel");
+app.use("/cancelgrantingauthority", cancelgrantingauthority);
 
 var editreviewgrantingauthority = require("./routes/grantingauthority-editreview");
 app.use("/editreviewgrantingauthority", editreviewgrantingauthority);

@@ -45,10 +45,10 @@ table tbody tr:hover{
 } */
 
 .pagination {
-  display: grid;
-  grid-template-columns: auto auto;
+  /* display: grid;
+  grid-template-columns: auto auto; */
   padding: 10px 0px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 /* .pagination .col.middle{
@@ -82,6 +82,9 @@ table tbody tr:hover{
 }
 .govuk-p-0 {
   padding: 0 !important;
+}
+.app-custom-class p {
+  color: #1d70b8;
 }
 .clear-all {
   position: absolute;
