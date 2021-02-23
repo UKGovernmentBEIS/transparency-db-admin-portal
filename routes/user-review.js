@@ -12,7 +12,12 @@ router.post("/", async(req, res) => {
  console.log("Detaials of User : " +  userRole + GA_Name_User + Full_Name + Last_Name + Email_Id  + Phone_Number  );
 
  User_Role_Global = userRole;
- GA_Name_User_Global =  GA_Name_User;
+ if ( dashboard_roles == "BEIS Administrator") {
+ GA_Name_User_Global =  GA_Name_User; }
+ else {
+  GA_Name_User_Global  = dashboard_ga_name
+ } 
+
  Full_Name_Global = Full_Name;
  Last_Name_Global = Last_Name;
  Email_Id_Global = Email_Id;

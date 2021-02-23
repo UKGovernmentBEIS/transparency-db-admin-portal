@@ -101,8 +101,8 @@
                                 <!-- <option value="" selected disabled>Filter by role</option> -->
 
                                 <% if ( isUserSelectIsPrimaryCall ) { %>
-                                <option value="" selected disabled>Filter by role</option>
-                                <% gaNamesList.forEach(function(items){%>
+                                <option value="" selected disabled>Filter by granting authority</option>
+                                <% gaNamesList.forEach(function(items){ %>
                                 <option value="<%= items %>"> <%= items %> </option>
                                 <% })%>
                                 <!-- <% for (var i = 0; i < apiroles_total_objects; i++) { %>
@@ -110,24 +110,76 @@
                                 </option>
                                 <% } %> -->
                                 <% } else { %>
-                                <% for (var i = 0; i < apiroles_total_objects; i++) { %>
-                                <% if ( GA_Selected == apiroles_extract[i].gaName) { %>
-                                <option value="<%= apiroles_extract[i].gaName %>" selected>
-                                    <%= apiroles_extract[i].gaName %> </option>
-                                <% } else { %>
+                    
+                                    <% if ( !GA_Selected ) { %>
+                                        <option value="" selected disabled>Filter by granting authority</option>
+                                      <% } %> 
+
+                                    <% gaNamesList.forEach(function(items){ %>
+
+                                      <% if (GA_Selected == items) { %>
+                                         <option selected value="<%= items %>"> <%= items %> </option>
+                                      <% } else { %>
+                                         <option value="<%= items %>"> <%= items %> </option>
+                                         <% } %>
+                                      <% })%>                              
+                                  
+                                 <% } %>
+
+
+                            </select>
+                        </div>
+
+                        <button class="govuk-button" data-module="govuk-button" name="button_value" value="GASelected">
+                            List users by granting authority
+                        </button>
+
+                    </div>
+
+
+
+                    <p></p>
+
+                    <div class="govuk-grid-column-three-quarters">
+                        <div class="govuk-grid-column-one-half govuk-padding-0">
+                            <select class="govuk-select" id="sort" name="GA_Roles_Selected"
+                                aria-label="Drop down list that shows Filter by roles">
+                                <!-- <option value="" selected disabled>Filter by role</option> -->
+
+                                <% if ( isUserSelectIsPrimaryCall ) { %>
+                                <option value="" selected disabled>Filter by roles</option>
+                                <% gaRolesList.forEach(function(items){%>
+                                <option value="<%= items %>"> <%= items %> </option>
+                                <% })%>
+                                <!-- <% for (var i = 0; i < apiroles_total_objects; i++) { %>
                                 <option value="<%= apiroles_extract[i].gaName %>"> <%= apiroles_extract[i].gaName %>
                                 </option>
-                                <% } %>
-                                <% } %>
+                                <% } %> -->
+                                <% } else { %>
+
+                                    <% if ( !Roles_Selected ) { %>
+                                        <option value="" selected disabled>Filter by roles</option>
+                                      <% } %> 
+                    
+                                   <% gaRolesList.forEach(function(items){ %>
+                                     <% if (Roles_Selected == items) { %>
+                                        <option selected value="<%= items %>"> <%= items %> </option>
+                                     <% } else { %>
+                                        <option value="<%= items %>"> <%= items %> </option>
+                                        <% } %>
+                                     <% })%>                              
+                                  
                                 <% } %>
 
 
                             </select>
                         </div>
 
-                    </div>
+                        <button class="govuk-button" data-module="govuk-button" name="button_value" value="RoleSelected">
+                            List users by roles
+                        </button>
 
-                    <p></p>
+                    </div>
 
                     <div class="govuk-grid-column-two-thirds">
                         <!-- <a href="/" style="color : black; text-decoration: none"> -->
@@ -136,9 +188,7 @@
                         List users
                     </a> -->
 
-                        <button class="govuk-button" data-module="govuk-button">
-                            List users
-                        </button>
+                       
                         <% if(dashboard_roles == 'BEIS Administrator' || dashboard_roles == 'Granting Authority Administrator') { %>
                         <a href="/adduser" class="govuk-button" data-module="govuk-button">
                             Add a new user
@@ -183,9 +233,9 @@
 
 
                                     <td class="govuk-table__cell">
-                                        <% if ( GA_Selected == 'Granting Authority Administrator' || GA_Selected == 'Granting Authority Approver' || GA_Selected == 'Granting Authority Encoder' ) {  %>
+                                        <% if ( Roles_Selected == 'Granting Authority Administrator' || Roles_Selected == 'Granting Authority Approver' || Roles_Selected == 'Granting Authority Encoder' ) {  %>
                                         NA
-                                        <% } else if (GA_Selected == 'BEIS Administrator' ) {  %>
+                                        <% } else if (Roles_Selected == 'BEIS Administrator' ) {  %>
                                         Department for Business, Energy & Industrial Strategy
                                         <% } else { %>
                                         <%= GA_Selected %>
@@ -205,6 +255,14 @@
                         </table>
                         <% } %>
                     </section>
+                    <div>
+                        <% if ( GAUserList_Empty == 0) { %>
+                            <label class="govuk-label govuk-grid-column-full">
+                                No users available for the search criteria
+                            </label>
+                        <% } %>    
+
+                    </div>
                 </div>
             </div>
 

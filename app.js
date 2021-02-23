@@ -180,6 +180,7 @@ app.locals.isUserSlectIsPrimaryCall;
 app.locals.Granting_Authority_Name_Measure_Global;
 app.locals.Granting_Authority_Selected;
 app.locals.GA_Selected;
+app.locals.Roles_Selected;
 app.locals.GAUserList;
 
 app.locals.gaId_no_arrow;
@@ -205,6 +206,8 @@ app.locals.User_Email_Single;
 app.locals.User_Mobile_Single;
 app.locals.Delete_UserId;
 
+app.locals.GAUserList_Empty ;
+
 app.locals.GaListArr_Global;
 
 app.locals.gaAdminCount_Global;
@@ -216,9 +219,11 @@ app.locals.gaTotalCount_Global;
 /****************************************************** */
 
 app.get("/", async (req, res) => {
+
   var id_token = req.header("x-ms-token-aad-id-token");
   console.log("id_token " + id_token);
 
+  
   Environment_variable = process.argv[2];
   console.log("id_token " + id_token);
 
