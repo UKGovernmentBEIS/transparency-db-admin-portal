@@ -5,6 +5,34 @@
     <title>GOV.UK - Add Subsidy Schemes page</title>
 
     <%- include('../partials/headercss.ejs') %>
+    <script>
+        getSubsidyAdhocValue = (event) => {
+            debugger;
+            var subsidyadhoc = document.getElementsByName("Subsidy_Adhoc");
+            var subsidyadhocchecked = '';
+            for (i = 0; i < subsidyadhoc.length; i++) {
+                if (subsidyadhoc[i].checked) {
+                    subsidyadhocchecked = subsidyadhoc[i].value;
+                }
+            }
+            if (subsidyadhocchecked == 'Yes') {
+                document.getElementById("scheme-issued-day").value = document.getElementById("scheme_issued_start_day").value;
+                document.getElementById("scheme_issued_end_month").value = document.getElementById("scheme_issued_start_month").value;
+                document.getElementById("scheme_issued_end_year").value = document.getElementById("scheme_issued_start_year").value;
+                document.getElementById("scheme-issued-day").disabled = true;
+                document.getElementById("scheme_issued_end_month").disabled = true;
+                document.getElementById("scheme_issued_end_year").disabled = true;
+            }
+            else {
+                document.getElementById("scheme-issued-day").value = ""
+                document.getElementById("scheme_issued_end_month").value = ""
+                document.getElementById("scheme_issued_end_year").value = "";
+                document.getElementById("scheme-issued-day").disabled = false;
+                document.getElementById("scheme_issued_end_month").disabled = false;
+                document.getElementById("scheme_issued_end_year").disabled = false;
+            }
+        }
+    </script>
 </head>
 
 
@@ -307,6 +335,7 @@
                                                                     name="scheme_issued_start_day" type="text"
                                                                     placeholder="DD" pattern="[0-9]*"
                                                                     inputmode="numeric"
+                                                                    onkeyup="getSubsidyAdhocValue(event)"
                                                                     value="<%= Scheme_Start_Day_Global%>">
                                                             </div>
                                                         </div>
@@ -325,6 +354,7 @@
                                                                 <input
                                                                     class="govuk-input govuk-date-input__input govuk-input--width-2"
                                                                     id="scheme_issued_start_month"
+                                                                    onkeyup="getSubsidyAdhocValue(event)"
                                                                     value="<%= Scheme_Start_Month_Global%>"
                                                                     name="scheme_issued_start_month" placeholder="MM"
                                                                     type="text" pattern="[0-9]*" inputmode="numeric">
@@ -345,14 +375,72 @@
                                                                 <input
                                                                     class="govuk-input govuk-date-input__input govuk-input--width-4"
                                                                     id="scheme_issued_start_year"
+                                                                    onkeyup="getSubsidyAdhocValue(event)"
                                                                     name="scheme_issued_start_year" type="text"
                                                                     pattern="[0-9]*" inputmode="numeric"
                                                                     value="<%= Scheme_Start_Year_Global%>"
                                                                     placeholder="YYYY"></div>
                                                         </div>
                                                     </div>
-
                                                 </div>
+                                                <% if(Subsidy_Adhoc_Global == 'Yes') { %>
+                                                <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                                    <label class="govuk-label" for="address-line-1">
+                                                        End Date
+                                                    </label>
+                                                    <div class="govuk-hint">
+                                                        For example, 25 11 2021. If this is an ad hoc subsidy award,
+                                                        the end date must be the same as the start date.
+                                                    </div>
+                                                    <div class="govuk-date-input" id="scheme-issued">
+                                                        <div class="govuk-date-input__item">
+                                                            <div class="govuk-form-group">
+                                                                <label class="govuk-label govuk-date-input__label"
+                                                                    for="scheme_issued_end_day">
+                                                                    Day
+                                                                </label>
+
+                                                                <input
+                                                                    class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                                    id="scheme-issued-day"
+                                                                    value="<%= Scheme_Start_Day_Global%>" disabled
+                                                                    name="scheme_issued_end_day" type="text"
+                                                                    placeholder="DD" pattern="[0-9]*"
+                                                                    inputmode="numeric"></div>
+                                                        </div>
+                                                        <div class="govuk-date-input__item">
+                                                            <div class="govuk-form-group">
+                                                                <label class="govuk-label govuk-date-input__label"
+                                                                    for="scheme_issued_end_month">
+                                                                    Month
+                                                                </label>
+
+                                                                <input
+                                                                    class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                                    id="scheme_issued_end_month"
+                                                                    value="<%= Scheme_Start_Month_Global%>" disabled
+                                                                    name="scheme_issued_end_month" placeholder="MM"
+                                                                    type="text" pattern="[0-9]*" inputmode="numeric">
+                                                            </div>
+                                                        </div>
+                                                        <div class="govuk-date-input__item">
+                                                            <div class="govuk-form-group">
+                                                                <label class="govuk-label govuk-date-input__label"
+                                                                    for="scheme_issued_end_year">
+                                                                    Year
+                                                                </label>
+
+                                                                <input
+                                                                    class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                                                    id="scheme_issued_end_year"
+                                                                    value="<%= Scheme_Start_Year_Global%>" disabled
+                                                                    name="scheme_issued_end_year" type="text"
+                                                                    pattern="[0-9]*" inputmode="numeric"
+                                                                    placeholder="YYYY"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% } %>
                                                 <% if( scheme_issued_end_day_Error || scheme_issued_end_month_Error || scheme_issued_end_year_Error ){ %>
                                                 <div
                                                     class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
@@ -363,7 +451,8 @@
                                                             End Date
                                                         </label>
                                                         <div class="govuk-hint">
-                                                            For example, 25 11 2021. If this is an ad hoc subsidy award,
+                                                            For example, 25 11 2021. If this is an ad hoc subsidy
+                                                            award,
                                                             the end date must be the same as the start date.
                                                         </div>
                                                         <div class="govuk-date-input" id="scheme-issued">

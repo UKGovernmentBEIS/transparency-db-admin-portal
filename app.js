@@ -97,6 +97,7 @@ app.locals.formvalidationerrpass = [];
 app.locals.errorsvalidationpass = [];
 
 app.locals.dashboard_user_name;
+app.locals.user_id;
 app.locals.dashboard_ga_name;
 app.locals.dashboard_roles;
 app.locals.dashbaord_ga_ID;
@@ -228,6 +229,8 @@ app.get("/", async (req, res) => {
       "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
     beis_url_publicsearch =
       "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
+    beis_url_searchscheme =
+      "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -238,6 +241,8 @@ app.get("/", async (req, res) => {
       "https://integ-transparency-db-access-management-service.azurewebsites.net";
     beis_url_publicsearch =
       "https://integ-transparency-db-public-search-service.azurewebsites.net";
+    beis_url_searchscheme =
+      "https://integ-transparency-db-ga-schemes-service.azurewebsites.net";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -248,6 +253,8 @@ app.get("/", async (req, res) => {
       "https://stag-transparency-db-access-management-service.azurewebsites.net";
     beis_url_publicsearch =
       "https://stag-transparency-db-public-search-service.azurewebsites.net";
+    beis_url_searchscheme =
+      "https://stag-transparency-db-ga-schemes-service.azurewebsites.net";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -258,6 +265,8 @@ app.get("/", async (req, res) => {
       "https://prod-transparency-db-access-management-service.azurewebsites.net";
     beis_url_publicsearch =
       "https://prod-transparency-db-public-search-service.azurewebsites.net";
+    beis_url_searchscheme =
+      "https://prod-transparency-db-ga-schemes-service.azurewebsites.net";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -274,6 +283,7 @@ app.get("/", async (req, res) => {
   console.log("id_token_decoded parsed " + JSON.stringify(id_token_decoded));
   var id_token_json = JSON.parse(JSON.stringify(id_token_decoded));
   dashboard_user_name = id_token_decoded.name;
+  user_id = id_token_decoded.oid;
   dashboard_roles_object = JSON.stringify(id_token_json.roles);
   console.log("roles :" + dashboard_roles_object);
   dashboard_roles_object_id1 = dashboard_roles_object.substr(2, 36);
@@ -281,7 +291,7 @@ app.get("/", async (req, res) => {
 
   console.log("dashboard_roles_object_id1:" + dashboard_roles_object_id1);
   console.log("dashboard_roles_object_id2:" + dashboard_roles_object_id2);
-  console.log("config", config);
+
   try {
     var apiroles = await axios.get(
       beis_url_accessmanagement + "/accessmanagement/allga"
@@ -296,7 +306,7 @@ app.get("/", async (req, res) => {
 
     for (var i = 0; i < apiroles_total_objects; i++) {
       if (dashboard_roles_object_id1 == apiroles_extract[i].azGrpId) {
-        console.log("gaName id1 : " + apiroles_extract[i].gaName);
+        console.log("gaName id1 : " + apiroles_extract[i].gaId);
         apiroles_extract_object1 = apiroles_extract[i].gaName;
         dashbaord_ga_ID = apiroles_extract[i].gaId;
       }
@@ -350,7 +360,9 @@ app.get("/", async (req, res) => {
   console.log("dashboard_ga_name : " + dashboard_ga_name);
 
   var userPrincipleRequest =
-    '{"userName":"SYSTEM","password":"password123",' +
+    '{"userName":"' +
+    dashboard_user_name +
+    '","password":"password123",' +
     '"role":"' +
     dashboard_roles +
     '","grantingAuthorityGroupId":"' +
@@ -366,33 +378,28 @@ app.get("/", async (req, res) => {
     },
   };
   console.log("dashbaord_ga_ID", dashboard_roles_object_id2);
+  gaAdminCount_Global = 0;
+  gaApproverCount_Global = 0;
+  gaEncoderCount_Global = 0;
+  gaTotalCount_Global = 0;
   try {
     const apidata = await axios.get(
       beis_url_accessmanagement +
         "/usermanagement/groups/" +
         dashboard_roles_object_id2,
-      {
-        headers: {
-          userPrinciple:
-            '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-            dashboard_ga_name +
-            '"}',
-        },
-      }
+      UserPrincileObjectGlobal
     );
     console.log(`Status: ${apidata.status}`);
     API_response_code = `${apidata.status}`;
     console.log("Body GROUPS: ", apidata.data.value);
-    gaAdminCount_Global = 0;
-    gaApproverCount_Global = 0;
-    gaEncoderCount_Global = 0;
-    gaTotalCount_Global = 0;
+
+    var env = Environment_variable.split("=");
     apidata.data.value.forEach(function (items) {
-      if (items.roleName == "Dev_GrantingAuthorityAdministrators")
+      if (items.roleName.toLowerCase().includes("administrators"))
         gaAdminCount_Global++;
-      if (items.roleName == "Dev_GrantingAuthorityApprovers")
+      if (items.roleName.toLowerCase().includes("approvers"))
         gaApproverCount_Global++;
-      if (items.roleName == "Dev_GrantingAuthorityEncoders")
+      if (items.roleName.toLowerCase().includes("encoders"))
         gaEncoderCount_Global++;
     });
     gaTotalCount_Global = apidata.data.value.length;
@@ -405,13 +412,13 @@ app.get("/", async (req, res) => {
   }
 
   if (dashboard_roles == "BEIS Administrator") {
-    var userPrincipleRequest =
-      '{"userName": "TEST","password": "password123","role": "BEIS Administrator","grantingAuthorityGroupId": "123","grantingAuthorityGroupName": "test"}';
-    var config = {
-      headers: {
-        userPrinciple: userPrincipleRequest,
-      },
-    };
+    // var userPrincipleRequest =
+    //   '{"userName": "TEST","password": "password123","role": "BEIS Administrator","grantingAuthorityGroupId": "123","grantingAuthorityGroupName": "test"}';
+    // var config = {
+    //   headers: {
+    //     userPrinciple: userPrincipleRequest,
+    //   },
+    // };
 
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
     console.log("request :" + JSON.stringify(data));
@@ -419,7 +426,7 @@ app.get("/", async (req, res) => {
     try {
       var apidata = await axios.get(
         beis_url_accessmanagement + "/accessmanagement/beisadmin",
-        config
+        UserPrincileObjectGlobal
       );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
@@ -440,15 +447,15 @@ app.get("/", async (req, res) => {
       console.log("response_error_message catch : " + response_error_message);
     }
   } else if (dashboard_roles == "Granting Authority Administrator") {
-    var userPrincipleRequest =
-      '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Administrator","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-      dashboard_ga_name +
-      '"}';
-    var config = {
-      headers: {
-        userPrinciple: userPrincipleRequest,
-      },
-    };
+    // var userPrincipleRequest =
+    //   '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Administrator","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
+    //   dashboard_ga_name +
+    //   '"}';
+    // var config = {
+    //   headers: {
+    //     userPrinciple: userPrincipleRequest,
+    //   },
+    // };
 
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
     console.log("request :" + JSON.stringify(data));
@@ -456,7 +463,7 @@ app.get("/", async (req, res) => {
     try {
       var apidata = await axios.get(
         beis_url_accessmanagement + "/accessmanagement/gaadmin",
-        config
+        UserPrincileObjectGlobal
       );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
@@ -477,15 +484,15 @@ app.get("/", async (req, res) => {
       console.log("response_error_message catch : " + response_error_message);
     }
   } else if (dashboard_roles == "Granting Authority Approver") {
-    var userPrincipleRequest =
-      '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-      dashboard_ga_name +
-      '"}';
-    var config = {
-      headers: {
-        userPrinciple: userPrincipleRequest,
-      },
-    };
+    // var userPrincipleRequest =
+    //   '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
+    //   dashboard_ga_name +
+    //   '"}';
+    // var config = {
+    //   headers: {
+    //     userPrinciple: userPrincipleRequest,
+    //   },
+    // };
 
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
     console.log("request :" + JSON.stringify(data));
@@ -493,7 +500,7 @@ app.get("/", async (req, res) => {
     try {
       var apidata = await axios.get(
         beis_url_accessmanagement + "/accessmanagement/gaapprover",
-        config
+        UserPrincileObjectGlobal
       );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
@@ -518,15 +525,15 @@ app.get("/", async (req, res) => {
       console.log("response_error_message catch : " + response_error_message);
     }
   } else if (dashboard_roles == "Granting Authority Encoder") {
-    var userPrincipleRequest =
-      '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Encoder","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-      dashboard_ga_name +
-      '"}';
-    var config = {
-      headers: {
-        userPrinciple: userPrincipleRequest,
-      },
-    };
+    // var userPrincipleRequest =
+    //   '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Encoder","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
+    //   dashboard_ga_name +
+    //   '"}';
+    // var config = {
+    //   headers: {
+    //     userPrinciple: userPrincipleRequest,
+    //   },
+    // };
 
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
     console.log("request :" + JSON.stringify(data));
@@ -534,7 +541,7 @@ app.get("/", async (req, res) => {
     try {
       var apidata = await axios.get(
         beis_url_accessmanagement + "/accessmanagement/gaencoder",
-        config
+        UserPrincileObjectGlobal
       );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;

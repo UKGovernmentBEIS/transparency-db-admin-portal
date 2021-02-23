@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
 
     try {
       const apidata = await axios.get(
-        `http://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority/${azGrpId}`,
+        beis_url_searchscheme + `/grantingAuthority/${azGrpId}`,
         UserPrincileObjectGlobal
       );
 
