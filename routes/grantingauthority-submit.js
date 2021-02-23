@@ -54,16 +54,17 @@ router.post("/", async (req, res) => {
       userPrincipleRequest.role = dashboard_roles;
       userPrincipleRequest.grantingAuthorityGroupId = dashbaord_ga_ID;
       userPrincipleRequest.grantingAuthorityGroupName = dashboard_ga_name;
+      userPrincipleRequest.userName = dashboard_user_name;
 
-      if (dashboard_roles == "BEIS Administrator") {
-        userPrincipleRequest.userName = "TEST";
-      } else if (dashboard_roles == "Granting Authority Approver") {
-        userPrincipleRequest.userName = "SYSTEM";
-      } else if (dashboard_roles == "Granting Authority Approver") {
-        userPrincipleRequest.userName = "SYSTEM";
-      } else if (dashboard_roles == "Granting Authority Encoder") {
-        userPrincipleRequest.userName = "SYSTEM";
-      }
+      // if (dashboard_roles == "BEIS Administrator") {
+      //   userPrincipleRequest.userName = "TEST";
+      // } else if (dashboard_roles == "Granting Authority Approver") {
+      //   userPrincipleRequest.userName = "SYSTEM";
+      // } else if (dashboard_roles == "Granting Authority Approver") {
+      //   userPrincipleRequest.userName = "SYSTEM";
+      // } else if (dashboard_roles == "Granting Authority Encoder") {
+      //   userPrincipleRequest.userName = "SYSTEM";
+      // }
       res.set("X-Frame-Options", "DENY");
       res.set("Content-Security-Policy", 'frame-ancestors "self"');
       res.set("Access-Control-Allow-Origin", beis_url_searchscheme);
