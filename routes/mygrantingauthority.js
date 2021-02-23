@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   req.query = JSON.parse(JSON.stringify(req.query));
   // frontend_totalRecordsPerPage = 10;
-
+  grantingAuthorityName = "";
   var data = {};
   if (req.query.hasOwnProperty("totalRecordsPerPage"))
     frontend_totalRecordsPerPage = req.query.totalRecordsPerPage;
@@ -192,7 +192,7 @@ router.get("/", async (req, res) => {
     );
     console.log("apidata", apidata.data);
     // var maxGAId = [];
-    var grantingAuthorityName = "";
+    // var grantingAuthorityName = "";
     API_response_code = `${apidata.status}`;
     grantingAuthorityList = apidata.data;
     totalrows = grantingAuthorityList.totalSearchResults;
@@ -270,6 +270,7 @@ router.get("/", async (req, res) => {
       "November",
       "December",
     ];
+    nogas = false;
     noresult = false;
     noGrantingAuthority = "";
     res.render("bulkupload/mygrantingauthority", {
@@ -280,6 +281,7 @@ router.get("/", async (req, res) => {
       start_record,
       grantingAuthorityList,
       status,
+      nogas,
       noresult,
       noGrantingAuthority,
       gaId_no_arrow,
@@ -299,9 +301,11 @@ router.get("/", async (req, res) => {
     if (err == "Error: Request failed with status code 404") {
       noGrantingAuthority = "No granting authority available";
       noresult = true;
+      nogas = true;
       res.render("bulkupload/mygrantingauthority", {
         noGrantingAuthority,
         noresult,
+        nogas,
       });
     }
     response_error_message = err;
@@ -406,6 +410,7 @@ router.post("/", async (req, res) => {
       "December",
     ];
     noresult = false;
+    nogas = false;
     noGrantingAuthority = "";
     res.render("bulkupload/mygrantingauthority", {
       pageCount,
@@ -418,6 +423,7 @@ router.post("/", async (req, res) => {
       grantingAuthorityName,
       status,
       noresult,
+      nogas,
       noGrantingAuthority,
       gaId_no_arrow,
       ganame_arrow,
@@ -435,9 +441,11 @@ router.post("/", async (req, res) => {
     if (err == "Error: Request failed with status code 404") {
       noGrantingAuthority = "No granting authority available";
       noresult = true;
+      nogas = true;
       res.render("bulkupload/mygrantingauthority", {
         noGrantingAuthority,
         noresult,
+        nogas,
       });
     }
     response_error_message = err;
