@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
     // if (env[1] != "prod") env[1] + "_" + gaName;
     try {
       const apidata = await axios.put(
-        `https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority/${gaID}`,
+        beis_url_accessmanagement + `/grantingAuthority/${gaID}`,
         {
           name: req.body.grantingAuthorityName,
           // az_group_name: azGroupName,
@@ -73,7 +73,7 @@ router.post("/", async (req, res) => {
       );
       console.log("userPrincipleRequest", JSON.stringify(userPrincipleRequest));
       const apidata = await axios.post(
-        "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/grantingAuthority",
+        beis_url_accessmanagement + "/grantingAuthority",
         {
           headers: {
             userPrinciple: JSON.stringify(userPrincipleRequest),

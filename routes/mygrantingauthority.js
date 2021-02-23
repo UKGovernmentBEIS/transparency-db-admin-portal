@@ -186,7 +186,7 @@ router.get("/", async (req, res) => {
 
   try {
     const apidata = await axios.post(
-      "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/searchGrantingAuthority",
+      beis_url_accessmanagement + "/searchGrantingAuthority",
       data,
       UserPrincileObjectGlobal
     );
@@ -358,7 +358,7 @@ router.post("/", async (req, res) => {
   };
   try {
     const apidata = await axios.post(
-      "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/searchGrantingAuthority",
+      beis_url_accessmanagement + "/searchGrantingAuthority",
       data,
       UserPrincileObjectGlobal
     );
