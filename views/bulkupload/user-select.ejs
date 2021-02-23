@@ -102,10 +102,13 @@
 
                                 <% if ( isUserSelectIsPrimaryCall ) { %>
                                 <option value="" selected disabled>Filter by role</option>
-                                <% for (var i = 0; i < apiroles_total_objects; i++) { %>
+                                <% gaNamesList.forEach(function(items){%>
+                                <option value="<%= items %>"> <%= items %> </option>
+                                <% })%>
+                                <!-- <% for (var i = 0; i < apiroles_total_objects; i++) { %>
                                 <option value="<%= apiroles_extract[i].gaName %>"> <%= apiroles_extract[i].gaName %>
                                 </option>
-                                <% } %>
+                                <% } %> -->
                                 <% } else { %>
                                 <% for (var i = 0; i < apiroles_total_objects; i++) { %>
                                 <% if ( GA_Selected == apiroles_extract[i].gaName) { %>
