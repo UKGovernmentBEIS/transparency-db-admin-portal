@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
   });
   try {
     const apidata = await axios.delete(
-      `https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net/group/${azGrpId}`,
+      beis_url_accessmanagement + `/group/${azGrpId}`,
       {
         userIds: userIds,
       },
