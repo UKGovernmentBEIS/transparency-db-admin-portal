@@ -35,7 +35,11 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   global.end_record = "";
   global.sort = "";
   global.totalrows = "";
+  global.nodata = "";
+  global.noresult = "";
   global.current_page_active = "";
+  global.grantingAuthorityName_Global = "";
+  global.grantingAuthorityID_global = "";
   global.frontend_totalRecordsPerPage = "";
   global.grantingAuthorityName = "";
   global.gaId_no_arrow = "";
@@ -44,15 +48,16 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   global.status_arrow = "";
   global.created_on_arrow = "";
   global.last_modified_arrow = "";
+  global.sorting_column = "";
   global.grantingAuthorityList = {
     gaList: [
       {
         grantingAuthorityId: 2,
         grantingAuthorityName: "0",
-        approvedBy: "£500,000 - £1,000,000",
+        approvedBy: "Researcg",
         status: "Research and development",
-        createdTimestamp: "Grant Assistance for the Historic Environment",
-        lastModifiedTimestamp: "Published",
+        createdTimestamp: "2020-12-27T17:29:03.202013",
+        lastModifiedTimestamp: "2020-12-27T17:29:03.202013",
       },
       ,
     ],
@@ -68,10 +73,10 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
         {
           grantingAuthorityId: 2,
           grantingAuthorityName: "0",
-          approvedBy: "£500,000 - £1,000,000",
+          approvedBy: "Researcg",
           status: "Research and development",
-          createdTimestamp: "Grant Assistance for the Historic Environment",
-          lastModifiedTimestamp: "Published",
+          createdTimestamp: "2020-12-27T17:29:03.202013",
+          lastModifiedTimestamp: "2020-12-27T17:29:03.202013",
         },
       ],
     },
@@ -79,8 +84,13 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
 
   request(app)
     .post("/mygrantingauthority", (req, res))
-    .send({ totalRecordsPerPage: "", status: "", grantingAuthorityName: "" })
+    .send({
+      totalRecordsPerPage: "",
+      status: "",
+      grantingAuthorityName: "",
+    })
     .expect(200, done);
+  // expect(abcd).toBe(200);
 });
 
 test("Unit testing for BEIS Admin route Test for POST call", (done) => {
@@ -90,19 +100,25 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   const res = {};
   global.beis_url_accessmanagement = "";
   global.pageCount = "";
+  global.nodata = "";
+  global.noresult = "";
   global.totalRecordsPerPage = "";
   global.sort = "";
   global.previous_page = "";
   global.next_page = "";
+  global.date = "";
   global.start_record = "";
   global.noresult = "";
   global.end_record = "";
+  global.grantingAuthorityName_Global = "";
+  global.grantingAuthorityID_global = "";
   global.sort = "";
   global.totalrows = "";
   global.current_page_active = "";
   global.frontend_totalRecordsPerPage = "10";
   global.grantingAuthorityName = "";
 
+  global.sorting_column = "";
   global.gaId_no_arrow = "";
   global.ganame_arrow = "";
   global.added_by_arrow = "";
@@ -115,10 +131,10 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
       {
         grantingAuthorityId: 2,
         grantingAuthorityName: "0",
-        approvedBy: "£500,000 - £1,000,000",
+        approvedBy: "Researcg",
         status: "Research and development",
-        createdTimestamp: "Grant Assistance for the Historic Environment",
-        lastModifiedTimestamp: "Published",
+        createdTimestamp: "2020-12-27T17:29:03.202013",
+        lastModifiedTimestamp: "2020-12-27T17:29:03.202013",
       },
       ,
     ],
@@ -134,10 +150,10 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
         {
           grantingAuthorityId: 2,
           grantingAuthorityName: "0",
-          approvedBy: "£500,000 - £1,000,000",
+          approvedBy: "Researcg",
           status: "Research and development",
-          createdTimestamp: "Grant Assistance for the Historic Environment",
-          lastModifiedTimestamp: "Published",
+          createdTimestamp: "2020-12-27T17:29:03.202013",
+          lastModifiedTimestamp: "2020-12-27T17:29:03.202013",
         },
       ],
     },
@@ -145,6 +161,7 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
 
   request(app)
     .get("/mygrantingauthority", (req, res))
+    .query({ totalRecordsPerPage: "", status: "", sort: "" })
     .expect(200, done);
   // expect(abcd).toBe(200);
 });

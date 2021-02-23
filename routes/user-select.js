@@ -24,14 +24,26 @@ router.get("/", async (req, res) => {
       UserPrincileObjectGlobal
     );
     console.log(`Status: ${apiroles.status}`);
-    API_response_code = `${apiroles.status}`;
-    console.log("API_response_code: try" + API_response_code);
     console.log("Body: ", apiroles.data);
     apiroles_extract = apiroles.data;
     apiroles_total_objects = Object.keys(apiroles_extract).length;
-    console.log(" apiroles_total_objects: ", apiroles_total_objects);
     isUserSelectIsPrimaryCall = true;
-    res.render("bulkupload/user-select");
+    gaNamesList = [];
+    Environment_variable = process.argv[2];
+    env = Environment_variable.split("=");
+    apiroles.data.forEach((items) => {
+      if (
+        items.gaName !=
+          (env[1] + "_grantingauthorityadministrators").toLowerCase() ||
+        items.gaName !=
+          (env[1] + "_grantingauthorityapprovers").toLowerCase() ||
+        items.gaName != (env[1] + "_grantingauthorityencoders").toLowerCase() ||
+        items.gaName != (env[1] + "_beisadministrators").toLowerCase()
+      )
+        gaNamesList.push(items.gaName);
+    });
+    console.log("gaNamesList", gaNamesList);
+    res.render("bulkupload/user-select", { gaNamesList });
   } catch (err) {
     response_error_message = err;
     console.log("message error : " + err);

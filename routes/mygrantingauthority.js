@@ -271,6 +271,7 @@ router.get("/", async (req, res) => {
       "December",
     ];
     noresult = false;
+    noGrantingAuthority = "";
     res.render("bulkupload/mygrantingauthority", {
       pageCount,
       previous_page,
@@ -280,6 +281,7 @@ router.get("/", async (req, res) => {
       grantingAuthorityList,
       status,
       noresult,
+      noGrantingAuthority,
       gaId_no_arrow,
       ganame_arrow,
       added_by_arrow,
@@ -403,6 +405,8 @@ router.post("/", async (req, res) => {
       "November",
       "December",
     ];
+    noresult = false;
+    noGrantingAuthority = "";
     res.render("bulkupload/mygrantingauthority", {
       pageCount,
       previous_page,
@@ -414,6 +418,7 @@ router.post("/", async (req, res) => {
       grantingAuthorityName,
       status,
       noresult,
+      noGrantingAuthority,
       gaId_no_arrow,
       ganame_arrow,
       added_by_arrow,
