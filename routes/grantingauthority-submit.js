@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
     // if (env[1] != "prod") env[1] + "_" + gaName;
     try {
       const apidata = await axios.put(
-        beis_url_accessmanagement + `/grantingAuthority/${gaID}`,
+        beis_url_searchscheme + `/grantingAuthority/${gaID}`,
         {
           name: req.body.grantingAuthorityName,
           // az_group_name: azGroupName,
@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
       res.set("X-Frame-Options", "DENY");
       res.set("X-Content-Type-Options", "nosniff");
       res.set("Content-Security-Policy", 'frame-ancestors "self"');
-      res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+      res.set("Access-Control-Allow-Origin", beis_url_searchscheme);
       res.set(
         "Strict-Transport-Security",
         "max-age=31536000; includeSubDomains"
@@ -66,14 +66,14 @@ router.post("/", async (req, res) => {
       }
       res.set("X-Frame-Options", "DENY");
       res.set("Content-Security-Policy", 'frame-ancestors "self"');
-      res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+      res.set("Access-Control-Allow-Origin", beis_url_searchscheme);
       res.set(
         "Strict-Transport-Security",
         "max-age=31536000; includeSubDomains"
       );
       console.log("userPrincipleRequest", JSON.stringify(userPrincipleRequest));
       const apidata = await axios.post(
-        beis_url_accessmanagement + "/grantingAuthority",
+        beis_url_searchscheme + "/grantingAuthority",
         {
           headers: {
             userPrinciple: JSON.stringify(userPrincipleRequest),

@@ -107,7 +107,7 @@
           </ul>
         </div>
       </div>
-      <% if(dashboard_roles == 'Granting Authority Administrator' || dashboard_roles == 'BEIS Administrator') { %>
+      <% if(dashboard_roles != 'Granting Authority Encoder' ) { %>
       <a href="/addsubsidymeasures" class="govuk-button" data-module="govuk-button">
         Add a new subsidy scheme
       </a>
@@ -173,19 +173,19 @@
             On selecting, the page will reload and display the subsidy awards.</span>
         </div>
 
-        <% if(dashboard_roles == 'Granting Authority Administrator' || dashboard_roles == 'BEIS Administrator') { %>
-        <div class="govuk-grid-column-two-thirds"><a href="/addsubsidymeasures" class="govuk-button"
+        <% if(dashboard_roles != 'Granting Authority Encoder' ) { %>
+        <div class="govuk-grid-column-one-half"><a href="/addsubsidymeasures" class="govuk-button"
             data-module="govuk-button">
             Add a new subsidy scheme
           </a>
         </div>
         <% } %>
 
-        <div class="govuk-grid-column-one-third govuk-display-flex govuk-form-group" style="float: right;">
+        <div class="govuk-grid-column-one-half govuk-display-flex govuk-form-group" style="float: right;">
           <label class="govuk-grid-column-two-thirds">
             Results per page
           </label>
-          <ul class="pagination pagination-style-modified govuk-padding-0 govuk-!-width-one-half"
+          <ul class="pagination pagination-style-modified govuk-padding-0 govuk-!-width-one-third"
             style="display: inline;  margin: 0;">
             <!-- <form class="govuk-grid-column-one-third" action="/measurespageperroute" method="GET"> -->
             <% if(frontend_totalRecordsPerPage  == 10) { %>

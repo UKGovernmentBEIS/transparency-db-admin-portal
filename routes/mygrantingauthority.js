@@ -6,7 +6,7 @@ router.get("/", async (req, res) => {
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Access-Control-Allow-Origin", beis_url_searchscheme);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   req.query = JSON.parse(JSON.stringify(req.query));
   // frontend_totalRecordsPerPage = 10;
@@ -182,11 +182,10 @@ router.get("/", async (req, res) => {
       sortBy: [""],
     };
   }
-  console.log("data", data);
 
   try {
     const apidata = await axios.post(
-      beis_url_accessmanagement + "/searchGrantingAuthority",
+      beis_url_searchscheme + "/searchGrantingAuthority",
       data,
       UserPrincileObjectGlobal
     );
@@ -319,7 +318,7 @@ router.post("/", async (req, res) => {
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Access-Control-Allow-Origin", beis_url_searchscheme);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   var grantingAuthority = "",
     grantingAuthorityName = "",
@@ -364,7 +363,7 @@ router.post("/", async (req, res) => {
   };
   try {
     const apidata = await axios.post(
-      beis_url_accessmanagement + "/searchGrantingAuthority",
+      beis_url_searchscheme + "/searchGrantingAuthority",
       data,
       UserPrincileObjectGlobal
     );
