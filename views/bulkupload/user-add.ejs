@@ -26,50 +26,7 @@
     <div class="govuk-width-container ">
         <main class="govuk-main-wrapper " id="main-content" role="main">
             <%- include('../partials/navigationbar.ejs') %>
-            <!-- <div class="govuk-grid-row govuk-form-group">
-                <div class="govuk-grid-column-full">
-                    <nav aria-label="Sub navigation">
-                        <ul class="govuk-sub-navigation__list">
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
-                                    Granting Authorities
-                                </a>
-                            </li>
-
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/userselect">
-                                    Users
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                                    Subsidy Schemes
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
-                                    Subsidy Awards
-                                </a>
-                            </li>
-
-                            <li class="govuk-sub-navigation__item head-right">
-                                <a class="govuk-sub-navigation__link" href="/logintransparency">
-                                    Sign out
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item head-right">
-                                <a class="govuk-sub-navigation__link" href="/useraccount">
-                                    My account
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-
-                </div>
-
-            </div> -->
-
-            <!-- bread crumbs start here -->
+       
             <div class="govuk-breadcrumbs ">
                 <ol class="govuk-breadcrumbs__list">
                     <li class="govuk-breadcrumbs__list-item">
@@ -166,20 +123,20 @@
                                 Granting Authority name
                             </label>
                             <!-- <div class="govuk-form-group govuk-grid-column-one-half govuk-padding-0"> -->
-                            <%  if(User_Role_Global == 'BEIS Administrator') { %>
+                            <%  if(dashboard_roles == 'BEIS Administrator') { %>
                             <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
                                 type="text" id="GA_Name_User" name="GA_Name_User" <% if(GA_Name_User_Global) {%>
                                 value="<%= GA_Name_User_Global %>" <% } %>>
                             <% } else { %>
-                            <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
-                                type="text" id="GA_Name_User" name="GA_Name_User" <% if(GA_Name_User_Global) {%>
-                                value="<%= GA_Name_User_Global %>" <% } %>>
+                                <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
+                                type="text" id="GA_Name_User" name="GA_Name_User" disabled
+                                value="<%= dashboard_ga_name   %>" >
                             <% } %>
                         </div>
                         <div class="govuk-grid-column-one-third">
                             <div class="govuk-form-group govuk-grid-column-full govuk-padding-0 ">
                                 <label class="govuk-label" for="width-20">
-                                    Full name
+                                    First name
                                 </label>
                                 <!-- <div class="govuk-form-group govuk-grid-column-two-thirds govuk-padding-0"> -->
                                 <input class="govuk-input" id="FullName" name="Full_Name" type="text"

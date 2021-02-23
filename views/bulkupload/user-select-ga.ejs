@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - Manage Users page</title>
+    <%- include('../partials/headercss.ejs') %>
+    <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script src="assets/javascripts/jquery.min.js"></script>
+    <!-- <script>
+        $(document).ready(function () {
+            $("#user-li a").attr('aria-current', 'page');
+            // document.getElementById('user-li').setAttribute("aria-current", 'page');
+        })
+
+    </script> -->
+</head>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+
+            <%- include('../partials/navigationbar.ejs') %>
+         
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link active" href="#">Users</a>
+                    </li>
+                </ol>
+            </div>
+
+
+            <h1 class="govuk-heading-xl">
+                Users</h1>
+            <div class="govuk-grid-row">
+                
+                <form action="/userselect" method="GET">
+                    <p></p>
+
+                    <div class="govuk-grid-column-two-thirds">
+  
+                        <% if(dashboard_roles == 'BEIS Administrator' || dashboard_roles == 'Granting Authority Administrator') { %>
+                        <a href="/adduser" class="govuk-button" data-module="govuk-button">
+                            Add a new user
+                        </a>
+                        <% } %>
+                    </div>
+                </form>
+                <div class="govuk-grid-column-full">
+                   
+                    <section class="govuk-table-responsive">
+                        <table class="govuk-table" id="datatable">
+                            <thead class="govuk-table__head">
+                                <tr class="govuk-table__row">
+                                    <th scope="col" class="govuk-table__header app-custom-class">Name </th>
+                                    <th scope="col" class="govuk-table__header app-custom-class">Role</th>
+                                    <th scope="col" class="govuk-table__header app-custom-class">Status</th>
+                                    <th scope="col" class="govuk-table__header app-custom-class">Granting authority</th>
+                                    <th scope="col" class="govuk-table__header app-custom-class">Email address</th>
+                                </tr>
+                            </thead>
+                            <tbody class="govuk-table__body">
+                                <% GAUserList.value.forEach(function(item) { %>
+                                <tr>
+                                    <td class="govuk-table__cell">
+                                        <a
+                                            href="/userindividualdetails/?userObject=<%= item.id %>"><%= item.displayName %></a>
+                                    </td>
+                                    <td class="govuk-table__cell">
+                                        <% var role = item.roleName.split("_"); if(role[1] == 'GrantingAuthorityAdministrators') { %>
+                                        Granting Authority Administrators
+                                        <% } else if(role[1] == 'GrantingAuthorityEncoders') {%>
+                                        Granting Authority Encoders
+                                        <% } else if(role[1] == 'BEISAdministrators') {%>
+                                        BEIS Administrators
+                                        <% } else  {%>
+                                        Granting Authority Approvers
+                                        <% } %>
+                                    </td>
+                                    <td class="govuk-table__cell">
+                                        Active
+                                    </td>
+
+
+                                    <td class="govuk-table__cell">
+                                        <% if ( GA_Selected == 'Granting Authority Administrator' || GA_Selected == 'Granting Authority Approver' || GA_Selected == 'Granting Authority Encoder' ) {  %>
+                                        NA
+                                        <% } else if (GA_Selected == 'BEIS Administrator' ) {  %>
+                                        Department for Business, Energy & Industrial Strategy
+                                        <% } else { %>
+                                        <%= GA_Selected %>
+                                        <% } %>
+                                    </td>
+
+                                    <td class="govuk-table__cell">
+                                        <%= item.userPrincipalName %>
+                                    </td>
+
+                                </tr>
+
+                                <% } ); %>
+
+                            </tbody>
+
+                        </table>
+                     
+                    </section>
+                </div>
+            </div>
+
+
+
+        </main>
+    </div>
+
+
+    <%- include('../partials/footer.ejs') %>
+    <script>
+        document.getElementById('user-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
+</body>
+
+</html>
