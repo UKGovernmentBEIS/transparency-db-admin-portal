@@ -16,8 +16,11 @@ router.get("/", (req, res) => {
       res.clearCookie(singleItem);
     });
   });
+
+
+
   res.redirect(
-    "https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=https://manageuksubsidies.beis.gov.uk/"
+    "https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=" + beis_redirect_url 
   );
   console.log("cookies", req.headers.cookie);
   //   cookies.set('testtoken', {expires: Date.now()});

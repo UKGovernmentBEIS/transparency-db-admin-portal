@@ -42,7 +42,10 @@ router.get("/", (req, res) => {
 
   isCallfromEditAward = false;
   var isAddSubsidyPrimarycall = true;
-  res.render("bulkupload/subsidymeasures-add", { isAddSubsidyPrimarycall });
+
+ 
+  res.render("bulkupload/subsidymeasures-add", { isAddSubsidyPrimarycall }); 
+
 });
 router.post("/", (req, res) => {
   // res.set("X-Frame-Options", "DENY");

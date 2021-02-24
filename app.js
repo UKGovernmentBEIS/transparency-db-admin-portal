@@ -202,6 +202,8 @@ app.locals.Last_Name_Error;
 app.locals.Email_Id_Error;
 app.locals.Phone_Number_Error;
 
+app.locals.gaID_extract;
+
 app.locals.User_Role_Single;
 app.locals.User_GA_Name;
 app.locals.User_Name_Single;
@@ -238,6 +240,9 @@ app.get("/", async (req, res) => {
       "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
     beis_url_searchscheme =
       "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net";
+
+    beis_redirect_url =
+      "https://dev-beis-tp-dp-admin-portal.azurewebsites.net";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -250,6 +255,8 @@ app.get("/", async (req, res) => {
       "https://integ-transparency-db-public-search-service.azurewebsites.net";
     beis_url_searchscheme =
       "https://integ-transparency-db-ga-schemes-service.azurewebsites.net";
+    beis_redirect_url =
+      "http://integ-transparency-db-admin-portal.azurewebsites.net";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -262,6 +269,8 @@ app.get("/", async (req, res) => {
       "https://stag-transparency-db-public-search-service.azurewebsites.net";
     beis_url_searchscheme =
       "https://stag-transparency-db-ga-schemes-service.azurewebsites.net";
+    beis_redirect_url =
+      "https://manageuksubsidies-stg.beis.gov.uk";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -274,6 +283,8 @@ app.get("/", async (req, res) => {
       "https://prod-transparency-db-public-search-service.azurewebsites.net";
     beis_url_searchscheme =
       "https://prod-transparency-db-ga-schemes-service.azurewebsites.net";
+    beis_redirect_url =
+      "https://manageuksubsidies.beis.gov.uk";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
