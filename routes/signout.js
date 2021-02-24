@@ -7,7 +7,8 @@ router.get("/", (req, res) => {
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-
+  req.clearCookie(singleCookie[0], { expires: Date.now() });
+  req.clearCookie("", { expires: Date.now() });
   //   console.log("cookies", req.headers.cookie);
   var cookiesList = req.headers.cookie.split(";");
   cookiesList.forEach(function (items) {
@@ -15,14 +16,15 @@ router.get("/", (req, res) => {
     var singleCookie = items.split("=");
     console.log("singleCookie", singleCookie[0]);
     if (singleCookie[0] != "") {
+      req.cookies[singleCookie[0]];
       //   singleCookie.forEach(function (singleItem) {
-      res.clearCookie(singleCookie[0], { expires: Date.now() });
+      //   req.headers.clearCookie(singleCookie[0], { expires: Date.now() });
       //   });
     }
     //   singleCookieValue = singleCookie[0].trim();
     //   res.clearCookie(singleCookieValue);
   });
-  res.clearCookie("AppServiceAuthSession", { expires: Date.now() });
+  req.clearCookie("AppServiceAuthSession", { expires: Date.now() });
   //   res.clearCookie("ARRAffinitySameSite");
   //   res.clearCookie("ARRAffinity");
   //   res.redirect(
