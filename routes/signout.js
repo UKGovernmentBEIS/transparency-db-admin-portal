@@ -14,10 +14,15 @@ router.get("/", (req, res) => {
 
   cookiesList.forEach(function (items) {
     res.clearCookie(items);
+   var singleCookie = items.split("=");
+
+    // singleCookie.forEach(function (singleItem) {
+      res.clearCookie(singleCookie[0]);
+    });
     // var singleCookie = items.split("=");
     // singleCookie.forEach(function (singleItem) {
     //   res.clearCookie(singleItem);
-    });
+    // });
   // });
 
 
