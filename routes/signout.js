@@ -13,10 +13,12 @@ router.get("/", (req, res) => {
   cookiesList.forEach(function (items) {
     console.log("cookieList", items);
     var singleCookie = items.split("=");
-    console.log("singleCookie", singleCookie);
-    singleCookie.forEach(function (singleItem) {
-      res.clearCookie(singleCookie[0]);
-    });
+    console.log("singleCookie", singleCookie[0]);
+    // singleCookie.forEach(function (singleItem) {
+    //   res.clearCookie(singleCookie[0]);
+    // });
+    res.clearCookie(items);
+    res.clearCookie("AppServiceAuthSession");
   });
 
   res.redirect(
