@@ -7,8 +7,7 @@ router.get("/", (req, res) => {
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-  req.clearCookie(singleCookie[0], { expires: Date.now() });
-  req.clearCookie("", { expires: Date.now() });
+
   //   console.log("cookies", req.headers.cookie);
   var cookiesList = req.headers.cookie.split(";");
   cookiesList.forEach(function (items) {
