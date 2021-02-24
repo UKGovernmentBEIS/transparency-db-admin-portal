@@ -45,10 +45,6 @@ router.post("/", async (req, res) => {
     }
   } else {
     try {
-      // const gaName = req.body.GaName.replace(/ /g, "");
-      // var azGroupName = gaName;
-      // console.log("granting authority", env[1]);
-      // if (env[1] != "prod") env[1] + "_" + gaName;
       var userPrincipleRequest = new Object();
       userPrincipleRequest.password = "password123";
       userPrincipleRequest.role = dashboard_roles;
@@ -56,15 +52,6 @@ router.post("/", async (req, res) => {
       userPrincipleRequest.grantingAuthorityGroupName = dashboard_ga_name;
       userPrincipleRequest.userName = dashboard_user_name;
 
-      // if (dashboard_roles == "BEIS Administrator") {
-      //   userPrincipleRequest.userName = "TEST";
-      // } else if (dashboard_roles == "Granting Authority Approver") {
-      //   userPrincipleRequest.userName = "SYSTEM";
-      // } else if (dashboard_roles == "Granting Authority Approver") {
-      //   userPrincipleRequest.userName = "SYSTEM";
-      // } else if (dashboard_roles == "Granting Authority Encoder") {
-      //   userPrincipleRequest.userName = "SYSTEM";
-      // }
       res.set("X-Frame-Options", "DENY");
       res.set("Content-Security-Policy", 'frame-ancestors "self"');
       res.set("Access-Control-Allow-Origin", beis_url_searchscheme);
@@ -72,15 +59,16 @@ router.post("/", async (req, res) => {
         "Strict-Transport-Security",
         "max-age=31536000; includeSubDomains"
       );
-      console.log("userPrincipleRequest", JSON.stringify(userPrincipleRequest));
+      var data = {
+        name: req.body.GaName,
+      };
+      data = JSON.parse(JSON.stringify(data));
+      console.log("userPrincipleRequest", UserPrincileObjectGlobal);
+      console.log("beis_url_searchscheme", beis_url_searchscheme);
+      console.log("data", data);
+
       const apidata = await axios.post(
         beis_url_searchscheme + "/grantingAuthority",
-        {
-          headers: {
-            userPrinciple: JSON.stringify(userPrincipleRequest),
-            "Content-Type": "application/json;charset=utf-8",
-          },
-        },
         {
           name: req.body.GaName,
         }
@@ -95,7 +83,7 @@ router.post("/", async (req, res) => {
       });
     } catch (err) {
       response_error_message = err;
-      console.log("message error : " + err);
+      console.log("message error GA : " + err);
       if (err.toString().includes("417")) {
         grantingAuthorityName_Error = true;
         grantingAuthorityName_Error_Msg = "Granting Authority already added";

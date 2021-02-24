@@ -197,6 +197,10 @@ app.locals.Full_Name_Global;
 app.locals.Last_Name_Global;
 app.locals.Email_Id_Global;
 app.locals.Phone_Number_Global;
+app.locals.Full_Name_Error;
+app.locals.Last_Name_Error;
+app.locals.Email_Id_Error;
+app.locals.Phone_Number_Error;
 
 app.locals.User_Role_Single;
 app.locals.User_GA_Name;
@@ -206,7 +210,7 @@ app.locals.User_Email_Single;
 app.locals.User_Mobile_Single;
 app.locals.Delete_UserId;
 
-app.locals.GAUserList_Empty ;
+app.locals.GAUserList_Empty;
 
 app.locals.GaListArr_Global;
 
@@ -219,11 +223,9 @@ app.locals.gaTotalCount_Global;
 /****************************************************** */
 
 app.get("/", async (req, res) => {
-
   var id_token = req.header("x-ms-token-aad-id-token");
   console.log("id_token " + id_token);
 
-  
   Environment_variable = process.argv[2];
   console.log("id_token " + id_token);
 
@@ -791,5 +793,11 @@ app.use("/userdeactivated", userdeactivated);
 
 var useraccount = require("./routes/user-account");
 app.use("/useraccount", useraccount);
+
+var notAuthorized = require("./routes/notAuthorized");
+app.use("/notauthorized", notAuthorized);
+
+var signout = require("./routes/signout");
+app.use("/signout", signout);
 
 module.exports = app;

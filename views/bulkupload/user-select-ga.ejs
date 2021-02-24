@@ -25,7 +25,7 @@
         <main class="govuk-main-wrapper " id="main-content" role="main">
 
             <%- include('../partials/navigationbar.ejs') %>
-         
+
             <div class="govuk-breadcrumbs ">
                 <ol class="govuk-breadcrumbs__list">
                     <li class="govuk-breadcrumbs__list-item">
@@ -41,12 +41,12 @@
             <h1 class="govuk-heading-xl">
                 Users</h1>
             <div class="govuk-grid-row">
-                
+
                 <form action="/userselect" method="GET">
                     <p></p>
 
                     <div class="govuk-grid-column-two-thirds">
-  
+
                         <% if(dashboard_roles == 'BEIS Administrator' || dashboard_roles == 'Granting Authority Administrator') { %>
                         <a href="/adduser" class="govuk-button" data-module="govuk-button">
                             Add a new user
@@ -55,16 +55,21 @@
                     </div>
                 </form>
                 <div class="govuk-grid-column-full">
-                   
+
                     <section class="govuk-table-responsive">
                         <table class="govuk-table" id="datatable">
                             <thead class="govuk-table__head">
                                 <tr class="govuk-table__row">
-                                    <th scope="col" class="govuk-table__header app-custom-class">Name </th>
-                                    <th scope="col" class="govuk-table__header app-custom-class">Role</th>
-                                    <th scope="col" class="govuk-table__header app-custom-class">Status</th>
-                                    <th scope="col" class="govuk-table__header app-custom-class">Granting authority</th>
-                                    <th scope="col" class="govuk-table__header app-custom-class">Email address</th>
+                                    <th scope="col" class="govuk-table__header app-custom-class"
+                                        style="color: #1D70B8;">Name </th>
+                                    <th scope="col" class="govuk-table__header app-custom-class"
+                                        style="color: #1D70B8;">Role</th>
+                                    <th scope="col" class="govuk-table__header app-custom-class"
+                                        style="color: #1D70B8;">Status</th>
+                                    <th scope="col" class="govuk-table__header app-custom-class"
+                                        style="color: #1D70B8;">Granting authority</th>
+                                    <th scope="col" class="govuk-table__header app-custom-class"
+                                        style="color: #1D70B8;">Email address</th>
                                 </tr>
                             </thead>
                             <tbody class="govuk-table__body">
@@ -111,7 +116,7 @@
                             </tbody>
 
                         </table>
-                     
+
                     </section>
                 </div>
             </div>

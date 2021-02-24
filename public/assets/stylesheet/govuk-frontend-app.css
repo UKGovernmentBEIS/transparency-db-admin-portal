@@ -534,3 +534,7 @@ button.link {
 .pagination-style-modified a {
   padding: 8px 3px !important;
 }
+
+#Subsidy_Control_Number {
+  text-transform: uppercase;
+}

@@ -86,59 +86,41 @@
             <h1 class="govuk-heading-xl">
                 Users</h1>
             <div class="govuk-grid-row">
-                <div class="govuk-grid-column-full govuk-grid-row">
-                    <label class="govuk-label govuk-grid-column-one-third">
-                        Search
-                    </label>
-                </div>
-
-
                 <form action="/userselect" method="POST">
-                    <div class="govuk-grid-column-three-quarters">
-                        <div class="govuk-grid-column-one-half govuk-padding-0">
-                            <select class="govuk-select" id="sort" name="Granting_Authority_Selected"
-                                aria-label="Drop down list that shows Filter by type">
-                                <!-- <option value="" selected disabled>Filter by role</option> -->
+                    <div class="govuk-grid-column-three-quarters govuk-form-group">
+                        <label class="govuk-label govuk-form-group">
+                            Search
+                        </label>
+                        <select class="govuk-select" id="sort" name="Granting_Authority_Selected"
+                            aria-label="Drop down list that shows Filter by type">
+                            <% if ( isUserSelectIsPrimaryCall ) { %>
+                            <option value="" selected disabled>Filter by granting authority</option>
+                            <% gaNamesList.forEach(function(items){ %>
+                            <option value="<%= items %>"> <%= items %> </option>
+                            <% })%>
 
-                                <% if ( isUserSelectIsPrimaryCall ) { %>
-                                <option value="" selected disabled>Filter by granting authority</option>
-                                <% gaNamesList.forEach(function(items){ %>
-                                <option value="<%= items %>"> <%= items %> </option>
-                                <% })%>
-                                <!-- <% for (var i = 0; i < apiroles_total_objects; i++) { %>
-                                <option value="<%= apiroles_extract[i].gaName %>"> <%= apiroles_extract[i].gaName %>
-                                </option>
-                                <% } %> -->
-                                <% } else { %>
-                    
-                                    <% if ( !GA_Selected ) { %>
-                                        <option value="" selected disabled>Filter by granting authority</option>
-                                      <% } %> 
+                            <% } else { %>
 
-                                    <% gaNamesList.forEach(function(items){ %>
+                            <% if ( !GA_Selected ) { %>
+                            <option value="" selected disabled>Filter by granting authority</option>
+                            <% } %>
 
-                                      <% if (GA_Selected == items) { %>
-                                         <option selected value="<%= items %>"> <%= items %> </option>
-                                      <% } else { %>
-                                         <option value="<%= items %>"> <%= items %> </option>
-                                         <% } %>
-                                      <% })%>                              
-                                  
-                                 <% } %>
+                            <% gaNamesList.forEach(function(items){ %>
 
+                            <% if (GA_Selected == items) { %>
+                            <option selected value="<%= items %>"> <%= items %> </option>
+                            <% } else { %>
+                            <option value="<%= items %>"> <%= items %> </option>
+                            <% } %>
+                            <% })%>
 
-                            </select>
-                        </div>
-
+                            <% } %>
+                        </select>
                         <button class="govuk-button" data-module="govuk-button" name="button_value" value="GASelected">
                             List users by granting authority
                         </button>
 
                     </div>
-
-
-
-                    <p></p>
 
                     <div class="govuk-grid-column-three-quarters">
                         <div class="govuk-grid-column-one-half govuk-padding-0">
@@ -151,31 +133,27 @@
                                 <% gaRolesList.forEach(function(items){%>
                                 <option value="<%= items %>"> <%= items %> </option>
                                 <% })%>
-                                <!-- <% for (var i = 0; i < apiroles_total_objects; i++) { %>
-                                <option value="<%= apiroles_extract[i].gaName %>"> <%= apiroles_extract[i].gaName %>
-                                </option>
-                                <% } %> -->
+
                                 <% } else { %>
 
-                                    <% if ( !Roles_Selected ) { %>
-                                        <option value="" selected disabled>Filter by roles</option>
-                                      <% } %> 
-                    
-                                   <% gaRolesList.forEach(function(items){ %>
-                                     <% if (Roles_Selected == items) { %>
-                                        <option selected value="<%= items %>"> <%= items %> </option>
-                                     <% } else { %>
-                                        <option value="<%= items %>"> <%= items %> </option>
-                                        <% } %>
-                                     <% })%>                              
-                                  
+                                <% if ( !Roles_Selected ) { %>
+                                <option value="" selected disabled>Filter by roles</option>
                                 <% } %>
 
+                                <% gaRolesList.forEach(function(items){ %>
+                                <% if (Roles_Selected == items) { %>
+                                <option selected value="<%= items %>"> <%= items %> </option>
+                                <% } else { %>
+                                <option value="<%= items %>"> <%= items %> </option>
+                                <% } %>
+                                <% })%>
 
+                                <% } %>
                             </select>
                         </div>
 
-                        <button class="govuk-button" data-module="govuk-button" name="button_value" value="RoleSelected">
+                        <button class="govuk-button" data-module="govuk-button" name="button_value"
+                            value="RoleSelected">
                             List users by roles
                         </button>
 
@@ -183,12 +161,12 @@
 
                     <div class="govuk-grid-column-two-thirds">
                         <!-- <a href="/" style="color : black; text-decoration: none"> -->
-                        <p></p>
+
                         <!-- <a href="/user-list" class="govuk-button" data-module="govuk-button">
                         List users
                     </a> -->
 
-                       
+
                         <% if(dashboard_roles == 'BEIS Administrator' || dashboard_roles == 'Granting Authority Administrator') { %>
                         <a href="/adduser" class="govuk-button" data-module="govuk-button">
                             Add a new user
@@ -202,11 +180,16 @@
                         <table class="govuk-table" id="datatable">
                             <thead class="govuk-table__head">
                                 <tr class="govuk-table__row">
-                                    <th scope="col" class="govuk-table__header app-custom-class">Name </th>
-                                    <th scope="col" class="govuk-table__header app-custom-class">Role</th>
-                                    <th scope="col" class="govuk-table__header app-custom-class">Status</th>
-                                    <th scope="col" class="govuk-table__header app-custom-class">Granting authority</th>
-                                    <th scope="col" class="govuk-table__header app-custom-class">Email address</th>
+                                    <th scope="col" class="govuk-table__header app-custom-class"
+                                        style="color: #1D70B8;">Name </th>
+                                    <th scope="col" class="govuk-table__header app-custom-class"
+                                        style="color: #1D70B8;">Role</th>
+                                    <th scope="col" class="govuk-table__header app-custom-class"
+                                        style="color: #1D70B8;">Status</th>
+                                    <th scope="col" class="govuk-table__header app-custom-class"
+                                        style="color: #1D70B8;">Granting authority</th>
+                                    <th scope="col" class="govuk-table__header app-custom-class"
+                                        style="color: #1D70B8;">Email address</th>
                                 </tr>
                             </thead>
                             <tbody class="govuk-table__body">
@@ -257,10 +240,10 @@
                     </section>
                     <div>
                         <% if ( GAUserList_Empty == 0) { %>
-                            <label class="govuk-label govuk-grid-column-full">
-                                No users available for the search criteria
-                            </label>
-                        <% } %>    
+                        <label class="govuk-label govuk-grid-column-full">
+                            No users available for the search criteria
+                        </label>
+                        <% } %>
 
                     </div>
                 </div>

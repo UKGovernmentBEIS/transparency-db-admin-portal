@@ -8,12 +8,7 @@ router.get("/", (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-  Full_Name_Error = false;
-  Last_Name_Error = false;
-  Email_Id_Error = false;
-  Phone_Number_Error = false;
-
-  res.render("bulkupload/user-add");
+  res.render("bulkupload/notAuthorized");
 });
 
 module.exports = router;
