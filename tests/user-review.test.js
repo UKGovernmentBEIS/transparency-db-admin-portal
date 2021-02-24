@@ -43,6 +43,8 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.GA_Name_User_Global = "";
   global.Full_Name_Global = "";
   global.Last_Name_Global = "";
+  global.dashboard_ga_name = "";
+  global.dashboard_user_name = "";
   global.Email_Id_Global = "";
   global.Phone_Number_Global = "";
   request(app)

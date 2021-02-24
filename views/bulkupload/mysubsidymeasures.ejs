@@ -185,7 +185,7 @@
           <label class="govuk-grid-column-two-thirds">
             Results per page
           </label>
-          <ul class="pagination pagination-style-modified govuk-padding-0 govuk-!-width-one-third"
+          <div class="pagination pagination-style-modified govuk-padding-0 govuk-!-width-one-third"
             style="display: inline;  margin: 0;">
             <!-- <form class="govuk-grid-column-one-third" action="/measurespageperroute" method="GET"> -->
             <% if(frontend_totalRecordsPerPage  == 10) { %>
@@ -215,7 +215,7 @@
             <% } else { %>
             <a aria-label="100 records per page " class="round btn-page" href="/measurespageperroute/?sort=100">100</a>
             <% }  %>
-          </ul>
+          </div>
           <!-- <form class="govuk-grid-column-one-third govuk-padding-0" action="/measurespageperroute" method="GET">
             <select class="govuk-select" id="sort" name="sort" onchange="this.form.submit()">
               <% if(frontend_totalRecordsPerPage  == 10) { %>

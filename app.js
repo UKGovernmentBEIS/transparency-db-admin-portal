@@ -197,6 +197,12 @@ app.locals.Full_Name_Global;
 app.locals.Last_Name_Global;
 app.locals.Email_Id_Global;
 app.locals.Phone_Number_Global;
+app.locals.Full_Name_Error;
+app.locals.Last_Name_Error;
+app.locals.Email_Id_Error;
+app.locals.Phone_Number_Error;
+
+app.locals.gaID_extract;
 
 app.locals.User_Role_Single;
 app.locals.User_GA_Name;
@@ -206,7 +212,7 @@ app.locals.User_Email_Single;
 app.locals.User_Mobile_Single;
 app.locals.Delete_UserId;
 
-app.locals.GAUserList_Empty ;
+app.locals.GAUserList_Empty;
 
 app.locals.GaListArr_Global;
 
@@ -219,15 +225,10 @@ app.locals.gaTotalCount_Global;
 /****************************************************** */
 
 app.get("/", async (req, res) => {
+  var id_token = req.header("x-ms-token-aad-id-token");
+  console.log("id_token " + id_token);
 
-  // var id_token = req.header("x-ms-token-aad-id-token");
-  // console.log("id_token " + id_token);
-  //beis admin
-  id_token ="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiI1YjgxN2U1Yi1mNWQ1LTQwODUtODY2Mi1jMzViN2I2ZGVlYmUiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC80NDk0Y2MxZS1mYjE0LTRhMmQtYmI1ZS1iZjE2NGQ5MTQxY2YvIiwiaWF0IjoxNjE0MDkwMjY3LCJuYmYiOjE2MTQwOTAyNjcsImV4cCI6MTYxNDA5NDE2NywiYWNjdCI6MCwiYWlvIjoiRTJaZ1lPZ3orVHJ0VWY3M240R3JLL1lhU3grTU8yUHZKelB2T2RPRXd0djJiY0YrYXU0QSIsImFtciI6WyJwd2QiXSwiYXV0aF90aW1lIjoxNjE0MDkwNTYyLCJmYW1pbHlfbmFtZSI6ImRldmJpZXNhZG1pbnRlc3RMTiIsImdpdmVuX25hbWUiOiJkZXZiaWVzYWRtaW50ZXN0Rk4iLCJpcGFkZHIiOiIxOTQuMzUuMTE2LjIyOCIsIm5hbWUiOiJkZXZiaWVzYWRtaW50ZXN0Iiwibm9uY2UiOiJjYTRlNDNjYTNlYzE0OGUxYjBhMWU5ZWZhYzI2YjMxZF8yMDIxMDIyMzE0MzQwMSIsIm9pZCI6IjA2MGYyMmE5LWE1NzktNDQ3Mi1hNTMwLTcxZjIwMWQ2ZmMyMiIsInJoIjoiMC5BQUFBSHN5VVJCVDdMVXE3WHI4V1RaRkJ6MXQtZ1Z2VjlZVkFobUxEVzN0dDdyNTVBR2suIiwicm9sZXMiOlsiNjBmODcwNWItNjNmNi00MDk2LWFkZjktYzcxN2JkMjI0Y2MyIiwiZDNlNjQ5M2MtNmQxNS00ODU4LWFiYmUtNDM5ZWVhZGZiZWY0IiwiNGFhZGRiOTctZGNiOC00OTg4LWIyZTUtYjA0NWE0NDE5ZDkwIl0sInNpZCI6ImE1YWIyZDU1LTExNTItNDExYi04ZTBhLTU5YTBmMjBhYzZmMyIsInN1YiI6ImpWWWR3dHFOc3l4OGFOQkZSM2R2N1NHZWlXQkNWc2pzaXhMdzVkS2RnY1kiLCJ0ZW5hbnRfY3RyeSI6IkdCIiwidGVuYW50X3JlZ2lvbl9zY29wZSI6IkVVIiwidGlkIjoiNDQ5NGNjMWUtZmIxNC00YTJkLWJiNWUtYmYxNjRkOTE0MWNmIiwidW5pcXVlX25hbWUiOiJkZXZiaWVzYWRtaW50ZXN0QGJlaXNkZXZjdHMub25taWNyb3NvZnQuY29tIiwidXBuIjoiZGV2Ymllc2FkbWludGVzdEBiZWlzZGV2Y3RzLm9ubWljcm9zb2Z0LmNvbSIsInV0aSI6IjJFMUxHYWg0ZjBDVDh0THJhSUE2QUEiLCJ2ZXIiOiIxLjAiLCJ4bXNfdHBsIjoiZW4ifQ.GkZv4EghgjJ5d6LleHyVlCU4-l0TnBlzX1I1qM3EAgKXm4Gxba7WMk1sw4oa7t3ZHuDl9Q8nw93AwaOtNPgC0IoHj1zM12nFHdrRskCKGK1foodP17sIRvCZTMgmHQNo3c67ZuvLGH6NccTZtUdB-0UuwGdJjaCV4jhZL2Ya5TabXNHnR-6bZ5sbIvD_Qf6AYB2P0HanqmSJgHJiOLjxtb20NqafNlbfRWgZeSyYz6XKr1yzLtBM1MQviJj5UKFtBApTP790viArNKpNyADMfluzHNB_KHByxQlREiUnx7zqYFnWm2KV0wfC5ADTwIH9fB6h_P1cQXVF63ZHeuuAdg";
- // id_token ="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiI1YjgxN2U1Yi1mNWQ1LTQwODUtODY2Mi1jMzViN2I2ZGVlYmUiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC80NDk0Y2MxZS1mYjE0LTRhMmQtYmI1ZS1iZjE2NGQ5MTQxY2YvIiwiaWF0IjoxNjEzNDA1NzY5LCJuYmYiOjE2MTM0MDU3NjksImV4cCI6MTYxMzQwOTY2OSwiYWNjdCI6MCwiYWlvIjoiRTJaZ1lEQzNUMjE1Kzg3MmdvT2tRSVZuUklTWW5IYnRUTjNEamNVSEcyWDRoU1NLWndBQSIsImFtciI6WyJwd2QiXSwiYXV0aF90aW1lIjoxNjEzNDA2MDY5LCJmYW1pbHlfbmFtZSI6ImRldmhtcmNnYWVuY29kZXJMTiIsImdpdmVuX25hbWUiOiJkZXZobXJjZ2FlbmNvZGVyRk4iLCJpcGFkZHIiOiIxOTQuNTMuMTg2LjYxIiwibmFtZSI6ImRldmhtcmNnYWVuY29kZXIiLCJub25jZSI6IjRjYzI3NDA0MzBiNDQyODU5MTdiNzI4YzM0ZGRkOTFlXzIwMjEwMjE1MTYyNTQ2Iiwib2lkIjoiODkwNmFmZjQtZDdmYS00YzI4LThhOTAtNWQ4ZTRiYzA2ZDQ0IiwicmgiOiIwLkFBQUFIc3lVUkJUN0xVcTdYcjhXVFpGQnoxdC1nVnZWOVlWQWhtTERXM3R0N3I1NUFKOC4iLCJzaWQiOiJlMTgwZGY3NS0yNmUyLTQyN2QtODNhZC1jOWZhNjNhOTlkMjciLCJzdWIiOiJuTENTOFNlV3otY0dBbUhrdWNLd3RSSllhdUpMUVltemU3M0Rpc0VhVk9vIiwidGVuYW50X2N0cnkiOiJHQiIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJFVSIsInRpZCI6IjQ0OTRjYzFlLWZiMTQtNGEyZC1iYjVlLWJmMTY0ZDkxNDFjZiIsInVuaXF1ZV9uYW1lIjoiZGV2aG1yY2dhZW5jb2RlckBiZWlzZGV2Y3RzLm9ubWljcm9zb2Z0LmNvbSIsInVwbiI6ImRldmhtcmNnYWVuY29kZXJAYmVpc2RldmN0cy5vbm1pY3Jvc29mdC5jb20iLCJ1dGkiOiJjVEh1M1h5LWQwNi1QYXBIRkttWkFBIiwidmVyIjoiMS4wIiwieG1zX3RwbCI6ImVuIn0.nXPlM-sW7I8GFgSfQOZqwuMXIeX534PsKn5D208c5N4a2wGntl8vcFW5bEXomjgaX2aEMXCJF89e0QRfrWmZRjoaf2BDe22gkb7nTszvSmJAwzSi8-PUlC7Sd6omUEzvkUBl1x7hiYzUvwvaqFE_0N_JyGZj_Lp5BW0CO_j4959X4rOuk_Zvp5PlsoRbjd9naQOC50jGRcBcv75ODiqLoju-T7JSa2tAzjA4vwOJqtj1Li9vmIyR-MK6SQ_oY7Ex3V5-X8GrWwy9r9jYJdiSqq_QXYL5Ir1rNr7_wuqkpvvOXLMfmV90u98AqhAzUGCULbW1QLM_Rl0WFB2rWM8HVg";
-  //encoder
- //id_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiI1YjgxN2U1Yi1mNWQ1LTQwODUtODY2Mi1jMzViN2I2ZGVlYmUiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC80NDk0Y2MxZS1mYjE0LTRhMmQtYmI1ZS1iZjE2NGQ5MTQxY2YvIiwiaWF0IjoxNjE0MTY2NDQ3LCJuYmYiOjE2MTQxNjY0NDcsImV4cCI6MTYxNDE3MDM0NywiYWNjdCI6MCwiYWlvIjoiQVNRQTIvOFRBQUFBRkwreHd2b2pIcU1KeFpYTmwvN2J4THpwNXRMZUVoVEtiOGtIUHI4UzlGUT0iLCJhbXIiOlsicHdkIl0sImF1dGhfdGltZSI6MTYxNDE2Njc0NSwiZmFtaWx5X25hbWUiOiJkZXZobXJjZ2FlbmNvZGVyTE4iLCJnaXZlbl9uYW1lIjoiZGV2aG1yY2dhZW5jb2RlckZOIiwiaXBhZGRyIjoiMTk0LjM1LjExNi4yMTgiLCJuYW1lIjoiZGV2aG1yY2dhZW5jb2RlciIsIm5vbmNlIjoiODA1NDY1ZTYxMTViNGFhNGIwYmU4OGEzMmJjNjI5NzVfMjAyMTAyMjQxMTQzMzgiLCJvaWQiOiI4OTA2YWZmNC1kN2ZhLTRjMjgtOGE5MC01ZDhlNGJjMDZkNDQiLCJyaCI6IjAuQUFBQUhzeVVSQlQ3TFVxN1hyOFdUWkZCejF0LWdWdlY5WVZBaG1MRFczdHQ3cjU1QUo4LiIsInJvbGVzIjpbIjA2YzdkYTJiLWMwMTgtNGY4Ny04MzY5LTU4NzRiOTc0MjlhNyIsIjdhNmZkOWNkLTFiODQtNDY2NS05NjM2LWJkY2JiNWVlY2ViYSJdLCJzaWQiOiJmNjRlYTlmZS03YjkzLTQ1ZjgtOWMxZS05YjY3ZjMzNmJiYzgiLCJzdWIiOiJuTENTOFNlV3otY0dBbUhrdWNLd3RSSllhdUpMUVltemU3M0Rpc0VhVk9vIiwidGVuYW50X2N0cnkiOiJHQiIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJFVSIsInRpZCI6IjQ0OTRjYzFlLWZiMTQtNGEyZC1iYjVlLWJmMTY0ZDkxNDFjZiIsInVuaXF1ZV9uYW1lIjoiZGV2aG1yY2dhZW5jb2RlckBiZWlzZGV2Y3RzLm9ubWljcm9zb2Z0LmNvbSIsInVwbiI6ImRldmhtcmNnYWVuY29kZXJAYmVpc2RldmN0cy5vbm1pY3Jvc29mdC5jb20iLCJ1dGkiOiJIM1ItdF9IbEhVMk9vYk43d0o5S0FBIiwidmVyIjoiMS4wIiwieG1zX3RwbCI6ImVuIn0.ZqjnBTAQfGMa-KxKnBKDUJQyFL1GSGryNEItPQv-Djjk1N0STweLS9yY7v6xfCjfK6QI8_A3D5pQrAXn8TYFcXWTl4_oa8OA0Cgfe6ULoWstDJYu0r9EA57mQpUPqppwSwa18J54Y_Zfx2RmLcgyIakrnCuymfGJGs2qgiJm_PR2a_zGmDXzxorAOu8YM6lfU-oCuSnciY7WH28P55h9mLenkIq38VAK1wemAojqdEEjG5hXfSqL5kfWWxbQqe1Lb2o7I9Vg3ofTrfDsb4toA71plTlpVYH2FxOl0IqGeYdt5vW-cL_Ag5g2dWkdIN9Xl68sxPuyyzOjVTtWpDNa_g";
- Environment_variable = process.argv[2];
+  Environment_variable = process.argv[2];
   console.log("id_token " + id_token);
 
   if (Environment_variable == "env=dev") {
@@ -239,6 +240,9 @@ app.get("/", async (req, res) => {
       "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
     beis_url_searchscheme =
       "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net";
+
+    beis_redirect_url =
+      "https://dev-beis-tp-dp-admin-portal.azurewebsites.net";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -251,6 +255,8 @@ app.get("/", async (req, res) => {
       "https://integ-transparency-db-public-search-service.azurewebsites.net";
     beis_url_searchscheme =
       "https://integ-transparency-db-ga-schemes-service.azurewebsites.net";
+    beis_redirect_url =
+      "http://integ-transparency-db-admin-portal.azurewebsites.net";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -263,6 +269,8 @@ app.get("/", async (req, res) => {
       "https://stag-transparency-db-public-search-service.azurewebsites.net";
     beis_url_searchscheme =
       "https://stag-transparency-db-ga-schemes-service.azurewebsites.net";
+    beis_redirect_url =
+      "https://manageuksubsidies-stg.beis.gov.uk";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -275,6 +283,8 @@ app.get("/", async (req, res) => {
       "https://prod-transparency-db-public-search-service.azurewebsites.net";
     beis_url_searchscheme =
       "https://prod-transparency-db-ga-schemes-service.azurewebsites.net";
+    beis_redirect_url =
+      "https://manageuksubsidies.beis.gov.uk";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -794,5 +804,11 @@ app.use("/userdeactivated", userdeactivated);
 
 var useraccount = require("./routes/user-account");
 app.use("/useraccount", useraccount);
+
+var notAuthorized = require("./routes/notAuthorized");
+app.use("/notauthorized", notAuthorized);
+
+var signout = require("./routes/signout");
+app.use("/signout", signout);
 
 module.exports = app;

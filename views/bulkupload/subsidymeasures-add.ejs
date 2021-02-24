@@ -440,7 +440,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <% } %>
+                                                <% } else {%>
                                                 <% if( scheme_issued_end_day_Error || scheme_issued_end_month_Error || scheme_issued_end_year_Error ){ %>
                                                 <div
                                                     class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
@@ -522,6 +522,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <% }  %>
                                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                         <button class="govuk-button" data-module="govuk-button"
                                                             name="buttonvalue" value="Continue">Continue</button>
