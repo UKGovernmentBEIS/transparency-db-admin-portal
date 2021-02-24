@@ -10,12 +10,15 @@ router.get("/", (req, res) => {
   //   res.setHeader("set-cookie", "mycookie=; max-age=0");
   console.log("cookies", req.headers.cookie);
   var cookiesList = req.headers.cookie.split(";");
+ 
+
   cookiesList.forEach(function (items) {
-    var singleCookie = items.split("=");
-    singleCookie.forEach(function (singleItem) {
-      res.clearCookie(singleItem);
+    res.clearCookie(items);
+    // var singleCookie = items.split("=");
+    // singleCookie.forEach(function (singleItem) {
+    //   res.clearCookie(singleItem);
     });
-  });
+  // });
 
 
 
