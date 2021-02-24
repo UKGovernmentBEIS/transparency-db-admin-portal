@@ -11,10 +11,13 @@ router.get("/", (req, res) => {
   console.log("req.body.grantingAuthorityName", grantingAuthorityName_Global);
   grantingAuthorityName_Error_Msg = "";
   grantingAuthorityName_Error = false;
+
+  if (dashboard_roles == "BEIS Administrator") {
   res.render("bulkupload/grantingauthority-add", {
     grantingAuthorityName_Global,
   });
-
+  }
+  else {  res.render("bulkupload/notAuthorized") };
   // res.render("bulkupload/grantingauthority-reviewdetails");
 });
 

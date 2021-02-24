@@ -39,12 +39,16 @@ router.get("/", async (req, res) => {
         } else gaListArr = [];
       }
       GaListArr_Global = gaListArr;
+      if (dashboard_roles == "BEIS Administrator") {
       res.render("bulkupload/grantingauthority-deactivate", {
         gaid,
         ganame,
         GaListArr_Global,
         azGrpId,
       });
+      }
+      else {  res.render("bulkupload/notAuthorized") };
+
     } catch (err) {
       console.log("message error deactivate GA : " + err);
       // res.render("publicusersearch/noresults");

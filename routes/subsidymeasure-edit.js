@@ -78,7 +78,12 @@ router.get("/", async (req, res) => {
     scheme_issued_end_month_Error = false;
     scheme_issued_end_year_Error = false;
 
+    if (dashboard_roles !== "Granting Authority Encoder") {  
+
     res.render("bulkupload/subsidymeasures-edit");
+  }
+  else {  res.render("bulkupload/notAuthorized") };
+
   } catch (err) {
     console.error(err);
   }

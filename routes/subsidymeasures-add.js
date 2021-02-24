@@ -43,8 +43,11 @@ router.get("/", (req, res) => {
   isCallfromEditAward = false;
   var isAddSubsidyPrimarycall = true;
 
- 
+  if (dashboard_roles !== "Granting Authority Encoder") {
   res.render("bulkupload/subsidymeasures-add", { isAddSubsidyPrimarycall }); 
+  }
+
+else {  res.render("bulkupload/notAuthorized") };
 
 });
 router.post("/", (req, res) => {

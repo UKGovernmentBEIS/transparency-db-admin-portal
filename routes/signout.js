@@ -13,11 +13,11 @@ router.get("/", (req, res) => {
  
 
   cookiesList.forEach(function (items) {
-    res.clearCookie(items);
+    req.clearCookie(items);
    var singleCookie = items.split("=");
 
     // singleCookie.forEach(function (singleItem) {
-      res.clearCookie(singleCookie[0]);
+      req.clearCookie(singleCookie[0]);
     });
     // var singleCookie = items.split("=");
     // singleCookie.forEach(function (singleItem) {
@@ -30,7 +30,7 @@ router.get("/", (req, res) => {
   res.redirect(
     "https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=" + beis_redirect_url 
   );
-  console.log("cookies", req.headers.cookie);
+  console.log("cookies-clear", req.headers.cookie);
   //   cookies.set('testtoken', {expires: Date.now()});
   //   res.render("bulkupload/notAuthorized");
 });

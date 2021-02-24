@@ -91,7 +91,11 @@ else {
     Email_Id_Global = "";
     Phone_Number_Global = "";
 
+    if (dashboard_roles == "Granting Authority Administrator") {
+
     res.render("bulkupload/user-select-ga");
+    }
+    else {  res.render("bulkupload/notAuthorized") };
   } catch (err) {
     response_error_message = err;
     console.log("message error : " + err);

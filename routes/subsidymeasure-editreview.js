@@ -66,7 +66,11 @@ router.get("/", async (req, res) => {
     // Scheme_Legal_Granting_End_Date_Day = date[0];
     // Scheme_Legal_Granting_End_Date_Year = date[2];
 
+    if (dashboard_roles !== "Granting Authority Encoder") {
+
     res.render("bulkupload/subsidymeasure-editreview");
+    }
+    else {  res.render("bulkupload/notAuthorized") };
   } catch (err) {
     console.error(err);
   }

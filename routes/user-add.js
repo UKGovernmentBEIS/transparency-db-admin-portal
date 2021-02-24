@@ -13,7 +13,10 @@ router.get("/", (req, res) => {
   Email_Id_Error = false;
   Phone_Number_Error = false;
 
+  if (dashboard_roles == "BEIS Administrator" || dashboard_roles == "Granting Authority Administrator") {
   res.render("bulkupload/user-add");
+  }
+  else {  res.render("bulkupload/notAuthorized") };
 });
 
 module.exports = router;

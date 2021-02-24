@@ -11,22 +11,25 @@ router.get("/", (req, res) => {
   // req.query = JSON.parse(JSON.stringify(req.query));
 
   if (req.query.hasOwnProperty("change")) {
-    // const grantingAuthorityID_Global = req.query.change;
-    // console.log("grantingAuthorityID_Global", grantingAuthorityID_Global);
+
     console.log("grantingAuthorityName_Global", grantingAuthorityName_Global);
+
+    if (dashboard_roles == "BEIS Administrator") {
     res.render("bulkupload/grantingauthority-add", {
       grantingAuthorityName_Global,
     });
   }
-  // else if (req.query.hasOwnProperty("totalrecords")) {
-  //   grantingAuthorityName_Error = "";
-  //   grantingAuthorityName_Global = "";
-  //   res.render("bulkupload/grantingauthority-add");
-  // }
+  else {  res.render("bulkupload/notAuthorized") };
+  }
+ 
   else {
     grantingAuthorityName_Error = "";
     grantingAuthorityName_Global = "";
+    if (dashboard_roles == "BEIS Administrator") {
     res.render("bulkupload/grantingauthority-add");
+
+  }
+  else {  res.render("bulkupload/notAuthorized") };
   }
 });
 

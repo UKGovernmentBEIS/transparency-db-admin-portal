@@ -17,11 +17,16 @@ router.get("/", (req, res) => {
   grantingAuthorityName_Global = req.query.ganame;
   grantingAuthorityPublish_Global = false;
   // }
+
+  if (dashboard_roles == "BEIS Administrator") {
   res.render("bulkupload/grantingauthority-editreview", {
     grantingAuthorityID_Global,
     grantingAuthorityName_Global,
     grantingAuthorityPublish_Global,
   });
+}
+  else {  res.render("bulkupload/notAuthorized") };
+
 });
 
 router.post("/", (req, res) => {
