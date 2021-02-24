@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
     //   singleCookieValue = singleCookie[0].trim();
     //   res.clearCookie(singleCookieValue);
   });
-  req.clearCookie("AppServiceAuthSession", { expires: Date.now() });
+  //   req.clearCookie("AppServiceAuthSession", { expires: Date.now() });
   //   res.clearCookie("ARRAffinitySameSite");
   //   res.clearCookie("ARRAffinity");
   //   res.redirect(
