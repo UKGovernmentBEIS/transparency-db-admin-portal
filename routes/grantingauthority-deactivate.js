@@ -24,8 +24,7 @@ router.get("/", async (req, res) => {
 
     try {
       const apidata = await axios.get(
-        beis_url_searchscheme + `/grantingAuthority/${azGrpId}`,
-        UserPrincileObjectGlobal
+        beis_url_searchscheme + `/grantingAuthority/${azGrpId}`
       );
 
       var gaListArr = [];

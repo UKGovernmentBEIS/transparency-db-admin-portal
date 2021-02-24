@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - Granting authority deactivated successfully page</title>
+
+    <%- include('../partials/headercss.ejs') %>
+</head>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+            <%- include('../partials/navigationbar.ejs') %>
+
+            <div class="govuk-grid-row">
+
+                <div class="govuk-grid-column-two-thirds govuk-form-group">
+                    <h1 class="govuk-heading-xl">Not Authorized</h1>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+
+</body>
+
+</html>

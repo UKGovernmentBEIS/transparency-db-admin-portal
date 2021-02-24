@@ -27,7 +27,7 @@ router.post("/", (req, res) => {
   var scheme_issued_end_month_Error = false;
   var scheme_issued_end_day_Error = false;
 
-  const {
+  var {
     Subsidy_Adhoc,
     Granting_Authority_Name,
     Subsidy_Measure_Title,
@@ -66,6 +66,9 @@ router.post("/", (req, res) => {
     Scheme_End_Day_Global = scheme_issued_start_day;
     Scheme_End_Month_Global = scheme_issued_start_month;
     Scheme_End_Year_Global = scheme_issued_start_year;
+    scheme_issued_end_day = scheme_issued_start_day;
+    scheme_issued_end_month = scheme_issued_start_month;
+    scheme_issued_end_year = scheme_issued_start_year;
   } else {
     Scheme_End_Day_Global = scheme_issued_end_day;
     Scheme_End_Month_Global = scheme_issued_end_month;

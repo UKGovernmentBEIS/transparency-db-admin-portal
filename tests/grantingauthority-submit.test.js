@@ -62,6 +62,7 @@ test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.beis_url_searchscheme = "";
+  global.dashboard_user_name = "";
   global.gaID = "";
   global.grantingAuthorityName_Error_Msg = "";
   global.process.argv = ["", "", "env=dev"];

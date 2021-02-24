@@ -11,13 +11,15 @@ router.get("/", async (req, res) => {
 
   try {
     const apidata = await axios.get(
-      beis_url_accessmanagement + "/users/" + user_id,
+      beis_url_accessmanagement + "/usermanagement/users/" + user_id,
       UserPrincileObjectGlobal
     );
     console.log(`Status: ${apidata.status}`);
     console.log("Body: ", apidata.data);
-    GAUserList = apidata.data;
-
+    Full_Name_Global = apidata.data.givenName;
+    Last_Name_Global = apidata.data.surname;
+    Email_Id_Global = apidata.data.userPrincipalName;
+    Phone_Number_Global = apidata.data.mobilePhone;
     res.render("bulkupload/user-account");
   } catch (err) {
     response_error_message = err;

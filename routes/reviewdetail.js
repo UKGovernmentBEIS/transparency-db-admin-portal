@@ -66,7 +66,7 @@ router.post("/", (req, res) => {
   console.log("mylink:" + mylink);
   // console.log("  Subsidy_Adhoc :" + Subsidy_Adhoc);
 
-  Subsidy_Control_Number_Global = Subsidy_Control_Number;
+  Subsidy_Control_Number_Global = Subsidy_Control_Number.toUpperCase();
   Subsidy_Measure_Title_Global = Subsidy_Measure_Title;
   // Subsidy_Adhoc_Global = Subsidy_Adhoc;
   Subsidy_Objective_Global = Subsidy_Objective;
