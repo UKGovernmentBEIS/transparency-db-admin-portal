@@ -8,19 +8,23 @@ router.get("/", (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-  console.log("cookies", req.headers.cookie);
+  //   console.log("cookies", req.headers.cookie);
   var cookiesList = req.headers.cookie.split(";");
   cookiesList.forEach(function (items) {
     console.log("cookieList", items);
     var singleCookie = items.split("=");
     console.log("singleCookie", singleCookie[0]);
-    // singleCookie.forEach(function (singleItem) {
-    //   res.clearCookie(singleCookie[0]);
-    // });
-    singleCookieValue = singleCookie[0].trim();
-    res.clearCookie(singleCookieValue);
+    if (singleCookie[0] != "") {
+      //   singleCookie.forEach(function (singleItem) {
+      res.clearCookie(singleCookie[0], { expires: Date.now() });
+      //   });
+    }
+    //   singleCookieValue = singleCookie[0].trim();
+    //   res.clearCookie(singleCookieValue);
   });
-  res.clearCookie("AppServiceAuthSession");
+  res.clearCookie("AppServiceAuthSession", { expires: Date.now() });
+  //   res.clearCookie("ARRAffinitySameSite");
+  //   res.clearCookie("ARRAffinity");
   //   res.redirect(
   //     "https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=" +
   //       beis_redirect_url
