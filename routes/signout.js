@@ -17,14 +17,14 @@ router.get("/", (req, res) => {
     // singleCookie.forEach(function (singleItem) {
     //   res.clearCookie(singleCookie[0]);
     // });
-    res.clearCookie(items);
-    res.clearCookie("AppServiceAuthSession");
+    singleCookieValue = singleCookie[0].trim();
+    res.clearCookie(singleCookieValue);
   });
-
-  res.redirect(
-    "https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=" +
-      beis_redirect_url
-  );
+  res.clearCookie("AppServiceAuthSession");
+  //   res.redirect(
+  //     "https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=" +
+  //       beis_redirect_url
+  //   );
   console.log("cookies after clear", req.headers.cookie);
   //   cookies.set('testtoken', {expires: Date.now()});
   //   res.render("bulkupload/notAuthorized");
