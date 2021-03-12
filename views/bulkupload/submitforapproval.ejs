@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GOV.UK - Subsidy Award submitted for approval page</title>
+  <%- include('../partials/headercss.ejs') %>
+</head>
+
+
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+  <%- include('../partials/header.ejs') %>
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+      <%- include('../partials/navigationbar.ejs') %>
+      <!-- bread crumbs start here -->
+      <div class="govuk-breadcrumbs ">
+        <ol class="govuk-breadcrumbs__list">
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link active" href="#">Add a subsidy award</a>
+          </li>
+        </ol>
+      </div>
+      <!-- bread crumbs ends here -->
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <div class="govuk-panel govuk-panel--confirmation">
+            <h1 class="govuk-panel__title">
+              Subsidy award submitted <% if(dashboard_roles == 'Granting Authority Encoder'){ %> for approval <% } %>
+            </h1>
+            <!-- <h2 class="govuk-panel__body">
+              Subsidy award number <%= locals.Subsidy_Control_Number_Global_Substring %>
+            </h2> -->
+          </div>
+
+          <p class="govuk-body">You have successfully submitted subsidy award
+            <%= locals.Subsidy_Control_Number_Global_Substring %>
+            <% if(dashboard_roles == 'Granting Authority Encoder'){ %>
+            for approval
+            <% } %>
+          </p>
+
+          <h2 class="govuk-heading-m">What happens next</h2>
+          <p class="govuk-body">We have sent a notification to an approver so they can review the subsidy award. You
+            will receive a notification when they have reviewed it.</p>
+          <!-- <p class="govuk-body">1. The award has been submitted for approval and is now in 'Awaiting approval' state.
+          </p>
+          <p class="govuk-body">2. Once approved, by an approver, it will be published.</p>
+          <p class="govuk-body">3. If rejected, you will receive the notification with the reason</p> -->
+          <!-- <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full"> -->
+          <!-- <form action="" method="GET" novalidate=""> -->
+          <a href="/mysubsidyawards" class="govuk-button" data-module="govuk-button">View all subsidy awards</a>
+          <a href="/addsubsidyaward" class=" govuk-button govuk-button--secondary ">
+            Add another award
+          </a>
+          <!-- </form> -->
+          <!-- <form action="" method="GET" class="govuk-grid-column-one-half govuk-padding-0"> -->
+
+          <!-- </form> -->
+          <!-- </div>
+          </div> -->
+        </div>
+      </div>
+    </main>
+  </div>
+  <%- include('../partials/footer.ejs') %>
+  <script>
+    document.getElementById('subsidyaward-li').firstElementChild.setAttribute("aria-current", 'page');
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - Add user page</title>
+    <%- include('../partials/headercss.ejs') %>
+    <!-- <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script> -->
+    <!-- <script>
+        getUserList = (usertype) => {
+            if (usertype == 'BEIS') {
+                document.getElementById("full-name-div").style.display = "block";
+                document.getElementById("ga-name-div").style.display = "none";
+            }
+            else {
+                document.getElementById("ga-name-div").style.display = "block";
+                document.getElementById("full-name-div").style.display = "none";
+            }
+        }
+    </script> -->
+</head>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+            <%- include('../partials/navigationbar.ejs') %>
+       
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/userselect">Users</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link active" href="#">Add a new user</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+            <form action="/userreview" method="POST">
+                <h1 class="govuk-heading-xl">
+                    Add a new user</h1>
+
+                <div class="govuk-grid-row">
+                    <div id="sign-in-hint" class="govuk-hint">
+                        Role
+                    </div>
+                    <div class="govuk-radios govuk-form-group">
+                        <div class="govuk-radios__item">
+                            <%  if(User_Role_Global == 'BEIS Administrator' || dashboard_roles == 'BEIS Administrator') { %>
+                            <input class="govuk-radios__input" id="BEISAdmin" name="userRole" type="radio"
+                                value="BEIS Administrator" checked>
+                            <% } if(dashboard_roles != 'BEIS Administrator'){ %>
+                            <input class="govuk-radios__input" id="BEISAdmin" name="userRole" type="radio"
+                                value="BEIS Administrator" disabled>
+                            <% } else { %>
+                            <input class="govuk-radios__input" id="BEISAdmin" name="userRole" type="radio"
+                                value="BEIS Administrator">
+                            <% } %>
+                            <label class="govuk-label govuk-radios__label" for="BEISAdmin">
+                                BEIS Administrator
+                            </label>
+                            <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                                Will be able to add, edit and approve users, granting authorities, subsidy schemes and
+                                awards.
+                            </div>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <%  if(User_Role_Global == 'Granting Authority Administrator') { %>
+                            <input class="govuk-radios__input" id="GAAdmin" name="userRole" type="radio"
+                                value="Granting Authority Administrator" checked>
+                            <% } else { %>
+                            <input class="govuk-radios__input" id="GAAdmin" name="userRole" type="radio"
+                                value="Granting Authority Administrator">
+                            <% } %>
+
+                            <label class="govuk-label govuk-radios__label" for="GAAdmin">
+                                Granting Authority Administrator
+                            </label>
+                            <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                                Will be able to add, edit and approve users, subsidy schemes and awards.
+                            </div>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <%  if(User_Role_Global == 'Granting Authority Approver') { %>
+                            <input class="govuk-radios__input" id="GAApprover" name="userRole" type="radio"
+                                value="Granting Authority Approver" checked>
+                            <% } else { %>
+                            <input class="govuk-radios__input" id="GAApprover" name="userRole" type="radio"
+                                value="Granting Authority Approver">
+                            <% } %>
+                            <label class="govuk-label govuk-radios__label" for="GAApprover">
+                                Granting Authority Approver
+                            </label>
+                            <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                                Will be able to add, edit and approve subsidy schemes and awards.
+                            </div>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <%  if(User_Role_Global == 'Granting Authority Encoder') { %>
+                            <input class="govuk-radios__input" id="GAEncoder" name="userRole" type="radio"
+                                value="Granting Authority Encoder" checked>
+                            <% } else { %>
+                            <input class="govuk-radios__input" id="GAEncoder" name="userRole" type="radio"
+                                value="Granting Authority Encoder">
+                            <% } %>
+                            <label class="govuk-label govuk-radios__label" for="GAEncoder">
+                                Granting Authority Encoder
+                            </label>
+                            <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                                Will be able to add and edit subsidy awards.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="govuk-grid-row" id="ga-name-div">
+                        <div class="govuk-form-group govuk-grid-column-full">
+                            <label class="govuk-label" for="width-20">
+                                Granting Authority name
+                            </label>
+                            <!-- <div class="govuk-form-group govuk-grid-column-one-half govuk-padding-0"> -->
+                            <%  if(dashboard_roles == 'BEIS Administrator') { %>
+                            <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
+                                type="text" id="GA_Name_User" name="GA_Name_User" <% if(GA_Name_User_Global) {%>
+                                value="<%= GA_Name_User_Global %>" <% } %>>
+                            <% } else { %>
+                                <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
+                                type="text" id="GA_Name_User" name="GA_Name_User" disabled
+                                value="<%= dashboard_ga_name   %>" >
+                            <% } %>
+                        </div>
+                        <div class="govuk-grid-column-one-third">
+                            <div class="govuk-form-group govuk-grid-column-full govuk-padding-0 ">
+                                <label class="govuk-label" for="width-20">
+                                    First name
+                                </label>
+                                <!-- <div class="govuk-form-group govuk-grid-column-two-thirds govuk-padding-0"> -->
+                                <input class="govuk-input" id="FullName" name="Full_Name" type="text"
+                                    <% if(Full_Name_Global ) {%> value="<%= Full_Name_Global  %>" <% } %>>
+
+                            </div>
+                            <div class="govuk-form-group govuk-grid-column-full govuk-padding-0">
+                                <!-- <div class="govuk-form-group govuk-grid-column-one-third"> -->
+                                <label class="govuk-label" for="width-20">
+                                    Last name
+                                </label>
+                                <input class="govuk-input govuk-input--width-20" id="LastName" name="Last_Name"
+                                    type="text" <% if(Last_Name_Global ) {%> value="<%= Last_Name_Global  %>" <% } %>>
+                                <!-- </div> -->
+                            </div>
+                            <div class="govuk-form-group govuk-grid-column-full govuk-padding-0">
+                                <!-- <div class="govuk-form-group govuk-grid-column-one-third"> -->
+                                <label class="govuk-label" for="width-20">
+                                    Email address
+                                </label>
+                                <input class="govuk-input govuk-input--width-20" id="EmailId" name="Email_Id"
+                                    type="text" <% if(Email_Id_Global) {%> value="<%= Email_Id_Global %>" <% } %>>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="govuk-form-group govuk-grid-column-full">
+                            <!-- <div class="govuk-form-group govuk-grid-column-full"> -->
+                            <label class="govuk-label" for="width-20">
+                                Mobile phone number
+                            </label>
+                            <div class="govuk-hint">
+                                We will send a reset code to this phone number if the user forgets their password.
+                            </div>
+                            <input class="govuk-input govuk-input--width-10" id="PhoneNumber" name="Phone_Number"
+                                type="text" <% if(Phone_Number_Global) {%> value="<%= Phone_Number_Global %>" <% } %>>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+
+                    <button class="govuk-button" data-module="govuk-button">
+                        Continue
+                    </button>
+                    <a class="govuk-link govuk-cancel-button-link" href="/canceluser">
+                        Cancel
+                    </a>
+                </div>
+
+            </form>
+
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+    <script>
+        document.getElementById('user-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - Manage Users page</title>
+    <%- include('../partials/headercss.ejs') %>
+    <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script src="assets/javascripts/jquery.min.js"></script>
+    <!-- <script>
+        $(document).ready(function () {
+            $("#user-li a").attr('aria-current', 'page');
+            // document.getElementById('user-li').setAttribute("aria-current", 'page');
+        })
+
+    </script> -->
+</head>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+
+            <!-- <div class="govuk-grid-row govuk-form-group">
+                <div class="govuk-grid-column-full">
+                    <nav aria-label="Sub navigation">
+                        <ul class="govuk-sub-navigation__list">
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                    Granting Authorities
+                                </a>
+                            </li>
+
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/userselect">
+                                    Users
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
+                                    Subsidy Schemes
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
+                                    Subsidy Awards
+                                </a>
+                            </li>
+
+
+
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    Sign out
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/useraccount">
+                                    My account
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div> -->
+
+            <%- include('../partials/navigationbar.ejs') %>
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link active" href="#">Users</a>
+                    </li>
+                </ol>
+            </div>
+
+
+            <h1 class="govuk-heading-xl">
+                Users</h1>
+            <div class="govuk-grid-row">
+                <form action="/userselect" method="POST">
+                    <div class="govuk-grid-column-three-quarters govuk-form-group">
+                        <label class="govuk-label govuk-form-group">
+                            Search
+                        </label>
+                        <select class="govuk-select" id="sort" name="Granting_Authority_Selected"
+                            aria-label="Drop down list that shows Filter by type">
+                            <% if ( isUserSelectIsPrimaryCall ) { %>
+                            <option value="" selected disabled>Filter by granting authority</option>
+                            <% gaNamesList.forEach(function(items){ %>
+                            <option value="<%= items %>"> <%= items %> </option>
+                            <% })%>
+
+                            <% } else { %>
+
+                            <% if ( !GA_Selected ) { %>
+                            <option value="" selected disabled>Filter by granting authority</option>
+                            <% } %>
+
+                            <% gaNamesList.forEach(function(items){ %>
+
+                            <% if (GA_Selected == items) { %>
+                            <option selected value="<%= items %>"> <%= items %> </option>
+                            <% } else { %>
+                            <option value="<%= items %>"> <%= items %> </option>
+                            <% } %>
+                            <% })%>
+
+                            <% } %>
+                        </select>
+                        <button class="govuk-button" data-module="govuk-button" name="button_value" value="GASelected">
+                            List users by granting authority
+                        </button>
+
+                    </div>
+
+                    <div class="govuk-grid-column-three-quarters">
+                       
+                            <select class="govuk-select" id="sort" name="GA_Roles_Selected"
+                                aria-label="Drop down list that shows Filter by roles">
+                                <!-- <option value="" selected disabled>Filter by role</option> -->
+
+                                <% if ( isUserSelectIsPrimaryCall ) { %>
+                                <option value="" selected disabled>Filter by roles</option>
+                                <% gaRolesList.forEach(function(items){%>
+                                <option value="<%= items %>"> <%= items %> </option>
+                                <% })%>
+
+                                <% } else { %>
+
+                                <% if ( !Roles_Selected ) { %>
+                                <option value="" selected disabled>Filter by roles</option>
+                                <% } %>
+
+                                <% gaRolesList.forEach(function(items){ %>
+                                <% if (Roles_Selected == items) { %>
+                                <option selected value="<%= items %>"> <%= items %> </option>
+                                <% } else { %>
+                                <option value="<%= items %>"> <%= items %> </option>
+                                <% } %>
+                                <% })%>
+
+                                <% } %>
+                            </select>
+                        
+
+                        <button class="govuk-button" data-module="govuk-button" name="button_value"
+                            value="RoleSelected">
+                            List users by roles
+                        </button>
+
+                    </div>
+
+                    <div class="govuk-grid-column-two-thirds">
+                        <!-- <a href="/" style="color : black; text-decoration: none"> -->
+
+                        <!-- <a href="/user-list" class="govuk-button" data-module="govuk-button">
+                        List users
+                    </a> -->
+
+
+                        <% if(dashboard_roles == 'BEIS Administrator' || dashboard_roles == 'Granting Authority Administrator') { %>
+                        <a href="/adduser" class="govuk-button" data-module="govuk-button">
+                            Add a new user
+                        </a>
+                        <% } %>
+                    </div>
+                </form>
+                <div class="govuk-grid-column-full">
+                    <% if ( ! isUserSelectIsPrimaryCall ) { %>
+                    <section class="govuk-table-responsive">
+                        <table class="govuk-table" id="datatable">
+                            <thead class="govuk-table__head">
+                                <tr class="govuk-table__row">
+                                    <th scope="col" class="govuk-table__header app-custom-class"
+                                        style="color: #1D70B8;">Name </th>
+                                    <th scope="col" class="govuk-table__header app-custom-class"
+                                        style="color: #1D70B8;">Role</th>
+                                    <th scope="col" class="govuk-table__header app-custom-class"
+                                        style="color: #1D70B8;">Status</th>
+                                    <th scope="col" class="govuk-table__header app-custom-class"
+                                        style="color: #1D70B8;">Granting authority</th>
+                                    <th scope="col" class="govuk-table__header app-custom-class"
+                                        style="color: #1D70B8;">Email address</th>
+                                </tr>
+                            </thead>
+                            <tbody class="govuk-table__body">
+                                <% GAUserList.value.forEach(function(item) { %>
+                                <tr>
+                                    <td class="govuk-table__cell">
+                                        <a
+                                            href="/userindividualdetails/?userObject=<%= item.id %>"><%= item.displayName %></a>
+                                    </td>
+                                    <td class="govuk-table__cell">
+                                        <% var role = item.roleName.split("_"); if(role[1] == 'GrantingAuthorityAdministrators') { %>
+                                        Granting Authority Administrators
+                                        <% } else if(role[1] == 'GrantingAuthorityEncoders') {%>
+                                        Granting Authority Encoders
+                                        <% } else if(role[1] == 'BEISAdministrators') {%>
+                                        BEIS Administrators
+                                        <% } else  {%>
+                                        Granting Authority Approvers
+                                        <% } %>
+                                    </td>
+                                    <td class="govuk-table__cell">
+                                        Active
+                                    </td>
+
+
+                                    <td class="govuk-table__cell">
+                                        <% if ( Roles_Selected == 'Granting Authority Administrator' || Roles_Selected == 'Granting Authority Approver' || Roles_Selected == 'Granting Authority Encoder' ) {  %>
+                                        NA
+                                        <% } else if (Roles_Selected == 'BEIS Administrator' ) {  %>
+                                        Department for Business, Energy & Industrial Strategy
+                                        <% } else { %>
+                                        <%= GA_Selected %>
+                                        <% } %>
+                                    </td>
+
+                                    <td class="govuk-table__cell">
+                                        <%= item.userPrincipalName %>
+                                    </td>
+
+                                </tr>
+
+                                <% } ); %>
+
+                            </tbody>
+
+                        </table>
+                        <% } %>
+                    </section>
+                    <div>
+                        <% if ( GAUserList_Empty == 0) { %>
+                        <label class="govuk-label govuk-grid-column-full">
+                            No users available for the search criteria
+                        </label>
+                        <% } %>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </main>
+    </div>
+
+
+    <%- include('../partials/footer.ejs') %>
+    <script>
+        document.getElementById('user-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GOV.UK - Login page</title>
+  <%- include('../partials/headercss.ejs') %>
+</head>
+
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+  <%- include('../partials/header.ejs') %>
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-panel__title">
+            We’ve emailed you a link
+          </h1>
+
+
+          <p class="govuk-body">We’ve sent an email containing the password reset link to <%= email_addresspass %>.</p>
+          <!-- <h2 class="govuk-heading-m">What happens next</h2> -->
+
+          <p class="govuk-body">Go to your email inbox and follow the instructions in the email. </p>
+          <p class="govuk-body">The password reset link will expire in 1 hour.</p>
+          <!-- <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              I have not received the email
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p class="govuk-body">The email may take a few minutes to arrive</p>
+            <p class="govuk-body">Check your spam or junk folder - if it still has not arrived, you can </p>
+            <p class="govuk-body">
+              <a class="govuk-link" href=" ">
+                request for email again
+              </a>
+            </p>
+          </div>
+        </details> -->
+          <h3 class="govuk-heading-m">If you have not received the email</h3>
+          <p>You might need to:</p>
+          <ul>
+            <li>wait a few minutes for the email to arrive in your inbox</li>
+            <li>check your spam or junk folder</li>
+            <li>request the password reset link again</li>
+          </ul>
+
+
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+
+
+  <%- include('../partials/footer.ejs') %>
+</body>
+
+</html>

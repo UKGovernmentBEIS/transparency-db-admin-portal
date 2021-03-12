@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GOV.UK - GA Approver Dashboard page</title>
+  <%- include('../partials/headercss.ejs') %>
+  <link href="/assets/stylesheet/govuk-transparencyDb.css" rel="stylesheet" type="text/css" />
+</head>
+<!-- <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
+<script type="text/javascript" src="/assets/javascripts/script.js" defer></script>
+<script src="/assets/javascripts/vendor/modernizr.js"></script> -->
+
+<!-- <%- include('../partials/headersubsidy.ejs') %> -->
+
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+  <%- include('../partials/header.ejs') %>
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper" id="main-content" role="main">
+      <%- include('../partials/navigationbar.ejs') %>
+
+      <div class="govuk-beis-heading">
+        <legend class="form-group">
+          <h2>Dashboard</h2>
+        </legend>
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
+          <h1 class="govuk-fieldset__heading"><%= dashboard_user_name %></h1>
+        </legend>
+      </div>
+
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
+        <h2 class="govuk-fieldset_sub-heading">Subsidy Awards</h2>
+      </legend>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half govuk-form-group">
+          <div class="govuk-background">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+              <%= dashboardawards.awardUserActionCount.totalSubsidyAward %>
+            </legend>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24">
+              <a href="/mysubsidyawards" class="govuk-description-text">Total subsidy awards </a></p>
+          </div>
+        </div>
+        <div class="govuk-grid-column-one-half govuk-form-group">
+          <div class="govuk-background">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+              <%= dashboardawards.awardUserActionCount.totalAwaitingAward %>
+            </legend>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+              <a href="/mysubsidyawards?sort=Awaiting Approval" class="govuk-description-text">Awaiting
+                approval</a></p>
+          </div>
+        </div>
+        <div class="govuk-grid-column-one-half govuk-form-group">
+          <div class="govuk-background">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+              <%= dashboardawards.awardUserActionCount.totalPublishedAward %>
+            </legend>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+              <a href="/mysubsidyawards?sort=Published" class="govuk-description-text">Published</a></p>
+          </div>
+        </div>
+        <div class="govuk-grid-column-one-half govuk-form-group">
+          <div class="govuk-background">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+              <%= dashboardawards.awardUserActionCount.totalRejectedAward %>
+            </legend>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+              <a href="/mysubsidyawards?sort=Rejected" class="govuk-description-text">Rejected</a></p>
+          </div>
+        </div>
+        <!-- <div class="govuk-grid-column-one-third govuk-form-group">
+          <div class="govuk-background">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+              <%= dashboardawards.awardUserActionCount.totalInactiveAward %>
+            </legend>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+              Inactive</p>
+          </div>
+        </div> -->
+      </div>
+      <div class="govuk-addGA form-group">
+        <a href="/mysubsidyawards" class="govuk-button govuk-button--success">
+          View all subsidy award
+        </a>
+        <a href="/addsubsidyaward" class="govuk-button govuk-button--success">
+          Add a new subsidy award
+        </a>
+      </div>
+
+      <div class="govuk-border-top">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
+          <h2 class="govuk-fieldset_sub-heading">Subsidy schemes</h2>
+        </legend>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-one-third govuk-form-group">
+            <div class="govuk-background">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+                <%= dashboardawards.subsidyMeasureUserActionCount.totalSubsidyScheme %> </legend>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text"><a
+                  href="/mysubsidymeasures" class="govuk-description-text">Total subsidy schemes </a> </p>
+            </div>
+          </div>
+          <!-- <div class="govuk-grid-column-one-half govuk-form-group">
+            <div class="govuk-background">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+                <%= dashboardawards.subsidyMeasureUserActionCount.totalAwaitingSubsidyMeasures %> </legend>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                Awaiting approval</p>
+            </div>
+          </div>
+          <div class="govuk-grid-column-one-third govuk-form-group">
+            <div class="govuk-background">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+                <%= dashboardawards.subsidyMeasureUserActionCount.totalPublishedSubsidyMeasures %> </legend>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                Published</p>
+            </div>
+          </div> -->
+          <div class="govuk-grid-column-one-third govuk-form-group">
+            <div class="govuk-background">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+                <%= dashboardawards.subsidyMeasureUserActionCount.totalActiveScheme %>
+              </legend>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                <a href="/mysubsidymeasures?sort=Active" class="govuk-description-text">Active</a></p>
+            </div>
+          </div>
+          <div class="govuk-grid-column-one-third govuk-form-group">
+            <div class="govuk-background">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+                <%= dashboardawards.subsidyMeasureUserActionCount.totalInactiveScheme %>
+              </legend>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                <a href="/mysubsidymeasures?sort=Inactive" class="govuk-description-text">Inactive</a></p>
+            </div>
+          </div>
+
+        </div>
+        <div class="govuk-addGA form-group">
+          <a href="/mysubsidymeasures" class="govuk-button govuk-button--success">
+            View all subsidy schemes
+          </a>
+          <a href="/addsubsidymeasures" class="govuk-button govuk-button--success">
+            Add a new subsidy schemes
+          </a>
+        </div>
+
+      </div>
+
+      <div class=" govuk-border-top">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
+          <h2 class="govuk-fieldset_sub-heading">Users</h2>
+        </legend>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-one-half govuk-charts govuk-form-group">
+            <div class="govuk-background">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+                <%= gaTotalCount_Global %>
+              </legend>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                <a href="/userselect" class="govuk-description-text">All users in <%=dashboard_ga_name%></a></p>
+            </div>
+
+          </div>
+          <div class="govuk-grid-column-one-half govuk-charts govuk-form-group">
+            <div class="govuk-background">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-total-count">
+                <%=gaEncoderCount_Global%>
+              </legend>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                Encoders</p>
+            </div>
+
+          </div>
+
+
+        </div>
+        <div class="govuk-addGA form-group">
+          <button class="govuk-button govuk-button--success">
+            View all Users
+          </button>
+
+        </div>
+
+      </div>
+
+
+    </main>
+  </div>
+
+  <%- include('../partials/footer.ejs') %>
+  <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+  <!-- <script src="/assets/javascripts/accordion/govuk-frontend.js"></script> -->
+
+</html>

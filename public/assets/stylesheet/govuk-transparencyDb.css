@@ -1,0 +1,103 @@
+.govuk-fieldset__heading {
+  font-size: 3rem;
+}
+.govuk-login-button {
+  width: 22%;
+  box-shadow: 0 0px 0 #002d18;
+}
+.govuk-dashboard-list li {
+  width: auto;
+  float: left;
+  margin-right: 3%;
+  display: block;
+}
+.govuk-dashboard-list,
+.govuk-account-logout {
+  padding: 0;
+}
+.govuk-dashboard-list li a,
+.govuk-account-logout li a {
+  text-decoration: none;
+  color: black;
+}
+.govuk-account-logout li {
+  width: 50%;
+  text-align: right;
+  float: left;
+}
+.govuk-menu-list {
+  display: -ms-flexbox;
+  display: flex;
+  flex-flow: row wrap;
+  padding-bottom: 2%;
+  margin-bottom: 15px;
+  list-style: none;
+  justify-content: flex-start;
+  border-bottom: 2px solid gray;
+}
+
+.govuk-beis-heading h2 {
+  color: rgb(177, 180, 182);
+  font-size: 27px;
+  font-weight: normal;
+  margin-top: 1%;
+}
+
+.govuk-charts label {
+  color: rgb(29, 112, 184);
+  font-size: 24px;
+  font-weight: bold;
+  width: 100%;
+  float: left;
+  text-decoration: underline;
+}
+.govuk-total-count {
+  font-size: 48px;
+  color: #005da6;
+}
+
+.govuk-charts p {
+  float: left;
+  width: 100%;
+}
+.govuk-border-top {
+  border-top: 4px solid rgb(29, 112, 184);
+  float: left;
+  width: 100%;
+  margin-top: 2rem;
+}
+.govuk-fieldset_sub-heading {
+  font-size: 1em;
+  font-weight: bold;
+}
+.govuk-GA-heading {
+  padding-bottom: 1%;
+  color: #333333;
+  font-weight: normal;
+}
+.govuk-table__row {
+  border-top: 1px solid rgb(194, 196, 198);
+}
+.govuk-table__cell,
+.govuk-table__header {
+  padding: 18px 20px 18px 0;
+  vertical-align: middle;
+}
+.govuk-editGA {
+  color: rgb(0, 93, 166);
+}
+table th,
+table td {
+  font-size: 16px;
+}
+
+.govuk-button--size {
+  width: 15%;
+}
+/* .govuk-btn-boxshadow {
+  box-shadow: 0 0 0 #002d18;
+} */
+.govuk-footer {
+  width: 100%;
+  float: left;
+}

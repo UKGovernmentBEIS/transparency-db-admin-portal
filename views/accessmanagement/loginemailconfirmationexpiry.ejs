@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GOV.UK - Login page</title>
+  <%- include('../partials/headercss.ejs') %>
+</head>
+
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+  <%- include('../partials/header.ejs') %>
+
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-panel__title">
+            Reset password email sent
+          </h1>
+
+
+          <p class="govuk-body">An email with the reset password link has been sent to <%= email_addresspass %></p>
+          <h2 class="govuk-heading-m">What happens next</h2>
+
+          <p class="govuk-body">Follow the instruction in the email received</p>
+          <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                I have not received the email
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <p class="govuk-body">The email may take a few minutes to arrive</p>
+              <p class="govuk-body">Check your spam or junk folder - if it still has not arrived, you can </p>
+              <p class="govuk-body">
+                <a class="govuk-link" href=" ">
+                  request for email again
+                </a>
+              </p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </main>
+  </div>
+  <%- include('../partials/footer.ejs') %>
+</body>
+
+</html>

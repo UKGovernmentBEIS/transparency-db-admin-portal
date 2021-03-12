@@ -1,0 +1,48 @@
+<div class="govuk-grid-row govuk-form-group">
+    <div class="govuk-grid-column-full">
+        <nav aria-label="Sub navigation">
+            <ul class="govuk-sub-navigation__list">
+                <% if(dashboard_roles == 'BEIS Administrator') { %>
+                <li class="govuk-sub-navigation__item" id="ga-li">
+                    <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                        Granting Authorities
+                    </a>
+                </li>
+                <% } %>
+                <% if(dashboard_roles != 'Granting Authority Encoder') { %>
+                <li class="govuk-sub-navigation__item" id="user-li">
+                    <a class="govuk-sub-navigation__link" href="/userselect">
+                        Users
+                    </a>
+                </li>
+                <% } %>
+                <li class="govuk-sub-navigation__item" id="subsidyscheme-li">
+                    <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
+                        Subsidy Schemes
+                    </a>
+                </li>
+                <li class="govuk-sub-navigation__item" id="subsidyaward-li">
+                    <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
+                        Subsidy Awards
+                    </a>
+                </li>
+
+                <% if(dashboard_roles == 'BEIS Administrator') { %>
+                <li class="govuk-sub-navigation__item" id="auditlog-li">
+                    <a class="govuk-sub-navigation__link" href="#"> Audit log </a>
+                </li>
+                <% } %>
+                <li class="govuk-sub-navigation__item head-right">
+                    <a class="govuk-sub-navigation__link" href="/signout">
+                        Sign out
+                    </a>
+                </li>
+                <li class="govuk-sub-navigation__item head-right" id="myaccount-li">
+                    <a class="govuk-sub-navigation__link" href="/useraccount">
+                        My account
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - Subsidy Schemes Review details page</title>
+    <%- include('../partials/headercss.ejs') %>
+</head>
+
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+            <%- include('../partials/navigationbar.ejs') %>
+            <!-- <div class="govuk-grid-row govuk-form-group">
+                <div class="govuk-grid-column-full">
+                    <nav class="govuk-sub-navigation" aria-label="Sub navigation">
+                        <ul class="govuk-sub-navigation__list">
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                    Granting Authorities
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/userselect">
+                                    Users
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidymeasures">
+                                    Subsidy schemes
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
+                                    Subsidy Awards
+                                </a>
+                            </li>
+
+                            <li class='govuk-sub-navigation__item head-right'>
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    Signout
+                                </a>
+                            </li>
+                            <li class='govuk-sub-navigation__item head-right'>
+                                <a class="govuk-sub-navigation__link" href="/useraccount">
+                                    My account
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div> -->
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mysubsidymeasures">Subsidy schemes</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link active" href="#">Add a subsidy scheme</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds-from-desktop">
+                    <h1 class="govuk-heading-xl">Review subsidy scheme before publishing</h1>
+
+                    <!-- *************************************
+              Review for subsidy details tab
+              ************************************* -->
+
+                </div>
+                <div class="govuk-grid-column-full">
+                    <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details
+                    </h2>
+                    <a rel="external" aria-label="Change subsidy scheme details"
+                        class="govuk-link head-right govuk-relative-position" href="/addreviewsubsidymeasures">
+                        <p>Change </p>
+                    </a>
+                </div>
+            </div>
+            <section class="govuk-table-responsive">
+                <table class="govuk-table">
+                    <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Is this an ad hoc scheme</th>
+                            <td class="govuk-table__cell"><%= Subsidy_Adhoc_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Granting Authority</th>
+                            <td class="govuk-table__cell"><%= Granting_Authority_Name_Measure_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Subsidy scheme name</th>
+                            <td class="govuk-table__cell"><%= Subsidy_Measure_Title_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Legal basis</th>
+                            <td class="govuk-table__cell"><%= Legal_Basis_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Granting authority policy URL </th>
+                            <td class="govuk-table__cell"><%= Granting_Authority_URL_Global %>
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Granting authority policy page summary </th>
+                            <td class="govuk-table__cell"><%= Granting_Authority_Policy_Global %>
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Budget or amount</th>
+                            <td class="govuk-table__cell">£ <%= Budget_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Start Date</th>
+                            <td class="govuk-table__cell"><%= Scheme_Start_Day_Global %> <%= GetMonthName %>
+                                <%= Scheme_Start_Year_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">End Date</th>
+                            <td class="govuk-table__cell"><%= Scheme_End_Day_Global %> <%= GetMonthName %>
+                                <%= Scheme_End_Year_Global %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <div class="govuk-grid-row">
+                <!-- <div class="govuk-grid-column-one-half govuk-padding-0"> -->
+                <form action="/subsidymeasurepublished" method="POST" novalidate>
+                    <input type="hidden" name="answers-checked" value="true">
+
+                    <button class="govuk-button" name="button_value" value="add_measure" data-module="govuk-button">
+                        Publish subsidy scheme
+                    </button>
+                    <a href="/addsubsidymeasures" class=" govuk-link govuk-cancel-button-link">Cancel</a>
+
+                </form>
+
+                <!-- <form action=" /" method="GET" class="govuk-grid-column-one-half"> -->
+
+                <!-- </form> -->
+                <!-- </div> -->
+            </div>
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+    <script>
+        document.getElementById('subsidyscheme-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
+</body>
+
+</html>

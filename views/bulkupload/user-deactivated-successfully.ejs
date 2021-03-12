@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - User Deactivated Successfully page</title>
+    <%- include('../partials/headercss.ejs') %>
+
+</head>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+            <%- include('../partials/navigationbar.ejs') %>
+            <!-- <div class="govuk-grid-ro govuk-form-groupw">
+                <div class="govuk-grid-column-full">
+                    <nav aria-label="Sub navigation">
+                        <ul class="govuk-sub-navigation__list">
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                    Granting Authorities
+                                </a>
+                            </li>
+
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/userselect">
+                                    Users
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
+                                    Subsidy Schemes
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
+                                    Subsidy Awards
+                                </a>
+                            </li>
+
+
+
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    Sign out
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item head-right">
+                                <a class="govuk-sub-navigation__link" href="/useraccount">
+                                    My account
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div> -->
+
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/userselect">Users</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link active" href="#">User details</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+            <div class="govuk-grid-row">
+
+                <div class="govuk-grid-column-two-thirds govuk-form-group">
+                    <div class="govuk-panel govuk-panel--confirmation">
+                        <h1 class="govuk-panel__title">
+                            User deactivated
+                        </h1>
+                    </div>
+                </div>
+                <div class="govuk-grid-column-full govuk-form-group">
+                    <p class="govuk-body govuk-!-font-size-19">You have deactivated this user. They will no longer be
+                        able to sign in to this system.</p>
+                </div>
+                <div class="govuk-grid-column-full govuk-form-group">
+
+                    <a class="govuk-button" href="/userselect" data-module="govuk-button">
+                        View all users
+                    </a>
+
+                </div>
+            </div>
+
+        </main>
+    </div>
+    <%- include('../partials/footer.ejs') %>
+    <script>
+        document.getElementById('user-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - Subsidy Schemes Cancel page</title>
+    <%- include('../partials/headercss.ejs') %>
+</head>
+
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+            <%- include('../partials/navigationbar.ejs') %>
+            <!-- Header pane starts here -->
+            <!-- <div class="govuk-grid-row govuk-form-group">
+                <div class="govuk-grid-column-full">
+                    <nav class="govuk-sub-navigation" aria-label="Sub navigation">
+                        <ul class="govuk-sub-navigation__list">
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
+                                    Granting Authorities
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/userselect">
+                                    Users
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidymeasures">
+                                    Subsidy Schemes
+                                </a>
+                            </li>
+                            <li class="govuk-sub-navigation__item">
+                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
+                                    Subsidy Awards
+                                </a>
+                            </li>
+
+                            <li class='govuk-sub-navigation__item head-right'>
+                                <a class="govuk-sub-navigation__link" href="/logintransparency">
+                                    Signout
+                                </a>
+                            </li>
+                            <li class='govuk-sub-navigation__item head-right'>
+                                <a class="govuk-sub-navigation__link" href="/useraccount">
+                                    My account
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div> -->
+            <!-- Header pane starts here -->
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mysubsidymeasures">Subsidy schemes</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link active" href="#">Add a subsidy scheme</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+            <!-- Body header starts here -->
+            <div class="govuk-body-cancel">
+                <h1 class="govuk-heading-l">Cancel new subsidy measure</h1>
+
+                <p class="govuk-body govuk-!-font-size-19 govuk-!-width-two-thirds">If you cancel, you will lose any
+                    information that you’ve already entered for this subsidy measure.
+                </p>
+                <!-- Body header ends here -->
+                <p class="govuk-body govuk-!-font-size-19">Are you sure you want to cancel?</p>
+
+                <a href="/mysubsidymeasures">
+                    <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Yes, cancel</button>
+                </a>
+                <a href="/addsubsidyreview">
+                    <button class="govuk-button govuk-button_sm govuk-button--secondary"
+                        data-module="govuk-button">No</button>
+                </a>
+            </div>
+
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+    <!-- <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script> -->
+    <script>
+        document.getElementById('subsidyscheme-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
+</body>
+
+</html>

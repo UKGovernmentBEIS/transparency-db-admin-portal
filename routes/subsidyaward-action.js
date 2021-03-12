@@ -1,0 +1,108 @@
+// ********************************************************************
+// Gov.UK public user search page outing
+// ********************************************************************
+
+const express = require("express");
+const router = express.Router();
+const axios = require("axios");
+var request = require("request");
+
+router.post("/", async (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  var { Award_status } = req.body;
+
+  console.log("awardnumber : " + awardnumber);
+  console.log("Award_status : " + Award_status);
+
+  const data_request = {
+    status: Award_status,
+  };
+
+  awards_status = "Filter results by status";
+  Award_selected_status = "";
+
+  var data = JSON.parse(JSON.stringify(data_request));
+  console.log("request :" + JSON.stringify(data));
+
+  var awardendpoint =
+    beis_url_accessmanagement + "/accessmanagement/" + awardnumber;
+
+  try {
+    const awardapidata = await axios.put(
+      awardendpoint,
+      data,
+      UserPrincileObjectGlobal
+    );
+    console.log(`Status: ${awardapidata.status}`);
+    console.log("Body: ", awardapidata.data);
+    // fetchawarddetails = awardapidata.data;
+
+    try {
+      const apidata = await axios.get(
+        Award_search_URL,
+        UserPrincileObjectGlobal
+      );
+      console.log(`Status: ${apidata.status}`);
+      API_response_code = `${apidata.status}`;
+      console.log("API_response_code: try" + API_response_code);
+      console.log("Body: ", apidata.data);
+      searchawards = apidata.data;
+      var searchawards_api = apidata.data;
+      console.log("searchawards" + searchawards_api);
+      const seachawardstring = JSON.stringify(searchawards_api);
+      const seachawardJSON = JSON.parse(seachawardstring);
+      totalrows = searchawards.totalSearchResults;
+
+      pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
+      console.log("totalrows :" + totalrows);
+      console.log("pageCount :" + pageCount);
+      current_page = 1;
+      previous_page = 1;
+      next_page = 2;
+      start_record = 1;
+      end_record = frontend_totalRecordsPerPage;
+      current_page_active = 1;
+
+      start_page = 1;
+      if (pageCount < 10) {
+        end_page = pageCount;
+      } else {
+        end_page = 9;
+      }
+
+      if (Award_status == "Published") {
+        res.render("bulkupload/mysubsidyawards", {
+          pageCount,
+          previous_page,
+          next_page,
+          start_record,
+          end_record,
+          totalrows,
+          current_page_active,
+          frontend_totalRecordsPerPage,
+        });
+      }
+
+      if (Award_status == "Rejected") {
+        res.render("bulkupload/subsidyaward-reject", { awardnumber });
+      }
+    } catch (err) {
+      response_error_message = err;
+      console.log("message error : " + err);
+      console.log("response_error_message catch : " + response_error_message);
+      // res.render('publicusersearch/noresults');
+    }
+
+    //   res.render('bulkupload/mysubsidyawards')  ;
+  } catch (err) {
+    response_error_message = err;
+    console.log("message error : " + err);
+    console.log("response_error_message catch : " + response_error_message);
+  }
+});
+
+module.exports = router;

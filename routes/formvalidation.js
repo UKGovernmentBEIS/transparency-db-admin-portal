@@ -1,0 +1,163 @@
+const express = require("express");
+const router = express.Router();
+const request = require("request");
+const axios = require("axios");
+
+const FormData = require("form-data");
+const fs = require("fs");
+const path = require("path");
+
+router.get("/", (req, res) => {
+  let isFileUploadEmpty = false;
+  let isNotCsvOrExcel = false;
+  let isExcelFormat = false;
+
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
+  res.render("bulkupload/bulkuploadsubsidy", {
+    isFileUploadEmpty,
+    isNotCsvOrExcel,
+    isExcelFormat,
+  });
+});
+
+router.post("/", async (req, res) => {
+  let isFileUploadEmpty = false;
+
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
+  console.log("formvalidation");
+  API_data_received = "no";
+
+  if (req.files == null) {
+    isFileUploadEmpty = true;
+    console.log("file not uploaded");
+    res.render("bulkupload/bulkuploadsubsidy", { isFileUploadEmpty });
+  } else {
+    var file = req.files.file_upload_1;
+    var file_upload = file.name;
+    var file_upload_name = file.name;
+    var filedata = file.data;
+    var validationerrors = [];
+
+    function toBuffer(ab) {
+      var buffer = new Buffer.alloc(ab.byteLength);
+      var view = new Uint8Array(ab);
+      for (var i = 0; i < buffer.length; ++i) {
+        buffer[i] = view[i];
+      }
+      return buffer;
+    }
+
+    var url = beis_url_publishing + "/uploadBulkAwards";
+
+    // var config = {
+
+    //   headers: {
+    //   "userPrinciple": UserPrincipleObject }
+    // }
+    var errorsvalidationpass;
+
+    // console.log("file path" + file.path);
+
+    // form1.append("file", toBuffer(file.data), {
+    //   filename: file.name,
+    //   contentType: file.type,
+    // });
+
+    let isFileUploadEmpty = false;
+    let isUploadSectionIsActive = true;
+    let validCsvFormat = ".csv";
+    let validExcelFormat = ".xlsx";
+    let isCsvValid = false;
+    let isExcelValid = false;
+    let isNotCsvOrExcel = false;
+    let isExcelFormat = false;
+    let isCsvFormat = false;
+    let isXlsxOk = false;
+
+    if (!file_upload) {
+      isFileUploadEmpty = true;
+      console.log("file not uploaded");
+    } else {
+      isCsvValid = file_upload.includes(validCsvFormat);
+      isExcelValid = file_upload.includes(validExcelFormat);
+    }
+
+    if (isCsvValid || isExcelValid) {
+      isNotCsvOrExcel = false;
+    } else {
+      isNotCsvOrExcel = true;
+    }
+
+    if (isExcelValid) {
+      isExcelFormat = true;
+    } else {
+      isExcelFormat = false;
+    }
+
+    if (isCsvValid) {
+      isCsvFormat = true;
+    } else {
+      isCsvFormat = false;
+    }
+
+    console.log("isUploadSectionIsActive :" + isUploadSectionIsActive);
+
+    var req = request.post(
+      url,
+      UserPrincileObjectGlobal,
+      function (err, resp, body) {
+        if (err) {
+          console.log(
+            "Application Programming Interface (API) is Down at this moment"
+          );
+        } else {
+          validationerrors = JSON.parse(body);
+
+          console.log("URL: " + body);
+          console.log("type:" + validationerrors);
+          console.log(validationerrors.errorRows);
+          API_data_received = "yes";
+          errorsvalidationpass = JSON.stringify(
+            validationerrors.validationErrorResult
+          );
+          console.log("type:" + errorsvalidationpass);
+
+          if (validationerrors.errorRows == 0) {
+            isXlsxOk = true;
+          } else {
+            isXlsxOk = false;
+          }
+          res.render("bulkupload/bulkuploadsubsidy", {
+            file_upload_name,
+            isUploadSectionIsActive,
+            isFileUploadEmpty,
+            isNotCsvOrExcel,
+            isExcelFormat,
+            isCsvFormat,
+            isXlsxOk,
+            validationerrors,
+            errorsvalidationpass,
+          });
+        }
+      }
+    );
+    var form = req.form();
+
+    form.append("file", toBuffer(file.data), {
+      filename: file.name,
+      contentType: file.type,
+    });
+  }
+});
+
+module.exports = router;
