@@ -1,8 +1,10 @@
 const express = require("express");
 const axios = require("axios");
+var session = require("express-session");
 const router = express.Router();
 
 router.post("/", async (req, res) => {
+  ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -11,28 +13,28 @@ router.post("/", async (req, res) => {
 
   gaId = req.body.gaid;
   var azGrpId = req.body.azGrpId;
-  var userIds = [];
-  console.log("azGrpId", azGrpId);
-  console.log("req.body.userIds", GaListArr_Global);
-  GaListArr_Global.forEach(function (ids) {
-    userIds.push(ids.gaId);
-  });
-  try {
-    const apidata = await axios.delete(
-      beis_url_searchscheme + `/group/${azGrpId}`,
-      {
-        userIds: userIds,
-      },
-      UserPrincileObjectGlobal
-    );
-    console.log("Body : ", JSON.stringify(apidata.data));
+  var userId = [];
 
-    res.render("bulkupload/grantingauthority-deactivated-successfully", {
-      gaId,
-    });
+  console.log(azGrpId);
+
+  ssn.GaListArr_Global.forEach(function (ids) {
+    userId.push(ids.gaId);
+  });
+
+  try {
+    console.log("body", userId);
+    const apidata = await axios.delete(
+      beis_url_searchscheme + "/group/" + azGrpId,
+      {
+        userIds: userId,
+      }
+    );
+    console.log("BODY", apidata);
   } catch (err) {
     console.log("message error deactivate GA : " + err);
-    // res.render("publicusersearch/noresults");
+    if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
+    else if (err.toString().includes("401"))
+      res.render("bulkupload/notAuthorized");
   }
 });
 

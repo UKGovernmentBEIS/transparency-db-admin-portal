@@ -1,7 +1,9 @@
 const express = require("express");
+var session = require("express-session");
 const router = express.Router();
 
 router.get("/", (req, res) => {
+  ssn = req.session;
   const { Subsidy_awardNo } = req.body;
 
   let person = {

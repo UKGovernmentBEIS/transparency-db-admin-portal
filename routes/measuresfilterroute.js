@@ -3,11 +3,14 @@
 // ********************************************************************
 
 const express = require("express");
+var session = require("express-session");
 const router = express.Router();
+
 const axios = require("axios");
 var request = require("request");
 
 router.get("/", async (req, res) => {
+  ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -18,18 +21,18 @@ router.get("/", async (req, res) => {
   schemes_status = req.query.sort;
 
   current_page = 1;
-  scheme_selected_status = schemes_status;
+  ssn.scheme_selected_status = schemes_status;
 
-  if (scheme_selected_status == "Show all") {
-    scheme_selected_status = "";
+  if (ssn.scheme_selected_status == "Show all") {
+    ssn.scheme_selected_status = "";
   }
 
   const data_request = {
-    searchName: Search_Text_Global,
+    searchName: ssn.Search_Text_Global,
     pageNumber: current_page,
-    totalRecordsPerPage: frontend_totalRecordsPerPage,
-    sortBy: sorting_order_pass,
-    status: scheme_selected_status,
+    totalRecordsPerPage: ssn.frontend_totalRecordsPerPage,
+    sortBy: ssn.sorting_order_pass,
+    status: ssn.scheme_selected_status,
   };
 
   console.log("data requ", data_request);
@@ -37,7 +40,7 @@ router.get("/", async (req, res) => {
     const apidata = await axios.post(
       beis_url_searchscheme + "/scheme/search",
       data_request,
-      UserPrincileObjectGlobal
+      ssn.UserPrincileObjectGlobal
     );
     console.log(`Status: ${apidata.status}`);
     API_response_code = `${apidata.status}`;
@@ -48,14 +51,14 @@ router.get("/", async (req, res) => {
     console.log("searchschemes" + searchschemes_api);
     totalrows = searchschemes.totalSearchResults;
 
-    pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
+    pageCount = Math.ceil(totalrows / ssn.frontend_totalRecordsPerPage);
     console.log("totalrows :" + totalrows);
     console.log("pageCount :" + pageCount);
     current_page = 1;
     previous_page = 1;
     next_page = 2;
     start_record = 1;
-    end_record = frontend_totalRecordsPerPage;
+    end_record = ssn.frontend_totalRecordsPerPage;
     current_page_active = 1;
 
     start_page = 1;
@@ -76,20 +79,21 @@ router.get("/", async (req, res) => {
       end_record,
       totalrows,
       current_page_active,
-      frontend_totalRecordsPerPage,
+      ssn,
     });
   } catch (err) {
-    if (err == "Error: Request failed with status code 404") {
+    if (err.toString().includes("404")) {
       noresult = true;
       nodata = "No data available for filtered criteria";
       res.render("bulkupload/mysubsidymeasures", {
         noresult,
         nodata,
       });
-    }
-    response_error_message = err;
+    } else if (err.toString().includes("500"))
+      res.render("bulkupload/notAvailable");
+    else if (err.toString().includes("401"))
+      res.render("bulkupload/notAuthorized");
     console.log("message error : " + err);
-    console.log("response_error_message catch : " + response_error_message);
   }
 
   // end of POST call

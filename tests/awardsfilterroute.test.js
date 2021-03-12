@@ -51,10 +51,20 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
   global.previous_page = "";
   global.next_page = 2;
   global.noresult = "";
+  global.dashboard_ga_name = "";
   global.start_record = 1;
+  global.Award_sorting = "";
   global.end_record = 10;
+
+  global.subsidy_award_number_arrow = "";
+  global.scheme_name_arrow = "";
+  global.award_status_arrow = "";
+  global.award_recipient_arrow = "";
+  global.granting_authority_arrow = "";
+
   global.totalrows = 10;
   global.Award_search_text = "";
+  global.Award_sorting_field = "";
   axios.get.mockResolvedValue({
     status: 200,
     data: {
@@ -83,4 +93,5 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
     .get("/awardsfilterroute", (req, res))
     .query({ sort: "Draft" })
     .expect(200, done);
+  // expect(abcd).toBe(200);
 });

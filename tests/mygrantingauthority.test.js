@@ -96,7 +96,7 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
 test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
-  global.dashboard_roles = "";
+  global.dashboard_roles = "BEIS Administrator";
   const res = {};
   global.beis_url_searchscheme = "";
   global.pageCount = "";
@@ -136,7 +136,6 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
         createdTimestamp: "2020-12-27T17:29:03.202013",
         lastModifiedTimestamp: "2020-12-27T17:29:03.202013",
       },
-      ,
     ],
   };
 

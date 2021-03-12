@@ -4,6 +4,17 @@
 <head>
     <title>GOV.UK - Manage Users page</title>
     <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
     <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
@@ -22,7 +33,18 @@
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-        <main class="govuk-main-wrapper " id="main-content" role="main">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
 
             <%- include('../partials/navigationbar.ejs') %>
 
@@ -32,7 +54,7 @@
                         <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active" href="#">Users</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Users</a>
                     </li>
                 </ol>
             </div>
@@ -47,7 +69,7 @@
 
                     <div class="govuk-grid-column-two-thirds">
 
-                        <% if(dashboard_roles == 'BEIS Administrator' || dashboard_roles == 'Granting Authority Administrator') { %>
+                        <% if(ssn.dashboard_roles == 'BEIS Administrator' || ssn.dashboard_roles == 'Granting Authority Administrator') { %>
                         <a href="/adduser" class="govuk-button" data-module="govuk-button">
                             Add a new user
                         </a>
@@ -73,7 +95,7 @@
                                 </tr>
                             </thead>
                             <tbody class="govuk-table__body">
-                                <% GAUserList.value.forEach(function(item) { %>
+                                <% ssn.GAUserList.value.forEach(function(item) { %>
                                 <tr>
                                     <td class="govuk-table__cell">
                                         <a
@@ -106,7 +128,8 @@
                                     </td>
 
                                     <td class="govuk-table__cell">
-                                        <%= item.userPrincipalName %>
+                                        <%= item.mail %>
+
                                     </td>
 
                                 </tr>

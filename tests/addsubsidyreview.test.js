@@ -70,6 +70,7 @@ test("Unit testing for spending filter route - Test for GET call", (done) => {
   global.Subsidy_Objective_Plus_Other_Global = "";
   global.Subsidy_Instrument_Plus_Other_Global = "";
   global.isCallfromEditAward = "";
+  global.dashboard_ga_name = "";
   const res = {};
   request(app)
     .get("/addsubsidyreview", (req, res))

@@ -21,6 +21,8 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   const req = mockRequest();
   global.dashboard_roles = "";
   const res = {};
+  global.dashboard_ga_name = "";
+
   global.beis_url_accessmanagement = "";
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Adhoc_Global = "";
@@ -46,6 +48,8 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.Granting_Authority_Policy_Error = "";
   global.Budget_Error = "";
   global.scheme_issued_start_day_Error = "";
+  global.Granting_Authority_Name_Error = "";
+
   global.scheme_issued_start_month_Error = "";
   global.scheme_issued_start_year_Error = "";
   global.scheme_issued_end_day_Error = "";

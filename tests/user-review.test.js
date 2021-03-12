@@ -47,6 +47,13 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.dashboard_user_name = "";
   global.Email_Id_Global = "";
   global.Phone_Number_Global = "";
+  global.UserErrors = [];
+  global.UserFocus = [];
+  global.Full_Name_Error = "";
+  Last_Name_Error = "";
+  Email_Id_Error = "";
+  Phone_Number_Error = "";
+
   request(app)
     .post("/userreview", (req, res))
     .send({

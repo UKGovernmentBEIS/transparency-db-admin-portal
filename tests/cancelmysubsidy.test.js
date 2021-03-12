@@ -32,7 +32,17 @@ const mockRequest = (sessionData, body) => ({
 test("Unit testing for filter route Test for GET call", (done) => {
   const req = mockRequest();
   global.dashboard_roles = "";
+  global.dashboard_ga_name = "";
   global.noresult = "";
+
+  global.Award_sorting_field = "";
+  global.Award_sorting = "";
+  global.subsidy_award_number_arrow = "";
+  global.scheme_name_arrow = "";
+  global.award_status_arrow = "";
+  global.award_recipient_arrow = "";
+  global.granting_authority_arrow = "";
+
   global.beis_url_accessmanagement = "";
   global.awards_status = "Filter results by status";
   global.frontend_totalRecordsPerPage = 10;

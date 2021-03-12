@@ -34,9 +34,10 @@ test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
   global.review = "";
-  global.gaID = "";
+  global.gaID_extract = "";
   const res = {};
   request(app)
     .get("/addsuccessgrantingauthority", (req, res))
     .expect(200, done);
+  // expect(abcd).toBe(200);
 });

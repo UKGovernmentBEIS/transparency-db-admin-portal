@@ -83,6 +83,7 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
   global.Subsidy_Objective_Plus_Other_Global = "";
   global.Subsidy_Instrument_Plus_Other_Global = "";
   global.isCallfromEditAward = "";
+  global.dashboard_ga_name = "";
   const res = {};
   request(app)
     .post("/addsubsidyaward", (req, res))
@@ -129,8 +130,10 @@ test("Unit testing for filter route Test for GET call", (done) => {
   global.Spending_Region_Global = "";
   global.Spending_Sector_Error = "";
   global.Spending_Sector_Global = "";
+  global.dashboard_ga_name = "";
   const res = {};
   request(app)
     .get("/addsubsidyaward", (req, res))
     .expect(200, done);
+  // expect(abcd).toBe(200);
 });

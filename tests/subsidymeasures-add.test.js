@@ -21,6 +21,7 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   const req = mockRequest();
   global.dashboard_roles = "";
   const res = {};
+  global.dashboard_ga_name = "";
   global.beis_url_accessmanagement = "";
   request(app)
     .get("/addsubsidymeasures", (req, res))

@@ -1,9 +1,12 @@
 const express = require("express");
+var session = require("express-session");
 const router = express.Router();
+
 const axios = require("axios");
 var request = require("request");
 
 router.post("/", async (req, res) => {
+  ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -18,52 +21,34 @@ router.post("/", async (req, res) => {
     API_response_code = `${apiroles.status}`;
     console.log("API_response_code: try" + API_response_code);
     console.log("Body: ", apiroles.data);
-    apiroles_extract = apiroles.data;
-    apiroles_total_objects = Object.keys(apiroles_extract).length;
-    console.log(" apiroles_total_objects: ", apiroles_total_objects);
+    ssn.apiroles_extract = apiroles.data;
+    ssn.apiroles_total_objects = Object.keys(ssn.apiroles_extract).length;
+    console.log(" ssn.apiroles_total_objects: ", ssn.apiroles_total_objects);
 
-    for (var i = 0; i < apiroles_total_objects; i++) {
-      if (User_Role_Global == apiroles_extract[i].gaName) {
-        console.log("gaName id1 : " + apiroles_extract[i].azGrpId);
-        apiroles_gaRole_object = apiroles_extract[i].azGrpId;
+    for (var i = 0; i < ssn.apiroles_total_objects; i++) {
+      if (ssn.User_Role_Global == ssn.apiroles_extract[i].gaName) {
+        console.log("gaName id1 : " + ssn.apiroles_extract[i].azGrpId);
+        apiroles_gaRole_object = ssn.apiroles_extract[i].azGrpId;
       }
     }
 
-    for (var i = 0; i < apiroles_total_objects; i++) {
-      if (GA_Name_User_Global == apiroles_extract[i].gaName) {
-        console.log("gaName id1 : " + apiroles_extract[i].azGrpId);
-        apiroles_gaName_object = apiroles_extract[i].azGrpId;
+    for (var i = 0; i < ssn.apiroles_total_objects; i++) {
+      if (ssn.GA_Name_User_Global == ssn.apiroles_extract[i].gaName) {
+        console.log("gaName id1 : " + ssn.apiroles_extract[i].azGrpId);
+        apiroles_gaName_object = ssn.apiroles_extract[i].azGrpId;
       }
     }
   } catch (err) {
-    response_error_message = err;
     console.log("message error : " + err);
-    console.log("response_error_message catch : " + response_error_message);
+    if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
+    else if (err.toString().includes("401"))
+      res.render("bulkupload/notAuthorized");
   }
 
-  // const userPrincipleRequest =
-  // '{"userName":"SYSTEM","password":"password123",' + '"role":"' + dashboard_roles
-  // + '","grantingAuthorityGroupId":"' + dashbaord_ga_ID + '","grantingAuthorityGroupName":"' +
-  // dashboard_ga_name +
-  // '"}';
-
-  // console.log("userprincile: " + userPrincipleRequest );
-  // UserPrincileObjectGlobal = {
-  // headers: {
-  //   userPrinciple: userPrincipleRequest
-  // },
-  // };
-
   var data_request = {
-    accountEnabled: true,
-    displayName: Full_Name_Global,
-    mailNickname: Last_Name_Global,
-    userPrincipalName: Email_Id_Global,
-    mobilePhone: Phone_Number_Global,
-    passwordProfile: {
-      forceChangePasswordNextSignIn: false,
-      password: "Monday@123",
-    },
+    invitedUserEmailAddress: ssn.Email_Id_Global,
+    inviteRedirectUrl: beis_redirect_url,
+    sendInvitationMessage: true,
     grpRoleIds: [apiroles_gaRole_object, apiroles_gaName_object],
   };
 
@@ -72,22 +57,60 @@ router.post("/", async (req, res) => {
 
   try {
     const addUser = await axios.post(
-      beis_url_accessmanagement + "/usermanagement/adduser",
+      beis_url_accessmanagement + "/usermanagement/invitation",
       data,
-      UserPrincileObjectGlobal
+      ssn.UserPrincileObjectGlobal
     );
 
     console.log(`Status: ${addUser.status}`);
     API_response_code = `${addUser.status}`;
     console.log("API_response_code: try" + API_response_code);
     console.log("Body: ", addUser.data);
-    addUser_extract = addUser.data;
-    res.render("bulkupload/user-added-successfully");
+    ssn.addUser_extract = addUser.data.invitedUser.id;
+    console.log("user_id_from_API :" + ssn.addUser_extract);
+
+    ssn.Full_Name_Error = false;
+    ssn.Last_Name_Error = false;
+    ssn.Phone_Number_Error = false;
+    UserErrors = [];
+    UserFocus = [];
+    UserErrorsLenght = 0;
+
+    res.render("bulkupload/user-add-personal");
   } catch (err) {
-    response_error_message = err;
+    // console.log(
+    //   "ssn.UserPrincileObjectGlobal :" + JSON.stringify(ssn.UserPrincileObjectGlobal)
+    // );
+    if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
+    else if (err.toString().includes("401"))
+      res.render("bulkupload/notAuthorized");
+    else if (err.toString().includes("400")) {
+      UserErrors = [];
+      UserFocus = [];
+      ssn.Email_Id_Error = true;
+      ssn.Email_msg = "Email Id or Group already exist";
+      ssn.UserErrorLength_Global = 1;
+      UserErrors.push("Email Id or Group already exist");
+      UserFocus.push("#EmailId");
+
+      res.render("bulkupload/user-add", {
+        change: "Yes",
+      });
+    }
     console.log("message error : " + err);
-    console.log("response_error_message catch : " + response_error_message);
   }
+});
+
+router.get("/", async (req, res) => {
+  ssn = req.session;
+  ssn.Full_Name_Error = false;
+  ssn.Last_Name_Error = false;
+  ssn.Phone_Number_Error = false;
+  UserErrors = [];
+  UserFocus = [];
+  UserErrorsLenght = 0;
+
+  res.render("bulkupload/user-add-personal");
 });
 
 module.exports = router;

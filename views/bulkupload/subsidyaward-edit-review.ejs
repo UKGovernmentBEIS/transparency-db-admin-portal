@@ -4,6 +4,17 @@
 <head>
     <title>GOV.UK - Subsidy Award Edit Review page</title>
     <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -11,7 +22,18 @@
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-        <main class="govuk-main-wrapper " id="main-content" role="main">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
             <%- include('../partials/navigationbar.ejs') %>
             <!-- <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
@@ -67,7 +89,7 @@
                         <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active" href="#">Edit subsidy award</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Edit subsidy award</a>
                     </li>
                 </ol>
             </div>
@@ -215,7 +237,7 @@
             <dl class="govuk-summary-list govuk-!-margin-bottom-9">
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Granting Authority Name
+                        Granting authority name
                     </dt>
                     <dd class="govuk-summary-list__value">
                         <%= Granting_Authority_Name %>

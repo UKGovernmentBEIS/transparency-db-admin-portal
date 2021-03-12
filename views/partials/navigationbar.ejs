@@ -2,14 +2,14 @@
     <div class="govuk-grid-column-full">
         <nav aria-label="Sub navigation">
             <ul class="govuk-sub-navigation__list">
-                <% if(dashboard_roles == 'BEIS Administrator') { %>
+                <% if(ssn.dashboard_roles == 'BEIS Administrator') { %>
                 <li class="govuk-sub-navigation__item" id="ga-li">
                     <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
                         Granting Authorities
                     </a>
                 </li>
                 <% } %>
-                <% if(dashboard_roles != 'Granting Authority Encoder') { %>
+                <% if(ssn.dashboard_roles != 'Granting Authority Encoder') { %>
                 <li class="govuk-sub-navigation__item" id="user-li">
                     <a class="govuk-sub-navigation__link" href="/userselect">
                         Users
@@ -18,21 +18,27 @@
                 <% } %>
                 <li class="govuk-sub-navigation__item" id="subsidyscheme-li">
                     <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                        Subsidy Schemes
+                        Subsidy schemes
                     </a>
                 </li>
                 <li class="govuk-sub-navigation__item" id="subsidyaward-li">
                     <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
-                        Subsidy Awards
+                        Subsidy awards
                     </a>
                 </li>
 
-                <% if(dashboard_roles == 'BEIS Administrator') { %>
+                <% if(ssn.dashboard_roles == 'BEIS Administrator') { %>
                 <li class="govuk-sub-navigation__item" id="auditlog-li">
-                    <a class="govuk-sub-navigation__link" href="#"> Audit log </a>
+                    <a class="govuk-sub-navigation__link" href="/audithomepage"> Audit log </a>
                 </li>
                 <% } %>
-                <li class="govuk-sub-navigation__item head-right">
+                <li class="govuk-sub-navigation__item" id="help-li">
+                    <!-- <a class="govuk-sub-navigation__link" download href="/assets/files/Internal guidance document.pdf">
+                        Help
+                    </a> -->
+                    <a class="govuk-sub-navigation__link" href="/guidancedocument" target="_blank">Help</a>
+                </li>
+                <!-- <li class="govuk-sub-navigation__item head-right">
                     <a class="govuk-sub-navigation__link" href="/signout">
                         Sign out
                     </a>
@@ -41,7 +47,7 @@
                     <a class="govuk-sub-navigation__link" href="/useraccount">
                         My account
                     </a>
-                </li>
+                </li> -->
             </ul>
         </nav>
     </div>

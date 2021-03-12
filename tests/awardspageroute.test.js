@@ -27,6 +27,7 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
   global.nodata = "";
   global.noresult = "";
   global.UserPrincileObjectGlobal = {};
+  global.dashboard_ga_name = "";
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Draft";
@@ -50,6 +51,15 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
       },
     ],
   };
+
+  global.Award_sorting_field = "";
+  global.Award_sorting = "";
+  global.subsidy_award_number_arrow = "";
+  global.scheme_name_arrow = "";
+  global.award_status_arrow = "";
+  global.award_recipient_arrow = "";
+  global.granting_authority_arrow = "";
+
   global.pageCount = 10;
   global.current_page_active = 1;
   global.previous_page = "";
@@ -91,6 +101,15 @@ test("Unit testing for filter route Test for GET call", (done) => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.nodata = "";
+  global.Award_sorting = "";
+
+  global.Award_sorting_field = "";
+  global.subsidy_award_number_arrow = "";
+  global.scheme_name_arrow = "";
+  global.award_status_arrow = "";
+  global.award_recipient_arrow = "";
+  global.granting_authority_arrow = "";
+
   global.noresult = "";
   global.UserPrincileObjectGlobal = {};
   global.beis_url_accessmanagement =
@@ -119,6 +138,7 @@ test("Unit testing for filter route Test for GET call", (done) => {
   global.previous_page = "";
   global.next_page = 2;
   global.start_record = 1;
+  global.dashboard_ga_name = "";
   global.end_record = 10;
   global.totalrows = 10;
   axios.get.mockResolvedValue({

@@ -3,11 +3,14 @@
 // ********************************************************************
 
 const express = require("express");
+var session = require("express-session");
 const router = express.Router();
+
 const axios = require("axios");
 var request = require("request");
 
 router.post("/", async (req, res) => {
+  ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -16,9 +19,9 @@ router.post("/", async (req, res) => {
 
   var { search_text } = req.body;
 
-  Search_Text_Global = search_text;
-  console.log("Search_Text_Global :" + Search_Text_Global);
-  frontend_totalRecordsPerPage = 10;
+  ssn.Search_Text_Global = search_text;
+  console.log("ssn.Search_Text_Global :" + ssn.Search_Text_Global);
+  ssn.frontend_totalRecordsPerPage = 10;
   subsidy_scheme_name_arrow = "upascending";
   subsidy_control_no_arrow = "upanddown";
   granting_authority_arrow = "upanddown";
@@ -27,22 +30,22 @@ router.post("/", async (req, res) => {
   duration_arrow = "upanddown";
   budget_arrow = "upanddown";
   subsidy_scheme_name_sorting_order = "asc";
-  subsidy_control_no_sorting_order = "desc";
-  granting_authority_sorting_order = "desc";
-  start_date_sorting_order = "desc";
-  end_date_sorting_order = "desc";
-  duration_sorting_order = "desc";
-  budget_sorting_order = "desc";
-  schemes_status = "Filter results by status";
+  ssn.subsidy_control_no_sorting_order = "desc";
+  ssn.granting_authority_sorting_order = "desc";
+  ssn.start_date_sorting_order = "desc";
+  ssn.end_date_sorting_order = "desc";
+  ssn.duration_sorting_order = "desc";
+  ssn.budget_sorting_order = "desc";
+  schemes_status = "";
   sorting_column = "[" + '"' + "subsidyMeasureTitle,asc" + '"' + "]";
   sorting_order_interium = sorting_column.replace(/^"(.*)"$/, "$1");
-  sorting_order_pass = JSON.parse(sorting_order_interium);
+  ssn.sorting_order_pass = JSON.parse(sorting_order_interium);
 
   const data_request = {
-    searchName: Search_Text_Global,
+    searchName: ssn.Search_Text_Global,
     pageNumber: 1,
-    totalRecordsPerPage: frontend_totalRecordsPerPage,
-    sortBy: sorting_order_pass,
+    totalRecordsPerPage: ssn.frontend_totalRecordsPerPage,
+    sortBy: ssn.sorting_order_pass,
     status: "",
   };
 
@@ -52,7 +55,7 @@ router.post("/", async (req, res) => {
     const apidata = await axios.post(
       beis_url_searchscheme + "/scheme/search",
       data_request,
-      UserPrincileObjectGlobal
+      ssn.UserPrincileObjectGlobal
     );
     console.log(`Status: ${apidata.status}`);
 
@@ -70,14 +73,14 @@ router.post("/", async (req, res) => {
 
     totalrows = searchschemes.totalSearchResults;
 
-    pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
+    pageCount = Math.ceil(totalrows / ssn.frontend_totalRecordsPerPage);
     console.log("totalrows :" + totalrows);
     console.log("pageCount :" + pageCount);
     curren_page = 1;
     previous_page = 1;
     next_page = 2;
     start_record = 1;
-    end_record = frontend_totalRecordsPerPage;
+    end_record = ssn.frontend_totalRecordsPerPage;
     current_page_active = 1;
 
     start_page = 1;
@@ -111,10 +114,11 @@ router.post("/", async (req, res) => {
         noresult,
         nodata,
       });
-    }
-    response_error_message = err;
+    } else if (err.toString().includes("500"))
+      res.render("bulkupload/notAvailable");
+    else if (err.toString().includes("401"))
+      res.render("bulkupload/notAuthorized");
     console.log("message error : " + err);
-    console.log("response_error_message catch : " + response_error_message);
   }
 });
 

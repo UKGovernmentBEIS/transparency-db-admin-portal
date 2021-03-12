@@ -469,7 +469,7 @@ button.link {
 }
 
 .govuk-cancel-button-link {
-  padding: 8px 10px 7px;
+  padding: 8px 10px 7px !important;
   display: inline-flex;
   align-items: center;
 }
@@ -537,4 +537,13 @@ button.link {
 
 #Subsidy_Control_Number {
   text-transform: uppercase;
+}
+
+.govuk-table__body tr td {
+  vertical-align: middle;
+}
+
+input:disabled {
+  background-color: lightgray;
+  border-color: #0b0c0c;
 }

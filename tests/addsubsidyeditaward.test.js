@@ -92,6 +92,7 @@ test("Unit testing for filter route Test for GET call", (done) => {
   global.Spending_Region_Error = "";
   global.Spending_Region_Global = "";
   global.Spending_Sector_Error = "";
+  global.dashboard_ga_name = "";
   global.Spending_Sector_Global = "";
   const res = {};
   request(app)

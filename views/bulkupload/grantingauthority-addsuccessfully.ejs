@@ -8,6 +8,17 @@
     <title>GOV.UK - Granting authority added successfully page</title>
     <% } %>
     <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -15,7 +26,18 @@
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-        <main class="govuk-main-wrapper " id="main-content" role="main">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
             <%- include('../partials/navigationbar.ejs') %>
             <!-- <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
@@ -70,7 +92,7 @@
                         <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Granting Authority</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active" href="#">Add granting authority</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add granting authority</a>
                     </li>
                 </ol>
             </div>
@@ -92,16 +114,20 @@
                             <% } %>
                         </h1>
                         <div class="govuk-panel__body">
-                            ID <strong><%=gaID_extract%></strong>
+                            ID <strong><%=ssn.gaID_extract%></strong>
                         </div>
                     </div>
                 </div>
                 <div class="govuk-grid-column-full govuk-form-group">
                     <% if(review == 'true') { %>
-                    <p class="govuk-body govuk-!-font-size-19">You have updated granting authority <%=gaID_extract%>.</p>
+                    <p class="govuk-body govuk-!-font-size-19">You have updated granting authority
+                        <%=ssn.gaID_extract%>.
+                    </p>
                     <% } else { %>
-                    <p class="govuk-body govuk-!-font-size-19">You have added granting authority <%=gaID_extract%>.</p>
-                    <p class="govuk-body govuk-!-font-size-19">You can now <a href="/adduser">add users</a> to this
+                    <p class="govuk-body govuk-!-font-size-19">You have added granting authority <%=ssn.gaID_extract%>.
+                    </p>
+                    <p class="govuk-body govuk-!-font-size-19">You can now <a href="/adduser?newuser=yes">add users</a>
+                        to this
                         granting authority.</p>
                     <% } %>
                 </div>

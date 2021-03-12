@@ -74,6 +74,8 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.next_page = 2;
   global.start_record = 1;
   global.end_record = 10;
+  global.start_page = "";
+  global.end_page = "";
   global.totalrows = 10;
   axios.post.mockResolvedValue({
     status: 200,
@@ -113,6 +115,8 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.noscheme = "";
   global.nodata = "";
   global.noresult = "";
+  global.start_page = "";
+  global.end_page = "";
   global.beis_url_searchscheme = "";
   global.beis_url_accessmanagement = "";
 
@@ -203,6 +207,8 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   const res = {};
   global.noscheme = "";
   global.nodata = "";
+  global.start_page = "";
+  global.end_page = "";
   global.noresult = "";
   global.beis_url_searchscheme = "";
 
@@ -293,6 +299,8 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   const res = {};
   global.noscheme = "";
   global.nodata = "";
+  global.start_page = "";
+  global.end_page = "";
   global.noresult = "";
   global.beis_url_searchscheme = "";
   global.beis_url_accessmanagement = "";
@@ -390,6 +398,9 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Adhoc_Global = "";
 
+  global.start_page = "";
+  global.end_page = "";
+
   global.Search_Text_Global = "";
   global.current_page = "";
   global.frontend_totalRecordsPerPage = "";
@@ -479,6 +490,9 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.noresult = "";
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Adhoc_Global = "";
+
+  global.start_page = "";
+  global.end_page = "";
 
   global.Search_Text_Global = "";
   global.current_page = "";
@@ -570,6 +584,9 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Adhoc_Global = "";
 
+  global.start_page = "";
+  global.end_page = "";
+
   global.Search_Text_Global = "";
   global.current_page = "";
   global.frontend_totalRecordsPerPage = "";
@@ -659,6 +676,9 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.noresult = "";
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Adhoc_Global = "";
+
+  global.start_page = "";
+  global.end_page = "";
 
   global.Search_Text_Global = "";
   global.current_page = "";
@@ -755,6 +775,9 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.frontend_totalRecordsPerPage = "";
   global.sorting_order_pass = "";
 
+  global.start_page = "";
+  global.end_page = "";
+
   global.end_date_sorting_order = "asc";
   global.subsidy_scheme_name_arrow = "downdecending";
   global.subsidy_control_no_arrow = "upanddown";
@@ -839,6 +862,9 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.noresult = "";
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Adhoc_Global = "";
+
+  global.start_page = "";
+  global.end_page = "";
 
   global.Search_Text_Global = "";
   global.current_page = "";
@@ -934,6 +960,9 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.current_page = "";
   global.frontend_totalRecordsPerPage = "";
   global.sorting_order_pass = "";
+
+  global.start_page = "";
+  global.end_page = "";
 
   global.duration_sorting_order = "asc";
   global.subsidy_scheme_name_arrow = "downdecending";
@@ -1204,6 +1233,9 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.current_page = "";
   global.frontend_totalRecordsPerPage = "";
   global.sorting_order_pass = "";
+
+  global.start_page = "";
+  global.end_page = "";
 
   global.budget_sorting_order = "";
   global.subsidy_scheme_name_arrow = "upacending";

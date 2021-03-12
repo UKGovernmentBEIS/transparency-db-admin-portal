@@ -5,6 +5,17 @@
   <title>GOV.UK - Bulk upload subsidy award uploaded page</title>
   <!-- <%- include('../partials/headersubsidy.ejs') %> -->
   <%- include('../partials/headercss.ejs') %>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-145652997-21');
+  </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
   <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
@@ -16,53 +27,19 @@
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
-    <main class="govuk-main-wrapper " id="main-content" role="main">
+    <main id="main-content" role="main">
+      <div class="govuk-phase-banner">
+        <p class="govuk-phase-banner__content">
+          <strong class="govuk-tag govuk-phase-banner__content__tag">
+            beta
+          </strong>
+          <span class="govuk-phase-banner__text">
+            This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help us to improve
+            it.
+          </span>
+        </p>
+      </div>
       <%- include('../partials/navigationbar.ejs') %>
-      <!-- <div class="govuk-grid-row govuk-form-group">
-        <div class="govuk-grid-column-full">
-          <nav aria-label="Sub navigation">
-            <ul class="govuk-sub-navigation__list">
-              <li class="govuk-sub-navigation__item">
-                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
-                  Granting Authorities
-                </a>
-              </li>
-
-              <li class="govuk-sub-navigation__item">
-                <a class="govuk-sub-navigation__link" href="/userselect">
-                  Users
-                </a>
-              </li>
-              <li class="govuk-sub-navigation__item">
-                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                  Subsidy Schemes
-                </a>
-              </li>
-              <li class="govuk-sub-navigation__item">
-                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidyawards">
-                  Subsidy Awards
-                </a>
-              </li>
-
-
-
-              <li class="govuk-sub-navigation__item head-right">
-                <a class="govuk-sub-navigation__link" href="/logintransparency">
-                  Sign out
-                </a>
-              </li>
-              <li class="govuk-sub-navigation__item head-right">
-                <a class="govuk-sub-navigation__link" href="/useraccount">
-                  My account
-                </a>
-              </li>
-            </ul>
-          </nav>
-
-        </div>
-
-      </div> -->
-      <!-- bread crumbs start here -->
       <div class="govuk-breadcrumbs ">
         <ol class="govuk-breadcrumbs__list">
           <li class="govuk-breadcrumbs__list-item">
@@ -72,7 +49,7 @@
             <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
           </li>
           <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link active" href="#">Add multiple subsidy awards</a>
+            <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add multiple subsidy awards</a>
           </li>
         </ol>
       </div>
@@ -134,10 +111,12 @@
                 <form method="get" action="./assets/files/helptemplatefile.csv" class="govuk-grid-column-one-third">
                   <button class="govuk-button">Download the template file </button>
                 </form>
-                <div class="govuk-grid-column-one-third">
+                <a class="govuk-link govuk-cancel-button-link" href="/mysubsidyawards"> Cancel </a>
+                <!-- <div class="govuk-grid-column-one-third">
                   <button class="govuk-link govuk-cancel-button-link" data-module="govuk-button">Cancel </button></div>
-              </div>
+              </div> -->
 
+              </div>
             </div>
           </div>
         </div>
@@ -152,7 +131,9 @@
             <div class="govuk-grid-column-full">
 
 
+
               <% if( locals.isFileUploadEmpty || !locals.isExcelFormat){ %>
+
               <form encType="multipart/form-data" action="/formvalidation" method="post" novalidate="">
 
                 <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
@@ -163,7 +144,7 @@
                       <% if( locals.isFileUploadEmpty ) { %>
                       <li> <a href="#file-upload-1"> Choose a file to upload </a> </li>
                       <% } else { %>
-                      <li> <a href="#file-upload-1"> File failed to upload.Retry uploading the file </a> </li>
+                      <li> <a href="#file-upload-1"> Upload a file in excel format.File failed to upload. </a> </li>
                       <% } %>
                   </div>
                 </div>
@@ -205,7 +186,8 @@
                     out of <%= locals.validationerrors.totalRows %> records</h2>
                   <div class="govuk-error-summary__body">
                     <ul class="govuk-list govuk-error-summary__list">
-                      <li> <a href="#file-upload-1"> You must fix the errors listed below and upload the file again </a>
+                      <li> <a href="#file-upload-1"> You must fix the errors listed below and upload the file again
+                        </a>
                       </li>
                   </div>
                 </div>
@@ -227,7 +209,8 @@
               <hr />
               <div class="govuk-form-group govuk-form-group--error">
                 <span id="file-upload-1-error" class="govuk-error-message">
-                  <span class="govuk-visually-hidden">Error:</span> Errors found in Bulk <%= locals.file_upload_name %>
+                  <span class="govuk-visually-hidden">Error:</span> Errors found in Bulk
+                  <%= locals.file_upload_name %>
                 </span>
 
                 <!-- <label class="govuk-label" for="file-upload-1">
@@ -265,48 +248,74 @@
               <!-- ************************************ -->
 
               <% } else if( locals.isXlsxOk){ %>
+              <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                  <div class="govuk-panel govuk-panel--confirmation">
+                    <h1 class="govuk-panel__title">
+                      Subsidy award submitted <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %> for
+                      approval
+                      <% } %>
+                    </h1>
+                  </div>
 
-
-              <!-- <div class="govuk-main-wrapper govuk-main-wrapper--l"> -->
-
-
-              <div class="govuk-grid-column-two-thirds">
-                <div class="govuk-panel govuk-panel--confirmation">
-                  <p class="govuk-panel__title ">
-                    File uploaded successfully
+                  <p class="govuk-body">You have successfully submitted <%= locals.validationerrors.totalRows %>
+                    subsidy award
+                    <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %>
+                    for approval
+                    <% } %>
                   </p>
-                  <div class="govuk-panel__body">
-                    <%= locals.validationerrors.totalRows %> records have been submitted for approval and are now
-                    in 'Awaiting approval' state</div>
+                  <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %>
+                  <h2 class="govuk-heading-m">What happens next</h2>
+                  <p class="govuk-body">We have sent a notification to an approver so they can review the subsidy
+                    award.
+                    You will receive a notification when they have reviewed it.</p>
+                  <% } %>
 
+                  <a href="/mysubsidyawards" class="govuk-button" data-module="govuk-button">View all subsidy
+                    awards</a>
                 </div>
-
-                <section class="govuk-table-responsive">
-                  <table class="govuk-table" id="datatable">
-                    <thead class="govuk-table__head">
-                      <tr class="govuk-table__row">
-                        <th scope="col" class="govuk-table__header">File uploaded</th>
-                        <th scope="col" class="govuk-table__header govuk-table__cell--numeric">Number of records
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody class="govuk-table__body">
-                      <tr>
-                        <td class="govuk-table__cell"><%= file_upload_name %> </td>
-                        <td class="govuk-table__cell govuk-table__cell--numeric">
-                          <%= locals.validationerrors.totalRows %> </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </section>
-
-                <h3 class="govuk-heading-m">What happens next</h3>
-                <p class="govuk-body">1. The awards have been submitted for approval and is now in 'Awaiting
-                  approval'
-                  state.</p>
-                <p class="govuk-body">2. Once approved,they will be published.</p>
-                <p class="govuk-body">3. If rejected, you will receive the notification with the reason</p>
               </div>
+
+              <!-- <div class="govuk-grid-column-two-thirds">
+                  <div class="govuk-panel govuk-panel--confirmation">
+                    <p class="govuk-panel__title ">
+                      File uploaded successfully
+                    </p>
+                    <div class="govuk-panel__body">
+                      Subsidy awards submitted <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %> for approval
+                      <% } %>
+                      <%= locals.validationerrors.totalRows %> records have been submitted for approval and are now
+                      in 'Awaiting approval' state
+                    </div>
+
+                  </div>
+
+                  <section class="govuk-table-responsive">
+                    <table class="govuk-table" id="datatable">
+                      <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                          <th scope="col" class="govuk-table__header">File uploaded</th>
+                          <th scope="col" class="govuk-table__header govuk-table__cell--numeric">Number of records
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody class="govuk-table__body">
+                        <tr>
+                          <td class="govuk-table__cell"><%= file_upload_name %> </td>
+                          <td class="govuk-table__cell govuk-table__cell--numeric">
+                            <%= locals.validationerrors.totalRows %> </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </section>
+
+                  <h3 class="govuk-heading-m">What happens next</h3>
+                  <p class="govuk-body">1. The awards have been submitted for approval and is now in 'Awaiting
+                    approval'
+                    state.</p>
+                  <p class="govuk-body">2. Once approved,they will be published.</p>
+                  <p class="govuk-body">3. If rejected, you will receive the notification with the reason</p>
+                </div> -->
               <div class="govuk-grid-column-two-thirds govuk-padding-0 ">
                 <form action="/mysubsidyawards" method="GET" class="govuk-grid-column-one-half">
 
@@ -350,22 +359,23 @@
                 <button class="govuk-button" data-module="govuk-button" aria-label="Upload File"
                   value="Upload file">Upload file </button>
 
-
                 <% } %>
 
               </form>
 
             </div>
           </div>
-
         </div>
+
+      </div>
 
 
     </main>
   </div>
   <%- include('../partials/footer.ejs') %>
   <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
-  <!-- <script src="/assets/javascripts/govuk-frontend.js"></script> -->
+
+  <script src="/assets/javascripts/govuk-frontend.js"></script>
   <script src="/assets/javascripts/example.js"></script>
   <script>
     document.getElementById('subsidyaward-li').firstElementChild.setAttribute("aria-current", 'page');

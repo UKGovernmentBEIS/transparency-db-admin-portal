@@ -5,33 +5,56 @@
     <title>GOV.UK - Add Subsidy Schemes page</title>
 
     <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
     <script>
-        getSubsidyAdhocValue = (event) => {
-            debugger;
-            var subsidyadhoc = document.getElementsByName("Subsidy_Adhoc");
-            var subsidyadhocchecked = '';
-            for (i = 0; i < subsidyadhoc.length; i++) {
-                if (subsidyadhoc[i].checked) {
-                    subsidyadhocchecked = subsidyadhoc[i].value;
-                }
-            }
-            if (subsidyadhocchecked == 'Yes') {
-                document.getElementById("scheme-issued-day").value = document.getElementById("scheme_issued_start_day").value;
-                document.getElementById("scheme_issued_end_month").value = document.getElementById("scheme_issued_start_month").value;
-                document.getElementById("scheme_issued_end_year").value = document.getElementById("scheme_issued_start_year").value;
-                document.getElementById("scheme-issued-day").disabled = true;
-                document.getElementById("scheme_issued_end_month").disabled = true;
-                document.getElementById("scheme_issued_end_year").disabled = true;
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
+    <script>
+        Subsidy_Adhoc_Global_No = false;
+        getSubsidyAdhoc = (event) => {
+            if (event.target.value == 'Yes') {
+                document.getElementById("endDateDiv").style.display = "none";
+                document.getElementById("startDateLabel").textContent = "Date";
             }
             else {
-                document.getElementById("scheme-issued-day").value = ""
-                document.getElementById("scheme_issued_end_month").value = ""
-                document.getElementById("scheme_issued_end_year").value = "";
-                document.getElementById("scheme-issued-day").disabled = false;
-                document.getElementById("scheme_issued_end_month").disabled = false;
-                document.getElementById("scheme_issued_end_year").disabled = false;
+                ssn.Subsidy_Adhoc_Global = 'No';
+                document.getElementById("endDateDiv").style.display = "block";
+                document.getElementById("startDateLabel").textContent = "Start Date";
             }
         }
+
+        // getSubsidyAdhocValue = (event) => {
+        //     var subsidyadhoc = document.getElementsByName("Subsidy_Adhoc");
+        //     var subsidyadhocchecked = '';
+        //     for (i = 0; i < subsidyadhoc.length; i++) {
+        //         if (subsidyadhoc[i].checked) {
+        //             subsidyadhocchecked = subsidyadhoc[i].value;
+        //         }
+        //     }
+        //     if (subsidyadhocchecked == 'Yes') {
+        //         document.getElementById("scheme-issued-day").value = document.getElementById("scheme_issued_start_day").value;
+        //         document.getElementById("scheme_issued_end_month").value = document.getElementById("scheme_issued_start_month").value;
+        //         document.getElementById("scheme_issued_end_year").value = document.getElementById("scheme_issued_start_year").value;
+        //         document.getElementById("scheme-issued-day").disabled = true;
+        //         document.getElementById("scheme_issued_end_month").disabled = true;
+        //         document.getElementById("scheme_issued_end_year").disabled = true;
+        //     }
+        //     else {
+        //         document.getElementById("scheme-issued-day").value = ""
+        //         document.getElementById("scheme_issued_end_month").value = ""
+        //         document.getElementById("scheme_issued_end_year").value = "";
+        //         document.getElementById("scheme-issued-day").disabled = false;
+        //         document.getElementById("scheme_issued_end_month").disabled = false;
+        //         document.getElementById("scheme_issued_end_year").disabled = false;
+        //     }
+        // }
     </script>
 </head>
 
@@ -41,48 +64,21 @@
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-        <main class="govuk-main-wrapper " id="main-content" role="main">
-            <%- include('../partials/navigationbar.ejs') %>
-            <!-- Header pane starts here -->
-            <!-- <div class="govuk-grid-row govuk-form-group">
-                <div class="govuk-grid-column-full">
-                    <nav class="govuk-sub-navigation" aria-label="Sub navigation">
-                        <ul class="govuk-sub-navigation__list">
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
-                                    Granting Authorities
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/userselect">
-                                    Users
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidymeasures">
-                                    Subsidy Schemes
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
-                                    Subsidy Awards
-                                </a>
-                            </li>
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
 
-                            <li class='govuk-sub-navigation__item head-right'>
-                                <a class="govuk-sub-navigation__link" href="/logintransparency">
-                                    Signout
-                                </a>
-                            </li>
-                            <li class='govuk-sub-navigation__item head-right'>
-                                <a class="govuk-sub-navigation__link" href="/useraccount">
-                                    My account
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div> -->
+            <!-- Header pane starts here -->
+            <%- include('../partials/navigationbar.ejs') %>
             <!-- Header pane starts here -->
             <!-- bread crumbs start here -->
             <div class="govuk-breadcrumbs ">
@@ -94,22 +90,22 @@
                         <a class="govuk-breadcrumbs__link" href="/mysubsidymeasures">Subsidy schemes</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active" href="#">Add a subsidy scheme</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add a subsidy scheme</a>
                     </li>
                 </ol>
             </div>
             <!-- bread crumbs ends here -->
-            <% if( SubsidyArraySize > 0 ){ %>
+            <% if( ssn.SubsidyArraySize > 0 ){ %>
 
             <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
                 data-module="govuk-error-summary">
                 <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
 
                 <div class="govuk-error-summary__body">
-                    <% for(var i=0; i < SubsidyArraySize  ; i++) {%>
+                    <% for(var i=0; i < ssn.SubsidyArraySize  ; i++) {%>
                     <ul class="govuk-list govuk-error-summary__list">
 
-                        <li> <a href="<%= SubsidyFocus[i] %>"> <%= SubsidyErrors[i] %> </a> </li>
+                        <li> <a href="<%= ssn.SubsidyFocus[i] %>"> <%= ssn.SubsidyErrors[i] %> </a> </li>
                     </ul>
                     <% } %>
                 </div>
@@ -132,7 +128,7 @@
 
             <form action="/reviewsubsidymeasures" method="POST">
                 <section class="govuk-grid-row">
-                    <% if( Subsidy_Adhoc_Error ){ %>
+                    <% if( ssn.Subsidy_Adhoc_Error ){ %>
                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                         <% } else { %>
                         <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -155,31 +151,31 @@
                             <!-- <div id="adhoc-subsidy-hint" class="govuk-hint">
                                 You will only be able to create one subsidy award under each ad hoc subsidy scheme.
                             </div> -->
-                            <% if( Subsidy_Adhoc_Error ){ %>
+                            <% if( ssn.Subsidy_Adhoc_Error ){ %>
                             <span class="govuk-error-message" id="Subsidy_adhoc_Error">
                                 <span class="govuk-visually-hidden">Error:</span> Enter a valid adhoc subsidy scheme
                             </span>
                             <% }  %>
                             <div class="govuk-radios" id="Subsidy_Adhoc">
                                 <div class="govuk-radios__item">
-                                    <% if(Subsidy_Adhoc_Global == 'Yes') { %>
+                                    <% if(ssn.Subsidy_Adhoc_Global == 'Yes') { %>
                                     <input class="govuk-radios__input" name="Subsidy_Adhoc" id="adhocyes" type="radio"
                                         value="Yes" checked>
                                     <% } else { %>
-                                    <input class="govuk-radios__input" name="Subsidy_Adhoc" id="adhocyes" type="radio"
-                                        value="Yes">
+                                    <input class="govuk-radios__input" name="Subsidy_Adhoc"
+                                        onchange="getSubsidyAdhoc(event)" id="adhocyes" type="radio" value="Yes">
                                     <% } %>
                                     <label class="govuk-label govuk-radios__label" for="adhocyes">
                                         Yes
                                     </label>
                                 </div>
                                 <div class="govuk-radios__item">
-                                    <% if(Subsidy_Adhoc_Global == 'No') { %>
+                                    <% if(ssn.Subsidy_Adhoc_Global == 'No') { %>
                                     <input class="govuk-radios__input" name="Subsidy_Adhoc" id="adhocno" type="radio"
                                         value="No" checked>
                                     <% } else { %>
-                                    <input class="govuk-radios__input" name="Subsidy_Adhoc" id="adhocno" type="radio"
-                                        value="No">
+                                    <input class="govuk-radios__input" name="Subsidy_Adhoc"
+                                        onchange="getSubsidyAdhoc(event)" id="adhocno" type="radio" value="No">
                                     <% } %>
                                     <label class="govuk-label govuk-radios__label" for="adhocno">
                                         No
@@ -188,15 +184,58 @@
                             </div>
                         </div>
 
-                        <div class="govuk-form-group govuk-grid-column-two-thirds">
-                            <label class="govuk-label" for="address-line-1">
-                                Granting Authority
+                        <!-- *****************************************  -->
+                        <!-- Get the Granting Authority Name from user  -->
+                        <!-- *****************************************  -->
+                        <% if( ssn.Granting_Authority_Name_Error ) { %>
+                        <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                            <label class="govuk-label" for="Granting_Authority_Name">
+                                Granting authority name
                             </label>
-                            <input class="govuk-input govuk-!-width-one-half" id="Granting_Authority_Name"
-                                value="<%=Granting_Authority_Name_Measure_Global %>" name="Granting_Authority_Name"
-                                type="text">
+
+                            <span class="govuk-error-message" id="ssn.Granting_Authority_Name_Error">
+                                <span class="govuk-visually-hidden">Error:</span> Enter a granting authority name
+                            </span>
+
+                            <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
+                            <input class="govuk-input govuk-!-width-one-half govuk-input--error"
+                                id="Granting_Authority_Name" name="Granting_Authority_Name" type="text"
+                                aria-describedby="Granting_Authority_Name"
+                                <% if(ssn.Granting_Authority_Name_Measure_Global) {%>
+                                value="<%= ssn.Granting_Authority_Name_Measure_Global %>" <% } %> />
+
+                            <% } else { %>
+
+                            <input class="govuk-input govuk-!-width-one-half govuk-input--error"
+                                id="Granting_Authority_Name" name="Granting_Authority_Name" type="text"
+                                aria-describedby="Granting_Authority_Name" value="<%= ssn.dashboard_ga_name %>"
+                                disabled />
+                            <% } %>
                         </div>
-                        <% if( Subsidy_Measure_Title_Error ){ %>
+                        <% } else { %>
+
+                        <div class="govuk-form-group govuk-grid-column-two-thirds">
+                            <label class="govuk-label" for="Granting_Authority_Name">
+                                Granting authority name
+                            </label>
+
+                            <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
+                            <input class="govuk-input govuk-!-width-one-half" id="Granting_Authority_Name"
+                                name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name"
+                                <% if(ssn.Granting_Authority_Name_Measure_Global) {%>
+                                value="<%= ssn.Granting_Authority_Name_Measure_Global %>" <% } %> />
+
+                            <% } else { %>
+
+                            <input class="govuk-input govuk-!-width-one-half" id="Granting_Authority_Name"
+                                name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name"
+                                value="<%= ssn.dashboard_ga_name %>" disabled />
+                            <% } %>
+                        </div>
+                        <% }  %>
+
+
+                        <% if( ssn.Subsidy_Measure_Title_Error ){ %>
                         <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                             <% } else { %>
                             <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -207,15 +246,15 @@
                                 <!-- <div id="scheme-issued-hint" class="govuk-hint">This is the name of the
                             subsidy measure that awards
                             can be related to.</div> -->
-                                <% if( Subsidy_Measure_Title_Error ){ %>
-                                <span class="govuk-error-message" id="Subsidy_Measure_Title_Error">
+                                <% if( ssn.Subsidy_Measure_Title_Error ){ %>
+                                <span class="govuk-error-message" id="ssn.Subsidy_Measure_Title_Error">
                                     <span class="govuk-visually-hidden">Error:</span> Enter a valid subsidy
                                     scheme name
                                 </span>
                                 <% }  %>
                                 <input class="govuk-input govuk-!-width-one-half" id="Subsidy_Measure_Title"
                                     name="Subsidy_Measure_Title" type="text"
-                                    value="<%= Subsidy_Measure_Title_Global %>">
+                                    value="<%= ssn.Subsidy_Measure_Title_Global %>">
                             </div>
                             <% if( Legal_Basis_Error ){ %>
                             <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
@@ -225,8 +264,17 @@
                                     <label class="govuk-label" for="Legal_Basis">
                                         Legal basis
                                     </label>
-                                    <div class="govuk-hint">This is the legal justification of this
-                                        subsidy scheme.</div>
+                                    <details class="govuk-details" data-module="govuk-details">
+                                        <summary class="govuk-details__summary">
+                                            <span class="govuk-details__summary-text">
+                                                What is Legal basis?
+                                            </span>
+                                        </summary>
+                                        <div class="govuk-details__text">
+                                            This is the legal justification of this subsidy scheme.
+                                        </div>
+                                    </details>
+
 
                                     <% if( Legal_Basis_Error ){ %>
                                     <span class="govuk-error-message" id="Legal_Basis_Error">
@@ -234,7 +282,7 @@
                                     </span>
                                     <% }  %>
                                     <input class="govuk-input govuk-!-width-one-half" id="Legal_Basis"
-                                        name="Legal_Basis" type="text" value="<%= Legal_Basis_Global%>">
+                                        name="Legal_Basis" type="text" value="<%= ssn.Legal_Basis_Global%>">
                                 </div>
                                 <% if( Granting_Authority_URL_Error ){ %>
                                 <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
@@ -244,8 +292,18 @@
                                         <label class="govuk-label" for="address-line-1">
                                             Granting authority policy URL
                                         </label>
-                                        <div class="govuk-hint">This is the web address for the policy that
-                                            this subsidy scheme is related to.</div>
+                                        <details class="govuk-details" data-module="govuk-details">
+                                            <summary class="govuk-details__summary">
+                                                <span class="govuk-details__summary-text">
+                                                    What is Granting authority policy URL?
+                                                </span>
+                                            </summary>
+                                            <div class="govuk-details__text">
+                                                This is the web address for the policy that
+                                                this subsidy scheme is related to.
+                                            </div>
+                                        </details>
+
                                         <% if( Granting_Authority_URL_Error ){ %>
                                         <span class="govuk-error-message" id="Granting_Authority_URL_Error">
                                             <span class="govuk-visually-hidden">Error:</span> Enter a valid granting
@@ -255,7 +313,7 @@
                                         <% }  %>
                                         <input class="govuk-input " name="Granting_Authority_URL"
                                             id="Granting_Authority_URL" type="text"
-                                            value="<%= Granting_Authority_URL_Global%>">
+                                            value="<%= ssn.Granting_Authority_URL_Global%>">
                                     </div>
                                     <% if( Granting_Authority_Policy_Error ){ %>
                                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
@@ -265,9 +323,21 @@
                                             <label class="govuk-label" for="address-line-1">
                                                 Granting authority policy page description
                                             </label>
-                                            <div class="govuk-hint">A short summary of the policy page that you provided
+                                            <details class="govuk-details" data-module="govuk-details">
+                                                <summary class="govuk-details__summary">
+                                                    <span class="govuk-details__summary-text">
+                                                        What should a Granting authority policy page description be?
+                                                    </span>
+                                                </summary>
+                                                <div class="govuk-details__text">
+                                                    A short summary of the policy page that you provided the URL for.
+                                                    For example, Water Purity Scheme policy page.
+                                                </div>
+                                            </details>
+
+                                            <!-- <div class="govuk-hint">A short summary of the policy page that you provided
                                                 the URL for. For example, Water Purity Scheme policy page.
-                                            </div>
+                                            </div> -->
                                             <% if( Granting_Authority_Policy_Error ){ %>
                                             <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
                                                 <span class="govuk-visually-hidden">Error:</span> Enter a valid
@@ -276,7 +346,7 @@
                                             <% }  %>
                                             <input class="govuk-input" id="Granting_Authority_Policy"
                                                 name="Granting_Authority_Policy" type="text"
-                                                value="<%= Granting_Authority_Policy_Global%>">
+                                                value="<%= ssn.Granting_Authority_Policy_Global%>">
                                         </div>
                                         <% if( Budget_Error ){ %>
                                         <div
@@ -287,9 +357,18 @@
                                                 <label class="govuk-label" for="address-line-1">
                                                     Budget (£)
                                                 </label>
-                                                <div class="govuk-hint">For ad hoc subsidies, enter the exact
-                                                    amount.
-                                                    For other subsidy schemes, enter the overall budget.</div>
+                                                <details class="govuk-details" data-module="govuk-details">
+                                                    <summary class="govuk-details__summary">
+                                                        <span class="govuk-details__summary-text">
+                                                            What is budget?
+                                                        </span>
+                                                    </summary>
+                                                    <div class="govuk-details__text">
+                                                        For ad hoc subsidies, enter the exact amount. For other subsidy
+                                                        schemes, enter the overall budget.
+                                                    </div>
+                                                </details>
+
                                                 <% if( Budget_Error ){ %>
                                                 <span class="govuk-error-message" id="Budget_Error">
                                                     <span class="govuk-visually-hidden">Error:</span> Enter a valid
@@ -300,22 +379,33 @@
                                                 <div class="govuk-input__wrapper">
                                                     <div class="govuk-input__prefix" aria-hidden="true">£</div>
                                                     <input class="govuk-input govuk-!-width-one-third" id="Budget"
-                                                        name="Budget" type="text" value="<%= Budget_Global%>">
+                                                        name="Budget" type="text" value="<%= ssn.Budget_Global%>">
                                                 </div>
 
                                             </div>
+
                                             <% if( scheme_issued_start_day_Error || scheme_issued_start_month_Error || scheme_issued_start_year_Error ){ %>
                                             <div
                                                 class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                                 <% } else { %>
                                                 <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                     <% }  %>
-                                                    <label class="govuk-label" for="address-line-1">
+                                                    <label class="govuk-label" for="address-line-1" id="startDateLabel">
+                                                        <% if(ssn.Subsidy_Adhoc_Global == 'Yes') { %>
+                                                        Date
+                                                        <%} else {%>
                                                         Start Date
+                                                        <% }  %>
                                                     </label>
                                                     <div class="govuk-hint">
                                                         For example, 25 3 2020
                                                     </div>
+                                                    <% if( scheme_issued_start_day_Error || scheme_issued_start_month_Error || scheme_issued_start_year_Error){ %>
+                                                    <span class="govuk-error-message" id="Budget_Error">
+                                                        <span class="govuk-visually-hidden">Error:</span>
+                                                        Enter a valid date
+                                                    </span>
+                                                    <% }  %>
                                                     <div class="govuk-date-input" id="scheme-issued">
                                                         <div class="govuk-date-input__item">
                                                             <div class="govuk-form-group">
@@ -323,20 +413,13 @@
                                                                     for="scheme_issued_start_day">
                                                                     Day
                                                                 </label>
-                                                                <% if( scheme_issued_start_day_Error ){ %>
-                                                                <span class="govuk-error-message" id="Budget_Error">
-                                                                    <span class="govuk-visually-hidden">Error:</span>
-                                                                    Enter a valid date
-                                                                </span>
-                                                                <% }  %>
                                                                 <input
                                                                     class="govuk-input govuk-date-input__input govuk-input--width-2"
                                                                     id="scheme_issued_start_day"
                                                                     name="scheme_issued_start_day" type="text"
                                                                     placeholder="DD" pattern="[0-9]*"
                                                                     inputmode="numeric"
-                                                                    onkeyup="getSubsidyAdhocValue(event)"
-                                                                    value="<%= Scheme_Start_Day_Global%>">
+                                                                    value="<%= ssn.Scheme_Start_Day_Global%>">
                                                             </div>
                                                         </div>
                                                         <div class="govuk-date-input__item">
@@ -345,17 +428,11 @@
                                                                     for="scheme_issued_start_month">
                                                                     Month
                                                                 </label>
-                                                                <% if( scheme_issued_start_month_Error ){ %>
-                                                                <span class="govuk-error-message" id="Budget_Error">
-                                                                    <span class="govuk-visually-hidden">Error:</span>
-                                                                    Enter a valid month
-                                                                </span>
-                                                                <% }  %>
+
                                                                 <input
                                                                     class="govuk-input govuk-date-input__input govuk-input--width-2"
                                                                     id="scheme_issued_start_month"
-                                                                    onkeyup="getSubsidyAdhocValue(event)"
-                                                                    value="<%= Scheme_Start_Month_Global%>"
+                                                                    value="<%= ssn.Scheme_Start_Month_Global%>"
                                                                     name="scheme_issued_start_month" placeholder="MM"
                                                                     type="text" pattern="[0-9]*" inputmode="numeric">
                                                             </div>
@@ -366,86 +443,23 @@
                                                                     for="scheme_issued_start_year">
                                                                     Year
                                                                 </label>
-                                                                <% if( scheme_issued_start_year_Error ){ %>
-                                                                <span class="govuk-error-message" id="Budget_Error">
-                                                                    <span class="govuk-visually-hidden">Error:</span>
-                                                                    Enter a valid year
-                                                                </span>
-                                                                <% }  %>
                                                                 <input
                                                                     class="govuk-input govuk-date-input__input govuk-input--width-4"
                                                                     id="scheme_issued_start_year"
-                                                                    onkeyup="getSubsidyAdhocValue(event)"
                                                                     name="scheme_issued_start_year" type="text"
                                                                     pattern="[0-9]*" inputmode="numeric"
-                                                                    value="<%= Scheme_Start_Year_Global%>"
+                                                                    value="<%= ssn.Scheme_Start_Year_Global%>"
                                                                     placeholder="YYYY"></div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <% if(Subsidy_Adhoc_Global == 'Yes') { %>
-                                                <div class="govuk-form-group govuk-grid-column-two-thirds">
-                                                    <label class="govuk-label" for="address-line-1">
-                                                        End Date
-                                                    </label>
-                                                    <div class="govuk-hint">
-                                                        For example, 25 11 2021. If this is an ad hoc subsidy award,
-                                                        the end date must be the same as the start date.
-                                                    </div>
-                                                    <div class="govuk-date-input" id="scheme-issued">
-                                                        <div class="govuk-date-input__item">
-                                                            <div class="govuk-form-group">
-                                                                <label class="govuk-label govuk-date-input__label"
-                                                                    for="scheme_issued_end_day">
-                                                                    Day
-                                                                </label>
-
-                                                                <input
-                                                                    class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                                                    id="scheme-issued-day"
-                                                                    value="<%= Scheme_Start_Day_Global%>" disabled
-                                                                    name="scheme_issued_end_day" type="text"
-                                                                    placeholder="DD" pattern="[0-9]*"
-                                                                    inputmode="numeric"></div>
-                                                        </div>
-                                                        <div class="govuk-date-input__item">
-                                                            <div class="govuk-form-group">
-                                                                <label class="govuk-label govuk-date-input__label"
-                                                                    for="scheme_issued_end_month">
-                                                                    Month
-                                                                </label>
-
-                                                                <input
-                                                                    class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                                                    id="scheme_issued_end_month"
-                                                                    value="<%= Scheme_Start_Month_Global%>" disabled
-                                                                    name="scheme_issued_end_month" placeholder="MM"
-                                                                    type="text" pattern="[0-9]*" inputmode="numeric">
-                                                            </div>
-                                                        </div>
-                                                        <div class="govuk-date-input__item">
-                                                            <div class="govuk-form-group">
-                                                                <label class="govuk-label govuk-date-input__label"
-                                                                    for="scheme_issued_end_year">
-                                                                    Year
-                                                                </label>
-
-                                                                <input
-                                                                    class="govuk-input govuk-date-input__input govuk-input--width-4"
-                                                                    id="scheme_issued_end_year"
-                                                                    value="<%= Scheme_Start_Year_Global%>" disabled
-                                                                    name="scheme_issued_end_year" type="text"
-                                                                    pattern="[0-9]*" inputmode="numeric"
-                                                                    placeholder="YYYY"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <% } else {%>
-                                                <% if( scheme_issued_end_day_Error || scheme_issued_end_month_Error || scheme_issued_end_year_Error ){ %>
-                                                <div
-                                                    class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                                                <% if(ssn.Subsidy_Adhoc_Global != 'Yes' || ssn.Subsidy_Adhoc_Global_No) { %>
+                                                <% if( ssn.scheme_issued_end_day_Error || ssn.scheme_issued_end_month_Error || ssn.scheme_issued_end_year_Error ){ %>
+                                                <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error"
+                                                    id="endDateDiv">
                                                     <% } else { %>
-                                                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                                    <div class="govuk-form-group govuk-grid-column-two-thirds"
+                                                        id="endDateDiv">
                                                         <% }  %>
                                                         <label class="govuk-label" for="address-line-1">
                                                             End Date
@@ -455,6 +469,12 @@
                                                             award,
                                                             the end date must be the same as the start date.
                                                         </div>
+                                                        <% if( scheme_issued_end_day_Error  || scheme_issued_end_month_Error || scheme_issued_end_year_Error){ %>
+                                                        <span class="govuk-error-message" id="Budget_Error">
+                                                            <span class="govuk-visually-hidden">Error:</span>
+                                                            Enter a valid date
+                                                        </span>
+                                                        <% }  %>
                                                         <div class="govuk-date-input" id="scheme-issued">
                                                             <div class="govuk-date-input__item">
                                                                 <div class="govuk-form-group">
@@ -462,17 +482,11 @@
                                                                         for="scheme_issued_end_day">
                                                                         Day
                                                                     </label>
-                                                                    <% if( scheme_issued_end_day_Error ){ %>
-                                                                    <span class="govuk-error-message" id="Budget_Error">
-                                                                        <span
-                                                                            class="govuk-visually-hidden">Error:</span>
-                                                                        Enter a valid date
-                                                                    </span>
-                                                                    <% }  %>
+
                                                                     <input
                                                                         class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                                                        id="scheme-issued-day"
-                                                                        value="<%= Scheme_End_Day_Global%>"
+                                                                        id="scheme_issued_end_day"
+                                                                        value="<%= ssn.Scheme_End_Day_Global%>"
                                                                         name="scheme_issued_end_day" type="text"
                                                                         placeholder="DD" pattern="[0-9]*"
                                                                         inputmode="numeric"></div>
@@ -483,17 +497,11 @@
                                                                         for="scheme_issued_end_month">
                                                                         Month
                                                                     </label>
-                                                                    <% if( scheme_issued_end_month_Error ){ %>
-                                                                    <span class="govuk-error-message" id="Budget_Error">
-                                                                        <span
-                                                                            class="govuk-visually-hidden">Error:</span>
-                                                                        Enter a valid month
-                                                                    </span>
-                                                                    <% }  %>
+
                                                                     <input
                                                                         class="govuk-input govuk-date-input__input govuk-input--width-2"
                                                                         id="scheme_issued_end_month"
-                                                                        value="<%= Scheme_End_Month_Global%>"
+                                                                        value="<%= ssn.Scheme_End_Month_Global%>"
                                                                         name="scheme_issued_end_month" placeholder="MM"
                                                                         type="text" pattern="[0-9]*"
                                                                         inputmode="numeric">
@@ -505,17 +513,11 @@
                                                                         for="scheme_issued_end_year">
                                                                         Year
                                                                     </label>
-                                                                    <% if( scheme_issued_end_year_Error ){ %>
-                                                                    <span class="govuk-error-message" id="Budget_Error">
-                                                                        <span
-                                                                            class="govuk-visually-hidden">Error:</span>
-                                                                        Enter a valid year
-                                                                    </span>
-                                                                    <% }  %>
+
                                                                     <input
                                                                         class="govuk-input govuk-date-input__input govuk-input--width-4"
                                                                         id="scheme_issued_end_year"
-                                                                        value="<%= Scheme_End_Year_Global%>"
+                                                                        value="<%= ssn.Scheme_End_Year_Global%>"
                                                                         name="scheme_issued_end_year" type="text"
                                                                         pattern="[0-9]*" inputmode="numeric"
                                                                         placeholder="YYYY"></div>
@@ -526,10 +528,15 @@
                                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                         <button class="govuk-button" data-module="govuk-button"
                                                             name="buttonvalue" value="Continue">Continue</button>
-                                                        <a href="/canceladdsubsidymeasures"
+                                                        <button class="govuk-link govuk-cancel-button-link"
+                                                            data-module="govuk-button" name="buttonvalue" value="Cancel"
+                                                            style="background: transparent;cursor:pointer;
+                                                                border: 0;color: #1d70b8;  outline: 0px solid transparent;    box-shadow: 0 0px #fd0, 0 0px #0b0c0c;
+                                                                   text-decoration: underline;">Cancel</button>
+                                                        <!-- <a href="/canceladdsubsidymeasures"
                                                             class="govuk-link govuk-cancel-button-link"
                                                             data-module="govuk-button" name="buttonvalue"
-                                                            value="Cancel">Cancel</a>
+                                                            value="Cancel">Cancel</a> -->
                                                     </div>
 
                 </section>

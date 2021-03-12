@@ -13,7 +13,6 @@ router.get("/", (req, res) => {
   req.session.destroy(function (err) {
     if (err) {
       console.log("Logout Error", err);
-      //test
     } else {
       var cookei_var = req.headers.cookie;
       var cookiesList = cookei_var.split(";");

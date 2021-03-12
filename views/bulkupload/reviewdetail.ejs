@@ -4,6 +4,17 @@
 <head>
   <title>GOV.UK - Subsidy Award review details page</title>
   <%- include('../partials/headercss.ejs') %>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-145652997-21');
+  </script>
 </head>
 
 
@@ -12,7 +23,18 @@
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
-    <main class="govuk-main-wrapper " id="main-content" role="main">
+    <main id="main-content" role="main">
+      <div class="govuk-phase-banner">
+        <p class="govuk-phase-banner__content">
+          <strong class="govuk-tag govuk-phase-banner__content__tag">
+            beta
+          </strong>
+          <span class="govuk-phase-banner__text">
+            This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help us to improve
+            it.
+          </span>
+        </p>
+      </div>
       <%- include('../partials/navigationbar.ejs') %>
       <!-- <div class="govuk-grid-row govuk-form-group">
         <div class="govuk-grid-column-full">
@@ -69,7 +91,7 @@
             <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
           </li>
           <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link active" href="#">Add a subsidy award</a>
+            <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add a subsidy award</a>
           </li>
         </ol>
       </div>
@@ -97,8 +119,8 @@
             Subsidy control (SC) number
           </dt>
           <dd class="govuk-summary-list__value">
-            <% if (Subsidy_Control_Number_Global !== '') { %>
-            <%= Subsidy_Control_Number_Global %>
+            <% if (ssn.Subsidy_Control_Number_Global !== '') { %>
+            <%= ssn.Subsidy_Control_Number_Global %>
             <% } else { %>
             NA
             <% } %>
@@ -110,8 +132,8 @@
             Subsidy scheme name
           </dt>
           <dd class="govuk-summary-list__value">
-            <% if (Subsidy_Measure_Title_Global !== '') { %>
-            <%= Subsidy_Measure_Title_Global %>
+            <% if (ssn.Subsidy_Measure_Title_Global !== '') { %>
+            <%= ssn.Subsidy_Measure_Title_Global %>
             <% } else { %>
             NA
             <% } %>
@@ -123,7 +145,7 @@
             Subsidy purpose
           </dt>
           <dd class="govuk-summary-list__value">
-            <%=  Subsidy_Objective_Plus_Other_Global %>
+            <%=  ssn.Subsidy_Objective_Plus_Other_Global %>
           </dd>
 
         </div>
@@ -133,18 +155,18 @@
             Subsidy type
           </dt>
           <dd class="govuk-summary-list__value">
-            <%=  Subsidy_Instrument_Plus_Other_Global %>
+            <%=  ssn.Subsidy_Instrument_Plus_Other_Global %>
 
           </dd>
         </div>
 
-        <% if( Subsidy_Instrument_Global == "Tax measures (tax credit, or tax/duty exemption)"  ) { %>
+        <% if( ssn.Subsidy_Instrument_Global == "Tax measures (tax credit, or tax/duty exemption)"  ) { %>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Subsidy range
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= Subsidy_Full_Amount_Range_Global %>
+            <%= ssn.Subsidy_Full_Amount_Range_Global %>
           </dd>
         </div>
 
@@ -154,7 +176,7 @@
             Subsidy amount
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= Subsidy_Element_Full_Amount_Global %>
+            <%= ssn.Subsidy_Element_Full_Amount_Global %>
           </dd>
         </div>
 
@@ -166,7 +188,7 @@
             Granting Authority
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= Granting_Authority_Name_Global %>
+            <%= ssn.Granting_Authority_Name_Global %>
           </dd>
 
         </div>
@@ -176,8 +198,8 @@
             Award date
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= Legal_Granting_Date_Day_Global %> &nbsp; <%= GetMonthName %> &nbsp;
-            <%= Legal_Granting_Date_Year_Global %>
+            <%= ssn.Legal_Granting_Date_Day_Global %> &nbsp; <%= ssn.GetMonthName %> &nbsp;
+            <%= ssn.Legal_Granting_Date_Year_Global %>
           </dd>
 
         </div>
@@ -186,7 +208,7 @@
             Added by
           </dt>
           <dd class="govuk-summary-list__value">
-            Sean Martin
+            <%=ssn.dashboard_user_name%>
           </dd>
 
         </div>
@@ -209,7 +231,7 @@
             Organisation name
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= Beneficiary_Name_Global %>
+            <%= ssn.Beneficiary_Name_Global %>
           </dd>
 
         </div>
@@ -219,7 +241,7 @@
             Organisation size
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= Size_of_the_Organisation_Global %>
+            <%= ssn.Size_of_the_Organisation_Global %>
 
           </dd>
         </div>
@@ -229,7 +251,7 @@
             ID Type
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= National_ID_Type_Global %>
+            <%= ssn.National_ID_Type_Global %>
           </dd>
 
         </div>
@@ -238,7 +260,7 @@
             ID number
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= National_ID_Number_Global %>
+            <%= ssn.National_ID_Number_Global %>
           </dd>
 
         </div>
@@ -248,7 +270,7 @@
             Provider of(goods or services)
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= Goods_or_Services_Global %>
+            <%= ssn.Goods_or_Services_Global %>
           </dd>
 
         </div>
@@ -259,7 +281,7 @@
             Region
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= Spending_Region_Global %>
+            <%= ssn.Spending_Region_Global %>
 
           </dd>
         </div>
@@ -269,7 +291,7 @@
             Sector
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= Spending_Sector_Global %>
+            <%= ssn.Spending_Sector_Global %>
 
           </dd>
         </div>

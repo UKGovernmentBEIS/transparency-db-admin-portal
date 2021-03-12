@@ -4,6 +4,17 @@
 <head>
   <title>GOV.UK - Subsidy Award submitted for approval page</title>
   <%- include('../partials/headercss.ejs') %>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-145652997-21');
+  </script>
 </head>
 
 
@@ -12,7 +23,18 @@
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container">
-    <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+    <main id="main-content" role="main">
+      <div class="govuk-phase-banner">
+        <p class="govuk-phase-banner__content">
+          <strong class="govuk-tag govuk-phase-banner__content__tag">
+            beta
+          </strong>
+          <span class="govuk-phase-banner__text">
+            This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+            us to improve it.
+          </span>
+        </p>
+      </div>
       <%- include('../partials/navigationbar.ejs') %>
       <!-- bread crumbs start here -->
       <div class="govuk-breadcrumbs ">
@@ -24,7 +46,11 @@
             <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
           </li>
           <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link active" href="#">Add a subsidy award</a>
+            <% if(ssn.bulkupload) { %>
+            <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add multiple subsidy awards</a>
+            <% } else { %>
+            <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add a subsidy award</a>
+            <% } %>
           </li>
         </ol>
       </div>
@@ -33,23 +59,29 @@
         <div class="govuk-grid-column-two-thirds">
           <div class="govuk-panel govuk-panel--confirmation">
             <h1 class="govuk-panel__title">
-              Subsidy award submitted <% if(dashboard_roles == 'Granting Authority Encoder'){ %> for approval <% } %>
+              Subsidy award <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %> submitted for approval
+              <% } else { %>
+              published<% } %>
             </h1>
             <!-- <h2 class="govuk-panel__body">
-              Subsidy award number <%= locals.Subsidy_Control_Number_Global_Substring %>
+              Subsidy award number <%= ssn.Subsidy_Control_Number_Global_Substring %>
             </h2> -->
           </div>
 
-          <p class="govuk-body">You have successfully submitted subsidy award
-            <%= locals.Subsidy_Control_Number_Global_Substring %>
-            <% if(dashboard_roles == 'Granting Authority Encoder'){ %>
+          <p class="govuk-body">You have successfully <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %>
+            submitted
+            <% } else { %>
+            published <% } %> <%= SubsidyAwardNumber%> subsidy
+            <% if(bulkupload) { %> awards <% } else { %> award <%}%>
+            <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %>
             for approval
             <% } %>
           </p>
-
+          <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %>
           <h2 class="govuk-heading-m">What happens next</h2>
           <p class="govuk-body">We have sent a notification to an approver so they can review the subsidy award. You
             will receive a notification when they have reviewed it.</p>
+          <% } %>
           <!-- <p class="govuk-body">1. The award has been submitted for approval and is now in 'Awaiting approval' state.
           </p>
           <p class="govuk-body">2. Once approved, by an approver, it will be published.</p>
@@ -58,9 +90,11 @@
             <div class="govuk-grid-column-full"> -->
           <!-- <form action="" method="GET" novalidate=""> -->
           <a href="/mysubsidyawards" class="govuk-button" data-module="govuk-button">View all subsidy awards</a>
+          <% if(bulkupload) { %>
           <a href="/addsubsidyaward" class=" govuk-button govuk-button--secondary ">
             Add another award
           </a>
+          <% } %>
           <!-- </form> -->
           <!-- <form action="" method="GET" class="govuk-grid-column-one-half govuk-padding-0"> -->
 

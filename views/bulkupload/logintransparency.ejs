@@ -1,104 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <title>GOV.UK - Login Transparency Database page</title>
-  <%- include('../partials/headercss.ejs') %>
+<<<<<<< HEAD
+=======
 
   <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
-  <script type="text/javascript" src="/assets/javascripts/script.js" defer></script>
+  <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/govuk-cookie.js"></script>
+  <script
+    src="https://www.gov.uk/assets/static/libs/jquery/jquery-1.12.4-c731c20e2995c576b0509d3bd776f7ab64a66b95363a3b5fae9864299ee594ed.js"></script>
+  <script
+    src="https://www.gov.uk/assets/static/header-footer-only-ddf649cbdb4901b5c93284cdbd839d2316a590cbc9c05207a4938706eecba95a.js"></script>
 
-  <script>
-    handleChange = (event) => {
-      if (event.target.value == 'BEIS Administrator')
-        document.getElementById("dashboard_GA").setAttribute("disabled", true);
-      else
-        document.getElementById("dashboard_GA").removeAttribute("disabled");
-    };
+  <link href="/assets/stylesheet/govuk-cookie.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/stylesheet/govuk-cookie1.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/stylesheet/govuk-cookie2.css" rel="stylesheet" type="text/css" />
+
+  function gtag() {
+  dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', 'UA-145652997-21');
   </script>
+>>>>>>> c03bba1c27dfbc419a6bed0847b483dcc5dbd2b4
+
+  <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/govuk-cookie.js"></script>
+  <script
+    src="https://www.gov.uk/assets/static/libs/jquery/jquery-1.12.4-c731c20e2995c576b0509d3bd776f7ab64a66b95363a3b5fae9864299ee594ed.js"></script>
+  <script
+    src="https://www.gov.uk/assets/static/header-footer-only-ddf649cbdb4901b5c93284cdbd839d2316a590cbc9c05207a4938706eecba95a.js"></script>
+
+  <link href="/assets/stylesheet/govuk-cookie.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/stylesheet/govuk-cookie1.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/stylesheet/govuk-cookie2.css" rel="stylesheet" type="text/css" />
+
   <!-- <%- include('../partials/headersubsidy.ejs') %> -->
 </head>
 
 <body class="govuk-template__body app-example-page">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
-  <%- include('../partials/header.ejs') %>
 
-  <div class="govuk-width-container">
-    <main class="govuk-main-wrapper" id="main-content" role="main">
-      <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group"> -->
-      <h1 class="govuk-heading-xl">
-        Sign into the Transparency Database
-      </h1>
-      <!-- </legend> -->
-      <form action="/choosedashboard" method="POST">
-        <div class="govuk-grid-row">
-          <div class="govuk-form-group govuk-grid-column-two-thirds">
-            <legend class="govuk-fieldset__legend">
-              <label class="label" for="sort">Select user</label>
-            </legend>
-            <select class="govuk-select govuk-grid-column-two-thirds" id="dashboard_username" name="dashboard_username"
-              aria-label="select user">
-              <option value="" disabled selected>38 Options Available</option>
-              <option value="Andrew Davis">Andrew Davis</option>
-              <option value="Albert Einstein">Albert Einstein</option>
-              <option value="Barry Smith">Barry Smith</option>
-              <option value="Claire Jones">Claire Jones</option>
-              <option value="Mary Johnson">Mary Johnson</option>
-              <option value="Michael Robinson">Michael Robinson</option>
-            </select>
-          </div>
-          <div class="govuk-form-group govuk-grid-column-two-thirds">
-            <legend class="govuk-fieldset__legend">
-              <label class="label" for="sort">Select the role you have</label>
-            </legend>
-            <select class="govuk-select govuk-grid-column-two-thirds" id="dashboard_roles" name="dashboard_roles"
-              aria-label="select role" onchange=handleChange(event)>
-              <option value="" disabled selected>4 Roles Available</option>
-              <option value="BEIS Administrator">BEIS Administrator</option>
-              <option value="Granting Authority Administrator">Granting Authority Administrator</option>
-              <option value="Granting Authority Approver">Granting Authority Approver</option>
-              <option value="Granting Authority Encoder">Granting Authority Encoder</option>
-            </select>
-          </div>
-          <div class="govuk-form-group govuk-grid-column-two-thirds">
-            <legend class="govuk-fieldset__legend">
-              <label class="label" for="sort">
-                Select the granting authority
-              </label>
-            </legend>
-            <select class="govuk-select govuk-grid-column-two-thirds" id="dashboard_GA" name="dashboard_GA"
-              aria-label="select the granting authority">
-              <option value="" disabled selected>
-                43 Granting Authorities Available
-              </option>
-              <option value="HMRC">HMRC</option>
-              <option value="BFI">BFI</option>
-              <option value="Big Lottery Fund">Big Lottery Fund</option>
-              <option value="Birmingham City Council">Birmingham City Council</option>
-              <option value="Blaenau Gwent County Borough Council">Blaenau Gwent County Borough Council</option>
-              <option value="Carmenthenshire County Council">Carmenthenshire County Council</option>
-            </select>
-          </div>
-          <div class="govuk-form-group govuk-grid-column-two-thirds">
-            <!-- <p class="govuk-body">
-              <a class="govuk-link" href="/loginforgetpassword">
-                I have forgotten my password
-              </a>
-            </p> -->
-            <button class="govuk-button govuk-login-button" data-module="govuk-button">
-              Sign in
-            </button>
+  <!-- <div id="global-cookie-message" class="gem-c-cookie-banner govuk-clearfix" data-module="cookie-banner" role="region" aria-label="cookie banner" > -->
+  <div class="govuk-cookie-banner js-banner-wrapper" role="region" aria-label="Cookies on GOV.UK">
+    <div class="gem-c-cookie-banner__message govuk-cookie-banner__message govuk-width-container">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h2 class="govuk-cookie-banner__heading govuk-heading-m">Cookies on GOV.UK</h2>
+          <div class="govuk-cookie-banner__content">
+            <p class="govuk-body">We use some essential cookies to make this website work.</p>
+            <p class="govuk-body">We’d like to set additional cookies to understand how you use GOV.UK, remember your
+              settings and improve government services.</p>
+            <p class="govuk-body">We also use cookies set by other sites to help us deliver content from their services.
+            </p>
           </div>
         </div>
-      </form>
-    </main>
+      </div>
+      <div class="govuk-button-group">
+
+
+
+        <button class="gem-c-button govuk-button" type="submit" data-module="gem-track-click" data-accept-cookies="true"
+          data-track-category="cookieBanner" data-track-action="Cookie banner accepted" data-cookie-types="all">Accept
+          additional cookies</button>
+
+
+
+
+
+        <button class="gem-c-button govuk-button" type="submit" data-module="gem-track-click" data-reject-cookies="true"
+          data-track-category="cookieBanner" data-track-action="Cookie banner rejected">Reject additional
+          cookies</button>
+
+
+        <a class="govuk-link" href="/help/cookies">View cookies</a>
+      </div>
+    </div>
+  </div>
+  <div class="gem-c-cookie-banner__confirmation govuk-width-container" tabindex="-1" hidden>
+    <p class="gem-c-cookie-banner__confirmation-message" role="alert">You can <a class="govuk-link" href="/help/cookies"
+        data-module="gem-track-click" data-track-category="cookieBanner"
+        data-track-action="Cookie banner settings clicked from confirmation">change your cookie settings</a> at any
+      time.</p>
+    <div class="govuk-button-group">
+      <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true"
+        data-module="gem-track-click" data-track-category="cookieBanner" data-track-action="Hide cookie banner">Hide
+        this message</button>
+    </div>
+  </div>
   </div>
 </body>
-<%- include('../partials/footer.ejs') %>
-<script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
-<!-- <script src="/assets/javascripts/accordion/govuk-frontend.js"></script>
-<script src="/assets/javascripts/accordion/example.js"></script> -->
-<link href="/assets/stylesheet/govuk-transparencyDb.css" rel="stylesheet" type="text/css" />
 
 </html>

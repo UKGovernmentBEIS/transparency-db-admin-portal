@@ -5,15 +5,10 @@
 var express = require("express");
 var cookierParser = require("cookie-parser");
 var app = express();
-var fs = require("fs");
-var request = require("request");
+
 var methodOverride = require("method-override");
 var path = require("path");
 var fileUpload = require("express-fileupload");
-var fetch = require("node-fetch");
-var { callbackify } = require("util");
-var { Http2ServerRequest } = require("http2");
-var { contains } = require("jquery");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -21,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
 app.use(cookierParser());
-var users = [];
+// var users = [];
 // app.use(fileUpload());
 app.use(
   fileUpload({
@@ -30,191 +25,18 @@ app.use(
   })
 );
 
-//*************************************************************** */
-var multer = require("multer");
 var axios = require("axios");
-
-var upload = multer();
-
-// for parsing application/json
 app.use(express.json());
 var jwt_decode = require("jwt-decode");
-// for parsing application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
-
-// for parsing multipart/form-data
-// app.use(upload.array());
 app.use(express.static("public"));
-//*************************************************************** */
 
 app.locals.awards = require("./views/bulkupload/awards.json");
-app.locals.Subsidy_Control_Number_Global;
-app.locals.SubsidyArraySize;
-app.locals.isAddSubsidyPrimarycall;
-app.locals.Subsidy_Control_Number_Global_Substring;
-app.locals.Subsidy_Measure_Title_Global;
-app.locals.Subsidy_Adhoc_Global;
-app.locals.Subsidy_Objective_Global;
-app.locals.Subsidy_Objective_Other_Global;
-app.locals.Subsidy_Objective_Plus_Other_Global;
-app.locals.Subsidy_Instrument_Global;
-app.locals.Subsidy_Instrument_Other_Global;
-app.locals.Subsidy_Instrument_Plus_Other_Global;
-app.locals.Subsidy_Element_Full_Amount_Global;
-app.locals.Subsidy_Element_Full_Amount_Global_Trim;
-app.locals.National_ID_Type_Global;
-app.locals.National_ID_Number_Global;
-app.locals.Beneficiary_Name_Global;
-app.locals.Size_of_the_Organisation_Global;
-app.locals.Granting_Authority_Name_Global;
-app.locals.Legal_Basis_Global;
-app.locals.Legal_Granting_Date_Day_Global;
-app.locals.Legal_Granting_Date_Month_Global;
-app.locals.Legal_Granting_Date_Year_Global;
-app.locals.Goods_or_Services_Global;
-app.locals.Spending_Region_Global;
-app.locals.Spending_Sector_Global;
-app.locals.Granting_Authority_URL_Global;
-app.locals.Granting_Authority_Policy_Global;
-app.locals.Budget_Global;
-
-app.locals.Scheme_Start_Day_Global;
-app.locals.Scheme_Start_Month_Global;
-app.locals.Scheme_Start_Year_Global;
-app.locals.Scheme_End_Day_Global;
-app.locals.Scheme_End_Month_Global;
-app.locals.Scheme_End_Year_Global;
-
-app.locals.grantingAuthorityID_global;
-app.locals.grantingAuthorityName_Global;
-
-app.locals.GetMonthName;
-app.locals.file_upload_name;
-app.locals.isCallfromEditAward;
-
-app.locals.email_addresspass;
-app.locals.formvalidationerrpass = [];
-app.locals.errorsvalidationpass = [];
-
-app.locals.dashboard_user_name;
-app.locals.user_id;
-app.locals.dashboard_ga_name;
-app.locals.dashboard_roles;
-app.locals.dashbaord_ga_ID;
-app.locals.frontend_totalRecordsPerPage;
-
-app.locals.pageCount;
-app.locals.previous_page;
-app.locals.next_page;
-app.locals.start_record;
-app.locals.end_record;
-app.locals.totalrows;
-app.locals.current_page_active;
-app.locals.current_page;
-app.locals.start_page;
-app.locals.end_page;
-app.locals.dashboardawards;
-app.locals.awardnumber;
-app.locals.fetchawarddetails;
-app.locals.Award_search_URL;
-app.locals.grantingAuthorityPublish_Global;
-
-app.locals.Award_selected_status;
-app.locals.awards_status;
-app.locals.Award_search_text;
-
-app.locals.scheme_selected_status;
-app.locals.schemes_status;
-app.locals.Schemes_search_text;
-app.locals.scNumber_Global;
 
 app.locals.beis_url_publishing;
 app.locals.beis_url_accessmanagement;
 app.locals.beis_url_publicsearch;
 app.locals.beis_url_searchscheme;
-
-app.locals.Subsidy_Control_Number_Error;
-app.locals.Subsidy_Measure_Title_Error;
-app.locals.Subsidy_Adhoc_Error;
-app.locals.Subsidy_Objective_Error;
-app.locals.Subsidy_Objective_Other_Error;
-app.locals.Subsidy_Instrument_Error;
-app.locals.Subsidy_Instrument_Other_Error;
-app.locals.Subsidy_Element_Full_Amount_Error;
-app.locals.Subsidy_Full_Amount_Range_Error;
-app.locals.National_ID_Type_Error;
-app.locals.National_ID_Number_Error;
-app.locals.Beneficiary_Name_Error;
-app.locals.Size_of_the_Organisation_Error;
-app.locals.Granting_Authority_Name_Error;
-app.locals.Legal_Granting_Date_Day_Error;
-app.locals.Legal_Granting_Date_Month_Error;
-app.locals.Legal_Granting_Date_Year_Error;
-app.locals.Goods_or_Services_Error;
-app.locals.Spending_Region_Error;
-app.locals.Spending_Sector_Error;
-app.locals.grantingAuthorityName_Error;
-app.locals.grantingAuthorityName_Error_Msg;
-
-app.locals.searchmeasuredetails;
-app.locals.Subsidy_Control_Number_Global_Text;
-app.locals.Scheme_Legal_Granting_Start_Date_Month;
-app.locals.Scheme_Legal_Granting_Start_Date_Day;
-app.locals.Scheme_Legal_Granting_Start_Date_Year;
-app.locals.Scheme_Legal_Granting_End_Date_Month;
-app.locals.Scheme_Legal_Granting_End_Date_Day;
-app.locals.Scheme_Legal_Granting_End_Date_Year;
-app.locals.subsidy_scheme_name_sorting_order;
-app.locals.subsidy_control_no_sorting_order;
-app.locals.granting_authority_sorting_order;
-app.locals.start_date_sorting_order;
-app.locals.end_date_sorting_order;
-app.locals.duration_sorting_order;
-app.locals.budget_sorting_order;
-app.locals.sorting_order_pass;
-app.locals.Search_Text_Global;
-
-app.locals.apiroles_extract;
-app.locals.apiroles_total_objects;
-app.locals.isUserSlectIsPrimaryCall;
-app.locals.Granting_Authority_Name_Measure_Global;
-app.locals.Granting_Authority_Selected;
-app.locals.GA_Selected;
-app.locals.Roles_Selected;
-app.locals.GAUserList;
-
-app.locals.gaId_no_arrow;
-app.locals.ganame_arrow;
-app.locals.added_by_arrow;
-app.locals.status_arrow;
-app.locals.created_on_arrow;
-app.locals.last_modified_arrow;
-app.locals.UserPrincileObjectGlobal;
-
-app.locals.User_Role_Global;
-app.locals.GA_Name_User_Global;
-app.locals.Full_Name_Global;
-app.locals.Last_Name_Global;
-app.locals.Email_Id_Global;
-app.locals.Phone_Number_Global;
-app.locals.Full_Name_Error;
-app.locals.Last_Name_Error;
-app.locals.Email_Id_Error;
-app.locals.Phone_Number_Error;
-
-app.locals.gaID_extract;
-
-app.locals.User_Role_Single;
-app.locals.User_GA_Name;
-app.locals.User_Name_Single;
-app.locals.User_Last_Name_Single;
-app.locals.User_Email_Single;
-app.locals.User_Mobile_Single;
-app.locals.Delete_UserId;
-
-app.locals.GAUserList_Empty;
-
-app.locals.GaListArr_Global;
 
 app.locals.gaAdminCount_Global;
 app.locals.gaApproverCount_Global;
@@ -224,13 +46,199 @@ app.locals.gaTotalCount_Global;
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
 
-app.get("/", async (req, res) => {
-  var id_token = req.header("x-ms-token-aad-id-token");
-  console.log("id_token " + id_token);
+var session = require("express-session");
+app.use(
+  session({
+    secret: "Key",
+    cookie: { maxAge: 24 * 60 * 60 * 1000 },
+    httpOnly: false,
+    secure: true,
+    sameSite: "none",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
+var ssn = "";
+app.get("/", async (req, res) => {
+  console.log("req.session", req.session);
+  ssn = req.session;
+  ssn.Subsidy_Control_Number_Global;
+  ssn.SubsidyArraySize;
+  ssn.isAddSubsidyPrimarycall;
+  ssn.Subsidy_Control_Number_Global_Substring;
+  ssn.Subsidy_Measure_Title_Global;
+  ssn.Subsidy_Adhoc_Global;
+  ssn.Subsidy_Objective_Global;
+  ssn.Subsidy_Objective_Other_Global;
+  ssn.Subsidy_Objective_Plus_Other_Global;
+  ssn.Subsidy_Instrument_Global;
+  ssn.Subsidy_Instrument_Other_Global;
+  ssn.Subsidy_Instrument_Plus_Other_Global;
+  ssn.Subsidy_Element_Full_Amount_Global;
+  ssn.Subsidy_Element_Full_Amount_Global_Trim;
+  ssn.National_ID_Type_Global;
+  ssn.National_ID_Number_Global;
+  ssn.Beneficiary_Name_Global;
+  ssn.Size_of_the_Organisation_Global;
+  ssn.Granting_Authority_Name_Global;
+  ssn.Legal_Basis_Global;
+  ssn.Legal_Granting_Date_Day_Global;
+  ssn.Legal_Granting_Date_Month_Global;
+  ssn.Legal_Granting_Date_Year_Global;
+  ssn.Goods_or_Services_Global;
+  ssn.Spending_Region_Global;
+  ssn.Spending_Sector_Global;
+  ssn.Granting_Authority_URL_Global;
+  ssn.Granting_Authority_Policy_Global;
+  ssn.Budget_Global;
+
+  ssn.Scheme_Start_Day_Global;
+  ssn.Scheme_Start_Month_Global;
+  ssn.Scheme_Start_Year_Global;
+  ssn.Scheme_End_Day_Global;
+  ssn.Scheme_End_Month_Global;
+  ssn.Scheme_End_Year_Global;
+
+  ssn.grantingAuthorityID_global;
+  ssn.grantingAuthorityName_Global;
+
+  ssn.GetMonthName;
+  ssn.GetEndMonthName;
+  ssn.file_upload_name;
+  ssn.isCallfromEditAward;
+  ssn.addUser_extract;
+
+  ssn.email_addresspass;
+  ssn.formvalidationerrpass = [];
+  ssn.errorsvalidationpass = [];
+
+  ssn.dashboard_user_name;
+  ssn.user_id;
+
+  ssn.dashboard_ga_name;
+  ssn.dashboard_roles;
+  ssn.dashbaord_ga_ID;
+  ssn.frontend_totalRecordsPerPage;
+  ssn.Environment_variable;
+
+  ssn.pageCount;
+  ssn.previous_page;
+  ssn.next_page;
+  ssn.start_record;
+  ssn.end_record;
+  ssn.totalrows;
+  ssn.current_page_active;
+  ssn.current_page;
+  ssn.start_page;
+  ssn.end_page;
+  ssn.dashboardawards;
+  ssn.awardnumber;
+  ssn.fetchawarddetails;
+  ssn.Award_search_URL;
+  ssn.grantingAuthorityPublish_Global;
+
+  ssn.Award_selected_status;
+  ssn.awards_status;
+  ssn.Award_search_text;
+
+  ssn.scheme_selected_status;
+  ssn.schemes_status;
+  ssn.Schemes_search_text;
+  ssn.scNumber_Global;
+
+  ssn.Subsidy_Control_Number_Error;
+  ssn.Subsidy_Measure_Title_Error;
+  ssn.Subsidy_Adhoc_Error;
+  ssn.Subsidy_Objective_Error;
+  ssn.Subsidy_Objective_Other_Error;
+  ssn.Subsidy_Instrument_Error;
+  ssn.Subsidy_Instrument_Other_Error;
+  ssn.Subsidy_Element_Full_Amount_Error;
+  ssn.Subsidy_Full_Amount_Range_Error;
+  ssn.National_ID_Type_Error;
+  ssn.National_ID_Number_Error;
+  ssn.Beneficiary_Name_Error;
+  ssn.Size_of_the_Organisation_Error;
+  ssn.Granting_Authority_Name_Error;
+  ssn.Legal_Granting_Date_Day_Error;
+  ssn.Legal_Granting_Date_Month_Error;
+  ssn.Legal_Granting_Date_Year_Error;
+  ssn.Goods_or_Services_Error;
+  ssn.Spending_Region_Error;
+  ssn.Spending_Sector_Error;
+  ssn.grantingAuthorityName_Error;
+  ssn.grantingAuthorityName_Error_Msg;
+
+  ssn.searchmeasuredetails;
+  ssn.Subsidy_Control_Number_Global_Text;
+  ssn.Scheme_Legal_Granting_Start_Date_Month;
+  ssn.Scheme_Legal_Granting_Start_Date_Day;
+  ssn.Scheme_Legal_Granting_Start_Date_Year;
+  ssn.Scheme_Legal_Granting_End_Date_Month;
+  ssn.Scheme_Legal_Granting_End_Date_Day;
+  ssn.Scheme_Legal_Granting_End_Date_Year;
+  ssn.subsidy_scheme_name_sorting_order;
+  ssn.subsidy_control_no_sorting_order;
+  ssn.granting_authority_sorting_order;
+  ssn.start_date_sorting_order;
+  ssn.end_date_sorting_order;
+  ssn.duration_sorting_order;
+  ssn.budget_sorting_order;
+  ssn.sorting_order_pass;
+  ssn.Search_Text_Global;
+
+  ssn.apiroles_extract;
+  ssn.apiroles_total_objects;
+  ssn.isUserSlectIsPrimaryCall;
+  ssn.Granting_Authority_Name_Measure_Global;
+  ssn.Granting_Authority_Selected;
+  ssn.GA_Selected;
+  ssn.Roles_Selected;
+  ssn.GAUserList;
+
+  ssn.gaId_no_arrow;
+  ssn.ganame_arrow;
+  ssn.added_by_arrow;
+  ssn.status_arrow;
+  ssn.created_on_arrow;
+  ssn.last_modified_arrow;
+  ssn.UserPrincileObjectGlobal;
+
+  ssn.User_Role_Global;
+  ssn.GA_Name_User_Global;
+  ssn.Full_Name_Global;
+  ssn.Last_Name_Global;
+  ssn.Email_Id_Global;
+  ssn.Phone_Number_Global;
+  ssn.UserErrorLength_Global;
+  ssn.Full_Name_Error;
+  ssn.Last_Name_Error;
+  ssn.Email_Id_Error;
+  ssn.User_Role_Error;
+  ssn.GA_Name_User_Error;
+  ssn.Phone_Number_Error;
+  ssn.UserErrorsLenght;
+
+  ssn.gaID_extract;
+
+  ssn.User_Role_Single;
+  ssn.User_GA_Name;
+  ssn.User_Name_Single;
+  ssn.User_Last_Name_Single;
+  ssn.User_Email_Single;
+  ssn.User_Mobile_Single;
+  ssn.Delete_UserId;
+
+  ssn.GAUserList_Empty;
+
+  ssn.GaListArr_Global;
+
+  var id_token = req.header("x-ms-token-aad-id-token");
+
+  console.log("id_token " + id_token);
 
   Environment_variable = process.argv[2];
-  console.log("id_token " + id_token);
 
   if (Environment_variable == "env=dev") {
     beis_url_publishing =
@@ -242,8 +250,7 @@ app.get("/", async (req, res) => {
     beis_url_searchscheme =
       "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net";
 
-    beis_redirect_url =
-      "https://dev-beis-tp-dp-admin-portal.azurewebsites.net";
+    beis_redirect_url = "https://dev-beis-tp-dp-admin-portal.azurewebsites.net";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -270,8 +277,7 @@ app.get("/", async (req, res) => {
       "https://stag-transparency-db-public-search-service.azurewebsites.net";
     beis_url_searchscheme =
       "https://stag-transparency-db-ga-schemes-service.azurewebsites.net";
-    beis_redirect_url =
-      "https://manageuksubsidies-stg.beis.gov.uk";
+    beis_redirect_url = "https://manageuksubsidies-stg.beis.gov.uk";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -284,8 +290,7 @@ app.get("/", async (req, res) => {
       "https://prod-transparency-db-public-search-service.azurewebsites.net";
     beis_url_searchscheme =
       "https://prod-transparency-db-ga-schemes-service.azurewebsites.net";
-    beis_redirect_url =
-      "https://manageuksubsidies.beis.gov.uk";
+    beis_redirect_url = "https://manageuksubsidies.beis.gov.uk";
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
@@ -294,22 +299,26 @@ app.get("/", async (req, res) => {
   // *******************
   // Globale declarations
   // *******************
-  frontend_totalRecordsPerPage = 10;
+  ssn.frontend_totalRecordsPerPage = 10;
 
   var id_token_decoded = jwt_decode(id_token);
   console.log("id_token_decoded " + id_token_decoded);
   console.log("logged in user " + id_token_decoded.name);
   console.log("id_token_decoded parsed " + JSON.stringify(id_token_decoded));
   var id_token_json = JSON.parse(JSON.stringify(id_token_decoded));
-  dashboard_user_name = id_token_decoded.name;
-  user_id = id_token_decoded.oid;
-  dashboard_roles_object = JSON.stringify(id_token_json.roles);
-  console.log("roles :" + dashboard_roles_object);
-  dashboard_roles_object_id1 = dashboard_roles_object.substr(2, 36);
-  dashboard_roles_object_id2 = dashboard_roles_object.substr(41, 36);
+  ssn.dashboard_user_name = id_token_decoded.name;
+  ssn.user_id = id_token_decoded.oid;
+  ssn.dashboard_roles_object = JSON.stringify(id_token_json.roles);
+  console.log("roles :" + ssn.dashboard_roles_object);
+  ssn.dashboard_roles_object_id1 = ssn.dashboard_roles_object.substr(2, 36);
+  ssn.dashboard_roles_object_id2 = ssn.dashboard_roles_object.substr(41, 36);
 
-  console.log("dashboard_roles_object_id1:" + dashboard_roles_object_id1);
-  console.log("dashboard_roles_object_id2:" + dashboard_roles_object_id2);
+  console.log(
+    "ssn.dashboard_roles_object_id1:" + ssn.dashboard_roles_object_id1
+  );
+  console.log(
+    "ssn.dashboard_roles_object_id2:" + ssn.dashboard_roles_object_id2
+  );
 
   try {
     var apiroles = await axios.get(
@@ -319,22 +328,22 @@ app.get("/", async (req, res) => {
     API_response_code = `${apiroles.status}`;
     console.log("API_response_code: try" + API_response_code);
     console.log("Body: ", apiroles.data);
-    apiroles_extract = apiroles.data;
-    apiroles_total_objects = Object.keys(apiroles_extract).length;
-    console.log(" apiroles_total_objects: ", apiroles_total_objects);
+    ssn.apiroles_extract = apiroles.data;
+    ssn.apiroles_total_objects = Object.keys(ssn.apiroles_extract).length;
+    console.log(" apiroles_total_objects: ", ssn.apiroles_total_objects);
 
-    for (var i = 0; i < apiroles_total_objects; i++) {
-      if (dashboard_roles_object_id1 == apiroles_extract[i].azGrpId) {
-        console.log("gaName id1 : " + apiroles_extract[i].gaId);
-        apiroles_extract_object1 = apiroles_extract[i].gaName;
-        dashbaord_ga_ID = apiroles_extract[i].gaId;
+    for (var i = 0; i < ssn.apiroles_total_objects; i++) {
+      if (ssn.dashboard_roles_object_id1 == ssn.apiroles_extract[i].azGrpId) {
+        console.log("gaName id1 : " + ssn.apiroles_extract[i].gaId);
+        apiroles_extract_object1 = ssn.apiroles_extract[i].gaName;
+        ssn.dashbaord_ga_ID = ssn.apiroles_extract[i].gaId;
       }
     }
 
-    for (var i = 0; i < apiroles_total_objects; i++) {
-      if (dashboard_roles_object_id2 == apiroles_extract[i].azGrpId) {
-        console.log("gaName id2 : " + apiroles_extract[i].gaName);
-        apiroles_extract_object2 = apiroles_extract[i].gaName;
+    for (var i = 0; i < ssn.apiroles_total_objects; i++) {
+      if (ssn.dashboard_roles_object_id2 == ssn.apiroles_extract[i].azGrpId) {
+        console.log("gaName id2 : " + ssn.apiroles_extract[i].gaName);
+        apiroles_extract_object2 = ssn.apiroles_extract[i].gaName;
       }
     }
   } catch (err) {
@@ -344,59 +353,59 @@ app.get("/", async (req, res) => {
   }
 
   if (apiroles_extract_object1.includes("BEIS Administrator")) {
-    dashboard_roles = "BEIS Administrator";
-    dashboard_ga_name = apiroles_extract_object2;
+    ssn.dashboard_roles = "BEIS Administrator";
+    ssn.dashboard_ga_name = apiroles_extract_object2;
   } else if (
     apiroles_extract_object1.includes("Granting Authority Administrator")
   ) {
-    dashboard_roles = "Granting Authority Administrator";
-    dashboard_ga_name = apiroles_extract_object2;
+    ssn.dashboard_roles = "Granting Authority Administrator";
+    ssn.dashboard_ga_name = apiroles_extract_object2;
   } else if (apiroles_extract_object1.includes("Granting Authority Approver")) {
-    dashboard_roles = "Granting Authority Approver";
-    dashboard_ga_name = apiroles_extract_object2;
+    ssn.dashboard_roles = "Granting Authority Approver";
+    ssn.dashboard_ga_name = apiroles_extract_object2;
   } else if (apiroles_extract_object1.includes("Granting Authority Encoder")) {
-    dashboard_roles = "Granting Authority Encoder";
-    dashboard_ga_name = apiroles_extract_object2;
+    ssn.dashboard_roles = "Granting Authority Encoder";
+    ssn.dashboard_ga_name = apiroles_extract_object2;
   }
 
   if (apiroles_extract_object2.includes("BEIS Administrator")) {
-    dashboard_roles = "BEIS Administrator";
-    dashboard_ga_name = apiroles_extract_object1;
+    ssn.dashboard_roles = "BEIS Administrator";
+    ssn.dashboard_ga_name = apiroles_extract_object1;
   } else if (
     apiroles_extract_object2.includes("Granting Authority Administrator")
   ) {
-    dashboard_roles = "Granting Authority Administrator";
-    dashboard_ga_name = apiroles_extract_object1;
+    ssn.dashboard_roles = "Granting Authority Administrator";
+    ssn.dashboard_ga_name = apiroles_extract_object1;
   } else if (apiroles_extract_object2.includes("Granting Authority Approver")) {
-    dashboard_roles = "Granting Authority Approver";
-    dashboard_ga_name = apiroles_extract_object1;
+    ssn.dashboard_roles = "Granting Authority Approver";
+    ssn.dashboard_ga_name = apiroles_extract_object1;
   } else if (apiroles_extract_object2.includes("Granting Authority Encoder")) {
-    dashboard_roles = "Granting Authority Encoder";
-    dashboard_ga_name = apiroles_extract_object1;
+    ssn.dashboard_roles = "Granting Authority Encoder";
+    ssn.dashboard_ga_name = apiroles_extract_object1;
   }
 
-  console.log("dashboard_roles : " + dashboard_roles);
-  console.log("dashboard_ga_name : " + dashboard_ga_name);
+  console.log("ssn.dashboard_roles : " + ssn.dashboard_roles);
+  console.log("ssn.dashboard_ga_name : " + ssn.dashboard_ga_name);
 
   var userPrincipleRequest =
     '{"userName":"' +
-    dashboard_user_name +
+    ssn.dashboard_user_name +
     '","password":"password123",' +
     '"role":"' +
-    dashboard_roles +
+    ssn.dashboard_roles +
     '","grantingAuthorityGroupId":"' +
-    dashbaord_ga_ID +
+    ssn.dashbaord_ga_ID +
     '","grantingAuthorityGroupName":"' +
-    dashboard_ga_name +
+    ssn.dashboard_ga_name +
     '"}';
 
   console.log("userprincile: " + userPrincipleRequest);
-  UserPrincileObjectGlobal = {
+  ssn.UserPrincileObjectGlobal = {
     headers: {
       userPrinciple: userPrincipleRequest,
     },
   };
-  console.log("dashbaord_ga_ID", dashboard_roles_object_id2);
+  console.log("ssn.dashbaord_ga_ID", ssn);
   gaAdminCount_Global = 0;
   gaApproverCount_Global = 0;
   gaEncoderCount_Global = 0;
@@ -405,14 +414,13 @@ app.get("/", async (req, res) => {
     const apidata = await axios.get(
       beis_url_accessmanagement +
         "/usermanagement/groups/" +
-        dashboard_roles_object_id2,
-      UserPrincileObjectGlobal
+        ssn.dashboard_roles_object_id2,
+      ssn.UserPrincileObjectGlobal
     );
     console.log(`Status: ${apidata.status}`);
     API_response_code = `${apidata.status}`;
     console.log("Body GROUPS: ", apidata.data.value);
 
-    var env = Environment_variable.split("=");
     apidata.data.value.forEach(function (items) {
       if (items.roleName.toLowerCase().includes("administrators"))
         gaAdminCount_Global++;
@@ -430,31 +438,24 @@ app.get("/", async (req, res) => {
     );
   }
 
-  if (dashboard_roles == "BEIS Administrator") {
-    // var userPrincipleRequest =
-    //   '{"userName": "TEST","password": "password123","role": "BEIS Administrator","grantingAuthorityGroupId": "123","grantingAuthorityGroupName": "test"}';
-    // var config = {
-    //   headers: {
-    //     userPrinciple: userPrincipleRequest,
-    //   },
-    // };
-
+  if (ssn.dashboard_roles == "BEIS Administrator") {
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
     console.log("request :" + JSON.stringify(data));
 
     try {
       var apidata = await axios.get(
         beis_url_accessmanagement + "/accessmanagement/beisadmin",
-        UserPrincileObjectGlobal
+        ssn.UserPrincileObjectGlobal
       );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
       console.log("API_response_code: try" + API_response_code);
       console.log("Body: ", apidata.data);
       dashboardawards = apidata.data;
+
       res.render("bulkupload/dashboard-beisadmin", {
         beis_url_accessmanagement,
-        dashboard_user_name,
+        ssn,
         gaAdminCount_Global,
         gaApproverCount_Global,
         gaEncoderCount_Global,
@@ -465,24 +466,14 @@ app.get("/", async (req, res) => {
       console.log("message error : " + err);
       console.log("response_error_message catch : " + response_error_message);
     }
-  } else if (dashboard_roles == "Granting Authority Administrator") {
-    // var userPrincipleRequest =
-    //   '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Administrator","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-    //   dashboard_ga_name +
-    //   '"}';
-    // var config = {
-    //   headers: {
-    //     userPrinciple: userPrincipleRequest,
-    //   },
-    // };
-
+  } else if (ssn.dashboard_roles == "Granting Authority Administrator") {
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
     console.log("request :" + JSON.stringify(data));
 
     try {
       var apidata = await axios.get(
         beis_url_accessmanagement + "/accessmanagement/gaadmin",
-        UserPrincileObjectGlobal
+        ssn.UserPrincileObjectGlobal
       );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
@@ -491,7 +482,8 @@ app.get("/", async (req, res) => {
       dashboardawards = apidata.data;
       res.render("bulkupload/dashboard-gaadmin", {
         beis_url_accessmanagement,
-        dashboard_user_name,
+        // ssn.dashboard_user_name,
+        ssn,
         gaAdminCount_Global,
         gaApproverCount_Global,
         gaEncoderCount_Global,
@@ -502,24 +494,14 @@ app.get("/", async (req, res) => {
       console.log("message error : " + err);
       console.log("response_error_message catch : " + response_error_message);
     }
-  } else if (dashboard_roles == "Granting Authority Approver") {
-    // var userPrincipleRequest =
-    //   '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Approver","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-    //   dashboard_ga_name +
-    //   '"}';
-    // var config = {
-    //   headers: {
-    //     userPrinciple: userPrincipleRequest,
-    //   },
-    // };
-
+  } else if (ssn.dashboard_roles == "Granting Authority Approver") {
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
     console.log("request :" + JSON.stringify(data));
 
     try {
       var apidata = await axios.get(
         beis_url_accessmanagement + "/accessmanagement/gaapprover",
-        UserPrincileObjectGlobal
+        ssn.UserPrincileObjectGlobal
       );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
@@ -532,7 +514,8 @@ app.get("/", async (req, res) => {
       dashboardawards = apidata.data;
       res.render("bulkupload/dashboard-gaapprover", {
         beis_url_accessmanagement,
-        dashboard_user_name,
+
+        ssn,
         gaAdminCount_Global,
         gaApproverCount_Global,
         gaEncoderCount_Global,
@@ -543,24 +526,14 @@ app.get("/", async (req, res) => {
       console.log("message error : " + err);
       console.log("response_error_message catch : " + response_error_message);
     }
-  } else if (dashboard_roles == "Granting Authority Encoder") {
-    // var userPrincipleRequest =
-    //   '{"userName":"SYSTEM","password":"password123","role":"Granting Authority Encoder","grantingAuthorityGroupId":"123","grantingAuthorityGroupName":"' +
-    //   dashboard_ga_name +
-    //   '"}';
-    // var config = {
-    //   headers: {
-    //     userPrinciple: userPrincipleRequest,
-    //   },
-    // };
-
+  } else if (ssn.dashboard_roles == "Granting Authority Encoder") {
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
     console.log("request :" + JSON.stringify(data));
 
     try {
       var apidata = await axios.get(
         beis_url_accessmanagement + "/accessmanagement/gaencoder",
-        UserPrincileObjectGlobal
+        ssn
       );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
@@ -569,7 +542,8 @@ app.get("/", async (req, res) => {
       dashboardawards = apidata.data;
       res.render("bulkupload/dashboard-gaencoder", {
         beis_url_accessmanagement,
-        dashboard_user_name,
+        // ssn.dashboard_user_name,
+        ssn,
         gaAdminCount_Global,
         gaApproverCount_Global,
         gaEncoderCount_Global,
@@ -584,6 +558,7 @@ app.get("/", async (req, res) => {
 
   // res.render("bulkupload/logintransparency");
 });
+
 var logintransparency = require("./routes/logintransparency");
 app.use("/logintransparency", logintransparency);
 
@@ -723,6 +698,9 @@ app.use("/subsidymeasurereditreview", subsidymeasurereditreview);
 var awardspageroute = require("./routes/awardspageroute");
 app.use("/awardspageroute", awardspageroute);
 
+var awardsortroute = require("./routes/awardsortroute");
+app.use("/awardsortroute", awardsortroute);
+
 var awardspageperroute = require("./routes/awardspageperroute");
 app.use("/awardspageperroute", awardspageperroute);
 
@@ -779,8 +757,14 @@ app.use("/userselect", userselect);
 var usersubmit = require("./routes/user-submit");
 app.use("/usersubmit", usersubmit);
 
+var usersubmitpersonal = require("./routes/user-submit-personal");
+app.use("/usersubmitpersonal", usersubmitpersonal);
+
 var adduser = require("./routes/user-add");
 app.use("/adduser", adduser);
+
+var adduserpersonal = require("./routes/user-add-personal");
+app.use("/adduserpersonal", adduserpersonal);
 
 var edituser = require("./routes/user-edit");
 app.use("/edituser", edituser);
@@ -790,6 +774,9 @@ app.use("/canceluser", canceluser);
 
 var userreview = require("./routes/user-review");
 app.use("/userreview", userreview);
+
+var userreviewpersonal = require("./routes/user-review-personal");
+app.use("/userreviewpersonal", userreviewpersonal);
 
 var useraddedsuccessfully = require("./routes/user-added-successfully");
 app.use("/useraddedsuccessfully", useraddedsuccessfully);
@@ -811,5 +798,40 @@ app.use("/notauthorized", notAuthorized);
 
 var signout = require("./routes/signout");
 app.use("/signout", signout);
+
+var feedbackform = require("./routes/feedbackform");
+app.use("/feedbackform", feedbackform);
+
+var submitfeedback = require("./routes/feedbacksubmit");
+app.use("/submitfeedback", submitfeedback);
+
+var internalguidancedocument = require("./routes/internalguidancedocument");
+app.use("/guidancedocument", internalguidancedocument);
+
+var useraccountdetails = require("./routes/user-account-details");
+app.use("/useraccountdetails", useraccountdetails);
+
+var useraccountreviewdetails = require("./routes/user-account-review-details");
+app.use("/accountreviewdetails", useraccountreviewdetails);
+
+var useraccountcancel = require("./routes/user-account-cancel");
+app.use("/user-account-cancel", useraccountcancel);
+
+var useraccountsubmit = require("./routes/user-account-submit");
+app.use("/useraccountsubmit", useraccountsubmit);
+
+//audit routes
+
+var audithomepage = require("./routes/audit-homepage-route");
+app.use("/audithomepage", audithomepage);
+
+var auditrecordsperpageroute = require("./routes/audit-recordsperpage-route");
+app.use("/auditrecordsperpageroute", auditrecordsperpageroute);
+
+var auditsortroute = require("./routes/audit-sort-route");
+app.use("/auditsortroute", auditsortroute);
+
+var auditpageroute = require("./routes/audit-page-route");
+app.use("/auditpageroute", auditpageroute);
 
 module.exports = app;

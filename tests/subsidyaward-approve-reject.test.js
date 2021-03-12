@@ -41,9 +41,14 @@ test("Unit testing for Subsidy award approve reject Test for GET call", (done) =
   global.Spending_Region_Global = "";
   global.Spending_Sector_Global = "";
 
+  global.start_page = "";
+  global.end_page = "";
+
+  global.Subsidy_Element_Full_Amount_Global = "";
+
   const res = {};
   request(app)
     .get("/approverejectsubsidyaward", (req, res))
     .expect(200, done);
-  //   expect(abcd).toBe(200);
+  // expect(abcd).toBe(200);
 });

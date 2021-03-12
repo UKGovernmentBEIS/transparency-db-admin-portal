@@ -36,7 +36,7 @@
   border-bottom: 2px solid gray;
 }
 
-.govuk-beis-heading h2 {
+.govuk-beis-heading h1 {
   color: rgb(177, 180, 182);
   font-size: 27px;
   font-weight: normal;
@@ -65,6 +65,7 @@
   float: left;
   width: 100%;
   margin-top: 2rem;
+  padding-top: 2rem;
 }
 .govuk-fieldset_sub-heading {
   font-size: 1em;

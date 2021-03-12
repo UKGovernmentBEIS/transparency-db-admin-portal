@@ -31,6 +31,7 @@ test("Unit testing for submit for approval Test for GET call", (done) => {
   global.Subsidy_Control_Number_Global = "";
   global.Subsidy_Measure_Title_Global = "";
   global.Subsidy_Objective_Global = "";
+  global.SubsidyBulkUpload = "";
   global.Subsidy_Objective_Other_Global = "";
   global.Subsidy_Instrument_Other_Global = "";
   global.Subsidy_Full_Amount_Range_Global = "";
@@ -50,6 +51,10 @@ test("Unit testing for submit for approval Test for GET call", (done) => {
   global.beis_url_publishing = "";
   global.isCallfromEditAward = "";
   global.Edit_Award_Number_global = "";
+
+  global.start_page = "";
+  global.end_page = "";
+
   const res = {};
   axios.post.mockResolvedValue({
     status: 200,
@@ -61,6 +66,7 @@ test("Unit testing for submit for approval Test for GET call", (done) => {
           message: "subsidyMeasureTitle",
         },
       ],
+      message: "23456 Award",
     },
   });
   request(app)
@@ -106,6 +112,17 @@ test("Unit testing for Submit for approval Test for GET call", (done) => {
   global.Subsidy_Instrument_Global = "";
   global.Subsidy_Control_Number_Global_Substring = "";
 
+  global.start_page = "";
+  global.end_page = "";
+
+  global.Award_sorting_field = "";
+  global.Award_sorting = "";
+  global.subsidy_award_number_arrow = "";
+  global.scheme_name_arrow = "";
+  global.award_status_arrow = "";
+  global.award_recipient_arrow = "";
+  global.granting_authority_arrow = "";
+
   global.Subsidy_Control_Number_Error = "";
   global.Subsidy_Measure_Title_Error = "";
   global.Subsidy_Objective_Error = "";
@@ -132,6 +149,8 @@ test("Unit testing for Submit for approval Test for GET call", (done) => {
   global.isAddSubsidyPrimarycall = "";
   global.Subsidy_Control_Number_Global_Substring = "";
   global.beis_url_publishing = "";
+  global.GA_Selected = "";
+  global.dashboard_ga_name = "";
   const res = {};
   axios.post.mockResolvedValue({
     status: 200,
@@ -162,6 +181,7 @@ test("Unit testing for Submit for approval Test for GET call", (done) => {
   global.SubsidyFocus = [];
   global.isAddSubsidyPrimarycall = "";
   global.Edit_Award_Number_global = "";
+  global.SubsidyBulkUpload = "";
   global.isCallfromEditAward = "";
   global.Subsidy_Full_Amount_Range_Global = "";
   global.Subsidy_Element_Full_Amount_Global = "";
@@ -182,7 +202,18 @@ test("Unit testing for Submit for approval Test for GET call", (done) => {
   global.Goods_or_Services_Global = "";
   global.Spending_Region_Global = "";
   global.Spending_Sector_Global = "";
+  global.dashboard_ga_name = "";
   global.Subsidy_Instrument_Global = "";
+
+  global.Award_sorting_field = "";
+  global.Award_sorting = "";
+  global.subsidy_award_number_arrow = "";
+  global.scheme_name_arrow = "";
+  global.award_status_arrow = "";
+  global.award_recipient_arrow = "";
+  global.granting_authority_arrow = "";
+
+  global.SubsidyAwardNumber = "";
   global.Subsidy_Control_Number_Global_Substring = "";
   global.beis_url_publishing = "";
   const res = {};
@@ -195,10 +226,11 @@ test("Unit testing for Submit for approval Test for GET call", (done) => {
           message: "",
         },
       ],
+      message: "23456 Award",
     },
   });
   request(app)
     .post("/submitforapproval", (req, res))
     .expect(200, done);
-  //   expect(abcd).toBe(200);
+  // expect(abcd).toBe(200);
 });

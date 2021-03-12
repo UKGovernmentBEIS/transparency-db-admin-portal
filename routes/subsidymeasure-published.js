@@ -1,9 +1,12 @@
 const express = require("express");
+var session = require("express-session");
 const router = express.Router();
+
 const axios = require("axios");
 var request = require("request");
 
 router.post("/", async (req, res) => {
+  ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -13,38 +16,38 @@ router.post("/", async (req, res) => {
 
   console.log("button_value : " + button_value);
 
-  if (Scheme_Start_Month_Global.length == 1) {
-    Scheme_Start_Month_Global = "0" + Scheme_Start_Month_Global;
+  if (ssn.Scheme_Start_Month_Global.length == 1) {
+    ssn.Scheme_Start_Month_Global = "0" + ssn.Scheme_Start_Month_Global;
   }
-  if (Scheme_Start_Day_Global.length < 2) {
-    Scheme_Start_Day_Global = "0" + Scheme_Start_Day_Global;
+  if (ssn.Scheme_Start_Day_Global.length < 2) {
+    ssn.Scheme_Start_Day_Global = "0" + ssn.Scheme_Start_Day_Global;
   }
-  if (Scheme_End_Month_Global.length < 2) {
-    Scheme_End_Month_Global = "0" + Scheme_End_Month_Global;
+  if (ssn.Scheme_End_Month_Global.length < 2) {
+    ssn.Scheme_End_Month_Global = "0" + ssn.Scheme_End_Month_Global;
   }
-  if (Scheme_End_Day_Global.length < 2) {
-    Scheme_End_Day_Global = "0" + Scheme_End_Day_Global;
+  if (ssn.Scheme_End_Day_Global.length < 2) {
+    ssn.Scheme_End_Day_Global = "0" + ssn.Scheme_End_Day_Global;
   }
 
   subsidy_start_date =
-    Scheme_Start_Year_Global +
+    ssn.Scheme_Start_Year_Global +
     "-" +
-    Scheme_Start_Month_Global +
+    ssn.Scheme_Start_Month_Global +
     "-" +
-    Scheme_Start_Day_Global;
+    ssn.Scheme_Start_Day_Global;
   subsidy_end_date =
-    Scheme_End_Year_Global +
+    ssn.Scheme_End_Year_Global +
     "-" +
-    Scheme_End_Month_Global +
+    ssn.Scheme_End_Month_Global +
     "-" +
-    Scheme_End_Day_Global;
+    ssn.Scheme_End_Day_Global;
 
   SubsidyErrors = [];
   SubsidyFocus = [];
-  //   var Subsidy_Control_Number_Error = false;
-  Subsidy_Measure_Title_Error = false;
-  Subsidy_Adhoc_Error = false;
-  Granting_Authority_Name_Error = false;
+  //   var ssn.Subsidy_Control_Number_Error = false;
+  ssn.Subsidy_Measure_Title_Error = false;
+  ssn.Subsidy_Adhoc_Error = false;
+  ssn.Granting_Authority_Name_Error = false;
   scheme_issued_start_year_Error = false;
   scheme_issued_start_month_Error = false;
   scheme_issued_start_day_Error = false;
@@ -52,24 +55,28 @@ router.post("/", async (req, res) => {
   scheme_issued_end_month_Error = false;
   scheme_issued_end_day_Error = false;
 
-  // Granting_Authority_Name_Global = "Big Lottery Fund";
-  console.log("Subsidy_Adhoc_Global :" + Subsidy_Adhoc_Global);
+  // ssn.Granting_Authority_Name_Global = "Big Lottery Fund";
+  console.log("ssn.Subsidy_Adhoc_Global :" + ssn.Subsidy_Adhoc_Global);
   console.log(
-    "Granting_Authority_Name_Global :" + Granting_Authority_Name_Measure_Global
-  );
-  console.log("Subsidy_Measure_Title_Global :" + Subsidy_Measure_Title_Global);
-  console.log("Legal_Basis_Global :" + Legal_Basis_Global);
-  console.log(
-    "Granting_Authority_URL_Global :" + Granting_Authority_URL_Global
+    "ssn.Granting_Authority_Name_Global :" +
+      ssn.Granting_Authority_Name_Measure_Global
   );
   console.log(
-    "Granting_Authority_Policy_Global:" + Granting_Authority_Policy_Global
+    "ssn.Subsidy_Measure_Title_Global :" + ssn.Subsidy_Measure_Title_Global
   );
-  console.log("Budget_Global :" + Budget_Global);
+  console.log("ssn.Legal_Basis_Global :" + ssn.Legal_Basis_Global);
+  console.log(
+    "ssn.Granting_Authority_URL_Global :" + ssn.Granting_Authority_URL_Global
+  );
+  console.log(
+    "ssn.Granting_Authority_Policy_Global:" +
+      ssn.Granting_Authority_Policy_Global
+  );
+  console.log("ssn.Budget_Global :" + ssn.Budget_Global);
   console.log("subsidy_start_date :" + subsidy_start_date);
   console.log("subsidy_end_date:" + subsidy_end_date);
 
-  if (Subsidy_Adhoc_Global == "Yes") {
+  if (ssn.Subsidy_Adhoc_Global == "Yes") {
     Subsidy_Adhoc_Global_Flag = true;
   } else {
     Subsidy_Adhoc_Global_Flag = false;
@@ -77,12 +84,12 @@ router.post("/", async (req, res) => {
 
   const addSchemeRequest = {
     adhoc: Subsidy_Adhoc_Global_Flag,
-    gaName: Granting_Authority_Name_Measure_Global,
-    subsidyMeasureTitle: Subsidy_Measure_Title_Global,
-    legalBasisText: Legal_Basis_Global,
-    gaSubsidyWebLink: Granting_Authority_URL_Global,
-    gaSubsidyWebLinkDescription: Granting_Authority_Policy_Global,
-    budget: Budget_Global,
+    gaName: ssn.Granting_Authority_Name_Measure_Global,
+    subsidyMeasureTitle: ssn.Subsidy_Measure_Title_Global,
+    legalBasisText: ssn.Legal_Basis_Global,
+    gaSubsidyWebLink: ssn.Granting_Authority_URL_Global,
+    gaSubsidyWebLinkDescription: ssn.Granting_Authority_Policy_Global,
+    budget: ssn.Budget_Global,
     startDate: subsidy_start_date,
     endDate: subsidy_end_date,
     status: "Active",
@@ -92,30 +99,40 @@ router.post("/", async (req, res) => {
     addSchemeUrl = beis_url_searchscheme + "/scheme/add";
     console.log(" addSchemeUrl : " + addSchemeUrl);
     console.log(
-      "addSchemeRequest :" + JSON.stringify(UserPrincileObjectGlobal)
+      "addSchemeRequest :" + JSON.stringify(ssn.UserPrincileObjectGlobal)
     );
 
     try {
       const apidata = await axios.post(
         addSchemeUrl,
         addSchemeRequest,
-        UserPrincileObjectGlobal
+        ssn.UserPrincileObjectGlobal
       );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
       console.log("API_response_code: " + API_response_code);
       console.log("Body: ", apidata.data);
-      Subsidy_Control_Number_Global_Text = apidata.data;
+      ssn.Subsidy_Control_Number_Global_Text = apidata.data;
       var add_award_response = apidata.data;
       var Additem = 0;
 
       res.render("bulkupload/subsidymeasure-published", {
-        Subsidy_Control_Number_Global_Text,
+        ssn,
+        // ssn.Subsidy_Control_Number_Global_Text,
       });
     } catch (err) {
       response_error_message = err;
       console.log("message error : " + err);
       console.log("response_error_message catch : " + response_error_message);
+      if (err.toString().includes("401")) {
+        res.render("bulkupload/notAuthorized");
+      }
+      if (err.toString().includes("417")) {
+        res.render("bulkupload/notAuthorized");
+      }
+      if (err.toString().includes("500")) {
+        res.render("bulkupload/notAvailable");
+      }
     }
   }
 
@@ -124,12 +141,12 @@ router.post("/", async (req, res) => {
     const updateSchemeRequest = {
       scNumber: scNumber_Global,
       adhoc: Subsidy_Adhoc_Global_Flag,
-      gaName: Granting_Authority_Name_Measure_Global,
-      subsidyMeasureTitle: Subsidy_Measure_Title_Global,
-      legalBasisText: Legal_Basis_Global,
-      gaSubsidyWebLink: Granting_Authority_URL_Global,
-      gaSubsidyWebLinkDescription: Granting_Authority_Policy_Global,
-      budget: Budget_Global,
+      gaName: ssn.Granting_Authority_Name_Measure_Global,
+      subsidyMeasureTitle: ssn.Subsidy_Measure_Title_Global,
+      legalBasisText: ssn.Legal_Basis_Global,
+      gaSubsidyWebLink: ssn.Granting_Authority_URL_Global,
+      gaSubsidyWebLinkDescription: ssn.Granting_Authority_Policy_Global,
+      budget: ssn.Budget_Global,
       startDate: subsidy_start_date,
       endDate: subsidy_end_date,
       status: "Active",
@@ -143,24 +160,27 @@ router.post("/", async (req, res) => {
       const apidata = await axios.post(
         updateSchemeUrl,
         updateSchemeRequest,
-        UserPrincileObjectGlobal
+        ssn.UserPrincileObjectGlobal
       );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
       console.log("API_response_code: " + API_response_code);
       console.log("Body: ", apidata.data);
-      Subsidy_Control_Number_Global_Text = apidata.data;
+      ssn.Subsidy_Control_Number_Global_Text = apidata.data;
       var add_award_response = apidata.data;
       var Additem = 0;
 
       res.render("bulkupload/subsidymeasure-published", {
-        Subsidy_Control_Number_Global_Text,
+        ssn,
+        // ssn.Subsidy_Control_Number_Global_Text,
       });
     } catch (err) {
       response_error_message = err;
-      // if (err.includes("401")) {
-      //   res.render("bulkupload/subsidymeasure-notauthorized");
-      // }
+      if (err.includes("401")) {
+        res.render("bulkupload/subsidymeasure-notauthorized");
+      } else if (err.toString().includes("500"))
+        res.render("bulkupload/notAvailable");
+
       console.log("message error : " + err);
       console.log("response_error_message catch : " + err.message);
     }
@@ -172,70 +192,70 @@ module.exports = router;
 // if (add_award_response.totalErrors > 0) {
 //   add_award_response.validationErrorResult.forEach(function (i, obj) {
 //     if (obj.column == "subsidyControlTitle") {
-//       Subsidy_Measure_Title_Error = true;
+//       ssn.Subsidy_Measure_Title_Error = true;
 //       SubsidyErrors[Additem] = obj.message;
 //       SubsidyFocus[Additem] = "#Subsidy_Measure_Title";
 //       Additem = Additem + 1;
 //     }
 
 //     if (obj.column == "nationalId") {
-//       National_ID_Number_Error = true;
+//       ssn.National_ID_Number_Error = true;
 //       SubsidyErrors[Additem] = obj.message;
 //       SubsidyFocus[Additem] = "#National_ID_Number";
 //       Additem = Additem + 1;
 //     }
 
 //     if (obj.column == "nationalIdType") {
-//       National_ID_Type_Error = true;
+//       ssn.National_ID_Type_Error = true;
 //       SubsidyErrors[Additem] = obj.message;
 //       SubsidyFocus[Additem] = "#National_ID_Type";
 //       Additem = Additem + 1;
 //     }
 
 //     if (obj.column == "subsidyObjective") {
-//       Subsidy_Objective_Error = true;
+//       ssn.Subsidy_Objective_Error = true;
 //       SubsidyErrors[Additem] = obj.message;
 //       SubsidyFocus[Additem] = "#Subsidy_Objective";
 //       Additem = Additem + 1;
 //     }
 
 //     if (obj.column == "SubsidyObjective-other") {
-//       Subsidy_Objective_Other_Error = true;
+//       ssn.Subsidy_Objective_Other_Error = true;
 //       SubsidyErrors[Additem] = obj.message;
 //       SubsidyFocus[Additem] = "#Subsidy_Objective_Other";
 //       Additem = Additem + 1;
 //     }
 
 //     if (obj.column == "spendingRegion") {
-//       Spending_Region_Error = true;
+//       ssn.Spending_Region_Error = true;
 //       SubsidyErrors[Additem] = obj.message;
 //       SubsidyFocus[Additem] = "#Spending_Region";
 //       Additem = Additem + 1;
 //     }
 
 //     if (obj.column == "subsidyInstrument") {
-//       Subsidy_Instrument_Error = true;
+//       ssn.Subsidy_Instrument_Error = true;
 //       SubsidyErrors[Additem] = obj.message;
 //       SubsidyFocus[Additem] = "#Subsidy_Instrument";
 //       Additem = Additem + 1;
 //     }
 
 //     if (obj.column == "SubsidyInstrument-other") {
-//       Subsidy_Instrument_Other_Error = true;
+//       ssn.Subsidy_Instrument_Other_Error = true;
 //       SubsidyErrors[Additem] = obj.message;
 //       SubsidyFocus[Additem] = "#Subsidy_Instrument_Other";
 //       Additem = Additem + 1;
 //     }
 
 //     if (obj.column == "subsidyAmountExact") {
-//       Subsidy_Element_Full_Amount_Error = true;
+//       ssn.Subsidy_Element_Full_Amount_Error = true;
 //       SubsidyErrors[Additem] = obj.message;
 //       SubsidyFocus[Additem] = "#Subsidy_Element_Full_Amount";
 //       Additem = Additem + 1;
 //     }
 
 //     if (obj.column == "grantingAuthorityName") {
-//       Granting_Authority_Name_Error = true;
+//       ssn.Granting_Authority_Name_Error = true;
 //       SubsidyErrors[Additem] = obj.message;
 //       SubsidyFocus[Additem] = "#Granting_Authority_Name";
 //       Additem = Additem + 1;
@@ -247,11 +267,11 @@ module.exports = router;
 //   var isAddSubsidyPrimarycall = false;
 
 //   res.render("bulkupload/addsubsidymeasures", {
-//     Subsidy_Measure_Title_Global,
-//     Subsidy_Adhoc_Global,
+//     ssn.Subsidy_Measure_Title_Global,
+//     ssn.Subsidy_Adhoc_Global,
 
-//     Subsidy_Measure_Title_Error,
-//     Subsidy_Adhoc_Error,
+//     ssn.Subsidy_Measure_Title_Error,
+//     ssn.Subsidy_Adhoc_Error,
 //     SubsidyErrors,
 //     SubsidyArraySize,
 //     SubsidyFocus,

@@ -1,8 +1,10 @@
 const express = require("express");
 const axios = require("axios");
+var session = require("express-session");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
+  ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -24,7 +26,8 @@ router.get("/", async (req, res) => {
 
     try {
       const apidata = await axios.get(
-        beis_url_searchscheme + `/grantingAuthority/${azGrpId}`
+        beis_url_searchscheme + `/grantingAuthority/${azGrpId}`,
+        ssn.UserPrincileObjectGlobal
       );
 
       var gaListArr = [];
@@ -38,22 +41,25 @@ router.get("/", async (req, res) => {
           });
         } else gaListArr = [];
       }
-      GaListArr_Global = gaListArr;
-      if (dashboard_roles == "BEIS Administrator") {
-      res.render("bulkupload/grantingauthority-deactivate", {
-        gaid,
-        ganame,
-        GaListArr_Global,
-        azGrpId,
-      });
+      ssn.GaListArr_Global = gaListArr;
+      if (ssn.dashboard_roles == "BEIS Administrator") {
+        res.render("bulkupload/grantingauthority-deactivate", {
+          gaid,
+          ganame,
+          // ssn.GaListArr_Global,
+          ssn,
+          azGrpId,
+        });
+      } else {
+        res.render("bulkupload/notAuthorized");
       }
-      else {  res.render("bulkupload/notAuthorized") };
-
     } catch (err) {
+      if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
       console.log("message error deactivate GA : " + err);
       // res.render("publicusersearch/noresults");
     }
   } catch (err) {
+    if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
     console.log("Error while fetching GA user List", err);
   }
 });

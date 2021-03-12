@@ -8,6 +8,8 @@ const axios = require("axios");
 var request = require("request");
 
 router.get("/", async (req, res) => {
+  ssn = req.session;
+  console.log("Award_search_URL top  : " + JSON.stringify(ssn));
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -17,20 +19,20 @@ router.get("/", async (req, res) => {
   console.log("req.query.page: " + req.query.sort);
   routing_pagenumber = req.query.sort;
 
-  frontend_totalRecordsPerPage = parseInt(routing_pagenumber);
+  ssn.frontend_totalRecordsPerPage = parseInt(routing_pagenumber);
   fetch_pagenumber = 1;
   current_page = 1;
   current_page_active = current_page;
 
-  Award_page = current_page_active;
+  ssn.Award_page = current_page_active;
   //  Award_selected_status = '';
 
   Base_URL = beis_url_accessmanagement + "/accessmanagement/searchresults?";
-  Award_text = "searchName=" + Award_search_text;
-  Award_status = "status=" + Award_selected_status;
+  Award_text = "searchName=" + ssn.Award_search_text;
+  Award_status = "status=" + ssn.Award_selected_status;
   Award_concate = "&";
-  Award_page = "page=" + Award_page;
-  Award_recordsperpage = "recordsPerPage=" + frontend_totalRecordsPerPage;
+  Award_page = "page=" + ssn.Award_page;
+  Award_recordsperpage = "recordsPerPage=" + ssn.frontend_totalRecordsPerPage;
 
   Award_search_URL =
     Base_URL +
@@ -40,11 +42,17 @@ router.get("/", async (req, res) => {
     Award_concate +
     Award_page +
     Award_concate +
-    Award_recordsperpage;
-  console.log("Award_search_URL   : " + Award_search_URL);
+    Award_recordsperpage +
+    Award_concate +
+    Award_sorting +
+    Award_sorting_field;
+  console.log("Award_search_URL   : " + JSON.stringify(ssn));
 
   try {
-    const apidata = await axios.get(Award_search_URL, UserPrincileObjectGlobal);
+    const apidata = await axios.get(
+      Award_search_URL,
+      ssn.UserPrincileObjectGlobal
+    );
     console.log(`Status: ${apidata.status}`);
     console.log("Body: ", apidata.data);
     searchawards = apidata.data;
@@ -58,20 +66,20 @@ router.get("/", async (req, res) => {
 
     if (current_page == 1) {
       start_record = 1;
-      end_record = frontend_totalRecordsPerPage;
+      end_record = ssn.frontend_totalRecordsPerPage;
     }
     // else if (current_page == pageCount) {
-    //   start_record = (current_page - 1) * frontend_totalRecordsPerPage + 1;
+    //   start_record = (current_page - 1) *  ssn.frontend_totalRecordsPerPage + 1;
     //   end_record = totalrows;
     // } else {
     //   start_record =
-    //     current_page * frontend_totalRecordsPerPage -
-    //     frontend_totalRecordsPerPage +
+    //     current_page *  ssn.frontend_totalRecordsPerPage -
+    //      ssn.frontend_totalRecordsPerPage +
     //     1;
-    //   end_record = current_page * frontend_totalRecordsPerPage;
+    //   end_record = current_page *  ssn.frontend_totalRecordsPerPage;
     // }
 
-    pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
+    pageCount = Math.ceil(totalrows / ssn.frontend_totalRecordsPerPage);
 
     if (current_page == 1) {
       previous_page = 1;
@@ -112,6 +120,10 @@ router.get("/", async (req, res) => {
     //   }
     // }
 
+    nodata = "";
+    noawards = false;
+    noresult = false;
+
     console.log("Start Page :" + start_page);
     console.log("end page :" + end_page);
     console.log("page count: " + pageCount);
@@ -121,6 +133,9 @@ router.get("/", async (req, res) => {
       next_page,
       current_page_active,
       start_record,
+      noresult,
+      nodata,
+      noawards,
       end_record,
       totalrows,
       start_page,
@@ -128,10 +143,24 @@ router.get("/", async (req, res) => {
     });
   } catch (err) {
     console.error(err);
+    if (err.toString().includes("404")) {
+      noresult = true;
+      noawards = true;
+      nodata = "No subsidy awards available";
+      res.render("bulkupload/mysubsidyawards", {
+        noresult,
+        nodata,
+        noawards,
+      });
+    } else if (err.toString().includes("401"))
+      res.render("bulkupload/notAuthorized");
+    else if (err.toString().includes("500"))
+      res.render("bulkupload/notAvailable");
   }
 });
 
 router.post("/", (req, res) => {
+  ssn = req.session;
   res.render("bulkupload/mysubsidyawards");
 });
 

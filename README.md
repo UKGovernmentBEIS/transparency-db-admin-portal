@@ -1,7 +1,7 @@
 Follow these steps to deploy this application on Azure App Service.
 
-Pre-requisites: Install the following softwares
----------------
+## Pre-requisites: Install the following softwares
+
 Node JS
 NPM
 Azure CLI
@@ -10,8 +10,8 @@ Command Line interface
 Configure appSettings
 Add the appSettings section to the configuration section of azure-webapp-maven-plugin. Change the values based on the application requirements.
 
-Add the below configuration on the web.config file ( Create one if not available in the framework)
------------------------------------------------------
+## Add the below configuration on the web.config file ( Create one if not available in the framework)
+
 <configuration>
   <system.webServer>
     
@@ -48,23 +48,21 @@ Add the below configuration on the web.config file ( Create one if not available
   </system.webServer>
 </configuration>
 
+## Start the application on local system to verify the app is working:
 
-
-Start the application on local system to verify the app is working:
--------------------------------------------------------------------
 NPM Install
 NPM start
 Test the webapp by browsing to http://localhost:3000. Ensure the application works.
 
-Unit testing procedure:
------------------------
+## Unit testing procedure:
+
 NPM test
 Test Report : test-report.html availabe in the project folder
 
-Logon to Azure:
---------------
+## Logon to Azure:
+
 Use az login to connect to the Azure subscription. Ensure you have contributor access on the Resource Group.
 
-Deploy to Azure App Service
------------------------------
+## Deploy to Azure App Service
+
 Right click on the project name of the framework and click "deploy to web app"

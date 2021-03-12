@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "dev": "nodemon server.js",
+    "start": "node --max-http-header-size=81000 server.js",
+    "dev": "node --max-http-header-size=81000 server.js",
     "test": "jest",
     "test-coverage": "jest --coverage"
   },
@@ -20,7 +20,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.2.0",
     "express-flash": "0.0.2",
-    "express-session": "^1.16.2",
+    "express-session": "^1.17.1",
     "form-data": "^3.0.0",
     "fs": "0.0.1-security",
     "govuk-frontend": "^3.10.1",

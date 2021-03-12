@@ -1,22 +1,42 @@
 const express = require("express");
+var session = require("express-session");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  ssn = req.session;
+  check_new_user = req.query.newuser;
 
-  Full_Name_Error = false;
-  Last_Name_Error = false;
-  Email_Id_Error = false;
-  Phone_Number_Error = false;
-
-  if (dashboard_roles == "BEIS Administrator" || dashboard_roles == "Granting Authority Administrator") {
-  res.render("bulkupload/user-add");
+  if (check_new_user == "yes") {
+    ssn.User_Role_Global = "";
+    ssn.GA_Name_User_Global = "";
+    ssn.Email_Id_Global = "";
+    ssn.Full_Name_Global = "";
+    ssn.Last_Name_Global = "";
+    ssn.Phone_Number_Global = "";
   }
-  else {  res.render("bulkupload/notAuthorized") };
+
+  // ssn.User_Role_Global = "";
+  // ssn.GA_Name_User_Global = "";
+  // ssn.Email_Id_Global = "";
+  ssn.Email_Id_Error = false;
+  ssn.Email_msg = "";
+  ssn.User_Role_Error = false;
+  ssn.GA_Name_User_Error = false;
+  ssn.UserErrorLength_Global = "";
+  UserErrors = [];
+  UserFocus = [];
+
+  console.log("ssn.GA_Name_User_Global :" + ssn.GA_Name_User_Global);
+  console.log("ssn.GA_Name_User_Global :" + ssn.Email_Id_Global);
+
+  if (
+    ssn.dashboard_roles == "BEIS Administrator" ||
+    ssn.dashboard_roles == "Granting Authority Administrator"
+  ) {
+    res.render("bulkupload/user-add", {
+      change: "No",
+    });
+  }
 });
 
 module.exports = router;

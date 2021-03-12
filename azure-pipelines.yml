@@ -4,53 +4,52 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- main
+  - main
 
 variables:
-
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '8e9969b3-7574-441c-a10f-7114dc3314f7'
+  azureSubscription: "8e9969b3-7574-441c-a10f-7114dc3314f7"
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  vmImageName: "ubuntu-latest"
 
 stages:
-- stage: Build
-  displayName: Build stage
-  jobs:  
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: $(vmImageName)
-      
-    steps:
-    - task: NodeTool@0
-      inputs:
-        versionSpec: '12.9'
-      displayName: 'Install Node.js'
+  - stage: Build
+    displayName: Build stage
+    jobs:
+      - job: Build
+        displayName: Build
+        pool:
+          vmImage: $(vmImageName)
 
-    - script: | 
-        npm cache clear --force && npm install --no-shrinkwrap --update-binary
-        npm run build --if-present
-      #  npm run test --if-present
-      displayName: 'npm install, build and test'
-      
-    - task: ArchiveFiles@2
-      displayName: 'Archive files'
-      inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-        includeRootFolder: false
-        archiveType: zip
-        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-        replaceExistingArchive: true
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "12.9"
+            displayName: "Install Node.js"
 
-    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-      artifact: drop
+          - script: |
+              npm cache clear --force && npm install --no-shrinkwrap --update-binary
+              npm run build --if-present
+            #  npm run test --if-present
+            displayName: "npm install, build and test"
 
-    #- task: Docker@2
-     # inputs:
-      #  containerRegistry: 'BIESTPDBACR'
-       # repository: 'tpdbadminportalimg'
+          - task: ArchiveFiles@2
+            displayName: "Archive files"
+            inputs:
+              rootFolderOrFile: "$(System.DefaultWorkingDirectory)"
+              includeRootFolder: false
+              archiveType: zip
+              archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+              replaceExistingArchive: true
+
+          - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+            artifact: drop
+
+        #- task: Docker@2
+        # inputs:
+        #  containerRegistry: 'BIESTPDBACR'
+        # repository: 'tpdbadminportalimg'
         #command: 'buildAndPush'
         #Dockerfile: '**/Dockerfile'
         #tags: 'latest'

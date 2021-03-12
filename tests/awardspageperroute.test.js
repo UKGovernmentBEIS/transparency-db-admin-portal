@@ -25,11 +25,14 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.noresult = "";
+  global.Award_sorting = "";
+  global.dashboard_ga_name = "";
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Draft";
   global.frontend_totalRecordsPerPage = 10;
   global.Award_selected_status = "";
+  global.dashboard_ga_name = "";
   global.searchawards = {
     awards: [
       {
@@ -58,6 +61,14 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
   global.totalrows = 10;
   global.start_page = 1;
   global.end_page = 10;
+
+  global.Award_sorting_field = "";
+  global.subsidy_award_number_arrow = "";
+  global.scheme_name_arrow = "";
+  global.award_status_arrow = "";
+  global.award_recipient_arrow = "";
+  global.granting_authority_arrow = "";
+
   axios.get.mockResolvedValue({
     status: 200,
     data: {
@@ -120,6 +131,14 @@ test("Unit testing for filter route Test for GET call", (done) => {
   global.start_record = 1;
   global.end_record = 10;
   global.totalrows = 10;
+
+  global.Award_sorting_field = "";
+  global.subsidy_award_number_arrow = "";
+  global.scheme_name_arrow = "";
+  global.award_status_arrow = "";
+  global.award_recipient_arrow = "";
+  global.granting_authority_arrow = "";
+
   axios.get.mockResolvedValue({
     status: 200,
     data: {

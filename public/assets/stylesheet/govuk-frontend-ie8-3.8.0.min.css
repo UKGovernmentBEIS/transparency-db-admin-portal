@@ -2211,7 +2211,7 @@
 
 .govuk-header__logo {
   margin-bottom: 10px;
-  width: 33.33%;
+  /* width: 33.33%; */
   padding-right: 15px;
   float: left;
   vertical-align: top;

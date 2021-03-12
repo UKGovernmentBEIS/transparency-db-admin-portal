@@ -4,6 +4,17 @@
 <head>
     <title>GOV.UK - User added successfully page</title>
     <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
 
 </head>
 
@@ -12,53 +23,21 @@
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-        <main class="govuk-main-wrapper " id="main-content" role="main">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
             <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
             <%- include('../partials/navigationbar.ejs') %>
-            <!-- <div class="govuk-grid-row govuk-form-group">
-                <div class="govuk-grid-column-full">
-                    <nav aria-label="Sub navigation">
-                        <ul class="govuk-sub-navigation__list">
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
-                                    Granting Authorities
-                                </a>
-                            </li>
 
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/userselect">
-                                    Users
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                                    Subsidy Schemes
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
-                                    Subsidy Awards
-                                </a>
-                            </li>
-
-
-
-                            <li class="govuk-sub-navigation__item head-right">
-                                <a class="govuk-sub-navigation__link" href="/logintransparency">
-                                    Sign out
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item head-right">
-                                <a class="govuk-sub-navigation__link" href="/useraccount">
-                                    My account
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-
-                </div>
-
-            </div> -->
 
             <!-- bread crumbs start here -->
             <div class="govuk-breadcrumbs ">
@@ -70,7 +49,7 @@
                         <a class="govuk-breadcrumbs__link" href="/userselect">Users</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a1 class="govuk-breadcrumbs__link active" href="#">Update user</a1>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Update user</a>
                     </li>
                 </ol>
             </div>

@@ -4,55 +4,48 @@
 <head>
     <title>GOV.UK - Subsidy Schemes Review details page</title>
     <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
+    <script>
+        const formatter = new Intl.NumberFormat("en-GB");
+        getFormatedCurrency = (budget) => {
+            if (budget.includes(","))
+                budget = budget.split(",").join("");
+            formatedCurrency = formatter.format(budget);
+            document.getElementById("formatText").textContent = '£ ' + formatedCurrency;
+        }
+    </script>
 </head>
 
 
-<body class="govuk-template__body app-example-page">
+<body class="govuk-template__body app-example-page" onload="getFormatedCurrency('<%=ssn.Budget_Global%>')">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-        <main class="govuk-main-wrapper " id="main-content" role="main">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
             <%- include('../partials/navigationbar.ejs') %>
-            <!-- <div class="govuk-grid-row govuk-form-group">
-                <div class="govuk-grid-column-full">
-                    <nav class="govuk-sub-navigation" aria-label="Sub navigation">
-                        <ul class="govuk-sub-navigation__list">
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
-                                    Granting Authorities
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/userselect">
-                                    Users
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidymeasures">
-                                    Subsidy schemes
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
-                                    Subsidy Awards
-                                </a>
-                            </li>
 
-                            <li class='govuk-sub-navigation__item head-right'>
-                                <a class="govuk-sub-navigation__link" href="/logintransparency">
-                                    Signout
-                                </a>
-                            </li>
-                            <li class='govuk-sub-navigation__item head-right'>
-                                <a class="govuk-sub-navigation__link" href="/useraccount">
-                                    My account
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div> -->
             <!-- bread crumbs start here -->
             <div class="govuk-breadcrumbs ">
                 <ol class="govuk-breadcrumbs__list">
@@ -63,7 +56,7 @@
                         <a class="govuk-breadcrumbs__link" href="/mysubsidymeasures">Subsidy schemes</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active" href="#">Add a subsidy scheme</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add a subsidy scheme</a>
                     </li>
                 </ol>
             </div>
@@ -90,44 +83,48 @@
                 <table class="govuk-table">
                     <tbody class="govuk-table__body">
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Is this an ad hoc scheme</th>
-                            <td class="govuk-table__cell"><%= Subsidy_Adhoc_Global %></td>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Is this an ad hoc scheme
+                            </th>
+                            <td class="govuk-table__cell"><%= ssn.Subsidy_Adhoc_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Granting Authority</th>
-                            <td class="govuk-table__cell"><%= Granting_Authority_Name_Measure_Global %></td>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Granting Authority</th>
+                            <td class="govuk-table__cell"><%= ssn.Granting_Authority_Name_Measure_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Subsidy scheme name</th>
-                            <td class="govuk-table__cell"><%= Subsidy_Measure_Title_Global %></td>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme name</th>
+                            <td class="govuk-table__cell"><%= ssn.Subsidy_Measure_Title_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Legal basis</th>
-                            <td class="govuk-table__cell"><%= Legal_Basis_Global %></td>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Legal basis</th>
+                            <td class="govuk-table__cell"><%= ssn.Legal_Basis_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Granting authority policy URL </th>
-                            <td class="govuk-table__cell"><%= Granting_Authority_URL_Global %>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Granting authority policy
+                                URL </th>
+                            <td class="govuk-table__cell"><%= ssn.Granting_Authority_URL_Global %>
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Granting authority policy page summary </th>
-                            <td class="govuk-table__cell"><%= Granting_Authority_Policy_Global %>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Granting authority policy
+                                page summary </th>
+                            <td class="govuk-table__cell"><a href="<%= ssn.Granting_Authority_URL_Global %>"
+                                    target="_blank"><%= ssn.Granting_Authority_Policy_Global %></a>
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Budget or amount</th>
-                            <td class="govuk-table__cell">£ <%= Budget_Global %></td>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Budget or amount</th>
+                            <td class="govuk-table__cell" id="formatText">£ <%= ssn.Budget_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Start Date</th>
-                            <td class="govuk-table__cell"><%= Scheme_Start_Day_Global %> <%= GetMonthName %>
-                                <%= Scheme_Start_Year_Global %></td>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Start Date</th>
+                            <td class="govuk-table__cell"><%= ssn.Scheme_Start_Day_Global %> <%= GetMonthName %>
+                                <%= ssn.Scheme_Start_Year_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">End Date</th>
-                            <td class="govuk-table__cell"><%= Scheme_End_Day_Global %> <%= GetMonthName %>
-                                <%= Scheme_End_Year_Global %></td>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">End Date</th>
+                            <td class="govuk-table__cell"><%= ssn.Scheme_End_Day_Global %> <%= GetEndMonthName %>
+                                <%= ssn.Scheme_End_Year_Global %></td>
                         </tr>
                     </tbody>
                 </table>
@@ -140,14 +137,11 @@
                     <button class="govuk-button" name="button_value" value="add_measure" data-module="govuk-button">
                         Publish subsidy scheme
                     </button>
-                    <a href="/addsubsidymeasures" class=" govuk-link govuk-cancel-button-link">Cancel</a>
+                    <a href="/cancelreviewsubsidymeasures" class=" govuk-link govuk-cancel-button-link">Cancel</a>
 
                 </form>
 
-                <!-- <form action=" /" method="GET" class="govuk-grid-column-one-half"> -->
 
-                <!-- </form> -->
-                <!-- </div> -->
             </div>
         </main>
     </div>

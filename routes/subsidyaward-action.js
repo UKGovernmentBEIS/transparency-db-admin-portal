@@ -3,15 +3,17 @@
 // ********************************************************************
 
 const express = require("express");
+var session = require("express-session");
 const router = express.Router();
+
 const axios = require("axios");
 var request = require("request");
 
 router.post("/", async (req, res) => {
+  ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   var { Award_status } = req.body;
 
@@ -22,7 +24,7 @@ router.post("/", async (req, res) => {
     status: Award_status,
   };
 
-  awards_status = "Filter results by status";
+  ssn.awards_status = "";
   Award_selected_status = "";
 
   var data = JSON.parse(JSON.stringify(data_request));
@@ -32,10 +34,16 @@ router.post("/", async (req, res) => {
     beis_url_accessmanagement + "/accessmanagement/" + awardnumber;
 
   try {
+    if (Award_status == "Rejected" || Award_status == "Deleted") {
+      res.render("bulkupload/subsidyaward-reject", {
+        awardnumber,
+        Award_status,
+      });
+    }
     const awardapidata = await axios.put(
       awardendpoint,
       data,
-      UserPrincileObjectGlobal
+      ssn.UserPrincileObjectGlobal
     );
     console.log(`Status: ${awardapidata.status}`);
     console.log("Body: ", awardapidata.data);
@@ -44,7 +52,7 @@ router.post("/", async (req, res) => {
     try {
       const apidata = await axios.get(
         Award_search_URL,
-        UserPrincileObjectGlobal
+        ssn.UserPrincileObjectGlobal
       );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
@@ -57,14 +65,14 @@ router.post("/", async (req, res) => {
       const seachawardJSON = JSON.parse(seachawardstring);
       totalrows = searchawards.totalSearchResults;
 
-      pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
+      pageCount = Math.ceil(totalrows / ssn.frontend_totalRecordsPerPage);
       console.log("totalrows :" + totalrows);
       console.log("pageCount :" + pageCount);
       current_page = 1;
       previous_page = 1;
       next_page = 2;
       start_record = 1;
-      end_record = frontend_totalRecordsPerPage;
+      end_record = ssn.frontend_totalRecordsPerPage;
       current_page_active = 1;
 
       start_page = 1;
@@ -75,33 +83,36 @@ router.post("/", async (req, res) => {
       }
 
       if (Award_status == "Published") {
-        res.render("bulkupload/mysubsidyawards", {
-          pageCount,
-          previous_page,
-          next_page,
-          start_record,
-          end_record,
-          totalrows,
-          current_page_active,
-          frontend_totalRecordsPerPage,
+        res.render("bulkupload/subsidyaward-published-successfully", {
+          awardnumber,
         });
-      }
-
-      if (Award_status == "Rejected") {
-        res.render("bulkupload/subsidyaward-reject", { awardnumber });
+        // res.render("bulkupload/mysubsidyawards", {
+        //   pageCount,
+        //   previous_page,
+        //   next_page,
+        //   start_record,
+        //   end_record,
+        //   totalrows,
+        //   current_page_active,
+        //    ssn.frontend_totalRecordsPerPage,
+        // });
       }
     } catch (err) {
-      response_error_message = err;
       console.log("message error : " + err);
-      console.log("response_error_message catch : " + response_error_message);
+      if (err.toString().includes("401"))
+        res.render("bulkupload/notAuthorized");
+      else if (err.toString().includes("500"))
+        res.render("bulkupload/notAvailable");
+
       // res.render('publicusersearch/noresults');
     }
 
     //   res.render('bulkupload/mysubsidyawards')  ;
   } catch (err) {
-    response_error_message = err;
+    if (err.toString().includes("401")) res.render("bulkupload/notAuthorized");
+    else if (err.toString().includes("500"))
+      res.render("bulkupload/notAvailable");
     console.log("message error : " + err);
-    console.log("response_error_message catch : " + response_error_message);
   }
 });
 

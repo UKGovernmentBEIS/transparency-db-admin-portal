@@ -4,6 +4,17 @@
 <head>
     <title>GOV.UK - Review User page</title>
     <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
 
 </head>
 
@@ -13,54 +24,20 @@
 
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-        <main class="govuk-main-wrapper " id="main-content" role="main">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
             <%- include('../partials/navigationbar.ejs') %>
-            <!-- <div class="govuk-grid-row govuk-form-group">
-                <div class="govuk-grid-column-full">
-                    <nav aria-label="Sub navigation">
-                        <ul class="govuk-sub-navigation__list">
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
-                                    Granting Authorities
-                                </a>
-                            </li>
 
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/userselect">
-                                    Users
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                                    Subsidy Schemes
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
-                                    Subsidy Awards
-                                </a>
-                            </li>
-
-
-
-                            <li class="govuk-sub-navigation__item head-right">
-                                <a class="govuk-sub-navigation__link" href="/logintransparency">
-                                    Sign out
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item head-right">
-                                <a class="govuk-sub-navigation__link" href="/useraccount">
-                                    My account
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-
-                </div>
-
-            </div> -->
-
-            <!-- bread crumbs start here -->
             <div class="govuk-breadcrumbs ">
                 <ol class="govuk-breadcrumbs__list">
                     <li class="govuk-breadcrumbs__list-item">
@@ -70,17 +47,17 @@
                         <a class="govuk-breadcrumbs__link" href="/userselect">Users</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active" href="#">Add a new user</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add a new user</a>
                     </li>
                 </ol>
             </div>
-            <!-- bread crumbs ends here -->
+
 
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
                     <br />
 
-                    <h1 class="govuk-heading-xl">Review new user details</h1>
+                    <h1 class="govuk-heading-xl">Review user invitation details</h1>
 
                     <!-- *************************************
               Review for subsidy details tab
@@ -88,7 +65,7 @@
                 </div>
                 <div class="govuk-grid-column-full">
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">New user details</h2>
-                    <a rel="external" class="govuk-link head-right govuk-relative-position" href="/adduser">
+                    <a rel="external" class="govuk-link head-right govuk-relative-position" href="/adduser?change=Yes">
                         <p>Change </p>
                     </a>
                 </div>
@@ -99,7 +76,7 @@
                         Role
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        <%= User_Role_Global %>
+                        <%= ssn.User_Role_Global %>
                     </dd>
 
                 </div>
@@ -108,27 +85,9 @@
                         Granting Authority name
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        <%= GA_Name_User_Global %>
+                        <%= ssn.GA_Name_User_Global %>
                     </dd>
 
-                </div>
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        First name
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        <%= Full_Name_Global %>
-                    </dd>
-
-                </div>
-
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Last name
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        <%= Last_Name_Global %>
-                    </dd>
                 </div>
 
 
@@ -137,24 +96,9 @@
                         Email address
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        <%= Email_Id_Global %>
+                        <%= ssn.Email_Id_Global %>
                     </dd>
                 </div>
-
-
-
-
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Contact number
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        <%= Phone_Number_Global %>
-                    </dd>
-
-                </div>
-
-
 
             </dl>
 
@@ -164,21 +108,11 @@
 
             <form action="/usersubmit" method="post" novalidate>
                 <button class="govuk-button" data-module="govuk-button">
-                    Add user
+                    Continue
                 </button>
 
                 <a href="/canceluser" class="govuk-link govuk-cancel-button-link">Cancel</a>
             </form>
-
-            <!-- <form action="/subsidyawardreviewcancel" method="get">
-        <div>
-          <button class=" govuk-button_cancel_lg govuk-button--secondary ">
-            Cancel
-          </button>
-        </div>
-      </form> -->
-
-
 
     </div>
 

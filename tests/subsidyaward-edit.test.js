@@ -59,6 +59,6 @@ test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
   request(app)
     .get("/editsubsidyaward", (req, res))
     .query({ award: "22" })
-    // expect(abcd).toBe(200)
+    // expect(abcd).toBe(200);
     .expect(200, done);
 });

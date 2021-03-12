@@ -4,6 +4,17 @@
 <head>
     <title>GOV.UK - Manage Users page</title>
     <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
     <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
@@ -43,7 +54,18 @@
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-        <main class="govuk-main-wrapper " id="main-content" role="main">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
 
             <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
@@ -98,7 +120,7 @@
                         <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active" href="#">Users</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Users</a>
                     </li>
                 </ol>
             </div>
@@ -119,7 +141,8 @@
                             <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text"
                                 name="search_award_text"
                                 aria-label="User input text box for Searching either Subsidy Measure Title, Subsidy Control number, or Granting Authority"
-                                type="text" <% if(Award_search_text) {%> value="<%= Award_search_text%>" <% } %> />
+                                type="text" <% if( ssn.Award_search_text) {%> value="<%=  ssn.Award_search_text%>"
+                                <% } %> />
 
                             <button class="govuk-button" data-module="govuk-button">
                                 Search
@@ -183,22 +206,22 @@
                     <form class="govuk-padding-0 govuk-!-width-one-quarter" action="/awardspageperroute" method="GET">
                         <select class="govuk-select" id="sort" name="sort" aria-label="Results per page"
                             onchange="this.form.submit()">
-                            <% if(frontend_totalRecordsPerPage  == 10) { %>
+                            <% if( ssn.frontend_totalRecordsPerPage  == 10) { %>
                             <option value="10" selected>10</option>
                             <% } else { %>
                             <option value="10">10</option>
                             <% }  %>
-                            <% if(frontend_totalRecordsPerPage  == 20) { %>
+                            <% if( ssn.frontend_totalRecordsPerPage  == 20) { %>
                             <option value="20" selected>20</option>
                             <% } else { %>
                             <option value="20">20</option>
                             <% }  %>
-                            <% if(frontend_totalRecordsPerPage  == 50) { %>
+                            <% if( ssn.frontend_totalRecordsPerPage  == 50) { %>
                             <option value="50" selected>50</option>
                             <% } else { %>
                             <option value="50">50</option>
                             <% }  %>
-                            <% if(frontend_totalRecordsPerPage  == 100) { %>
+                            <% if( ssn.frontend_totalRecordsPerPage  == 100) { %>
                             <option value="1000" selected>100</option>
                             <% } else { %>
                             <option value="100">100</option>

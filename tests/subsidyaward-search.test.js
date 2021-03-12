@@ -24,7 +24,17 @@ test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
   global.dashboard_roles = "";
   const res = {};
   global.noresult = "";
+  global.dashboard_ga_name = "";
+  global.Award_sorting_field = "";
   global.nodata = "";
+  global.Award_sorting = "";
+
+  global.subsidy_award_number_arrow = "";
+  global.scheme_name_arrow = "";
+  global.award_status_arrow = "";
+  global.award_recipient_arrow = "";
+  global.granting_authority_arrow = "";
+
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Filter results by status";
@@ -67,9 +77,9 @@ test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
       ],
     },
   });
-  request(app)
+ request(app)
     .post("/subsidyawardsearch", (req, res))
     .send({ search_award_text: "" })
-    //   expect(abcd).toBe(200);
-    .expect(200, done);
+  // expect(abcd).toBe(200);
+  .expect(200, done);
 });

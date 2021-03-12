@@ -17,7 +17,7 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   const res = {};
@@ -31,8 +31,7 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.Email_Id_Global = "";
   global.Phone_Number_Global = "";
 
-  request(app)
-    .get("/adduser", (req, res))
-    .expect(200, done);
-  // expect(acd).toBe(200);
+  var acd = await request(app).get("/adduser", (req, res));
+  // .expect(200, done);
+  expect(acd).toBe(200);
 });

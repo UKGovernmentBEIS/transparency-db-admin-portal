@@ -4,6 +4,17 @@
 <head>
     <title>GOV.UK - Review User page</title>
     <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -12,42 +23,19 @@
 
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-        <main class="govuk-main-wrapper " id="main-content" role="main">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
             <%- include('../partials/navigationbar.ejs') %>
-            <!-- <div class="govuk-grid-row govuk-form-group">
-                <div class="govuk-grid-column-full">
-                    <nav aria-label="Sub navigation">
-                        <ul class="govuk-sub-navigation__list">
-                            
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                                    Subsidy Schemes
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
-                                    Subsidy Awards
-                                </a>
-                            </li>
-
-                            <li class="govuk-sub-navigation__item head-right">
-                                <a class="govuk-sub-navigation__link" href="/logintransparency">
-                                    Sign out
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item head-right">
-                                <a class="govuk-sub-navigation__link" href="/useraccount">
-                                    My account
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-
-                </div>
-
-            </div> -->
-
-
 
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
@@ -55,12 +43,10 @@
 
                     <!-- <h1 class="govuk-heading-xl">Review new user details</h1> -->
 
-                    <!-- *************************************
-              Review for subsidy details tab
-              ************************************* -->
                 </div>
                 <div class="govuk-grid-column-full">
-                    <h1 class="govuk-heading-xl" name="subsidydetails" value="subsidydetails"><%= dashboard_user_name %>
+                    <h1 class="govuk-heading-xl" name="subsidydetails" value="subsidydetails">
+                        <%= ssn.dashboard_user_name %>
                     </h1>
                     <!-- <a rel="external" class="govuk-link head-right govuk-relative-position" href="/addsubsidyreview">
                         <p>Change </p>
@@ -84,43 +70,43 @@
                                     address</a></p> -->
                             Role
                         </th>
-                        <td class="govuk-table__cell"><%= dashboard_roles%></td>
+                        <td class="govuk-table__cell"><%= ssn.dashboard_roles%></td>
                         <!-- <td class="govuk-table__cell">£109.80 per week</td> -->
                     </tr>
                     <tr class="govuk-table__row">
                         <th scope="row" class="govuk-table__header">Granting authority name</th>
-                        <td class="govuk-table__cell"><%= dashboard_ga_name%></td>
+                        <td class="govuk-table__cell"><%= ssn.dashboard_ga_name%></td>
                     </tr>
                     <tr class="govuk-table__row">
                         <th scope="row" class="govuk-table__header">First name</th>
-                        <td class="govuk-table__cell"><%= Full_Name_Global%></td>
+                        <td class="govuk-table__cell"><%= ssn.Full_Name_Global%></td>
                     </tr>
                     <tr class="govuk-table__row">
                         <th scope="row" class="govuk-table__header">Last name</th>
-                        <td class="govuk-table__cell"><%= Last_Name_Global%></td>
+                        <td class="govuk-table__cell"><%= ssn.Last_Name_Global%></td>
                     </tr>
                     <tr class="govuk-table__row">
                         <th scope="row" class="govuk-table__header">Email address</th>
-                        <td class="govuk-table__cell"><%= Email_Id_Global%></td>
+                        <td class="govuk-table__cell"><%= ssn.Email_Id_Global%></td>
                     </tr>
                     <tr class="govuk-table__row">
                         <th scope="row" class="govuk-table__header">Contact number</th>
-                        <td class="govuk-table__cell"><%= Phone_Number_Global%></td>
+                        <td class="govuk-table__cell"><%= ssn.Phone_Number_Global%></td>
                     </tr>
-                    <tr>
-                        <th>
+                    <tr class="govuk-table__row">
+                        <th class="govuk-table__header" style="text-align: left;">
                             <a href="/useraccountdetails" style="font-weight: normal;
                             color: #169BD5;">Update your details</a>
                         </th>
-                        <td></td>
+                        <td class="govuk-table__cell"></td>
                     </tr>
-                    <tr class="govuk-table__row">
+                    <!-- <tr class="govuk-table__row">
                         <th scope="row" class="govuk-table__header">
                             <p>Change password</p>
                             <p><a href="#" style="font-weight: normal;
                                 color: #169BD5;">Text Needed</a></p>
                         </th>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </main>

@@ -4,6 +4,17 @@
 <head>
     <title>GOV.UK - Subsidy Award review details page</title>
     <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
 </head>
 
 
@@ -12,7 +23,18 @@
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-        <main class="govuk-main-wrapper " id="main-content" role="main">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
             <%- include('../partials/navigationbar.ejs') %>
             <!-- <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
@@ -68,7 +90,7 @@
                         <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Granting Authority</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active" href="#">Add granting authority</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add granting authority</a>
                     </li>
                 </ol>
             </div>
@@ -88,12 +110,12 @@
                     <!-- <form action="/addgrantingauthority" method="POST"
                         class="govuk-link head-right govuk-relative-position">
                         <p aria-label="Change granting authority details">Change </p>
-                        <input type="hidden" value="<%=grantingAuthorityID_Global%>" name="gaNumber">
-                        <input type="hidden" value="<%=grantingAuthorityName_Global%>" name="grantingAuthorityName">
+                        <input type="hidden" value="<%=ssn.grantingAuthorityID_Global%>" name="gaNumber">
+                        <input type="hidden" value="<%=ssn.grantingAuthorityName_Global%>" name="grantingAuthorityName">
                     </form> -->
                     <a rel="external" aria-label="Change granting authority details"
                         class="govuk-link head-right govuk-relative-position"
-                        href="/addgrantingauthority?change=<%=grantingAuthorityID_Global%>">
+                        href="/addgrantingauthority?change=<%=ssn.grantingAuthorityID_Global%>">
                         <p>Change </p>
                     </a>
                 </div>
@@ -104,7 +126,7 @@
                         Granting authority ID
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        <%=grantingAuthorityID_Global%>
+                        <%=ssn.grantingAuthorityID_Global%>
                     </dd>
 
                 </div> -->
@@ -113,20 +135,18 @@
                         Granting authority name
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        <%=grantingAuthorityName_Global%>
+                        <%=ssn.grantingAuthorityName_Global%>
                     </dd>
-
                 </div>
-
             </dl>
             <div class="govuk-grid-row">
                 <form action="/submitgrantingauthority" method="post" class="govuk-grid-column-one-third">
-                    <input type="hidden" id="GaId" name="GaId" value="<%=grantingAuthorityID_Global%>">
-                    <input type="hidden" id="GaName" name="GaName" value="<%=grantingAuthorityName_Global%>">
+                    <input type="hidden" id="GaId" name="GaId" value="<%=ssn.grantingAuthorityID_Global%>">
+                    <input type="hidden" id="GaName" name="GaName" value="<%=ssn.grantingAuthorityName_Global%>">
                     <button class="govuk-button" data-module="govuk-button">
                         Save granting authority
                     </button>
-                    <a class="govuk-link govuk-cancel-button-link" id="mylink" value="cancel" href="#">
+                    <a class="govuk-link govuk-cancel-button-link" id="mylink" href="/cancelgrantingauthority">
                         Cancel
                     </a>
                 </form>

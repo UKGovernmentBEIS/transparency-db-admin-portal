@@ -4,6 +4,17 @@
 <head>
   <title>GOV.UK - Edit Granting Authority page</title>
   <%- include('../partials/headercss.ejs') %>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-145652997-21');
+  </script>
 </head>
 <!-- <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css" />
 
@@ -18,46 +29,20 @@
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container">
-    <main class="govuk-main-wrapper" id="main-content" role="main">
-      <%- include('../partials/navigationbar.ejs') %>
-      <!-- <div class="govuk-grid-row govuk-form-group">
-      <div class="govuk-grid-column-full">
-        <nav class="govuk-sub-navigation" aria-label="Sub navigation">
-          <ul class="govuk-sub-navigation__list">
-            <li class="govuk-sub-navigation__item">
-              <a class="govuk-sub-navigation__link" aria-current="page" href="/mygrantingauthority">
-                Granting Authorities
-              </a>
-            </li>
-            <li class="govuk-sub-navigation__item">
-              <a class="govuk-sub-navigation__link" href="/userselect">
-                Users
-              </a>
-            </li>
-            <li class="govuk-sub-navigation__item">
-              <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                Subsidy Schemes
-              </a>
-            </li>
-            <li class="govuk-sub-navigation__item">
-              <a class="govuk-sub-navigation__link" href="/subsidy-awards">
-                Subsidy Awards
-              </a>
-            </li>
-            <li class="govuk-sub-navigation__item head-right">
-              <a class="govuk-sub-navigation__link" href="/loginfirstpage">
-                Sign out
-              </a>
-            </li>
-            <li class="govuk-sub-navigation__item head-right">
-              <a class="govuk-sub-navigation__link" href="/useraccount">
-                My account
-              </a>
-            </li>
-          </ul>
-        </nav>
+    <main id="main-content" role="main">
+      <div class="govuk-phase-banner">
+        <p class="govuk-phase-banner__content">
+          <strong class="govuk-tag govuk-phase-banner__content__tag">
+            beta
+          </strong>
+          <span class="govuk-phase-banner__text">
+            This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+            us to improve it.
+          </span>
+        </p>
       </div>
-    </div> -->
+      <%- include('../partials/navigationbar.ejs') %>
+
       <div class="govuk-breadcrumbs ">
         <ol class="govuk-breadcrumbs__list">
           <li class="govuk-breadcrumbs__list-item">
@@ -67,7 +52,7 @@
             <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Granting Authority</a>
           </li>
           <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link active" href="#">Edit Granting Authority</a>
+            <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Edit Granting Authority</a>
           </li>
         </ol>
       </div>
@@ -81,21 +66,21 @@
           <div class="govuk-grid-column-three-quarters govuk-form-group">
             <!-- <form action="/filtersearch" method="POST" > -->
             <p>Granting Authority ID</p>
-            <input class="govuk-input govuk-input--width-2" value="<%= grantingAuthorityID_Global%>" disabled
+            <input class="govuk-input govuk-input--width-2" value="<%= ssn.grantingAuthorityID_Global%>" disabled
               name="gaId" type="text" />
             <!-- </form>  -->
           </div>
 
           <div class="govuk-grid-column-one-half govuk-form-group">
             <!-- <form action="/filtersearch" method="POST" > -->
-            <p>Granting Authority Name</p>
-            <input class="govuk-input" value="<%= grantingAuthorityName_Global%>" name="gaName" type="text" />
+            <p>Granting authority name</p>
+            <input class="govuk-input" value="<%= ssn.grantingAuthorityName_Global%>" name="gaName" type="text" />
             <!-- </form>  -->
           </div>
           <div class="govuk-grid-column-full">
 
-            <!-- <input type="hidden" value="<%= grantingAuthorityName_Global %>" name="gaName">
-            <input type="hidden" value="<%= grantingAuthorityID_Global %>" name="gaId"> -->
+            <!-- <input type="hidden" value="<%= ssn.grantingAuthorityName_Global %>" name="gaName">
+            <input type="hidden" value="<%= ssn.grantingAuthorityID_Global %>" name="gaId"> -->
             <button class="govuk-button govuk-button--success">
               Continue
             </button>

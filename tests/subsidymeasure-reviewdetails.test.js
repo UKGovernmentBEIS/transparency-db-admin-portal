@@ -32,6 +32,7 @@ test("Unit testing for Subsidy Scheme Review Details Test for GET call", (done) 
   Budget_Global = "";
   Scheme_Start_Day_Global = "";
   GetMonthName = "";
+  global.dashboard_ga_name = "";
   Scheme_Start_Year_Global = "";
   Scheme_End_Day_Global = "";
   GetMonthName = "";
@@ -88,6 +89,7 @@ test("Unit testing for Subsidy Scheme Review Test for GET call", (done) => {
   Legal_Basis_Global = "";
   Granting_Authority_URL_Global = "";
   Granting_Authority_Policy_Global = "";
+  global.dashboard_ga_name = "";
   Budget_Global = "";
   Scheme_Start_Day_Global = "";
   GetMonthName = "";

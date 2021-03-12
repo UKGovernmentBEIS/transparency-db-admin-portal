@@ -1,7 +1,9 @@
 const express = require("express");
+var session = require("express-session");
 const router = express.Router();
 
 router.get("/", (req, res) => {
+  ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -11,25 +13,27 @@ router.get("/", (req, res) => {
   // req.query = JSON.parse(JSON.stringify(req.query));
 
   if (req.query.hasOwnProperty("change")) {
+    console.log(
+      "ssn.grantingAuthorityName_Global",
+      ssn.grantingAuthorityName_Global
+    );
 
-    console.log("grantingAuthorityName_Global", grantingAuthorityName_Global);
-
-    if (dashboard_roles == "BEIS Administrator") {
-    res.render("bulkupload/grantingauthority-add", {
-      grantingAuthorityName_Global,
-    });
-  }
-  else {  res.render("bulkupload/notAuthorized") };
-  }
- 
-  else {
-    grantingAuthorityName_Error = "";
-    grantingAuthorityName_Global = "";
-    if (dashboard_roles == "BEIS Administrator") {
-    res.render("bulkupload/grantingauthority-add");
-
-  }
-  else {  res.render("bulkupload/notAuthorized") };
+    if (ssn.dashboard_roles == "BEIS Administrator") {
+      res.render("bulkupload/grantingauthority-add", {
+        // ssn.grantingAuthorityName_Global,
+        ssn,
+      });
+    } else {
+      res.render("bulkupload/notAuthorized");
+    }
+  } else {
+    ssn.grantingAuthorityName_Error = "";
+    ssn.grantingAuthorityName_Global = "";
+    if (ssn.dashboard_roles == "BEIS Administrator") {
+      res.render("bulkupload/grantingauthority-add");
+    } else {
+      res.render("bulkupload/notAuthorized");
+    }
   }
 });
 
@@ -40,22 +44,22 @@ router.get("/", (req, res) => {
 //   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
 //   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-//   grantingAuthorityName_Error = false;
-//   grantingAuthorityID_Global = req.body.gaNumber;
-//   if (!req.body.grantingAuthorityName) grantingAuthorityName_Error = true;
+//   ssn.grantingAuthorityName_Error = false;
+//   ssn.grantingAuthorityID_Global = req.body.gaNumber;
+//   if (!req.body.grantingAuthorityName) ssn.grantingAuthorityName_Error = true;
 
-//   if (grantingAuthorityName_Error) {
+//   if (ssn.grantingAuthorityName_Error) {
 //     res.render("bulkupload/grantingauthority-add", {
-//       grantingAuthorityName_Error,
-//       grantingAuthorityID_Global,
+//       ssn.grantingAuthorityName_Error,
+//       ssn.grantingAuthorityID_Global,
 //     });
 //   } else {
-//     grantingAuthorityID_Global = req.body.gaNumber;
-//     grantingAuthorityName_Global = req.body.grantingAuthorityName;
+//     ssn.grantingAuthorityID_Global = req.body.gaNumber;
+//     ssn.grantingAuthorityName_Global = req.body.grantingAuthorityName;
 
 //     res.render("bulkupload/grantingauthority-reviewdetails", {
-//       grantingAuthorityID_Global,
-//       grantingAuthorityName_Global,
+//       ssn.grantingAuthorityID_Global,
+//       ssn.grantingAuthorityName_Global,
 //     });
 //   }
 // });

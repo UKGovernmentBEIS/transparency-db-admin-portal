@@ -3,11 +3,14 @@
 // ********************************************************************
 
 const express = require("express");
+var session = require("express-session");
 const router = express.Router();
+
 const axios = require("axios");
 var request = require("request");
 
 router.get("/", async (req, res) => {
+  ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -17,18 +20,25 @@ router.get("/", async (req, res) => {
 
   var awardendpoint =
     beis_url_accessmanagement + "/searchResults/award/" + awardnumber;
-
+  nodata = false;
   try {
     const awardapidata = await axios.get(
       awardendpoint,
-      UserPrincileObjectGlobal
+      ssn.UserPrincileObjectGlobal
     );
     console.log(`Status: ${awardapidata.status}`);
     console.log("Body: ", awardapidata.data);
     fetchawarddetails = awardapidata.data;
-    res.render("bulkupload/subsidyaward-fetch");
+    res.render("bulkupload/subsidyaward-fetch", { nodata });
   } catch (err) {
-    console.error(err);
+    console.log(err);
+    if (err.toString().includes("401")) res.render("bulkupload/notAuthorized");
+    else if (err.toString().includes("500"))
+      res.render("bulkupload/notAvailable");
+    else if (err.toString().includes("404")) {
+      nodata = true;
+      res.render("bulkupload/subsidyaward-fetch", { nodata });
+    }
   }
 });
 

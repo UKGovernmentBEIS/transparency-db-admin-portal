@@ -3,11 +3,14 @@
 // ********************************************************************
 
 const express = require("express");
+var session = require("express-session");
 const router = express.Router();
+
 const axios = require("axios");
 var request = require("request");
 
 router.get("/", async (req, res) => {
+  ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -17,17 +20,17 @@ router.get("/", async (req, res) => {
   console.log("req.query.page: " + req.query.sort);
   routing_pagenumber = req.query.sort;
 
-  frontend_totalRecordsPerPage = parseInt(routing_pagenumber);
+  ssn.frontend_totalRecordsPerPage = parseInt(routing_pagenumber);
   fetch_pagenumber = 1;
   current_page = 1;
   current_page_active = current_page;
 
   const data_request = {
-    searchName: Search_Text_Global,
+    searchName: ssn.Search_Text_Global,
     pageNumber: current_page,
-    totalRecordsPerPage: frontend_totalRecordsPerPage,
-    sortBy: sorting_order_pass,
-    status: "",
+    totalRecordsPerPage: ssn.frontend_totalRecordsPerPage,
+    sortBy: ssn.sorting_order_pass,
+    status: ssn.scheme_selected_status,
   };
 
   var data = JSON.parse(JSON.stringify(data_request));
@@ -37,7 +40,7 @@ router.get("/", async (req, res) => {
     const apidata = await axios.post(
       beis_url_searchscheme + "/scheme/search",
       data_request,
-      UserPrincileObjectGlobal
+      ssn.UserPrincileObjectGlobal
     );
     console.log(`Status: ${apidata.status}`);
     console.log("Body: ", apidata.data);
@@ -51,19 +54,19 @@ router.get("/", async (req, res) => {
 
     if (current_page == 1) {
       start_record = 1;
-      end_record = frontend_totalRecordsPerPage;
+      end_record = ssn.frontend_totalRecordsPerPage;
     } else if (current_page == pageCount) {
-      start_record = (current_page - 1) * frontend_totalRecordsPerPage + 1;
+      start_record = (current_page - 1) * ssn.frontend_totalRecordsPerPage + 1;
       end_record = totalrows;
     } else {
       start_record =
-        current_page * frontend_totalRecordsPerPage -
-        frontend_totalRecordsPerPage +
+        current_page * ssn.frontend_totalRecordsPerPage -
+        ssn.frontend_totalRecordsPerPage +
         1;
-      end_record = current_page * frontend_totalRecordsPerPage;
+      end_record = current_page * ssn.frontend_totalRecordsPerPage;
     }
 
-    pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
+    pageCount = Math.ceil(totalrows / ssn.frontend_totalRecordsPerPage);
 
     if (current_page == 1) {
       previous_page = 1;
@@ -113,10 +116,14 @@ router.get("/", async (req, res) => {
     });
   } catch (err) {
     console.error(err);
+    if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
+    else if (err.toString().includes("401"))
+      res.render("bulkupload/notAuthorized");
   }
 });
 
 router.post("/", (req, res) => {
+  ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');

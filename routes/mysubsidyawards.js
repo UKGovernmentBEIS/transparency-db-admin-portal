@@ -3,32 +3,54 @@
 // ********************************************************************
 
 const express = require("express");
+var session = require("express-session");
 const router = express.Router();
+
 const axios = require("axios");
 var request = require("request");
 
 router.get("/", async (req, res) => {
+  ssn = req.session;
+
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-  frontend_totalRecordsPerPage = 10;
-  Award_page = 1;
+  ssn.frontend_totalRecordsPerPage = 10;
+  ssn.Award_page = 1;
+
+  ssn.subsidy_award_number_arrow = "upanddown";
+  ssn.scheme_name_arrow = "upascending";
+  ssn.granting_authority_arrow = "upanddown";
+  ssn.award_status_arrow = "upanddown";
+  ssn.award_recipient_arrow = "upanddown";
+  ssn.subsidy_award_number_sorting_order = "desc";
+  ssn.scheme_name_sorting_order = "asc";
+  ssn.granting_authority_sorting_order = "desc";
+  ssn.award_status_sorting_order = "desc";
+  ssn.award_recipient_sorting_order = "desc";
+
   // awards_status = "Filter results by status";
-  awards_status = "";
+  ssn.awards_status = "";
   req.query = JSON.parse(JSON.stringify(req.query));
 
-  if (req.query.hasOwnProperty("sort")) awards_status = req.query.sort;
-  else awards_status = "";
-
-  Award_search_text = "";
+  if (req.query.hasOwnProperty("sort")) {
+    ssn.awards_status = req.query.sort;
+    ssn.Award_selected_status = req.query.sort;
+  } else {
+    ssn.awards_status = "";
+    ssn.Award_selected_status = "";
+  }
+  ssn.Award_search_text = "";
   Base_URL = beis_url_accessmanagement + "/accessmanagement/searchresults?";
-  Award_status = "status=" + awards_status;
+  Award_status = "status=" + ssn.awards_status;
   Award_concate = "&";
-  Award_page = "page=" + Award_page;
-  Award_recordsperpage = "recordsPerPage=" + frontend_totalRecordsPerPage;
+  Award_page = "page=" + ssn.Award_page;
+  Award_recordsperpage = "recordsPerPage=" + ssn.frontend_totalRecordsPerPage;
+  Award_sorting = "sortBy=";
+  Award_sorting_field = "subsidyMeasure.subsidyMeasureTitle-asc";
 
   Award_search_URL =
     Base_URL +
@@ -36,11 +58,18 @@ router.get("/", async (req, res) => {
     Award_concate +
     Award_page +
     Award_concate +
-    Award_recordsperpage;
-  console.log("Award_search_URL  : " + Award_search_URL);
+    Award_recordsperpage +
+    Award_concate +
+    Award_sorting +
+    Award_sorting_field;
+
+  console.log("Award_search_URL  : " + JSON.stringify(ssn));
 
   try {
-    const apidata = await axios.get(Award_search_URL, UserPrincileObjectGlobal);
+    const apidata = await axios.get(
+      Award_search_URL,
+      ssn.UserPrincileObjectGlobal
+    );
     console.log(`Status: ${apidata.status}`);
     API_response_code = `${apidata.status}`;
     console.log("API_response_code: try" + API_response_code);
@@ -52,14 +81,21 @@ router.get("/", async (req, res) => {
     const seachawardJSON = JSON.parse(seachawardstring);
     totalrows = searchawards.totalSearchResults;
 
-    pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
+    totalAwaitingAward = searchawards_api.awardStatusCounts.totalAwaitingAward;
+    totalRejectedAward = searchawards_api.awardStatusCounts.totalRejectedAward;
+    totalSubsidyAward = searchawards_api.awardStatusCounts.totalSubsidyAward;
+    totalPublishedAward =
+      searchawards_api.awardStatusCounts.totalPublishedAward;
+    totalInactiveAward = searchawards_api.awardStatusCounts.totalInactiveAward;
+
+    pageCount = Math.ceil(totalrows / ssn.frontend_totalRecordsPerPage);
     console.log("totalrows :" + totalrows);
     console.log("pageCount :" + pageCount);
     current_page = 1;
     previous_page = 1;
     next_page = 2;
     start_record = 1;
-    end_record = frontend_totalRecordsPerPage;
+    end_record = ssn.frontend_totalRecordsPerPage;
     current_page_active = 1;
 
     start_page = 1;
@@ -82,10 +118,10 @@ router.get("/", async (req, res) => {
       end_record,
       totalrows,
       current_page_active,
-      frontend_totalRecordsPerPage,
+      ssn,
     });
   } catch (err) {
-    if (err == "Error: Request failed with status code 404") {
+    if (err.toString().includes("404")) {
       noresult = true;
       noawards = true;
       nodata = "No subsidy awards available";
@@ -94,10 +130,11 @@ router.get("/", async (req, res) => {
         nodata,
         noawards,
       });
-    }
-    response_error_message = err;
+    } else if (err.toString().includes("500"))
+      res.render("bulkupload/notAvailable");
+    else if (err.toString().includes("401"))
+      res.render("bulkupload/notAuthorized");
     console.log("message error : " + err);
-    console.log("response_error_message catch : " + response_error_message);
     // res.render("publicusersearch/noresults");
   }
 
@@ -105,67 +142,3 @@ router.get("/", async (req, res) => {
 });
 
 module.exports = router;
-
-// old my subsidy award code for validation email and pass from home screen
-// **************************************************************************
-// const express = require('express');
-// const { truncate } = require('fs');
-// const router = express.Router();
-
-// router.get('/',(req, res) => {
-
-//     res.render('bulkupload/mysubsidyawards')
-//   });
-
-//   router.post('/', (req, res) => {
-//     const { email_address , password} = req.body;
-//     let isEmailAndPasswordEmpty = false;
-//     let isPasswordEmpty = false;
-//     let isPasswordlesseight = false;
-
-//     if(!email_address && !password )
-//     {
-//       isEmailAndPasswordEmpty = true ;
-//     }
-
-//     else if (!email_address) {
-//       isEmailAndPasswordEmpty = true ;
-
-//     }
-
-//     else if(!password )
-//     {
-//     isPasswordEmpty = true;
-//     }
-
-//     else if(password )
-//     {
-//       if( password.length <8 ){
-
-//         isPasswordlesseight = true;
-//       }
-
-//     }
-
-//     if (isEmailAndPasswordEmpty || isPasswordEmpty || isPasswordlesseight)
-//     {
-
-//         res.render('accessmanagement/loginfirstpage', {
-//          isEmailAndPasswordEmpty ,
-//          isPasswordEmpty,
-//          isPasswordlesseight,
-//          email_address : email_address,
-//          password
-//          } );
-//     }
-//     // this is for password expiry page temporary
-//     else if (email_address =='xyz.xyz@xyz.com') {
-//       let isEmailValid = true;
-//       res.render('accessmanagement/loginresetpassword',{isEmailValid})
-
-//     }
-//     else { res.render('bulkupload/mysubsidyawards')}
-
-//     } );
-
-// module.exports = router;

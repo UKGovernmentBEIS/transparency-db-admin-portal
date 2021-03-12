@@ -30,6 +30,7 @@ test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Filter results by status";
   global.Get_Award_Status = "";
+  global.nodata = "";
   global.frontend_totalRecordsPerPage = 10;
   global.fetchawarddetails = {
     status: "",

@@ -3,11 +3,14 @@
 // ********************************************************************
 
 const express = require("express");
+var session = require("express-session");
 const router = express.Router();
+
 const axios = require("axios");
 var request = require("request");
 
 router.post("/", async (req, res) => {
+  ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -25,6 +28,9 @@ router.post("/", async (req, res) => {
 
   var data = JSON.parse(JSON.stringify(data_request));
   console.log("request :" + JSON.stringify(data));
+  console.log(
+    "user principle :" + JSON.stringify(ssn.UserPrincileObjectGlobal)
+  );
 
   var awardendpoint =
     beis_url_accessmanagement + "/accessmanagement/" + awardnumber;
@@ -33,7 +39,7 @@ router.post("/", async (req, res) => {
     const awardapidata = await axios.put(
       awardendpoint,
       data,
-      UserPrincileObjectGlobal
+      ssn.UserPrincileObjectGlobal
     );
     console.log(`Status: ${awardapidata.status}`);
     console.log("Body: ", awardapidata.data);
@@ -42,7 +48,7 @@ router.post("/", async (req, res) => {
     try {
       const apidata = await axios.get(
         Award_search_URL,
-        UserPrincileObjectGlobal
+        ssn.UserPrincileObjectGlobal
       );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
@@ -55,14 +61,14 @@ router.post("/", async (req, res) => {
       const seachawardJSON = JSON.parse(seachawardstring);
       totalrows = searchawards.totalSearchResults;
 
-      pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
+      pageCount = Math.ceil(totalrows / ssn.frontend_totalRecordsPerPage);
       console.log("totalrows :" + totalrows);
       console.log("pageCount :" + pageCount);
       current_page = 1;
       previous_page = 1;
       next_page = 2;
       start_record = 1;
-      end_record = frontend_totalRecordsPerPage;
+      end_record = ssn.frontend_totalRecordsPerPage;
       current_page_active = 1;
 
       start_page = 1;
@@ -80,20 +86,22 @@ router.post("/", async (req, res) => {
         end_record,
         totalrows,
         current_page_active,
-        frontend_totalRecordsPerPage,
+        ssn,
       });
     } catch (err) {
-      response_error_message = err;
       console.log("message error : " + err);
-      console.log("response_error_message catch : " + response_error_message);
+      if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
+      else if (err.toString().includes("401"))
+        res.render("bulkupload/notAuthorized");
       // res.render('publicusersearch/noresults');
     }
 
     //   res.render('bulkupload/mysubsidyawards')  ;
   } catch (err) {
-    response_error_message = err;
     console.log("message error : " + err);
-    console.log("response_error_message catch : " + response_error_message);
+    if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
+    else if (err.toString().includes("401"))
+      res.render("bulkupload/notAuthorized");
   }
 });
 

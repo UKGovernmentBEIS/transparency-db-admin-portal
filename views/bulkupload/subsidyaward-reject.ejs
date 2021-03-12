@@ -4,6 +4,17 @@
 <head>
     <title>GOV.UK - Subsidy Award Reject page</title>
     <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -11,7 +22,18 @@
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-        <main class="govuk-main-wrapper " id="main-content" role="main">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
 
             <%- include('../partials/navigationbar.ejs') %>
 
@@ -72,7 +94,7 @@
                         <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active" href="#">Add a subsidy award</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">View award</a>
                     </li>
                 </ol>
             </div>
@@ -88,11 +110,15 @@
 
                         <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="1000">
                             <div class="govuk-form-group">
+                                <% if(Award_status == 'Rejected') {%>
                                 <label class="govuk-label" for="label-as-page-heading">
                                     Add feedback for the person who is working on this
                                     subsidy award. Your comments will not be visible to the public.
                                 </label>
-
+                                <% } else { %>
+                                <label class="govuk-label" for="label-as-page-heading">Give a reason why you are
+                                    deleting this award. Your comments will not be visible to the public.</label>
+                                <% } %>
                                 <textarea class="govuk-textarea govuk-js-character-count" id="label-as-page-heading"
                                     name="reject_reason_text" rows="6"
                                     aria-describedby="label-as-page-heading-info"></textarea>
@@ -108,11 +134,17 @@
                             subsidy award. Your comments will not be visible to the public.</label>
                         <textarea class="govuk-textarea" id="reject_reason_text" type="textarea"
                             name="reject_reason_text" rows="6"></textarea> -->
-
+                        <% if(Award_status == 'Rejected') { %>
                         <button class="govuk-button govuk-button--warning" data-module="govuk-button">
                             Reject subsidy award
                         </button>
-
+                        <% } else { %>
+                        <button class="govuk-button govuk-button--warning" data-module="govuk-button">
+                            Delete subsidy award
+                        </button>
+                        <a href="/subsidyawardfetch/?award=<%= awardnumber %>"
+                            class="govuk-link govuk-cancel-button-link"> Cancel</a>
+                        <% } %>
                     </form>
 
                 </div>

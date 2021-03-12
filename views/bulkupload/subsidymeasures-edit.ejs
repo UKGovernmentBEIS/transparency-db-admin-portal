@@ -4,6 +4,17 @@
 <head>
     <title>GOV.UK - Edit Subsidy Schemes page</title>
     <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
 </head>
 
 
@@ -12,7 +23,18 @@
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-        <main class="govuk-main-wrapper " id="main-content" role="main">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
             <%- include('../partials/navigationbar.ejs') %>
             <!-- Header pane starts here -->
             <!-- <div class="govuk-grid-row govuk-form-group">
@@ -65,7 +87,7 @@
                         <a class="govuk-breadcrumbs__link" href="/mysubsidymeasures">Subsidy schemes</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active" href="#">Edit subsidy scheme</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Edit subsidy scheme</a>
                     </li>
                 </ol>
             </div>
@@ -105,7 +127,7 @@
                 <section class="govuk-grid-row">
 
                     <!-- adhoc subsidy details -->
-                    <% if( Subsidy_Adhoc_Error ){ %>
+                    <% if( ssn.Subsidy_Adhoc_Error ){ %>
                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                         <% } else { %>
                         <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -116,14 +138,14 @@
                             <div id="adhoc-subsidy-hint" class="govuk-hint">
                                 You will only be able to create one subsidy award under each ad hoc subsidy scheme.
                             </div>
-                            <% if( Subsidy_Adhoc_Error ){ %>
+                            <% if( ssn.Subsidy_Adhoc_Error ){ %>
                             <span class="govuk-error-message" id="Subsidy_adhoc_Error">
                                 <span class="govuk-visually-hidden">Error:</span> Enter a valid adhoc subsidy scheme
                             </span>
                             <% }  %>
                             <div class="govuk-radios" id="Subsidy_Adhoc">
                                 <div class="govuk-radios__item">
-                                    <% if(searchmeasuredetails.adhoc == 'true') { %>
+                                    <% if(ssn.searchmeasuredetails.adhoc == 'true') { %>
                                     <input class="govuk-radios__input" name="Subsidy_Adhoc" id="adhocyes" type="radio"
                                         value="Yes" checked>
                                     <% } else { %>
@@ -135,7 +157,7 @@
                                     </label>
                                 </div>
                                 <div class="govuk-radios__item">
-                                    <% if(searchmeasuredetails.adhoc == 'false') { %>
+                                    <% if(ssn.searchmeasuredetails.adhoc == 'false') { %>
                                     <input class="govuk-radios__input" name="Subsidy_Adhoc" id="adhocno" type="radio"
                                         value="No" checked>
                                     <% } else { %>
@@ -161,7 +183,7 @@
 
                         <!-- subsidy measure details -->
 
-                        <% if( Subsidy_Measure_Title_Error ){ %>
+                        <% if( ssn.Subsidy_Measure_Title_Error ){ %>
                         <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                             <% } else { %>
                             <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -170,15 +192,15 @@
                                     Subsidy scheme name
                                 </label>
 
-                                <% if( Subsidy_Measure_Title_Error ){ %>
-                                <span class="govuk-error-message" id="Subsidy_Measure_Title_Error">
+                                <% if( ssn.Subsidy_Measure_Title_Error ){ %>
+                                <span class="govuk-error-message" id="ssn.Subsidy_Measure_Title_Error">
                                     <span class="govuk-visually-hidden">Error:</span> Enter a valid subsidy
                                     scheme name
                                 </span>
                                 <% }  %>
                                 <input class="govuk-input govuk-!-width-one-half" id="Subsidy_Measure_Title"
                                     name="Subsidy_Measure_Title" type="text"
-                                    value="<%= searchmeasuredetails.subsidyMeasureTitle %>">
+                                    value="<%= ssn.searchmeasuredetails.subsidyMeasureTitle %>">
                             </div>
 
                             <!-- legal basis details -->
@@ -201,7 +223,7 @@
                                     <% }  %>
                                     <input class="govuk-input govuk-!-width-one-half" id="Legal_Basis"
                                         name="Legal_Basis" type="text"
-                                        value="<%= searchmeasuredetails.legalBasisText %>">
+                                        value="<%= ssn.searchmeasuredetails.legalBasisText %>">
                                 </div>
 
                                 <!-- Granting authority URL details -->
@@ -225,7 +247,7 @@
                                         <% }  %>
                                         <input class="govuk-input " name="Granting_Authority_URL"
                                             id="Granting_Authority_URL" type="text"
-                                            value="<%= searchmeasuredetails.gaSubsidyWebLink %>">
+                                            value="<%= ssn.searchmeasuredetails.gaSubsidyWebLink %>">
                                     </div>
 
                                     <!-- granting authority ploicy details -->
@@ -250,7 +272,7 @@
                                             <% }  %>
                                             <input class="govuk-input" id="Granting_Authority_Policy"
                                                 name="Granting_Authority_Policy" type="text"
-                                                value="<%= searchmeasuredetails.gaSubsidyWebLinkDescription%>">
+                                                value="<%= ssn.searchmeasuredetails.gaSubsidyWebLinkDescription%>">
                                         </div>
 
                                         <!-- budget details -->
@@ -278,7 +300,7 @@
                                                     <div class="govuk-input__prefix" aria-hidden="true">£</div>
                                                     <input class="govuk-input govuk-!-width-one-third" id="Budget"
                                                         name="Budget" type="text"
-                                                        value="<%= searchmeasuredetails.budget %>">
+                                                        value="<%= ssn.searchmeasuredetails.budget %>">
                                                 </div>
 
                                             </div>
@@ -331,7 +353,7 @@
                                                                 <input
                                                                     class="govuk-input govuk-date-input__input govuk-input--width-2"
                                                                     id="scheme_issued_start_month"
-                                                                    value="<%= Scheme_Legal_Granting_Start_Date_Month %>"
+                                                                    value="<%= ssn.Scheme_Legal_Granting_Start_Date_Month %>"
                                                                     name="scheme_issued_start_month" placeholder="MM"
                                                                     type="text" pattern="[0-9]*" inputmode="numeric">
                                                             </div>
@@ -353,7 +375,7 @@
                                                                     id="scheme_issued_start_year"
                                                                     name="scheme_issued_start_year" type="text"
                                                                     pattern="[0-9]*" inputmode="numeric"
-                                                                    value="<%= Scheme_Legal_Granting_Start_Date_Year %>"
+                                                                    value="<%= ssn.Scheme_Legal_Granting_Start_Date_Year %>"
                                                                     placeholder="YYYY"></div>
                                                         </div>
                                                     </div>
@@ -391,7 +413,7 @@
                                                                     <input
                                                                         class="govuk-input govuk-date-input__input govuk-input--width-2"
                                                                         id="scheme-issued-day"
-                                                                        value="<%= Scheme_Legal_Granting_End_Date_Day %>"
+                                                                        value="<%= ssn.Scheme_Legal_Granting_End_Date_Day %>"
                                                                         name="scheme_issued_end_day" type="text"
                                                                         placeholder="DD" pattern="[0-9]*"
                                                                         inputmode="numeric"></div>
@@ -412,7 +434,7 @@
                                                                     <input
                                                                         class="govuk-input govuk-date-input__input govuk-input--width-2"
                                                                         id="scheme_issued_end_month"
-                                                                        value="<%= Scheme_Legal_Granting_End_Date_Month %>"
+                                                                        value="<%= ssn.Scheme_Legal_Granting_End_Date_Month %>"
                                                                         name="scheme_issued_end_month" placeholder="MM"
                                                                         type="text" pattern="[0-9]*"
                                                                         inputmode="numeric">
@@ -434,7 +456,7 @@
                                                                     <input
                                                                         class="govuk-input govuk-date-input__input govuk-input--width-4"
                                                                         id="scheme_issued_end_year"
-                                                                        value="<%= Scheme_Legal_Granting_End_Date_Year %>"
+                                                                        value="<%= ssn.Scheme_Legal_Granting_End_Date_Year %>"
                                                                         name="scheme_issued_end_year" type="text"
                                                                         pattern="[0-9]*" inputmode="numeric"
                                                                         placeholder="YYYY"></div>

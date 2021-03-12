@@ -4,6 +4,17 @@
 <head>
     <title>GOV.UK - Subsidy Award review details page</title>
     <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
 </head>
 
 
@@ -12,17 +23,43 @@
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-        <main class="govuk-main-wrapper " id="main-content" role="main">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
             <%- include('../partials/navigationbar.ejs') %>
-            
+
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Granting Authority</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Edit Granting Authority</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
 
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
                     <h1 class="govuk-heading-xl"> Edit granting authority</h1>
 
-            <!-- *************************************
-              Review for subsidy details tab
-              ************************************* -->
+                    <!-- *************************************
+                            Review for subsidy details tab
+                    ************************************* -->
                 </div>
                 <div class="govuk-grid-column-full">
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Granting authority details
@@ -31,7 +68,7 @@
                     </h2>
                     <a rel="external" aria-label="Change granting authority details"
                         class="govuk-link head-right govuk-relative-position"
-                        href="/editgrantingauthority?edit=<%=grantingAuthorityID_Global%>">
+                        href="/editgrantingauthority?edit=<%=ssn.grantingAuthorityID_Global%>">
                         <p>Change </p>
                     </a>
                 </div>
@@ -42,7 +79,7 @@
                         Granting authority ID
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        <%=grantingAuthorityID_Global%>
+                        <%=ssn.grantingAuthorityID_Global%>
                     </dd>
 
                 </div>
@@ -51,7 +88,7 @@
                         Granting authority name
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        <%=grantingAuthorityName_Global%>
+                        <%=ssn.grantingAuthorityName_Global%>
                     </dd>
 
                 </div>
@@ -59,11 +96,11 @@
             </dl>
 
             <!-- <form action="/submitforapproval" method="post" novalidate> -->
-            <% if(grantingAuthorityPublish_Global) { %>
+            <% if(ssn.grantingAuthorityPublish_Global) { %>
             <form method="POST" action="/submitgrantingauthority">
                 <input type="hidden" name="editReview" value="true">
-                <input type="hidden" value="<%= grantingAuthorityID_Global %>" name="grantingAuthorityID">
-                <input type="hidden" value="<%= grantingAuthorityName_Global %>" name="grantingAuthorityName">
+                <input type="hidden" value="<%= ssn.grantingAuthorityID_Global %>" name="grantingAuthorityID">
+                <input type="hidden" value="<%= ssn.grantingAuthorityName_Global %>" name="grantingAuthorityName">
                 <button class="govuk-button" data-module="govuk-button">
                     Publish
                 </button>
@@ -75,14 +112,14 @@
             </a>
 
             <a class="govuk-button govuk-button--warning"
-                href="/deactivategrantingauthority?gaId=<%=grantingAuthorityID_Global%>&gaName=<%=grantingAuthorityName_Global%>"
+                href="/deactivategrantingauthority?gaId=<%=ssn.grantingAuthorityID_Global%>&gaName=<%=ssn.grantingAuthorityName_Global%>"
                 data-module="govuk-button">
                 Deactivate granting authority
             </a>
-            <a class="govuk-link govuk-cancel-button-link" id="mylink" value="cancel"
-                href="/editgacancel?gaId=<%=grantingAuthorityID_Global%>&gaName=<%=grantingAuthorityName_Global%>">
+            <!-- <a class="govuk-link govuk-cancel-button-link" id="mylink" value="cancel"
+                href="/editgacancel?gaId=<%=ssn.grantingAuthorityID_Global%>&gaName=<%=ssn.grantingAuthorityName_Global%>">
                 Cancel
-            </a>
+            </a> -->
             <!-- </form> -->
             <% } %>
         </main>

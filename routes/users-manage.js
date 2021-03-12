@@ -3,11 +3,14 @@
 // ********************************************************************
 
 const express = require("express");
+var session = require("express-session");
 const router = express.Router();
+
 const axios = require("axios");
 var request = require("request");
 
 router.get("/", async (req, res) => {
+  ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -15,17 +18,17 @@ router.get("/", async (req, res) => {
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   console.log("TEST");
   console.log("url :" + beis_url_accessmanagement);
-  frontend_totalRecordsPerPage = 10;
+  ssn.frontend_totalRecordsPerPage = 10;
   Award_page = 1;
-  awards_status = "Filter results by status";
+  ssn.awards_status = "";
   Award_selected_status = "";
-  Award_search_text = "";
+  ssn.Award_search_text = "";
 
   Base_URL = beis_url_accessmanagement + "/accessmanagement/searchresults?";
   Award_status = "status=" + Award_selected_status;
   Award_concate = "&";
   Award_page = "page=" + Award_page;
-  Award_recordsperpage = "recordsPerPage=" + frontend_totalRecordsPerPage;
+  Award_recordsperpage = "recordsPerPage=" + ssn.frontend_totalRecordsPerPage;
 
   Award_search_URL =
     Base_URL +
@@ -37,7 +40,10 @@ router.get("/", async (req, res) => {
   console.log("Award_search_URL  : " + Award_search_URL);
 
   try {
-    const apidata = await axios.get(Award_search_URL, UserPrincileObjectGlobal);
+    const apidata = await axios.get(
+      Award_search_URL,
+      ssn.UserPrincileObjectGlobal
+    );
     console.log(`Status: ${apidata.status}`);
     API_response_code = `${apidata.status}`;
     console.log("API_response_code: try" + API_response_code);
@@ -49,14 +55,14 @@ router.get("/", async (req, res) => {
     const seachawardJSON = JSON.parse(seachawardstring);
     totalrows = searchawards.totalSearchResults;
 
-    pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
+    pageCount = Math.ceil(totalrows / ssn.frontend_totalRecordsPerPage);
     console.log("totalrows :" + totalrows);
     console.log("pageCount :" + pageCount);
     current_page = 1;
     previous_page = 1;
     next_page = 2;
     start_record = 1;
-    end_record = frontend_totalRecordsPerPage;
+    end_record = ssn.frontend_totalRecordsPerPage;
     current_page_active = 1;
 
     start_page = 1;
@@ -73,12 +79,13 @@ router.get("/", async (req, res) => {
       end_record,
       totalrows,
       current_page_active,
-      frontend_totalRecordsPerPage,
+      ssn,
     });
   } catch (err) {
-    response_error_message = err;
     console.log("message error : " + err);
-    console.log("response_error_message catch : " + response_error_message);
+    if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
+    else if (err.toString().includes("401"))
+      res.render("bulkupload/notAuthorized");
     // res.render('publicusersearch/noresults');
   }
 

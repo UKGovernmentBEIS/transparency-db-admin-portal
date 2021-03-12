@@ -47,6 +47,7 @@ test("Unit testing for Subsidy Award Cancel Test for GET call", (done) => {
   global.Spending_Region_Global = "";
   global.Spending_Sector_Global = "";
   global.Subsidy_Instrument_Global = "";
+  global.dashboard_user_name = "";
   const res = {};
   request(app)
     .get("/reviewdetailcancel", (req, res))

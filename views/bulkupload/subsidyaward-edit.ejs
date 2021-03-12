@@ -4,6 +4,17 @@
 <head>
     <title>GOV.UK - Subsidy Award Edit page</title>
     <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
     <script>
         getSubsidyInstrument = (subsidyValue, purposeValue) => {
             var objSelect = document.getElementById("Subsidy_Instrument");
@@ -31,7 +42,18 @@
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-        <main class="govuk-main-wrapper " id="main-content" role="main">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
             <%- include('../partials/navigationbar.ejs') %>
             <!-- <div class="govuk-grid-row govuk-form-group">
                 <div class="govuk-grid-column-full">
@@ -87,7 +109,7 @@
                         <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active" href="#">Edit subsidy award</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Edit subsidy award</a>
                     </li>
                 </ol>
             </div>
@@ -260,8 +282,8 @@
 
                         <input class="govuk-input govuk-input--width-20" id="Subsidy_Instrument_Other"
                             name="Subsidy_Instrument_Other" type="text" aria-describedby="Subsidy_Instrument_Other-hint"
-                            <% if(locals.Subsidy_Instrument_Other_Global) {%>
-                            value="<%= locals.Subsidy_Instrument_Other_Global %>" <% } %> />
+                            <% if(ssn.Subsidy_Instrument_Other_Global) {%>
+                            value="<%= ssn.Subsidy_Instrument_Other_Global %>" <% } %> />
                     </div>
                     <div class="govuk-form-group govuk-grid-column-two-thirds amount_subsidy_tax">
                         <label class="govuk-label" for="address-line-1">
@@ -282,7 +304,7 @@
                     </div>
                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                         <label class="govuk-label" for="address-line-1">
-                            Granting Authority Name
+                            Granting authority name
                         </label>
 
                         <input class="govuk-input govuk-!-width-one-third" value="<%= Granting_Authority_Name %>"

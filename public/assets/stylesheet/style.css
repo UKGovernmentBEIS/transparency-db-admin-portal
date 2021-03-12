@@ -83,7 +83,7 @@ table tbody tr:hover{
 .govuk-p-0 {
   padding: 0 !important;
 }
-.app-custom-class p {
+.app-custom-class a {
   color: #1d70b8;
 }
 .clear-all {

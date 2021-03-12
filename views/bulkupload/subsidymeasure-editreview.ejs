@@ -2,8 +2,19 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - <%= searchmeasuredetails.subsidyMeasureTitle %> scheme details page</title>
+    <title>GOV.UK - <%= ssn.searchmeasuredetails.subsidyMeasureTitle %> scheme details page</title>
     <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
     <script>
         const formatter = new Intl.NumberFormat("en-GB");
         getFormatedCurrency = (budget) => {
@@ -16,53 +27,27 @@
     </script>
 </head>
 
-<body class="govuk-template__body app-example-page" onload="getFormatedCurrency('<%= searchmeasuredetails.budget %>')">
+<body class="govuk-template__body app-example-page"
+    onload="getFormatedCurrency('<%= ssn.searchmeasuredetails.budget %>')">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-        <main class="govuk-main-wrapper " id="main-content" role="main">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
             <!-- header start here -->
             <%- include('../partials/navigationbar.ejs') %>
-            <!-- <div class="govuk-grid-row govuk-form-group">
-                <div class="govuk-grid-column-full">
-                    <nav class="govuk-sub-navigation" aria-label="Sub navigation">
-                        <ul class="govuk-sub-navigation__list">
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
-                                    Granting Authorities
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/userselect">
-                                    Users
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidymeasures">
-                                    Subsidy schemes
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mysubsidyawards">
-                                    Subsidy Awards
-                                </a>
-                            </li>
 
-                            <li class='govuk-sub-navigation__item head-right'>
-                                <a class="govuk-sub-navigation__link" href="/logintransparency">
-                                    Signout
-                                </a>
-                            </li>
-                            <li class='govuk-sub-navigation__item head-right'>
-                                <a class="govuk-sub-navigation__link" href="/useraccount">
-                                    My account
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div> -->
             <!-- bread crumbs start here -->
             <div class="govuk-breadcrumbs ">
                 <ol class="govuk-breadcrumbs__list">
@@ -73,8 +58,8 @@
                         <a class="govuk-breadcrumbs__link" href="/mysubsidymeasures">Subsidy schemes</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active"
-                            href="#"><%= searchmeasuredetails.subsidyMeasureTitle %></a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page"
+                            href="#"><%= ssn.searchmeasuredetails.subsidyMeasureTitle %></a>
                     </li>
                 </ol>
             </div>
@@ -82,7 +67,7 @@
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
                     <!-- <h1 class="govuk-heading-xl">Review subsidy scheme </h1> -->
-                    <h1 class="govuk-heading-xl"><%= searchmeasuredetails.subsidyMeasureTitle %></h1>
+                    <h1 class="govuk-heading-xl"><%= ssn.searchmeasuredetails.subsidyMeasureTitle %></h1>
                     <!-- *************************************
               Review for subsidy details tab
               ************************************* -->
@@ -93,7 +78,7 @@
                     </h2>
                     <a rel="external" aria-label="Change subsidy scheme details"
                         class="govuk-link head-right govuk-relative-position"
-                        href="/editsubsidymeasure?scheme=<%= searchmeasuredetails.scNumber %>">
+                        href="/editsubsidymeasure?scheme=<%= ssn.searchmeasuredetails.scNumber %>">
                         <!-- <p>Change </p> -->
 
                     </a>
@@ -105,7 +90,7 @@
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Is this an ad hoc scheme</th>
                             <td class="govuk-table__cell">
-                                <% if(searchmeasuredetails.adhoc == true) { %>
+                                <% if(ssn.searchmeasuredetails.adhoc == true) { %>
                                 Yes
                                 <% } else { %>
                                 No
@@ -114,31 +99,36 @@
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Granting Authority</th>
-                            <td class="govuk-table__cell"><%= searchmeasuredetails.gaName %></td>
+                            <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.gaName %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Subsidy scheme name</th>
-                            <td class="govuk-table__cell"><%= searchmeasuredetails.subsidyMeasureTitle %></td>
+                            <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.subsidyMeasureTitle %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Legal basis</th>
-                            <td class="govuk-table__cell"><%= searchmeasuredetails.legalBasisText %></td>
+                            <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.legalBasisText %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Granting authority policy URL </th>
-                            <td class="govuk-table__cell"><%= searchmeasuredetails.gaSubsidyWebLink %>
+                            <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.gaSubsidyWebLink %>
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Granting authority policy page summary </th>
                             <td class="govuk-table__cell">
-                                <a href="<%= searchmeasuredetails.gaSubsidyWebLink %>"
-                                    target="_blank"><%= searchmeasuredetails.gaSubsidyWebLinkDescription %></a>
+                                <% if(ssn.searchmeasuredetails.gaSubsidyWebLink.includes("https://") || ssn.searchmeasuredetails.gaSubsidyWebLink.includes("http://")) { %>
+                                <a href="<%= ssn.searchmeasuredetails.gaSubsidyWebLink %>"
+                                    target="_blank"><%= ssn.searchmeasuredetails.gaSubsidyWebLinkDescription %></a>
+                                <% } else { %>
+                                <a href="https://<%= ssn.searchmeasuredetails.gaSubsidyWebLink %>"
+                                    target="_blank"><%= ssn.searchmeasuredetails.gaSubsidyWebLinkDescription %></a>
+                                <% } %>
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Budget or amount</th>
-                            <td class="govuk-table__cell" id="formatText">£ <%= searchmeasuredetails.budget %></td>
+                            <td class="govuk-table__cell" id="formatText">£ <%= ssn.searchmeasuredetails.budget %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Start date</th>
@@ -162,12 +152,12 @@
                     <button class="govuk-button" data-module="govuk-button">
                         Back to subsidy schemes
                     </button>
-                    <% if(dashboard_roles != 'Granting Authority Encoder') { %>
+                    <% if(ssn.dashboard_roles != 'Granting Authority Encoder') { %>
                     <a class="govuk-button govuk-button--secondary" href="/addsubsidyaward" data-module="govuk-button">
                         Add a subsidy award to this scheme
                     </a>
                     <% } %>
-                    <!-- <a href="/cancelreviewsubsidymeasures?scheme=<%= searchmeasuredetails.scNumber %>"
+                    <!-- <a href="/cancelreviewsubsidymeasures?scheme=<%= ssn.searchmeasuredetails.scNumber %>"
                         class="govuk-link govuk-cancel-button-link ">
                         Cancel
                     </a> -->

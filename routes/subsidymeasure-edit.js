@@ -3,11 +3,14 @@
 // ********************************************************************
 
 const express = require("express");
+var session = require("express-session");
 const router = express.Router();
+
 const axios = require("axios");
 var request = require("request");
 
 router.get("/", async (req, res) => {
+  ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -22,13 +25,13 @@ router.get("/", async (req, res) => {
   try {
     const measureapidata = await axios.get(
       measureendpoint,
-      UserPrincileObjectGlobal
+      ssn.UserPrincileObjectGlobal
     );
     console.log(`Status: ${measureapidata.status}`);
     console.log("Body: ", measureapidata.data);
-    searchmeasuredetails = measureapidata.data;
-    Scheme_Start_Date = searchmeasuredetails.startDate;
-    Scheme_End_Date = searchmeasuredetails.endDate;
+    ssn.searchmeasuredetails = measureapidata.data;
+    Scheme_Start_Date = ssn.searchmeasuredetails.startDate;
+    Scheme_End_Date = ssn.searchmeasuredetails.endDate;
 
     var date = Scheme_Start_Date.split(" ");
 
@@ -47,26 +50,26 @@ router.get("/", async (req, res) => {
       "December",
     ];
 
-    Scheme_Legal_Granting_Start_Date_Month =
+    ssn.Scheme_Legal_Granting_Start_Date_Month =
       month.indexOf(date[1]) + 1 < 10
         ? "0" + (month.indexOf(date[1]) + 1)
         : month.indexOf(date[1]) + 1;
     Scheme_Legal_Granting_Start_Date_Day = date[0];
-    Scheme_Legal_Granting_Start_Date_Year = date[2];
+    ssn.Scheme_Legal_Granting_Start_Date_Year = date[2];
 
     var date = Scheme_End_Date.split(" ");
-    Scheme_Legal_Granting_End_Date_Month =
+    ssn.Scheme_Legal_Granting_End_Date_Month =
       month.indexOf(date[1]) + 1 < 10
         ? "0" + (month.indexOf(date[1]) + 1)
         : month.indexOf(date[1]) + 1;
-    Scheme_Legal_Granting_End_Date_Day = date[0];
-    Scheme_Legal_Granting_End_Date_Year = date[2];
+    ssn.Scheme_Legal_Granting_End_Date_Day = date[0];
+    ssn.Scheme_Legal_Granting_End_Date_Year = date[2];
 
     SubsidyArraySize = 0;
 
-    Subsidy_Measure_Title_Error = false;
-    Subsidy_Adhoc_Error = false;
-    Granting_Authority_Name_Error = false;
+    ssn.Subsidy_Measure_Title_Error = false;
+    ssn.Subsidy_Adhoc_Error = false;
+    ssn.Granting_Authority_Name_Error = false;
     scheme_issued_start_day_Error = false;
     scheme_issued_start_month_Error = false;
     scheme_issued_start_year_Error = false;
@@ -78,14 +81,16 @@ router.get("/", async (req, res) => {
     scheme_issued_end_month_Error = false;
     scheme_issued_end_year_Error = false;
 
-    if (dashboard_roles !== "Granting Authority Encoder") {  
-
-    res.render("bulkupload/subsidymeasures-edit");
-  }
-  else {  res.render("bulkupload/notAuthorized") };
-
+    if (ssn.dashboard_roles !== "Granting Authority Encoder") {
+      res.render("bulkupload/subsidymeasures-edit");
+    } else {
+      res.render("bulkupload/notAuthorized");
+    }
   } catch (err) {
     console.error(err);
+    if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
+    else if (err.toString().includes("401"))
+      res.render("bulkupload/notAuthorized");
   }
 });
 

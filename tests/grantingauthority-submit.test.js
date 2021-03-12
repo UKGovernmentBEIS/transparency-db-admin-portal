@@ -73,7 +73,9 @@ test("Unit testing for cancel subsidy award Test for GET call", (done) => {
   const res = {};
   axios.post.mockResolvedValue({
     status: 200,
-    gaId: "",
+    data: {
+      gaId: "",
+    },
   });
   request(app)
     .post("/submitgrantingauthority", (req, res))

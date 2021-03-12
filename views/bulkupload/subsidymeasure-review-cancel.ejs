@@ -4,6 +4,17 @@
 <head>
     <title>GOV.UK - Subsidy Award Review Cancel page</title>
     <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
 </head>
 <!-- 
 <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
@@ -14,48 +25,21 @@
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-        <main class="govuk-main-wrapper " id="main-content" role="main">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
             <%- include('../partials/navigationbar.ejs') %>
             <!-- Header pane starts here -->
-            <!-- <div class="govuk-grid-row govuk-form-group">
-                <div class="govuk-grid-column-full">
-                    <nav class="govuk-sub-navigation" aria-label="Sub navigation">
-                        <ul class="govuk-sub-navigation__list">
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
-                                    Granting Authorities
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="#">
-                                    Users
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                                    Subsidy Schemes
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidyawards">
-                                    Subsidy Awards
-                                </a>
-                            </li>
 
-                            <li class='govuk-sub-navigation__item head-right'>
-                                <a class="govuk-sub-navigation__link" href="/logintransparency">
-                                    Signout
-                                </a>
-                            </li>
-                            <li class='govuk-sub-navigation__item head-right'>
-                                <a class="govuk-sub-navigation__link" href="/useraccount">
-                                    My account
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div> -->
             <!-- Header pane starts here -->
 
             <!-- bread crumbs start here -->
@@ -65,10 +49,10 @@
                         <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" href="/">Subsidy schemes</a>
+                        <a class="govuk-breadcrumbs__link" href="/mysubsidymeasures">Subsidy schemes</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link active" href="/">Add a subsidy scheme</a>
+                        <a class="govuk-breadcrumbs__link " aria-current="page" href="#">Add a subsidy scheme</a>
                     </li>
                 </ol>
             </div>
@@ -76,7 +60,7 @@
 
             <!-- Body header starts here -->
             <div class="govuk-body-cancel">
-                <h1 class="govuk-heading-l">Cancel changes</h1>
+                <h1 class="govuk-heading-l">Cancel new subsidy scheme</h1>
 
                 <p class="govuk-body govuk-!-font-size-19 govuk-!-width-two-thirds">If you cancel, you will lose any
                     information that you’ve updated for this subsidy scheme.</p>
@@ -87,8 +71,8 @@
                     data-module="govuk-button">Yes,
                     cancel
                 </a>
-                <a href="/editreviewsubsidymeasure?scheme=<%=scNumber%>"
-                    class="govuk-button govuk-button_sm govuk-button--secondary" data-module="govuk-button">No</button>
+                <a href="/reviewsubsidymeasures" class="govuk-button govuk-button_sm govuk-button--secondary"
+                    data-module="govuk-button">No</button>
                 </a>
             </div>
 
