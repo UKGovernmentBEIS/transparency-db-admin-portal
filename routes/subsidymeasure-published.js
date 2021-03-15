@@ -77,13 +77,13 @@ router.post("/", async (req, res) => {
   console.log("subsidy_end_date:" + subsidy_end_date);
 
   if (ssn.Subsidy_Adhoc_Global == "Yes") {
-    Subsidy_Adhoc_Global_Flag = true;
+    ssn.Subsidy_Adhoc_Global_Flag = true;
   } else {
-    Subsidy_Adhoc_Global_Flag = false;
+    ssn.Subsidy_Adhoc_Global_Flag = false;
   }
 
   const addSchemeRequest = {
-    adhoc: Subsidy_Adhoc_Global_Flag,
+    adhoc: ssn.Subsidy_Adhoc_Global_Flag,
     gaName: ssn.Granting_Authority_Name_Measure_Global,
     subsidyMeasureTitle: ssn.Subsidy_Measure_Title_Global,
     legalBasisText: ssn.Legal_Basis_Global,
@@ -98,9 +98,7 @@ router.post("/", async (req, res) => {
   if (button_value == "add_measure") {
     addSchemeUrl = beis_url_searchscheme + "/scheme/add";
     console.log(" addSchemeUrl : " + addSchemeUrl);
-    console.log(
-      "addSchemeRequest :" + JSON.stringify(ssn.UserPrincileObjectGlobal)
-    );
+    console.log("addSchemeRequest :" + JSON.stringify(addSchemeRequest));
 
     try {
       const apidata = await axios.post(
@@ -140,7 +138,7 @@ router.post("/", async (req, res) => {
   else {
     const updateSchemeRequest = {
       scNumber: scNumber_Global,
-      adhoc: Subsidy_Adhoc_Global_Flag,
+      adhoc: ssn.Subsidy_Adhoc_Global_Flag,
       gaName: ssn.Granting_Authority_Name_Measure_Global,
       subsidyMeasureTitle: ssn.Subsidy_Measure_Title_Global,
       legalBasisText: ssn.Legal_Basis_Global,

@@ -75,7 +75,7 @@ router.get("/", async (req, res) => {
     }
   } else if (sort_column_name == "award_status") {
     if (ssn.award_status_sorting_order == "asc") {
-      Award_sorting_field = "subsidyMeasure.status-desc";
+      Award_sorting_field = "status-desc";
       ssn.subsidy_award_number_arrow = "upanddown";
       ssn.scheme_name_arrow = "upanddown";
       ssn.granting_authority_arrow = "upanddown";
@@ -83,7 +83,7 @@ router.get("/", async (req, res) => {
       ssn.award_recipient_arrow = "upanddown";
       ssn.award_status_sorting_order = "desc";
     } else {
-      Award_sorting_field = "subsidyMeasure.status-asc";
+      Award_sorting_field = "status-asc";
       ssn.subsidy_award_number_arrow = "upanddown";
       ssn.scheme_name_arrow = "upanddown";
       ssn.granting_authority_arrow = "upanddown";
@@ -115,6 +115,7 @@ router.get("/", async (req, res) => {
   current_page_active = current_page;
   previous_page = 1;
   next_page = 2;
+  Award_page = 1;
 
   Award_text = "searchName=" + ssn.Award_search_text;
   Base_URL = beis_url_accessmanagement + "/accessmanagement/searchresults?";
@@ -136,7 +137,7 @@ router.get("/", async (req, res) => {
     Award_sorting +
     Award_sorting_field;
 
-  console.log("Award_search_URL  : " + JSON.stringify(ssn));
+  console.log("Award_search_URL  : " + JSON.stringify(Award_search_URL));
 
   try {
     const apidata = await axios.get(
