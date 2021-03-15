@@ -29,6 +29,7 @@ router.post("/", (req, res) => {
   ssn.Beneficiary_Name_Error = false;
   ssn.Size_of_the_Organisation_Error = false;
   ssn.Granting_Authority_Name_Error = false;
+  ssn.Granting_Authority_Valid_Name_Error = false;
   ssn.Legal_Granting_Date_Day_Error = false;
   ssn.Legal_Granting_Date_Month_Error = false;
   ssn.Legal_Granting_Date_Year_Error = false;
@@ -190,8 +191,18 @@ router.post("/", (req, res) => {
 
     if (Subsidy_Objective == "Other" && Subsidy_Objective_Other == "") {
       ssn.Subsidy_Objective_Other_Error = true;
+      ssn.Subsidy_Objective_Other_255_Error = false;
       ssn.SubsidyErrors[Additem] =
         "     Enter the subsidy purpose for other category";
+      ssn.SubsidyFocus[Additem] = "#Subsidy_Objective_Other";
+      Additem = Additem + 1;
+    }
+
+    if (Subsidy_Objective == "Other" && Subsidy_Objective_Other.length > 255) {
+      ssn.Subsidy_Objective_Other_255_Error = true;
+      ssn.Subsidy_Objective_Other_Error = false;
+      ssn.SubsidyErrors[Additem] =
+        "Subsidy purpose-other length > 255 characters";
       ssn.SubsidyFocus[Additem] = "#Subsidy_Objective_Other";
       Additem = Additem + 1;
     }
@@ -261,6 +272,7 @@ router.post("/", (req, res) => {
 
     if (!Granting_Authority_Name) {
       ssn.Granting_Authority_Name_Error = true;
+      ssn.Granting_Authority_Valid_Name_Error = false;
       ssn.SubsidyErrors[Additem] = "     Enter the granting authority name";
       ssn.SubsidyFocus[Additem] = "#Granting_Authority_Name";
       Additem = Additem + 1;
@@ -350,6 +362,16 @@ router.post("/", (req, res) => {
         "     Enter the legal granting year of the date";
       ssn.SubsidyFocus[Additem] = "#Legal_Granting_Date_Year";
       Additem = Additem + 1;
+    }
+
+    if (Legal_Granting_Date_Year != "") {
+      if (Legal_Granting_Date_Year < 1960) {
+        ssn.Legal_Granting_Date_Year_Error = true;
+        ssn.SubsidyErrors[Additem] =
+          " Enter the legal granting year of the date greater than 1960";
+        ssn.SubsidyFocus[Additem] = "#Legal_Granting_Date_Year";
+        Additem = Additem + 1;
+      }
     }
 
     if (!Goods_or_Services) {

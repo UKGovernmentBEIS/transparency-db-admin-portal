@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
     "-" +
     ssn.Legal_Granting_Date_Year_Global;
 
-  var SubsidyErrors = [];
+  ssn.SubsidyErrors = [];
   var SubsidyFocus = [];
   ssn.Subsidy_Control_Number_Error = false;
   ssn.Subsidy_Measure_Title_Error = false;
@@ -43,6 +43,7 @@ router.post("/", async (req, res) => {
   ssn.Beneficiary_Name_Error = false;
   ssn.Size_of_the_Organisation_Error = false;
   ssn.Granting_Authority_Name_Error = false;
+  ssn.Granting_Authority_Valid_Name_Error = false;
   ssn.Legal_Granting_Date_Day_Error = false;
   ssn.Legal_Granting_Date_Month_Error = false;
   ssn.Legal_Granting_Date_Year_Error = false;
@@ -160,9 +161,9 @@ router.post("/", async (req, res) => {
           "subsidyControlNumber"
         ) {
           ssn.Subsidy_Control_Number_Error = true;
-          SubsidyErrors[Additem] =
+          ssn.SubsidyErrors[Additem] =
             add_award_response.validationErrorResult[i].message;
-          SubsidyFocus[Additem] = "#Subsidy_Control_Number";
+          ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
           Additem = Additem + 1;
         }
 
@@ -171,9 +172,9 @@ router.post("/", async (req, res) => {
           "subsidyControlTitle"
         ) {
           ssn.Subsidy_Measure_Title_Error = true;
-          SubsidyErrors[Additem] =
+          ssn.SubsidyErrors[Additem] =
             add_award_response.validationErrorResult[i].message;
-          SubsidyFocus[Additem] = "#Subsidy_Measure_Title";
+          ssn.SubsidyFocus[Additem] = "#Subsidy_Measure_Title";
           Additem = Additem + 1;
         }
 
@@ -181,9 +182,9 @@ router.post("/", async (req, res) => {
           add_award_response.validationErrorResult[i].column == "nationalId"
         ) {
           ssn.National_ID_Number_Error = true;
-          SubsidyErrors[Additem] =
+          ssn.SubsidyErrors[Additem] =
             add_award_response.validationErrorResult[i].message;
-          SubsidyFocus[Additem] = "#National_ID_Number";
+          ssn.SubsidyFocus[Additem] = "#National_ID_Number";
           Additem = Additem + 1;
         }
 
@@ -191,9 +192,9 @@ router.post("/", async (req, res) => {
           add_award_response.validationErrorResult[i].column == "nationalIdType"
         ) {
           ssn.National_ID_Type_Error = true;
-          SubsidyErrors[Additem] =
+          ssn.SubsidyErrors[Additem] =
             add_award_response.validationErrorResult[i].message;
-          SubsidyFocus[Additem] = "#National_ID_Type";
+          ssn.SubsidyFocus[Additem] = "#National_ID_Type";
           Additem = Additem + 1;
         }
 
@@ -202,9 +203,9 @@ router.post("/", async (req, res) => {
           "subsidyObjective"
         ) {
           ssn.Subsidy_Objective_Error = true;
-          SubsidyErrors[Additem] =
+          ssn.SubsidyErrors[Additem] =
             add_award_response.validationErrorResult[i].message;
-          SubsidyFocus[Additem] = "#Subsidy_Objective";
+          ssn.SubsidyFocus[Additem] = "#Subsidy_Objective";
           Additem = Additem + 1;
         }
 
@@ -213,9 +214,9 @@ router.post("/", async (req, res) => {
           "SubsidyObjective-other"
         ) {
           ssn.Subsidy_Objective_Other_Error = true;
-          SubsidyErrors[Additem] =
+          ssn.SubsidyErrors[Additem] =
             add_award_response.validationErrorResult[i].message;
-          SubsidyFocus[Additem] = "#Subsidy_Objective_Other";
+          ssn.SubsidyFocus[Additem] = "#Subsidy_Objective_Other";
           Additem = Additem + 1;
         }
 
@@ -223,9 +224,9 @@ router.post("/", async (req, res) => {
           add_award_response.validationErrorResult[i].column == "spendingRegion"
         ) {
           ssn.Spending_Region_Error = true;
-          SubsidyErrors[Additem] =
+          ssn.SubsidyErrors[Additem] =
             add_award_response.validationErrorResult[i].message;
-          SubsidyFocus[Additem] = "#Spending_Region";
+          ssn.SubsidyFocus[Additem] = "#Spending_Region";
           Additem = Additem + 1;
         }
 
@@ -234,9 +235,9 @@ router.post("/", async (req, res) => {
           "subsidyInstrument"
         ) {
           ssn.Subsidy_Instrument_Error = true;
-          SubsidyErrors[Additem] =
+          ssn.SubsidyErrors[Additem] =
             add_award_response.validationErrorResult[i].message;
-          SubsidyFocus[Additem] = "#Subsidy_Instrument";
+          ssn.SubsidyFocus[Additem] = "#Subsidy_Instrument";
           Additem = Additem + 1;
         }
 
@@ -245,9 +246,9 @@ router.post("/", async (req, res) => {
           "SubsidyInstrument-other"
         ) {
           ssn.Subsidy_Instrument_Other_Error = true;
-          SubsidyErrors[Additem] =
+          ssn.SubsidyErrors[Additem] =
             add_award_response.validationErrorResult[i].message;
-          SubsidyFocus[Additem] = "#Subsidy_Instrument_Other";
+          ssn.SubsidyFocus[Additem] = "#Subsidy_Instrument_Other";
           Additem = Additem + 1;
         }
 
@@ -256,9 +257,9 @@ router.post("/", async (req, res) => {
           "subsidyAmountExact"
         ) {
           ssn.Subsidy_Element_Full_Amount_Error = true;
-          SubsidyErrors[Additem] =
+          ssn.SubsidyErrors[Additem] =
             add_award_response.validationErrorResult[i].message;
-          SubsidyFocus[Additem] = "#Subsidy_Element_Full_Amount";
+          ssn.SubsidyFocus[Additem] = "#Subsidy_Element_Full_Amount";
           Additem = Additem + 1;
         }
 
@@ -266,15 +267,16 @@ router.post("/", async (req, res) => {
           add_award_response.validationErrorResult[i].column ==
           "grantingAuthorityName"
         ) {
-          ssn.Granting_Authority_Name_Error = true;
-          SubsidyErrors[Additem] =
+          ssn.Granting_Authority_Name_Error = false;
+          ssn.Granting_Authority_Valid_Name_Error = true;
+          ssn.SubsidyErrors[Additem] =
             add_award_response.validationErrorResult[i].message;
-          SubsidyFocus[Additem] = "#Granting_Authority_Name";
+          ssn.SubsidyFocus[Additem] = "#Granting_Authority_Name";
           Additem = Additem + 1;
         }
       } /*end for FOR loop */
 
-      var SubsidyArraySize = SubsidyErrors.length;
+      ssn.SubsidyArraySize = ssn.SubsidyErrors.length;
       var isAddSubsidyPrimarycall = false;
 
       res.render("bulkupload/addsubsidyaward", {
@@ -321,9 +323,9 @@ router.post("/", async (req, res) => {
         // ssn.Spending_Region_Error,
         // ssn.Spending_Sector_Error,
 
-        SubsidyErrors,
-        SubsidyArraySize,
-        SubsidyFocus,
+        // SubsidyErrors,
+        // SubsidyArraySize,
+        // SubsidyFocus,
 
         isAddSubsidyPrimarycall,
       });

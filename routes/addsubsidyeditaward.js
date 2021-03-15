@@ -111,6 +111,7 @@ router.get("/", (req, res) => {
   ssn.Beneficiary_Name_Error = false;
   ssn.Size_of_the_Organisation_Error = false;
   ssn.Granting_Authority_Name_Error = false;
+  ssn.Granting_Authority_Valid_Name_Error = false;
   ssn.Legal_Granting_Date_Day_Error = false;
   ssn.Legal_Granting_Date_Month_Error = false;
   ssn.Legal_Granting_Date_Year_Error = false;

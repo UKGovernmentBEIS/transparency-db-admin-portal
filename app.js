@@ -64,6 +64,7 @@ console.log("Start of the application");
 app.get("/", async (req, res) => {
   console.log("Landing root route");
   var id_token = req.header("x-ms-token-aad-id-token");
+
   console.log("id_token " + id_token);
   console.log("req.session", req.session);
   ssn = req.session;
@@ -165,6 +166,7 @@ app.get("/", async (req, res) => {
   ssn.Beneficiary_Name_Error;
   ssn.Size_of_the_Organisation_Error;
   ssn.Granting_Authority_Name_Error;
+  ssn.Granting_Authority_Valid_Name_Error;
   ssn.Legal_Granting_Date_Day_Error;
   ssn.Legal_Granting_Date_Month_Error;
   ssn.Legal_Granting_Date_Year_Error;
