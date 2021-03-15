@@ -25,6 +25,13 @@
             document.getElementById("formatText").textContent = '£ ' + formatedCurrency;
         }
     </script>
+    <style>
+        .govuk-inative-status {
+            float: left;
+            width: 100%;
+            padding: 1%;
+        }
+    </style>
 </head>
 
 <body class="govuk-template__body app-example-page"
@@ -73,6 +80,15 @@
               ************************************* -->
 
                 </div>
+                <% if(ssn.searchmeasuredetails.status == 'Inactive') { %>
+
+                <div class="govuk-form-group app-example govuk-inative-status">
+                    <div class="app-example__toolbar">
+                        <label>This scheme is not active</label>
+                    </div>
+                </div>
+
+                <% } %>
                 <div class="govuk-grid-column-full">
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details
                     </h2>
@@ -152,7 +168,10 @@
                     <button class="govuk-button" data-module="govuk-button">
                         Back to subsidy schemes
                     </button>
-                    <% if(ssn.dashboard_roles != 'Granting Authority Encoder') { %>
+                    <% if(ssn.dashboard_roles != 'Granting Authority Encoder' && ssn.searchmeasuredetails.status!='Inactive') { %>
+                    <a class="govuk-button  govuk-button--warning" href="/deactivatescheme" data-module="govuk-button">
+                        Deactivate
+                    </a>
                     <a class="govuk-button govuk-button--secondary" href="/addsubsidyaward" data-module="govuk-button">
                         Add a subsidy award to this scheme
                     </a>

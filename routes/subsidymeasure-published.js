@@ -83,7 +83,7 @@ router.post("/", async (req, res) => {
   }
 
   const addSchemeRequest = {
-    adhoc: Subsidy_Adhoc_Global_Flag,
+    adhoc: ssn.Subsidy_Adhoc_Global_Flag,
     gaName: ssn.Granting_Authority_Name_Measure_Global,
     subsidyMeasureTitle: ssn.Subsidy_Measure_Title_Global,
     legalBasisText: ssn.Legal_Basis_Global,
@@ -140,7 +140,7 @@ router.post("/", async (req, res) => {
   else {
     const updateSchemeRequest = {
       scNumber: scNumber_Global,
-      adhoc: Subsidy_Adhoc_Global_Flag,
+      adhoc: ssn.Subsidy_Adhoc_Global_Flag,
       gaName: ssn.Granting_Authority_Name_Measure_Global,
       subsidyMeasureTitle: ssn.Subsidy_Measure_Title_Global,
       legalBasisText: ssn.Legal_Basis_Global,

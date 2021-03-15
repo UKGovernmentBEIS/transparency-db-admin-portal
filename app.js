@@ -235,7 +235,6 @@ app.get("/", async (req, res) => {
   ssn.GaListArr_Global;
 
   var id_token = req.header("x-ms-token-aad-id-token");
-
   console.log("id_token " + id_token);
 
   Environment_variable = process.argv[2];
@@ -694,6 +693,12 @@ app.use("/editreviewsubsidymeasure", editreviewsubsidymeasure);
 
 var subsidymeasurereditreview = require("./routes/subsidymeasure-re-editreview");
 app.use("/subsidymeasurereditreview", subsidymeasurereditreview);
+
+var deactivatescheme = require("./routes/subsidymeasure-deactivate");
+app.use("/deactivatescheme", deactivatescheme);
+
+var successfullydeactivatescheme = require("./routes/subsidymeasure-deactivated-successfully");
+app.use("/successfullydeactivatescheme", successfullydeactivatescheme);
 
 var awardspageroute = require("./routes/awardspageroute");
 app.use("/awardspageroute", awardspageroute);
