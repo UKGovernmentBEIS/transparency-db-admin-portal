@@ -182,9 +182,9 @@
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
               aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
               <% if(ssn.awards_status  == "") { %>
-              <option disabled value="" selected>Show all (<%=totalSubsidyAward%>)</option>
+              <option value="" selected>Show all (<%=totalSubsidyAward%>)</option>
               <% } else { %>
-              <option disabled value="">Show all(<%=totalSubsidyAward%>)</option>
+              <option value="">Show all(<%=totalSubsidyAward%>)</option>
               <% }  %>
               <% if(ssn.awards_status  == "Awaiting Approval") { %>
               <option value="Awaiting Approval" selected>Awaiting Approval (<%=totalAwaitingAward%>)</option>
@@ -208,9 +208,6 @@
               <% } else { %>
               <option value="Rejected">Rejected (<%=totalRejectedAward%>)</option>
               <% }  %>
-
-
-
             </select>
           </form>
           <span id="status-message" style="display:none" aria-hidden="true">
@@ -219,7 +216,6 @@
 
 
         <div class="govuk-grid-column-two-thirds">
-
           <a class="govuk-button" href="/addsubsidyaward" data-module="govuk-button">
             Add a new subsidy award
           </a>
@@ -290,9 +286,9 @@
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
               aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
               <% if(ssn.awards_status  == "") { %>
-              <option disabled value="" selected>Show all (<%=totalSubsidyAward%>)</option>
+              <option value="" selected>Show all (<%=totalSubsidyAward%>)</option>
               <% } else { %>
-              <option disabled value="">Show all(<%=totalSubsidyAward%>)</option>
+              <option value="">Show all(<%=totalSubsidyAward%>)</option>
               <% }  %>
               <% if(ssn.awards_status  == "Awaiting Approval") { %>
               <option value="Awaiting Approval" selected>Awaiting Approval (<%=totalAwaitingAward%>) </option>
@@ -304,20 +300,16 @@
               <% } else { %>
               <option value="Published">Published (<%=totalPublishedAward%>)</option>
               <% }  %>
-
               <% if(ssn.awards_status  == "Deleted") { %>
               <option value="Deleted" selected>Deleted (<%=totalInactiveAward%>)</option>
               <% } else { %>
               <option value="Deleted">Deleted (<%=totalInactiveAward%>)</option>
               <% }  %>
-
               <% if(ssn.awards_status  == "Rejected") { %>
               <option value="Rejected" selected>Rejected (<%=totalRejectedAward%>)</option>
               <% } else { %>
               <option value="Rejected">Rejected (<%=totalRejectedAward%>)</option>
               <% }  %>
-
-
             </select>
           </form>
           <span id="status-message" style="display:none" aria-hidden="true">
