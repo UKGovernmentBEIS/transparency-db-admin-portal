@@ -839,6 +839,9 @@ app.use("/auditrecordsperpageroute", auditrecordsperpageroute);
 var auditsortroute = require("./routes/audit-sort-route");
 app.use("/auditsortroute", auditsortroute);
 
+var auditsearchbydateroute = require("./routes/audit-searchbydate-route");
+app.use("/auditsearchbydateroute", auditsearchbydateroute);
+
 var auditpageroute = require("./routes/audit-page-route");
 app.use("/auditpageroute", auditpageroute);
 

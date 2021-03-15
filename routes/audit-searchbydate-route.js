@@ -27,39 +27,68 @@ router.get("/", async (req, res) => {
     Award_selected_status = "";
   }
 
-  Base_URL = beis_url_accessmanagement + "/accessmanagement/searchresults?";
-  Award_text = "searchName=" + ssn.Award_search_text;
-  Award_status = "status=" + Award_selected_status;
-  Award_concate = "&";
-  Award_page = "page=" + Award_page;
-  Award_recordsperpage = "recordsPerPage=" + ssn.frontend_totalRecordsPerPage;
+  ssn.audit_search_by_from_date =
+    req.body.Audit_Granting_Date_Year +
+    "-" +
+    req.body.Audit_Granting_Date_Month +
+    "-" +
+    req.body.Audit_Granting_Date_Day;
 
-  Actual_URL =
-    Base_URL +
-    Award_text +
-    Award_concate +
-    Award_status +
-    Award_concate +
-    Award_page +
-    Award_concate +
-    Award_recordsperpage +
-    Award_concate +
-    Award_sorting +
-    Award_sorting_field;
-  console.log("Actual_URL  : " + Actual_URL);
+  ssn.audit_search_by_end_date =
+    req.body.Audit_Granting_Date_Year +
+    "-" +
+    req.body.Audit_Granting_Date_Month +
+    "-" +
+    req.body.Audit_Granting_Date_Day;
 
+  const data_request = {
+    searchName: ssn.audit_search_by_text,
+    searchStartDate: ssn.audit_search_by_from_date,
+    searchEndDate: ssn.audit_search_by_from_date,
+    pageNumber: 1,
+    totalRecordsPerPage: ssn.frontend_totalRecordsPerPage,
+    sortBy: [ssn.sorting_order],
+  };
+
+  var userPrincipleRequest =
+    '{"userName":"' +
+    ssn.dashboard_user_name +
+    '","password":"password123",' +
+    '"role":"' +
+    ssn.dashboard_roles +
+    '","grantingAuthorityGroupId":"' +
+    ssn.dashbaord_ga_ID +
+    '","grantingAuthorityGroupName":"' +
+    ssn.dashboard_ga_name +
+    '"}';
+
+  console.log("userprinciple: " + userPrincipleRequest);
+  ssn.UserPrincipleObjectGlobal = {
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
+      userPrinciple: userPrincipleRequest,
+    },
+  };
+
+  console.log(
+    "user principle object:" + JSON.stringify(ssn.UserPrincipleObjectGlobal)
+  );
   try {
-    const apidata = await axios.get(Actual_URL, ssn.UserPrincileObjectGlobal);
+    const apidata = await axios.post(
+      beis_url_accessmanagement + "/accessmanagement/auditlogs",
+      data_request,
+      ssn.UserPrincipleObjectGlobal
+    );
     console.log(`Status: ${apidata.status}`);
     API_response_code = `${apidata.status}`;
     console.log("API_response_code: try" + API_response_code);
     console.log("Body: ", apidata.data);
-    searchawards = apidata.data;
-    var searchawards_api = apidata.data;
-    console.log("searchawards" + searchawards_api);
-    const seachawardstring = JSON.stringify(searchawards_api);
-    const seachawardJSON = JSON.parse(seachawardstring);
-    totalrows = searchawards.totalSearchResults;
+    searchAudits = apidata.data;
+    var searchAudits_api = apidata.data;
+    console.log("searchAudits" + searchAudits_api);
+    const seachAuditstring = JSON.stringify(searchAudits_api);
+    const seachAuditJSON = JSON.parse(seachAuditstring);
+    totalrows = searchAudits.totalSearchResults;
 
     pageCount = Math.ceil(totalrows / ssn.frontend_totalRecordsPerPage);
     console.log("totalrows :" + totalrows);
@@ -79,36 +108,34 @@ router.get("/", async (req, res) => {
     }
     nodata = "";
     noresult = false;
-    noawards = false;
-    res.render("bulkupload/audit-landing-page", {
+    res.render("bulkupload/audit-homepage", {
       pageCount,
       previous_page,
       next_page,
       start_record,
-      end_record,
-      nodata,
-      noawards,
       noresult,
+      nodata,
+      end_record,
       totalrows,
       current_page_active,
+      searchAudits,
       ssn,
     });
   } catch (err) {
-    console.log("message error : " + err);
-    if (err.toString().includes("404")) {
+    if (err == "Error: Request failed with status code 404") {
       noresult = true;
-      noawards = false;
-      nodata = "No data available for filtered criteria";
-      res.render("bulkupload/audit-landing-page", {
+      nodata = "No audits available";
+      res.render("bulkupload/audit-homepage", {
         noresult,
         nodata,
-        noawards,
       });
     } else if (err.toString().includes("401")) {
       res.render("bulkupload/notAuthorized");
     } else if (err.toString().includes("500")) {
       res.render("bulkupload/notAvailable");
     }
+    console.log("message error : " + err);
+    // res.render("publicusersearch/noresults");
   }
 
   // end of POST call
