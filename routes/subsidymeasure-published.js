@@ -77,9 +77,9 @@ router.post("/", async (req, res) => {
   console.log("subsidy_end_date:" + subsidy_end_date);
 
   if (ssn.Subsidy_Adhoc_Global == "Yes") {
-    Subsidy_Adhoc_Global_Flag = true;
+    ssn.Subsidy_Adhoc_Global_Flag = true;
   } else {
-    Subsidy_Adhoc_Global_Flag = false;
+    ssn.Subsidy_Adhoc_Global_Flag = false;
   }
 
   const addSchemeRequest = {
@@ -98,9 +98,7 @@ router.post("/", async (req, res) => {
   if (button_value == "add_measure") {
     addSchemeUrl = beis_url_searchscheme + "/scheme/add";
     console.log(" addSchemeUrl : " + addSchemeUrl);
-    console.log(
-      "addSchemeRequest :" + JSON.stringify(ssn.UserPrincileObjectGlobal)
-    );
+    console.log("addSchemeRequest :" + JSON.stringify(addSchemeRequest));
 
     try {
       const apidata = await axios.post(

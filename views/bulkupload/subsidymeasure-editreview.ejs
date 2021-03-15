@@ -18,11 +18,15 @@
     <script>
         const formatter = new Intl.NumberFormat("en-GB");
         getFormatedCurrency = (budget) => {
+            if (budget.toString().includes(","))
+                budget = budget.split(",").join("");
+            formatedCurrency = formatter.format(budget);
+            document.getElementById("formatText").textContent = '£ ' + formatedCurrency;
             // formatedCurrency = "$" + budget.replace(/\d(?=(\ d{3})+\. )/g, "$&,");
-            formatedCurrency = formatter.format(parseInt(budget))
+            // formatedCurrency = formatter.format(parseInt(budget))
             // formatedCurrency = budget.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             // alert(formatedCurrency);
-            document.getElementById("formatText").textContent = '£ ' + formatedCurrency;
+            //document.getElementById("formatText").textContent = '£ ' + formatedCurrency;
         }
     </script>
     <style>

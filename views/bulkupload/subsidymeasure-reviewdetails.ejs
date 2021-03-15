@@ -18,7 +18,8 @@
     <script>
         const formatter = new Intl.NumberFormat("en-GB");
         getFormatedCurrency = (budget) => {
-            if (budget.includes(","))
+            debugger;
+            if (budget.toString().includes(","))
                 budget = budget.split(",").join("");
             formatedCurrency = formatter.format(budget);
             document.getElementById("formatText").textContent = '£ ' + formatedCurrency;
