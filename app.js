@@ -842,6 +842,9 @@ app.use("/auditsortroute", auditsortroute);
 var auditsearchbydateroute = require("./routes/audit-searchbydate-route");
 app.use("/auditsearchbydateroute", auditsearchbydateroute);
 
+var auditsearchbytextroute = require("./routes/audit-searchbytext-route");
+app.use("/auditsearchbytextroute", auditsearchbytextroute);
+
 var auditpageroute = require("./routes/audit-page-route");
 app.use("/auditpageroute", auditpageroute);
 

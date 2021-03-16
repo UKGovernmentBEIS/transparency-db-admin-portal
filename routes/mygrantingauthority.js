@@ -140,6 +140,7 @@ router.get("/", async (req, res) => {
       if (ssn.grantingAuthorityName_Global)
         grantingAuthorityName = ssn.grantingAuthorityName_Global;
       else grantingAuthorityName = grantingAuthorityID_global;
+      current_page = 1;
       // data = {
       //   grantingAuthorityName: ssn.grantingAuthorityName_Global,
       //   grantingAuthorityID: grantingAuthorityID_global,
