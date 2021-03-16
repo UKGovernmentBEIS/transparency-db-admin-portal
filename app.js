@@ -64,7 +64,6 @@ console.log("Start of the application");
 app.get("/", async (req, res) => {
   console.log("Landing root route");
   var id_token = req.header("x-ms-token-aad-id-token");
-
   console.log("id_token " + id_token);
   console.log("req.session", req.session);
   ssn = req.session;
@@ -352,6 +351,7 @@ app.get("/", async (req, res) => {
     response_error_message = err;
     console.log("message error : " + err);
     console.log("response_error_message catch : " + response_error_message);
+    // window.location.href = "/signout";
   }
 
   if (apiroles_extract_object1.includes("BEIS Administrator")) {
@@ -438,6 +438,8 @@ app.get("/", async (req, res) => {
     console.log(
       "response_error_message catchGROUPS : " + response_error_message
     );
+    res.redirect("/signout");
+    // window.location.href = "/signout";
   }
 
   if (ssn.dashboard_roles == "BEIS Administrator") {
