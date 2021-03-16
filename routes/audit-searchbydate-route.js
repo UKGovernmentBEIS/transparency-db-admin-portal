@@ -9,7 +9,7 @@ const router = express.Router();
 const axios = require("axios");
 var request = require("request");
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-  console.log("req.query.page: " + req.query.sort);
+  console.log("req.query.page: " + req.body.Audit_Granting_Date_Day);
   ssn.awards_status = req.query.sort;
 
   Award_page = 1;
@@ -28,23 +28,48 @@ router.get("/", async (req, res) => {
   }
 
   ssn.audit_search_by_from_date =
-    req.body.Audit_Granting_Date_Year +
+    req.body.Audit_Granting_Date_Year_Start +
     "-" +
-    req.body.Audit_Granting_Date_Month +
+    req.body.Audit_Granting_Date_Month_Start +
     "-" +
-    req.body.Audit_Granting_Date_Day;
+    req.body.Audit_Granting_Date_Day_Start;
+  if (
+    !req.body.Audit_Granting_Date_Day_End ||
+    !req.body.Audit_Granting_Date_Month_End ||
+    !req.body.Audit_Granting_Date_Year_End
+  )
+    ssn.audit_search_by_end_date =
+      req.body.Audit_Granting_Date_Year_Start +
+      "-" +
+      req.body.Audit_Granting_Date_Month_Start +
+      "-" +
+      req.body.Audit_Granting_Date_Day_Start;
+  else
+    ssn.audit_search_by_end_date =
+      req.body.Audit_Granting_Date_Year_End +
+      "-" +
+      req.body.Audit_Granting_Date_Month_End +
+      "-" +
+      req.body.Audit_Granting_Date_Day_End;
 
-  ssn.audit_search_by_end_date =
-    req.body.Audit_Granting_Date_Year +
-    "-" +
-    req.body.Audit_Granting_Date_Month +
-    "-" +
-    req.body.Audit_Granting_Date_Day;
+  ssn.Audit_Granting_Date_Year_End_Global =
+    req.body.Audit_Granting_Date_Year_End;
+  ssn.Audit_Granting_Date_Year_Month_End_Global =
+    req.body.Audit_Granting_Date_Month_End;
+  ssn.Audit_Granting_Date_Year_Day_End_Global =
+    req.body.Audit_Granting_Date_Day_End;
+
+  ssn.Audit_Granting_Date_Year_Start_Global =
+    req.body.Audit_Granting_Date_Year_Start;
+  ssn.Audit_Granting_Date_Year_Month_Start_Global =
+    req.body.Audit_Granting_Date_Month_Start;
+  ssn.Audit_Granting_Date_Year_Day_Start_Global =
+    req.body.Audit_Granting_Date_Day_Start;
 
   const data_request = {
     searchName: ssn.audit_search_by_text,
     searchStartDate: ssn.audit_search_by_from_date,
-    searchEndDate: ssn.audit_search_by_from_date,
+    searchEndDate: ssn.audit_search_by_end_date,
     pageNumber: 1,
     totalRecordsPerPage: ssn.frontend_totalRecordsPerPage,
     sortBy: [ssn.sorting_order],
@@ -70,9 +95,7 @@ router.get("/", async (req, res) => {
     },
   };
 
-  console.log(
-    "user principle object:" + JSON.stringify(ssn.UserPrincipleObjectGlobal)
-  );
+  console.log("user principle object:" + JSON.stringify(data_request));
   try {
     const apidata = await axios.post(
       beis_url_accessmanagement + "/accessmanagement/auditlogs",

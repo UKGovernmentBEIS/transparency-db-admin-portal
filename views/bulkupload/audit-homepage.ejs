@@ -98,7 +98,7 @@
         <div class="govuk-grid-column-full">
           <form action="/auditsearchbydateroute" method="post" novalidate>
             <div class="govuk-grid-column-one-third">
-              <% if( ssn.Audit_Granting_Date_Day_Error || ssn.Audit_Granting_Date_Month_Error || ssn.Audit_Granting_Date_Year_Error) { %>
+              <% if( ssn.Audit_Granting_Date_Day_Start_Error || ssn.Audit_Granting_Date_Month_Start_Error || ssn.Audit_Granting_Date_Year_Start_Error) { %>
               <div class="govuk-form-group govuk-form-group--error">
                 <fieldset class="govuk-fieldset" role="group" aria-describedby="Audit_Granting_Date-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -112,57 +112,57 @@
                   <div class="govuk-date-input" id="Audit_Granting_Date">
                     <div class="govuk-date-input__item">
                       <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Day">
+                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Day_Start">
                           Day
                         </label>
-                        <% if( ssn.Audit_Granting_Date_Day_Error) { %>
+                        <% if( ssn.Audit_Granting_Date_Day_Start_Error) { %>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error"
-                          id="Audit_Granting_Date_Day" name="Audit_Granting_Date_Day" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Day_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Day_Global%>" <% } %> />
+                          id="Audit_Granting_Date_Day_Start" name="Audit_Granting_Date_Day_Start" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Day_Start_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Day_Start_Global%>" <% } %> />
                         <% } else { %>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Day" name="Audit_Granting_Date_Day" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Day_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Day_Global%>" <% } %> />
+                          id="Audit_Granting_Date_Day_Start" name="Audit_Granting_Date_Day_Start" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Day_Start_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Day_Start_Global%>" <% } %> />
                         <% } %>
                       </div>
                     </div>
                     <div class="govuk-date-input__item">
                       <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Month">
+                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Month_Start">
                           Month
                         </label>
 
-                        <% if( ssn.Audit_Granting_Date_Month_Error) { %>
+                        <% if( ssn.Audit_Granting_Date_Month_Start_Error) { %>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error"
-                          id="Audit_Granting_Date_Month" name="Audit_Granting_Date_Month" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Month_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Month_Global%>" <% } %> />
+                          id="Audit_Granting_Date_Month_Start" name="Audit_Granting_Date_Month_Start" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Month_Start_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Month_Start_Global%>" <% } %> />
                         <% } else { %>
 
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Month" name="Audit_Granting_Date_Month" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Month_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Month_Global%>" <% } %> />
+                          id="Audit_Granting_Date_Month_Start" name="Audit_Granting_Date_Month_Start" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Month_Start_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Month_Start_Global%>" <% } %> />
                         <% } %>
                       </div>
                     </div>
                     <div class="govuk-date-input__item">
                       <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Year">
+                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Year_Start">
                           Year
                         </label>
-                        <% if( ssn.Audit_Granting_Date_Year_Error) { %>
+                        <% if( ssn.Audit_Granting_Date_Year_Start_Error) { %>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error"
-                          id="Audit_Granting_Date_Year" name="Audit_Granting_Date_Year" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Year_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Year_Global%>" <% } %> />
+                          id="Audit_Granting_Date_Year_Start" name="Audit_Granting_Date_Year_Start" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Year_Start_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Year_Start_Global%>" <% } %> />
                         <% } else { %>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                          id="Audit_Granting_Date_Year" name="Audit_Granting_Date_Year" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Year_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Year_Global%>" <% } %> />
+                          id="Audit_Granting_Date_Year_Start" name="Audit_Granting_Date_Year_Start" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Year_Start_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Year_Start_Global%>" <% } %> />
                         <% } %>
                       </div>
                     </div>
@@ -183,35 +183,35 @@
                   <div class="govuk-date-input" id="Audit_Granting_Date">
                     <div class="govuk-date-input__item">
                       <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Day">
+                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Day_Start">
                           Day
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Day" name="Audit_Granting_Date_Day" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Day_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Day_Global%>" <% } %> />
+                          id="Audit_Granting_Date_Day_Start" name="Audit_Granting_Date_Day_Start" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Day_Start_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Day_Start_Global%>" <% } %> />
                       </div>
                     </div>
                     <div class="govuk-date-input__item">
                       <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Month">
+                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Month_Start">
                           Month
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Month" name="Audit_Granting_Date_Month" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Month_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Month_Global%>" <% } %> />
+                          id="Audit_Granting_Date_Month_Start" name="Audit_Granting_Date_Month_Start" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Month_Start_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Month_Start_Global%>" <% } %> />
                       </div>
                     </div>
                     <div class="govuk-date-input__item">
                       <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Year">
+                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Year_Start">
                           Year
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                          id="Audit_Granting_Date_Year" name="Audit_Granting_Date_Year" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Year_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Year_Global %>" <% } %> />
+                          id="Audit_Granting_Date_Year_Start" name="Audit_Granting_Date_Year_Start" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Year_Start_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Year_Start_Global %>" <% } %> />
                       </div>
                     </div>
                   </div>
@@ -223,7 +223,7 @@
 
 
             <div class="govuk-grid-column-one-half">
-              <% if( ssn.Audit_Granting_Date_Day_Error || ssn.Audit_Granting_Date_Month_Error || ssn.Audit_Granting_Date_Year_Error) { %>
+              <% if( ssn.Audit_Granting_Date_Day_End_Error || ssn.Audit_Granting_Date_Month_End_Error || ssn.Audit_Granting_Date_Year_End_Error) { %>
               <div class="govuk-form-group govuk-form-group--error">
                 <fieldset class="govuk-fieldset" role="group" aria-describedby="Audit_Granting_Date-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -239,57 +239,57 @@
                   <div class="govuk-date-input" id="Audit_Granting_Date">
                     <div class="govuk-date-input__item">
                       <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Day">
+                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Day_End">
                           Day
                         </label>
-                        <% if( ssn.Audit_Granting_Date_Day_Error) { %>
+                        <% if( ssn.Audit_Granting_Date_Day_End_Error) { %>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error"
-                          id="Audit_Granting_Date_Day" name="Audit_Granting_Date_Day" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Day_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Day_Global%>" <% } %> />
+                          id="Audit_Granting_Date_Day_End" name="Audit_Granting_Date_Day_End" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Day_End_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Day_End_Global%>" <% } %> />
                         <% } else { %>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Day" name="Audit_Granting_Date_Day" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Day_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Day_Global%>" <% } %> />
+                          id="Audit_Granting_Date_Day_End" name="Audit_Granting_Date_Day_End" type="text"
+                          <% if(ssn.Audit_Granting_Date_Day_End_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Day_End_Global%>" <% } %> />
                         <% } %>
                       </div>
                     </div>
                     <div class="govuk-date-input__item">
                       <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Month">
+                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Month_End">
                           Month
                         </label>
 
-                        <% if( ssn.Audit_Granting_Date_Month_Error) { %>
+                        <% if( ssn.Audit_Granting_Date_Month_End_Error) { %>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error"
-                          id="Audit_Granting_Date_Month" name="Audit_Granting_Date_Month" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Month_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Month_Global%>" <% } %> />
+                          id="Audit_Granting_Date_Month_End" name="Audit_Granting_Date_Month_End" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Month_End_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Month_End_Global%>" <% } %> />
                         <% } else { %>
 
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Month" name="Audit_Granting_Date_Month" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Month_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Month_Global%>" <% } %> />
+                          id="Audit_Granting_Date_Month_End" name="Audit_Granting_Date_Month_End" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Month_End_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Month_End_Global%>" <% } %> />
                         <% } %>
                       </div>
                     </div>
                     <div class="govuk-date-input__item">
                       <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Year">
+                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Year_End">
                           Year
                         </label>
-                        <% if( ssn.Audit_Granting_Date_Year_Error) { %>
+                        <% if( ssn.Audit_Granting_Date_Year_End_Error) { %>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error"
-                          id="Audit_Granting_Date_Year" name="Audit_Granting_Date_Year" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Year_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Year_Global%>" <% } %> />
+                          id="Audit_Granting_Date_Year_End" name="Audit_Granting_Date_Year_End" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Year_End_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Year_End_Global%>" <% } %> />
                         <% } else { %>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                          id="Audit_Granting_Date_Year" name="Audit_Granting_Date_Year" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Year_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Year_Global%>" <% } %> />
+                          id="Audit_Granting_Date_Year_End" name="Audit_Granting_Date_Year_End" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Year_End_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Year_End_Global%>" <% } %> />
                         <% } %>
                       </div>
                     </div>
@@ -314,35 +314,35 @@
                   <div class="govuk-date-input" id="Audit_Granting_Date">
                     <div class="govuk-date-input__item">
                       <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Day">
+                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Day_End">
                           Day
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Day" name="Audit_Granting_Date_Day" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Day_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Day_Global%>" <% } %> />
+                          id="Audit_Granting_Date_Day_End" name="Audit_Granting_Date_Day_End" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Day_End_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Day_End_Global%>" <% } %> />
                       </div>
                     </div>
                     <div class="govuk-date-input__item">
                       <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Month">
+                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Month_End">
                           Month
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Month" name="Audit_Granting_Date_Month" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Month_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Month_Global%>" <% } %> />
+                          id="Audit_Granting_Date_Month_End" name="Audit_Granting_Date_Month_End" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Month_End_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Month_End_Global%>" <% } %> />
                       </div>
                     </div>
                     <div class="govuk-date-input__item">
                       <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Year">
+                        <label class="govuk-label govuk-date-input__label" for="Audit_Granting_Date_Year_End">
                           Year
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                          id="Audit_Granting_Date_Year" name="Audit_Granting_Date_Year" type="text" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Audit_Granting_Date_Year_Global) {%>
-                          value="<%= ssn.Audit_Granting_Date_Year_Global %>" <% } %> />
+                          id="Audit_Granting_Date_Year_End" name="Audit_Granting_Date_Year_End" type="text"
+                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Year_End_Global) {%>
+                          value="<%= ssn.Audit_Granting_Date_Year_End_Global %>" <% } %> />
                       </div>
                     </div>
                     <div style="margin: 0%;display: inline-flex;

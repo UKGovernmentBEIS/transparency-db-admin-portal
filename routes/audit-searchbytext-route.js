@@ -9,7 +9,7 @@ const router = express.Router();
 const axios = require("axios");
 var request = require("request");
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
@@ -17,7 +17,6 @@ router.get("/", async (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-  console.log("req.query.page: " + req.query.sort);
   ssn.awards_status = req.query.sort;
 
   Award_page = 1;
@@ -26,6 +25,8 @@ router.get("/", async (req, res) => {
   if (Award_selected_status == "Show all") {
     Award_selected_status = "";
   }
+
+  ssn.audit_search_by_text = req.body.search_text;
 
   const data_request = {
     searchName: ssn.audit_search_by_text,
@@ -56,9 +57,7 @@ router.get("/", async (req, res) => {
     },
   };
 
-  console.log(
-    "user principle object:" + JSON.stringify(ssn.UserPrincipleObjectGlobal)
-  );
+  console.log("user principle object:" + JSON.stringify(data_request));
   try {
     const apidata = await axios.post(
       beis_url_accessmanagement + "/accessmanagement/auditlogs",
