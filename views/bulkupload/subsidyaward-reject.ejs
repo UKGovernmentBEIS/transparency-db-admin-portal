@@ -20,7 +20,7 @@
 <body class="govuk-template__body app-example-page">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
-    <%- include('../partials/header.ejs') %>
+    <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main id="main-content" role="main">
             <div class="govuk-phase-banner">
@@ -144,8 +144,8 @@
                             data-module="govuk-button">
                             Delete subsidy award
                         </button>
-                        <a href="/subsidyawardfetch/?award=<%= awardnumber %>"
-                            class="govuk-link govuk-cancel-button-link"> Cancel</a>
+                        <!-- <a href="/subsidyawardfetch/?award=<%= awardnumber %>"
+                            class="govuk-link govuk-cancel-button-link"> Cancel</a> -->
                         <% } %>
                     </form>
 
