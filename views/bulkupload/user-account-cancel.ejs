@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - User cancel page</title>
+    <title>GOV.UK - Account details cancel page</title>
     <%- include('../partials/headercss.ejs') %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
@@ -106,8 +106,10 @@
                 <a href="/useraccount" class="govuk-button govuk-button--secondary" data-module="govuk-button">
                     Yes, cancel
                 </a>
-                <a href="/useraccountdetails" class="govuk-button govuk-button_sm govuk-button--secondary"
-                    data-module="govuk-button"> No </a>
+                <button onclick="window.history.back()" class="govuk-button govuk-button_sm govuk-button--secondary"
+                    data-module="govuk-button">No</button>
+                <!-- <a href="/useraccountdetails" class="govuk-button govuk-button_sm govuk-button--secondary"
+                    data-module="govuk-button"> No </a> -->
             </div>
 
         </main>

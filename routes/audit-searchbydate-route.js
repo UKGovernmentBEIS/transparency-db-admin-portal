@@ -54,16 +54,15 @@ router.post("/", async (req, res) => {
 
   ssn.Audit_Granting_Date_Year_End_Global =
     req.body.Audit_Granting_Date_Year_End;
-  ssn.Audit_Granting_Date_Year_Month_End_Global =
+  ssn.Audit_Granting_Date_Month_End_Global =
     req.body.Audit_Granting_Date_Month_End;
-  ssn.Audit_Granting_Date_Year_Day_End_Global =
-    req.body.Audit_Granting_Date_Day_End;
+  ssn.Audit_Granting_Date_Day_End_Global = req.body.Audit_Granting_Date_Day_End;
 
   ssn.Audit_Granting_Date_Year_Start_Global =
     req.body.Audit_Granting_Date_Year_Start;
-  ssn.Audit_Granting_Date_Year_Month_Start_Global =
+  ssn.Audit_Granting_Date_Month_Start_Global =
     req.body.Audit_Granting_Date_Month_Start;
-  ssn.Audit_Granting_Date_Year_Day_Start_Global =
+  ssn.Audit_Granting_Date_Day_Start_Global =
     req.body.Audit_Granting_Date_Day_Start;
 
   const data_request = {

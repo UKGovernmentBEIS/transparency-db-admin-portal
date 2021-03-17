@@ -7,7 +7,6 @@ var session = require("express-session");
 const router = express.Router();
 
 const axios = require("axios");
-var request = require("request");
 
 router.post("/", async (req, res) => {
   ssn = req.session;
@@ -16,13 +15,13 @@ router.post("/", async (req, res) => {
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-  var { reject_reason_text } = req.body;
+  var { reject_reason_text, buttonValue } = req.body;
   console.log("awardnumber : " + awardnumber);
   console.log("Award_status : " + Award_status);
   console.log("reject_reason : " + reject_reason_text);
 
   const data_request = {
-    status: "Rejected",
+    status: buttonValue,
     reason: reject_reason_text,
   };
 
