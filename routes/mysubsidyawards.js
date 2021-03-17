@@ -86,7 +86,7 @@ router.get("/", async (req, res) => {
     totalSubsidyAward = searchawards_api.awardStatusCounts.totalSubsidyAward;
     totalPublishedAward =
       searchawards_api.awardStatusCounts.totalPublishedAward;
-    totalInactiveAward = searchawards_api.awardStatusCounts.totalInactiveAward;
+    totalInactiveAward = searchawards_api.awardStatusCounts.totalDeleteAward;
 
     pageCount = Math.ceil(totalrows / ssn.frontend_totalRecordsPerPage);
     console.log("totalrows :" + totalrows);
