@@ -851,4 +851,8 @@ app.use("/auditsearchbytextroute", auditsearchbytextroute);
 var auditpageroute = require("./routes/audit-page-route");
 app.use("/auditpageroute", auditpageroute);
 
+// Cookies Consent
+
+var cookieshelp = require("./routes/cookies-help");
+app.use("/cookieshelp", cookieshelp);
 module.exports = app;
