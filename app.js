@@ -64,6 +64,7 @@ console.log("Start of the application");
 app.get("/", async (req, res) => {
   console.log("Landing root route");
   var id_token = req.header("x-ms-token-aad-id-token");
+
   console.log("id_token " + id_token);
   console.log("req.session", req.session);
   ssn = req.session;
