@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
   ssn.audit_search_by_text = "";
   ssn.audit_search_by_from_date = "";
   ssn.audit_search_by_end_date = "";
- 
+
   audit_page = 1;
 
   ssn.audit_username_arrow = "upanddown";
@@ -33,43 +33,39 @@ router.get("/", async (req, res) => {
   ssn.audit_grantingauthority_sorting_order = "desc";
   ssn.audit_action_sorting_order = "desc";
 
-  ssn.sorting_order  = "userName,asc"
+  ssn.sorting_order = "userName,asc";
   console.log("ssn.sorting_order:" + ssn.sorting_order);
-
 
   const data_request = {
     searchName: ssn.audit_search_by_text,
-    searchStartDate : ssn.audit_search_by_from_date,
-    searchEndDate : ssn.audit_search_by_end_date,
+    searchStartDate: ssn.audit_search_by_from_date,
+    searchEndDate: ssn.audit_search_by_end_date,
     pageNumber: 1,
-    totalRecordsPerPage: ssn.frontend_totalRecordsPerPage,    
-    sortBy: [ ssn.sorting_order ],
+    totalRecordsPerPage: ssn.frontend_totalRecordsPerPage,
+    sortBy: [ssn.sorting_order],
   };
 
-
-
   var userPrincipleRequest =
-  '{"userName":"' +
-  ssn.dashboard_user_name +
-  '","password":"password123",' +
-  '"role":"' +
-  ssn.dashboard_roles +
-  '","grantingAuthorityGroupId":"' +
-  ssn.dashbaord_ga_ID +
-  '","grantingAuthorityGroupName":"' +
-  ssn.dashboard_ga_name +
-  '"}';
+    '{"userName":"' +
+    ssn.dashboard_user_name +
+    '","password":"password123",' +
+    '"role":"' +
+    ssn.dashboard_roles +
+    '","grantingAuthorityGroupId":"' +
+    ssn.dashbaord_ga_ID +
+    '","grantingAuthorityGroupName":"' +
+    ssn.dashboard_ga_name +
+    '"}';
 
-console.log("userprinciple: " + userPrincipleRequest);
-ssn.UserPrincipleObjectGlobal = {
-  headers: {
-    "Content-Type": "application/json;charset=UTF-8",
-    userPrinciple: userPrincipleRequest,
-  },
-};
+  console.log("userprinciple: " + userPrincipleRequest);
+  ssn.UserPrincipleObjectGlobal = {
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
+      userPrinciple: userPrincipleRequest,
+    },
+  };
 
-
-  console.log("user principle object:" + JSON.stringify(ssn.UserPrincipleObjectGlobal));
+  console.log("user principle object:" + JSON.stringify(data_request));
   try {
     const apidata = await axios.post(
       beis_url_accessmanagement + "/accessmanagement/auditlogs",

@@ -128,7 +128,7 @@ router.get("/", async (req, res) => {
 
         if (ssn.last_modified_arrow == "upanddown") {
           sorting_column = "lastModifiedTimestamp,asc";
-          ssn.last_modified_arrow = "downdecending";
+          ssn.last_modified_arrow = "upacending";
         } else if (ssn.last_modified_arrow == "upacending") {
           sorting_column = "lastModifiedTimestamp,desc";
           ssn.last_modified_arrow = "downdecending";

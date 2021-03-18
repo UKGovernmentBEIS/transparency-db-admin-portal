@@ -405,10 +405,10 @@ app.get("/", async (req, res) => {
   console.log("userprincile: " + userPrincipleRequest);
   ssn.UserPrincileObjectGlobal = {
     headers: {
+      "Content-Type": "application/json;charset=UTF-8",
       userPrinciple: userPrincipleRequest,
     },
   };
-  console.log("ssn.dashbaord_ga_ID", ssn);
   gaAdminCount_Global = 0;
   gaApproverCount_Global = 0;
   gaEncoderCount_Global = 0;
@@ -439,7 +439,7 @@ app.get("/", async (req, res) => {
     console.log(
       "response_error_message catchGROUPS : " + response_error_message
     );
-    // res.redirect("/signout");
+    res.redirect("/signout");
     // window.location.href = "/signout";
   }
 
@@ -457,10 +457,35 @@ app.get("/", async (req, res) => {
       console.log("API_response_code: try" + API_response_code);
       console.log("Body: ", apidata.data);
       dashboardawards = apidata.data;
+      var searchAudits = [];
+      try {
+        const data_request = {
+          searchName: "",
+          searchStartDate: "",
+          searchEndDate: "",
+          pageNumber: 1,
+          totalRecordsPerPage: 10,
+          sortBy: ["createdTimestamp,asc"],
+        };
+        const apidata = await axios.post(
+          beis_url_accessmanagement + "/accessmanagement/auditlogs",
+          data_request,
+          ssn.UserPrincileObjectGlobal
+        );
 
+        console.log("Body: ", apidata.data);
+        for (var i = 0; i <= 5; i++) {
+          searchAudits.push(apidata.data.auditLogs[i]);
+        }
+        console.log("searchAudits", searchAudits);
+      } catch (err) {
+        console.log("searchAudits", searchAudits);
+        console.log("message error : " + err);
+      }
       res.render("bulkupload/dashboard-beisadmin", {
         beis_url_accessmanagement,
         ssn,
+        searchAudits,
         gaAdminCount_Global,
         gaApproverCount_Global,
         gaEncoderCount_Global,
