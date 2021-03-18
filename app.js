@@ -304,39 +304,39 @@ app.get("/", async (req, res) => {
   ssn.frontend_totalRecordsPerPage = 10;
 
   var id_token_decoded = jwt_decode(id_token);
-  console.log("id_token_decoded " + id_token_decoded);
-  console.log("logged in user " + id_token_decoded.name);
-  console.log("id_token_decoded parsed " + JSON.stringify(id_token_decoded));
+  // console.log("id_token_decoded " + id_token_decoded);
+  // console.log("logged in user " + id_token_decoded.name);
+  // console.log("id_token_decoded parsed " + JSON.stringify(id_token_decoded));
   var id_token_json = JSON.parse(JSON.stringify(id_token_decoded));
   ssn.dashboard_user_name = id_token_decoded.name;
   ssn.user_id = id_token_decoded.oid;
   ssn.dashboard_roles_object = JSON.stringify(id_token_json.roles);
-  console.log("roles :" + ssn.dashboard_roles_object);
+  // console.log("roles :" + ssn.dashboard_roles_object);
   ssn.dashboard_roles_object_id1 = ssn.dashboard_roles_object.substr(2, 36);
   ssn.dashboard_roles_object_id2 = ssn.dashboard_roles_object.substr(41, 36);
 
-  console.log(
-    "ssn.dashboard_roles_object_id1:" + ssn.dashboard_roles_object_id1
-  );
-  console.log(
-    "ssn.dashboard_roles_object_id2:" + ssn.dashboard_roles_object_id2
-  );
+  // console.log(
+  //   "ssn.dashboard_roles_object_id1:" + ssn.dashboard_roles_object_id1
+  // );
+  // console.log(
+  //   "ssn.dashboard_roles_object_id2:" + ssn.dashboard_roles_object_id2
+  // );
 
   try {
     var apiroles = await axios.get(
       beis_url_accessmanagement + "/accessmanagement/allga"
     );
-    console.log(`Status: ${apiroles.status}`);
+    // console.log(`Status: ${apiroles.status}`);
     API_response_code = `${apiroles.status}`;
-    console.log("API_response_code: try" + API_response_code);
-    console.log("Body: ", apiroles.data);
+    // console.log("API_response_code: try" + API_response_code);
+    // console.log("Body: ", apiroles.data);
     ssn.apiroles_extract = apiroles.data;
     ssn.apiroles_total_objects = Object.keys(ssn.apiroles_extract).length;
-    console.log(" apiroles_total_objects: ", ssn.apiroles_total_objects);
+    // console.log(" apiroles_total_objects: ", ssn.apiroles_total_objects);
 
     for (var i = 0; i < ssn.apiroles_total_objects; i++) {
       if (ssn.dashboard_roles_object_id1 == ssn.apiroles_extract[i].azGrpId) {
-        console.log("gaName id1 : " + ssn.apiroles_extract[i].gaId);
+        // console.log("gaName id1 : " + ssn.apiroles_extract[i].gaId);
         apiroles_extract_object1 = ssn.apiroles_extract[i].gaName;
         ssn.dashbaord_ga_ID = ssn.apiroles_extract[i].gaId;
       }
@@ -344,7 +344,7 @@ app.get("/", async (req, res) => {
 
     for (var i = 0; i < ssn.apiroles_total_objects; i++) {
       if (ssn.dashboard_roles_object_id2 == ssn.apiroles_extract[i].azGrpId) {
-        console.log("gaName id2 : " + ssn.apiroles_extract[i].gaName);
+        //console.log("gaName id2 : " + ssn.apiroles_extract[i].gaName);
         apiroles_extract_object2 = ssn.apiroles_extract[i].gaName;
       }
     }
@@ -387,8 +387,8 @@ app.get("/", async (req, res) => {
     ssn.dashboard_ga_name = apiroles_extract_object1;
   }
 
-  console.log("ssn.dashboard_roles : " + ssn.dashboard_roles);
-  console.log("ssn.dashboard_ga_name : " + ssn.dashboard_ga_name);
+  // console.log("ssn.dashboard_roles : " + ssn.dashboard_roles);
+  // console.log("ssn.dashboard_ga_name : " + ssn.dashboard_ga_name);
 
   var userPrincipleRequest =
     '{"userName":"' +
@@ -402,7 +402,7 @@ app.get("/", async (req, res) => {
     ssn.dashboard_ga_name +
     '"}';
 
-  console.log("userprincile: " + userPrincipleRequest);
+  // console.log("userprincile: " + userPrincipleRequest);
   ssn.UserPrincileObjectGlobal = {
     headers: {
       "Content-Type": "application/json;charset=UTF-8",
@@ -442,46 +442,46 @@ app.get("/", async (req, res) => {
     res.redirect("/signout");
     // window.location.href = "/signout";
   }
+  var searchAudits = [];
+  try {
+    const data_request = {
+      searchName: "",
+      searchStartDate: "",
+      searchEndDate: "",
+      pageNumber: 1,
+      totalRecordsPerPage: 10,
+      sortBy: ["createdTimestamp,desc"],
+    };
+    const apidata = await axios.post(
+      beis_url_accessmanagement + "/accessmanagement/auditlogs",
+      data_request,
+      ssn.UserPrincileObjectGlobal
+    );
 
+    // console.log("Body: ", apidata.data);
+    for (var i = 0; i <= 4; i++) {
+      searchAudits.push(apidata.data.auditLogs[i]);
+    }
+    console.log("searchAudits", searchAudits);
+  } catch (err) {
+    console.log("searchAudits", searchAudits);
+    console.log("message error : " + err);
+  }
   if (ssn.dashboard_roles == "BEIS Administrator") {
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
-    console.log("request :" + JSON.stringify(data));
+    // console.log("request :" + JSON.stringify(data));
 
     try {
       var apidata = await axios.get(
         beis_url_accessmanagement + "/accessmanagement/beisadmin",
         ssn.UserPrincileObjectGlobal
       );
-      console.log(`Status: ${apidata.status}`);
-      API_response_code = `${apidata.status}`;
-      console.log("API_response_code: try" + API_response_code);
-      console.log("Body: ", apidata.data);
+      // console.log(`Status: ${apidata.status}`);
+      // API_response_code = `${apidata.status}`;
+      // console.log("API_response_code: try" + API_response_code);
+      // console.log("Body: ", apidata.data);
       dashboardawards = apidata.data;
-      var searchAudits = [];
-      try {
-        const data_request = {
-          searchName: "",
-          searchStartDate: "",
-          searchEndDate: "",
-          pageNumber: 1,
-          totalRecordsPerPage: 10,
-          sortBy: ["createdTimestamp,asc"],
-        };
-        const apidata = await axios.post(
-          beis_url_accessmanagement + "/accessmanagement/auditlogs",
-          data_request,
-          ssn.UserPrincileObjectGlobal
-        );
 
-        console.log("Body: ", apidata.data);
-        for (var i = 0; i <= 5; i++) {
-          searchAudits.push(apidata.data.auditLogs[i]);
-        }
-        console.log("searchAudits", searchAudits);
-      } catch (err) {
-        console.log("searchAudits", searchAudits);
-        console.log("message error : " + err);
-      }
       res.render("bulkupload/dashboard-beisadmin", {
         beis_url_accessmanagement,
         ssn,
@@ -498,22 +498,23 @@ app.get("/", async (req, res) => {
     }
   } else if (ssn.dashboard_roles == "Granting Authority Administrator") {
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
-    console.log("request :" + JSON.stringify(data));
+    // console.log("request :" + JSON.stringify(data));
 
     try {
       var apidata = await axios.get(
         beis_url_accessmanagement + "/accessmanagement/gaadmin",
         ssn.UserPrincileObjectGlobal
       );
-      console.log(`Status: ${apidata.status}`);
+      // console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
-      console.log("API_response_code: try" + API_response_code);
-      console.log("Body: ", apidata.data);
+      // console.log("API_response_code: try" + API_response_code);
+      // console.log("Body: ", apidata.data);
       dashboardawards = apidata.data;
       res.render("bulkupload/dashboard-gaadmin", {
         beis_url_accessmanagement,
         // ssn.dashboard_user_name,
         ssn,
+        searchAudits,
         gaAdminCount_Global,
         gaApproverCount_Global,
         gaEncoderCount_Global,

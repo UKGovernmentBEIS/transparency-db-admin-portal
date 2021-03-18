@@ -173,7 +173,7 @@ router.post("/", async (req, res) => {
     }
   }
 
-  if (GA_Selected) {
+  if (Granting_Authority_Selected) {
     for (var i = 0; i < ssn.apiroles_total_objects; i++) {
       if (GA_Selected == ssn.apiroles_extract[i].gaName) {
         console.log("gaName id1 : " + ssn.apiroles_extract[i].azGrpId);
@@ -183,7 +183,7 @@ router.post("/", async (req, res) => {
     }
   }
 
-  if (ssn.Roles_Selected) {
+  if (GA_Roles_Selected) {
     for (var i = 0; i < ssn.apiroles_total_objects; i++) {
       if (ssn.Roles_Selected == ssn.apiroles_extract[i].gaName) {
         console.log("gaName id2 : " + ssn.apiroles_extract[i].azGrpId);
