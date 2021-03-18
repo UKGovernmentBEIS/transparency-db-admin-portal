@@ -31,7 +31,7 @@
 <body class="govuk-template__body app-example-page" onload="getFormatedCurrency('<%=ssn.Budget_Global%>')">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
-    <%- include('../partials/header.ejs') %>
+    <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main id="main-content" role="main">
             <div class="govuk-phase-banner">
@@ -110,12 +110,11 @@
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Granting authority policy
                                 page summary </th>
                             <td class="govuk-table__cell">
-                                target="_blank">
                                 <% if(ssn.Granting_Authority_URL_Global.includes("https://") || ssn.Granting_Authority_URL_Global.includes("http://")) { %>
                                 <a href="<%= ssn.Granting_Authority_URL_Global %>"
                                     target="_blank"><%= ssn.Granting_Authority_Policy_Global %></a>
                                 <% } else { %>
-                                <a href="https://<%= ssn.searchmeasuredetails.gaSubsidyWebLink %>"
+                                <a href="https://<%= ssn.Granting_Authority_URL_Global %>"
                                     target="_blank"><%= ssn.Granting_Authority_Policy_Global %></a>
                                 <% } %>
 

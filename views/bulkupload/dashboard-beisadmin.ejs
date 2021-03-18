@@ -304,7 +304,7 @@
                 <th scope="col" class="govuk-table__header">Action date</th>
               </tr>
             </thead>
-            <tbody class="govuk-table__body">
+            <!-- <tbody class="govuk-table__body">
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell">
                   <a href="#" class="govuk-editGA"> Mark Smith</a>
@@ -355,6 +355,16 @@
 
                 <td class="govuk-table__cell">6 December 2020</td>
               </tr>
+            </tbody> -->
+            <tbody class="govuk-table__body">
+              <% searchAudits.forEach(function(item) { %>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><%= item.userName %></td>
+                <td class="govuk-table__cell"><%= item.gaName %></td>
+                <td class="govuk-table__cell"><%= item.eventMessage %></td>
+                <td class="govuk-table__cell"><%= item.actionDateTime %></td>
+              </tr>
+              <% } ); %>
             </tbody>
           </table>
         </section>

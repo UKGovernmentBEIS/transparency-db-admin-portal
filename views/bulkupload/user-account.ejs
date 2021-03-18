@@ -21,7 +21,7 @@
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
 
-    <%- include('../partials/header.ejs') %>
+    <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main id="main-content" role="main">
             <div class="govuk-phase-banner">
@@ -100,13 +100,13 @@
                         </th>
                         <td class="govuk-table__cell"></td>
                     </tr>
-                    <!-- <tr class="govuk-table__row">
+                    <tr class="govuk-table__row">
                         <th scope="row" class="govuk-table__header">
                             <p>Change password</p>
-                            <p><a href="#" style="font-weight: normal;
-                                color: #169BD5;">Text Needed</a></p>
+                            <p><a href="/loginnewpassword" style="font-weight: normal;
+                                color: #169BD5;">Change your password</a></p>
                         </th>
-                    </tr> -->
+                    </tr>
                 </tbody>
             </table>
         </main>
