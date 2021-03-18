@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
   ssn.Subsidy_Measure_Title_Global = "";
   ssn.Subsidy_Adhoc_Global = "";
 
-  SubsidyArraySize = 0;
+  ssn.SubsidyArraySize = 0;
 
   ssn.Subsidy_Adhoc_Global = "";
   ssn.Granting_Authority_Name_Measure_Global = "";

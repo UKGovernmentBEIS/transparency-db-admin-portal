@@ -27,7 +27,7 @@
                     </a>
                 </li>
 
-                <% if(ssn.dashboard_roles == 'BEIS Administrator') { %>
+                <% if(ssn.dashboard_roles == 'BEIS Administrator' || ssn.dashboard_roles == 'Granting Authority Administrator') { %>
                 <li class="govuk-sub-navigation__item" id="auditlog-li">
                     <a class="govuk-sub-navigation__link" href="/audithomepage"> Audit log </a>
                 </li>

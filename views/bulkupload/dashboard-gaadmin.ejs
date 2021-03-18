@@ -212,9 +212,9 @@
         <h3 class="govuk-heading-l">Audit log</h3>
 
         <div class=" form-group">
-          <button class="govuk-button govuk-button--success">
+          <a href="/audithomepage" class="govuk-button govuk-button--success">
             Manage audit log
-          </button>
+          </a>
         </div>
         <section class="govuk-table-responsive">
           <table class="govuk-table">
@@ -233,12 +233,14 @@
             </thead>
             <tbody class="govuk-table__body">
               <% searchAudits.forEach(function(item) { %>
+              <% if(item) { %>
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell"><%= item.userName %></td>
                 <td class="govuk-table__cell"><%= item.gaName %></td>
                 <td class="govuk-table__cell"><%= item.eventMessage %></td>
                 <td class="govuk-table__cell"><%= item.actionDateTime %></td>
               </tr>
+              <% }%>
               <% }); %>
             </tbody>
           </table>
