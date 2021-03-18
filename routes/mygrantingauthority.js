@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   ssn = req.session;
-  console.log("ssn", JSON.stringify(ssn));
+
   if (ssn.dashboard_roles == "BEIS Administrator") {
     res.set("X-Frame-Options", "DENY");
     res.set("X-Content-Type-Options", "nosniff");
@@ -211,6 +211,8 @@ router.get("/", async (req, res) => {
       grantingAuthorityList = apidata.data;
       totalrows = grantingAuthorityList.totalSearchResults;
 
+      console.log("GALIST", grantingAuthorityList);
+
       activeCount = grantingAuthorityList.activeCount;
       inActiveCount = grantingAuthorityList.inActiveCount;
       totalSearchResults = grantingAuthorityList.totalSearchResults;
@@ -301,7 +303,7 @@ router.get("/", async (req, res) => {
       // console.log("next :" + next_page);
       // console.log("previous:" + previous_page);
       // console.log("curren:" + current_page);
-      console.log("records per page:" + pageCount);
+      // console.log("records per page:" + pageCount);
 
       res.render("bulkupload/mygrantingauthority", {
         pageCount,

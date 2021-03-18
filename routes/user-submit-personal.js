@@ -13,12 +13,12 @@ router.post("/", async (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-  Full_Name_Edit_Global = ssn.Full_Name_Global + " " + ssn.Last_Name_Global;
-
+  // Full_Name_Edit_Global = ssn.Full_Name_Global + " " + ssn.Last_Name_Global;
+  // Full_Name_Edit_Global = ssn.Full_Name_Global;
   var data_request = {
     surname: ssn.Last_Name_Global,
     mobilePhone: ssn.Phone_Number_Global,
-    givenName: Full_Name_Edit_Global,
+    givenName: ssn.Full_Name_Global,
   };
 
   var data_User = JSON.parse(JSON.stringify(data_request));

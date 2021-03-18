@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
   // ssn.Phone_Number_Global = req.body.mobileNumber;
   // ssn.User_Role_Global = req.body.dashboard_roles;
   // ssn.GA_Name_User_Global = req.body.dashboard_ga_name;
-  Full_Name_Edit_Global = ssn.Full_Name_Global + " " + ssn.Last_Name_Global;
+  // Full_Name_Edit_Global = ssn.Full_Name_Global + " " + ssn.Last_Name_Global;
 
   var data_request = {
     surname: ssn.Last_Name_Global,

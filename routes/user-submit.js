@@ -53,7 +53,7 @@ router.post("/", async (req, res) => {
   };
 
   var data = JSON.parse(JSON.stringify(data_request));
-  console.log("request data : " + JSON.stringify(data));
+  console.log("request data user submit: " + JSON.stringify(data));
 
   try {
     const addUser = await axios.post(
