@@ -459,8 +459,14 @@ app.get("/", async (req, res) => {
     );
 
     // console.log("Body: ", apidata.data);
-    for (var i = 0; i <= 4; i++) {
-      searchAudits.push(apidata.data.auditLogs[i]);
+    if (apidata.data.auditLogs.length > 5) {
+      for (var i = 0; i <= 4; i++) {
+        searchAudits.push(apidata.data.auditLogs[i]);
+      }
+    } else {
+      for (var i = 0; i < apidata.data.auditLogs.length; i++) {
+        searchAudits.push(apidata.data.auditLogs[i]);
+      }
     }
     console.log("searchAudits", searchAudits);
   } catch (err) {
