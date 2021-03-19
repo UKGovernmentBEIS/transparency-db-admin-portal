@@ -543,7 +543,8 @@ button.link {
   vertical-align: middle;
 }
 
-input:disabled {
+input:disabled,
+input[readonly] {
   background-color: lightgray;
   border-color: #0b0c0c;
 }

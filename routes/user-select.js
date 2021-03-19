@@ -56,7 +56,6 @@ router.get("/", async (req, res) => {
           gaNamesList.push(items.gaName);
         }
       });
-      console.log("gaNamesList", gaNamesList);
       res.render("bulkupload/user-select", {
         gaNamesList,
         No_Selected_text,
@@ -182,6 +181,8 @@ router.post("/", async (req, res) => {
       }
     }
   }
+
+  console.log("ssn.apiroles_total_objects", ssn.apiroles_extract);
 
   if (GA_Roles_Selected) {
     for (var i = 0; i < ssn.apiroles_total_objects; i++) {

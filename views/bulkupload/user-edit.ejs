@@ -59,139 +59,139 @@
             <div id="sign-in-hint" class="govuk-hint">
                 Role
             </div>
+            <form method="POST" action="/usereditreview">
+                <div class="govuk-radios govuk-form-group">
+                    <div class="govuk-radios__item">
+                        <%  if(UserRole == 'BEIS Administrator') { %>
+                        <input class="govuk-radios__input" id="BEISAdmin" name="userRole" type="radio"
+                            value="BEIS Administrator" checked>
+                        <% } else { %>
+                        <input class="govuk-radios__input" disabled id="BEISAdmin" name="userRole" type="radio"
+                            value="BEIS Administrator">
+                        <% } %>
 
-            <div class="govuk-radios govuk-form-group">
-                <div class="govuk-radios__item">
-                    <%  if(UserRole == 'BEIS Administrator') { %>
-                    <input class="govuk-radios__input" id="BEISAdmin" name="userRole" type="radio"
-                        value="BEIS Administrator" checked>
-                    <% } else { %>
-                    <input class="govuk-radios__input" id="BEISAdmin" name="userRole" type="radio"
-                        value="BEIS Administrator">
-                    <% } %>
+                        <label class="govuk-label govuk-radios__label" for="BEISAdmin">
+                            BEIS Administrator
+                        </label>
+                        <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                            Will be able to add, edit and approve users, granting authorities, subsidy schemes and
+                            awards.
+                        </div>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <%  if(UserRole == 'Granting Authority Administrators') { %>
+                        <input class="govuk-radios__input" id="GAAdmin" name="userRole" type="radio"
+                            value="Granting Authority Administrator" checked>
+                        <% } else { %>
+                        <input class="govuk-radios__input" disabled id="GAAdmin" name="userRole" type="radio"
+                            value="Granting Authority Administrator">
+                        <% } %>
 
-                    <label class="govuk-label govuk-radios__label" for="BEISAdmin">
-                        BEIS Administrator
-                    </label>
-                    <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
-                        Will be able to add, edit and approve users, granting authorities, subsidy schemes and
-                        awards.
+                        <label class="govuk-label govuk-radios__label" for="GAAdmin">
+                            Granting Authority Administrator
+                        </label>
+                        <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                            Will be able to add, edit and approve users, subsidy schemes and awards.
+                        </div>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <%  if(UserRole == 'Granting Authority Approver') { %>
+                        <input class="govuk-radios__input" id="GAApprover" name="userRole" type="radio"
+                            value="Granting Authority Approver" checked>
+                        <% } else { %>
+                        <input class="govuk-radios__input" disabled id="GAApprover" name="userRole" type="radio"
+                            value="Granting Authority Approver">
+                        <% } %>
+
+                        <label class="govuk-label govuk-radios__label" for="GAApprover">
+                            Granting Authority Approver
+                        </label>
+                        <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                            Will be able to add, edit and approve subsidy schemes and awards.
+                        </div>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <%  if(UserRole == 'Granting Authority Encoder') { %>
+                        <input class="govuk-radios__input" id="GAEncoder" name="userRole" type="radio"
+                            value="Granting Authority Encoder" checked>
+                        <% } else { %>
+                        <input class="govuk-radios__input" disabled id="GAEncoder" name="userRole" type="radio"
+                            value="Granting Authority Encoder">
+                        <% } %>
+                        <label class="govuk-label govuk-radios__label" for="GAEncoder">
+                            Granting Authority Encoder
+                        </label>
+                        <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                            Will be able to add and edit subsidy awards.
+                        </div>
                     </div>
                 </div>
-                <div class="govuk-radios__item">
-                    <%  if(UserRole == 'Granting Authority Administrators') { %>
-                    <input class="govuk-radios__input" id="GAAdmin" name="where-do-you-live" type="radio"
-                        value="Granting Authority Administrator" checked>
-                    <% } else { %>
-                    <input class="govuk-radios__input" id="GAAdmin" name="where-do-you-live" type="radio"
-                        value="Granting Authority Administrator">
-                    <% } %>
-
-                    <label class="govuk-label govuk-radios__label" for="GAAdmin">
-                        Granting Authority Administrator
+                <div class="govuk-grid-column-full govuk-form-group" id="ga-name-div">
+                    <label class="govuk-label" for="width-20">
+                        Granting Authority name
                     </label>
-                    <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
-                        Will be able to add, edit and approve users, subsidy schemes and awards.
-                    </div>
-                </div>
-                <div class="govuk-radios__item">
-                    <%  if(UserRole == 'Granting Authority Approver') { %>
-                    <input class="govuk-radios__input" id="GAApprover" name="where-do-you-live" type="radio"
-                        value="Granting Authority Approver" checked>
-                    <% } else { %>
-                    <input class="govuk-radios__input" id="GAApprover" name="where-do-you-live" type="radio"
-                        value="Granting Authority Approver">
-                    <% } %>
-
-                    <label class="govuk-label govuk-radios__label" for="GAApprover">
-                        Granting Authority Approver
-                    </label>
-                    <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
-                        Will be able to add, edit and approve subsidy schemes and awards.
-                    </div>
-                </div>
-                <div class="govuk-radios__item">
-                    <%  if(UserRole == 'Granting Authority Encoder') { %>
-                    <input class="govuk-radios__input" id="GAEncoder" name="userRole" type="radio"
-                        value="Granting Authority Encoder" checked>
-                    <% } else { %>
-                    <input class="govuk-radios__input" id="GAEncoder" name="userRole" type="radio"
-                        value="Granting Authority Encoder">
-                    <% } %>
-                    <label class="govuk-label govuk-radios__label" for="GAEncoder">
-                        Granting Authority Encoder
-                    </label>
-                    <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
-                        Will be able to add and edit subsidy awards.
-                    </div>
-                </div>
-            </div>
-            <div class="govuk-grid-column-full govuk-form-group" id="ga-name-div">
-                <label class="govuk-label" for="width-20">
-                    Granting Authority name
-                </label>
-                <!-- <div class="govuk-form-group govuk-grid-column-two-thirds govuk-padding-0"> -->
-                <input class="govuk-input govuk-!-width-two-thirds" value="<%=GA_Selected%>" name="GA_Selected"
-                    placeholder="Granting Authority name" type="text">
-                <!-- <button class="govuk-button" data-module="govuk-button">
+                    <!-- <div class="govuk-form-group govuk-grid-column-two-thirds govuk-padding-0"> -->
+                    <input class="govuk-input govuk-!-width-two-thirds" value="<%=GA_Selected%>" name="GA_Selected"
+                        placeholder="Granting Authority name" type="text" disabled>
+                    <!-- <button class="govuk-button" data-module="govuk-button">
                             Select
                         </button> -->
-                <!-- </div> -->
-            </div>
-            <div class="govuk-grid-column-full govuk-grid-row" id="full-name-div">
-                <div class="govuk-form-group govuk-grid-column-one-third">
-                    <label class="govuk-label" for="width-20">
-                        First name
-                    </label>
-                    <input class="govuk-input govuk-input--width-20" value="<%=ssn.User_Name_Single%>"
-                        name="User_Name_Single" type="text">
+                    <!-- </div> -->
                 </div>
-            </div>
-            <div class="govuk-grid-column-full govuk-grid-row">
-
-                <div class="govuk-form-group govuk-grid-column-one-third">
-                    <label class="govuk-label" for="width-20">
-                        Last name
-                    </label>
-                    <input class="govuk-input govuk-input--width-20" name="User_Last_Name_Single"
-                        value="<%=ssn.User_Last_Name_Single%>" type="text">
-                </div>
-
-            </div>
-            <div class="govuk-grid-column-full govuk-grid-row">
-                <div class="govuk-form-group govuk-grid-column-one-third">
-                    <label class="govuk-label" for="width-20">
-                        Email address
-                    </label>
-                    <input class="govuk-input govuk-input--width-20" value="<%=ssn.User_Email_Single%>"
-                        name="User_Email_Single" type="text">
-                </div>
-
-            </div>
-            <div class="govuk-grid-column-full govuk-grid-row">
-                <div class="govuk-form-group govuk-grid-column-full">
-                    <label class="govuk-label" for="width-20">
-                        Mobile phone number
-                    </label>
-                    <div class="govuk-hint">
-                        We will send a reset code to this phone number if the user forgets their password.
+                <div class="govuk-grid-column-full govuk-grid-row" id="full-name-div">
+                    <div class="govuk-form-group govuk-grid-column-one-third">
+                        <label class="govuk-label" for="width-20">
+                            First name
+                        </label>
+                        <input class="govuk-input govuk-input--width-20" value="<%=ssn.User_Name_Single%>"
+                            name="User_Name_Single" type="text" required>
                     </div>
-                    <input class="govuk-input govuk-input--width-10" value="<%=ssn.User_Mobile_Single%>"
-                        name="User_Mobile_Single" type="text">
                 </div>
-            </div>
+                <div class="govuk-grid-column-full govuk-grid-row">
 
-            <button class="govuk-button" data-module="govuk-button">
-                Continue
-            </button>
-            <a href="/userdeactivate" class="govuk-button govuk-button--warning" data-module="govuk-button">
-                Deactivate user
-            </a>
-            <a class="govuk-link govuk-cancel-button-link" href="/canceluser">
-                Cancel
-            </a>
+                    <div class="govuk-form-group govuk-grid-column-one-third">
+                        <label class="govuk-label" for="width-20">
+                            Last name
+                        </label>
+                        <input class="govuk-input govuk-input--width-20" name="User_Last_Name_Single"
+                            value="<%=ssn.User_Last_Name_Single%>" type="text" required>
+                    </div>
 
+                </div>
+                <div class="govuk-grid-column-full govuk-grid-row">
+                    <div class="govuk-form-group govuk-grid-column-one-third">
+                        <label class="govuk-label" for="width-20">
+                            Email address
+                        </label>
+                        <input class="govuk-input govuk-input--width-20" value="<%=ssn.User_Email_Single%>"
+                            name="User_Email_Single" type="text" readonly>
+                    </div>
 
+                </div>
+                <div class="govuk-grid-column-full govuk-grid-row">
+                    <div class="govuk-form-group govuk-grid-column-full">
+                        <label class="govuk-label" for="width-20">
+                            Mobile phone number
+                        </label>
+                        <div class="govuk-hint">
+                            We will send a reset code to this phone number if the user forgets their password.
+                        </div>
+                        <input class="govuk-input govuk-input--width-10" value="<%=ssn.User_Mobile_Single%>"
+                            name="User_Mobile_Single" type="text" required>
+                    </div>
+                </div>
+
+                <button class="govuk-button" data-module="govuk-button">
+                    Continue
+                </button>
+                <a href="/userdeactivate" class="govuk-button govuk-button--warning" data-module="govuk-button">
+                    Deactivate user
+                </a>
+                <a class="govuk-link govuk-cancel-button-link" href="/canceluser">
+                    Cancel
+                </a>
+
+            </form>
         </main>
     </div>
     <%- include('../partials/footer.ejs') %>

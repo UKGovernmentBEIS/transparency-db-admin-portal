@@ -43,59 +43,54 @@ router.post("/", async (req, res) => {
     console.log(`Status: ${awardapidata.status}`);
     console.log("Body: ", awardapidata.data);
     console.log("awardendpoint:" + awardendpoint);
+    buttonValue = buttonValue.toLowerCase();
+    res.render("bulkupload/subsidyaward-deleted-successfully", {
+      buttonValue,
+      awardnumber,
+    });
+    // try {
+    //   const apidata = await axios.get(
+    //     Award_search_URL,
+    //     ssn.UserPrincileObjectGlobal
+    //   );
+    //   console.log(`Status: ${apidata.status}`);
+    //   API_response_code = `${apidata.status}`;
+    //   console.log("API_response_code: try" + API_response_code);
+    //   console.log("Body: ", apidata.data);
+    //   searchawards = apidata.data;
+    //   var searchawards_api = apidata.data;
+    //   console.log("searchawards" + searchawards_api);
+    //   const seachawardstring = JSON.stringify(searchawards_api);
+    //   const seachawardJSON = JSON.parse(seachawardstring);
+    //   totalrows = searchawards.totalSearchResults;
 
-    try {
-      const apidata = await axios.get(
-        Award_search_URL,
-        ssn.UserPrincileObjectGlobal
-      );
-      console.log(`Status: ${apidata.status}`);
-      API_response_code = `${apidata.status}`;
-      console.log("API_response_code: try" + API_response_code);
-      console.log("Body: ", apidata.data);
-      searchawards = apidata.data;
-      var searchawards_api = apidata.data;
-      console.log("searchawards" + searchawards_api);
-      const seachawardstring = JSON.stringify(searchawards_api);
-      const seachawardJSON = JSON.parse(seachawardstring);
-      totalrows = searchawards.totalSearchResults;
+    //   pageCount = Math.ceil(totalrows / ssn.frontend_totalRecordsPerPage);
+    //   console.log("totalrows :" + totalrows);
+    //   console.log("pageCount :" + pageCount);
+    //   current_page = 1;
+    //   previous_page = 1;
+    //   next_page = 2;
+    //   start_record = 1;
+    //   end_record = ssn.frontend_totalRecordsPerPage;
+    //   current_page_active = 1;
 
-      pageCount = Math.ceil(totalrows / ssn.frontend_totalRecordsPerPage);
-      console.log("totalrows :" + totalrows);
-      console.log("pageCount :" + pageCount);
-      current_page = 1;
-      previous_page = 1;
-      next_page = 2;
-      start_record = 1;
-      end_record = ssn.frontend_totalRecordsPerPage;
-      current_page_active = 1;
+    //   start_page = 1;
+    //   if (pageCount < 10) {
+    //     end_page = pageCount;
+    //   } else {
+    //     end_page = 9;
+    //   }
 
-      start_page = 1;
-      if (pageCount < 10) {
-        end_page = pageCount;
-      } else {
-        end_page = 9;
-      }
-
-      res.render("bulkupload/mysubsidyawards", {
-        pageCount,
-        previous_page,
-        next_page,
-        start_record,
-        end_record,
-        totalrows,
-        current_page_active,
-        ssn,
-      });
-    } catch (err) {
-      console.log("message error : " + err);
-      if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
-      else if (err.toString().includes("401"))
-        res.render("bulkupload/notAuthorized");
-      // res.render('publicusersearch/noresults');
-    }
-
-    //   res.render('bulkupload/mysubsidyawards')  ;
+    //   res.render("bulkupload/mysubsidyawards", {
+    //     pageCount,
+    //     previous_page,
+    //     next_page,
+    //     start_record,
+    //     end_record,
+    //     totalrows,
+    //     current_page_active,
+    //     ssn,
+    //   });
   } catch (err) {
     console.log("message error : " + err);
     if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
