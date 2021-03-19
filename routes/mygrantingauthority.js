@@ -335,6 +335,8 @@ router.get("/", async (req, res) => {
         ssn,
       });
     } catch (err) {
+      nogas = true;
+      noresult = true;
       if (err.toString().includes("404")) {
         noGrantingAuthority = "No granting authority available";
         res.render("bulkupload/mygrantingauthority", {

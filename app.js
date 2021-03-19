@@ -65,8 +65,8 @@ app.get("/", async (req, res) => {
   console.log("Landing root route");
   var id_token = req.header("x-ms-token-aad-id-token");
 
-  console.log("id_token " + id_token);
-  console.log("req.session", req.session);
+  // console.log("id_token " + id_token);
+  // console.log("req.session", req.session);
   ssn = req.session;
   // ssn.Subsidy_Control_Number_Global="";
   // ssn.SubsidyArraySize;
@@ -609,6 +609,9 @@ app.use("/loginfirstpage", loginfirstpage);
 var mysubsidyawards = require("./routes/mysubsidyawards");
 app.use("/mysubsidyawards", mysubsidyawards);
 
+// var subsidyawarddeletedsuccessfully = require("./routes/subsidyaward-deleted-successfully");
+// app.use("/subsidyawarddeletedsuccessfully", subsidyawarddeletedsuccessfully);
+
 var bulkuploadsubsidy = require("./routes/bulkuploadsubsidy");
 app.use("/bulkuploadsubsidy", bulkuploadsubsidy);
 
@@ -862,6 +865,12 @@ app.use("/user-account-cancel", useraccountcancel);
 
 var useraccountsubmit = require("./routes/user-account-submit");
 app.use("/useraccountsubmit", useraccountsubmit);
+
+var usereditreview = require("./routes/user-edit-review");
+app.use("/usereditreview", usereditreview);
+
+var usereditsubmit = require("./routes/user-edit-success");
+app.use("/usereditsubmit", usereditsubmit);
 
 //audit routes
 

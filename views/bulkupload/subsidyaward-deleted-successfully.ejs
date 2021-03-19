@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - User added successfully page</title>
+    <title>GOV.UK - Subsidy award <%=buttonValue%> successfully page</title>
     <%- include('../partials/headercss.ejs') %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
@@ -15,12 +15,12 @@
         gtag('js', new Date());
         gtag('config', 'UA-145652997-21');
     </script>
-
 </head>
 
 <body class="govuk-template__body app-example-page">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+
     <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <main id="main-content" role="main">
@@ -35,9 +35,7 @@
                     </span>
                 </p>
             </div>
-            <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
             <%- include('../partials/navigationbar.ejs') %>
-
 
             <!-- bread crumbs start here -->
             <div class="govuk-breadcrumbs ">
@@ -46,10 +44,11 @@
                         <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" href="/userselect">Users</a>
+                        <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Update user</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Subsidy award
+                            <%=buttonValue%></a>
                     </li>
                 </ol>
             </div>
@@ -59,35 +58,33 @@
                 <div class="govuk-grid-column-two-thirds govuk-form-group">
                     <div class="govuk-panel govuk-panel--confirmation">
                         <h1 class="govuk-panel__title">
-                            User details updated
+                            Subsidy award <%=awardnumber%> <%=buttonValue%>
                         </h1>
                     </div>
                 </div>
                 <div class="govuk-grid-column-full govuk-form-group">
-                    <p class="govuk-body govuk-!-font-size-19">You have successfully updated the user details for
-                        <%=ssn.User_Last_Name_Single%> <%=ssn.User_Name_Single%>.</p>
-
+                    <p class="govuk-body govuk-!-font-size-19">You have <%=buttonValue%> subsidy award <%=awardnumber%>.
+                    </p>
+                    <!-- <p class="govuk-body govuk-!-font-size-19">This subsidy scheme is no longer visible on the <a
+                            href="<%=beis_url_publicsearch%>">Search
+                            for UK subsidies</a> service.</p> -->
                 </div>
+
                 <div class="govuk-grid-column-full govuk-form-group">
 
-                    <a class="govuk-button" href="/userselect" data-module="govuk-button">
-                        View all users
+                    <a class="govuk-button" href="/mysubsidyawards" data-module="govuk-button">
+                        View all subsidy awards
                     </a>
-
-                    <a class="govuk-button govuk-button--secondary" href="/adduser" data-module="govuk-button">Add
-                        another
-                        user</a>
 
                 </div>
             </div>
+
         </main>
     </div>
-
     <%- include('../partials/footer.ejs') %>
     <script>
-        document.getElementById('user-li').firstElementChild.setAttribute("aria-current", 'page');
+        document.getElementById('subsidyaward-li').firstElementChild.setAttribute("aria-current", 'page');
     </script>
-
 </body>
 
 </html>

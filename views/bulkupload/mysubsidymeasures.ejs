@@ -67,7 +67,7 @@
 
         </div>
       </div>
-      <% if(ssn.dashboard_roles == 'Granting Authority Administrator' || ssn.dashboard_roles == 'BEIS Administrator') { %>
+      <% if(ssn.dashboard_roles != 'Granting Authority Encoder' ) { %>
       <a href="/addsubsidymeasures" class="govuk-button" data-module="govuk-button">
         Add a new subsidy scheme
       </a>

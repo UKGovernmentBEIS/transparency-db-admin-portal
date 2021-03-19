@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - Individual User Details page</title>
+    <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
+</head>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+
+    <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
+
+            <%- include('../partials/navigationbar.ejs') %>
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/userselect">Users</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">User details</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds-from-desktop">
+
+                    <h1 class="govuk-heading-xl"> <%= ssn.User_Name_Single %> <%= ssn.User_Last_Name_Single %> </h1>
+
+                    <!-- *************************************
+              Review for subsidy details tab
+              ************************************* -->
+                </div>
+                <div class="govuk-grid-column-full">
+                    <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">User details</h2>
+                    <a rel="external" class="govuk-link head-right govuk-relative-position" href="/edituser">
+                        <p>Change </p>
+                    </a>
+                </div>
+            </div>
+            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Role
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= ssn.User_Role_Single %>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Granting Authority name
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <% if ( ssn.User_GA_Name == 'Granting Authority Administrator' 
+                        || ssn.User_GA_Name == 'Granting Authority Approver' 
+                        || ssn.User_GA_Name == 'Granting Authority Encoder' ) {  %>
+                        NA
+                        <% } else if (ssn.User_GA_Name == 'BEIS Administrator' ) {  %>
+                        Department for Business, Energy & Industrial Strategy
+                        <% } else { %>
+                        <%= GA_Selected %>
+                        <% } %>
+                    </dd>
+
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        First name
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= ssn.User_Name_Single %>
+                    </dd>
+
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Last name
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= ssn.User_Last_Name_Single %>
+                    </dd>
+
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Email address
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= ssn.User_Email_Single %>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Contact number
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= ssn.User_Mobile_Single %>
+                    </dd>
+
+                </div>
+
+
+            </dl>
+
+            <form action="/usereditsubmit" method="POST">
+                <!-- <a href="/userupdated" class="govuk-button" data-module="govuk-button">
+                    Save updates
+                </a> -->
+                <button class="govuk-button" data-module="govuk-button">
+                    Continue
+                </button>
+                <!-- <a href="/" class="govuk-link govuk-cancel-button-link">Deactivate</a> -->
+            </form>
+        </main>
+    </div>
+</body>
+
+<%- include('../partials/footer.ejs') %>
+<script>
+    document.getElementById('user-li').firstElementChild.setAttribute("aria-current", 'page');
+</script>
+
+</html>
