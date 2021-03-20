@@ -43,6 +43,12 @@ test("Unit testing for filter route Test for GET call", (done) => {
   global.award_recipient_arrow = "";
   global.granting_authority_arrow = "";
 
+  global.totalSubsidyAward = "";
+  global.totalAwaitingAward = "";
+  global.totalPublishedAward = "";
+  global.totalInactiveAward = "";
+  global.totalRejectedAward = "";
+
   global.beis_url_accessmanagement = "";
   global.awards_status = "Filter results by status";
   global.frontend_totalRecordsPerPage = 10;

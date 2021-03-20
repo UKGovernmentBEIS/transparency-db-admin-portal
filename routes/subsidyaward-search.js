@@ -101,6 +101,12 @@ router.post("/", async (req, res) => {
       totalrows,
       current_page_active,
       ssn,
+
+      totalAwaitingAward,
+      totalRejectedAward,
+      totalSubsidyAward,
+      totalPublishedAward,
+      totalInactiveAward,
     });
   } catch (err) {
     if (err == "Error: Request failed with status code 404") {

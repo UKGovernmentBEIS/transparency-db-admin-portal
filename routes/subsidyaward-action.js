@@ -22,9 +22,13 @@ router.post("/", async (req, res) => {
 
   try {
     if (Award_status == "Rejected" || Award_status == "Deleted") {
-      res.render("bulkupload/subsidyaward-reject", {
+      if (Award_status == "Rejected") Award_status = "Reject";
+      else Award_status = "Delete";
+      Award_status_lower = Award_status.toLowerCase();
+      res.render("bulkupload/subsidyaward-delete", {
         awardnumber,
         Award_status,
+        Award_status_lower,
       });
     } else {
       const data_request = {

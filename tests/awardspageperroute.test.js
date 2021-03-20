@@ -62,6 +62,12 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
   global.start_page = 1;
   global.end_page = 10;
 
+  global.totalSubsidyAward = "";
+  global.totalAwaitingAward = "";
+  global.totalPublishedAward = "";
+  global.totalInactiveAward = "";
+  global.totalRejectedAward = "";
+
   global.Award_sorting_field = "";
   global.subsidy_award_number_arrow = "";
   global.scheme_name_arrow = "";
@@ -107,6 +113,13 @@ test("Unit testing for filter route Test for GET call", (done) => {
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Filter results by status";
   global.frontend_totalRecordsPerPage = 10;
+
+  global.totalSubsidyAward = "";
+  global.totalAwaitingAward = "";
+  global.totalPublishedAward = "";
+  global.totalInactiveAward = "";
+  global.totalRejectedAward = "";
+
   global.searchawards = {
     awards: [
       {

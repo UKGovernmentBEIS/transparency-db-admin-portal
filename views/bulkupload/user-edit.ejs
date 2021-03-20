@@ -126,71 +126,74 @@
                         </div>
                     </div>
                 </div>
-                <div class="govuk-grid-column-full govuk-form-group" id="ga-name-div">
-                    <label class="govuk-label" for="width-20">
-                        Granting Authority name
-                    </label>
-                    <!-- <div class="govuk-form-group govuk-grid-column-two-thirds govuk-padding-0"> -->
-                    <input class="govuk-input govuk-!-width-two-thirds" value="<%=GA_Selected%>" name="GA_Selected"
-                        placeholder="Granting Authority name" type="text" disabled>
-                    <!-- <button class="govuk-button" data-module="govuk-button">
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-full govuk-form-group" id="ga-name-div">
+                        <label class="govuk-label" for="width-20">
+                            Granting Authority name
+                        </label>
+                        <!-- <div class="govuk-form-group govuk-grid-column-two-thirds govuk-padding-0"> -->
+                        <input class="govuk-input govuk-!-width-two-thirds" value="<%=GA_Selected%>" name="GA_Selected"
+                            placeholder="Granting Authority name" type="text" readonly>
+                        <!-- <button class="govuk-button" data-module="govuk-button">
                             Select
                         </button> -->
-                    <!-- </div> -->
-                </div>
-                <div class="govuk-grid-column-full govuk-grid-row" id="full-name-div">
-                    <div class="govuk-form-group govuk-grid-column-one-third">
-                        <label class="govuk-label" for="width-20">
-                            First name
-                        </label>
-                        <input class="govuk-input govuk-input--width-20" value="<%=ssn.User_Name_Single%>"
-                            name="User_Name_Single" type="text" required>
+                        <!-- </div> -->
                     </div>
-                </div>
-                <div class="govuk-grid-column-full govuk-grid-row">
-
-                    <div class="govuk-form-group govuk-grid-column-one-third">
-                        <label class="govuk-label" for="width-20">
-                            Last name
-                        </label>
-                        <input class="govuk-input govuk-input--width-20" name="User_Last_Name_Single"
-                            value="<%=ssn.User_Last_Name_Single%>" type="text" required>
-                    </div>
-
-                </div>
-                <div class="govuk-grid-column-full govuk-grid-row">
-                    <div class="govuk-form-group govuk-grid-column-one-third">
-                        <label class="govuk-label" for="width-20">
-                            Email address
-                        </label>
-                        <input class="govuk-input govuk-input--width-20" value="<%=ssn.User_Email_Single%>"
-                            name="User_Email_Single" type="text" readonly>
-                    </div>
-
-                </div>
-                <div class="govuk-grid-column-full govuk-grid-row">
-                    <div class="govuk-form-group govuk-grid-column-full">
-                        <label class="govuk-label" for="width-20">
-                            Mobile phone number
-                        </label>
-                        <div class="govuk-hint">
-                            We will send a reset code to this phone number if the user forgets their password.
+                    <div class="govuk-grid-column-full govuk-grid-row" id="full-name-div">
+                        <div class="govuk-form-group govuk-grid-column-one-third">
+                            <label class="govuk-label" for="width-20">
+                                First name
+                            </label>
+                            <input class="govuk-input govuk-input--width-20" value="<%=ssn.User_Name_Single%>"
+                                name="User_Name_Single" type="text" required>
                         </div>
-                        <input class="govuk-input govuk-input--width-10" value="<%=ssn.User_Mobile_Single%>"
-                            name="User_Mobile_Single" type="text" required>
+                    </div>
+                    <div class="govuk-grid-column-full govuk-grid-row">
+
+                        <div class="govuk-form-group govuk-grid-column-one-third">
+                            <label class="govuk-label" for="width-20">
+                                Last name
+                            </label>
+                            <input class="govuk-input govuk-input--width-20" name="User_Last_Name_Single"
+                                value="<%=ssn.User_Last_Name_Single%>" type="text" required>
+                        </div>
+
+                    </div>
+                    <div class="govuk-grid-column-full govuk-grid-row">
+                        <div class="govuk-form-group govuk-grid-column-one-third">
+                            <label class="govuk-label" for="width-20">
+                                Email address
+                            </label>
+                            <input class="govuk-input govuk-input--width-20" value="<%=ssn.User_Email_Single%>"
+                                name="User_Email_Single" type="text" readonly>
+                        </div>
+
+                    </div>
+                    <div class="govuk-grid-column-full govuk-grid-row">
+                        <div class="govuk-form-group govuk-grid-column-full">
+                            <label class="govuk-label" for="width-20">
+                                Mobile phone number
+                            </label>
+                            <div class="govuk-hint">
+                                We will send a reset code to this phone number if the user forgets their password.
+                            </div>
+                            <input class="govuk-input govuk-input--width-10" value="<%=ssn.User_Mobile_Single%>"
+                                name="User_Mobile_Single" type="text" required>
+                        </div>
+                        <div class="govuk-form-group govuk-grid-column-full">
+                            <button class="govuk-button" data-module="govuk-button">
+                                Continue
+                            </button>
+                            <a href="/userdeactivate" class="govuk-button govuk-button--warning"
+                                data-module="govuk-button">
+                                Deactivate user
+                            </a>
+                            <a class="govuk-link govuk-cancel-button-link" href="/canceluser">
+                                Cancel
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <button class="govuk-button" data-module="govuk-button">
-                    Continue
-                </button>
-                <a href="/userdeactivate" class="govuk-button govuk-button--warning" data-module="govuk-button">
-                    Deactivate user
-                </a>
-                <a class="govuk-link govuk-cancel-button-link" href="/canceluser">
-                    Cancel
-                </a>
-
             </form>
         </main>
     </div>

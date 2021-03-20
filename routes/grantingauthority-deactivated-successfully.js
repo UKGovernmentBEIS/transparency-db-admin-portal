@@ -11,23 +11,24 @@ router.post("/", async (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_searchscheme);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-  gaId = req.body.gaid;
-  var azGrpId = req.body.azGrpId;
-  var userId = [];
-
-  console.log(azGrpId);
-
-  ssn.GaListArr_Global.forEach(function (ids) {
-    userId.push(ids.gaId);
-  });
-
   try {
+    gaId = req.body.gaid;
+    var azGrpId = req.body.azGrpId;
+    var userId = [];
+
+    console.log(azGrpId);
+
+    ssn.GaListArr_Global.forEach(function (ids) {
+      userId.push(ids.gaId);
+    });
     console.log("body", userId);
+    console.log("ssn.UserPrincileObjectGlobal", ssn.UserPrincileObjectGlobal);
     const apidata = await axios.delete(
       beis_url_searchscheme + "/group/" + azGrpId,
       {
         userIds: userId,
-      }
+      },
+      ssn.UserPrincileObjectGlobal
     );
     console.log("BODY", apidata);
   } catch (err) {

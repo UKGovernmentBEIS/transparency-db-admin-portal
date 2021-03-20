@@ -119,6 +119,11 @@ router.get("/", async (req, res) => {
       totalrows,
       current_page_active,
       ssn,
+      totalAwaitingAward,
+      totalRejectedAward,
+      totalSubsidyAward,
+      totalPublishedAward,
+      totalInactiveAward,
     });
   } catch (err) {
     if (err.toString().includes("404")) {

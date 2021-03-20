@@ -23,13 +23,15 @@ router.post("/", async (req, res) => {
       mobilePhone: ssn.User_Mobile_Single,
       givenName: ssn.User_Name_Single,
     };
+
+    console.log("ssn.addUser_extract", ssn.user_id);
+    console.log("ssn.UserPrincipleObjectGlobal", ssn.UserPrincileObjectGlobal);
     console.log("data_request post :" + JSON.stringify(data_request));
+
     const addAPIUser = await axios.patch(
-      beis_url_accessmanagement +
-        "/usermanagement/updateUser/" +
-        ssn.addUser_extract,
+      beis_url_accessmanagement + "/usermanagement/updateUser/" + ssn.user_id,
       data_request,
-      ssn.UserPrincipleObjectGlobal
+      ssn.UserPrincileObjectGlobal
     );
 
     console.log(`Status: ${addAPIUser.status}`);

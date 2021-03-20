@@ -70,13 +70,13 @@ router.get("/", async (req, res) => {
         ssn.created_on_arrow = "upanddown";
         ssn.last_modified_arrow = "upanddown";
         if (ssn.added_by_arrow == "upanddown") {
-          sorting_column = "approvedBy,asc";
+          sorting_column = "createdBy,asc";
           ssn.added_by_arrow = "upacending";
         } else if (ssn.added_by_arrow == "upacending") {
-          sorting_column = "approvedBy,desc";
+          sorting_column = "createdBy,desc";
           ssn.added_by_arrow = "downdecending";
         } else {
-          sorting_column = "approvedBy,asc";
+          sorting_column = "createdBy,asc";
           ssn.added_by_arrow = "upacending";
         }
       }
@@ -198,7 +198,7 @@ router.get("/", async (req, res) => {
       totalRecordsPerPage: ssn.frontend_totalRecordsPerPage,
       sortBy: [sorting_column],
     };
-
+    console.log("data", JSON.stringify(data));
     try {
       const apidata = await axios.post(
         beis_url_searchscheme + "/searchGrantingAuthority",

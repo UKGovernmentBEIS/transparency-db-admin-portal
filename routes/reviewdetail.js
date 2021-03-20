@@ -1,7 +1,9 @@
 const express = require("express");
 var session = require("express-session");
+const axios = require("axios");
 const router = express.Router();
-router.post("/", (req, res) => {
+
+router.post("/", async (req, res) => {
   ssn = req.session;
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
@@ -486,33 +488,56 @@ router.post("/", (req, res) => {
         ssn.Subsidy_Instrument_Plus_Other_Global =
           ssn.Subsidy_Instrument_Global;
       }
-      res.render("bulkupload/reviewdetail", {
-        ssn,
-        // Subsidy_Control_Number_Global,
-        // ssn.Subsidy_Control_Number_Global_Substring,
-        // ssn.Subsidy_Measure_Title_Global,
-        // ssn.Subsidy_Adhoc_Global,
-        // ssn.Subsidy_Objective_Global,
-        // ssn.Subsidy_Objective_Other_Global,
-        // ssn.Subsidy_Objective_Plus_Other_Global,
-        // ssn.Subsidy_Instrument_Global,
-        // ssn.Subsidy_Instrument_Other_Global,
-        // Subsidy_Instrument_Plus_Other_Global,
-        // ssn.Subsidy_Element_Full_Amount_Global,
-        // ssn.Subsidy_Full_Amount_Range_Global,
-        // ssn.National_ID_Type_Global,
-        // ssn.National_ID_Number_Global,
-        // ssn.Beneficiary_Name_Global,
-        // ssn.Size_of_the_Organisation_Global,
-        // ssn.Granting_Authority_Name_Global,
-        // ssn.Legal_Granting_Date_Day_Global,
-        // ssn.Legal_Granting_Date_Month_Global,
-        // ssn.Legal_Granting_Date_Year_Global,
-        // ssn.Goods_or_Services_Global,
-        // ssn.Spending_Region_Global,
-        // ssn.Spending_Sector_Global,
-        // GetMonthName,
-      });
+      try {
+        const data_request = {
+          searchName: Subsidy_Control_Number,
+          pageNumber: 1,
+          totalRecordsPerPage: 10,
+          sortBy: ["subsidyMeasureTitle,asc"],
+          status: "",
+        };
+
+        const apidata = await axios.post(
+          beis_url_searchscheme + "/scheme/search",
+          data_request,
+          ssn.UserPrincileObjectGlobal
+        );
+
+        searchschemes = apidata.data;
+        console.log("Status: " + JSON.stringify(searchschemes));
+        ssn.Subsidy_Measure_Title_Global =
+          searchschemes.schemes[0].subsidyMeasureTitle;
+        ssn.Subsidy_Control_Number_Global = searchschemes.schemes[0].scNumber;
+        res.render("bulkupload/reviewdetail", {
+          ssn,
+          // Subsidy_Control_Number_Global,
+          // ssn.Subsidy_Control_Number_Global_Substring,
+          // ssn.Subsidy_Measure_Title_Global,
+          // ssn.Subsidy_Adhoc_Global,
+          // ssn.Subsidy_Objective_Global,
+          // ssn.Subsidy_Objective_Other_Global,
+          // ssn.Subsidy_Objective_Plus_Other_Global,
+          // ssn.Subsidy_Instrument_Global,
+          // ssn.Subsidy_Instrument_Other_Global,
+          // Subsidy_Instrument_Plus_Other_Global,
+          // ssn.Subsidy_Element_Full_Amount_Global,
+          // ssn.Subsidy_Full_Amount_Range_Global,
+          // ssn.National_ID_Type_Global,
+          // ssn.National_ID_Number_Global,
+          // ssn.Beneficiary_Name_Global,
+          // ssn.Size_of_the_Organisation_Global,
+          // ssn.Granting_Authority_Name_Global,
+          // ssn.Legal_Granting_Date_Day_Global,
+          // ssn.Legal_Granting_Date_Month_Global,
+          // ssn.Legal_Granting_Date_Year_Global,
+          // ssn.Goods_or_Services_Global,
+          // ssn.Spending_Region_Global,
+          // ssn.Spending_Sector_Global,
+          // GetMonthName,
+        });
+      } catch (err) {
+        console.log("error in scheme", err);
+      }
     }
   } else {
     res.render("bulkupload/subsidyaward-cancel");

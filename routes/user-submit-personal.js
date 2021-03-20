@@ -49,9 +49,7 @@ router.post("/", async (req, res) => {
   try {
     console.log("data_request post :" + JSON.stringify(data_request));
     const addAPIUser = await axios.patch(
-      beis_url_accessmanagement +
-        "/usermanagement/updateUser/" +
-        ssn.addUser_extract,
+      beis_url_accessmanagement + "/usermanagement/updateUser/" + ssn.user_id,
       data_User,
       ssn.UserPrincipleObjectGlobal
     );
