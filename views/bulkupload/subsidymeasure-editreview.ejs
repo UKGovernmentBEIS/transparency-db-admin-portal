@@ -176,7 +176,9 @@
                     <a class="govuk-button  govuk-button--warning" href="/deactivatescheme" data-module="govuk-button">
                         Deactivate
                     </a>
-                    <a class="govuk-button govuk-button--secondary" href="/addsubsidyaward" data-module="govuk-button">
+                    <a class="govuk-button govuk-button--secondary"
+                        href="/addsubsidyaward?scheme=<%= ssn.searchmeasuredetails.scNumber %>"
+                        data-module="govuk-button">
                         Add a subsidy award to this scheme
                     </a>
                     <% } %>

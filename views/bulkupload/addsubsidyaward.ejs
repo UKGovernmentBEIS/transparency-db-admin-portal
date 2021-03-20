@@ -201,31 +201,59 @@
             <% if( ssn.Subsidy_Control_Number_Error ){ %>
             <div class="govuk-form-group govuk-form-group--error">
               <label class="govuk-label" for="Subsidy_Control_Number">
-                Subsidy control number
+                Subsidy control number or name
               </label>
-              <div id="Subsidy_Control_Number-hint" class="govuk-hint">
+              <!-- <div id="Subsidy_Control_Number-hint" class="govuk-hint">
                 For example, SC92138. This must match the subsidy scheme that this award is related to.
-              </div>
+              </div> -->
+              <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    What is a subsidy control number or name?
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  <b> Subsidy control number</b>
+                  <p>For example, SC92138. This must match the subsidy scheme that this award is related to.</p>
+                  <b> Subsidy control name</b>
+                  <p>This is the name of the subsidy scheme that this award is related to.</p>
+                </div>
+              </details>
 
               <span class="govuk-error-message" id="ssn.Subsidy_Control_Number_Error">
                 <span class="govuk-visually-hidden">Error:</span> Enter a valid subsidy control number
               </span>
 
-              <input class="govuk-input govuk-input--width-5 govuk-input--error" id="Subsidy_Control_Number"
-                name="Subsidy_Control_Number" type="text" aria-describedby="Subsidy_Control_Number-hint"
-                <% if(ssn.Subsidy_Control_Number_Global) {%> value="<%= ssn.Subsidy_Control_Number_Global%>" <% } %> />
+              <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                id="Subsidy_Control_Number" name="Subsidy_Control_Number" type="text"
+                aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Global) {%>
+                value="<%= ssn.Subsidy_Control_Number_Global%>" <% } %> />
             </div>
             <% } else { %>
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="Subsidy_Control_Number">
-                Subsidy control number
+                Subsidy control number or name
               </label>
-              <div id="Subsidy_Control_Number-hint" class="govuk-hint">
+              <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    What is a subsidy control number or name?
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  <b> Subsidy control number</b>
+                  <p>For example, SC92138. This must match the subsidy scheme that this award is related to.</p>
+                  <b> Subsidy control name</b>
+                  <p>This is the name of the subsidy scheme that this award is related to.</p>
+                </div>
+              </details>
+              <!-- <div id="Subsidy_Control_Number-hint" class="govuk-hint">
                 For example, SC92138. This must match the subsidy scheme that this award is related to.
-              </div>
-              <input class="govuk-input govuk-input--width-5" id="Subsidy_Control_Number" name="Subsidy_Control_Number"
-                type="text" aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Global) {%>
+              </div> -->
+              <input class="govuk-input govuk-input--width-30" id="Subsidy_Control_Number"
+                placeholder="SC number or name" name="Subsidy_Control_Number" type="text"
+                aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Global) {%>
                 value="<%= ssn.Subsidy_Control_Number_Global %>" <% } %> />
             </div>
             <% }  %>
@@ -233,15 +261,15 @@
             <!-- Get the Subsidy Measure Title from user  -->
             <!-- ***************************************  -->
 
-            <div class="govuk-form-group">
+            <!-- <div class="govuk-form-group">
               <label class="govuk-label govuk-!-font-weight-bold">
                 Or
               </label>
-            </div>
+            </div> -->
 
 
             <% if( ssn.Subsidy_Measure_Title_Error ){ %>
-            <div class="govuk-form-group  govuk-form-group--error">
+            <!-- <div class="govuk-form-group  govuk-form-group--error">
 
 
               <label class="govuk-label" for="Subsidy_Measure_Title">
@@ -259,10 +287,10 @@
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Measure_Title"
                 name="Subsidy_Measure_Title" type="text" aria-describedby="Subsidy_Measure_Title-hint"
                 <% if(ssn.Subsidy_Measure_Title_Global) {%> value="<%= ssn.Subsidy_Measure_Title_Global %>" <% } %> />
-            </div>
+            </div> -->
             <% } else { %>
 
-            <div class="govuk-form-group">
+            <!-- <div class="govuk-form-group">
               <label class="govuk-label" for="Subsidy_Measure_Title">
                 Subsidy scheme name
               </label>
@@ -274,7 +302,7 @@
               <input class="govuk-input govuk-input--width-20" id="Subsidy_Measure_Title" name="Subsidy_Measure_Title"
                 type="text" aria-describedby="Subsidy_Measure_Title-hint" <% if(ssn.Subsidy_Measure_Title_Global) {%>
                 value="<%= ssn.Subsidy_Measure_Title_Global%>" <% } %> />
-            </div>
+            </div> -->
             <% }  %>
 
             <h1 class="govuk-heading-l">Subsidy award details</h1>
@@ -1179,7 +1207,7 @@
               </span>
 
 
-              <input class="govuk-input govuk-input--width-20 govuk-input--error" maxlength="255" id="Beneficiary_Name"
+              <input class="govuk-input govuk-input--width-30 govuk-input--error" maxlength="255" id="Beneficiary_Name"
                 name="Beneficiary_Name" type="text" aria-describedby="Beneficiary_Name"
                 <% if(ssn.Beneficiary_Name_Global) {%> value="<%= ssn.Beneficiary_Name_Global%>" <% } %> />
             </div>
@@ -1496,11 +1524,21 @@
               <label class="govuk-label" for="National_ID_Number">
                 ID Number
               </label>
-
-              <div id="National_ID_Number-hint" class="govuk-hint">
+              <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    What is an ID number?
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  This must match the ID type. For example, if you selected ‘VAT number’ for ID type, you must enter the
+                  recipient’s VAT number.
+                </div>
+              </details>
+              <!-- <div id="National_ID_Number-hint" class="govuk-hint">
                 This must match the ID type. For example, if you selected ‘VAT number’ for ID type,
                 you must enter the recipient’s VAT number
-              </div>
+              </div> -->
 
               <span class="govuk-error-message" id="ssn.National_ID_Number_Error">
                 <span class="govuk-visually-hidden">Error:</span> Enter the id number
@@ -1516,10 +1554,17 @@
               <label class="govuk-label" for="National_ID_Number">
                 ID Number
               </label>
-              <div id="National_ID_Number-hint" class="govuk-hint">
-                This must match the ID type. For example, if you selected ‘VAT number’ for ID type,
-                you must enter the recipient’s VAT number
-              </div>
+              <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    What is an ID number?
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  This must match the ID type. For example, if you selected ‘VAT number’ for ID type, you must enter the
+                  recipient’s VAT number.
+                </div>
+              </details>
               <input class="govuk-input govuk-input--width-20" id="National_ID_Number" name="National_ID_Number"
                 type="text" aria-describedby="National_ID_Number-hint" <% if(ssn.National_ID_Number_Global) {%>
                 value="<%= ssn.National_ID_Number_Global%>" <% } %> />
@@ -1542,10 +1587,17 @@
                   </h1>
                 </legend>
 
-                <div id="Goods_or_Services-hint" class="govuk-hint">
-                  This is what the organisation provides. For example, a greengrocer provides goods,
-                  while a dentist provides services.
-                </div>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What is meant by goods and services?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    This is what the organisation provides. For example, a greengrocer provides goods, while a dentist
+                    provides services.
+                  </div>
+                </details>
 
                 <span class="govuk-error-message" id="ssn.Goods_or_Services_Error">
                   <span class="govuk-visually-hidden">Error:</span> Enter the Goods or Services
@@ -1590,10 +1642,17 @@
                     Goods or Services
                   </h1>
                 </legend>
-                <div id="Goods_or_Services-hint" class="govuk-hint">
-                  This is what the organisation provides. For example, a greengrocer provides goods,
-                  while a dentist provides services.
-                </div>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What is meant by goods and services?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    This is what the organisation provides. For example, a greengrocer provides goods, while a dentist
+                    provides services.
+                  </div>
+                </details>
 
                 <div class="govuk-radios">
                   <div class="govuk-radios__item">
@@ -1846,10 +1905,12 @@
                 <option value="Empty">Select sector (21)</option>
                 <% } %>
 
-                <% if( ssn.Spending_Sector_Global == 'Accommodation' ){ %>
-                <option value="Accommodation" selected>Accommodation and food service activities</option>
+                <% if( ssn.Spending_Sector_Global == 'Accommodation and food service activities' ){ %>
+                <option value="Accommodation and food service activities" selected>Accommodation and food service
+                  activities</option>
                 <% } else { %>
-                <option value="Accommodation">Accommodation and food service activities</option>
+                <option value="Accommodation and food service activities">Accommodation and food service activities
+                </option>
                 <% } %>
 
                 <% if( ssn.Spending_Sector_Global == 'Activities of extraterritorial organisations and bodies' ){ %>
@@ -1860,12 +1921,14 @@
                   organisations and bodies</option>
                 <% } %>
 
-                <% if( ssn.Spending_Sector_Global == 'Undifferentiated goods and services-producing activities of households for own use' ){ %>
-                <option value="Undifferentiated goods and services-producing activities of households for own use"
-                  selected>Activities of households as employers; undifferentiated goods- and services-producing
+                <% if( ssn.Spending_Sector_Global.toString().includes('Activities of households as employers')  ){ %>
+                <option value="Activities of households as employers; undifferentiated goods- and services-producing
+                activities of households for own use" selected>Activities of households as employers; undifferentiated
+                  goods- and services-producing
                   activities of households for own use</option>
                 <% } else { %>
-                <option value="Undifferentiated goods and services-producing activities of households for own use">
+                <option value="Activities of households as employers; undifferentiated goods- and services-producing
+                activities of households for own use">
                   Activities of households as employers; undifferentiated goods- and services-producing activities of
                   households for own use</option>
                 <% } %>
@@ -2015,10 +2078,12 @@
                 <option value="Empty">Select sector (21)</option>
                 <% } %>
 
-                <% if( ssn.Spending_Sector_Global == 'Accommodation' ){ %>
-                <option value="Accommodation" selected>Accommodation and food service activities</option>
+                <% if( ssn.Spending_Sector_Global == 'Accommodation and food service activities' ){ %>
+                <option value="Accommodation and food service activities" selected>Accommodation and food service
+                  activities</option>
                 <% } else { %>
-                <option value="Accommodation">Accommodation and food service activities</option>
+                <option value="Accommodation and food service activities">Accommodation and food service activities
+                </option>
                 <% } %>
 
                 <% if( ssn.Spending_Sector_Global == 'Activities of extraterritorial organisations and bodies' ){ %>
@@ -2029,12 +2094,14 @@
                   organisations and bodies</option>
                 <% } %>
 
-                <% if( ssn.Spending_Sector_Global == 'Undifferentiated goods and services-producing activities of households for own use' ){ %>
-                <option value="Undifferentiated goods and services-producing activities of households for own use"
-                  selected>Activities of households as employers; undifferentiated goods- and services-producing
+                <% if( ssn.Spending_Sector_Global.toString().includes('Activities of households as employers') ){ %>
+                <option value="Activities of households as employers; undifferentiated goods- and services-producing
+                activities of households for own use" selected>Activities of households as employers; undifferentiated
+                  goods- and services-producing
                   activities of households for own use</option>
                 <% } else { %>
-                <option value="Undifferentiated goods and services-producing activities of households for own use">
+                <option value="Activities of households as employers; undifferentiated goods- and services-producing
+                activities of households for own use">
                   Activities of households as employers; undifferentiated goods- and services-producing activities of
                   households for own use</option>
                 <% } %>

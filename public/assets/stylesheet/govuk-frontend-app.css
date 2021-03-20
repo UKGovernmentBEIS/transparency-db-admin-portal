@@ -535,9 +535,9 @@ button.link {
   padding: 8px 3px !important;
 }
 
-#Subsidy_Control_Number {
+/* #Subsidy_Control_Number {
   text-transform: uppercase;
-}
+} */
 
 .govuk-table__body tr td {
   vertical-align: middle;

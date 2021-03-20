@@ -23,6 +23,7 @@ router.get("/", async (req, res) => {
   console.log("scnumber : " + scnumber);
 
   scNumber_Global = scnumber;
+  // ssn.Subsidy_Control_Number_Global = scnumber;
 
   var measureendpoint = beis_url_searchscheme + "/scheme/" + scnumber;
 

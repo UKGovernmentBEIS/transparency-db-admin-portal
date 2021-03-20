@@ -65,12 +65,14 @@
                     <p class="govuk-body govuk-!-font-size-19">You have approved subsidy award <%awardnumber%> and it is
                         now published.
                     </p>
+
+                    <h2 class="govuk-heading-m">What happens next</h2>
+                    <p class="govuk-body">We have sent a notification to the person who submitted this award for
+                        approval.
+                    </p>
+                    <p>This subsidy award is now visible on the <a href="<%=beis_url_publicsearch%>">Search for UK
+                            subsidies</a> service.</p>
                 </div>
-                <h2 class="govuk-heading-m">What happens next</h2>
-                <p class="govuk-body">We have sent a notification to the person who submitted this award for approval.
-                </p>
-                <p>This subsidy award is now visible on the <a href="<%=beis_url_publicsearch%>">Search for UK
-                        subsidies</a> service.</p>
                 <div class="govuk-grid-column-full govuk-form-group">
 
                     <a class="govuk-button" href="/mysubsidyawards" data-module="govuk-button">
@@ -86,7 +88,7 @@
     </div>
     <%- include('../partials/footer.ejs') %>
     <script>
-        document.getElementById('user-li').firstElementChild.setAttribute("aria-current", 'page');
+        document.getElementById('subsidyaward-li').firstElementChild.setAttribute("aria-current", 'page');
     </script>
 </body>
 

@@ -57,6 +57,7 @@ router.post("/", async (req, res) => {
       );
       var data1 = {
         name: req.body.GaName,
+        userName: ssn.dashboard_user_name,
       };
       // data = JSON.parse(JSON.stringify(data));
       // console.log("userPrincipleRequest",ssn);
