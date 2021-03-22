@@ -180,7 +180,8 @@ router.post("/", async (req, res) => {
         GA_Group_Id = ssn.apiroles_extract[i].gaId;
       }
     }
-  } else if (GA_Roles_Selected) {
+  }
+  if (GA_Roles_Selected) {
     for (var i = 0; i < ssn.apiroles_total_objects; i++) {
       if (ssn.Roles_Selected == ssn.apiroles_extract[i].gaName) {
         console.log("gaName id2 : " + ssn.apiroles_extract[i].azGrpId);
@@ -188,7 +189,8 @@ router.post("/", async (req, res) => {
         GA_Group_Id = ssn.apiroles_extract[i].gaId;
       }
     }
-  } else {
+  }
+  if (Granting_Authority_Selected || GA_Roles_Selected) {
     try {
       const apidata = await axios.get(
         beis_url_accessmanagement + "/usermanagement/groups/" + GA_Object_Id,
