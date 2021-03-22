@@ -20,18 +20,18 @@ router.get("/", async (req, res) => {
   console.log("req.query.page: " + req.query.sort);
   ssn.awards_status = req.query.sort;
 
-  Award_page = 1;
-  Award_selected_status = ssn.awards_status;
+  ssn.Award_page = 1;
+  ssn.Award_selected_status = ssn.awards_status;
 
-  if (Award_selected_status == "Show all") {
-    Award_selected_status = "";
+  if (ssn.Award_selected_status == "Show all") {
+    ssn.Award_selected_status = "";
   }
 
   Base_URL = beis_url_accessmanagement + "/accessmanagement/searchresults?";
   Award_text = "searchName=" + ssn.Award_search_text;
-  Award_status = "status=" + Award_selected_status;
+  Award_status = "status=" + ssn.Award_selected_status;
   Award_concate = "&";
-  Award_page = "page=" + Award_page;
+  Award_page = "page=" + ssn.Award_page;
   Award_recordsperpage = "recordsPerPage=" + ssn.frontend_totalRecordsPerPage;
 
   Actual_URL =

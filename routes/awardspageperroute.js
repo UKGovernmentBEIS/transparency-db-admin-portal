@@ -46,7 +46,7 @@ router.get("/", async (req, res) => {
     Award_concate +
     Award_sorting +
     Award_sorting_field;
-  console.log("Award_search_URL   : " + JSON.stringify(ssn));
+  console.log("Award_search_URL   : " + JSON.stringify(Award_search_URL));
 
   try {
     const apidata = await axios.get(
