@@ -19,6 +19,28 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <script src="assets/javascripts/jquery.min.js"></script>
+    <script>
+        // getSortedGa = () => {
+            // selector to parent element (best approach by id)
+            // var parent = document.getElementById("sort-ga"),
+                // take items (parent.children) into array
+                // itemsArray = Array.prototype.slice.call(parent.children);
+
+            // sort items in array by custom criteria
+           // itemsArray.sort(function (a, b) {
+                // inner text suits best (even when formated somehow)
+            //     if (a.innerText.toLowerCase() < b.innerText.toLowerCase()) return -1;
+            //     if (a.innerText.toLowerCase() > b.innerText.toLowerCase()) return 1;
+            //     return 0;
+            // });
+
+            // reorder items in the DOM
+            // itemsArray.forEach(function (item) {
+                // one by one move to the end in correct order
+                // parent.appendChild(item);
+            // });
+        // }
+    </script>
     <!-- <script>
         $(document).ready(function () {
             $("#user-li a").attr('aria-current', 'page');
@@ -106,6 +128,7 @@
 
             <h1 class="govuk-heading-xl">
                 Users</h1>
+            <h2 class="govuk-heading-l">Search for existing users or add new one</h2>
             <div class="govuk-grid-row">
                 <% if( No_Selected_GA ||  No_Selected_Role){ %>
                 <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
@@ -264,8 +287,12 @@
                                 <% ssn.GAUserList.value.forEach(function(item) { %>
                                 <tr>
                                     <td class="govuk-table__cell">
-                                        <a
-                                            href="/userindividualdetails/?userObject=<%= item.id %>"><%= item.givenName %></a>
+                                        <a href="/userindividualdetails/?userObject=<%= item.id %>">
+                                            <% if (!item.givenName) {%>
+                                            <%=item.displayName%>
+                                            <% } else {%>
+                                            <%= item.givenName %>
+                                            <% } %></a>
                                     </td>
                                     <td class="govuk-table__cell">
                                         <% if( Environment_variable !== "env=prod") { %>
@@ -309,7 +336,11 @@
                                     </td>
 
                                     <td class="govuk-table__cell">
-                                        <%= item.mail %>
+                                        <% if(item.mail) {%>
+                                        <%=item.mail%>
+                                        <% } else {%>
+                                        <%=item.userPrincipalName%>
+                                        <% }%>
                                     </td>
 
                                 </tr>

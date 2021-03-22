@@ -39,14 +39,14 @@ router.get("/", async (req, res) => {
   console.log("routing prev page :" + previous_page);
   console.log("routing next page :" + next_page);
 
-  Award_page = current_page_active;
+  ssn.Award_page = current_page_active;
   //  Award_selected_status = '';
 
   Base_URL = beis_url_accessmanagement + "/accessmanagement/searchresults?";
   Award_text = "searchName=" + ssn.Award_search_text;
   Award_status = "status=" + ssn.Award_selected_status;
   Award_concate = "&";
-  Award_page = "page=" + Award_page;
+  Award_page = "page=" + ssn.Award_page;
   Award_recordsperpage = "recordsPerPage=" + ssn.frontend_totalRecordsPerPage;
 
   Award_search_URL =

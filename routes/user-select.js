@@ -54,6 +54,12 @@ router.get("/", async (req, res) => {
           gaRolesList.push(items.gaName);
         } else {
           gaNamesList.push(items.gaName);
+          gaNamesList.sort(function (a, b) {
+            // inner text suits best (even when formated somehow)
+            if (a.toLowerCase() < b.toLowerCase()) return -1;
+            if (a.toLowerCase() > b.toLowerCase()) return 1;
+            return 0;
+          });
         }
       });
       res.render("bulkupload/user-select", {
@@ -180,7 +186,8 @@ router.post("/", async (req, res) => {
         GA_Group_Id = ssn.apiroles_extract[i].gaId;
       }
     }
-  } else if (GA_Roles_Selected) {
+  }
+  if (GA_Roles_Selected) {
     for (var i = 0; i < ssn.apiroles_total_objects; i++) {
       if (ssn.Roles_Selected == ssn.apiroles_extract[i].gaName) {
         console.log("gaName id2 : " + ssn.apiroles_extract[i].azGrpId);
@@ -188,7 +195,8 @@ router.post("/", async (req, res) => {
         GA_Group_Id = ssn.apiroles_extract[i].gaId;
       }
     }
-  } else {
+  }
+  if (Granting_Authority_Selected || GA_Roles_Selected) {
     try {
       const apidata = await axios.get(
         beis_url_accessmanagement + "/usermanagement/groups/" + GA_Object_Id,
