@@ -24,16 +24,16 @@ router.get("/", async (req, res) => {
   audit_page = 1;
 
   ssn.audit_username_arrow = "upanddown";
-  ssn.audit_actiondate_arrow = "upascending";
+  ssn.audit_actiondate_arrow = "downdecending";
   ssn.audit_grantingauthority_arrow = "upanddown";
   ssn.audit_action_arrow = "upanddown";
 
   ssn.audit_username_sorting_order = "desc";
-  ssn.audit_actiondate_sorting_order = "asc";
+  ssn.audit_actiondate_sorting_order = "desc";
   ssn.audit_grantingauthority_sorting_order = "desc";
   ssn.audit_action_sorting_order = "desc";
 
-  ssn.sorting_order = "userName,asc";
+  ssn.sorting_order = "createdTimestamp,desc";
   console.log("ssn.sorting_order:" + ssn.sorting_order);
 
   const data_request = {
