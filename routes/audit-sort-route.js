@@ -65,7 +65,7 @@ router.get("/", async (req, res) => {
       ssn.audit_username_arrow = "upanddown";
       ssn.audit_grantingauthority_arrow = "upanddown";
       ssn.audit_actiondate_arrow = "upanddown";
-      ssn.ssn.audit_action_arrow = "upacending";
+      ssn.audit_action_arrow = "upacending";
       ssn.audit_action_sorting_order = "asc";
     }
   } else if (sort_column_name == "audit_action_date") {

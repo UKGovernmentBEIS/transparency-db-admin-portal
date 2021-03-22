@@ -180,11 +180,7 @@ router.post("/", async (req, res) => {
         GA_Group_Id = ssn.apiroles_extract[i].gaId;
       }
     }
-  }
-
-  console.log("ssn.apiroles_total_objects", ssn.apiroles_extract);
-
-  if (GA_Roles_Selected) {
+  } else if (GA_Roles_Selected) {
     for (var i = 0; i < ssn.apiroles_total_objects; i++) {
       if (ssn.Roles_Selected == ssn.apiroles_extract[i].gaName) {
         console.log("gaName id2 : " + ssn.apiroles_extract[i].azGrpId);
@@ -192,47 +188,42 @@ router.post("/", async (req, res) => {
         GA_Group_Id = ssn.apiroles_extract[i].gaId;
       }
     }
-  }
+  } else {
+    try {
+      const apidata = await axios.get(
+        beis_url_accessmanagement + "/usermanagement/groups/" + GA_Object_Id,
+        ssn.UserPrincileObjectGlobal
+      );
+      console.log(`Status: ${apidata.status}`);
+      API_response_code = `${apidata.status}`;
+      console.log("API_response_code: try" + API_response_code);
+      console.log("Body: ", apidata.data);
+      ssn.GAUserList = apidata.data;
+      ssn.GAUserList_Empty = Object.keys(ssn.GAUserList.value).length;
+      console.log(" ssn.GAUserList_Empty : " + ssn.GAUserList_Empty);
+      isUserSelectIsPrimaryCall = false;
 
-  console.log(
-    " ssn.UserPrincileObjectGlobal => " +
-      JSON.stringify(ssn.UserPrincileObjectGlobal)
-  );
+      ssn.User_Role_Global = "";
+      ssn.GA_Name_User_Global = "";
+      ssn.Full_Name_Global = "";
+      ssn.Last_Name_Global = "";
+      ssn.Email_Id_Global = "";
+      ssn.Phone_Number_Global = "";
 
-  try {
-    const apidata = await axios.get(
-      beis_url_accessmanagement + "/usermanagement/groups/" + GA_Object_Id,
-      ssn.UserPrincileObjectGlobal
-    );
-    console.log(`Status: ${apidata.status}`);
-    API_response_code = `${apidata.status}`;
-    console.log("API_response_code: try" + API_response_code);
-    console.log("Body: ", apidata.data);
-    ssn.GAUserList = apidata.data;
-    ssn.GAUserList_Empty = Object.keys(ssn.GAUserList.value).length;
-    console.log(" ssn.GAUserList_Empty : " + ssn.GAUserList_Empty);
-    isUserSelectIsPrimaryCall = false;
-
-    ssn.User_Role_Global = "";
-    ssn.GA_Name_User_Global = "";
-    ssn.Full_Name_Global = "";
-    ssn.Last_Name_Global = "";
-    ssn.Email_Id_Global = "";
-    ssn.Phone_Number_Global = "";
-
-    res.render("bulkupload/user-select", {
-      No_Selected_text,
-      No_Selected_GA,
-      No_Selected_Role,
-      No_Selected_id,
-    });
-  } catch (err) {
-    if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
-    else if (err.toString().includes("401"))
-      res.render("bulkupload/notAuthorized");
-    response_error_message = err;
-    console.log("message error : " + err);
-    console.log("response_error_message catch : " + response_error_message);
+      res.render("bulkupload/user-select", {
+        No_Selected_text,
+        No_Selected_GA,
+        No_Selected_Role,
+        No_Selected_id,
+      });
+    } catch (err) {
+      if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
+      else if (err.toString().includes("401"))
+        res.render("bulkupload/notAuthorized");
+      response_error_message = err;
+      console.log("message error : " + err);
+      console.log("response_error_message catch : " + response_error_message);
+    }
   }
 });
 
