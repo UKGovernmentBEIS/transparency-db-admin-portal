@@ -10,7 +10,9 @@ router.get("/", (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   console.log("req.query.userObject: " + req.query.userObject);
+
   ssn.Delete_UserId = req.query.userObject;
+  ssn.addUser_extract = req.query.userObject;
 
   ssn.GAUserList.value.forEach(function (item) {
     if (ssn.Delete_UserId == item.id) {

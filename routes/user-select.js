@@ -181,7 +181,7 @@ router.post("/", async (req, res) => {
   if (Granting_Authority_Selected) {
     for (var i = 0; i < ssn.apiroles_total_objects; i++) {
       if (GA_Selected == ssn.apiroles_extract[i].gaName) {
-        console.log("gaName id1 : " + ssn.apiroles_extract[i].azGrpId);
+        // console.log("gaName id1 : " + ssn.apiroles_extract[i].azGrpId);
         GA_Object_Id = ssn.apiroles_extract[i].azGrpId;
         GA_Group_Id = ssn.apiroles_extract[i].gaId;
       }
@@ -190,7 +190,7 @@ router.post("/", async (req, res) => {
   if (GA_Roles_Selected) {
     for (var i = 0; i < ssn.apiroles_total_objects; i++) {
       if (ssn.Roles_Selected == ssn.apiroles_extract[i].gaName) {
-        console.log("gaName id2 : " + ssn.apiroles_extract[i].azGrpId);
+        // console.log("gaName id2 : " + ssn.apiroles_extract[i].azGrpId);
         GA_Object_Id = ssn.apiroles_extract[i].azGrpId;
         GA_Group_Id = ssn.apiroles_extract[i].gaId;
       }
@@ -202,13 +202,13 @@ router.post("/", async (req, res) => {
         beis_url_accessmanagement + "/usermanagement/groups/" + GA_Object_Id,
         ssn.UserPrincileObjectGlobal
       );
-      console.log(`Status: ${apidata.status}`);
-      API_response_code = `${apidata.status}`;
-      console.log("API_response_code: try" + API_response_code);
+      // console.log(`Status: ${apidata.status}`);
+      // API_response_code = `${apidata.status}`;
+      // console.log("API_response_code: try" + API_response_code);
       console.log("Body: ", apidata.data);
       ssn.GAUserList = apidata.data;
       ssn.GAUserList_Empty = Object.keys(ssn.GAUserList.value).length;
-      console.log(" ssn.GAUserList_Empty : " + ssn.GAUserList_Empty);
+      // console.log(" ssn.GAUserList_Empty : " + ssn.GAUserList_Empty);
       isUserSelectIsPrimaryCall = false;
 
       ssn.User_Role_Global = "";

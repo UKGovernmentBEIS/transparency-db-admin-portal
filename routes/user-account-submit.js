@@ -53,7 +53,7 @@ router.post("/", async (req, res) => {
     },
   };
 
-  console.log("ssn.addUser_extract" + ssn.addUser_extract);
+  console.log("ssn.addUser_extract" + ssn.user_id);
 
   try {
     console.log("data_request post :" + JSON.stringify(data_request));

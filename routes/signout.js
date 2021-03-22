@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
         strPos = items.indexOf("=") - 1;
 
         CookeiNameExtract = items.substr(1, strPos);
-        console.log("CookeiNameExtract" + CookeiNameExtract);
+        // console.log("CookeiNameExtract" + CookeiNameExtract);
         CookeiNames.push(items);
         // req.clearCookie(items,{path:'/'});
         // res.clearCookie(items,{path:'/'});
@@ -40,7 +40,7 @@ router.get("/", (req, res) => {
       });
 
       CookeiNames.forEach(function (items1) {
-        console.log("itesm1:" + items1);
+        // console.log("itesm1:" + items1);
       });
 
       //res.set('x-ms-token-aad-id-token', '');
@@ -50,7 +50,7 @@ router.get("/", (req, res) => {
         beis_redirect_url + "/.auth/logout"
         // "https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=" + beis_redirect_url
       );
-      console.log("cookies-clear", req.headers.cookie);
+      // console.log("cookies-clear", req.headers.cookie);
       //   cookies.set('testtoken', {expires: Date.now()});
       //   res.render("bulkupload/notAuthorized");
     }
