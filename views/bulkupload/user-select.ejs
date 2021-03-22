@@ -20,26 +20,26 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <script src="assets/javascripts/jquery.min.js"></script>
     <script>
-        getSortedGa = () => {
+        // getSortedGa = () => {
             // selector to parent element (best approach by id)
-            var parent = document.getElementById("sort-ga"),
+            // var parent = document.getElementById("sort-ga"),
                 // take items (parent.children) into array
-                itemsArray = Array.prototype.slice.call(parent.children);
+                // itemsArray = Array.prototype.slice.call(parent.children);
 
             // sort items in array by custom criteria
-            itemsArray.sort(function (a, b) {
+           // itemsArray.sort(function (a, b) {
                 // inner text suits best (even when formated somehow)
-                if (a.innerText.toLowerCase() < b.innerText.toLowerCase()) return -1;
-                if (a.innerText.toLowerCase() > b.innerText.toLowerCase()) return 1;
-                return 0;
-            });
+            //     if (a.innerText.toLowerCase() < b.innerText.toLowerCase()) return -1;
+            //     if (a.innerText.toLowerCase() > b.innerText.toLowerCase()) return 1;
+            //     return 0;
+            // });
 
             // reorder items in the DOM
-            itemsArray.forEach(function (item) {
+            // itemsArray.forEach(function (item) {
                 // one by one move to the end in correct order
-                parent.appendChild(item);
-            });
-        }
+                // parent.appendChild(item);
+            // });
+        // }
     </script>
     <!-- <script>
         $(document).ready(function () {
@@ -50,7 +50,7 @@
     </script> -->
 </head>
 
-<body class="govuk-template__body app-example-page" onload="getSortedGa()">
+<body class="govuk-template__body app-example-page">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>

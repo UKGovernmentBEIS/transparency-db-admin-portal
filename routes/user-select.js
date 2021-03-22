@@ -54,6 +54,12 @@ router.get("/", async (req, res) => {
           gaRolesList.push(items.gaName);
         } else {
           gaNamesList.push(items.gaName);
+          gaNamesList.sort(function (a, b) {
+            // inner text suits best (even when formated somehow)
+            if (a.toLowerCase() < b.toLowerCase()) return -1;
+            if (a.toLowerCase() > b.toLowerCase()) return 1;
+            return 0;
+          });
         }
       });
       res.render("bulkupload/user-select", {
