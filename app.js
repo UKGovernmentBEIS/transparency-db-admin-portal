@@ -576,7 +576,7 @@ app.get("/", async (req, res) => {
     try {
       var apidata = await axios.get(
         beis_url_accessmanagement + "/accessmanagement/gaencoder",
-        ssn
+        ssn.UserPrincileObjectGlobal
       );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;

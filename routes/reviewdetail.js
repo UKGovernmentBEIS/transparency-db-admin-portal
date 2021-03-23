@@ -40,8 +40,7 @@ router.post("/", async (req, res) => {
   ssn.Spending_Sector_Error = false;
 
   var {
-    Subsidy_Control_Number,
-    Subsidy_Measure_Title,
+    Subsidy_Control_Number_Name,
     // Subsidy_Adhoc,
     Subsidy_Objective,
     Subsidy_Objective_Other,
@@ -64,16 +63,16 @@ router.post("/", async (req, res) => {
     mylink,
   } = req.body;
 
-  console.log("isAddSubsidyPrimarycall: " + isAddSubsidyPrimarycall);
-  console.log("Subsidy_Instrument :" + ssn.Subsidy_Instrument);
-  console.log("buttonvalue:" + buttonvalue);
-  console.log("mylink:" + mylink);
-  console.log("Granting_Authority_Name from award: " + Granting_Authority_Name);
+  // console.log("isAddSubsidyPrimarycall: " + isAddSubsidyPrimarycall);
+  // console.log("Subsidy_Instrument :" + ssn.Subsidy_Instrument);
+  // console.log("buttonvalue:" + buttonvalue);
+  // console.log("mylink:" + mylink);
+  // console.log("Granting_Authority_Name from award: " + Granting_Authority_Name);
 
   // console.log("  Subsidy_Adhoc :" + Subsidy_Adhoc);
 
-  ssn.Subsidy_Control_Number_Global = Subsidy_Control_Number.toUpperCase();
-  ssn.Subsidy_Measure_Title_Global = Subsidy_Measure_Title;
+  ssn.Subsidy_Control_Number_Name_Global = Subsidy_Control_Number_Name;
+  // ssn.Subsidy_Measure_Title_Global = Subsidy_Measure_Title;
   // ssn.Subsidy_Adhoc_Global = Subsidy_Adhoc;
   ssn.Subsidy_Objective_Global = Subsidy_Objective;
   ssn.Subsidy_Objective_Other_Global = Subsidy_Objective_Other;
@@ -115,11 +114,6 @@ router.post("/", async (req, res) => {
   ssn.Spending_Region_Global = Spending_Region;
   ssn.Spending_Sector_Global = Spending_Sector;
 
-  ssn.Subsidy_Control_Number_Global_Substring = ssn.Subsidy_Control_Number_Global.substring(
-    2,
-    10
-  );
-
   if (ssn.Legal_Granting_Date_Month_Global == 1) {
     ssn.GetMonthName = "January";
   }
@@ -157,21 +151,21 @@ router.post("/", async (req, res) => {
     ssn.GetMonthName = "December";
   }
 
-  console.log("ssn.Legal_Granting_Date_Month_Global" + ssn.GetMonthName);
+  // console.log("ssn.Legal_Granting_Date_Month_Global" + ssn.GetMonthName);
 
   if (buttonvalue == "continue") {
     //Empty field validations
 
-    if (!Subsidy_Control_Number && !Subsidy_Measure_Title) {
+    if (!Subsidy_Control_Number_Name) {
       ssn.Subsidy_Control_Number_Error = true;
       ssn.SubsidyErrors[Additem] =
-        "     Enter the either subsidy control number (Or)";
+        "Enter the either subsidy control number (Or) subsidy sheme name";
       ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
       Additem = Additem + 1;
-      ssn.Subsidy_Measure_Title_Error = true;
-      ssn.SubsidyErrors[Additem] = "     Enter the subsidy sheme name";
-      ssn.SubsidyFocus[Additem] = "#Subsidy_Measure_Title";
-      Additem = Additem + 1;
+      // ssn.Subsidy_Measure_Title_Error = true;
+      // ssn.SubsidyErrors[Additem] = "     Enter the subsidy sheme name";
+      // ssn.SubsidyFocus[Additem] = "#Subsidy_Measure_Title";
+      // Additem = Additem + 1;
     }
 
     // if (!Subsidy_Measure_Title) {
@@ -490,7 +484,7 @@ router.post("/", async (req, res) => {
       }
       try {
         const data_request = {
-          searchName: Subsidy_Control_Number,
+          searchName: Subsidy_Control_Number_Name,
           pageNumber: 1,
           totalRecordsPerPage: 10,
           sortBy: ["subsidyMeasureTitle,asc"],
@@ -508,6 +502,10 @@ router.post("/", async (req, res) => {
         ssn.Subsidy_Measure_Title_Global =
           searchschemes.schemes[0].subsidyMeasureTitle;
         ssn.Subsidy_Control_Number_Global = searchschemes.schemes[0].scNumber;
+        ssn.Subsidy_Control_Number_Global_Substring = ssn.Subsidy_Control_Number_Global.substring(
+          2,
+          10
+        );
         res.render("bulkupload/reviewdetail", {
           ssn,
           // Subsidy_Control_Number_Global,
@@ -536,6 +534,17 @@ router.post("/", async (req, res) => {
           // GetMonthName,
         });
       } catch (err) {
+        if (err.toString().includes("404")) {
+          ssn.Subsidy_Control_Number_Error = true;
+          ssn.SubsidyErrors[Additem] =
+            "Either subsidy control number (Or) subsidy sheme name is not valid";
+          ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
+          Additem = Additem + 1;
+          ssn.SubsidyArraySize = 1;
+          res.render("bulkupload/addsubsidyaward", {
+            ssn,
+          });
+        }
         console.log("error in scheme", err);
       }
     }

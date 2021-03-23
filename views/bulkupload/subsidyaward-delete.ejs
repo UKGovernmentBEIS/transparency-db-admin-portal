@@ -105,14 +105,19 @@
                 <!-- Body header ends here -->
                 <p class="govuk-body govuk-!-font-size-19">Are you sure you want to <%=Award_status_lower%> this subsidy
                     award?</p>
+                <form action="/rejectsubsidyaward" method="POST">
+                    <input type="hidden" value="<%=Award_status%>" name="status">
+                    <input type="hidden" value="<%=awardnumber%>" name="awardnumber">
+                    <button class="govuk-button govuk-button--secondary">
+                        Yes, <%=Award_status_lower%> subsidy award
+                    </button>
+                    <a href="/subsidyawardfetch/?award=<%=awardnumber%>"
+                        class="govuk-button govuk-button_sm govuk-button--secondary" data-module="govuk-button">
+                        Cancel
+                    </a>
+                </form>
 
-                <a href="/rejectsubsidyaward" class="govuk-button govuk-button--secondary">
-                    Yes, delete subsidy award
-                </a>
-                <a href="/subsidyawardfetch/?award=<%=awardnumber%>"
-                    class="govuk-button govuk-button_sm govuk-button--secondary" data-module="govuk-button">
-                    Cancel
-                </a>
+
             </div>
 
         </main>
