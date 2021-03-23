@@ -19,6 +19,7 @@ router.post("/", async (req, res) => {
   ssn.SubsidyArraySize = 0;
   ssn.Subsidy_Control_Number_Error = false;
   ssn.Subsidy_Measure_Title_Error = false;
+  ssn.SC_Not_active = false;
   // ssn.Subsidy_Adhoc_Error = false;
   ssn.Subsidy_Objective_Error = false;
   ssn.Subsidy_Objective_Other_Error = false;
@@ -498,7 +499,7 @@ router.post("/", async (req, res) => {
         );
 
         searchschemes = apidata.data;
-        console.log("Status: " + JSON.stringify(searchschemes));
+
         ssn.Subsidy_Measure_Title_Global =
           searchschemes.schemes[0].subsidyMeasureTitle;
         ssn.Subsidy_Control_Number_Global = searchschemes.schemes[0].scNumber;
@@ -506,38 +507,76 @@ router.post("/", async (req, res) => {
           2,
           10
         );
-        res.render("bulkupload/reviewdetail", {
-          ssn,
-          // Subsidy_Control_Number_Global,
-          // ssn.Subsidy_Control_Number_Global_Substring,
-          // ssn.Subsidy_Measure_Title_Global,
-          // ssn.Subsidy_Adhoc_Global,
-          // ssn.Subsidy_Objective_Global,
-          // ssn.Subsidy_Objective_Other_Global,
-          // ssn.Subsidy_Objective_Plus_Other_Global,
-          // ssn.Subsidy_Instrument_Global,
-          // ssn.Subsidy_Instrument_Other_Global,
-          // Subsidy_Instrument_Plus_Other_Global,
-          // ssn.Subsidy_Element_Full_Amount_Global,
-          // ssn.Subsidy_Full_Amount_Range_Global,
-          // ssn.National_ID_Type_Global,
-          // ssn.National_ID_Number_Global,
-          // ssn.Beneficiary_Name_Global,
-          // ssn.Size_of_the_Organisation_Global,
-          // ssn.Granting_Authority_Name_Global,
-          // ssn.Legal_Granting_Date_Day_Global,
-          // ssn.Legal_Granting_Date_Month_Global,
-          // ssn.Legal_Granting_Date_Year_Global,
-          // ssn.Goods_or_Services_Global,
-          // ssn.Spending_Region_Global,
-          // ssn.Spending_Sector_Global,
-          // GetMonthName,
-        });
+        console.log("Status: " + JSON.stringify(searchschemes));
+        if (searchschemes.schemes.length == 1) {
+          ssn.Subsidy_Measure_Title_Global =
+            searchschemes.schemes[0].subsidyMeasureTitle;
+          ssn.Subsidy_Control_Number_Global = searchschemes.schemes[0].scNumber;
+          ssn.Subsidy_Control_Number_Global_Substring = ssn.Subsidy_Control_Number_Global.substring(
+            2,
+            10
+          );
+          if (searchschemes.schemes[0].status == "Inactive") {
+            // ssn.Subsidy_Control_Number_Error = true;
+            ssn.SubsidyErrors[Additem] = "Subsidy control number is not active";
+            ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
+            Additem = Additem + 1;
+            ssn.SubsidyArraySize = 1;
+            ssn.SC_Not_active = true;
+            res.render("bulkupload/addsubsidyaward", {
+              ssn,
+            });
+          } else {
+            res.render("bulkupload/reviewdetail", {
+              ssn,
+            });
+          }
+        } else {
+          searchschemes.schemes.forEach((items) => {
+            if (items.status == "Active") {
+              ssn.Subsidy_Measure_Title_Global = items.subsidyMeasureTitle;
+              ssn.Subsidy_Control_Number_Global = items.scNumber;
+              ssn.Subsidy_Control_Number_Global_Substring = ssn.Subsidy_Control_Number_Global.substring(
+                2,
+                10
+              );
+              return;
+            }
+          });
+
+          res.render("bulkupload/reviewdetail", {
+            ssn,
+            // Subsidy_Control_Number_Global,
+            // ssn.Subsidy_Control_Number_Global_Substring,
+            // ssn.Subsidy_Measure_Title_Global,
+            // ssn.Subsidy_Adhoc_Global,
+            // ssn.Subsidy_Objective_Global,
+            // ssn.Subsidy_Objective_Other_Global,
+            // ssn.Subsidy_Objective_Plus_Other_Global,
+            // ssn.Subsidy_Instrument_Global,
+            // ssn.Subsidy_Instrument_Other_Global,
+            // Subsidy_Instrument_Plus_Other_Global,
+            // ssn.Subsidy_Element_Full_Amount_Global,
+            // ssn.Subsidy_Full_Amount_Range_Global,
+            // ssn.National_ID_Type_Global,
+            // ssn.National_ID_Number_Global,
+            // ssn.Beneficiary_Name_Global,
+            // ssn.Size_of_the_Organisation_Global,
+            // ssn.Granting_Authority_Name_Global,
+            // ssn.Legal_Granting_Date_Day_Global,
+            // ssn.Legal_Granting_Date_Month_Global,
+            // ssn.Legal_Granting_Date_Year_Global,
+            // ssn.Goods_or_Services_Global,
+            // ssn.Spending_Region_Global,
+            // ssn.Spending_Sector_Global,
+            // GetMonthName,
+          });
+        }
       } catch (err) {
         if (err.toString().includes("404")) {
           ssn.Subsidy_Control_Number_Error = true;
           ssn.SubsidyErrors[Additem] =
-            "Either subsidy control number (Or) subsidy sheme name is not valid";
+            "Either subsidy control number (Or) subsidy scheme name is not valid";
           ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
           Additem = Additem + 1;
           ssn.SubsidyArraySize = 1;
