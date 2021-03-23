@@ -532,17 +532,23 @@ router.post("/", async (req, res) => {
             });
           }
         } else {
-          searchschemes.schemes.forEach((items) => {
-            if (items.status == "Active") {
-              ssn.Subsidy_Measure_Title_Global = items.subsidyMeasureTitle;
-              ssn.Subsidy_Control_Number_Global = items.scNumber;
+          for (var item = 0; item < searchschemes.schemes.length; i++) {
+            // searchschemes.schemes.forEach(function (item) {
+            console.log(item.status);
+            if (searchschemes.schemes[item].status === "Active") {
+              ssn.Subsidy_Measure_Title_Global =
+                searchschemes.schemes[item].subsidyMeasureTitle;
+              ssn.Subsidy_Control_Number_Global =
+                searchschemes.schemes[item].scNumber;
               ssn.Subsidy_Control_Number_Global_Substring = ssn.Subsidy_Control_Number_Global.substring(
                 2,
                 10
               );
-              return;
+              break;
+              // return false;
             }
-          });
+          }
+          // });
 
           res.render("bulkupload/reviewdetail", {
             ssn,
