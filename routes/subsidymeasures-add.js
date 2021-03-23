@@ -41,7 +41,7 @@ router.get("/", (req, res) => {
   ssn.Scheme_End_Day_Global = "";
   ssn.Scheme_End_Month_Global = "";
   ssn.Scheme_End_Year_Global = "";
-
+  formatedCurrency = "";
   isCallfromEditAward = false;
   var isAddSubsidyPrimarycall = true;
 
