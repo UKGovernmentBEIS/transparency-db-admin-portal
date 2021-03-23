@@ -38,6 +38,20 @@
 
             <%- include('../partials/navigationbar.ejs') %>
 
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Help</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+
             <h1 class="govuk-heading-xl"> Managing UK subsidies user guide</h1>
 
             <div class="govuk-grid-row">
@@ -310,7 +324,7 @@
                 <div class="govuk-grid-column-full">
                     <h3 class="govuk-heading-l">Deactivating a user</h3>
 
-                    <p class="govuk-body">If you want to <mark>remove a user</mark> from the system, you can deactivate
+                    <p class="govuk-body">If you want to remove a user from the system, you can deactivate
                         them.
                     </p>
                     <p class="govuk-body">To do this, find the user you want to deactivate on the users page and select

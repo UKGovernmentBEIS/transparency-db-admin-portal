@@ -72,7 +72,7 @@ router.post("/", (req, res) => {
   if (Budget.includes(",")) Budget = Budget.split(",").join("");
   formatedCurrency = formatter.format(Budget);
 
-  ssn.Budget_Global = formatedCurrency;
+  ssn.Budget_Global = Budget;
 
   ssn.Scheme_Start_Day_Global = scheme_issued_start_day;
   ssn.Scheme_Start_Month_Global = scheme_issued_start_month;
@@ -463,6 +463,7 @@ router.post("/", (req, res) => {
         Granting_Authority_URL_Error,
         Granting_Authority_Policy_Error,
         Budget_Error,
+        formatedCurrency,
         // ssn.Granting_Authority_Name_Error,
         scheme_issued_start_day_Error,
         scheme_issued_start_month_Error,
@@ -494,6 +495,7 @@ router.post("/", (req, res) => {
         ssn,
         GetMonthName,
         GetEndMonthName,
+        formatedCurrency,
       });
     }
   } else {
@@ -508,7 +510,7 @@ router.post("/", (req, res) => {
     if (Budget.includes(",")) Budget = Budget.split(",").join("");
     formatedCurrency = formatter.format(Budget);
 
-    ssn.Budget_Global = formatedCurrency;
+    ssn.Budget_Global = Budget;
 
     ssn.Scheme_Start_Day_Global = scheme_issued_start_day;
     ssn.Scheme_Start_Month_Global = scheme_issued_start_month;
