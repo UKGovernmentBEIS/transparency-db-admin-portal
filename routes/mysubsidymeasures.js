@@ -109,7 +109,7 @@ router.get("/", async (req, res) => {
       searchschemes,
     });
   } catch (err) {
-    if (err == "Error: Request failed with status code 404") {
+    if (err.toString().includes("404")) {
       noresult = true;
       noscheme = true;
       nodata = "No subsidy scheme available";
