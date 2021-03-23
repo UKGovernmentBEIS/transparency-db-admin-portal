@@ -67,6 +67,7 @@ router.get("/", async (req, res) => {
     } else {
       end_page = 9;
     }
+
     nodata = "";
     noresult = false;
     res.render("bulkupload/mysubsidymeasures", {
