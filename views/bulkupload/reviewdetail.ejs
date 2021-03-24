@@ -99,8 +99,12 @@
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds-from-desktop">
-          <h1 class="govuk-heading-xl">Review subsidy award details before submitting for approval</h1>
-
+          <h1 class="govuk-heading-xl">Review subsidy award details before
+            <% if(ssn.dashboard_roles == 'Granting Authority Encoder') { %>
+            submitting for approval</h1>
+          <% } else { %>
+          Publishing
+          <% } %>
           <!-- *************************************
               Review for subsidy details tab
               ************************************* -->
