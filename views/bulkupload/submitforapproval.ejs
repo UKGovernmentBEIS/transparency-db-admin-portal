@@ -46,7 +46,7 @@
             <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
           </li>
           <li class="govuk-breadcrumbs__list-item">
-            <% if(ssn.bulkupload) { %>
+            <% if(bulkupload) { %>
             <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add multiple subsidy awards</a>
             <% } else { %>
             <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add a subsidy award</a>
@@ -59,7 +59,8 @@
         <div class="govuk-grid-column-two-thirds">
           <div class="govuk-panel govuk-panel--confirmation">
             <h1 class="govuk-panel__title">
-              Subsidy award <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %> submitted for approval
+              Subsidy <% if(bulkupload) { %> awards <% } else { %> award <% } %>
+              <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %> submitted for approval
               <% } else { %>
               published<% } %>
             </h1>
@@ -69,15 +70,19 @@
           </div>
 
           <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %>
+          <% if(bulkupload) { %>
           <p class="govuk-body">You have successfully submitted <%= SubsidyAwardNumber%> subsidy
-            <% if(bulkupload) { %> awards <% } else { %> award <%}%>            
-            for approval
+            awards for approval.
           </p>
+          <% } else { %><p class="govuk-body">You have successfully submitted subsidy award <%= SubsidyAwardNumber%> for
+            approval.
+          </p> <% } %>
           <% } else { %>
-            <%  if(bulkupload) { %>
+          <%  if(bulkupload) { %>
           <p class="govuk-body">You have approved <%= SubsidyAwardNumber%> subsidy awards and it is now
             published.</p>
-          <% } else { %><p class="govuk-body">You have approved subsidy award
+          <% } else { %>
+          <p class="govuk-body">You have approved subsidy award
             <%= SubsidyAwardNumber%> and it is now published.</p>
           <% } %>
           <% } %>
@@ -98,7 +103,7 @@
             <div class="govuk-grid-column-full"> -->
           <!-- <form action="" method="GET" novalidate=""> -->
           <a href="/mysubsidyawards" class="govuk-button" data-module="govuk-button">View all subsidy awards</a>
-          <% if(bulkupload) { %>
+          <% if(!bulkupload) { %>
           <a href="/addsubsidyaward" class=" govuk-button govuk-button--secondary ">
             Add another award
           </a>
