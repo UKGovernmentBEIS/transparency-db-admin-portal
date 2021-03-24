@@ -14,10 +14,10 @@ router.post("/", async (req, res) => {
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
   if (typeof ssn.Subsidy_Full_Amount_Range_Global == "undefined") {
-    ssn.Subsidy_Full_Amount_Range_Global = "NA";
+    ssn.Subsidy_Full_Amount_Range_Global = "n/a";
   }
   if (typeof ssn.Subsidy_Element_Full_Amount_Global == "undefined") {
-    ssn.Subsidy_Element_Full_Amount_Global = "NA";
+    ssn.Subsidy_Element_Full_Amount_Global = "n/a";
   }
 
   subsidy_legal_granting_date =
@@ -52,7 +52,7 @@ router.post("/", async (req, res) => {
   ssn.Spending_Sector_Error = false;
 
   if (ssn.Subsidy_Full_Amount_Range_Global == "Empty") {
-    Subsidy_Full_Amount_Range_Global_Trim = "NA";
+    Subsidy_Full_Amount_Range_Global_Trim = "n/a";
   } else {
     Subsidy_Full_Amount_Range_Global_Trim =
       ssn.Subsidy_Full_Amount_Range_Global;

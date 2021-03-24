@@ -86,7 +86,7 @@ router.post("/", async (req, res) => {
   ) {
     ssn.Subsidy_Element_Full_Amount_Global = Subsidy_Element_Full_Amount;
   } else {
-    ssn.Subsidy_Element_Full_Amount_Global = "NA";
+    ssn.Subsidy_Element_Full_Amount_Global = "n/a";
   }
 
   if (
@@ -95,7 +95,7 @@ router.post("/", async (req, res) => {
   ) {
     ssn.Subsidy_Full_Amount_Range_Global = Subsidy_Full_Amount_Range;
   } else {
-    ssn.Subsidy_Full_Amount_Range_Global = "NA";
+    ssn.Subsidy_Full_Amount_Range_Global = "n/a";
   }
 
   ssn.National_ID_Type_Global = National_ID_Type;
