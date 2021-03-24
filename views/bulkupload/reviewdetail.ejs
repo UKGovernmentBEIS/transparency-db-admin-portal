@@ -99,8 +99,12 @@
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds-from-desktop">
-          <h1 class="govuk-heading-xl">Review subsidy award details before submitting for approval</h1>
-
+          <h1 class="govuk-heading-xl">Review subsidy award details before
+            <% if(ssn.dashboard_roles == 'Granting Authority Encoder') { %>
+            submitting for approval
+            <% } else { %>
+            publishing
+            <% } %></h1>
           <!-- *************************************
               Review for subsidy details tab
               ************************************* -->
@@ -305,7 +309,11 @@
         <input type="hidden" name="answers-checked" value="true">
 
         <button class="govuk-button" data-module="govuk-button">
+          <% if(ssn.dashboard_roles == 'Granting Authority Encoder') { %>
           Submit for Approval
+          <% } else { %>
+          Publish
+          <% } %>
         </button>
 
         <a href="/subsidyawardreviewcancel" class="govuk-link govuk-cancel-button-link">Cancel</a>

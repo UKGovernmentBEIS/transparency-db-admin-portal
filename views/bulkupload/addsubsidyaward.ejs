@@ -68,10 +68,26 @@
         document.getElementById("other_purpose").style.display = "none";
     };
 
-    getSubsidyInstrument = (subsidyValue, purposeValue) => {
-      // var objSelect = document.getElementById("Subsidy_Instrument");
-      // setSelectedValue(objSelect, subsidyValue);
+    getSubsidyInstrument = (subsidyValue, purposeValue, errorArray) => {
+      if (errorArray > 0) {
+        var navLink = document.getElementsByClassName("govuk-sub-navigation__link");
+        var breadLink = document.getElementsByClassName("govuk-breadcrumbs__link");
+        var headerLink = document.getElementsByClassName("govuk-header__link");
+        var skipLink = document.getElementsByClassName("govuk-skip-link")[0].setAttribute("tabindex", "-1");
+        var link = document.getElementsByClassName("govuk-link")[2].setAttribute("tabindex", "-1");
 
+        for (var i = 0; i < headerLink.length; i++) {
+          headerLink[i].setAttribute("tabindex", "-1");
+        }
+
+        for (var tag = 0; tag < breadLink.length; tag++) {
+          breadLink[tag].setAttribute("tabindex", "-1")
+        }
+        // var aTags = document.getElementsByTagName("a");
+        for (var tag = 0; tag < navLink.length; tag++) {
+          navLink[tag].setAttribute("tabindex", "-1")
+        }
+      }
       if (subsidyValue == 'Tax measures (tax credit, or tax/duty exemption)') {
         $('.amount_subsidy_tax').show();
         $('.amount_subsidy_nottax').hide();
@@ -119,7 +135,7 @@
 </head>
 
 <body class="govuk-template__body app-example-page"
-  onload="getSubsidyInstrument('<%= ssn.Subsidy_Instrument_Global %>','<%= ssn.Subsidy_Objective_Global %>')">
+  onload="getSubsidyInstrument('<%= ssn.Subsidy_Instrument_Global %>','<%= ssn.Subsidy_Objective_Global %>','<%=ssn.SubsidyArraySize%>')">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -155,7 +171,7 @@
       <!-- bread crumbs ends here -->
       <% if( ssn.SubsidyArraySize > 0 ){ %>
 
-      <div class="govuk-error-summary" role="alert" tabindex="0" aria-labelledby="error-summary-title"
+      <div class="govuk-error-summary" role="alert" tabindex="1" aria-labelledby="error-summary-title"
         data-module="govuk-error-summary">
         <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
 

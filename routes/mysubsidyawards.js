@@ -21,8 +21,8 @@ router.get("/", async (req, res) => {
   ssn.frontend_totalRecordsPerPage = 10;
   ssn.Award_page = 1;
 
-  ssn.subsidy_award_number_arrow = "upanddown";
-  ssn.scheme_name_arrow = "upascending";
+  ssn.subsidy_award_number_arrow = "downdecending";
+  ssn.scheme_name_arrow = "upanddown";
   ssn.granting_authority_arrow = "upanddown";
   ssn.award_status_arrow = "upanddown";
   ssn.award_recipient_arrow = "upanddown";
@@ -50,7 +50,7 @@ router.get("/", async (req, res) => {
   Award_page = "page=" + ssn.Award_page;
   Award_recordsperpage = "recordsPerPage=" + ssn.frontend_totalRecordsPerPage;
   Award_sorting = "sortBy=";
-  Award_sorting_field = "subsidyMeasure.subsidyMeasureTitle-asc";
+  Award_sorting_field = "awardNumber-desc";
 
   Award_search_URL =
     Base_URL +
