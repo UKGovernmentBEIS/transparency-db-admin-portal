@@ -18,8 +18,8 @@ router.get("/", async (req, res) => {
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
   ssn.frontend_totalRecordsPerPage = 10;
-  subsidy_scheme_name_arrow = "upascending";
-  subsidy_control_no_arrow = "upanddown";
+  subsidy_scheme_name_arrow = "upanddown";
+  subsidy_control_no_arrow = "downdecending";
   granting_authority_arrow = "upanddown";
   start_date_arrow = "upanddown";
   end_date_arrow = "upanddown";
@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
   ssn.duration_sorting_order = "desc";
   ssn.budget_sorting_order = "desc";
   schemes_status = "";
-  sorting_column = "[" + '"' + "subsidyMeasureTitle,asc" + '"' + "]";
+  sorting_column = "[" + '"' + "scNumber,desc" + '"' + "]";
   sorting_order_interium = sorting_column.replace(/^"(.*)"$/, "$1");
   ssn.sorting_order_pass = JSON.parse(sorting_order_interium);
 
