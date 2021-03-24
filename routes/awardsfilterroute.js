@@ -94,7 +94,7 @@ router.get("/", async (req, res) => {
       ssn,
     });
   } catch (err) {
-    if (err.toString.includes("404")) {
+    if (err.toString().includes("404")) {
       noresult = true;
       noawards = false;
       nodata = "No data available for filtered criteria";
