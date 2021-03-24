@@ -525,11 +525,11 @@
                 <option value="Services of Public Economic Interest">Services of Public Economic Interest </option>
                 <% } %>
 
-                <% if( ssn.Subsidy_Objective_Global == 'SME (Small/Medium-sized enterprise) support​ ' ){ %>
-                <option value="SME (Small/Medium-sized enterprise) support​ " selected>SME (Small/Medium-sized
+                <% if( ssn.Subsidy_Objective_Global == 'SME (Small/Medium-sized enterprise) support​' ){ %>
+                <option value="SME (Small/Medium-sized enterprise) support​" selected>SME (Small/Medium-sized
                   enterprise) support​ </option>
                 <% } else { %>
-                <option value="SME (Small/Medium-sized enterprise) support​ ">SME (Small/Medium-sized enterprise)
+                <option value="SME (Small/Medium-sized enterprise) support​">SME (Small/Medium-sized enterprise)
                   support​ </option>
                 <% } %>
 
@@ -616,11 +616,11 @@
                 <option value="Services of Public Economic Interest">Services of Public Economic Interest </option>
                 <% } %>
 
-                <% if( ssn.Subsidy_Objective_Global == 'SME (Small/Medium-sized enterprise) support​ ' ){ %>
-                <option value="SME (Small/Medium-sized enterprise) support​ " selected>SME (Small/Medium-sized
+                <% if( ssn.Subsidy_Objective_Global == 'SME (Small/Medium-sized enterprise) support​' ){ %>
+                <option value="SME (Small/Medium-sized enterprise) support​" selected>SME (Small/Medium-sized
                   enterprise) support​ </option>
                 <% } else { %>
-                <option value="SME (Small/Medium-sized enterprise) support​ ">SME (Small/Medium-sized enterprise)
+                <option value="SME (Small/Medium-sized enterprise) support​">SME (Small/Medium-sized enterprise)
                   support​ </option>
                 <% } %>
 
@@ -881,50 +881,111 @@
                     <% } else { %>
                     <option value=""> Select subsidy range(8)</option>
                     <% } %>
-                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '1 - 60000' ) { %>
-                    <option value="1 - 60000" selected>1 - 60000</option>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£1 - £60,000' ) { %>
+                    <option value="£1 - £60,000" selected>£1 - £60,000</option>
                     <% } else { %>
-                    <option value="1 - 60000">1 - 60000</option>
+                    <option value="£1 - £60,000">£1 - £60,000</option>
                     <% } %>
-                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '60001 - 500000' ) { %>
-                    <option value="60001 - 500000" selected>60001 - 500000</option>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£60,001 - £500,000' ) { %>
+                    <option value="£60,001 - £500,000" selected>£60,001 - £500,000</option>
                     <% } else { %>
-                    <option value="60001 - 500000">60001 - 500000</option>
+                    <option value="£60,001 - £500,000">£60,001 - £500,000</option>
                     <% } %>
-                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '500001 - 1000000' ) { %>
-                    <option value="500001 - 1000000" selected>500001 - 1000000</option>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£500,001 - £1,000,000' ) { %>
+                    <option value="£500,001 - £1,000,000" selected>£500,001 - £1,000,000</option>
                     <% } else { %>
-                    <option value="500001 - 1000000">500001 - 1000000</option>
+                    <option value="£500,001 - £1,000,000">£500,001 - £1,000,000</option>
                     <% } %>
-                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '1000001 - 2000000' ) { %>
-                    <option value="1000001 - 2000000" selected>1000001 - 2000000</option>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£1,000,001 - £2,000,000' ) { %>
+                    <option value="£1,000,001 - £2,000,000" selected>£1,000,001 - £2,000,000</option>
                     <% } else { %>
-                    <option value="1000001 - 2000000">1000001 - 2000000</option>
+                    <option value="£1,000,001 - £2,000,000">£1,000,001 - £2,000,000</option>
                     <% } %>
-                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '2000001 - 5000000' ) { %>
-                    <option value="2000001 - 5000000" selected>2000001 - 5000000</option>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£2,000,001 - £5,000,000' ) { %>
+                    <option value="£2,000,001 - £5,000,000" selected>£2,000,001 - £5,000,000</option>
                     <% } else { %>
-                    <option value="2000001 - 5000000">2000001 - 5000000</option>
+                    <option value="£2,000,001 - £5,000,000">£2,000,001 - £5,000,000</option>
                     <% } %>
-                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '5000001 - 10000000' ) { %>
-                    <option value="5000001 - 10000000" selected>5000001 - 10000000</option>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£5,000,001 - £10,000,000' ) { %>
+                    <option value="£5,000,001 - £10,000,000" selected>£5,000,001 - £10,000,000</option>
                     <% } else { %>
-                    <option value="5000001 - 10000000">5000001 - 10000000</option>
+                    <option value="£5,000,001 - £10,000,000">£5,000,001 - £10,000,000</option>
                     <% } %>
-                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '10000001 - 30000000' ) { %>
-                    <option value="10000001 - 30000000" selected>10000001 - 30000000</option>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£10,000,001 - £30,000,000' ) { %>
+                    <option value="£10,000,001 - £30,000,000" selected>£10,000,001 - £30,000,000</option>
                     <% } else { %>
-                    <option value="10000001 - 30000000">10000001 - 30000000</option>
+                    <option value="£10,000,001 - £30,000,000">£10,000,001 - £30,000,000</option>
                     <% } %>
-                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '30000001 or more' ) { %>
-                    <option value="30000001 or more" selected>30000001 or more</option>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£30,000,001 or more' ) { %>
+                    <option value="£30,000,001 or more" selected>£30,000,001 or more</option>
                     <% } else { %>
-                    <option value="30000001 or more">30000001 or more</option>
+                    <option value="£30,000,001 or more">£30,000,001 or more</option>
                     <% } %>
                   </select>
                 </fieldset>
               </div>
+              <% } else if(ssn.Subsidy_Full_Amount_Range_Exceed_Error) { %>
+              <div class="govuk-form-group govuk-form-group--error">
+                <fieldset class="govuk-fieldset">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <h1 class="govuk-label">
+                      Subsidy Full Amount Range (£)
+                    </h1>
+                  </legend>
 
+                  <span class="govuk-error-message" id="ssn.Subsidy_Full_Amount_Range_Error">
+                    <span class="govuk-visually-hidden">Error:</span> Select the Subsidy Full Amount Range
+                  </span>
+
+                  <select class="govuk-select" id="Subsidy_Full_Amount_Range" name="Subsidy_Full_Amount_Range">
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '' ) { %>
+                    <option selected value=""> Select subsidy range(8)</option>
+                    <% } else { %>
+                    <option value=""> Select subsidy range(8)</option>
+                    <% } %>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£1 - £60,000' ) { %>
+                    <option value="£1 - £60,000" selected>£1 - £60,000</option>
+                    <% } else { %>
+                    <option value="£1 - £60,000">£1 - £60,000</option>
+                    <% } %>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£60,001 - £500,000' ) { %>
+                    <option value="£60,001 - £500,000" selected>£60,001 - £500,000</option>
+                    <% } else { %>
+                    <option value="£60,001 - £500,000">£60,001 - £500,000</option>
+                    <% } %>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£500,001 - £1,000,000' ) { %>
+                    <option value="£500,001 - £1,000,000" selected>£500,001 - £1,000,000</option>
+                    <% } else { %>
+                    <option value="£500,001 - £1,000,000">£500,001 - £1,000,000</option>
+                    <% } %>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£1,000,001 - £2,000,000' ) { %>
+                    <option value="£1,000,001 - £2,000,000" selected>£1,000,001 - £2,000,000</option>
+                    <% } else { %>
+                    <option value="£1,000,001 - £2,000,000">£1,000,001 - £2,000,000</option>
+                    <% } %>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£2,000,001 - £5,000,000' ) { %>
+                    <option value="£2,000,001 - £5,000,000" selected>£2,000,001 - £5,000,000</option>
+                    <% } else { %>
+                    <option value="£2,000,001 - £5,000,000">£2,000,001 - £5,000,000</option>
+                    <% } %>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£5,000,001 - £10,000,000' ) { %>
+                    <option value="£5,000,001 - £10,000,000" selected>£5,000,001 - £10,000,000</option>
+                    <% } else { %>
+                    <option value="£5,000,001 - £10,000,000">£5,000,001 - £10,000,000</option>
+                    <% } %>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£10,000,001 - £30,000,000' ) { %>
+                    <option value="£10,000,001 - £30,000,000" selected>£10,000,001 - £30,000,000</option>
+                    <% } else { %>
+                    <option value="£10,000,001 - £30,000,000">£10,000,001 - £30,000,000</option>
+                    <% } %>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£30,000,001 or more' ) { %>
+                    <option value="£30,000,001 or more" selected>£30,000,001 or more</option>
+                    <% } else { %>
+                    <option value="£30,000,001 or more">£30,000,001 or more</option>
+                    <% } %>
+                  </select>
+                </fieldset>
+              </div>
               <% } else { %>
 
 
@@ -942,45 +1003,45 @@
                     <% } else { %>
                     <option value=""> Select subsidy range(8)</option>
                     <% } %>
-                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '1 - 60000' ) { %>
-                    <option value="1 - 60000" selected>1 - 60000</option>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£1 - £60,000' ) { %>
+                    <option value="£1 - £60,000" selected>£1 - £60,000</option>
                     <% } else { %>
-                    <option value="1 - 60000">1 - 60000</option>
+                    <option value="£1 - £60,000">£1 - £60,000</option>
                     <% } %>
-                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '60001 - 500000' ) { %>
-                    <option value="60001 - 500000" selected>60001 - 500000</option>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£60,001 - £500,000' ) { %>
+                    <option value="£60,001 - £500,000" selected>£60,001 - £500,000</option>
                     <% } else { %>
-                    <option value="60001 - 500000">60001 - 500000</option>
+                    <option value="£60,001 - £500,000">£60,001 - £500,000</option>
                     <% } %>
-                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '500001 - 1000000' ) { %>
-                    <option value="500001 - 1000000" selected>500001 - 1000000</option>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£500,001 - £1,000,000' ) { %>
+                    <option value="£500,001 - £1,000,000" selected>£500,001 - £1,000,000</option>
                     <% } else { %>
-                    <option value="500001 - 1000000">500001 - 1000000</option>
+                    <option value="£500,001 - £1,000,000">£500,001 - £1,000,000</option>
                     <% } %>
-                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '1000001 - 2000000' ) { %>
-                    <option value="1000001 - 2000000" selected>1000001 - 2000000</option>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£1,000,001 - £2,000,000' ) { %>
+                    <option value="£1,000,001 - £2,000,000" selected>£1,000,001 - £2,000,000</option>
                     <% } else { %>
-                    <option value="1000001 - 2000000">1000001 - 2000000</option>
+                    <option value="£1,000,001 - £2,000,000">£1,000,001 - £2,000,000</option>
                     <% } %>
-                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '2000001 - 5000000' ) { %>
-                    <option value="2000001 - 5000000" selected>2000001 - 5000000</option>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£2,000,001 - £5,000,000' ) { %>
+                    <option value="£2,000,001 - £5,000,000" selected>£2,000,001 - £5,000,000</option>
                     <% } else { %>
-                    <option value="2000001 - 5000000">2000001 - 5000000</option>
+                    <option value="£2,000,001 - £5,000,000">£2,000,001 - £5,000,000</option>
                     <% } %>
-                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '5000001 - 10000000' ) { %>
-                    <option value="5000001 - 10000000" selected>5000001 - 10000000</option>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£5,000,001 - £10,000,000' ) { %>
+                    <option value="£5,000,001 - £10,000,000" selected>£5,000,001 - £10,000,000</option>
                     <% } else { %>
-                    <option value="5000001 - 10000000">5000001 - 10000000</option>
+                    <option value="£5,000,001 - £10,000,000">£5,000,001 - £10,000,000</option>
                     <% } %>
-                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '10000001 - 30000000' ) { %>
-                    <option value="10000001 - 30000000" selected>10000001 - 30000000</option>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£10,000,001 - £30,000,000' ) { %>
+                    <option value="£10,000,001 - £30,000,000" selected>£10,000,001 - £30,000,000</option>
                     <% } else { %>
-                    <option value="10000001 - 30000000">10000001 - 30000000</option>
+                    <option value="£10,000,001 - £30,000,000">£10,000,001 - £30,000,000</option>
                     <% } %>
-                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '30000001 or more' ) { %>
-                    <option value="30000001 or more" selected>30000001 or more</option>
+                    <% if( ssn.Subsidy_Full_Amount_Range_Global == '£30,000,001 or more' ) { %>
+                    <option value="£30,000,001 or more" selected>£30,000,001 or more</option>
                     <% } else { %>
-                    <option value="30000001 or more">30000001 or more</option>
+                    <option value="£30,000,001 or more">£30,000,001 or more</option>
                     <% } %>
                   </select>
                 </fieldset>
@@ -1011,7 +1072,22 @@
                   <% if(ssn.Subsidy_Element_Full_Amount_Global) {%> value="<%= ssn.Subsidy_Element_Full_Amount_Global%>"
                   <% } %> />
               </div>
+              <% } else if(ssn.Subsidy_Element_Full_Amount_Exceed_Error){%>
+              <div class="govuk-form-group govuk-form-group--error">
+                <label class="govuk-label" for="Subsidy_Element_Full_Amount">
+                  Subsidy element full amount (£)
+                </label>
 
+                <span class="govuk-error-message" id="ssn.Subsidy_Element_Full_Amount_Error">
+                  <span class="govuk-visually-hidden">Error:</span> Subsidy element full amount is exceeded over
+                  the budget amount of scheme.
+                </span>
+
+                <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
+                  name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount"
+                  <% if(ssn.Subsidy_Element_Full_Amount_Global) {%> value="<%= ssn.Subsidy_Element_Full_Amount_Global%>"
+                  <% } %> />
+              </div>
               <% } else { %>
 
 
