@@ -14,10 +14,10 @@ router.post("/", async (req, res) => {
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
   if (typeof ssn.Subsidy_Full_Amount_Range_Global == "undefined") {
-    ssn.Subsidy_Full_Amount_Range_Global = "NA";
+    ssn.Subsidy_Full_Amount_Range_Global = "n/a";
   }
   if (typeof ssn.Subsidy_Element_Full_Amount_Global == "undefined") {
-    ssn.Subsidy_Element_Full_Amount_Global = "NA";
+    ssn.Subsidy_Element_Full_Amount_Global = "n/a";
   }
 
   subsidy_legal_granting_date =
@@ -37,7 +37,9 @@ router.post("/", async (req, res) => {
   ssn.Subsidy_Instrument_Error = false;
   ssn.Subsidy_Instrument_Other_Error = false;
   ssn.Subsidy_Element_Full_Amount_Error = false;
+  ssn.Subsidy_Element_Full_Amount_Exceed_Error = true;
   ssn.Subsidy_Full_Amount_Range_Error = false;
+  ssn.Subsidy_Full_Amount_Range_Exceed_Error = false;
   ssn.National_ID_Type_Error = false;
   ssn.National_ID_Number_Error = false;
   ssn.Beneficiary_Name_Error = false;
@@ -50,12 +52,17 @@ router.post("/", async (req, res) => {
   ssn.Goods_or_Services_Error = false;
   ssn.Spending_Region_Error = false;
   ssn.Spending_Sector_Error = false;
-
-  if (ssn.Subsidy_Full_Amount_Range_Global == "Empty") {
-    Subsidy_Full_Amount_Range_Global_Trim = "NA";
+  console.log(
+    "ssn.Subsidy_Full_Amount_Range_Global ",
+    ssn.Subsidy_Full_Amount_Range_Global
+  );
+  if (ssn.Subsidy_Full_Amount_Range_Global == "n/a") {
+    Subsidy_Full_Amount_Range_Global_Trim = "n/a";
   } else {
-    Subsidy_Full_Amount_Range_Global_Trim =
-      ssn.Subsidy_Full_Amount_Range_Global;
+    var value = ssn.Subsidy_Full_Amount_Range_Global.split("-");
+    var firstVal = value[0].split(",").join("").replace("£", "");
+    var secondVal = value[1].split(",").join("").replace("£", "");
+    Subsidy_Full_Amount_Range_Global_Trim = firstVal + "-" + secondVal;
   }
   Subsidy_Element_Full_Amount_Global_Trim = parseFloat(
     ssn.Subsidy_Element_Full_Amount_Global.replace(/\,/g, "")
@@ -166,7 +173,28 @@ router.post("/", async (req, res) => {
           ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
           Additem = Additem + 1;
         }
-
+        if (
+          add_award_response.validationErrorResult[i].column ==
+          "subsidyAmountRange"
+        ) {
+          ssn.Subsidy_Full_Amount_Range_Error = false;
+          ssn.Subsidy_Full_Amount_Range_Exceed_Error = true;
+          ssn.SubsidyErrors[Additem] =
+            add_award_response.validationErrorResult[i].message;
+          ssn.SubsidyFocus[Additem] = "#Subsidy_Full_Amount_Range";
+          Additem = Additem + 1;
+        }
+        if (
+          add_award_response.validationErrorResult[i].column ==
+          "subsidyAmountExact"
+        ) {
+          ssn.Subsidy_Element_Full_Amount_Error = false;
+          ssn.Subsidy_Element_Full_Amount_Exceed_Error = true;
+          ssn.SubsidyErrors[Additem] =
+            add_award_response.validationErrorResult[i].message;
+          ssn.SubsidyFocus[Additem] = "#Subsidy_Element_Full_Amount";
+          Additem = Additem + 1;
+        }
         if (
           add_award_response.validationErrorResult[i].column ==
           "subsidyControlTitle"
@@ -252,16 +280,16 @@ router.post("/", async (req, res) => {
           Additem = Additem + 1;
         }
 
-        if (
-          add_award_response.validationErrorResult[i].column ==
-          "subsidyAmountExact"
-        ) {
-          ssn.Subsidy_Element_Full_Amount_Error = true;
-          ssn.SubsidyErrors[Additem] =
-            add_award_response.validationErrorResult[i].message;
-          ssn.SubsidyFocus[Additem] = "#Subsidy_Element_Full_Amount";
-          Additem = Additem + 1;
-        }
+        // if (
+        //   add_award_response.validationErrorResult[i].column ==
+        //   "subsidyAmountExact"
+        // ) {
+        //   ssn.Subsidy_Element_Full_Amount_Error = true;
+        //   ssn.SubsidyErrors[Additem] =
+        //     add_award_response.validationErrorResult[i].message;
+        //   ssn.SubsidyFocus[Additem] = "#Subsidy_Element_Full_Amount";
+        //   Additem = Additem + 1;
+        // }
 
         if (
           add_award_response.validationErrorResult[i].column ==
