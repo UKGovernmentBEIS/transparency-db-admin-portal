@@ -20,6 +20,10 @@
   <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
   <script type="text/javascript" src="/assets/javascripts/bulkuploadpdfgen.js"></script>
+  <script>
+    var url = window.location.href;
+    window.location.href = url + "#upload-csv";
+  </script>
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -165,7 +169,8 @@
                     type="file" aria-describedby="file-upload-1-error"> -->
                   <div class="govuk-input__wrapper">
                     <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file" aria-label="Choose file">
+                      type="file" aria-label="Choose file"
+                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                 </div>
@@ -195,7 +200,7 @@
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="file-upload-1"> Upload a file</label>
                   <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
-                    aria-label="Choose file">
+                    aria-label="Choose file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                   <label class="govuk-label-grey" for="file-upload-2">
                     <p> The file must be a Microsoft Excel spreadsheet</p>
                   </label>
@@ -349,7 +354,7 @@
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="file-upload-1"> Upload a file</label>
                   <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
-                    aria-label="Choose file">
+                    aria-label="Choose file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                   <label class="govuk-label-grey" for="file-upload-2">
                     <p> The file must be a Microsoft Excel spreadsheet</p>
                   </label>
@@ -373,10 +378,10 @@
     </main>
   </div>
   <%- include('../partials/footer.ejs') %>
-  <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+  <!-- <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
 
   <script src="/assets/javascripts/govuk-frontend.js"></script>
-  <script src="/assets/javascripts/example.js"></script>
+  <script src="/assets/javascripts/example.js"></script> -->
   <script>
     document.getElementById('subsidyaward-li').firstElementChild.setAttribute("aria-current", 'page');
   </script>
