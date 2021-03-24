@@ -69,16 +69,17 @@
           </div>
 
           <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %>
-          <p class="govuk-body">You have successfully
-            submitted
-
-            <%= SubsidyAwardNumber%> subsidy
+          <p class="govuk-body">You have successfully submitted <%= SubsidyAwardNumber%> subsidy
             <% if(bulkupload) { %> awards <% } else { %> award <%}%>            
             for approval
           </p>
           <% } else { %>
-          <p class="govuk-body">You have approved subsidy <% if(bulkupload) { %> awards <% } else { %> award
-            <%}%> <%= SubsidyAwardNumber%> and it is now published.</p>
+            <%  if(bulkupload) { %>
+          <p class="govuk-body">You have approved <%= SubsidyAwardNumber%> subsidy awards and it is now
+            published.</p>
+          <% } %>
+          <% } else { %><p class="govuk-body">You have approved subsidy award
+            <%= SubsidyAwardNumber%> and it is now published.</p>
           <% } %>
 
           <h2 class="govuk-heading-m">What happens next</h2>

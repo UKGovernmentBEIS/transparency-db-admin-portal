@@ -179,7 +179,8 @@
                   </span>
                   <div class="govuk-input__wrapper">
                     <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file" aria-label="Choose file">
+                      type="file" aria-label="Choose file"
+                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                 </div>
@@ -335,12 +336,14 @@
                   </label>
                   <div class="govuk-input__wrapper">
                     <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file" aria-label="Choose file">
+                      type="file" aria-label="Choose file"
+                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
-                  <p>Uploading will update the status of every subsidy award in the file to ‘Awaiting approval’ and
-                    submit them
-                    for approval.</p>
+
+                  <p>Uploading will update the status of every subsidy award in the file to
+                    <%if(ssn.dashboard_roles!='Granting Authority Encoder') { %> 'Published'. <%} else {%>'Awaiting
+                    approval' and submit them for approval. <% } %> </p>
 
                 </div>
 
