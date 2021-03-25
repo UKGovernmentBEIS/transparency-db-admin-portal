@@ -1098,11 +1098,14 @@
                 <span class="govuk-error-message" id="ssn.Subsidy_Element_Full_Amount_Error">
                   <span class="govuk-visually-hidden">Error:</span> Enter the subsidy element full amount
                 </span>
+                <div class="govuk-input__wrapper">
+                  <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                  <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
+                    name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount"
+                    <% if(ssn.Subsidy_Element_Full_Amount_Global) {%>
+                    value="<%= ssn.Subsidy_Element_Full_Amount_Global%>" <% } %> />
+                </div>
 
-                <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
-                  name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount"
-                  <% if(ssn.Subsidy_Element_Full_Amount_Global) {%> value="<%= ssn.Subsidy_Element_Full_Amount_Global%>"
-                  <% } %> />
               </div>
               <% } else if(ssn.Subsidy_Element_Full_Amount_Exceed_Error){%>
               <div class="govuk-form-group govuk-form-group--error">
@@ -1114,11 +1117,15 @@
                   <span class="govuk-visually-hidden">Error:</span> Subsidy element full amount is exceeded over
                   the budget amount of scheme.
                 </span>
+                <div class="govuk-input__wrapper">
+                  <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                  <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
+                    name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount"
+                    <% if(ssn.Subsidy_Element_Full_Amount_Global) {%>
+                    value="<%= ssn.Subsidy_Element_Full_Amount_Global%>" <% } %> />
 
-                <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
-                  name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount"
-                  <% if(ssn.Subsidy_Element_Full_Amount_Global) {%> value="<%= ssn.Subsidy_Element_Full_Amount_Global%>"
-                  <% } %> />
+                </div>
+
               </div>
               <% } else { %>
 
@@ -1127,11 +1134,15 @@
                 <label class="govuk-label" for="Subsidy_Element_Full_Amount">
                   Subsidy element full amount (£)
                 </label>
+                <div class="govuk-input__wrapper">
+                  <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                  <input class="govuk-input govuk-input--width-20" id="Subsidy_Element_Full_Amount"
+                    name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount"
+                    <% if(ssn.Subsidy_Element_Full_Amount_Global) {%>
+                    value="<%= ssn.Subsidy_Element_Full_Amount_Global%>" <% } %> />
 
-                <input class="govuk-input govuk-input--width-20" id="Subsidy_Element_Full_Amount"
-                  name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount"
-                  <% if(ssn.Subsidy_Element_Full_Amount_Global) {%> value="<%= ssn.Subsidy_Element_Full_Amount_Global%>"
-                  <% } %> />
+                </div>
+
               </div>
 
               <% } %>
