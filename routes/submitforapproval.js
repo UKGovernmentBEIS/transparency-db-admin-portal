@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
     ssn.Legal_Granting_Date_Year_Global;
 
   ssn.SubsidyErrors = [];
-  var SubsidyFocus = [];
+  ssn.SubsidyFocus = [];
   ssn.Subsidy_Control_Number_Error = false;
   ssn.Subsidy_Measure_Title_Error = false;
   ssn.Subsidy_Adhoc_Error = false;
@@ -182,6 +182,16 @@ router.post("/", async (req, res) => {
           ssn.SubsidyErrors[Additem] =
             add_award_response.validationErrorResult[i].message;
           ssn.SubsidyFocus[Additem] = "#Subsidy_Full_Amount_Range";
+          Additem = Additem + 1;
+        }
+        if (
+          add_award_response.validationErrorResult[i].column ==
+          "subsidyControlNumber or subsidyControlTitle"
+        ) {
+          ssn.Subsidy_Control_Number_Error = true;
+          ssn.SubsidyErrors[Additem] =
+            add_award_response.validationErrorResult[i].message;
+          ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
           Additem = Additem + 1;
         }
         if (
