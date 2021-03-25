@@ -33,6 +33,7 @@ router.post("/", async (req, res) => {
   ssn.Subsidy_Measure_Title_Error = false;
   ssn.Subsidy_Adhoc_Error = false;
   ssn.Subsidy_Objective_Error = false;
+  // ssn.Subsidy_Control_Number_Adhoc_Error = false;
   ssn.Subsidy_Objective_Other_Error = false;
   ssn.Subsidy_Instrument_Error = false;
   ssn.Subsidy_Instrument_Other_Error = false;
@@ -188,7 +189,8 @@ router.post("/", async (req, res) => {
           add_award_response.validationErrorResult[i].column ==
           "subsidyControlNumber or subsidyControlTitle"
         ) {
-          ssn.Subsidy_Control_Number_Error = true;
+          ssn.Subsidy_Control_Number_Error = false;
+          ssn.Subsidy_Adhoc_Error = true;
           ssn.SubsidyErrors[Additem] =
             add_award_response.validationErrorResult[i].message;
           ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
