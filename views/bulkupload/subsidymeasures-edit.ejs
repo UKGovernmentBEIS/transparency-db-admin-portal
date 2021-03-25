@@ -304,7 +304,7 @@
                                                 </div>
 
                                             </div>
-                                            <% if( scheme_issued_start_day_Error || scheme_issued_start_month_Error || scheme_issued_start_year_Error ){ %>
+                                            <% if( ssn.scheme_issued_start_day_Error || ssn.scheme_issued_start_month_Error || ssn.scheme_issued_start_year_Error ){ %>
                                             <div
                                                 class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                                 <% } else { %>
@@ -323,7 +323,7 @@
                                                                     for="scheme_issued_start_day">
                                                                     Day
                                                                 </label>
-                                                                <% if( scheme_issued_start_day_Error ){ %>
+                                                                <% if( ssn.scheme_issued_start_day_Error ){ %>
                                                                 <span class="govuk-error-message" id="Budget_Error">
                                                                     <span class="govuk-visually-hidden">Error:</span>
                                                                     Enter a valid date
@@ -344,7 +344,7 @@
                                                                     for="scheme_issued_start_month">
                                                                     Month
                                                                 </label>
-                                                                <% if( scheme_issued_start_month_Error ){ %>
+                                                                <% if( ssn.scheme_issued_start_month_Error ){ %>
                                                                 <span class="govuk-error-message" id="Budget_Error">
                                                                     <span class="govuk-visually-hidden">Error:</span>
                                                                     Enter a valid month
@@ -364,7 +364,7 @@
                                                                     for="scheme_issued_start_year">
                                                                     Year
                                                                 </label>
-                                                                <% if( scheme_issued_start_year_Error ){ %>
+                                                                <% if( ssn.scheme_issued_start_year_Error ){ %>
                                                                 <span class="govuk-error-message" id="Budget_Error">
                                                                     <span class="govuk-visually-hidden">Error:</span>
                                                                     Enter a valid year
@@ -384,7 +384,7 @@
 
 
                                                 <!-- shceme end date details -->
-                                                <% if( scheme_issued_end_day_Error || scheme_issued_end_month_Error || scheme_issued_end_year_Error ){ %>
+                                                <% if( ssn.scheme_issued_end_day_Error || ssn.scheme_issued_end_month_Error || ssn.scheme_issued_end_year_Error ){ %>
                                                 <div
                                                     class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                                     <% } else { %>
@@ -403,7 +403,7 @@
                                                                         for="scheme_issued_end_day">
                                                                         Day
                                                                     </label>
-                                                                    <% if( scheme_issued_end_day_Error ){ %>
+                                                                    <% if( ssn.scheme_issued_end_day_Error ){ %>
                                                                     <span class="govuk-error-message" id="Budget_Error">
                                                                         <span
                                                                             class="govuk-visually-hidden">Error:</span>
@@ -424,7 +424,7 @@
                                                                         for="scheme_issued_end_month">
                                                                         Month
                                                                     </label>
-                                                                    <% if( scheme_issued_start_month_Error ){ %>
+                                                                    <% if( ssn.scheme_issued_start_month_Error ){ %>
                                                                     <span class="govuk-error-message" id="Budget_Error">
                                                                         <span
                                                                             class="govuk-visually-hidden">Error:</span>
@@ -446,7 +446,7 @@
                                                                         for="scheme_issued_end_year">
                                                                         Year
                                                                     </label>
-                                                                    <% if( scheme_issued_end_year_Error ){ %>
+                                                                    <% if( ssn.scheme_issued_end_year_Error ){ %>
                                                                     <span class="govuk-error-message" id="Budget_Error">
                                                                         <span
                                                                             class="govuk-visually-hidden">Error:</span>

@@ -276,6 +276,38 @@
                 aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
                 value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
             </div>
+            <% } else if(ssn.Subsidy_Adhoc_Error) {%>
+            <div class="govuk-form-group govuk-form-group--error">
+              <label class="govuk-label" for="Subsidy_Control_Number">
+                Subsidy control number or name
+              </label>
+              <!-- <div id="Subsidy_Control_Number-hint" class="govuk-hint">
+                    For example, SC92138. This must match the subsidy scheme that this award is related to.
+                  </div> -->
+              <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    What is a subsidy control number or name?
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  <b> Subsidy control number</b>
+                  <p>For example, SC92138. This must match the subsidy scheme that this award is related to.</p>
+                  <b> Subsidy control name</b>
+                  <p>This is the name of the subsidy scheme that this award is related to.</p>
+                </div>
+              </details>
+
+              <span class="govuk-error-message" id="ssn.Subsidy_Control_Number_Error">
+                <span class="govuk-visually-hidden">Error:</span> Scheme type is adhoc hence subsidy control number
+                cannot assigned to another award.
+              </span>
+
+              <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
+                value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
+            </div>
             <% } else { %>
 
             <div class="govuk-form-group">
@@ -1066,11 +1098,14 @@
                 <span class="govuk-error-message" id="ssn.Subsidy_Element_Full_Amount_Error">
                   <span class="govuk-visually-hidden">Error:</span> Enter the subsidy element full amount
                 </span>
+                <div class="govuk-input__wrapper">
+                  <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                  <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
+                    name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount"
+                    <% if(ssn.Subsidy_Element_Full_Amount_Global) {%>
+                    value="<%= ssn.Subsidy_Element_Full_Amount_Global%>" <% } %> />
+                </div>
 
-                <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
-                  name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount"
-                  <% if(ssn.Subsidy_Element_Full_Amount_Global) {%> value="<%= ssn.Subsidy_Element_Full_Amount_Global%>"
-                  <% } %> />
               </div>
               <% } else if(ssn.Subsidy_Element_Full_Amount_Exceed_Error){%>
               <div class="govuk-form-group govuk-form-group--error">
@@ -1082,11 +1117,15 @@
                   <span class="govuk-visually-hidden">Error:</span> Subsidy element full amount is exceeded over
                   the budget amount of scheme.
                 </span>
+                <div class="govuk-input__wrapper">
+                  <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                  <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
+                    name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount"
+                    <% if(ssn.Subsidy_Element_Full_Amount_Global) {%>
+                    value="<%= ssn.Subsidy_Element_Full_Amount_Global%>" <% } %> />
 
-                <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
-                  name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount"
-                  <% if(ssn.Subsidy_Element_Full_Amount_Global) {%> value="<%= ssn.Subsidy_Element_Full_Amount_Global%>"
-                  <% } %> />
+                </div>
+
               </div>
               <% } else { %>
 
@@ -1095,11 +1134,15 @@
                 <label class="govuk-label" for="Subsidy_Element_Full_Amount">
                   Subsidy element full amount (£)
                 </label>
+                <div class="govuk-input__wrapper">
+                  <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                  <input class="govuk-input govuk-input--width-20" id="Subsidy_Element_Full_Amount"
+                    name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount"
+                    <% if(ssn.Subsidy_Element_Full_Amount_Global) {%>
+                    value="<%= ssn.Subsidy_Element_Full_Amount_Global%>" <% } %> />
 
-                <input class="govuk-input govuk-input--width-20" id="Subsidy_Element_Full_Amount"
-                  name="Subsidy_Element_Full_Amount" type="text" aria-describedby="Subsidy_Element_Full_Amount"
-                  <% if(ssn.Subsidy_Element_Full_Amount_Global) {%> value="<%= ssn.Subsidy_Element_Full_Amount_Global%>"
-                  <% } %> />
+                </div>
+
               </div>
 
               <% } %>
@@ -1198,6 +1241,17 @@
                   <span class="govuk-visually-hidden">Error:</span> Enter the granting date
                 </span>
 
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What is granting date?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    The date of the legally-binding commitment to give the subsidy award.
+                  </div>
+                </details>
+
                 <div class="govuk-date-input" id="Legal_Granting_Date">
                   <div class="govuk-date-input__item">
                     <div class="govuk-form-group">
@@ -1271,6 +1325,16 @@
                 <div id="Legal_Granting_Date-hint" class="govuk-hint">
                   For example, 31 3 1980
                 </div>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What is granting date?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    The date of the legally-binding commitment to give the subsidy award.
+                  </div>
+                </details>
                 <div class="govuk-date-input" id="Legal_Granting_Date">
                   <div class="govuk-date-input__item">
                     <div class="govuk-form-group">

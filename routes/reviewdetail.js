@@ -27,6 +27,8 @@ router.post("/", async (req, res) => {
   ssn.Subsidy_Instrument_Other_Error = false;
   ssn.Subsidy_Element_Full_Amount_Error = false;
   ssn.Subsidy_Full_Amount_Range_Error = false;
+  ssn.Subsidy_Element_Full_Amount_Exceed_Error = false;
+  ssn.Subsidy_Full_Amount_Range_Exceed_Error = false;
   ssn.National_ID_Type_Error = false;
   ssn.National_ID_Number_Error = false;
   ssn.Beneficiary_Name_Error = false;
@@ -160,11 +162,11 @@ router.post("/", async (req, res) => {
     if (!Subsidy_Control_Number_Name) {
       ssn.Subsidy_Control_Number_Error = true;
       ssn.SubsidyErrors[Additem] =
-        "Enter the either subsidy control number (Or) subsidy sheme name";
+        "Enter the either subsidy control number (Or) subsidy scheme name";
       ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
       Additem = Additem + 1;
       // ssn.Subsidy_Measure_Title_Error = true;
-      // ssn.SubsidyErrors[Additem] = "     Enter the subsidy sheme name";
+      // ssn.SubsidyErrors[Additem] = "     Enter the subsidy scheme name";
       // ssn.SubsidyFocus[Additem] = "#Subsidy_Measure_Title";
       // Additem = Additem + 1;
     }
