@@ -48,12 +48,12 @@ router.post("/", async (req, res) => {
   ssn.Subsidy_Measure_Title_Error = false;
   ssn.Subsidy_Adhoc_Error = false;
   ssn.Granting_Authority_Name_Error = false;
-  scheme_issued_start_year_Error = false;
-  scheme_issued_start_month_Error = false;
-  scheme_issued_start_day_Error = false;
-  scheme_issued_end_year_Error = false;
-  scheme_issued_end_month_Error = false;
-  scheme_issued_end_day_Error = false;
+  ssn.scheme_issued_start_year_Error = false;
+  ssn.scheme_issued_start_month_Error = false;
+  ssn.scheme_issued_start_day_Error = false;
+  ssn.scheme_issued_end_year_Error = false;
+  ssn.scheme_issued_end_month_Error = false;
+  ssn.scheme_issued_end_day_Error = false;
 
   // ssn.Granting_Authority_Name_Global = "Big Lottery Fund";
   console.log("ssn.Subsidy_Adhoc_Global :" + ssn.Subsidy_Adhoc_Global);

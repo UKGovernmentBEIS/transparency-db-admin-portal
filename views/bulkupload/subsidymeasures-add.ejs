@@ -384,7 +384,7 @@
 
                                             </div>
 
-                                            <% if( scheme_issued_start_day_Error || scheme_issued_start_month_Error || scheme_issued_start_year_Error ){ %>
+                                            <% if( ssn.scheme_issued_start_day_Error || ssn.scheme_issued_start_month_Error || ssn.scheme_issued_start_year_Error ){ %>
                                             <div
                                                 class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                                 <% } else { %>
@@ -400,12 +400,14 @@
                                                     <div class="govuk-hint">
                                                         For example, 25 3 2020
                                                     </div>
-                                                    <% if( scheme_issued_start_day_Error || scheme_issued_start_month_Error || scheme_issued_start_year_Error){ %>
+                                                    <% if( ssn.scheme_issued_start_day_Error || ssn.scheme_issued_start_month_Error || ssn.scheme_issued_start_year_Error){ %>
                                                     <span class="govuk-error-message" id="Date_Error">
                                                         <span class="govuk-visually-hidden">Error:</span>
                                                         Enter a valid date
                                                     </span>
                                                     <% }  %>
+
+
                                                     <div class="govuk-date-input" id="scheme-issued">
                                                         <div class="govuk-date-input__item">
                                                             <div class="govuk-form-group">
@@ -469,7 +471,7 @@
                                                             award,
                                                             the end date must be the same as the start date.
                                                         </div>
-                                                        <% if( scheme_issued_end_day_Error  || scheme_issued_end_month_Error || scheme_issued_end_year_Error){ %>
+                                                        <% if( ssn.scheme_issued_end_day_Error  || ssn.scheme_issued_end_month_Error || ssn.scheme_issued_end_year_Error){ %>
                                                         <span class="govuk-error-message" id="EndDate_Error">
                                                             <span class="govuk-visually-hidden">Error:</span>
                                                             Enter a valid date

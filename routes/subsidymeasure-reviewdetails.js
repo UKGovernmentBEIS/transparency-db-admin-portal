@@ -15,7 +15,7 @@ router.post("/", (req, res) => {
   ssn.SubsidyErrors = [];
   ssn.SubsidyFocus = [];
   Additem = 0;
-  SubsidyArraySize = 0;
+  ssn.SubsidyArraySize = 0;
   ssn.Subsidy_Measure_Title_Error = false;
   ssn.Subsidy_Adhoc_Error = false;
   var Legal_Basis_Error = false;
@@ -23,12 +23,12 @@ router.post("/", (req, res) => {
   var Granting_Authority_URL_Error = false;
   var Granting_Authority_Policy_Error = false;
   var Budget_Error = false;
-  var scheme_issued_start_year_Error = false;
-  var scheme_issued_start_month_Error = false;
-  var scheme_issued_start_day_Error = false;
-  var scheme_issued_end_year_Error = false;
-  var scheme_issued_end_month_Error = false;
-  var scheme_issued_end_day_Error = false;
+  ssn.scheme_issued_start_year_Error = false;
+  ssn.scheme_issued_start_month_Error = false;
+  ssn.scheme_issued_start_day_Error = false;
+  ssn.scheme_issued_end_year_Error = false;
+  ssn.scheme_issued_end_month_Error = false;
+  ssn.scheme_issued_end_day_Error = false;
 
   var {
     Subsidy_Adhoc,
@@ -196,7 +196,12 @@ router.post("/", (req, res) => {
 
   if (buttonvalue == "Continue") {
     //Empty field validations
-
+    if (!Subsidy_Adhoc) {
+      ssn.Subsidy_Adhoc_Error = true;
+      ssn.SubsidyErrors.push(" Select the adhoc subsidy scheme");
+      ssn.SubsidyFocus.push("#Subsidy_Adhoc");
+      // Additem = Additem + 1;
+    }
     if (!Subsidy_Measure_Title) {
       ssn.Subsidy_Measure_Title_Error = true;
       ssn.SubsidyErrors.push("Enter the subsidy scheme name");
@@ -207,12 +212,6 @@ router.post("/", (req, res) => {
     // if (!Subsidy_Measure_Title) {
 
     // }
-    if (!Subsidy_Adhoc) {
-      ssn.Subsidy_Adhoc_Error = true;
-      ssn.SubsidyErrors.push(" Select the adhoc subsidy scheme");
-      ssn.SubsidyFocus.push("#Subsidy_Adhoc");
-      // Additem = Additem + 1;
-    }
 
     if (!Granting_Authority_Name) {
       ssn.Granting_Authority_Name_Error = true;
@@ -243,13 +242,13 @@ router.post("/", (req, res) => {
     }
     if (!Budget) {
       Budget_Error = true;
-      ssn.SubsidyErrors.push("Enter the valid Budget");
+      ssn.SubsidyErrors.push("Enter the valid budget");
       ssn.SubsidyFocus.push("#Granting_Authority_Policy");
       // Additem = Additem + 1;
     }
 
     if (!scheme_issued_start_day) {
-      scheme_issued_start_day_Error = true;
+      ssn.scheme_issued_start_day_Error = true;
       ssn.SubsidyErrors.push("Enter the legal granting day of the date");
       ssn.SubsidyFocus.push("#scheme_issued_start_day");
       // Additem = Additem + 1;
@@ -258,7 +257,7 @@ router.post("/", (req, res) => {
     // day validation starts here
     if (scheme_issued_start_day != "") {
       if (scheme_issued_start_day > 31 || scheme_issued_start_day < 1) {
-        scheme_issued_start_day_Error = true;
+        ssn.scheme_issued_start_day_Error = true;
         ssn.SubsidyErrors.push(
           "Enter the valid legal granting day of the date"
         );
@@ -274,7 +273,7 @@ router.post("/", (req, res) => {
           scheme_issued_start_month == parseInt("09", 8) ||
           scheme_issued_start_month == 11)
       ) {
-        scheme_issued_start_day_Error = true;
+        ssn.scheme_issued_start_day_Error = true;
         ssn.SubsidyErrors.push(
           "Enter the valid legal granting day of the date"
         );
@@ -292,7 +291,7 @@ router.post("/", (req, res) => {
           scheme_issued_start_year % 400 == 0
         ) {
         } else {
-          scheme_issued_start_day_Error = true;
+          ssn.scheme_issued_start_day_Error = true;
           ssn.SubsidyErrors.push(
             "Enter the valid legal granting day of the date"
           );
@@ -305,7 +304,7 @@ router.post("/", (req, res) => {
         scheme_issued_start_day == 30 &&
         scheme_issued_start_month == parseInt("02", 8)
       ) {
-        scheme_issued_start_day_Error = true;
+        ssn.scheme_issued_start_day_Error = true;
         ssn.SubsidyErrors.push(
           "Enter the valid legal granting day of the date"
         );
@@ -316,14 +315,14 @@ router.post("/", (req, res) => {
     // day velidation ends here
 
     if (!scheme_issued_start_month) {
-      scheme_issued_start_month_Error = true;
+      ssn.scheme_issued_start_month_Error = true;
       ssn.SubsidyErrors.push("Enter the legal granting month of the date");
       ssn.SubsidyFocus.push("#scheme_issued_start_month");
       // Additem = Additem + 1;
     }
     if (scheme_issued_start_month != "") {
       if (scheme_issued_start_month > 12 || scheme_issued_start_month == 0) {
-        scheme_issued_start_month_Error = true;
+        ssn.scheme_issued_start_month_Error = true;
         ssn.SubsidyErrors.push("Enter the legal granting month from 1 to 12");
         ssn.SubsidyFocus.push("#scheme_issued_start_month");
         // Additem = Additem + 1;
@@ -331,17 +330,15 @@ router.post("/", (req, res) => {
     }
 
     if (!scheme_issued_start_year) {
-      scheme_issued_start_year_Error = true;
+      ssn.scheme_issued_start_year_Error = true;
       ssn.SubsidyErrors.push("Enter the legal granting year of the date");
       ssn.SubsidyFocus.push("#scheme_issued_start_year");
       // Additem = Additem + 1;
     }
     if (ssn.Subsidy_Adhoc_Global != "Yes") {
       if (!scheme_issued_end_day) {
-        scheme_issued_end_day_Error = true;
-        ssn.SubsidyErrors.push(
-          "Enter the valid legal granting end day of the date"
-        );
+        ssn.scheme_issued_end_day_Error = true;
+        ssn.SubsidyErrors.push("Enter the legal granting end day of the date");
         ssn.SubsidyFocus.push("#scheme_issued_end_day");
         // Additem = Additem + 1;
       }
@@ -349,7 +346,7 @@ router.post("/", (req, res) => {
       // day validation starts here
       if (scheme_issued_end_day != "") {
         if (scheme_issued_end_day > 31 || scheme_issued_end_day < 1) {
-          scheme_issued_end_day_Error = true;
+          ssn.scheme_issued_end_day_Error = true;
           ssn.SubsidyErrors.push("Enter the valid end date");
           ssn.SubsidyFocus.push("#scheme_issued_end_day");
           // Additem = Additem + 1;
@@ -363,7 +360,7 @@ router.post("/", (req, res) => {
             scheme_issued_end_month == parseInt("09", 8) ||
             scheme_issued_end_month == 11)
         ) {
-          scheme_issued_end_day_Error = true;
+          ssn.scheme_issued_end_day_Error = true;
           ssn.SubsidyErrors.push("Enter the valid end date");
           ssn.SubsidyFocus.push("#scheme_issued_end_day");
           // Additem = Additem + 1;
@@ -379,7 +376,7 @@ router.post("/", (req, res) => {
             scheme_issued_end_year % 400 == 0
           ) {
           } else {
-            scheme_issued_end_day_Error = true;
+            ssn.scheme_issued_end_day_Error = true;
             ssn.SubsidyErrors.push("Enter the valid end date");
             ssn.SubsidyFocus.push("#scheme_issued_end_day");
             // Additem = Additem + 1;
@@ -390,7 +387,7 @@ router.post("/", (req, res) => {
           scheme_issued_end_day == 30 &&
           scheme_issued_end_month == parseInt("02", 8)
         ) {
-          scheme_issued_end_day_Error = true;
+          ssn.scheme_issued_end_day_Error = true;
           ssn.SubsidyErrors.push("Enter the valid end date");
           ssn.SubsidyFocus.push("#scheme_issued_end_day");
           // Additem = Additem + 1;
@@ -399,7 +396,7 @@ router.post("/", (req, res) => {
       // day velidation ends here
 
       if (!scheme_issued_end_month) {
-        scheme_issued_end_month_Error = true;
+        ssn.scheme_issued_end_month_Error = true;
         ssn.SubsidyErrors.push(
           "Enter the legal granting end month of the date"
         );
@@ -408,7 +405,7 @@ router.post("/", (req, res) => {
       }
       if (scheme_issued_end_month != "") {
         if (scheme_issued_end_month > 12 || scheme_issued_end_month == 0) {
-          scheme_issued_end_month_Error = true;
+          ssn.scheme_issued_end_month_Error = true;
           ssn.SubsidyErrors.push(
             "Enter the legal granting end month from 1 to 12"
           );
@@ -417,29 +414,29 @@ router.post("/", (req, res) => {
         }
       }
       if (!scheme_issued_end_year) {
-        scheme_issued_end_year_Error = true;
+        ssn.scheme_issued_end_year_Error = true;
         ssn.SubsidyErrors.push("Enter the legal granting end year of the date");
         ssn.SubsidyFocus.push("#scheme_issued_end_year");
         // Additem = Additem + 1;
       }
     }
 
-    var SubsidyArraySize = ssn.SubsidyErrors.length;
+    ssn.SubsidyArraySize = ssn.SubsidyErrors.length;
 
     if (
       ssn.Subsidy_Measure_Title_Error ||
       ssn.Subsidy_Adhoc_Error ||
       ssn.Granting_Authority_Name_Error ||
-      scheme_issued_start_day_Error ||
-      scheme_issued_start_month_Error ||
-      scheme_issued_start_year_Error ||
+      ssn.scheme_issued_start_day_Error ||
+      ssn.scheme_issued_start_month_Error ||
+      ssn.scheme_issued_start_year_Error ||
       Legal_Basis_Error ||
       Granting_Authority_URL_Error ||
       Granting_Authority_Policy_Error ||
       Budget_Error ||
-      scheme_issued_end_day_Error ||
-      scheme_issued_end_month_Error ||
-      scheme_issued_end_year_Error
+      ssn.scheme_issued_end_day_Error ||
+      ssn.scheme_issued_end_month_Error ||
+      ssn.scheme_issued_end_year_Error
     ) {
       res.render("bulkupload/subsidymeasures-add", {
         // ssn.Subsidy_Measure_Title_Global,
@@ -465,12 +462,12 @@ router.post("/", (req, res) => {
         Budget_Error,
         formatedCurrency,
         // ssn.Granting_Authority_Name_Error,
-        scheme_issued_start_day_Error,
-        scheme_issued_start_month_Error,
-        scheme_issued_start_year_Error,
-        scheme_issued_end_day_Error,
-        scheme_issued_end_month_Error,
-        scheme_issued_end_year_Error,
+        // ssn.scheme_issued_start_day_Error,
+        // ssn.scheme_issued_start_month_Error,
+        // ssn.scheme_issued_start_year_Error,
+        // scheme_issued_end_day_Error,
+        // scheme_issued_end_month_Error,
+        // scheme_issued_end_year_Error,
         // ssn.SubsidyErrors,
         // SubsidyArraySize,
         // ssn.SubsidyFocus,

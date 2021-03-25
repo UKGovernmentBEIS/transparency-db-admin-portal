@@ -70,16 +70,16 @@ router.get("/", async (req, res) => {
     ssn.Subsidy_Measure_Title_Error = false;
     ssn.Subsidy_Adhoc_Error = false;
     ssn.Granting_Authority_Name_Error = false;
-    scheme_issued_start_day_Error = false;
-    scheme_issued_start_month_Error = false;
-    scheme_issued_start_year_Error = false;
+    ssn.scheme_issued_start_day_Error = false;
+    ssn.scheme_issued_start_month_Error = false;
+    ssn.scheme_issued_start_year_Error = false;
     Legal_Basis_Error = false;
     Granting_Authority_URL_Error = false;
     Granting_Authority_Policy_Error = false;
     Budget_Error = false;
-    scheme_issued_end_day_Error = false;
-    scheme_issued_end_month_Error = false;
-    scheme_issued_end_year_Error = false;
+    ssn.scheme_issued_end_day_Error = false;
+    ssn.scheme_issued_end_month_Error = false;
+    ssn.scheme_issued_end_year_Error = false;
 
     if (ssn.dashboard_roles !== "Granting Authority Encoder") {
       res.render("bulkupload/subsidymeasures-edit");
