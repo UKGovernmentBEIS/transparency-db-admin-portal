@@ -10,6 +10,7 @@ router.get("/", (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   console.log("edit user role", ssn.User_Role_Single);
+  UserRole = "";
   if (ssn.User_Role_Single != "") {
     if (ssn.User_Role_Single.includes("GrantingAuthority"))
       UserRole = "Granting Authority Administrators";
@@ -18,7 +19,9 @@ router.get("/", (req, res) => {
     else if (ssn.User_Role_Single.includes("Encoder"))
       UserRole = "Granting Authority Encoder";
     else UserRole = "Granting Authority Approver";
-  } else UserRole = "";
+  }
+
+  console.log("edit UserRole", UserRole);
   res.render("bulkupload/user-edit", {
     UserRole,
     GA_Selected,
