@@ -13,26 +13,16 @@ router.get("/", (req, res) => {
   console.log("ssn.GAUserList", ssn.GAUserList);
   ssn.Delete_UserId = req.query.userObject;
   ssn.addUser_extract = req.query.userObject;
-  for (var item = 0; item < ssn.GAUserList.value.length; item++) {
-    // ssn.GAUserList.value.forEach(function (item) {
-    if (ssn.Delete_UserId == ssn.GAUserList.value[item].id) {
+
+  ssn.GAUserList.value.forEach(function (item) {
+    if (ssn.Delete_UserId == item.id) {
       // if (Environment_variable !== "env=prod") {
       //   var role = item.roleName.split("_");
-      if (
-        ssn.GAUserList.value[item].roleName.includes(
-          "GrantingAuthorityAdministrators"
-        )
-      ) {
+      if (item.roleName.includes("GrantingAuthorityAdministrators")) {
         ssn.User_Role_Single = "Granting Authority Administrator";
-      } else if (
-        ssn.GAUserList.value[item].roleName.includes(
-          "GrantingAuthorityEncoders"
-        )
-      ) {
+      } else if (item.roleName.includes("GrantingAuthorityEncoders")) {
         ssn.User_Role_Single = "Granting Authority Encoder";
-      } else if (
-        ssn.GAUserList.value[item].roleName.includes("BEISAdministrators")
-      ) {
+      } else if (item.roleName.includes("BEISAdministrators")) {
         ssn.User_Role_Single = "BEIS Administrator";
       } else {
         ssn.User_Role_Single = "Granting Authority Approver";
@@ -51,18 +41,14 @@ router.get("/", (req, res) => {
       // ssn.User_Role_Single = item.roleName;
       if (!GA_Selected) ssn.User_GA_Name = ssn.User_Role_Single;
       else ssn.User_GA_Name = GA_Selected;
-      if (!ssn.GAUserList.value[item].givenName)
-        ssn.User_Name_Single = ssn.GAUserList.value[item].displayName;
-      else ssn.User_Name_Single = ssn.GAUserList.value[item].givenName;
-      ssn.User_Last_Name_Single = ssn.GAUserList.value[item].surname;
-      if (!ssn.GAUserList.value[item].mail)
-        ssn.User_Email_Single = ssn.GAUserList.value[item].userPrincipalName;
-      else ssn.User_Email_Single = ssn.GAUserList.value[item].mail;
-      ssn.User_Mobile_Single = ssn.GAUserList.value[item].mobilePhone;
+      if (!item.givenName) ssn.User_Name_Single = item.displayName;
+      else ssn.User_Name_Single = item.givenName;
+      ssn.User_Last_Name_Single = item.surname;
+      if (!item.mail) ssn.User_Email_Single = item.userPrincipalName;
+      else ssn.User_Email_Single = item.mail;
+      ssn.User_Mobile_Single = item.mobilePhone;
     }
-    break;
-  }
-  // });
+  });
 
   console.log("User :" + ssn.User_Role_Single);
 
