@@ -291,7 +291,7 @@
                                             <% if (!item.givenName) {%>
                                             <%=item.displayName%>
                                             <% } else {%>
-                                            <%= item.givenName %>
+                                            <%= item.givenName %> <%=item.surname%>
                                             <% } %></a>
                                     </td>
                                     <td class="govuk-table__cell">
@@ -323,7 +323,6 @@
                                     <td class="govuk-table__cell">
                                         Active
                                     </td>
-
 
                                     <td class="govuk-table__cell">
                                         <% if ( ssn.Roles_Selected == 'Granting Authority Administrator' || ssn.Roles_Selected == 'Granting Authority Approver' || ssn.Roles_Selected == 'Granting Authority Encoder' ) {  %>

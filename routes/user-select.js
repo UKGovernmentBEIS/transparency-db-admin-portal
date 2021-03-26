@@ -228,7 +228,19 @@ router.post("/", async (req, res) => {
       });
     } catch (err) {
       if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
-      else if (err.toString().includes("401"))
+      else if (err.toString().includes("404")) {
+        No_Selected_text = "";
+        No_Selected_GA = false;
+        No_Selected_Role = false;
+        No_Selected_id = "";
+        ssn.GAUserList_Empty = 0;
+        res.render("bulkupload/user-select", {
+          No_Selected_text,
+          No_Selected_GA,
+          No_Selected_Role,
+          No_Selected_id,
+        });
+      } else if (err.toString().includes("401"))
         res.render("bulkupload/notAuthorized");
       response_error_message = err;
       console.log("message error : " + err);
