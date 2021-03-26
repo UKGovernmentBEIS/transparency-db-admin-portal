@@ -23,6 +23,11 @@ router.post("/", async (req, res) => {
     });
     console.log("body", userId);
     console.log("ssn.UserPrincileObjectGlobal", ssn.UserPrincileObjectGlobal);
+    console.log(
+      "Invoking delete method",
+      beis_url_searchscheme + "/group/" + azGrpId
+    );
+
     const apidata = await axios.delete(
       beis_url_searchscheme + "/group/" + azGrpId,
       {
@@ -32,6 +37,7 @@ router.post("/", async (req, res) => {
     );
     console.log("BODY", apidata);
   } catch (err) {
+    console.log("Delete GA error");
     console.log("message error deactivate GA : " + err);
     if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
     else if (err.toString().includes("401"))

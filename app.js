@@ -321,12 +321,12 @@ app.get("/", async (req, res) => {
   ssn.dashboard_roles_object_id1 = ssn.dashboard_roles_object.substr(2, 36);
   ssn.dashboard_roles_object_id2 = ssn.dashboard_roles_object.substr(41, 36);
 
-  // console.log(
-  //   "ssn.dashboard_roles_object_id1:" + ssn.dashboard_roles_object_id1
-  // );
-  // console.log(
-  //   "ssn.dashboard_roles_object_id2:" + ssn.dashboard_roles_object_id2
-  // );
+  console.log(
+    "ssn.dashboard_roles_object_id1:" + ssn.dashboard_roles_object_id1
+  );
+  console.log(
+    "ssn.dashboard_roles_object_id2:" + ssn.dashboard_roles_object_id2
+  );
 
   try {
     var apiroles = await axios.get(
@@ -415,6 +415,8 @@ app.get("/", async (req, res) => {
       userPrinciple: userPrincipleRequest,
     },
   };
+
+  console.log("ssn.UserPrincileObjectGlobal", ssn.UserPrincileObjectGlobal);
   gaAdminCount_Global = 0;
   gaApproverCount_Global = 0;
   gaEncoderCount_Global = 0;

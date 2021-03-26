@@ -196,6 +196,8 @@ router.post("/", async (req, res) => {
       }
     }
   }
+
+  console.log("GA_Object_Id", GA_Object_Id);
   if (Granting_Authority_Selected || GA_Roles_Selected) {
     try {
       const apidata = await axios.get(
