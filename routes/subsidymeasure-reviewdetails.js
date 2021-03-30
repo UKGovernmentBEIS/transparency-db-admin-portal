@@ -422,7 +422,6 @@ router.post("/", (req, res) => {
     }
 
     ssn.SubsidyArraySize = ssn.SubsidyErrors.length;
-
     if (
       ssn.Subsidy_Measure_Title_Error ||
       ssn.Subsidy_Adhoc_Error ||

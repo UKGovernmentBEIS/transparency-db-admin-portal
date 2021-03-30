@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
   UserErrors = [];
   UserFocus = [];
 
-  var { userRole, GA_Name_User, Email_Id } = req.body;
+  var { userRole, GA_Name_User, Email_Id, buttonvalue } = req.body;
 
   if (!userRole) {
     ssn.User_Role_Error = true;
@@ -51,20 +51,21 @@ router.post("/", async (req, res) => {
   ssn.Email_Id_Global = Email_Id;
 
   ssn.UserErrorLength_Global = UserErrors.length;
-
-  if (ssn.UserErrorLength_Global > 0) {
-    res.render("bulkupload/user-add", {
-      change: "No",
-    });
-  } else {
-    console.log("review : " + ssn.GA_Name_User_Global);
-    res.render("bulkupload/user-review", {
-      ssn,
-      // ssn.User_Role_Global,
-      // ssn.Email_Id_Global,
-      // ssn.GA_Name_User_Global,
-    });
-  }
+  if (buttonvalue == "Continue") {
+    if (ssn.UserErrorLength_Global > 0) {
+      res.render("bulkupload/user-add", {
+        change: "No",
+      });
+    } else {
+      console.log("review : " + ssn.GA_Name_User_Global);
+      res.render("bulkupload/user-review", {
+        ssn,
+        // ssn.User_Role_Global,
+        // ssn.Email_Id_Global,
+        // ssn.GA_Name_User_Global,
+      });
+    }
+  } else res.render("bulkupload/user-cancel");
 });
 
 router.get("/", (req, res) => {
