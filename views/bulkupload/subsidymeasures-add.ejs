@@ -19,20 +19,20 @@
     <script>
         getSubsidyAdhoc = (event) => {
             if (event.target.value == 'Yes') {
-                document.getElementById("scheme_issued_end_day").setAttribute("disabled", "true");
-                document.getElementById("scheme_issued_end_month").setAttribute("disabled", "true");
-                document.getElementById("scheme_issued_end_year").setAttribute("disabled", "true");
-                // document.getElementById("endDateDiv").style.display = "none";
-                document.getElementById("scheme-issued-day").value = document.getElementById("scheme_issued_start_day").value;
-                document.getElementById("scheme_issued_end_month").value = document.getElementById("scheme_issued_start_month").value;
-                document.getElementById("scheme_issued_end_year").value = document.getElementById("scheme_issued_start_year").value;
+                // document.getElementById("scheme_issued_end_day").setAttribute("disabled", "true");
+                // document.getElementById("scheme_issued_end_month").setAttribute("disabled", "true");
+                // document.getElementById("scheme_issued_end_year").setAttribute("disabled", "true");
+                document.getElementById("endDateDiv").style.display = "none";
+                // document.getElementById("scheme-issued-day").value = document.getElementById("scheme_issued_start_day").value;
+                // document.getElementById("scheme_issued_end_month").value = document.getElementById("scheme_issued_start_month").value;
+                // document.getElementById("scheme_issued_end_year").value = document.getElementById("scheme_issued_start_year").value;
                 document.getElementById("startDateLabel").textContent = "Date";
             }
             else {
-                document.getElementById("scheme_issued_end_day").removeAttribute("disabled");
-                document.getElementById("scheme_issued_end_month").removeAttribute("disabled");
-                document.getElementById("scheme_issued_end_year").removeAttribute("disabled");
-                // document.getElementById("endDateDiv").style.display = "block";
+                // document.getElementById("scheme_issued_end_day").removeAttribute("disabled");
+                // document.getElementById("scheme_issued_end_month").removeAttribute("disabled");
+                // document.getElementById("scheme_issued_end_year").removeAttribute("disabled");
+                document.getElementById("endDateDiv").style.display = "block";
                 document.getElementById("startDateLabel").textContent = "Start Date";
             }
         }
@@ -63,16 +63,24 @@
         //     }
         // }
 
-        getErrorList = (errorArray, ssn) => {
+        getErrorList = (errorArray, adhoc) => {
             if (errorArray > 0) {
                 document.getElementById("error-alert").focus();
+            }
+            if (adhoc == 'Yes') {
+                document.getElementById("endDateDiv").style.display = "none";
+                document.getElementById("startDateLabel").textContent = "Date";
+            } else {
+                document.getElementById("endDateDiv").style.display = "block";
+                document.getElementById("startDateLabel").textContent = "Start Date";
             }
         }
     </script>
 </head>
 
 
-<body class="govuk-template__body app-example-page" onload="getErrorList('<%=ssn.SubsidyArraySize%>')">
+<body class="govuk-template__body app-example-page"
+    onload="getErrorList('<%=ssn.SubsidyArraySize%>','<%=ssn.Subsidy_Adhoc_Global%>')">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -110,7 +118,7 @@
             <!-- bread crumbs ends here -->
             <% if( ssn.SubsidyArraySize > 0 ){ %>
 
-            <div tabindex="-1" class="govuk-error-summary" id="error-alert" tabindex="-1" role="alert"
+            <div tabindex="-1" class="govuk-error-summary" id="error-alert" role="alert"
                 aria-labelledby="error-summary-title" data-module="govuk-error-summary">
                 <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
 
@@ -499,15 +507,7 @@
                                                                         for="scheme_issued_end_day">
                                                                         Day
                                                                     </label>
-                                                                    <% if(ssn.Subsidy_Adhoc_Global == 'Yes') { %>
-                                                                    <input
-                                                                        class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                                                        id="scheme_issued_end_day"
-                                                                        value="<%= ssn.Scheme_End_Day_Global%>"
-                                                                        name="scheme_issued_end_day" type="text"
-                                                                        placeholder="DD" pattern="[0-9]*"
-                                                                        inputmode="numeric" disabled>
-                                                                    <% } else { %>
+
                                                                     <input
                                                                         class="govuk-input govuk-date-input__input govuk-input--width-2"
                                                                         id="scheme_issued_end_day"
@@ -515,7 +515,7 @@
                                                                         name="scheme_issued_end_day" type="text"
                                                                         placeholder="DD" pattern="[0-9]*"
                                                                         inputmode="numeric">
-                                                                    <% } %>
+
                                                                 </div>
                                                             </div>
                                                             <div class="govuk-date-input__item">
@@ -524,15 +524,7 @@
                                                                         for="scheme_issued_end_month">
                                                                         Month
                                                                     </label>
-                                                                    <% if(ssn.Subsidy_Adhoc_Global == 'Yes') { %>
-                                                                    <input
-                                                                        class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                                                        id="scheme_issued_end_month"
-                                                                        value="<%= ssn.Scheme_End_Month_Global%>"
-                                                                        name="scheme_issued_end_month" placeholder="MM"
-                                                                        type="text" pattern="[0-9]*" inputmode="numeric"
-                                                                        disabled>
-                                                                    <% } else { %>
+
                                                                     <input
                                                                         class="govuk-input govuk-date-input__input govuk-input--width-2"
                                                                         id="scheme_issued_end_month"
@@ -540,7 +532,7 @@
                                                                         name="scheme_issued_end_month" placeholder="MM"
                                                                         type="text" pattern="[0-9]*"
                                                                         inputmode="numeric">
-                                                                    <% } %>
+
                                                                 </div>
                                                             </div>
                                                             <div class="govuk-date-input__item">
@@ -549,15 +541,7 @@
                                                                         for="scheme_issued_end_year">
                                                                         Year
                                                                     </label>
-                                                                    <% if(ssn.Subsidy_Adhoc_Global == 'Yes') { %>
-                                                                    <input
-                                                                        class="govuk-input govuk-date-input__input govuk-input--width-4"
-                                                                        id="scheme_issued_end_year"
-                                                                        value="<%= ssn.Scheme_End_Year_Global%>"
-                                                                        name="scheme_issued_end_year" type="text"
-                                                                        pattern="[0-9]*" inputmode="numeric"
-                                                                        placeholder="YYYY" disabled>
-                                                                    <% } else { %>
+
                                                                     <input
                                                                         class="govuk-input govuk-date-input__input govuk-input--width-4"
                                                                         id="scheme_issued_end_year"
@@ -565,7 +549,7 @@
                                                                         name="scheme_issued_end_year" type="text"
                                                                         pattern="[0-9]*" inputmode="numeric"
                                                                         placeholder="YYYY">
-                                                                    <% } %>
+
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -11,30 +11,38 @@ router.post("/", async (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_searchscheme);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-  try {
-    gaId = req.body.gaid;
-    var azGrpId = req.body.azGrpId;
-    var userId = [];
+  gaId = req.body.gaid;
+  var azGrpId = req.body.azGrpId.toString();
+  var userId = [];
 
-    console.log(azGrpId);
-
+  console.log(azGrpId);
+  if (ssn.GaListArr_Global.length > 0) {
     ssn.GaListArr_Global.forEach(function (ids) {
       userId.push(ids.gaId);
     });
-    console.log("body", userId);
-    console.log("ssn.UserPrincileObjectGlobal", ssn.UserPrincileObjectGlobal);
-    console.log(
-      "Invoking delete method",
-      beis_url_searchscheme + "/group/" + azGrpId
-    );
-
+  } else userId = [""];
+  console.log("body", userId);
+  console.log("ssn.UserPrincileObjectGlobal", ssn.UserPrincileObjectGlobal);
+  console.log(
+    "Invoking delete method",
+    beis_url_searchscheme + "/group/" + azGrpId
+  );
+  try {
     const apidata = await axios.delete(
       beis_url_searchscheme + "/group/" + azGrpId,
       {
-        userIds: userId,
+        usersGroupRequest: {
+          userIds: userId,
+        },
       },
-      ssn.UserPrincileObjectGlobal
+      {
+        headers: {
+          UserPrinciple:
+            '{"userName":"devbiesadmintest","password":"password123","role":"BEIS Administrator","grantingAuthorityGroupId":"138","grantingAuthorityGroupName":"Business Energy And Industrial Strategy"}',
+        },
+      }
     );
+
     console.log("BODY", apidata);
   } catch (err) {
     console.log("Delete GA error");

@@ -30,11 +30,9 @@ router.post("/", async (req, res) => {
         console.log("gaName id1 : " + ssn.apiroles_extract[i].azGrpId);
         apiroles_gaRole_object = ssn.apiroles_extract[i].azGrpId;
       }
-    }
 
-    for (var i = 0; i < ssn.apiroles_total_objects; i++) {
       if (ssn.GA_Name_User_Global == ssn.apiroles_extract[i].gaName) {
-        console.log("gaName id1 : " + ssn.apiroles_extract[i].azGrpId);
+        console.log("gaName id2 : " + ssn.apiroles_extract[i].azGrpId);
         apiroles_gaName_object = ssn.apiroles_extract[i].azGrpId;
       }
     }
@@ -44,60 +42,74 @@ router.post("/", async (req, res) => {
     else if (err.toString().includes("401"))
       res.render("bulkupload/notAuthorized");
   }
-
-  var data_request = {
-    invitedUserEmailAddress: ssn.Email_Id_Global,
-    inviteRedirectUrl: beis_redirect_url,
-    sendInvitationMessage: true,
-    grpRoleIds: [apiroles_gaRole_object, apiroles_gaName_object],
-  };
-
-  var data = JSON.parse(JSON.stringify(data_request));
-  console.log("request data user submit: " + JSON.stringify(data));
-
-  try {
-    const addUser = await axios.post(
-      beis_url_accessmanagement + "/usermanagement/invitation",
-      data,
-      ssn.UserPrincileObjectGlobal
-    );
-
-    console.log(`Status: ${addUser.status}`);
-    API_response_code = `${addUser.status}`;
-    console.log("API_response_code: try" + API_response_code);
-    console.log("Body: ", addUser.data);
-    ssn.addUser_extract = addUser.data.invitedUser.id;
-    console.log("user_id_from_API :" + ssn.addUser_extract);
-
-    ssn.Full_Name_Error = false;
-    ssn.Last_Name_Error = false;
-    ssn.Phone_Number_Error = false;
+  console.log(typeof apiroles_gaRole_object);
+  if (typeof apiroles_gaRole_object === "string") {
     UserErrors = [];
     UserFocus = [];
-    UserErrorsLenght = 0;
+    ssn.GA_Error = true;
+    ssn.GA_msg = "Invalid granting authority";
+    ssn.UserErrorLength_Global = 1;
+    UserErrors.push("Invalid granting authority");
+    UserFocus.push("#GA_Name_User");
 
-    res.render("bulkupload/user-add-personal");
-  } catch (err) {
-    // console.log(
-    //   "ssn.UserPrincileObjectGlobal :" + JSON.stringify(ssn.UserPrincileObjectGlobal)
-    // );
-    if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
-    else if (err.toString().includes("401"))
-      res.render("bulkupload/notAuthorized");
-    else if (err.toString().includes("400")) {
+    res.render("bulkupload/user-add", {
+      change: "Yes",
+    });
+  } else {
+    var data_request = {
+      invitedUserEmailAddress: ssn.Email_Id_Global,
+      inviteRedirectUrl: beis_redirect_url,
+      sendInvitationMessage: true,
+      grpRoleIds: [apiroles_gaRole_object, apiroles_gaName_object],
+    };
+
+    var data = JSON.parse(JSON.stringify(data_request));
+    console.log("request data user submit: " + JSON.stringify(data));
+
+    try {
+      const addUser = await axios.post(
+        beis_url_accessmanagement + "/usermanagement/invitation",
+        data,
+        ssn.UserPrincileObjectGlobal
+      );
+
+      console.log(`Status: ${addUser.status}`);
+      API_response_code = `${addUser.status}`;
+      console.log("API_response_code: try" + API_response_code);
+      console.log("Body: ", addUser.data);
+      ssn.addUser_extract = addUser.data.invitedUser.id;
+      console.log("user_id_from_API :" + ssn.addUser_extract);
+
+      ssn.Full_Name_Error = false;
+      ssn.Last_Name_Error = false;
+      ssn.Phone_Number_Error = false;
       UserErrors = [];
       UserFocus = [];
-      ssn.Email_Id_Error = true;
-      ssn.Email_msg = "Email Id or Group already exist";
-      ssn.UserErrorLength_Global = 1;
-      UserErrors.push("Email Id or Group already exist");
-      UserFocus.push("#EmailId");
+      UserErrorsLenght = 0;
 
-      res.render("bulkupload/user-add", {
-        change: "Yes",
-      });
+      res.render("bulkupload/user-add-personal");
+    } catch (err) {
+      // console.log(
+      //   "ssn.UserPrincileObjectGlobal :" + JSON.stringify(ssn.UserPrincileObjectGlobal)
+      // );
+      if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
+      else if (err.toString().includes("401"))
+        res.render("bulkupload/notAuthorized");
+      else if (err.toString().includes("400")) {
+        UserErrors = [];
+        UserFocus = [];
+        ssn.Email_Id_Error = true;
+        ssn.Email_msg = "Email Id or Group already exist";
+        ssn.UserErrorLength_Global = 1;
+        UserErrors.push("Email Id or Group already exist");
+        UserFocus.push("#EmailId");
+
+        res.render("bulkupload/user-add", {
+          change: "Yes",
+        });
+      }
+      console.log("message error : " + err);
     }
-    console.log("message error : " + err);
   }
 });
 

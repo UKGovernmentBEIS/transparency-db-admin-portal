@@ -577,7 +577,7 @@ router.post("/", async (req, res) => {
             // ssn.Goods_or_Services_Global,
             // ssn.Spending_Region_Global,
             // ssn.Spending_Sector_Global,
-            // GetMonthName,
+            // ssn.GetMonthName,
           });
         }
       } catch (err) {

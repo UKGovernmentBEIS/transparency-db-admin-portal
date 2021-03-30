@@ -15,6 +15,13 @@
     gtag('js', new Date());
     gtag('config', 'UA-145652997-21');
   </script>
+  <script>
+    getErrorList = (grantingAuthorityName_Error) => {
+      if (grantingAuthorityName_Error) {
+        document.getElementById("error-alert").focus();
+      }
+    }
+  </script>
   <link href="/assets/stylesheet/govuk-tabs.css" rel="stylesheet" type="text/css" />
 </head>
 <!-- <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css" />
@@ -25,92 +32,92 @@
 
 <!-- <%- include('../partials/headersubsidy.ejs') %> -->
 
-<body class="govuk-template__body app-example-page">
+<body class="govuk-template__body app-example-page" onload="getErrorList('<%=ssn.grantingAuthorityName_Error>')">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
-  <div class="govuk-width-container">
-    <main id="main-content" role="main">
-      <div class="govuk-phase-banner">
-        <p class="govuk-phase-banner__content">
-          <strong class="govuk-tag govuk-phase-banner__content__tag">
-            beta
-          </strong>
-          <span class="govuk-phase-banner__text">
-            This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
-            us to improve it.
-          </span>
-        </p>
-      </div>
-      <%- include('../partials/navigationbar.ejs') %>
+  <div class=" govuk-width-container">
+  <main id="main-content" role="main">
+    <div class="govuk-phase-banner">
+      <p class="govuk-phase-banner__content">
+        <strong class="govuk-tag govuk-phase-banner__content__tag">
+          beta
+        </strong>
+        <span class="govuk-phase-banner__text">
+          This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+          us to improve it.
+        </span>
+      </p>
+    </div>
+    <%- include('../partials/navigationbar.ejs') %>
 
-      <div class="govuk-breadcrumbs ">
-        <ol class="govuk-breadcrumbs__list">
-          <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
-          </li>
-          <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Granting Authority</a>
-          </li>
-          <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add granting authority</a>
-          </li>
-        </ol>
-      </div>
+    <div class="govuk-breadcrumbs ">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Granting Authority</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add granting authority</a>
+        </li>
+      </ol>
+    </div>
 
 
-      <!-- <div class="govuk-tabs" data-module="govuk-tabs">
+    <!-- <div class="govuk-tabs" data-module="govuk-tabs">
         <div class="govuk-tabs__panel" id="addGA"> -->
-      <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group"> -->
-      <h1 class="govuk-heading-l">Add granting authority</h1>
-      <!-- </legend> -->
-      <div class="govuk-grid-row">
-        <form action="/reviewgrantingauthority" method="POST">
+    <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group"> -->
+    <h1 class="govuk-heading-l">Add granting authority</h1>
+    <!-- </legend> -->
+    <div class="govuk-grid-row">
+      <form action="/reviewgrantingauthority" method="POST">
 
-          <% if( ssn.grantingAuthorityName_Error){ %>
-          <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert"
-            data-module="govuk-error-summary">
-            <h2 class="govuk-error-summary__title" id="error-summary-title">
-              There is a problem
-            </h2>
-            <div class="govuk-error-summary__body">
-              <ul class="govuk-list govuk-error-summary__list">
-                <li>
-                  <a href="#GAName"><%= ssn.grantingAuthorityName_Error_Msg %></a>
-                </li>
-              </ul>
-            </div>
+        <% if( ssn.grantingAuthorityName_Error){ %>
+        <div class="govuk-error-summary" id="error-alert" aria-labelledby="error-summary-title" role="alert"
+          data-module="govuk-error-summary">
+          <h2 class="govuk-error-summary__title" id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+              <li>
+                <a href="#GAName"><%= ssn.grantingAuthorityName_Error_Msg %></a>
+              </li>
+            </ul>
           </div>
-          <div class="govuk-grid-column-one-half govuk-form-group  govuk-form-group--error">
-            <% } else { %>
-            <div class="govuk-grid-column-one-half govuk-form-group ">
-              <% } %>
-              <!-- <form action="/filtersearch" method="POST" > -->
-              <label for="GAName" class="govuk-label">Granting authority name</label>
-              <% if( ssn.grantingAuthorityName_Error){ %>
-              <span class="govuk-error-message" id="ssn.grantingAuthorityName_Error">
-                <span class="govuk-visually-hidden">Error:</span> <%= ssn.grantingAuthorityName_Error_Msg %>
-              </span>
-              <% } %>
-              <input class="govuk-input" value="<%= ssn.grantingAuthorityName_Global %>" id="GAName"
-                name="grantingAuthorityName" type="text" />
-              <!-- </form>  -->
-            </div>
-            <div class="govuk-grid-column-three-quarters">
-              <!-- <form action="/mygrantingauthority"> -->
-              <button class="govuk-button govuk-button--success">
-                Continue
-              </button>
-              <a class="govuk-link govuk-cancel-button-link" id="mylink" href="/cancelgrantingauthority">
-                Cancel
-              </a>
-              <!-- </form> -->
-            </div>
-        </form>
-      </div>
-      <!-- </div>
+        </div>
+        <div class="govuk-grid-column-one-half govuk-form-group  govuk-form-group--error">
+          <% } else { %>
+          <div class="govuk-grid-column-one-half govuk-form-group ">
+            <% } %>
+            <!-- <form action="/filtersearch" method="POST" > -->
+            <label for="GAName" class="govuk-label">Granting authority name</label>
+            <% if( ssn.grantingAuthorityName_Error){ %>
+            <span class="govuk-error-message" id="ssn.grantingAuthorityName_Error">
+              <span class="govuk-visually-hidden">Error:</span> <%= ssn.grantingAuthorityName_Error_Msg %>
+            </span>
+            <% } %>
+            <input class="govuk-input" value="<%= ssn.grantingAuthorityName_Global %>" id="GAName"
+              name="grantingAuthorityName" type="text" />
+            <!-- </form>  -->
+          </div>
+          <div class="govuk-grid-column-three-quarters">
+            <!-- <form action="/mygrantingauthority"> -->
+            <button class="govuk-button govuk-button--success">
+              Continue
+            </button>
+            <a class="govuk-link govuk-cancel-button-link" id="mylink" href="/cancelgrantingauthority">
+              Cancel
+            </a>
+            <!-- </form> -->
+          </div>
+      </form>
+    </div>
+    <!-- </div>
       </div> -->
-    </main>
+  </main>
   </div>
 
   <%- include('../partials/footer.ejs') %>

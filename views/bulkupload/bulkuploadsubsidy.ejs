@@ -23,10 +23,16 @@
   <script>
     var url = window.location.href;
     window.location.href = url + "#upload-csv";
+    getErrorList = (isFileUploadEmpty, isExcelFormat, isXlsxOk) => {
+      if (isFileUploadEmpty || !isExcelFormat || !isXlsxOk) {
+        document.getElementById("error-alert").focus();
+      }
+    }
   </script>
 </head>
 
-<body class="govuk-template__body app-example-page">
+<body class="govuk-template__body app-example-page"
+  onload="getErrorList('<%=locals.isFileUploadEmpty%>','<%=locals.isExcelFormat%>','<%=locals.isXlsxOk%>')">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -140,8 +146,8 @@
 
               <form encType="multipart/form-data" action="/formvalidation" method="post" novalidate="">
 
-                <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
-                  data-module="govuk-error-summary">
+                <div tabindex="-1" class="govuk-error-summary" id="error-alert" role="alert"
+                  aria-labelledby="error-summary-title" data-module="govuk-error-summary">
                   <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
                   <div class="govuk-error-summary__body">
                     <ul class="govuk-list govuk-error-summary__list">
@@ -183,8 +189,8 @@
               <% } else if( locals.isExcelFormat && !locals.isXlsxOk ){ %>
 
               <form encType="multipart/form-data" action="/formvalidation" method="post" novalidate="">
-                <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
-                  data-module="govuk-error-summary">
+                <div tabindex="-1" class="govuk-error-summary" id="error-alert" role="alert"
+                  aria-labelledby="error-summary-title" data-module="govuk-error-summary">
                   <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem in
                     <%= locals.validationerrors.errorRows %>
                     out of <%= locals.validationerrors.totalRows %> records</h2>

@@ -48,9 +48,17 @@
         })
 
     </script> -->
+    <script>
+        getErrorList = (No_Selected_GA, No_Selected_Role) => {
+            if (No_Selected_GA || No_Selected_Role) {
+                document.getElementById("error-alert").focus();
+            }
+        }
+    </script>
 </head>
 
-<body class="govuk-template__body app-example-page">
+<body class="govuk-template__body app-example-page"
+    onload="getErrorList('<%=No_Selected_GA%>','<%=No_Selected_Role%>')">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -131,8 +139,8 @@
             <h2 class="govuk-heading-l">Search for existing users or add a new one</h2>
             <div class="govuk-grid-row">
                 <% if( No_Selected_GA ||  No_Selected_Role){ %>
-                <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
-                    data-module="govuk-error-summary">
+                <div class="govuk-error-summary" id="error-alert" aria-labelledby="error-summary-title" role="alert"
+                    tabindex="-1" data-module="govuk-error-summary">
                     <h2 class="govuk-error-summary__title" id="error-summary-title">
                         There is a problem
                     </h2>

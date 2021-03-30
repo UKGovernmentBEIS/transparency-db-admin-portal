@@ -15,10 +15,17 @@
     gtag('js', new Date());
     gtag('config', 'UA-145652997-21');
   </script>
+  <script>
+    getErrorList = (noresult) => {
+      if (noresult) {
+        document.getElementById("error-alert").focus();
+      }
+    }
+  </script>
 </head>
 
 
-<body class="govuk-template__body app-example-page">
+<body class="govuk-template__body app-example-page" onload="getErrorList('<%=noresult%>')">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -54,7 +61,7 @@
       <h1 class="govuk-heading-xl">Audit log</h1>
       <!-- Body header ends here -->
       <% if(noresult) { %>
-      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+      <div class="govuk-error-summary" id="error-alert" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
         data-module="govuk-error-summary">
 
         <div class="govuk-error-summary__body">

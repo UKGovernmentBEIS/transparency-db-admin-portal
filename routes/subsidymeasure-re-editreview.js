@@ -10,7 +10,7 @@ router.post("/", (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   isAddSubsidyPrimarycall = false;
-  GetMonthName = "";
+  ssn.GetMonthName = "";
   ssn.SubsidyErrors = [];
   ssn.SubsidyFocus = [];
   Additem = 0;
@@ -93,43 +93,43 @@ router.post("/", (req, res) => {
   console.log("ssn.Scheme_End_Year_Global  :" + ssn.Scheme_End_Year_Global);
 
   if (scheme_issued_start_month == 1) {
-    GetMonthName = "January";
+    ssn.GetMonthName = "January";
   }
   if (scheme_issued_start_month == 2) {
-    GetMonthName = "February";
+    ssn.GetMonthName = "February";
   }
   if (scheme_issued_start_month == 3) {
-    GetMonthName = "March";
+    ssn.GetMonthName = "March";
   }
   if (scheme_issued_start_month == 4) {
-    GetMonthName = "April";
+    ssn.GetMonthName = "April";
   }
   if (scheme_issued_start_month == 5) {
-    GetMonthName = "May";
+    ssn.GetMonthName = "May";
   }
   if (scheme_issued_start_month == 6) {
-    GetMonthName = "June";
+    ssn.GetMonthName = "June";
   }
   if (scheme_issued_start_month == 7) {
-    GetMonthName = "July";
+    ssn.GetMonthName = "July";
   }
   if (scheme_issued_start_month == 8) {
-    GetMonthName = "August";
+    ssn.GetMonthName = "August";
   }
   if (scheme_issued_start_month == 9) {
-    GetMonthName = "September";
+    ssn.GetMonthName = "September";
   }
   if (scheme_issued_start_month == 10) {
-    GetMonthName = "October";
+    ssn.GetMonthName = "October";
   }
   if (scheme_issued_start_month == 11) {
-    GetMonthName = "November";
+    ssn.GetMonthName = "November";
   }
   if (scheme_issued_start_month == 12) {
-    GetMonthName = "December";
+    ssn.GetMonthName = "December";
   }
 
-  console.log("scheme_issued_start_month" + GetMonthName);
+  console.log("scheme_issued_start_month" + ssn.GetMonthName);
 
   if (buttonvalue == "Update") {
     //Empty field validations
@@ -329,7 +329,7 @@ router.post("/", (req, res) => {
         // ssn.Scheme_End_Month_Global,
         // ssn.Scheme_End_Year_Global,
         ssn,
-        GetMonthName,
+        // ssn.GetMonthName,
       });
     }
   } else {

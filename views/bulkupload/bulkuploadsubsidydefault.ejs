@@ -16,9 +16,17 @@
     gtag('js', new Date());
     gtag('config', 'UA-145652997-21');
   </script>
+  <script>
+    getErrorList = (isFileUploadEmpty, isExcelFormat, isNotCsvOrExcel) => {
+      if (isFileUploadEmpty || isNotCsvOrExcel || isExcelFormat) {
+        document.getElementById("error-alert").focus();
+      }
+    }
+  </script>
 </head>
 
-<body class="govuk-template__body app-example-page">
+<body class="govuk-template__body app-example-page"
+  onload="getErrorList('<%=locals.isFileUploadEmpty%>','<%=locals.isExcelFormat%>','<%=locals.isNotCsvOrExcel%>')">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -156,8 +164,8 @@
 
                 <% if( locals.isFileUploadEmpty || locals.isNotCsvOrExcel){ %>
 
-                <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
-                  data-module="govuk-error-summary">
+                <div tabindex="-1" class="govuk-error-summary" id="error-alert" role="alert"
+                  aria-labelledby="error-summary-title" data-module="govuk-error-summary">
                   <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
                   <div class="govuk-error-summary__body">
                     <ul class="govuk-list govuk-error-summary__list">
@@ -190,8 +198,8 @@
                 <% } else if( locals.isExcelFormat){ %>
 
 
-                <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
-                  data-module="govuk-error-summary">
+                <div tabindex="-1" class="govuk-error-summary" id="error-alert" role="alert"
+                  aria-labelledby="error-summary-title" data-module="govuk-error-summary">
                   <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem in 60 out of 100
                     records</h2>
                   <div class="govuk-error-summary__body">
@@ -207,8 +215,7 @@
                     <p> The file format must be .xlsx</p>
                   </label>
                   <div class="govuk-input__wrapper">
-                    <input class="govuk-input govuk-!-width-one-third" id="file-upload-1"
-                      name="file_upload_1"="Upload file">
+                    <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
 
