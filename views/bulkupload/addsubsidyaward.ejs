@@ -699,10 +699,26 @@
                 <span class="govuk-visually-hidden">Error:</span> Enter a subsidy purpose for other category
               </span>
 
-              <input class="govuk-input govuk-input--width-20 govuk-input--error" maxlength="255"
-                id="Subsidy_Objective_Other" name="Subsidy_Objective_Other" type="text"
-                aria-describedby="Subsidy_Objective_Other-hint" <% if(ssn.Subsidy_Objective_Other_Global) {%>
-                value="<%= ssn.Subsidy_Objective_Other_Global %>" <% } %> />
+              <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Objective_Other"
+                name="Subsidy_Objective_Other" type="text" aria-describedby="Subsidy_Objective_Other-hint"
+                <% if(ssn.Subsidy_Objective_Other_Global) {%> value="<%= ssn.Subsidy_Objective_Other_Global %>"
+                <% } %> />
+            </div>
+            <% else if(Subsidy_Objective_Other_255_Error) { %>
+            <div id="other_purpose" class="govuk-form-group govuk-form-group--error" style="display: none;">
+              <label class="govuk-label" for="Subsidy_Objective_Other">
+                Other purpose
+              </label>
+
+              <span class="govuk-error-message" id="ssn.Subsidy_Objective_Other_Error">
+                <span class="govuk-visually-hidden">Error:</span> Subsidy purpose for other category can only be of 255
+                characters
+              </span>
+
+              <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Objective_Other"
+                name="Subsidy_Objective_Other" type="text" aria-describedby="Subsidy_Objective_Other-hint"
+                <% if(ssn.Subsidy_Objective_Other_Global) {%> value="<%= ssn.Subsidy_Objective_Other_Global %>"
+                <% } %> />
             </div>
             <% } else { %>
 
@@ -711,7 +727,7 @@
                 Other purpose
               </label>
 
-              <input class="govuk-input govuk-input--width-20" maxlength="255" id="Subsidy_Objective_Other"
+              <input class="govuk-input govuk-input--width-20" id="Subsidy_Objective_Other"
                 name="Subsidy_Objective_Other" type="text" aria-describedby="Subsidy_Objective_Other-hint"
                 <% if(ssn.Subsidy_Objective_Other_Global) {%> value="<%= ssn.Subsidy_Objective_Other_Global %>"
                 <% } %> />
@@ -874,10 +890,26 @@
                 <span class="govuk-visually-hidden">Error:</span> Enter a subsidy type for other category
               </span>
 
-              <input class="govuk-input govuk-input--width-20 govuk-input--error" maxlength="255"
-                id="Subsidy_Instrument_Other" name="Subsidy_Instrument_Other" type="text"
-                aria-describedby="Subsidy_Instrument_Other-hint" <% if(ssn.Subsidy_Instrument_Other_Global) {%>
-                value="<%= ssn.Subsidy_Instrument_Other_Global %>" <% } %> />
+              <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Instrument_Other"
+                name="Subsidy_Instrument_Other" type="text" aria-describedby="Subsidy_Instrument_Other-hint"
+                <% if(ssn.Subsidy_Instrument_Other_Global) {%> value="<%= ssn.Subsidy_Instrument_Other_Global %>"
+                <% } %> />
+            </div>
+            <% } else if(ssn.Subsidy_Instrument_Other_255_Error) {%>
+            <div id="other_type" class="govuk-form-group govuk-form-group--error" style="display: none;">
+              <label class="govuk-label" for="Subsidy_Instrument_Other">
+                Other type
+              </label>
+
+              <span class="govuk-error-message" id="ssn.Subsidy_Instrument_Other_Error">
+                <span class="govuk-visually-hidden">Error:</span> Subsidy type for other category can only be of 255
+                characters
+              </span>
+
+              <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Instrument_Other"
+                name="Subsidy_Instrument_Other" type="text" aria-describedby="Subsidy_Instrument_Other-hint"
+                <% if(ssn.Subsidy_Instrument_Other_Global) {%> value="<%= ssn.Subsidy_Instrument_Other_Global %>"
+                <% } %> />
             </div>
             <% } else { %>
 
@@ -886,7 +918,7 @@
                 Other type
               </label>
 
-              <input class="govuk-input govuk-input--width-20" maxlength="255" id="Subsidy_Instrument_Other"
+              <input class="govuk-input govuk-input--width-20" id="Subsidy_Instrument_Other"
                 name="Subsidy_Instrument_Other" type="text" aria-describedby="Subsidy_Instrument_Other-hint"
                 <% if(ssn.Subsidy_Instrument_Other_Global) {%> value="<%= ssn.Subsidy_Instrument_Other_Global %>"
                 <% } %> />
@@ -1404,20 +1436,36 @@
               </span>
 
 
-              <input class="govuk-input govuk-input--width-30 govuk-input--error" maxlength="255" id="Beneficiary_Name"
+              <input class="govuk-input govuk-input--width-30 govuk-input--error" id="Beneficiary_Name"
                 name="Beneficiary_Name" type="text" aria-describedby="Beneficiary_Name"
                 <% if(ssn.Beneficiary_Name_Global) {%> value="<%= ssn.Beneficiary_Name_Global%>" <% } %> />
             </div>
+            <% } else if(ssn.Beneficiary_Name_255_Error) { %>
+            <div class="govuk-form-group govuk-form-group--error">
+              <label class="govuk-label" for="Beneficiary_Name">
+                Recipient organisation name
+              </label>
 
+
+              <span class="govuk-error-message" id="ssn.Beneficiary_Name_Error">
+                <span class="govuk-visually-hidden">Error:</span> Recipient organisation name can only be of 255
+                characters or less
+              </span>
+
+
+              <input class="govuk-input govuk-input--width-30 govuk-input--error" id="Beneficiary_Name"
+                name="Beneficiary_Name" type="text" aria-describedby="Beneficiary_Name"
+                <% if(ssn.Beneficiary_Name_Global) {%> value="<%= ssn.Beneficiary_Name_Global%>" <% } %> />
+            </div>
             <% } else { %>
             <div class="govuk-form-group">
               <label class="govuk-label" for="Beneficiary_Name">
                 Recipient organisation name
               </label>
 
-              <input class="govuk-input govuk-input--width-20" id="Beneficiary_Name" maxlength="255"
-                name="Beneficiary_Name" type="text" aria-describedby="Beneficiary_Name"
-                <% if(ssn.Beneficiary_Name_Global) {%> value="<%= ssn.Beneficiary_Name_Global%>" <% } %> />
+              <input class="govuk-input govuk-input--width-20" id="Beneficiary_Name" name="Beneficiary_Name" type="text"
+                aria-describedby="Beneficiary_Name" <% if(ssn.Beneficiary_Name_Global) {%>
+                value="<%= ssn.Beneficiary_Name_Global%>" <% } %> />
             </div>
             <% } %>
 
