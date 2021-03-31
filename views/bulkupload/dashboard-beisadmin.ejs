@@ -5,16 +5,11 @@
   <title>GOV.UK - BEIS Admin Dashboard page</title>
   <%- include('../partials/headercss.ejs') %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script> -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+  <!-- 
   <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'UA-145652997-21');
-  </script>
+  
+  </script> -->
   <link href="/assets/stylesheet/govuk-transparencyDb.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -261,10 +256,10 @@
               <!-- <label>Deactive</label>
             <p>Total granting authorities that are not active</p> -->
               <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
-                <%= dashboardawards.awardUserActionCount.totalInactiveAward %>
+                <%= dashboardawards.awardUserActionCount.totalDeleteAward %>
               </p>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24">
-                <a href="/mysubsidyawards?sort=Deactive" class="govuk-description-text">Deleted</a></p>
+                <a href="/mysubsidyawards?sort=Deleted" class="govuk-description-text">Deleted</a></p>
             </div>
           </div>
 

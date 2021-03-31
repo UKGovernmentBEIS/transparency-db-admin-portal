@@ -9,7 +9,7 @@ var request = require("request");
 
 router.get("/", async (req, res) => {
   ssn = req.session;
-  console.log("Award_search_URL top  : " + JSON.stringify(ssn));
+  // console.log("Award_search_URL top  : " + JSON.stringify(ssn));
   res.set("X-Frame-Options", "DENY");
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');

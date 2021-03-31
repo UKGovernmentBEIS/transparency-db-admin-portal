@@ -128,12 +128,12 @@ router.post("/", async (req, res) => {
     };
 
     var data = JSON.parse(JSON.stringify(updateAwardRequest));
-    console.log("request :" + JSON.stringify(data));
+    // console.log("request :" + JSON.stringify(data));
   } else {
     var data = JSON.parse(JSON.stringify(addAwardRequest));
-    console.log("SSN :" + JSON.stringify(data));
   }
-
+  // console.log("request :" + JSON.stringify(isCallfromEditAward));
+  // console.log("SSN :" + JSON.stringify(ssn.UserPrincileObjectGlobal));
   try {
     if (isCallfromEditAward) {
       var apidata = await axios.put(

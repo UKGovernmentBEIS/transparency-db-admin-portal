@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
   console.log(azGrpId);
   if (ssn.GaListArr_Global.length > 0) {
     ssn.GaListArr_Global.forEach(function (ids) {
-      userId.push(ids.gaId);
+      userId.push(ids.gaId.toString());
     });
   } else userId = [""];
   console.log("body", userId);
@@ -27,25 +27,21 @@ router.post("/", async (req, res) => {
     "Invoking delete method",
     beis_url_searchscheme + "/group/" + azGrpId
   );
+  const data = {
+    userIds: userId,
+  };
+
+  var data_req = JSON.parse(JSON.stringify(data));
+
   try {
     const apidata = await axios.delete(
-      beis_url_searchscheme + "/group/" + azGrpId,
-      {
-        usersGroupRequest: {
-          userIds: userId,
-        },
-      },
-      {
-        headers: {
-          UserPrinciple:
-            '{"userName":"devbiesadmintest","password":"password123","role":"BEIS Administrator","grantingAuthorityGroupId":"138","grantingAuthorityGroupName":"Business Energy And Industrial Strategy"}',
-        },
-      }
+      beis_url_searchscheme + `/group/${azGrpId}`,
+      data_req,
+      ssn.UserPrincileObjectGlobal
     );
 
     console.log("BODY", apidata);
   } catch (err) {
-    console.log("Delete GA error");
     console.log("message error deactivate GA : " + err);
     if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
     else if (err.toString().includes("401"))

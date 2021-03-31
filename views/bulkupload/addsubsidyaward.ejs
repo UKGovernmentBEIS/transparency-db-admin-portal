@@ -704,7 +704,7 @@
                 <% if(ssn.Subsidy_Objective_Other_Global) {%> value="<%= ssn.Subsidy_Objective_Other_Global %>"
                 <% } %> />
             </div>
-            <% else if(Subsidy_Objective_Other_255_Error) { %>
+            <% } else if(ssn.Subsidy_Objective_Other_255_Error) { %>
             <div id="other_purpose" class="govuk-form-group govuk-form-group--error" style="display: none;">
               <label class="govuk-label" for="Subsidy_Objective_Other">
                 Other purpose
