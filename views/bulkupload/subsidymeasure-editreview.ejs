@@ -7,13 +7,13 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+         // window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'UA-145652997-21');
+        // function gtag() {
+        //     dataLayer.push(arguments);
+        // }
+        // gtag('js', new Date());
+        // gtag('config', 'UA-145652997-21');
     </script>
     <script>
         const formatter = new Intl.NumberFormat("en-GB");
@@ -120,6 +120,10 @@
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Granting Authority</th>
                             <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.gaName %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Subsidy scheme number</th>
+                            <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.scNumber %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Subsidy scheme name</th>

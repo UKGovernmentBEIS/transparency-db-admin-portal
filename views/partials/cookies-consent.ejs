@@ -17,7 +17,8 @@
             <div class="govuk-button-group">
                 <button class="gem-c-button govuk-button" type="submit" data-module="gem-track-click"
                     data-accept-cookies="true" data-track-category="cookieBanner"
-                    data-track-action="Cookie banner accepted" data-cookie-types="all">Accept analytics cookies</button>
+                    data-track-action="Cookie banner accepted" data-cookie-types="all" onclick="getGACookies()">Accept
+                    analytics cookies</button>
                 <button class="gem-c-button govuk-button" type="submit" data-module="gem-track-click"
                     data-reject-cookies="true" data-track-category="cookieBanner"
                     data-track-action="Cookie banner rejected">Reject analytics cookies</button>
@@ -37,6 +38,18 @@
         </div>
     </div>
 </div>
+<script>
+    function getGACookies() {
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    }
+</script>
+
 <script src="/assets/javascripts/jquery.min.js"></script>
 <script src="/assets/javascripts/header-footer-only.js"></script>
 <script src="/assets/javascripts/application.js"></script>

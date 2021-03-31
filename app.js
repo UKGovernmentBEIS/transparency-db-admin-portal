@@ -420,10 +420,11 @@ app.get("/", async (req, res) => {
   gaEncoderCount_Global = 0;
   gaTotalCount_Global = 0;
   try {
+    if (ssn.dashboard_roles == "BEIS Administrator")
+      azGrpId = ssn.dashboard_roles_object_id1;
+    else azGrpId = ssn.dashboard_roles_object_id2;
     const apidata = await axios.get(
-      beis_url_accessmanagement +
-        "/usermanagement/groups/" +
-        ssn.dashboard_roles_object_id2,
+      beis_url_accessmanagement + "/usermanagement/groups/" + azGrpId,
       ssn.UserPrincileObjectGlobal
     );
     console.log(`Status: ${apidata.status}`);

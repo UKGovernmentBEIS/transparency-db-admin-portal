@@ -7,13 +7,20 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
+     // window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
+        // function gtag() {
+        //     dataLayer.push(arguments);
+        // }
+        // gtag('js', new Date());
+        // gtag('config', 'UA-145652997-21');
+  </script>
+  <script>
+    getErrorList = (grantingAuthorityName_Error) => {
+      if (grantingAuthorityName_Error) {
+        document.getElementById("error-alert").focus();
+      }
     }
-    gtag('js', new Date());
-    gtag('config', 'UA-145652997-21');
   </script>
   <link href="/assets/stylesheet/govuk-tabs.css" rel="stylesheet" type="text/css" />
 </head>
@@ -25,11 +32,11 @@
 
 <!-- <%- include('../partials/headersubsidy.ejs') %> -->
 
-<body class="govuk-template__body app-example-page">
+<body class="govuk-template__body app-example-page" onload="getErrorList('<%=ssn.grantingAuthorityName_Error%>')">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
-  <div class="govuk-width-container">
+  <div class=" govuk-width-container">
     <main id="main-content" role="main">
       <div class="govuk-phase-banner">
         <p class="govuk-phase-banner__content">
@@ -68,7 +75,7 @@
         <form action="/reviewgrantingauthority" method="POST">
 
           <% if( ssn.grantingAuthorityName_Error){ %>
-          <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert"
+          <div class="govuk-error-summary" id="error-alert" aria-labelledby="error-summary-title" role="alert"
             data-module="govuk-error-summary">
             <h2 class="govuk-error-summary__title" id="error-summary-title">
               There is a problem

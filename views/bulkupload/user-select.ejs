@@ -7,13 +7,13 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+         // window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'UA-145652997-21');
+        // function gtag() {
+        //     dataLayer.push(arguments);
+        // }
+        // gtag('js', new Date());
+        // gtag('config', 'UA-145652997-21');
     </script>
     <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
@@ -48,9 +48,17 @@
         })
 
     </script> -->
+    <script>
+        getErrorList = (No_Selected_GA, No_Selected_Role) => {
+            if (No_Selected_GA || No_Selected_Role) {
+                document.getElementById("error-alert").focus();
+            }
+        }
+    </script>
 </head>
 
-<body class="govuk-template__body app-example-page">
+<body class="govuk-template__body app-example-page"
+    onload="getErrorList('<%=No_Selected_GA%>','<%=No_Selected_Role%>')">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -128,11 +136,11 @@
 
             <h1 class="govuk-heading-xl">
                 Users</h1>
-            <h2 class="govuk-heading-l">Search for existing users or add new one</h2>
+            <h2 class="govuk-heading-l">Search for existing users or add a new one</h2>
             <div class="govuk-grid-row">
                 <% if( No_Selected_GA ||  No_Selected_Role){ %>
-                <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
-                    data-module="govuk-error-summary">
+                <div class="govuk-error-summary" id="error-alert" aria-labelledby="error-summary-title" role="alert"
+                    tabindex="-1" data-module="govuk-error-summary">
                     <h2 class="govuk-error-summary__title" id="error-summary-title">
                         There is a problem
                     </h2>
@@ -291,7 +299,7 @@
                                             <% if (!item.givenName) {%>
                                             <%=item.displayName%>
                                             <% } else {%>
-                                            <%= item.givenName %>
+                                            <%= item.givenName %> <%=item.surname%>
                                             <% } %></a>
                                     </td>
                                     <td class="govuk-table__cell">
@@ -323,7 +331,6 @@
                                     <td class="govuk-table__cell">
                                         Active
                                     </td>
-
 
                                     <td class="govuk-table__cell">
                                         <% if ( ssn.Roles_Selected == 'Granting Authority Administrator' || ssn.Roles_Selected == 'Granting Authority Approver' || ssn.Roles_Selected == 'Granting Authority Encoder' ) {  %>

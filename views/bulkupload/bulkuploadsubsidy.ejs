@@ -8,13 +8,13 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
+     // window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'UA-145652997-21');
+        // function gtag() {
+        //     dataLayer.push(arguments);
+        // }
+        // gtag('js', new Date());
+        // gtag('config', 'UA-145652997-21');
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
   <script type="text/javascript"
@@ -23,10 +23,16 @@
   <script>
     var url = window.location.href;
     window.location.href = url + "#upload-csv";
+    getErrorList = (isFileUploadEmpty, isExcelFormat, isXlsxOk) => {
+      if (isFileUploadEmpty || !isExcelFormat || !isXlsxOk) {
+        document.getElementById("error-alert").focus();
+      }
+    }
   </script>
 </head>
 
-<body class="govuk-template__body app-example-page">
+<body class="govuk-template__body app-example-page"
+  onload="getErrorList('<%=locals.isFileUploadEmpty%>','<%=locals.isExcelFormat%>','<%=locals.isXlsxOk%>')">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -140,8 +146,8 @@
 
               <form encType="multipart/form-data" action="/formvalidation" method="post" novalidate="">
 
-                <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
-                  data-module="govuk-error-summary">
+                <div tabindex="-1" class="govuk-error-summary" id="error-alert" role="alert"
+                  aria-labelledby="error-summary-title" data-module="govuk-error-summary">
                   <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
                   <div class="govuk-error-summary__body">
                     <ul class="govuk-list govuk-error-summary__list">
@@ -153,7 +159,7 @@
                   </div>
                 </div>
                 <div class="govuk-form-group govuk-form-group--error">
-                  <label class="govuk-label" for="file-upload-1"> Upload file</label>
+                  <label class="govuk-label"> Upload file</label>
                   <label class="govuk-label-grey" for="file-upload-2">
                     <p> The file format must be .xlsx</p>
                   </label>
@@ -168,9 +174,10 @@
                   <!-- <input class="govuk-file-upload govuk-file-upload--error" id="file-upload-1" name="file_upload_1"
                     type="file" aria-describedby="file-upload-1-error"> -->
                   <div class="govuk-input__wrapper">
-                    <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file" aria-label="Choose file"
+                    <input class="govuk-file-upload" name="file_upload_1" type="file"
                       accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                    <!-- <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
+                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"> -->
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                 </div>
@@ -184,8 +191,8 @@
               <% } else if( locals.isExcelFormat && !locals.isXlsxOk ){ %>
 
               <form encType="multipart/form-data" action="/formvalidation" method="post" novalidate="">
-                <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
-                  data-module="govuk-error-summary">
+                <div tabindex="-1" class="govuk-error-summary" id="error-alert" role="alert"
+                  aria-labelledby="error-summary-title" data-module="govuk-error-summary">
                   <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem in
                     <%= locals.validationerrors.errorRows %>
                     out of <%= locals.validationerrors.totalRows %> records</h2>
@@ -198,9 +205,11 @@
                 </div>
 
                 <div class="govuk-form-group">
-                  <label class="govuk-label" for="file-upload-1"> Upload a file</label>
-                  <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
-                    aria-label="Choose file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                  <label class="govuk-label"> Upload a file</label>
+                  <!-- <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
+                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"> -->
+                  <input class="govuk-file-upload" name="file_upload_1" type="file"
+                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                   <label class="govuk-label-grey" for="file-upload-2">
                     <p> The file must be a Microsoft Excel spreadsheet</p>
                   </label>
@@ -352,9 +361,11 @@
               <% } else { %>
               <form encType="multipart/form-data" action="/formvalidation" method="post" novalidate="">
                 <div class="govuk-form-group">
-                  <label class="govuk-label" for="file-upload-1"> Upload a file</label>
-                  <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
-                    aria-label="Choose file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                  <label class="govuk-label"> Upload a file</label>
+                  <!-- <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
+                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"> -->
+                  <input class="govuk-file-upload" name="file_upload_1" type="file"
+                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                   <label class="govuk-label-grey" for="file-upload-2">
                     <p> The file must be a Microsoft Excel spreadsheet</p>
                   </label>

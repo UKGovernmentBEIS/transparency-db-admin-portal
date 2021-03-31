@@ -4,35 +4,43 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   ssn = req.session;
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-  console.log("totalrecords", req.query);
-  // req.query = JSON.parse(JSON.stringify(req.query));
-
-  if (req.query.hasOwnProperty("change")) {
-    console.log(
-      "ssn.grantingAuthorityName_Global",
-      ssn.grantingAuthorityName_Global
-    );
-
-    if (ssn.dashboard_roles == "BEIS Administrator") {
-      res.render("bulkupload/grantingauthority-add", {
-        // ssn.grantingAuthorityName_Global,
-        ssn,
-      });
-    } else {
-      res.render("bulkupload/notAuthorized");
-    }
+  if (
+    typeof ssn.dashboard_roles_object_id1 === "undefined" ||
+    typeof ssn.dashboard_roles_object_id2 === "undefined" ||
+    req.session.cookie.maxAge <= 0
+  ) {
+    res.redirect("/signout");
   } else {
-    ssn.grantingAuthorityName_Error = "";
-    ssn.grantingAuthorityName_Global = "";
-    if (ssn.dashboard_roles == "BEIS Administrator") {
-      res.render("bulkupload/grantingauthority-add");
+    res.set("X-Frame-Options", "DENY");
+    res.set("X-Content-Type-Options", "nosniff");
+    res.set("Content-Security-Policy", 'frame-ancestors "self"');
+    res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    console.log("totalrecords", req.query);
+    // req.query = JSON.parse(JSON.stringify(req.query));
+
+    if (req.query.hasOwnProperty("change")) {
+      console.log(
+        "ssn.grantingAuthorityName_Global",
+        ssn.grantingAuthorityName_Global
+      );
+
+      if (ssn.dashboard_roles == "BEIS Administrator") {
+        res.render("bulkupload/grantingauthority-add", {
+          // ssn.grantingAuthorityName_Global,
+          ssn,
+        });
+      } else {
+        res.render("bulkupload/notAuthorized");
+      }
     } else {
-      res.render("bulkupload/notAuthorized");
+      ssn.grantingAuthorityName_Error = "";
+      ssn.grantingAuthorityName_Global = "";
+      if (ssn.dashboard_roles == "BEIS Administrator") {
+        res.render("bulkupload/grantingauthority-add");
+      } else {
+        res.render("bulkupload/notAuthorized");
+      }
     }
   }
 });

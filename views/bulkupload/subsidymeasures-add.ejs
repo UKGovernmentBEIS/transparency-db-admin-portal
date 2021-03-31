@@ -8,58 +8,55 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+         // window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'UA-145652997-21');
+        // function gtag() {
+        //     dataLayer.push(arguments);
+        // }
+        // gtag('js', new Date());
+        // gtag('config', 'UA-145652997-21');
     </script>
     <script>
-        Subsidy_Adhoc_Global_No = false;
         getSubsidyAdhoc = (event) => {
             if (event.target.value == 'Yes') {
+                // document.getElementById("scheme_issued_end_day").setAttribute("disabled", "true");
+                // document.getElementById("scheme_issued_end_month").setAttribute("disabled", "true");
+                // document.getElementById("scheme_issued_end_year").setAttribute("disabled", "true");
                 document.getElementById("endDateDiv").style.display = "none";
+                // document.getElementById("scheme-issued-day").value = document.getElementById("scheme_issued_start_day").value;
+                // document.getElementById("scheme_issued_end_month").value = document.getElementById("scheme_issued_start_month").value;
+                // document.getElementById("scheme_issued_end_year").value = document.getElementById("scheme_issued_start_year").value;
                 document.getElementById("startDateLabel").textContent = "Date";
             }
             else {
-                ssn.Subsidy_Adhoc_Global = 'No';
+                // document.getElementById("scheme_issued_end_day").removeAttribute("disabled");
+                // document.getElementById("scheme_issued_end_month").removeAttribute("disabled");
+                // document.getElementById("scheme_issued_end_year").removeAttribute("disabled");
                 document.getElementById("endDateDiv").style.display = "block";
                 document.getElementById("startDateLabel").textContent = "Start Date";
             }
         }
 
-        // getSubsidyAdhocValue = (event) => {
-        //     var subsidyadhoc = document.getElementsByName("Subsidy_Adhoc");
-        //     var subsidyadhocchecked = '';
-        //     for (i = 0; i < subsidyadhoc.length; i++) {
-        //         if (subsidyadhoc[i].checked) {
-        //             subsidyadhocchecked = subsidyadhoc[i].value;
-        //         }
-        //     }
-        //     if (subsidyadhocchecked == 'Yes') {
-        //         document.getElementById("scheme-issued-day").value = document.getElementById("scheme_issued_start_day").value;
-        //         document.getElementById("scheme_issued_end_month").value = document.getElementById("scheme_issued_start_month").value;
-        //         document.getElementById("scheme_issued_end_year").value = document.getElementById("scheme_issued_start_year").value;
-        //         document.getElementById("scheme-issued-day").disabled = true;
-        //         document.getElementById("scheme_issued_end_month").disabled = true;
-        //         document.getElementById("scheme_issued_end_year").disabled = true;
-        //     }
-        //     else {
-        //         document.getElementById("scheme-issued-day").value = ""
-        //         document.getElementById("scheme_issued_end_month").value = ""
-        //         document.getElementById("scheme_issued_end_year").value = "";
-        //         document.getElementById("scheme-issued-day").disabled = false;
-        //         document.getElementById("scheme_issued_end_month").disabled = false;
-        //         document.getElementById("scheme_issued_end_year").disabled = false;
-        //     }
-        // }
+
+
+        getErrorList = (errorArray, adhoc) => {
+            if (errorArray > 0) {
+                document.getElementById("error-alert").focus();
+            }
+            if (adhoc == 'Yes') {
+                document.getElementById("endDateDiv").style.display = "none";
+                document.getElementById("startDateLabel").textContent = "Date";
+            } else {
+                document.getElementById("endDateDiv").style.display = "block";
+                document.getElementById("startDateLabel").textContent = "Start Date";
+            }
+        }
     </script>
 </head>
 
 
-<body class="govuk-template__body app-example-page">
+<body class="govuk-template__body app-example-page"
+    onload="getErrorList('<%=ssn.SubsidyArraySize%>','<%=ssn.Subsidy_Adhoc_Global%>')">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -97,8 +94,8 @@
             <!-- bread crumbs ends here -->
             <% if( ssn.SubsidyArraySize > 0 ){ %>
 
-            <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
-                data-module="govuk-error-summary">
+            <div tabindex="-1" class="govuk-error-summary" id="error-alert" role="alert"
+                aria-labelledby="error-summary-title" data-module="govuk-error-summary">
                 <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
 
                 <div class="govuk-error-summary__body">
@@ -126,7 +123,7 @@
                 Subsidy scheme details
             </label>
 
-            <form action="/reviewsubsidymeasures" method="POST">
+            <form action="/reviewsubsidymeasures" method="POST" id="scheme-form">
                 <section class="govuk-grid-row">
                     <% if( ssn.Subsidy_Adhoc_Error ){ %>
                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
@@ -162,6 +159,7 @@
                                     <input class="govuk-radios__input" name="Subsidy_Adhoc" id="adhocyes" type="radio"
                                         value="Yes" checked>
                                     <% } else { %>
+                                    <% var ssn_Object = JSON.stringify(ssn)%>
                                     <input class="govuk-radios__input" name="Subsidy_Adhoc"
                                         onchange="getSubsidyAdhoc(event)" id="adhocyes" type="radio" value="Yes">
                                     <% } %>
@@ -174,6 +172,7 @@
                                     <input class="govuk-radios__input" name="Subsidy_Adhoc" id="adhocno" type="radio"
                                         value="No" checked>
                                     <% } else { %>
+                                    <% var ssn_Object = JSON.stringify(ssn)%>
                                     <input class="govuk-radios__input" name="Subsidy_Adhoc"
                                         onchange="getSubsidyAdhoc(event)" id="adhocno" type="radio" value="No">
                                     <% } %>
@@ -455,7 +454,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <% if(ssn.Subsidy_Adhoc_Global != 'Yes' || ssn.Subsidy_Adhoc_Global_No) { %>
+
                                                 <% if( ssn.scheme_issued_end_day_Error || ssn.scheme_issued_end_month_Error || ssn.scheme_issued_end_year_Error ){ %>
                                                 <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error"
                                                     id="endDateDiv">
@@ -491,7 +490,9 @@
                                                                         value="<%= ssn.Scheme_End_Day_Global%>"
                                                                         name="scheme_issued_end_day" type="text"
                                                                         placeholder="DD" pattern="[0-9]*"
-                                                                        inputmode="numeric"></div>
+                                                                        inputmode="numeric">
+
+                                                                </div>
                                                             </div>
                                                             <div class="govuk-date-input__item">
                                                                 <div class="govuk-form-group">
@@ -507,6 +508,7 @@
                                                                         name="scheme_issued_end_month" placeholder="MM"
                                                                         type="text" pattern="[0-9]*"
                                                                         inputmode="numeric">
+
                                                                 </div>
                                                             </div>
                                                             <div class="govuk-date-input__item">
@@ -522,11 +524,13 @@
                                                                         value="<%= ssn.Scheme_End_Year_Global%>"
                                                                         name="scheme_issued_end_year" type="text"
                                                                         pattern="[0-9]*" inputmode="numeric"
-                                                                        placeholder="YYYY"></div>
+                                                                        placeholder="YYYY">
+
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <% }  %>
+
                                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                         <button class="govuk-button" data-module="govuk-button"
                                                             name="buttonvalue" value="Continue">Continue</button>

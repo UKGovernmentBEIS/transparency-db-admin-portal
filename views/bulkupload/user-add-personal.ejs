@@ -7,17 +7,24 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+         // window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
+        // function gtag() {
+        //     dataLayer.push(arguments);
+        // }
+        // gtag('js', new Date());
+        // gtag('config', 'UA-145652997-21');
+    </script>
+    <script>
+        getErrorList = (UserErrorLength_Global) => {
+            if (UserErrorLength_Global > 0) {
+                document.getElementById("error-alert").focus();
+            }
         }
-        gtag('js', new Date());
-        gtag('config', 'UA-145652997-21');
     </script>
 </head>
 
-<body class="govuk-template__body app-example-page">
+<body class="govuk-template__body app-example-page" onload="getErrorList('<%=ssn.UserErrorLength_Global%>')">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -52,8 +59,8 @@
             <!-- bread crumbs ends here -->
 
             <% if( ssn.UserErrorLength_Global > 0 ){ %>
-            <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
-                data-module="govuk-error-summary">
+            <div tabindex="-1" class="govuk-error-summary" id="error-alert" role="alert"
+                aria-labelledby="error-summary-title" data-module="govuk-error-summary">
                 <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
                 <div class="govuk-error-summary__body">
                     <% for(var i=0; i < ssn.UserErrorLength_Global  ; i++) {%>

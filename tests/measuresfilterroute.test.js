@@ -119,7 +119,7 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   };
 
   isAddSubsidyPrimarycall = false;
-  GetMonthName = "";
+  ssn.GetMonthName = "";
   SubsidyErrors = [];
   SubsidyFocus = [];
 

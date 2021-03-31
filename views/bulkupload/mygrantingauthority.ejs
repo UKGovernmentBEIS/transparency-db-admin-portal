@@ -7,14 +7,15 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
+     // window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'UA-145652997-21');
+        // function gtag() {
+        //     dataLayer.push(arguments);
+        // }
+        // gtag('js', new Date());
+        // gtag('config', 'UA-145652997-21');
   </script>
+
 </head>
 <!-- <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
 <script type="text/javascript" src="/assets/javascripts/script.js" defer></script>
@@ -67,7 +68,7 @@
         <div class="govuk-error-summary__body">
           <ul class="govuk-list govuk-error-summary__list">
             <li>
-              <a><%= noGrantingAuthority%></a>
+              <a aria-label="<%= noGrantingAuthority%>"><%= noGrantingAuthority%></a>
             </li>
 
           </ul>
@@ -81,7 +82,7 @@
         <div class="govuk-error-summary__body">
           <ul class="govuk-list govuk-error-summary__list">
             <li>
-              <a><%= noGrantingAuthority%></a>
+              <a aria-label="<%= noGrantingAuthority%>"><%= noGrantingAuthority%></a>
             </li>
 
           </ul>

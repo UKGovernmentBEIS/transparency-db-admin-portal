@@ -7,13 +7,13 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+         // window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'UA-145652997-21');
+        // function gtag() {
+        //     dataLayer.push(arguments);
+        // }
+        // gtag('js', new Date());
+        // gtag('config', 'UA-145652997-21');
     </script>
 </head>
 
@@ -61,7 +61,8 @@
                     <h1 class="govuk-heading-l">Deactivate granting authority</h1>
                     <% if(ssn.GaListArr_Global.length > 0) { %>
                     <div class="govuk-grid-column-full govuk-grid-row">
-                        <p class="govuk-body govuk-!-font-size-19 govuk-grid-column-two-thirds">To deactivate this
+                        <p class="govuk-body govuk-!-font-size-19 govuk-grid-column-two-thirds govuk-padding-0">To
+                            deactivate this
                             granting authority, you must first remove the following users from it:</p>
                     </div>
                     <ul class="govuk-list">
@@ -70,8 +71,7 @@
                         <li style="color: white;"><%= item.gaName%></li>
                         <% } ); %>
                     </ul>
-
-                    <div class="govuk-checkboxes govuk-form-group">
+                    <div class="govuk-checkboxes govuk-form-group" style="margin-bottom: 2%;">
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="userList" name="userList" type="checkbox"
                                 value="Yes">
