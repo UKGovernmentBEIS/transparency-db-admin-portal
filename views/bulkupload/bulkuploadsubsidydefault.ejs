@@ -177,7 +177,7 @@
                   </div>
                 </div>
                 <div class="govuk-form-group govuk-form-group--error">
-                  <label class="govuk-label" for="file-upload-1"> Upload file</label>
+                  <label class="govuk-label"> Upload file</label>
                   <span id="file-upload-1-error" class="govuk-error-message">
                     <% if( locals.isFileUploadEmpty ) { %>
                     <span class="govuk-visually-hidden">Error:</span> Choose a file to upload
@@ -186,8 +186,10 @@
                     <% } %>
                   </span>
                   <div class="govuk-input__wrapper">
-                    <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                    <!-- <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
+                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"> -->
+                    <input class="govuk-file-upload" name="file_upload_1" type="file"
+                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                 </div>
@@ -210,12 +212,14 @@
                 </div>
 
                 <div class="govuk-form-group">
-                  <label class="govuk-label" for="file-upload-1"> Upload file</label>
+                  <label class="govuk-label"> Upload file</label>
                   <label class="govuk-label-grey" for="file-upload-2">
                     <p> The file format must be .xlsx</p>
                   </label>
                   <div class="govuk-input__wrapper">
-                    <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1">
+                    <!-- <input class="govuk-file-upload" type="file" id="file-upload-1" name="file_upload_1"> -->
+                    <input class="govuk-file-upload" type="file" name="file_upload_1"
+                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
 
@@ -336,13 +340,15 @@
                 <% } else { %>
 
                 <div class="govuk-form-group">
-                  <label class="govuk-label" for="file-upload-1"> Upload file</label>
+                  <label class="govuk-label"> Upload file</label>
                   <label class="govuk-label-grey" for="file-upload-2">
                     <p> The file format must be .xlsx</p>
                   </label>
                   <div class="govuk-input__wrapper">
-                    <input class="govuk-input govuk-!-width-one-third" id="file-upload-1" name="file_upload_1"
-                      type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                    <input class="govuk-file-upload" name="file_upload_1" type="file"
+                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                    <!-- <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
+                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"> -->
                     <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
 
