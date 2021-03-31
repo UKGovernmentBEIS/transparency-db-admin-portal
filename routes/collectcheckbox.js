@@ -4,21 +4,29 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   ssn = req.session;
-  const { Subsidy_awardNo } = req.body;
+  if (
+    typeof ssn.dashboard_roles_object_id1 === "undefined" ||
+    typeof ssn.dashboard_roles_object_id2 === "undefined" ||
+    req.session.cookie.maxAge <= 0
+  ) {
+    res.redirect("/signout");
+  } else {
+    const { Subsidy_awardNo } = req.body;
 
-  let person = {
-    subsidy: req.body.Subsidy_awardNo,
-  };
+    let person = {
+      subsidy: req.body.Subsidy_awardNo,
+    };
 
-  console.log(Subsidy_awardNo);
+    console.log(Subsidy_awardNo);
 
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    res.set("X-Frame-Options", "DENY");
+    res.set("X-Content-Type-Options", "nosniff");
+    res.set("Content-Security-Policy", 'frame-ancestors "self"');
+    res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-  res.render("bulkupload/mysubsidyawards");
+    res.render("bulkupload/mysubsidyawards");
+  }
 });
 
 module.exports = router;

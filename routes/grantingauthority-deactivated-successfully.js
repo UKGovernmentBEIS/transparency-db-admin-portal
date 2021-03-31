@@ -5,47 +5,55 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   ssn = req.session;
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_searchscheme);
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  if (
+    typeof ssn.dashboard_roles_object_id1 === "undefined" ||
+    typeof ssn.dashboard_roles_object_id2 === "undefined" ||
+    req.session.cookie.maxAge <= 0
+  ) {
+    res.redirect("/signout");
+  } else {
+    res.set("X-Frame-Options", "DENY");
+    res.set("X-Content-Type-Options", "nosniff");
+    res.set("Content-Security-Policy", 'frame-ancestors "self"');
+    res.set("Access-Control-Allow-Origin", beis_url_searchscheme);
+    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-  gaId = req.body.gaid;
-  var azGrpId = req.body.azGrpId.toString();
-  var userId = [];
+    gaId = req.body.gaid;
+    var azGrpId = req.body.azGrpId.toString();
+    var userId = [];
 
-  console.log(azGrpId);
-  if (ssn.GaListArr_Global.length > 0) {
-    ssn.GaListArr_Global.forEach(function (ids) {
-      userId.push(ids.gaId.toString());
-    });
-  } else userId = [""];
-  console.log("body", userId);
-  console.log("ssn.UserPrincileObjectGlobal", ssn.UserPrincileObjectGlobal);
-  console.log(
-    "Invoking delete method",
-    beis_url_searchscheme + "/group/" + azGrpId
-  );
-  const data = {
-    userIds: userId,
-  };
-
-  var data_req = JSON.parse(JSON.stringify(data));
-
-  try {
-    const apidata = await axios.delete(
-      beis_url_searchscheme + `/group/${azGrpId}`,
-      data_req,
-      ssn.UserPrincileObjectGlobal
+    console.log(azGrpId);
+    if (ssn.GaListArr_Global.length > 0) {
+      ssn.GaListArr_Global.forEach(function (ids) {
+        userId.push(ids.gaId.toString());
+      });
+    } else userId = [""];
+    console.log("body", userId);
+    console.log("ssn.UserPrincileObjectGlobal", ssn.UserPrincileObjectGlobal);
+    console.log(
+      "Invoking delete method",
+      beis_url_searchscheme + "/group/" + azGrpId
     );
+    const data = {
+      userIds: userId,
+    };
 
-    console.log("BODY", apidata);
-  } catch (err) {
-    console.log("message error deactivate GA : " + err);
-    if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
-    else if (err.toString().includes("401"))
-      res.render("bulkupload/notAuthorized");
+    var data_req = JSON.parse(JSON.stringify(data));
+
+    try {
+      const apidata = await axios.delete(
+        beis_url_searchscheme + `/group/${azGrpId}`,
+        data_req,
+        ssn.UserPrincileObjectGlobal
+      );
+
+      console.log("BODY", apidata);
+    } catch (err) {
+      console.log("message error deactivate GA : " + err);
+      if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
+      else if (err.toString().includes("401"))
+        res.render("bulkupload/notAuthorized");
+    }
   }
 });
 

@@ -54,6 +54,7 @@ this.Element &&
         govuk_browser_upgrade_dismisssed: "settings",
         govuk_not_first_visit: "settings",
         analytics_next_page_call: "usage",
+        user_nation: "settings",
         _ga: "usage",
         _gid: "usage",
         _gat: "usage",
@@ -1772,15 +1773,15 @@ this.Element &&
                 );
               for (
                 var b,
-                  y = h.call(arguments, 1),
-                  w = function () {
+                  w = h.call(arguments, 1),
+                  y = function () {
                     if (this instanceof b) {
-                      var t = g.apply(this, f.call(y, h.call(arguments)));
+                      var t = g.apply(this, f.call(w, h.call(arguments)));
                       return o(t) === t ? t : this;
                     }
-                    return g.apply(e, f.call(y, h.call(arguments)));
+                    return g.apply(e, f.call(w, h.call(arguments)));
                   },
-                  E = v(0, g.length - y.length),
+                  E = v(0, g.length - w.length),
                   k = [],
                   L = 0;
                 L < E;
@@ -1793,7 +1794,7 @@ this.Element &&
                   "return function (" +
                     k.join(",") +
                     "){ return binder.apply(this, arguments); }"
-                )(w)),
+                )(y)),
                 g.prototype &&
                   ((s.prototype = g.prototype),
                   (b.prototype = new s()),
@@ -1951,15 +1952,15 @@ this.Element &&
                 );
               for (
                 var b,
-                  y = h.call(arguments, 1),
-                  w = function () {
+                  w = h.call(arguments, 1),
+                  y = function () {
                     if (this instanceof b) {
-                      var t = g.apply(this, f.call(y, h.call(arguments)));
+                      var t = g.apply(this, f.call(w, h.call(arguments)));
                       return o(t) === t ? t : this;
                     }
-                    return g.apply(e, f.call(y, h.call(arguments)));
+                    return g.apply(e, f.call(w, h.call(arguments)));
                   },
-                  E = v(0, g.length - y.length),
+                  E = v(0, g.length - w.length),
                   k = [],
                   L = 0;
                 L < E;
@@ -1972,7 +1973,7 @@ this.Element &&
                   "return function (" +
                     k.join(",") +
                     "){ return binder.apply(this, arguments); }"
-                )(w)),
+                )(y)),
                 g.prototype &&
                   ((s.prototype = g.prototype),
                   (b.prototype = new s()),
@@ -2747,15 +2748,15 @@ this.Element &&
                 );
               for (
                 var b,
-                  y = h.call(arguments, 1),
-                  w = function () {
+                  w = h.call(arguments, 1),
+                  y = function () {
                     if (this instanceof b) {
-                      var t = g.apply(this, f.call(y, h.call(arguments)));
+                      var t = g.apply(this, f.call(w, h.call(arguments)));
                       return o(t) === t ? t : this;
                     }
-                    return g.apply(e, f.call(y, h.call(arguments)));
+                    return g.apply(e, f.call(w, h.call(arguments)));
                   },
-                  E = v(0, g.length - y.length),
+                  E = v(0, g.length - w.length),
                   k = [],
                   L = 0;
                 L < E;
@@ -2768,7 +2769,7 @@ this.Element &&
                   "return function (" +
                     k.join(",") +
                     "){ return binder.apply(this, arguments); }"
-                )(w)),
+                )(y)),
                 g.prototype &&
                   ((s.prototype = g.prototype),
                   (b.prototype = new s()),
@@ -3134,6 +3135,7 @@ this.Element &&
   }),
   (window.GOVUK = window.GOVUK || {}),
   (window.GOVUK.Modules = window.GOVUK.Modules || {}),
+  (window.GOVUK.Modules.Details = window.GOVUKFrontend),
   (function (t) {
     function e() {}
     (e.prototype.start = function (t) {
@@ -3483,15 +3485,15 @@ this.Element &&
                 );
               for (
                 var b,
-                  y = h.call(arguments, 1),
-                  w = function () {
+                  w = h.call(arguments, 1),
+                  y = function () {
                     if (this instanceof b) {
-                      var t = g.apply(this, f.call(y, h.call(arguments)));
+                      var t = g.apply(this, f.call(w, h.call(arguments)));
                       return o(t) === t ? t : this;
                     }
-                    return g.apply(e, f.call(y, h.call(arguments)));
+                    return g.apply(e, f.call(w, h.call(arguments)));
                   },
-                  E = v(0, g.length - y.length),
+                  E = v(0, g.length - w.length),
                   k = [],
                   L = 0;
                 L < E;
@@ -3504,7 +3506,7 @@ this.Element &&
                   "return function (" +
                     k.join(",") +
                     "){ return binder.apply(this, arguments); }"
-                )(w)),
+                )(y)),
                 g.prototype &&
                   ((s.prototype = g.prototype),
                   (b.prototype = new s()),
@@ -4692,15 +4694,15 @@ this.Element &&
                 );
               for (
                 var b,
-                  y = h.call(arguments, 1),
-                  w = function () {
+                  w = h.call(arguments, 1),
+                  y = function () {
                     if (this instanceof b) {
-                      var t = g.apply(this, f.call(y, h.call(arguments)));
+                      var t = g.apply(this, f.call(w, h.call(arguments)));
                       return o(t) === t ? t : this;
                     }
-                    return g.apply(e, f.call(y, h.call(arguments)));
+                    return g.apply(e, f.call(w, h.call(arguments)));
                   },
-                  E = v(0, g.length - y.length),
+                  E = v(0, g.length - w.length),
                   k = [],
                   L = 0;
                 L < E;
@@ -4713,7 +4715,7 @@ this.Element &&
                   "return function (" +
                     k.join(",") +
                     "){ return binder.apply(this, arguments); }"
-                )(w)),
+                )(y)),
                 g.prototype &&
                   ((s.prototype = g.prototype),
                   (b.prototype = new s()),
@@ -5551,12 +5553,16 @@ this.Element &&
           window.GOVUK.setDefaultConsentCookie();
         var t = window.GOVUK.cookie("cookies_policy"),
           e = JSON.parse(t);
-        for (var n in (delete e.essential, e)) {
-          (e[n]
-            ? document.querySelector("input[name=cookies-" + n + "][value=on]")
-            : document.querySelector("input[name=cookies-" + n + "][value=off]")
-          ).checked = !0;
-        }
+        (e["usage"]
+          ? document.querySelector("input[name=cookies-usage][value=on]")
+          : document.querySelector("input[name=cookies-usage][value=off]")
+        ).checked = !0;
+        // for (var n in (delete e.essential, e)) {
+        //   (e[n]
+        //     ? document.querySelector("input[name=cookies-" + n + "][value=on]")
+        //     : document.querySelector("input[name=cookies-" + n + "][value=off]")
+        //   ).checked = !0;
+        // }
       }),
       (o.prototype.submitSettingsForm = function (t) {
         t.preventDefault();

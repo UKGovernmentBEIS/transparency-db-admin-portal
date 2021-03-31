@@ -4,28 +4,36 @@ const router = express.Router();
 
 router.post("/", (req, res) => {
   ssn = req.session;
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-
-  const { email_address } = req.body;
-  let isEmailEmpty = false;
-  let validToken = "@";
-  let isEmailValid = false;
-  isEmailValid = email_address.includes(validToken);
-  if (!email_address) {
-    isEmailEmpty = "yes";
-    res.render("accessmanagement/loginforgetpassword", { isEmailEmpty });
-  } else if (!isEmailValid) {
-    res.render("accessmanagement/loginforgetpassword", { isEmailValid });
+  if (
+    typeof ssn.dashboard_roles_object_id1 === "undefined" ||
+    typeof ssn.dashboard_roles_object_id2 === "undefined" ||
+    req.session.cookie.maxAge <= 0
+  ) {
+    res.redirect("/signout");
   } else {
-    email_addresspass = email_address;
-    // app.locals.email_addresspass = email_address;
-    console.log(email_addresspass);
-    res.render("accessmanagement/loginemailconfirmation"),
-      { email_addresspass };
+    res.set("X-Frame-Options", "DENY");
+    res.set("X-Content-Type-Options", "nosniff");
+    res.set("Content-Security-Policy", 'frame-ancestors "self"');
+    res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
+    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
+    const { email_address } = req.body;
+    let isEmailEmpty = false;
+    let validToken = "@";
+    let isEmailValid = false;
+    isEmailValid = email_address.includes(validToken);
+    if (!email_address) {
+      isEmailEmpty = "yes";
+      res.render("accessmanagement/loginforgetpassword", { isEmailEmpty });
+    } else if (!isEmailValid) {
+      res.render("accessmanagement/loginforgetpassword", { isEmailValid });
+    } else {
+      email_addresspass = email_address;
+      // app.locals.email_addresspass = email_address;
+      console.log(email_addresspass);
+      res.render("accessmanagement/loginemailconfirmation"),
+        { email_addresspass };
+    }
   }
 });
 
