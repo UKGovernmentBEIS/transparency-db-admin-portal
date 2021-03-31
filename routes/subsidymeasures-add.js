@@ -26,9 +26,9 @@ router.get("/", (req, res) => {
     Granting_Authority_URL_Error = false;
     Granting_Authority_Policy_Error = false;
     Budget_Error = false;
-    scheme_issued_end_day_Error = false;
-    scheme_issued_end_month_Error = false;
-    scheme_issued_end_year_Error = false;
+    ssn.scheme_issued_end_day_Error = false;
+    ssn.scheme_issued_end_month_Error = false;
+    ssn.scheme_issued_end_year_Error = false;
 
     ssn.Subsidy_Measure_Title_Global = "";
     ssn.Subsidy_Adhoc_Global = "";

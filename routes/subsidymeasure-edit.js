@@ -72,7 +72,7 @@ router.get("/", async (req, res) => {
       ssn.Scheme_Legal_Granting_End_Date_Day = date[0];
       ssn.Scheme_Legal_Granting_End_Date_Year = date[2];
 
-      SubsidyArraySize = 0;
+      ssn.SubsidyArraySize = 0;
 
       ssn.Subsidy_Measure_Title_Error = false;
       ssn.Subsidy_Adhoc_Error = false;

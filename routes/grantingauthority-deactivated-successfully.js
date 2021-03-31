@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
     console.log(azGrpId);
     if (ssn.GaListArr_Global.length > 0) {
       ssn.GaListArr_Global.forEach(function (ids) {
-        userId.push(ids.gaId.toString());
+        userId.push(ids.gaId.toString().trim());
       });
     } else userId = [""];
     console.log("body", userId);

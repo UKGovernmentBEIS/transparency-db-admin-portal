@@ -24,6 +24,8 @@ router.post("/", async (req, res) => {
       const apiroles = await axios.get(
         beis_url_accessmanagement + "/accessmanagement/allga"
       );
+      apiroles_gaRole_object = "";
+      apiroles_gaName_object = "";
       console.log(`Status: ${apiroles.status}`);
       API_response_code = `${apiroles.status}`;
       console.log("API_response_code: try" + API_response_code);
@@ -50,7 +52,13 @@ router.post("/", async (req, res) => {
         res.render("bulkupload/notAuthorized");
     }
     console.log(typeof apiroles_gaRole_object);
-    if (typeof apiroles_gaRole_object === "string") {
+    console.log("apiroles_gaRole_object", apiroles_gaRole_object);
+    if (
+      (typeof apiroles_gaRole_object === "string" &&
+        apiroles_gaRole_object == "") ||
+      (typeof apiroles_gaRole_object === "string" &&
+        apiroles_gaName_object == "")
+    ) {
       UserErrors = [];
       UserFocus = [];
       ssn.GA_Error = true;
@@ -103,7 +111,10 @@ router.post("/", async (req, res) => {
           res.render("bulkupload/notAvailable");
         else if (err.toString().includes("401"))
           res.render("bulkupload/notAuthorized");
-        else if (err.toString().includes("400")) {
+        else if (
+          err.toString().includes("400") ||
+          err.toString().includes("417")
+        ) {
           UserErrors = [];
           UserFocus = [];
           ssn.Email_Id_Error = true;
