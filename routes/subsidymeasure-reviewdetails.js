@@ -36,6 +36,7 @@ router.post("/", (req, res) => {
     ssn.scheme_issued_end_year_Error = false;
     ssn.scheme_issued_end_month_Error = false;
     ssn.scheme_issued_end_day_Error = false;
+    ssn.scheme_issued_end_day_lesser_Error = false;
 
     var {
       Subsidy_Adhoc,
@@ -270,7 +271,8 @@ router.post("/", (req, res) => {
       // day validation starts here
       if (scheme_issued_start_day != "") {
         if (scheme_issued_start_day > 31 || scheme_issued_start_day < 1) {
-          ssn.scheme_issued_start_day_Error = true;
+          ssn.scheme_issued_end_day_Error = true;
+
           ssn.SubsidyErrors.push(
             "Enter the valid legal granting day of the date"
           );
@@ -360,6 +362,27 @@ router.post("/", (req, res) => {
 
         // day validation starts here
         if (scheme_issued_end_day != "") {
+          var sdate = new Date(
+            scheme_issued_start_year +
+              "-" +
+              scheme_issued_start_month +
+              "-" +
+              scheme_issued_start_day
+          );
+          var edate = new Date(
+            scheme_issued_end_year +
+              "-" +
+              scheme_issued_end_month +
+              "-" +
+              scheme_issued_end_day
+          );
+          // var truedate = sdate > edate;
+          if (sdate > edate) {
+            ssn.scheme_issued_end_day_Error = false;
+            ssn.scheme_issued_end_day_lesser_Error = true;
+            ssn.SubsidyErrors.push("End date should be later than start date");
+            ssn.SubsidyFocus.push("#scheme_issued_end_day");
+          }
           if (scheme_issued_end_day > 31 || scheme_issued_end_day < 1) {
             ssn.scheme_issued_end_day_Error = true;
             ssn.SubsidyErrors.push("Enter the valid end date");
@@ -452,6 +475,7 @@ router.post("/", (req, res) => {
         Budget_Error ||
         ssn.scheme_issued_end_day_Error ||
         ssn.scheme_issued_end_month_Error ||
+        ssn.scheme_issued_end_day_lesser_Error ||
         ssn.scheme_issued_end_year_Error
       ) {
         res.render("bulkupload/subsidymeasures-add", {

@@ -91,18 +91,19 @@
                         <label>This scheme is not active</label>
                     </div>
                 </div>
-
                 <% } %>
                 <div class="govuk-grid-column-full">
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details
                     </h2>
+                    <%if(ssn.searchmeasuredetails.status != 'Inactive') { %>
                     <a rel="external" aria-label="Change subsidy scheme details"
                         class="govuk-link head-right govuk-relative-position"
                         href="/editsubsidymeasure?scheme=<%= ssn.searchmeasuredetails.scNumber %>">
-                        <!-- <p>Change </p> -->
-
+                        <p>Change </p>
                     </a>
+                    <% } %>
                 </div>
+
             </div>
             <section class="govuk-table-responsive">
                 <table class="govuk-table">

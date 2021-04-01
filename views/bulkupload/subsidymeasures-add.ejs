@@ -455,7 +455,7 @@
                                                     </div>
                                                 </div>
 
-                                                <% if( ssn.scheme_issued_end_day_Error || ssn.scheme_issued_end_month_Error || ssn.scheme_issued_end_year_Error ){ %>
+                                                <% if( ssn.scheme_issued_end_day_lesser_Error || ssn.scheme_issued_end_day_Error || ssn.scheme_issued_end_month_Error || ssn.scheme_issued_end_year_Error ){ %>
                                                 <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error"
                                                     id="endDateDiv">
                                                     <% } else { %>
@@ -475,7 +475,12 @@
                                                             <span class="govuk-visually-hidden">Error:</span>
                                                             Enter a valid date
                                                         </span>
-                                                        <% }  %>
+                                                        <% } else if(ssn.scheme_issued_end_day_lesser_Error) {%>
+                                                        <span class="govuk-error-message" id="EndDate_Error">
+                                                            <span class="govuk-visually-hidden">Error:</span>
+                                                            End date should be later than start date
+                                                        </span>
+                                                        <% } %>
                                                         <div class="govuk-date-input" id="scheme-issued">
                                                             <div class="govuk-date-input__item">
                                                                 <div class="govuk-form-group">

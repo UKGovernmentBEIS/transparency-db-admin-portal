@@ -36,7 +36,25 @@ router.get("/", async (req, res) => {
       );
       console.log(`Status: ${measureapidata.status}`);
       console.log("Body: ", measureapidata.data);
-      ssn.searchmeasuredetails = measureapidata.data;
+      // ssn.searchmeasuredetails = measureapidata.data;
+
+      ssn.Subsidy_Adhoc_Global = measureapidata.data.adhoc;
+      ssn.scNumber_Global = measureapidata.data.scNumber;
+      ssn.Granting_Authority_Name_Global = measureapidata.data.gaName;
+      ssn.Subsidy_Measure_Title_Global =
+        measureapidata.data.subsidyMeasureTitle;
+      ssn.Legal_Basis_Global = measureapidata.data.legalBasisText;
+      ssn.Granting_Authority_URL_Global = measureapidata.data.gaSubsidyWebLink;
+      ssn.Granting_Authority_Policy_Global =
+        measureapidata.data.gaSubsidyWebLinkDescription;
+      ssn.Budget_Global = measureapidata.data.budget;
+      // ssn.Scheme_Start_Day_Global = scheme_issued_start_day;
+      // ssn.Scheme_Start_Month_Global = scheme_issued_start_month;
+      // ssn.Scheme_Start_Year_Global = scheme_issued_start_year;
+      // ssn.Scheme_End_Day_Global = scheme_issued_end_day;
+      // ssn.Scheme_End_Month_Global = scheme_issued_end_month;
+      // ssn.Scheme_End_Year_Global = scheme_issued_end_year;
+
       Scheme_Start_Date = ssn.searchmeasuredetails.startDate;
       Scheme_End_Date = ssn.searchmeasuredetails.endDate;
 
@@ -57,22 +75,28 @@ router.get("/", async (req, res) => {
         "December",
       ];
 
-      ssn.Scheme_Legal_Granting_Start_Date_Month =
+      ssn.Scheme_Start_Month_Global =
         month.indexOf(date[1]) + 1 < 10
           ? "0" + (month.indexOf(date[1]) + 1)
           : month.indexOf(date[1]) + 1;
-      Scheme_Legal_Granting_Start_Date_Day = date[0];
-      ssn.Scheme_Legal_Granting_Start_Date_Year = date[2];
+      ssn.Scheme_Start_Day_Global = date[0];
+      ssn.Scheme_Start_Year_Global = date[2];
 
       var date = Scheme_End_Date.split(" ");
-      ssn.Scheme_Legal_Granting_End_Date_Month =
+      ssn.Scheme_End_Month_Global =
         month.indexOf(date[1]) + 1 < 10
           ? "0" + (month.indexOf(date[1]) + 1)
           : month.indexOf(date[1]) + 1;
-      ssn.Scheme_Legal_Granting_End_Date_Day = date[0];
-      ssn.Scheme_Legal_Granting_End_Date_Year = date[2];
+      ssn.Scheme_End_Day_Global = date[0];
+      ssn.Scheme_End_Year_Global = date[2];
 
       ssn.SubsidyArraySize = 0;
+
+      const formatter = new Intl.NumberFormat("en-GB");
+
+      if (measureapidata.data.budget.includes(","))
+        Budget = measureapidata.data.budget.split(",").join("");
+      formatedCurrency = formatter.format(Budget);
 
       ssn.Subsidy_Measure_Title_Error = false;
       ssn.Subsidy_Adhoc_Error = false;
@@ -85,11 +109,12 @@ router.get("/", async (req, res) => {
       Granting_Authority_Policy_Error = false;
       Budget_Error = false;
       ssn.scheme_issued_end_day_Error = false;
+      ssn.scheme_issued_end_day_lesser_Error = false;
       ssn.scheme_issued_end_month_Error = false;
       ssn.scheme_issued_end_year_Error = false;
 
       if (ssn.dashboard_roles !== "Granting Authority Encoder") {
-        res.render("bulkupload/subsidymeasures-edit");
+        res.render("bulkupload/subsidymeasures-edit", { formatedCurrency });
       } else {
         res.render("bulkupload/notAuthorized");
       }

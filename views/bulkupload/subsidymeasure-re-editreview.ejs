@@ -66,7 +66,8 @@
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details
                     </h2>
                     <a rel="external" aria-label="Change subsidy scheme details"
-                        class="govuk-link head-right govuk-relative-position" href="/subsidymeasurereedit">
+                        class="govuk-link head-right govuk-relative-position"
+                        href="/editsubsidymeasure?scheme=<%= ssn.scNumber_Global %>">
                         <p>Change </p>
                     </a>
                 </div>
@@ -80,11 +81,15 @@
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Granting Authority</th>
-                            <td class="govuk-table__cell">Cardiff Council</td>
+                            <td class="govuk-table__cell"><%=ssn.Granting_Authority_Name_Global%></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Subsidy scheme name</th>
                             <td class="govuk-table__cell"><%= ssn.Subsidy_Measure_Title_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Subsidy scheme number</th>
+                            <td class="govuk-table__cell"><%= ssn.scNumber_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">Legal basis</th>
