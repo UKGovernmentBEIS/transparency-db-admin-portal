@@ -107,6 +107,9 @@ router.get("/", (req, res) => {
 
     ssn.Subsidy_Control_Number_Error = false;
     ssn.Subsidy_Measure_Title_Error = false;
+    ssn.Subsidy_Measure_Title_255_Error = false;
+    ssn.Granting_Authority_URL_255_Error = false;
+    ssn.Granting_Authority_Policy_255_Error = false;
     ssn.Subsidy_Adhoc_Error = false;
     ssn.Subsidy_Objective_Error = false;
     ssn.Subsidy_Objective_Other_Error = false;

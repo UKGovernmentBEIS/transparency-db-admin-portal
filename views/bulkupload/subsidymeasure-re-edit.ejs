@@ -196,7 +196,7 @@
                             subsidy measure that awards
                             can be related to.</div> -->
                                 <% if( ssn.Subsidy_Measure_Title_Error ){ %>
-                                <span class="govuk-error-message" id="ssn.Subsidy_Measure_Title_Error">
+                                <span class="govuk-error-message" id="Subsidy_Measure_Title_Error">
                                     <span class="govuk-visually-hidden">Error:</span> Enter a valid subsidy
                                     scheme name
                                 </span>
@@ -205,7 +205,7 @@
                                     name="Subsidy_Measure_Title" type="text"
                                     value="<%= ssn.Subsidy_Measure_Title_Global %>">
                             </div>
-                            <% if( Legal_Basis_Error ){ %>
+                            <% if( ssn.Legal_Basis_Error ){ %>
                             <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                 <% } else { %>
                                 <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -216,7 +216,7 @@
                                     <div class="govuk-hint">This is the legal justification of this
                                         subsidy scheme.</div>
 
-                                    <% if( Legal_Basis_Error ){ %>
+                                    <% if( ssn.Legal_Basis_Error ){ %>
                                     <span class="govuk-error-message" id="Legal_Basis_Error">
                                         <span class="govuk-visually-hidden">Error:</span> Enter a valid legal basis
                                     </span>
@@ -224,7 +224,7 @@
                                     <input class="govuk-input govuk-!-width-one-half" id="Legal_Basis"
                                         name="Legal_Basis" type="text" value="<%= ssn.Legal_Basis_Global %>">
                                 </div>
-                                <% if( Granting_Authority_URL_Error ){ %>
+                                <% if( ssn.Granting_Authority_URL_Error ){ %>
                                 <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                     <% } else { %>
                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -234,7 +234,7 @@
                                         </label>
                                         <div class="govuk-hint">This is the web address for the policy that
                                             this subsidy scheme is related to.</div>
-                                        <% if( Granting_Authority_URL_Error ){ %>
+                                        <% if( ssn.Granting_Authority_URL_Error ){ %>
                                         <span class="govuk-error-message" id="Granting_Authority_URL_Error">
                                             <span class="govuk-visually-hidden">Error:</span> Enter a valid legal
                                             basis
@@ -244,7 +244,7 @@
                                             id="Granting_Authority_URL" type="text"
                                             value="<%= ssn.Granting_Authority_URL_Global%>">
                                     </div>
-                                    <% if( Granting_Authority_Policy_Error ){ %>
+                                    <% if( ssn.Granting_Authority_Policy_Error ){ %>
                                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                         <% } else { %>
                                         <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -255,7 +255,7 @@
                                             <div class="govuk-hint">A short summary of the policy page that you
                                                 provided the URL for. For example, Water Purity Scheme policy page.
                                             </div>
-                                            <% if( Granting_Authority_Policy_Error ){ %>
+                                            <% if( ssn.Granting_Authority_Policy_Error ){ %>
                                             <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
                                                 <span class="govuk-visually-hidden">Error:</span> Enter a valid
                                                 policy page description
@@ -265,7 +265,7 @@
                                                 name="Granting_Authority_Policy" type="text"
                                                 value="<%= ssn.Granting_Authority_Policy_Global%>">
                                         </div>
-                                        <% if( Budget_Error ){ %>
+                                        <% if( ssn.Budget_Error ){ %>
                                         <div
                                             class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                             <% } else { %>
@@ -277,7 +277,7 @@
                                                 <div class="govuk-hint">For ad hoc subsidies, enter the exact
                                                     amount.
                                                     For other subsidy schemes, enter the overall budget.</div>
-                                                <% if( Budget_Error ){ %>
+                                                <% if( ssn.Budget_Error ){ %>
                                                 <span class="govuk-error-message" id="Budget_Error">
                                                     <span class="govuk-visually-hidden">Error:</span> Enter a valid
                                                     policy page description

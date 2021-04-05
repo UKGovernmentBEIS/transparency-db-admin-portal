@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
     ssn.SubsidyArraySize = 0;
     ssn.Subsidy_Measure_Title_Error = false;
     ssn.Subsidy_Adhoc_Error = false;
-    ssnLegal_Basis_Error = false;
+    ssnssn.Legal_Basis_Error = false;
     ssn.Granting_Authority_Name_Error = false;
     ssn.Granting_Authority_URL_Error = false;
     ssn.Granting_Authority_Policy_Error = false;
@@ -223,7 +223,7 @@ router.post("/", (req, res) => {
         // Additem = Additem + 1;
       }
 
-      if (!Subsidy_Measure_Title) {
+      if (Subsidy_Measure_Title != "" && Subsidy_Measure_Title > 255) {
         ssn.Subsidy_Measure_Title_Error = false;
         ssn.Subsidy_Measure_Title_255_Error = true;
         ssn.SubsidyErrors.push(
@@ -245,7 +245,7 @@ router.post("/", (req, res) => {
       }
 
       if (!Legal_Basis) {
-        Legal_Basis_Error = true;
+        ssn.Legal_Basis_Error = true;
         ssn.SubsidyErrors.push("Enter a valid legal basis");
         ssn.SubsidyFocus.push("#Legal_Basis");
         // Additem = Additem + 1;
@@ -534,10 +534,10 @@ router.post("/", (req, res) => {
 
           // ssn.Subsidy_Measure_Title_Error,
           // ssn.Subsidy_Adhoc_Error,
-          // Legal_Basis_Error,
-          // Granting_Authority_URL_Error,
-          // Granting_Authority_Policy_Error,
-          // Budget_Error,
+          // ssn.Legal_Basis_Error,
+          // ssn.Granting_Authority_URL_Error,
+          // ssn.Granting_Authority_Policy_Error,
+          // ssn.Budget_Error,
           formatedCurrency,
           // ssn.Granting_Authority_Name_Error,
           // ssn.scheme_issued_start_day_Error,

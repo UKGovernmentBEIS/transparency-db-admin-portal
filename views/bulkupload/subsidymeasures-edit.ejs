@@ -238,7 +238,7 @@
                                 </label>
 
                                 <% if( ssn.Subsidy_Measure_Title_Error ){ %>
-                                <span class="govuk-error-message" id="ssn.Subsidy_Measure_Title_Error">
+                                <span class="govuk-error-message" id="Subsidy_Measure_Title_Error">
                                     <span class="govuk-visually-hidden">Error:</span> Enter a valid subsidy
                                     scheme name
                                 </span>
@@ -250,7 +250,7 @@
 
                             <!-- legal basis details -->
 
-                            <% if( Legal_Basis_Error ){ %>
+                            <% if( ssn.Legal_Basis_Error ){ %>
                             <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                 <% } else { %>
                                 <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -269,7 +269,7 @@
                                         </div>
                                     </details>
 
-                                    <% if( Legal_Basis_Error ){ %>
+                                    <% if( ssn.Legal_Basis_Error ){ %>
                                     <span class="govuk-error-message" id="Legal_Basis_Error">
                                         <span class="govuk-visually-hidden">Error:</span> Enter a valid legal basis
                                     </span>
@@ -280,7 +280,7 @@
 
                                 <!-- Granting authority URL details -->
 
-                                <% if( Granting_Authority_URL_Error ){ %>
+                                <% if( ssn.Granting_Authority_URL_Error ){ %>
                                 <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                     <% } else { %>
                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -299,7 +299,7 @@
                                                 this subsidy scheme is related to.
                                             </div>
                                         </details>
-                                        <% if( Granting_Authority_URL_Error ){ %>
+                                        <% if( ssn.Granting_Authority_URL_Error ){ %>
                                         <span class="govuk-error-message" id="Granting_Authority_URL_Error">
                                             <span class="govuk-visually-hidden">Error:</span> Enter a valid granting
                                             authority URL
@@ -313,7 +313,7 @@
 
                                     <!-- granting authority ploicy details -->
 
-                                    <% if( Granting_Authority_Policy_Error ){ %>
+                                    <% if( ssn.Granting_Authority_Policy_Error ){ %>
                                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                         <% } else { %>
                                         <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -332,7 +332,7 @@
                                                     For example, Water Purity Scheme policy page.
                                                 </div>
                                             </details>
-                                            <% if( Granting_Authority_Policy_Error ){ %>
+                                            <% if( ssn.Granting_Authority_Policy_Error ){ %>
                                             <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
                                                 <span class="govuk-visually-hidden">Error:</span> Enter a valid granting
                                                 authority
@@ -346,7 +346,7 @@
 
                                         <!-- budget details -->
 
-                                        <% if( Budget_Error ){ %>
+                                        <% if( ssn.Budget_Error ){ %>
                                         <div
                                             class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                             <% } else { %>
@@ -366,7 +366,7 @@
                                                         schemes, enter the overall budget.
                                                     </div>
                                                 </details>
-                                                <% if( Budget_Error ){ %>
+                                                <% if( ssn.Budget_Error ){ %>
                                                 <span class="govuk-error-message" id="Budget_Error">
                                                     <span class="govuk-visually-hidden">Error:</span> Enter a valid
                                                     budget
