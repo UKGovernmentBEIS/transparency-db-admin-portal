@@ -15,17 +15,17 @@
         // gtag('js', new Date());
         // gtag('config', 'UA-145652997-21');
   </script>
-  <script>
+  <!-- <script>
     getErrorList = (noresult) => {
       if (noresult) {
         document.getElementById("error-alert").focus();
       }
     }
-  </script>
+  </script> -->
 </head>
 
 
-<body class="govuk-template__body app-example-page" onload="getErrorList('<%=noresult%>')">
+<body class="govuk-template__body app-example-page">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
