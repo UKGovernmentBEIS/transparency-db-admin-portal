@@ -9,8 +9,7 @@ router.post("/", async (req, res) => {
   ssn = req.session;
   if (
     typeof ssn.dashboard_roles_object_id1 === "undefined" ||
-    typeof ssn.dashboard_roles_object_id2 === "undefined" ||
-    req.session.cookie.maxAge <= 0
+    typeof ssn.dashboard_roles_object_id2 === "undefined"
   ) {
     res.redirect("/signout");
   } else {
@@ -55,12 +54,16 @@ router.post("/", async (req, res) => {
     ssn.Subsidy_Measure_Title_Error = false;
     ssn.Subsidy_Adhoc_Error = false;
     ssn.Granting_Authority_Name_Error = false;
+    ssn.Subsidy_Measure_Title_255_Error = false;
+    ssn.Granting_Authority_URL_255_Error = false;
+    ssn.Granting_Authority_Policy_255_Error = false;
     ssn.scheme_issued_start_year_Error = false;
     ssn.scheme_issued_start_month_Error = false;
     ssn.scheme_issued_start_day_Error = false;
     ssn.scheme_issued_end_year_Error = false;
     ssn.scheme_issued_end_month_Error = false;
     ssn.scheme_issued_end_day_Error = false;
+    ssn.scheme_issued_end_day_lesser_Error = false;
 
     // ssn.Granting_Authority_Name_Global = "Big Lottery Fund";
     console.log("ssn.Subsidy_Adhoc_Global :" + ssn.Subsidy_Adhoc_Global);
@@ -118,11 +121,10 @@ router.post("/", async (req, res) => {
         console.log("API_response_code: " + API_response_code);
         console.log("Body: ", apidata.data);
         ssn.Subsidy_Control_Number_Global_Text = apidata.data;
-        var add_award_response = apidata.data;
-        var Additem = 0;
 
         res.render("bulkupload/subsidymeasure-published", {
           ssn,
+          button_value,
           // ssn.Subsidy_Control_Number_Global_Text,
         });
       } catch (err) {
@@ -144,7 +146,6 @@ router.post("/", async (req, res) => {
     // this is for update existing subsidy measure using PUT call
     else {
       const updateSchemeRequest = {
-        scNumber: scNumber_Global,
         adhoc: ssn.Subsidy_Adhoc_Global_Flag,
         gaName: ssn.Granting_Authority_Name_Measure_Global,
         subsidyMeasureTitle: ssn.Subsidy_Measure_Title_Global,
@@ -157,14 +158,15 @@ router.post("/", async (req, res) => {
         status: "Active",
       };
 
-      updateSchemeUrl = beis_url_searchscheme + "/scheme/update";
-      console.log(" updateSchemeUrl : " + updateSchemeUrl);
+      updateSchemeUrl =
+        beis_url_searchscheme + "/scheme/update/" + ssn.scNumber_Global;
+      console.log(" updateSchemeUrl Update : " + updateSchemeUrl);
       console.log(
-        "updateSchemeRequest :" + JSON.stringify(updateSchemeRequest)
+        "updateSchemeRequest Update:" + JSON.stringify(updateSchemeRequest)
       );
 
       try {
-        const apidata = await axios.post(
+        const apidata = await axios.put(
           updateSchemeUrl,
           updateSchemeRequest,
           ssn.UserPrincileObjectGlobal
@@ -174,17 +176,16 @@ router.post("/", async (req, res) => {
         console.log("API_response_code: " + API_response_code);
         console.log("Body: ", apidata.data);
         ssn.Subsidy_Control_Number_Global_Text = apidata.data;
-        var add_award_response = apidata.data;
-        var Additem = 0;
 
         res.render("bulkupload/subsidymeasure-published", {
           ssn,
+          button_value,
           // ssn.Subsidy_Control_Number_Global_Text,
         });
       } catch (err) {
         response_error_message = err;
-        if (err.includes("401")) {
-          res.render("bulkupload/subsidymeasure-notauthorized");
+        if (err.toString().includes("401")) {
+          res.render("bulkupload/notAuthorized");
         } else if (err.toString().includes("500"))
           res.render("bulkupload/notAvailable");
 

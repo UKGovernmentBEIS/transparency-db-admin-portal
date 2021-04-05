@@ -6,8 +6,7 @@ router.get("/", (req, res) => {
   ssn = req.session;
   if (
     typeof ssn.dashboard_roles_object_id1 === "undefined" ||
-    typeof ssn.dashboard_roles_object_id2 === "undefined" ||
-    req.session.cookie.maxAge <= 0
+    typeof ssn.dashboard_roles_object_id2 === "undefined"
   ) {
     res.redirect("/signout");
   } else {
@@ -17,18 +16,22 @@ router.get("/", (req, res) => {
     // res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
     // res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
     ssn.Subsidy_Measure_Title_Error = false;
+    ssn.Subsidy_Measure_Title_255_Error = false;
+    ssn.Granting_Authority_URL_255_Error = false;
+    ssn.Granting_Authority_Policy_255_Error = false;
     ssn.Subsidy_Adhoc_Error = false;
     ssn.Granting_Authority_Name_Error = false;
     ssn.scheme_issued_start_day_Error = false;
     ssn.scheme_issued_start_month_Error = false;
     ssn.scheme_issued_start_year_Error = false;
-    Legal_Basis_Error = false;
-    Granting_Authority_URL_Error = false;
-    Granting_Authority_Policy_Error = false;
-    Budget_Error = false;
+    ssn.Legal_Basis_Error = false;
+    ssn.Granting_Authority_URL_Error = false;
+    ssn.Granting_Authority_Policy_Error = false;
+    ssn.Budget_Error = false;
     ssn.scheme_issued_end_day_Error = false;
     ssn.scheme_issued_end_month_Error = false;
     ssn.scheme_issued_end_year_Error = false;
+    ssn.scheme_issued_end_day_lesser_Error = false;
 
     ssn.Subsidy_Measure_Title_Global = "";
     ssn.Subsidy_Adhoc_Global = "";
@@ -63,8 +66,7 @@ router.post("/", (req, res) => {
   ssn = req.session;
   if (
     typeof ssn.dashboard_roles_object_id1 === "undefined" ||
-    typeof ssn.dashboard_roles_object_id2 === "undefined" ||
-    req.session.cookie.maxAge <= 0
+    typeof ssn.dashboard_roles_object_id2 === "undefined"
   ) {
     res.redirect("/signout");
   } else {

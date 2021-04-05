@@ -13,8 +13,7 @@ router.post("/", async (req, res) => {
   ssn = req.session;
   if (
     typeof ssn.dashboard_roles_object_id1 === "undefined" ||
-    typeof ssn.dashboard_roles_object_id2 === "undefined" ||
-    req.session.cookie.maxAge <= 0
+    typeof ssn.dashboard_roles_object_id2 === "undefined"
   ) {
     res.redirect("/signout");
   } else {
@@ -71,9 +70,9 @@ router.post("/", async (req, res) => {
       console.log("Body: ", apidata.data);
       searchschemes = apidata.data;
 
-      allScheme = searchschemes.allScheme;
-      activeScheme = searchschemes.activeScheme;
-      inactiveScheme = searchschemes.inactiveScheme;
+      ssn.allScheme = searchschemes.allScheme;
+      ssn.activeScheme = searchschemes.activeScheme;
+      ssn.inactiveScheme = searchschemes.inactiveScheme;
 
       var searchschemes_api = apidata.data;
       console.log("searchschemes" + searchschemes_api);
@@ -108,10 +107,11 @@ router.post("/", async (req, res) => {
         end_record,
         totalrows,
         current_page_active,
-        allScheme,
-        activeScheme,
-        inactiveScheme,
+        // allScheme,
+        // activeScheme,
+        // inactiveScheme,
         searchschemes,
+        ssn,
       });
     } catch (err) {
       if (err == "Error: Request failed with status code 404") {

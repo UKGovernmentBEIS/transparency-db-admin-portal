@@ -97,7 +97,7 @@
                         </fieldset>
                     </div> -->
 
-                    <form data-module="cookie-settings">
+                    <form data-module="cookie-settings" onsubmit="return delete_cookie()">
 
 
                         <div class="govuk-form-group">
@@ -257,13 +257,13 @@
                                 example
                                 a licence application)</p>
                             <p>They always need to be on.</p>
-                            <p>
+                            <!-- <p>
                                 <a href="/help/cookie-details" data-module="gem-track-click"
                                     data-track-category="cookieSettings"
                                     data-track-action="Find out more about cookies">
                                     Find out more about cookies on GOV.UK
                                 </a>
-                            </p>
+                            </p> -->
 
                         </div>
                         <button class="gem-c-button govuk-button" type="submit">Save changes</button>
@@ -278,6 +278,26 @@
     <script src="/assets/javascripts/jquery.min.js"></script>
     <script src="/assets/javascripts/header-footer-only.js"></script>
     <script src="/assets/javascripts/application.js"></script>
+
+    <script>
+        var delete_cookie = function () {
+            var getSelectedValue = document.querySelector('input[name="cookies-usage"]:checked');
+            if (getSelectedValue != null && getSelectedValue.value == 'off') {
+                document.cookie = '_ga=;expires=;' + new Date();
+                document.cookie = '_gid=;expires=' + new Date();
+            }
+            else if (getSelectedValue != null && getSelectedValue.value == 'on') {
+                window.dataLayer = window.dataLayer || [];
+
+                function gtag() {
+                    dataLayer.push(arguments);
+                }
+                gtag('js', new Date());
+                gtag('config', 'UA-145652997-21');
+            }
+
+        };
+    </script>
 </body>
 
 </html>

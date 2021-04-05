@@ -6,8 +6,7 @@ router.get("/", (req, res) => {
   ssn = req.session;
   if (
     typeof ssn.dashboard_roles_object_id1 === "undefined" ||
-    typeof ssn.dashboard_roles_object_id2 === "undefined" ||
-    req.session.cookie.maxAge <= 0
+    typeof ssn.dashboard_roles_object_id2 === "undefined"
   ) {
     res.redirect("/signout");
   } else {
@@ -38,6 +37,9 @@ router.get("/", (req, res) => {
 
     ssn.Subsidy_Control_Number_Error = false;
     ssn.Subsidy_Measure_Title_Error = false;
+    ssn.Subsidy_Measure_Title_255_Error = false;
+    ssn.Granting_Authority_URL_255_Error = false;
+    ssn.Granting_Authority_Policy_255_Error = false;
     ssn.SC_Not_active = false;
     ssn.Subsidy_Adhoc_Error = false;
     ssn.Subsidy_Objective_Error = false;
@@ -81,8 +83,7 @@ router.post("/", (req, res) => {
   ssn = req.session;
   if (
     typeof ssn.dashboard_roles_object_id1 === "undefined" ||
-    typeof ssn.dashboard_roles_object_id2 === "undefined" ||
-    req.session.cookie.maxAge <= 0
+    typeof ssn.dashboard_roles_object_id2 === "undefined"
   ) {
     res.redirect("/signout");
   } else {

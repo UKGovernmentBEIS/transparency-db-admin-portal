@@ -13,8 +13,7 @@ router.get("/", async (req, res) => {
   ssn = req.session;
   if (
     typeof ssn.dashboard_roles_object_id1 === "undefined" ||
-    typeof ssn.dashboard_roles_object_id2 === "undefined" ||
-    req.session.cookie.maxAge <= 0
+    typeof ssn.dashboard_roles_object_id2 === "undefined"
   ) {
     res.redirect("/signout");
   } else {
@@ -88,6 +87,7 @@ router.get("/", async (req, res) => {
         totalrows,
         current_page_active,
         ssn,
+        searchschemes,
       });
     } catch (err) {
       if (err.toString().includes("404")) {

@@ -118,21 +118,21 @@
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
               aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
               <% if(schemes_status  == "") { %>
-              <option value="" selected>Show all (<%= searchschemes.allScheme %>)
+              <option value="" selected>Show all (<%= ssn.allScheme %>)
               </option>
               <% } else { %>
-              <option value="">Show all (<%= searchschemes.allScheme %>)</option>
+              <option value="">Show all (<%= ssn.allScheme %>)</option>
               <% }  %>
               <% if(schemes_status  == "Active") { %>
-              <option value="Active" selected>Active (<%= searchschemes.activeScheme %>)</option>
+              <option value="Active" selected>Active (<%= ssn.activeScheme %>)</option>
               <% } else { %>
-              <option value="Active">Active (<%= searchschemes.activeScheme %>)</option>
+              <option value="Active">Active (<%= ssn.activeScheme %>)</option>
               <% }  %>
 
               <% if(schemes_status  == "Inactive") { %>
-              <option value="Inactive" selected>Inactive (<%= searchschemes.inactiveScheme %>)</option>
+              <option value="Inactive" selected>Inactive (<%= ssn.inactiveScheme %>)</option>
               <% } else { %>
-              <option value="Inactive">Inactive (<%= searchschemes.inactiveScheme %>)</option>
+              <option value="Inactive">Inactive (<%= ssn.inactiveScheme %>)</option>
               <% }  %>
 
 
@@ -219,21 +219,21 @@
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
               aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
               <% if(schemes_status  == "") { %>
-              <option value="" selected>Show all (<%= searchschemes.allScheme %>)
+              <option value="" selected>Show all (<%= ssn.allScheme %>)
               </option>
               <% } else { %>
-              <option value="">Show all (<%= searchschemes.allScheme %>)</option>
+              <option value="">Show all (<%= ssn.allScheme %>)</option>
               <% }  %>
               <% if(schemes_status  == "Active") { %>
-              <option value="Active" selected>Active (<%= searchschemes.activeScheme %>)</option>
+              <option value="Active" selected>Active (<%= ssn.activeScheme %>)</option>
               <% } else { %>
-              <option value="Active">Active (<%= searchschemes.activeScheme %>)</option>
+              <option value="Active">Active (<%= ssn.activeScheme %>)</option>
               <% }  %>
 
               <% if(schemes_status  == "Inactive") { %>
-              <option value="Inactive" selected>Inactive (<%= searchschemes.inactiveScheme %>)</option>
+              <option value="Inactive" selected>Inactive (<%= ssn.inactiveScheme %>)</option>
               <% } else { %>
-              <option value="Inactive">Inactive (<%= searchschemes.inactiveScheme %>)</option>
+              <option value="Inactive">Inactive (<%= ssn.inactiveScheme %>)</option>
               <% }  %>
 
 

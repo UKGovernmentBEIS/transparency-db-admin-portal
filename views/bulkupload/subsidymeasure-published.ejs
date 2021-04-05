@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - User added successfully page</title>
+    <title>GOV.UK - Subsidy scheme <% if (button_value == "add_measure") { %> published <% } else { %> updated <% } %>
+        successfully page</title>
     <%- include('../partials/headercss.ejs') %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
@@ -91,7 +92,9 @@
                         <a class="govuk-breadcrumbs__link" href="/mysubsidymeasures">Subsidy schemes</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add a subsidy scheme</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page"
+                            href="#"><% if (button_value == "add_measure") { %> Add <% } else { %> Update
+                            <% } %> a subsidy scheme</a>
                     </li>
                 </ol>
             </div>
@@ -103,7 +106,8 @@
 
                     <div class="govuk-panel govuk-panel--confirmation">
                         <h1 class="govuk-panel__title">
-                            Subsidy scheme published
+                            Subsidy scheme <% if (button_value == "add_measure") { %> published <% } else { %> updated
+                            <% } %>
                         </h1>
                         <div class="govuk-panel__body">
                             Subsidy scheme number <%=  ssn.Subsidy_Control_Number_Global_Text %>

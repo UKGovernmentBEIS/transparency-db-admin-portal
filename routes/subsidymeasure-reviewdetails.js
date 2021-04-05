@@ -6,8 +6,7 @@ router.post("/", (req, res) => {
   ssn = req.session;
   if (
     typeof ssn.dashboard_roles_object_id1 === "undefined" ||
-    typeof ssn.dashboard_roles_object_id2 === "undefined" ||
-    req.session.cookie.maxAge <= 0
+    typeof ssn.dashboard_roles_object_id2 === "undefined"
   ) {
     res.redirect("/signout");
   } else {
@@ -18,24 +17,28 @@ router.post("/", (req, res) => {
     // res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
     isAddSubsidyPrimarycall = false;
     ssn.GetMonthName = "";
-    GetEndMonthName = "";
+    ssn.GetEndMonthName = "";
     ssn.SubsidyErrors = [];
     ssn.SubsidyFocus = [];
-    Additem = 0;
+    ssn.Additem = 0;
     ssn.SubsidyArraySize = 0;
     ssn.Subsidy_Measure_Title_Error = false;
     ssn.Subsidy_Adhoc_Error = false;
-    var Legal_Basis_Error = false;
+    ssnssn.Legal_Basis_Error = false;
     ssn.Granting_Authority_Name_Error = false;
-    var Granting_Authority_URL_Error = false;
-    var Granting_Authority_Policy_Error = false;
-    var Budget_Error = false;
+    ssn.Granting_Authority_URL_Error = false;
+    ssn.Granting_Authority_Policy_Error = false;
+    ssn.Budget_Error = false;
+    ssn.Subsidy_Measure_Title_255_Error = false;
+    ssn.Granting_Authority_URL_255_Error = false;
+    ssn.Granting_Authority_Policy_255_Error = false;
     ssn.scheme_issued_start_year_Error = false;
     ssn.scheme_issued_start_month_Error = false;
     ssn.scheme_issued_start_day_Error = false;
     ssn.scheme_issued_end_year_Error = false;
     ssn.scheme_issued_end_month_Error = false;
     ssn.scheme_issued_end_day_Error = false;
+    ssn.scheme_issued_end_day_lesser_Error = false;
 
     var {
       Subsidy_Adhoc,
@@ -220,6 +223,16 @@ router.post("/", (req, res) => {
         // Additem = Additem + 1;
       }
 
+      if (Subsidy_Measure_Title != "" && Subsidy_Measure_Title > 255) {
+        ssn.Subsidy_Measure_Title_Error = false;
+        ssn.Subsidy_Measure_Title_255_Error = true;
+        ssn.SubsidyErrors.push(
+          "Subsidy scheme name cannot be greater than 255 characters"
+        );
+        ssn.SubsidyFocus.push("#Subsidy_Measure_Title");
+        // Additem = Additem + 1;
+      }
+
       // if (!Subsidy_Measure_Title) {
 
       // }
@@ -232,29 +245,52 @@ router.post("/", (req, res) => {
       }
 
       if (!Legal_Basis) {
-        Legal_Basis_Error = true;
+        ssn.Legal_Basis_Error = true;
         ssn.SubsidyErrors.push("Enter a valid legal basis");
         ssn.SubsidyFocus.push("#Legal_Basis");
         // Additem = Additem + 1;
       }
 
       if (!Granting_Authority_URL) {
-        Granting_Authority_URL_Error = true;
+        ssn.Granting_Authority_URL_Error = true;
         ssn.SubsidyErrors.push("Enter the granting authority policy url");
         ssn.SubsidyFocus.push("#Granting_Authority_URL");
         // Additem = Additem + 1;
       }
 
+      if (Granting_Authority_URL != "" && Granting_Authority_URL.length > 255) {
+        ssn.Granting_Authority_URL_Error = false;
+        ssn.Granting_Authority_URL_255_Error = true;
+        ssn.SubsidyErrors.push(
+          "Granting authority policy url cannot be greater than 255 characters"
+        );
+        ssn.SubsidyFocus.push("#Granting_Authority_URL");
+        // Additem = Additem + 1;
+      }
+
       if (!Granting_Authority_Policy) {
-        Granting_Authority_Policy_Error = true;
+        ssn.Granting_Authority_Policy_Error = true;
         ssn.SubsidyErrors.push(
           "Enter the granting authority policy description"
         );
         ssn.SubsidyFocus.push("#Granting_Authority_Policy");
         // Additem = Additem + 1;
       }
+
+      if (
+        Granting_Authority_Policy != "" &&
+        Granting_Authority_Policy.length > 255
+      ) {
+        ssn.Granting_Authority_Policy_Error = false;
+        ssn.Granting_Authority_Policy_255_Error = true;
+        ssn.SubsidyErrors.push(
+          "Granting authority policy description cannot be greater than 255 characters"
+        );
+        ssn.SubsidyFocus.push("#Granting_Authority_Policy");
+        // Additem = Additem + 1;
+      }
       if (!Budget) {
-        Budget_Error = true;
+        ssn.Budget_Error = true;
         ssn.SubsidyErrors.push("Enter the valid budget");
         ssn.SubsidyFocus.push("#Granting_Authority_Policy");
         // Additem = Additem + 1;
@@ -270,7 +306,8 @@ router.post("/", (req, res) => {
       // day validation starts here
       if (scheme_issued_start_day != "") {
         if (scheme_issued_start_day > 31 || scheme_issued_start_day < 1) {
-          ssn.scheme_issued_start_day_Error = true;
+          ssn.scheme_issued_end_day_Error = true;
+
           ssn.SubsidyErrors.push(
             "Enter the valid legal granting day of the date"
           );
@@ -360,6 +397,27 @@ router.post("/", (req, res) => {
 
         // day validation starts here
         if (scheme_issued_end_day != "") {
+          var sdate = new Date(
+            scheme_issued_start_year +
+              "-" +
+              scheme_issued_start_month +
+              "-" +
+              scheme_issued_start_day
+          );
+          var edate = new Date(
+            scheme_issued_end_year +
+              "-" +
+              scheme_issued_end_month +
+              "-" +
+              scheme_issued_end_day
+          );
+          // var truedate = sdate > edate;
+          if (sdate > edate) {
+            ssn.scheme_issued_end_day_Error = false;
+            ssn.scheme_issued_end_day_lesser_Error = true;
+            ssn.SubsidyErrors.push("End date should be later than start date");
+            ssn.SubsidyFocus.push("#scheme_issued_end_day");
+          }
           if (scheme_issued_end_day > 31 || scheme_issued_end_day < 1) {
             ssn.scheme_issued_end_day_Error = true;
             ssn.SubsidyErrors.push("Enter the valid end date");
@@ -446,13 +504,17 @@ router.post("/", (req, res) => {
         ssn.scheme_issued_start_day_Error ||
         ssn.scheme_issued_start_month_Error ||
         ssn.scheme_issued_start_year_Error ||
-        Legal_Basis_Error ||
-        Granting_Authority_URL_Error ||
-        Granting_Authority_Policy_Error ||
-        Budget_Error ||
+        ssn.Legal_Basis_Error ||
+        ssn.Granting_Authority_URL_Error ||
+        ssn.Granting_Authority_Policy_Error ||
+        ssn.Budget_Error ||
         ssn.scheme_issued_end_day_Error ||
         ssn.scheme_issued_end_month_Error ||
-        ssn.scheme_issued_end_year_Error
+        ssn.scheme_issued_end_day_lesser_Error ||
+        ssn.scheme_issued_end_year_Error ||
+        ssn.Subsidy_Measure_Title_255_Error ||
+        ssn.Granting_Authority_URL_255_Error ||
+        ssn.Granting_Authority_Policy_255_Error
       ) {
         res.render("bulkupload/subsidymeasures-add", {
           // ssn.Subsidy_Measure_Title_Global,
@@ -472,10 +534,10 @@ router.post("/", (req, res) => {
 
           // ssn.Subsidy_Measure_Title_Error,
           // ssn.Subsidy_Adhoc_Error,
-          Legal_Basis_Error,
-          Granting_Authority_URL_Error,
-          Granting_Authority_Policy_Error,
-          Budget_Error,
+          // ssn.Legal_Basis_Error,
+          // ssn.Granting_Authority_URL_Error,
+          // ssn.Granting_Authority_Policy_Error,
+          // ssn.Budget_Error,
           formatedCurrency,
           // ssn.Granting_Authority_Name_Error,
           // ssn.scheme_issued_start_day_Error,
@@ -537,8 +599,7 @@ router.get("/", (req, res) => {
   ssn = req.session;
   if (
     typeof ssn.dashboard_roles_object_id1 === "undefined" ||
-    typeof ssn.dashboard_roles_object_id2 === "undefined" ||
-    req.session.cookie.maxAge <= 0
+    typeof ssn.dashboard_roles_object_id2 === "undefined"
   ) {
     res.redirect("/signout");
   } else {
