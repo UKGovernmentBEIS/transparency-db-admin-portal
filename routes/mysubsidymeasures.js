@@ -70,9 +70,9 @@ router.get("/", async (req, res) => {
       console.log("Body: ", apidata.data);
       searchschemes = apidata.data;
 
-      allScheme = searchschemes.allScheme;
-      activeScheme = searchschemes.activeScheme;
-      inactiveScheme = searchschemes.inactiveScheme;
+      ssn.allScheme = searchschemes.allScheme;
+      ssn.activeScheme = searchschemes.activeScheme;
+      ssn.inactiveScheme = searchschemes.inactiveScheme;
 
       var searchschemes_api = apidata.data;
       console.log("searchschemes" + searchschemes_api);
@@ -108,10 +108,11 @@ router.get("/", async (req, res) => {
         noscheme,
         totalrows,
         current_page_active,
-        allScheme,
+        // allScheme,
         nodata,
-        activeScheme,
-        inactiveScheme,
+        ssn,
+        // activeScheme,
+        // inactiveScheme,
         searchschemes,
       });
     } catch (err) {

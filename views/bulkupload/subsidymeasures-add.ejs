@@ -250,12 +250,17 @@
                                     <span class="govuk-visually-hidden">Error:</span> Enter a valid subsidy
                                     scheme name
                                 </span>
+                                <% } else if( ssn.Subsidy_Measure_Title_255_Error ){ %>
+                                <span class="govuk-error-message" id="ssn.Subsidy_Measure_Title_Error">
+                                    <span class="govuk-visually-hidden">Error:</span> Subsidy scheme name cannot be
+                                    greater than 255 characters
+                                </span>
                                 <% }  %>
                                 <input class="govuk-input govuk-!-width-one-half" id="Subsidy_Measure_Title"
                                     name="Subsidy_Measure_Title" type="text"
                                     value="<%= ssn.Subsidy_Measure_Title_Global %>">
                             </div>
-                            <% if( Legal_Basis_Error ){ %>
+                            <% if( ssn.Legal_Basis_Error ){ %>
                             <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                 <% } else { %>
                                 <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -275,7 +280,7 @@
                                     </details>
 
 
-                                    <% if( Legal_Basis_Error ){ %>
+                                    <% if( ssn.Legal_Basis_Error ){ %>
                                     <span class="govuk-error-message" id="Legal_Basis_Error">
                                         <span class="govuk-visually-hidden">Error:</span> Enter a valid legal basis
                                     </span>
@@ -283,7 +288,7 @@
                                     <input class="govuk-input govuk-!-width-one-half" id="Legal_Basis"
                                         name="Legal_Basis" type="text" value="<%= ssn.Legal_Basis_Global%>">
                                 </div>
-                                <% if( Granting_Authority_URL_Error ){ %>
+                                <% if( ssn.Granting_Authority_URL_Error || ssn.Granting_Authority_URL_255_Error){ %>
                                 <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                     <% } else { %>
                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -303,18 +308,23 @@
                                             </div>
                                         </details>
 
-                                        <% if( Granting_Authority_URL_Error ){ %>
+                                        <% if( ssn.Granting_Authority_URL_Error ){ %>
                                         <span class="govuk-error-message" id="Granting_Authority_URL_Error">
                                             <span class="govuk-visually-hidden">Error:</span> Enter a valid granting
                                             authority policy URL
 
                                         </span>
-                                        <% }  %>
+                                        <% } else if( ssn.Granting_Authority_URL_255_Error ){ %>
+                                        <span class="govuk-error-message" id="Granting_Authority_URL_Error">
+                                            <span class="govuk-visually-hidden">Error:</span> Granting authority policy
+                                            url cannot be greater than 255 characters
+                                        </span>
+                                        <% } %>
                                         <input class="govuk-input " name="Granting_Authority_URL"
                                             id="Granting_Authority_URL" type="text"
                                             value="<%= ssn.Granting_Authority_URL_Global%>">
                                     </div>
-                                    <% if( Granting_Authority_Policy_Error ){ %>
+                                    <% if( ssn.Granting_Authority_Policy_Error ||ssn.Granting_Authority_Policy_255_Error){ %>
                                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                         <% } else { %>
                                         <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -337,17 +347,23 @@
                                             <!-- <div class="govuk-hint">A short summary of the policy page that you provided
                                                 the URL for. For example, Water Purity Scheme policy page.
                                             </div> -->
-                                            <% if( Granting_Authority_Policy_Error ){ %>
+                                            <% if( ssn.Granting_Authority_Policy_Error ){ %>
                                             <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
                                                 <span class="govuk-visually-hidden">Error:</span> Enter a valid
                                                 granting authority policy page description
+                                            </span>
+
+                                            <% } else if( ssn.Granting_Authority_Policy_255_Error ){ %>
+                                            <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
+                                                <span class="govuk-visually-hidden">Error:</span> Granting authority
+                                                policy description cannot be greater than 255 characters
                                             </span>
                                             <% }  %>
                                             <input class="govuk-input" id="Granting_Authority_Policy"
                                                 name="Granting_Authority_Policy" type="text"
                                                 value="<%= ssn.Granting_Authority_Policy_Global%>">
                                         </div>
-                                        <% if( Budget_Error ){ %>
+                                        <% if( ssn.Budget_Error ){ %>
                                         <div
                                             class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                             <% } else { %>
@@ -368,13 +384,13 @@
                                                     </div>
                                                 </details>
 
-                                                <% if( Budget_Error ){ %>
+                                                <% if( ssn.Budget_Error ){ %>
                                                 <span class="govuk-error-message" id="Budget_Error">
                                                     <span class="govuk-visually-hidden">Error:</span> Enter a valid
                                                     budget
 
                                                 </span>
-                                                <% }  %>
+                                                <% } %>
                                                 <div class="govuk-input__wrapper">
                                                     <div class="govuk-input__prefix" aria-hidden="true">£</div>
                                                     <input class="govuk-input govuk-!-width-one-third" id="Budget"

@@ -126,6 +126,12 @@ router.post("/", async (req, res) => {
     ssn.Spending_Region_Global = Spending_Region;
     ssn.Spending_Sector_Global = Spending_Sector;
 
+    console.log("Subsidy_Objective_Other", Subsidy_Objective_Other.length);
+    console.log("Subsidy_Instrument_Other", Subsidy_Instrument_Other);
+    console.log("Beneficiary_Name", Beneficiary_Name);
+    console.log("Subsidy_Objective", Subsidy_Objective);
+    console.log("buttonvalue", buttonvalue);
+
     if (ssn.Legal_Granting_Date_Month_Global == 1) {
       ssn.GetMonthName = "January";
     }
@@ -190,7 +196,7 @@ router.post("/", async (req, res) => {
       //   Additem = Additem + 1;
       // }
 
-      if (Subsidy_Objective == "Empty") {
+      if (Subsidy_Objective == "") {
         ssn.Subsidy_Objective_Error = true;
         ssn.SubsidyErrors[Additem] = "     Select the subsidy purpose";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Objective";
@@ -240,8 +246,8 @@ router.post("/", async (req, res) => {
         ssn.Subsidy_Instrument_Other_255_Error = true;
         ssn.Subsidy_Instrument_Other_Error = false;
         ssn.SubsidyErrors[Additem] =
-          "Subsidy purpose-other length > 255 characters";
-        ssn.SubsidyFocus[Additem] = "#Subsidy_Objective_Other";
+          "Subsidy type-other length > 255 characters";
+        ssn.SubsidyFocus[Additem] = "#Subsidy_Instrument_Other";
         Additem = Additem + 1;
       }
 
@@ -449,7 +455,10 @@ router.post("/", async (req, res) => {
         ssn.Legal_Granting_Date_Year_Error ||
         ssn.Goods_or_Services_Error ||
         ssn.Spending_Region_Error ||
-        ssn.Spending_Sector_Error
+        ssn.Spending_Sector_Error ||
+        ssn.Subsidy_Objective_Other_255_Error ||
+        ssn.Subsidy_Instrument_Other_255_Error ||
+        ssn.Beneficiary_Name_255_Error
       ) {
         res.render("bulkupload/addsubsidyaward", {
           ssn,

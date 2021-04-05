@@ -87,6 +87,7 @@ router.get("/", async (req, res) => {
         totalrows,
         current_page_active,
         ssn,
+        searchschemes,
       });
     } catch (err) {
       if (err.toString().includes("404")) {
