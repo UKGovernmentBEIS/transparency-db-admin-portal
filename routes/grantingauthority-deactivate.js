@@ -16,8 +16,9 @@ router.get("/", async (req, res) => {
     res.set("Content-Security-Policy", 'frame-ancestors "self"');
     res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-    gaid = req.query.gaId;
-    ganame = req.query.gaName;
+
+    // ganame = req.query.gaName;
+
     try {
       const apiroles = await axios.get(
         beis_url_accessmanagement + "/accessmanagement/allga"
@@ -27,7 +28,7 @@ router.get("/", async (req, res) => {
       console.log("Body: ", apiroles.data);
 
       apiroles.data.forEach(function (obj) {
-        if (gaid == obj.gaId) azGrpId = obj.azGrpId;
+        if (ssn.gaId == obj.gaId) azGrpId = obj.azGrpId;
       });
 
       try {
@@ -49,6 +50,8 @@ router.get("/", async (req, res) => {
         }
         ssn.GaListArr_Global = gaListArr;
         if (ssn.dashboard_roles == "BEIS Administrator") {
+          gaid = ssn.grantingAuthorityID_Global;
+          ganame = ssn.grantingAuthorityName_Global;
           res.render("bulkupload/grantingauthority-deactivate", {
             gaid,
             ganame,

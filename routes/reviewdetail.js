@@ -214,12 +214,12 @@ router.post("/", async (req, res) => {
 
       if (
         Subsidy_Objective == "Other" &&
-        Subsidy_Objective_Other.length > 255
+        Subsidy_Objective_Other.length > 249
       ) {
         ssn.Subsidy_Objective_Other_255_Error = true;
         ssn.Subsidy_Objective_Other_Error = false;
         ssn.SubsidyErrors[Additem] =
-          "Subsidy purpose-other length > 255 characters";
+          "Subsidy purpose for other category can only be of 249 characters";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Objective_Other";
         Additem = Additem + 1;
       }
@@ -246,7 +246,7 @@ router.post("/", async (req, res) => {
         ssn.Subsidy_Instrument_Other_255_Error = true;
         ssn.Subsidy_Instrument_Other_Error = false;
         ssn.SubsidyErrors[Additem] =
-          "Subsidy type-other length > 255 characters";
+          " Subsidy type for other category can only be of 249  characters";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Instrument_Other";
         Additem = Additem + 1;
       }
@@ -294,11 +294,11 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
-      if (Beneficiary_Name.length > 255) {
+      if (Beneficiary_Name.length > 249) {
         ssn.Beneficiary_Name_Error = false;
         ssn.Beneficiary_Name_255_Error = true;
         ssn.SubsidyErrors[Additem] =
-          "Recipient organisation name can only be of 255 characters or less";
+          "Recipient organisation name can only be of 249 characters or less";
         ssn.SubsidyFocus[Additem] = "#Beneficiary_Name";
         Additem = Additem + 1;
       }

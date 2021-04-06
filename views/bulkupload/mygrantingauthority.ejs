@@ -379,10 +379,10 @@
             <% grantingAuthorityList.gaList.forEach(function(item) { %>
             <tr>
               <td style="text-align: center;" class="govuk-table__cell"><a
-                  href="/editreviewgrantingauthority?gaid=<%=item.grantingAuthorityId %>&ganame=<%= item.grantingAuthorityName %>"><%=item.grantingAuthorityId %></a>
+                  href="/editreviewgrantingauthority?gaid=<%=item.grantingAuthorityId %>"><%=item.grantingAuthorityId %></a>
               </td>
               <td class="govuk-table__cell"><a
-                  href="/editreviewgrantingauthority?gaid=<%=item.grantingAuthorityId %>&ganame=<%= item.grantingAuthorityName %>"><%= item.grantingAuthorityName %></a>
+                  href="/editreviewgrantingauthority?gaid=<%=item.grantingAuthorityId %>"><%= item.grantingAuthorityName %></a>
               </td>
               <td class="govuk-table__cell"><%= item.createdBy %></td>
               <td class="govuk-table__cell"><%= item.status %></td>

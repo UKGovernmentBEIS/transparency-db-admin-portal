@@ -92,7 +92,7 @@ router.get("/", async (req, res) => {
         }
       }
 
-      console.log("GA_Object_Id", ssn);
+      console.log("GA_Object_Id", GA_Object_Id);
       console.log(
         "ssn.UserPrincileObjectGlobal role :" + ssn.UserPrincileObjectGlobal
       );

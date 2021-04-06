@@ -323,12 +323,12 @@ app.get("/", async (req, res) => {
   ssn.dashboard_roles_object_id1 = ssn.dashboard_roles_object.substr(2, 36);
   ssn.dashboard_roles_object_id2 = ssn.dashboard_roles_object.substr(41, 36);
 
-  // console.log(
-  //   "ssn.dashboard_roles_object_id1:" + ssn.dashboard_roles_object_id1
-  // );
-  // console.log(
-  //   "ssn.dashboard_roles_object_id2:" + ssn.dashboard_roles_object_id2
-  // );
+  console.log(
+    "ssn.dashboard_roles_object_id1:" + ssn.dashboard_roles_object_id1
+  );
+  console.log(
+    "ssn.dashboard_roles_object_id2:" + ssn.dashboard_roles_object_id2
+  );
 
   try {
     var apiroles = await axios.get(
@@ -366,33 +366,41 @@ app.get("/", async (req, res) => {
   if (apiroles_extract_object1.includes("BEIS Administrator")) {
     ssn.dashboard_roles = "BEIS Administrator";
     ssn.dashboard_ga_name = apiroles_extract_object2;
+    azGrpId_Global = ssn.dashboard_roles_object_id2;
   } else if (
     apiroles_extract_object1.includes("Granting Authority Administrator")
   ) {
     ssn.dashboard_roles = "Granting Authority Administrator";
     ssn.dashboard_ga_name = apiroles_extract_object2;
+    azGrpId_Global = ssn.dashboard_roles_object_id2;
   } else if (apiroles_extract_object1.includes("Granting Authority Approver")) {
     ssn.dashboard_roles = "Granting Authority Approver";
     ssn.dashboard_ga_name = apiroles_extract_object2;
+    azGrpId_Global = ssn.dashboard_roles_object_id2;
   } else if (apiroles_extract_object1.includes("Granting Authority Encoder")) {
     ssn.dashboard_roles = "Granting Authority Encoder";
     ssn.dashboard_ga_name = apiroles_extract_object2;
+    azGrpId_Global = ssn.dashboard_roles_object_id2;
   }
 
   if (apiroles_extract_object2.includes("BEIS Administrator")) {
     ssn.dashboard_roles = "BEIS Administrator";
     ssn.dashboard_ga_name = apiroles_extract_object1;
+    azGrpId_Global = ssn.dashboard_roles_object_id1;
   } else if (
     apiroles_extract_object2.includes("Granting Authority Administrator")
   ) {
     ssn.dashboard_roles = "Granting Authority Administrator";
     ssn.dashboard_ga_name = apiroles_extract_object1;
+    azGrpId_Global = ssn.dashboard_roles_object_id1;
   } else if (apiroles_extract_object2.includes("Granting Authority Approver")) {
     ssn.dashboard_roles = "Granting Authority Approver";
     ssn.dashboard_ga_name = apiroles_extract_object1;
+    azGrpId_Global = ssn.dashboard_roles_object_id1;
   } else if (apiroles_extract_object2.includes("Granting Authority Encoder")) {
     ssn.dashboard_roles = "Granting Authority Encoder";
     ssn.dashboard_ga_name = apiroles_extract_object1;
+    azGrpId_Global = ssn.dashboard_roles_object_id1;
   }
 
   // console.log("ssn.dashboard_roles : " + ssn.dashboard_roles);
@@ -413,8 +421,8 @@ app.get("/", async (req, res) => {
   // console.log("userprincile: " + userPrincipleRequest);
   ssn.UserPrincileObjectGlobal = {
     headers: {
-      "Content-Type": "application/json;charset=UTF-8",
       userPrinciple: userPrincipleRequest,
+      "Content-Type": "application/json;charset=UTF-8",
     },
   };
   gaAdminCount_Global = 0;
@@ -423,11 +431,11 @@ app.get("/", async (req, res) => {
   gaTotalCount_Global = 0;
   try {
     // azGrpId = ssn.dashboard_roles_object_id1;
-    if (ssn.dashboard_roles == "BEIS Administrator")
-      azGrpId = ssn.dashbaord_ga_ID;
-    else azGrpId = ssn.dashboard_roles_object_id2;
+    // if (ssn.dashboard_roles == "BEIS Administrator")
+    //   azGrpId = ssn.dashboard_roles_object_id1;
+    // else azGrpId = ssn.dashboard_roles_object_id2;
     const apidata = await axios.get(
-      beis_url_accessmanagement + "/usermanagement/groups/" + azGrpId,
+      beis_url_accessmanagement + "/usermanagement/groups/" + azGrpId_Global,
       ssn.UserPrincileObjectGlobal
     );
     console.log(`Status: ${apidata.status}`);
@@ -487,154 +495,123 @@ app.get("/", async (req, res) => {
   console.log("ssn.dashboard_roles", ssn.dashboard_roles);
   console.log("ssn.dashboard_roles_object_id1", ssn.dashboard_roles_object_id1);
   console.log("ssn.dashboard_roles_object_id2", ssn.dashboard_roles_object_id2);
-  console.log("req.sessionID", req.sessionID);
-  console.log("----------- Connect.sid:   " + req.cookies["connect.sid"]);
 
   if (ssn.dashboard_roles == "BEIS Administrator") {
-    if (
-      typeof ssn.dashboard_roles_object_id1 === "undefined" ||
-      typeof ssn.dashboard_roles_object_id2 === "undefined" ||
-      req.session.cookie.maxAge <= 0
-    ) {
-      res.redirect("/signout");
-    } else {
-      var data = JSON.parse(JSON.stringify(userPrincipleRequest));
-      // console.log("request :" + JSON.stringify(data));
+    var data = JSON.parse(JSON.stringify(userPrincipleRequest));
+    // console.log("request :" + JSON.stringify(data));
 
-      try {
-        var apidata = await axios.get(
-          beis_url_accessmanagement + "/accessmanagement/beisadmin",
-          ssn.UserPrincileObjectGlobal
-        );
-        // console.log(`Status: ${apidata.status}`);
-        // API_response_code = `${apidata.status}`;
-        // console.log("API_response_code: try" + API_response_code);
-        // console.log("Body: ", apidata.data);
-        dashboardawards = apidata.data;
+    try {
+      var apidata = await axios.get(
+        beis_url_accessmanagement + "/accessmanagement/beisadmin",
+        ssn.UserPrincileObjectGlobal
+      );
+      // console.log(`Status: ${apidata.status}`);
+      // API_response_code = `${apidata.status}`;
+      // console.log("API_response_code: try" + API_response_code);
+      // console.log("Body: ", apidata.data);
+      dashboardawards = apidata.data;
 
-        res.render("bulkupload/dashboard-beisadmin", {
-          beis_url_accessmanagement,
-          ssn,
-          searchAudits,
-          gaAdminCount_Global,
-          gaApproverCount_Global,
-          gaEncoderCount_Global,
-          gaTotalCount_Global,
-        });
-      } catch (err) {
-        response_error_message = err;
-        console.log("message error : " + err);
-        console.log("response_error_message catch : " + response_error_message);
-      }
+      res.render("bulkupload/dashboard-beisadmin", {
+        beis_url_accessmanagement,
+        ssn,
+        searchAudits,
+        gaAdminCount_Global,
+        gaApproverCount_Global,
+        gaEncoderCount_Global,
+        gaTotalCount_Global,
+      });
+    } catch (err) {
+      response_error_message = err;
+      console.log("message error : " + err);
+      console.log("response_error_message catch : " + response_error_message);
     }
   } else if (ssn.dashboard_roles == "Granting Authority Administrator") {
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
     // console.log("request :" + JSON.stringify(data));
-    if (
-      typeof ssn.dashboard_roles_object_id1 === "undefined" ||
-      typeof ssn.dashboard_roles_object_id2 === "undefined" ||
-      req.session.cookie.maxAge <= 0
-    ) {
-      res.redirect("/signout");
-    } else {
-      try {
-        var apidata = await axios.get(
-          beis_url_accessmanagement + "/accessmanagement/gaadmin",
-          ssn.UserPrincileObjectGlobal
-        );
-        // console.log(`Status: ${apidata.status}`);
-        API_response_code = `${apidata.status}`;
-        // console.log("API_response_code: try" + API_response_code);
-        // console.log("Body: ", apidata.data);
-        dashboardawards = apidata.data;
-        res.render("bulkupload/dashboard-gaadmin", {
-          beis_url_accessmanagement,
-          // ssn.dashboard_user_name,
-          ssn,
-          searchAudits,
-          gaAdminCount_Global,
-          gaApproverCount_Global,
-          gaEncoderCount_Global,
-          gaTotalCount_Global,
-        });
-      } catch (err) {
-        response_error_message = err;
-        console.log("message error : " + err);
-        console.log("response_error_message catch : " + response_error_message);
-      }
+
+    try {
+      var apidata = await axios.get(
+        beis_url_accessmanagement + "/accessmanagement/gaadmin",
+        ssn.UserPrincileObjectGlobal
+      );
+      // console.log(`Status: ${apidata.status}`);
+      API_response_code = `${apidata.status}`;
+      // console.log("API_response_code: try" + API_response_code);
+      // console.log("Body: ", apidata.data);
+      dashboardawards = apidata.data;
+      res.render("bulkupload/dashboard-gaadmin", {
+        beis_url_accessmanagement,
+        // ssn.dashboard_user_name,
+        ssn,
+        searchAudits,
+        gaAdminCount_Global,
+        gaApproverCount_Global,
+        gaEncoderCount_Global,
+        gaTotalCount_Global,
+      });
+    } catch (err) {
+      response_error_message = err;
+      console.log("message error : " + err);
+      console.log("response_error_message catch : " + response_error_message);
     }
   } else if (ssn.dashboard_roles == "Granting Authority Approver") {
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
     console.log("request :" + JSON.stringify(data));
-    if (
-      typeof ssn.dashboard_roles_object_id1 === "undefined" ||
-      typeof ssn.dashboard_roles_object_id2 === "undefined" ||
-      req.session.cookie.maxAge <= 0
-    ) {
-      res.redirect("/signout");
-    } else {
-      try {
-        var apidata = await axios.get(
-          beis_url_accessmanagement + "/accessmanagement/gaapprover",
-          ssn.UserPrincileObjectGlobal
-        );
-        console.log(`Status: ${apidata.status}`);
-        API_response_code = `${apidata.status}`;
-        console.log("API_response_code: try" + API_response_code);
-        console.log("Body: ", apidata.data);
-        console.log("gaAdminCount_Global", gaAdminCount_Global);
-        console.log("gaApproverCount_Global", gaApproverCount_Global);
-        console.log("gaEncoderCount_Global", gaEncoderCount_Global);
-        console.log("gaTotalCount_Global", gaTotalCount_Global);
-        dashboardawards = apidata.data;
-        res.render("bulkupload/dashboard-gaapprover", {
-          beis_url_accessmanagement,
-          ssn,
-          gaAdminCount_Global,
-          gaApproverCount_Global,
-          gaEncoderCount_Global,
-          gaTotalCount_Global,
-        });
-      } catch (err) {
-        response_error_message = err;
-        console.log("message error : " + err);
-        console.log("response_error_message catch : " + response_error_message);
-      }
+
+    try {
+      var apidata = await axios.get(
+        beis_url_accessmanagement + "/accessmanagement/gaapprover",
+        ssn.UserPrincileObjectGlobal
+      );
+      console.log(`Status: ${apidata.status}`);
+      API_response_code = `${apidata.status}`;
+      console.log("API_response_code: try" + API_response_code);
+      console.log("Body: ", apidata.data);
+      console.log("gaAdminCount_Global", gaAdminCount_Global);
+      console.log("gaApproverCount_Global", gaApproverCount_Global);
+      console.log("gaEncoderCount_Global", gaEncoderCount_Global);
+      console.log("gaTotalCount_Global", gaTotalCount_Global);
+      dashboardawards = apidata.data;
+      res.render("bulkupload/dashboard-gaapprover", {
+        beis_url_accessmanagement,
+        ssn,
+        gaAdminCount_Global,
+        gaApproverCount_Global,
+        gaEncoderCount_Global,
+        gaTotalCount_Global,
+      });
+    } catch (err) {
+      response_error_message = err;
+      console.log("message error : " + err);
+      console.log("response_error_message catch : " + response_error_message);
     }
   } else if (ssn.dashboard_roles == "Granting Authority Encoder") {
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
     console.log("request :" + JSON.stringify(data));
-    if (
-      typeof ssn.dashboard_roles_object_id1 === "undefined" ||
-      typeof ssn.dashboard_roles_object_id2 === "undefined" ||
-      req.session.cookie.maxAge <= 0
-    ) {
-      res.redirect("/signout");
-    } else {
-      try {
-        var apidata = await axios.get(
-          beis_url_accessmanagement + "/accessmanagement/gaencoder",
-          ssn.UserPrincileObjectGlobal
-        );
-        console.log(`Status: ${apidata.status}`);
-        API_response_code = `${apidata.status}`;
-        console.log("API_response_code: try" + API_response_code);
-        console.log("Body: ", apidata.data);
-        dashboardawards = apidata.data;
-        res.render("bulkupload/dashboard-gaencoder", {
-          beis_url_accessmanagement,
-          // ssn.dashboard_user_name,
-          ssn,
-          gaAdminCount_Global,
-          gaApproverCount_Global,
-          gaEncoderCount_Global,
-          gaTotalCount_Global,
-        });
-      } catch (err) {
-        response_error_message = err;
-        console.log("message error : " + err);
-        console.log("response_error_message catch : " + response_error_message);
-      }
+
+    try {
+      var apidata = await axios.get(
+        beis_url_accessmanagement + "/accessmanagement/gaencoder",
+        ssn.UserPrincileObjectGlobal
+      );
+      console.log(`Status: ${apidata.status}`);
+      API_response_code = `${apidata.status}`;
+      console.log("API_response_code: try" + API_response_code);
+      console.log("Body: ", apidata.data);
+      dashboardawards = apidata.data;
+      res.render("bulkupload/dashboard-gaencoder", {
+        beis_url_accessmanagement,
+        // ssn.dashboard_user_name,
+        ssn,
+        gaAdminCount_Global,
+        gaApproverCount_Global,
+        gaEncoderCount_Global,
+        gaTotalCount_Global,
+      });
+    } catch (err) {
+      response_error_message = err;
+      console.log("message error : " + err);
+      console.log("response_error_message catch : " + response_error_message);
     }
   }
   // res.render("bulkupload/logintransparency");

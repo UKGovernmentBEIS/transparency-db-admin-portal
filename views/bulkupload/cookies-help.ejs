@@ -97,7 +97,7 @@
                         </fieldset>
                     </div> -->
 
-                    <form data-module="cookie-settings" onsubmit="return delete_cookie()">
+                    <form data-module="cookie-settings" onsubmit="return delete_cookie_help()">
 
 
                         <div class="govuk-form-group">
@@ -280,11 +280,12 @@
     <script src="/assets/javascripts/application.js"></script>
 
     <script>
-        var delete_cookie = function () {
+        var delete_cookie_help = function () {
             var getSelectedValue = document.querySelector('input[name="cookies-usage"]:checked');
             if (getSelectedValue != null && getSelectedValue.value == 'off') {
                 document.cookie = '_ga=;expires=;' + new Date();
                 document.cookie = '_gid=;expires=' + new Date();
+                document.cookie = '_gat_gtag_UA_145652997_21=;expires=' + new Date();
             }
             else if (getSelectedValue != null && getSelectedValue.value == 'on') {
                 window.dataLayer = window.dataLayer || [];

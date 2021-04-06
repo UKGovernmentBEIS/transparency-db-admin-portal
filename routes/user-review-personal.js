@@ -21,6 +21,9 @@ router.post("/", async (req, res) => {
     UserErrors = [];
     UserFocus = [];
     UserErrorsLenght = 0;
+    ssn.Full_Name_Error = false;
+    ssn.Last_Name_Error = false;
+    ssn.Phone_Number_Error = false;
 
     if (!Full_Name) {
       ssn.Full_Name_Error = true;

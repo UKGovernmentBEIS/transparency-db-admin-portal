@@ -7,15 +7,7 @@
     <%- include('../partials/headercss.ejs') %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
-    <script>
-         // window.dataLayer = window.dataLayer || [];
 
-        // function gtag() {
-        //     dataLayer.push(arguments);
-        // }
-        // gtag('js', new Date());
-        // gtag('config', 'UA-145652997-21');
-    </script>
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -37,8 +29,6 @@
             </div>
             <%- include('../partials/navigationbar.ejs') %>
 
-
-            <!-- bread crumbs start here -->
             <div class="govuk-breadcrumbs ">
                 <ol class="govuk-breadcrumbs__list">
                     <li class="govuk-breadcrumbs__list-item">
@@ -48,11 +38,11 @@
                         <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Granting Authority</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add granting authority</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Deactivate granting
+                            authority</a>
                     </li>
                 </ol>
             </div>
-            <!-- bread crumbs ends here -->
             <div class="govuk-grid-row">
 
                 <div class="govuk-grid-column-two-thirds govuk-form-group">
@@ -64,14 +54,13 @@
                             Granting authority deactivated
                         </h1>
                         <div class="govuk-panel__body">
-                            ID <strong><%= gaId%></strong>
+                            ID <strong><%= gaid %></strong>
                         </div>
                     </div>
                 </div>
                 <div class="govuk-grid-column-full govuk-form-group">
-                    <!-- <% if(review == 'true') { %> -->
-                    <p class="govuk-body govuk-!-font-size-19">You have deactivated granting authority <%= gaId%>. Users
-                        will no longer be able to add subsidy awards to it.</p>
+                    <p class="govuk-body govuk-!-font-size-19">You have deactivated granting
+                        authority <%= gaid %>. Users will no longer be able to add subsidy awards to it.</p>
                 </div>
                 <div class="govuk-grid-column-full govuk-form-group">
                     <a class="govuk-button" href="/mygrantingauthority" data-module="govuk-button">
