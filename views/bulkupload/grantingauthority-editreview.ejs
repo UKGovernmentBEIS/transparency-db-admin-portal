@@ -66,11 +66,13 @@
 
 
                     </h2>
+                    <% if(ssn.GAstatus == 'Active') { %>
                     <a rel="external" aria-label="Change granting authority details"
                         class="govuk-link head-right govuk-relative-position"
                         href="/editgrantingauthority?edit=<%=ssn.grantingAuthorityID_Global%>">
                         <p>Change </p>
                     </a>
+                    <% } %>
                 </div>
             </div>
             <dl class="govuk-summary-list govuk-!-margin-bottom-9">
@@ -79,7 +81,7 @@
                         Granting authority ID
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        <%=ssn.grantingAuthorityID_Global%>
+                        <%=ssn.gaId%>
                     </dd>
 
                 </div>
@@ -88,7 +90,7 @@
                         Granting authority name
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        <%=ssn.grantingAuthorityName_Global%>
+                        <%=ssn.gaName%>
                     </dd>
 
                 </div>
@@ -99,8 +101,8 @@
             <% if(ssn.grantingAuthorityPublish_Global) { %>
             <form method="POST" action="/submitgrantingauthority">
                 <input type="hidden" name="editReview" value="true">
-                <input type="hidden" value="<%= ssn.grantingAuthorityID_Global %>" name="grantingAuthorityID">
-                <input type="hidden" value="<%= ssn.grantingAuthorityName_Global %>" name="grantingAuthorityName">
+                <input type="hidden" value="<%= ssn.gaId %>" name="grantingAuthorityID">
+                <input type="hidden" value="<%= ssn.gaName %>" name="grantingAuthorityName">
                 <button class="govuk-button" data-module="govuk-button">
                     Publish
                 </button>
@@ -110,12 +112,12 @@
             <a class="govuk-button" href="/mygrantingauthority" data-module="govuk-button">
                 Back to granting authority list
             </a>
-
-            <a class="govuk-button govuk-button--warning"
-                href="/deactivategrantingauthority?gaId=<%=ssn.grantingAuthorityID_Global%>&gaName=<%=ssn.grantingAuthorityName_Global%>"
+            <% if(ssn.GAstatus == 'Active') { %>
+            <a class="govuk-button govuk-button--warning" href="/deactivategrantingauthority"
                 data-module="govuk-button">
                 Deactivate granting authority
             </a>
+            <% } %>
             <!-- <a class="govuk-link govuk-cancel-button-link" id="mylink" value="cancel"
                 href="/editgacancel?gaId=<%=ssn.grantingAuthorityID_Global%>&gaName=<%=ssn.grantingAuthorityName_Global%>">
                 Cancel

@@ -323,12 +323,12 @@ app.get("/", async (req, res) => {
   ssn.dashboard_roles_object_id1 = ssn.dashboard_roles_object.substr(2, 36);
   ssn.dashboard_roles_object_id2 = ssn.dashboard_roles_object.substr(41, 36);
 
-  // console.log(
-  //   "ssn.dashboard_roles_object_id1:" + ssn.dashboard_roles_object_id1
-  // );
-  // console.log(
-  //   "ssn.dashboard_roles_object_id2:" + ssn.dashboard_roles_object_id2
-  // );
+  console.log(
+    "ssn.dashboard_roles_object_id1:" + ssn.dashboard_roles_object_id1
+  );
+  console.log(
+    "ssn.dashboard_roles_object_id2:" + ssn.dashboard_roles_object_id2
+  );
 
   try {
     var apiroles = await axios.get(
@@ -424,7 +424,7 @@ app.get("/", async (req, res) => {
   try {
     // azGrpId = ssn.dashboard_roles_object_id1;
     if (ssn.dashboard_roles == "BEIS Administrator")
-      azGrpId = ssn.dashbaord_ga_ID;
+      azGrpId = ssn.dashboard_roles_object_id1;
     else azGrpId = ssn.dashboard_roles_object_id2;
     const apidata = await axios.get(
       beis_url_accessmanagement + "/usermanagement/groups/" + azGrpId,
