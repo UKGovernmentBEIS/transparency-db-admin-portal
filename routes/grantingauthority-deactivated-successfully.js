@@ -36,32 +36,45 @@ router.post("/", async (req, res) => {
       var data = {
         userIds: users,
       };
-      UserPrincileObjectGlobal = ssn.UserPrincileObjectGlobal;
+      UserPrincileObjectGlobal =
+        '{"userName":"' +
+        ssn.dashboard_user_name +
+        '","password":"password123",' +
+        '"role":"' +
+        ssn.dashboard_roles +
+        '","grantingAuthorityGroupId":"' +
+        ssn.dashbaord_ga_ID +
+        '","grantingAuthorityGroupName":"' +
+        ssn.dashboard_ga_name +
+        '"}';
       // await axios
-      //   .delete(beis_url_searchscheme + `/group/${azGrpId}`, {
-      //     UserPrincileObjectGlobal,
+      //   .delete(beis_url_searchscheme + "/group/" + azGrpId, {
+      //     headers: {
+      //       userPrinciple: UserPrincileObjectGlobal,
+      //     },
       //     data: {
       //       userIds: users,
       //     },
       //   })
       //   .then(function (response) {
-
       //     console.log("BODY", response.data.gaId);
       //     gaid = response.data.gaId;
-      //     res.render("bulkupload/grantingauthority-deactivated-successfully", {
-      //       gaid,
-      //     });
+      //     res.render("bulkupload/grantingauthority-deactivated-successfully",{gaid});
       //   });
       const apidata = await axios.delete(
         beis_url_searchscheme + "/group/" + azGrpId,
         {
           data,
-          UserPrincileObjectGlobal,
+          headers: {
+            userPrinciple: UserPrincileObjectGlobal,
+          },
         }
       );
       console.log("BODY", apidata.data.gaId);
-      gaid = apidata.data.gaId;
-      res.render("bulkupload/grantingauthority-deactivated-successfully", gaid);
+      var gaid = apidata.data.gaId;
+      res.render("bulkupload/grantingauthority-deactivated-successfully", {
+        gaid,
+      });
     } catch (err) {
       console.log("message error deactivate GA : " + err);
       if (err.toString().includes("500")) res.render("bulkupload/notAvailable");

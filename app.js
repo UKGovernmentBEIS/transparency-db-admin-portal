@@ -366,33 +366,41 @@ app.get("/", async (req, res) => {
   if (apiroles_extract_object1.includes("BEIS Administrator")) {
     ssn.dashboard_roles = "BEIS Administrator";
     ssn.dashboard_ga_name = apiroles_extract_object2;
+    azGrpId_Global = ssn.dashboard_roles_object_id2;
   } else if (
     apiroles_extract_object1.includes("Granting Authority Administrator")
   ) {
     ssn.dashboard_roles = "Granting Authority Administrator";
     ssn.dashboard_ga_name = apiroles_extract_object2;
+    azGrpId_Global = ssn.dashboard_roles_object_id2;
   } else if (apiroles_extract_object1.includes("Granting Authority Approver")) {
     ssn.dashboard_roles = "Granting Authority Approver";
     ssn.dashboard_ga_name = apiroles_extract_object2;
+    azGrpId_Global = ssn.dashboard_roles_object_id2;
   } else if (apiroles_extract_object1.includes("Granting Authority Encoder")) {
     ssn.dashboard_roles = "Granting Authority Encoder";
     ssn.dashboard_ga_name = apiroles_extract_object2;
+    azGrpId_Global = ssn.dashboard_roles_object_id2;
   }
 
   if (apiroles_extract_object2.includes("BEIS Administrator")) {
     ssn.dashboard_roles = "BEIS Administrator";
     ssn.dashboard_ga_name = apiroles_extract_object1;
+    azGrpId_Global = ssn.dashboard_roles_object_id1;
   } else if (
     apiroles_extract_object2.includes("Granting Authority Administrator")
   ) {
     ssn.dashboard_roles = "Granting Authority Administrator";
     ssn.dashboard_ga_name = apiroles_extract_object1;
+    azGrpId_Global = ssn.dashboard_roles_object_id1;
   } else if (apiroles_extract_object2.includes("Granting Authority Approver")) {
     ssn.dashboard_roles = "Granting Authority Approver";
     ssn.dashboard_ga_name = apiroles_extract_object1;
+    azGrpId_Global = ssn.dashboard_roles_object_id1;
   } else if (apiroles_extract_object2.includes("Granting Authority Encoder")) {
     ssn.dashboard_roles = "Granting Authority Encoder";
     ssn.dashboard_ga_name = apiroles_extract_object1;
+    azGrpId_Global = ssn.dashboard_roles_object_id1;
   }
 
   // console.log("ssn.dashboard_roles : " + ssn.dashboard_roles);
@@ -413,8 +421,8 @@ app.get("/", async (req, res) => {
   // console.log("userprincile: " + userPrincipleRequest);
   ssn.UserPrincileObjectGlobal = {
     headers: {
-      "Content-Type": "application/json;charset=UTF-8",
       userPrinciple: userPrincipleRequest,
+      "Content-Type": "application/json;charset=UTF-8",
     },
   };
   gaAdminCount_Global = 0;
@@ -423,11 +431,11 @@ app.get("/", async (req, res) => {
   gaTotalCount_Global = 0;
   try {
     // azGrpId = ssn.dashboard_roles_object_id1;
-    if (ssn.dashboard_roles == "BEIS Administrator")
-      azGrpId = ssn.dashboard_roles_object_id1;
-    else azGrpId = ssn.dashboard_roles_object_id2;
+    // if (ssn.dashboard_roles == "BEIS Administrator")
+    //   azGrpId = ssn.dashboard_roles_object_id1;
+    // else azGrpId = ssn.dashboard_roles_object_id2;
     const apidata = await axios.get(
-      beis_url_accessmanagement + "/usermanagement/groups/" + azGrpId,
+      beis_url_accessmanagement + "/usermanagement/groups/" + azGrpId_Global,
       ssn.UserPrincileObjectGlobal
     );
     console.log(`Status: ${apidata.status}`);
@@ -487,8 +495,6 @@ app.get("/", async (req, res) => {
   console.log("ssn.dashboard_roles", ssn.dashboard_roles);
   console.log("ssn.dashboard_roles_object_id1", ssn.dashboard_roles_object_id1);
   console.log("ssn.dashboard_roles_object_id2", ssn.dashboard_roles_object_id2);
-  console.log("req.sessionID", req.sessionID);
-  console.log("----------- Connect.sid:   " + req.cookies["connect.sid"]);
 
   if (ssn.dashboard_roles == "BEIS Administrator") {
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
