@@ -66,25 +66,6 @@ router.post("/", async (req, res) => {
     ssn.scheme_issued_end_day_lesser_Error = false;
 
     // ssn.Granting_Authority_Name_Global = "Big Lottery Fund";
-    console.log("ssn.Subsidy_Adhoc_Global :" + ssn.Subsidy_Adhoc_Global);
-    console.log(
-      "ssn.Granting_Authority_Name_Global :" +
-        ssn.Granting_Authority_Name_Measure_Global
-    );
-    console.log(
-      "ssn.Subsidy_Measure_Title_Global :" + ssn.Subsidy_Measure_Title_Global
-    );
-    console.log("ssn.Legal_Basis_Global :" + ssn.Legal_Basis_Global);
-    console.log(
-      "ssn.Granting_Authority_URL_Global :" + ssn.Granting_Authority_URL_Global
-    );
-    console.log(
-      "ssn.Granting_Authority_Policy_Global:" +
-        ssn.Granting_Authority_Policy_Global
-    );
-    console.log("ssn.Budget_Global :" + ssn.Budget_Global);
-    console.log("subsidy_start_date :" + subsidy_start_date);
-    console.log("subsidy_end_date:" + subsidy_end_date);
 
     if (ssn.Subsidy_Adhoc_Global == "Yes") {
       ssn.Subsidy_Adhoc_Global_Flag = true;
@@ -107,8 +88,6 @@ router.post("/", async (req, res) => {
 
     if (button_value == "add_measure") {
       addSchemeUrl = beis_url_searchscheme + "/scheme/add";
-      console.log(" addSchemeUrl : " + addSchemeUrl);
-      console.log("addSchemeRequest :" + JSON.stringify(addSchemeRequest));
 
       try {
         const apidata = await axios.post(
@@ -116,10 +95,9 @@ router.post("/", async (req, res) => {
           addSchemeRequest,
           ssn.UserPrincileObjectGlobal
         );
-        console.log(`Status: ${apidata.status}`);
+
         API_response_code = `${apidata.status}`;
-        console.log("API_response_code: " + API_response_code);
-        console.log("Body: ", apidata.data);
+
         ssn.Subsidy_Control_Number_Global_Text = apidata.data;
 
         res.render("bulkupload/subsidymeasure-published", {
@@ -128,9 +106,7 @@ router.post("/", async (req, res) => {
           // ssn.Subsidy_Control_Number_Global_Text,
         });
       } catch (err) {
-        response_error_message = err;
         console.log("message error : " + err);
-        console.log("response_error_message catch : " + response_error_message);
         if (err.toString().includes("401")) {
           res.render("bulkupload/notAuthorized");
         }
@@ -160,10 +136,6 @@ router.post("/", async (req, res) => {
 
       updateSchemeUrl =
         beis_url_searchscheme + "/scheme/update/" + ssn.scNumber_Global;
-      console.log(" updateSchemeUrl Update : " + updateSchemeUrl);
-      console.log(
-        "updateSchemeRequest Update:" + JSON.stringify(updateSchemeRequest)
-      );
 
       try {
         const apidata = await axios.put(
@@ -171,10 +143,9 @@ router.post("/", async (req, res) => {
           updateSchemeRequest,
           ssn.UserPrincileObjectGlobal
         );
-        console.log(`Status: ${apidata.status}`);
+
         API_response_code = `${apidata.status}`;
-        console.log("API_response_code: " + API_response_code);
-        console.log("Body: ", apidata.data);
+
         ssn.Subsidy_Control_Number_Global_Text = apidata.data;
 
         res.render("bulkupload/subsidymeasure-published", {
@@ -183,14 +154,12 @@ router.post("/", async (req, res) => {
           // ssn.Subsidy_Control_Number_Global_Text,
         });
       } catch (err) {
-        response_error_message = err;
         if (err.toString().includes("401")) {
           res.render("bulkupload/notAuthorized");
         } else if (err.toString().includes("500"))
           res.render("bulkupload/notAvailable");
 
         console.log("message error : " + err);
-        console.log("response_error_message catch : " + err.message);
       }
     }
   }

@@ -39,7 +39,7 @@ router.post("/", (req, res) => {
     ssn.scheme_issued_end_day_Error = false;
     ssn.scheme_issued_end_day_lesser_Error = false;
 
-    const {
+    var {
       Subsidy_Adhoc,
       scNumber,
       Granting_Authority_Name,
@@ -57,9 +57,6 @@ router.post("/", (req, res) => {
       buttonvalue,
     } = req.body;
 
-    console.log("buttonvalue:" + buttonvalue);
-    console.log("  Subsidy_Adhoc :" + Subsidy_Adhoc);
-
     ssn.Subsidy_Adhoc_Global = Subsidy_Adhoc;
     ssn.scNumber_Global = scNumber;
     ssn.Granting_Authority_Name_Global = Granting_Authority_Name;
@@ -67,7 +64,13 @@ router.post("/", (req, res) => {
     ssn.Legal_Basis_Global = Legal_Basis;
     ssn.Granting_Authority_URL_Global = Granting_Authority_URL;
     ssn.Granting_Authority_Policy_Global = Granting_Authority_Policy;
+    const formatter = new Intl.NumberFormat("en-GB");
+
+    if (Budget.includes(",")) Budget = Budget.split(",").join("");
+    formatedCurrency = formatter.format(Budget);
+
     ssn.Budget_Global = Budget;
+
     if (ssn.Subsidy_Adhoc_Global == "Yes") {
       ssn.Scheme_End_Day_Global = scheme_issued_start_day;
       ssn.Scheme_End_Month_Global = scheme_issued_start_month;
@@ -80,37 +83,6 @@ router.post("/", (req, res) => {
       ssn.Scheme_End_Month_Global = scheme_issued_end_month;
       ssn.Scheme_End_Year_Global = scheme_issued_end_year;
     }
-
-    console.log("ssn.Subsidy_Adhoc_Global :" + ssn.Subsidy_Adhoc_Global);
-    console.log(
-      "ssn.Granting_Authority_Name_Global :" +
-        ssn.Granting_Authority_Name_Global
-    );
-    console.log(
-      "ssn.Subsidy_Measure_Title_Global :" + ssn.Subsidy_Measure_Title_Global
-    );
-    console.log("ssn.Legal_Basis_Global  :" + ssn.Legal_Basis_Global);
-    console.log(
-      "ssn.Granting_Authority_URL_Global :" + ssn.Granting_Authority_URL_Global
-    );
-    console.log(
-      "ssn.Granting_Authority_Policy_Global :" +
-        ssn.Granting_Authority_Policy_Global
-    );
-    console.log("ssn.Budget_Global :" + ssn.Budget_Global);
-    console.log(
-      "ssn.Granting_Authority_Name_Global:" + ssn.Granting_Authority_Name_Global
-    );
-    console.log("ssn.Scheme_Start_Day_Global :" + ssn.Scheme_Start_Day_Global);
-    console.log(
-      "ssn.Scheme_Start_Month_Global :" + ssn.Scheme_Start_Month_Global
-    );
-    console.log(
-      "ssn.Scheme_Start_Year_Global  :" + ssn.Scheme_Start_Year_Global
-    );
-    console.log("ssn.Scheme_End_Day_Global :" + ssn.Scheme_End_Day_Global);
-    console.log("ssn.Scheme_End_Month_Global :" + ssn.Scheme_End_Month_Global);
-    console.log("ssn.Scheme_End_Year_Global  :" + ssn.Scheme_End_Year_Global);
 
     if (scheme_issued_start_month == parseInt("01", 8)) {
       ssn.GetMonthName = "January";
@@ -185,8 +157,6 @@ router.post("/", (req, res) => {
     if (scheme_issued_end_month == 12) {
       ssn.GetEndMonthName = "December";
     }
-
-    console.log("scheme_issued_start_month" + ssn.GetMonthName);
 
     if (buttonvalue == "Update") {
       //Empty field validations
@@ -380,8 +350,6 @@ router.post("/", (req, res) => {
               scheme_issued_end_day
           );
 
-          console.log("+x <= +y", sdate > edate);
-
           if (sdate > edate) {
             ssn.scheme_issued_end_day_Error = false;
             ssn.scheme_issued_end_day_lesser_Error = true;
@@ -539,6 +507,7 @@ router.post("/", (req, res) => {
           // ssn.Scheme_End_Month_Global,
           // ssn.Scheme_End_Year_Global,
           ssn,
+          formatedCurrency,
           // ssn.GetMonthName,
         });
       }
