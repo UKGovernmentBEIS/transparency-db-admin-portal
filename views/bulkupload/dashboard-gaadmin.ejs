@@ -178,7 +178,7 @@
                     approval</a></p>
               </div>
             </div>
-            <div class="govuk-grid-column-one-half govuk-form-group">
+            <div class="govuk-grid-column-one-third govuk-form-group">
               <div class="govuk-background">
                 <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                   <%= dashboardawards.awardUserActionCount.totalPublishedAward %>
@@ -188,7 +188,17 @@
               </div>
             </div>
 
-            <div class="govuk-grid-column-one-half govuk-form-group">
+            <div class="govuk-grid-column-one-third govuk-form-group">
+              <div class="govuk-background">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
+                  <%= dashboardawards.awardUserActionCount.totalRejectedAward %>
+                </p>
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 ">
+                  <a href="/mysubsidyawards?sort=Rejected" class="govuk-description-text">Rejected</a></p>
+              </div>
+            </div>
+
+            <div class="govuk-grid-column-one-third govuk-form-group">
               <div class="govuk-background">
                 <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                   <%= dashboardawards.awardUserActionCount.totalDeleteAward %>

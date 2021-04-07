@@ -82,12 +82,14 @@
                             deactivate this
                             granting authority, you must first remove the following users from it:</p>
                     </div>
-                    <ul class="govuk-list">
-                        <% ssn.GaListArr_Global.forEach(function(item) { %>
+                    <div class="govuk-grid-column-full govuk-grid-row">
+                        <ul class="govuk-list">
+                            <% ssn.GaListArr_Global.forEach(function(item) { %>
 
-                        <li style="color: white;"><%= item.gaName%></li>
-                        <% } ); %>
-                    </ul>
+                            <li style="color: white;"><%= item.gaName%></li>
+                            <% } ); %>
+                        </ul>
+                    </div>
                     <% if(checkboxError) { %>
                     <div class=" govuk-form-group govuk-form-group--error" id="usersCheckbox"
                         style="margin-bottom: 2%;">
