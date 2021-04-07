@@ -67,7 +67,7 @@
                     </h2>
                     <a rel="external" aria-label="Change subsidy scheme details"
                         class="govuk-link head-right govuk-relative-position"
-                        href="/editsubsidymeasure?scheme=<%= ssn.scNumber_Global %>">
+                        href="/editsubsidymeasure?scheme=<%= ssn.scNumber_Global %>&editsc=Yes">
                         <p>Change </p>
                     </a>
                 </div>
@@ -120,7 +120,7 @@
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">End Date</th>
-                            <td class="govuk-table__cell"><%= ssn.Scheme_End_Day_Global %> <%= ssn.GetMonthName %>
+                            <td class="govuk-table__cell"><%= ssn.Scheme_End_Day_Global %> <%= ssn.GetEndMonthName %>
                                 <%= ssn.Scheme_End_Year_Global %></td>
                         </tr>
                     </tbody>
@@ -128,22 +128,17 @@
             </section>
             <div class="govuk-grid-row">
                 <!-- <div class="govuk-grid-column-one-half govuk-padding-0"> -->
-                <form action="/subsidymeasurepublished" method="POST" novalidate>
+                <form action="/subsidymeasurepublished" class="govuk-grid-column-full" method="POST" novalidate>
                     <input type="hidden" name="answers-checked" value="true">
 
                     <button class="govuk-button" name="button_value" value="update_measure" data-module="govuk-button">
                         Publish subsidy scheme
                     </button>
 
-                    <a href="/addsubsidymeasures" class="govuk-link govuk-cancel-button-link">
-                        Cancel
-                    </a>
+                    <!-- <a href="/cancelsubsidymeasure?scheme=<%=ssn.scNumber_Global%>&edit=Yes"
+                        class="govuk-link govuk-cancel-button-link"> Cancel </a> -->
                 </form>
 
-                <!-- <form action="/addsubsidymeasures" method="GET" class="govuk-grid-column-one-half">
-                        
-                    </form> -->
-                <!-- </div> -->
             </div>
         </main>
     </div>

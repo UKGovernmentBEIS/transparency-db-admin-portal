@@ -68,12 +68,18 @@ router.post("/", (req, res) => {
     ssn.Granting_Authority_URL_Global = Granting_Authority_URL;
     ssn.Granting_Authority_Policy_Global = Granting_Authority_Policy;
     ssn.Budget_Global = Budget;
-    ssn.Scheme_Start_Day_Global = scheme_issued_start_day;
-    ssn.Scheme_Start_Month_Global = scheme_issued_start_month;
-    ssn.Scheme_Start_Year_Global = scheme_issued_start_year;
-    ssn.Scheme_End_Day_Global = scheme_issued_end_day;
-    ssn.Scheme_End_Month_Global = scheme_issued_end_month;
-    ssn.Scheme_End_Year_Global = scheme_issued_end_year;
+    if (ssn.Subsidy_Adhoc_Global == "Yes") {
+      ssn.Scheme_End_Day_Global = scheme_issued_start_day;
+      ssn.Scheme_End_Month_Global = scheme_issued_start_month;
+      ssn.Scheme_End_Year_Global = scheme_issued_start_year;
+      scheme_issued_end_day = scheme_issued_start_day;
+      scheme_issued_end_month = scheme_issued_start_month;
+      scheme_issued_end_year = scheme_issued_start_year;
+    } else {
+      ssn.Scheme_End_Day_Global = scheme_issued_end_day;
+      ssn.Scheme_End_Month_Global = scheme_issued_end_month;
+      ssn.Scheme_End_Year_Global = scheme_issued_end_year;
+    }
 
     console.log("ssn.Subsidy_Adhoc_Global :" + ssn.Subsidy_Adhoc_Global);
     console.log(
@@ -106,31 +112,31 @@ router.post("/", (req, res) => {
     console.log("ssn.Scheme_End_Month_Global :" + ssn.Scheme_End_Month_Global);
     console.log("ssn.Scheme_End_Year_Global  :" + ssn.Scheme_End_Year_Global);
 
-    if (scheme_issued_start_month == 1) {
+    if (scheme_issued_start_month == parseInt("01", 8)) {
       ssn.GetMonthName = "January";
     }
-    if (scheme_issued_start_month == 2) {
+    if (scheme_issued_start_month == parseInt("02", 8)) {
       ssn.GetMonthName = "February";
     }
-    if (scheme_issued_start_month == 3) {
+    if (scheme_issued_start_month == parseInt("03", 8)) {
       ssn.GetMonthName = "March";
     }
-    if (scheme_issued_start_month == 4) {
+    if (scheme_issued_start_month == parseInt("04", 8)) {
       ssn.GetMonthName = "April";
     }
-    if (scheme_issued_start_month == 5) {
+    if (scheme_issued_start_month == parseInt("05", 8)) {
       ssn.GetMonthName = "May";
     }
-    if (scheme_issued_start_month == 6) {
+    if (scheme_issued_start_month == parseInt("06", 8)) {
       ssn.GetMonthName = "June";
     }
-    if (scheme_issued_start_month == 7) {
+    if (scheme_issued_start_month == parseInt("07", 8)) {
       ssn.GetMonthName = "July";
     }
-    if (scheme_issued_start_month == 8) {
+    if (scheme_issued_start_month == parseInt("08", 8)) {
       ssn.GetMonthName = "August";
     }
-    if (scheme_issued_start_month == 9) {
+    if (scheme_issued_start_month == parseInt("09", 8)) {
       ssn.GetMonthName = "September";
     }
     if (scheme_issued_start_month == 10) {
@@ -141,6 +147,43 @@ router.post("/", (req, res) => {
     }
     if (scheme_issued_start_month == 12) {
       ssn.GetMonthName = "December";
+    }
+
+    if (scheme_issued_end_month == parseInt("01", 8)) {
+      ssn.GetEndMonthName = "January";
+    }
+    if (scheme_issued_end_month == parseInt("02", 8)) {
+      ssn.GetEndMonthName = "February";
+    }
+    if (scheme_issued_end_month == parseInt("03", 8)) {
+      ssn.GetEndMonthName = "March";
+    }
+    if (scheme_issued_end_month == parseInt("04", 8)) {
+      ssn.GetEndMonthName = "April";
+    }
+    if (scheme_issued_end_month == parseInt("05", 8)) {
+      ssn.GetEndMonthName = "May";
+    }
+    if (scheme_issued_end_month == parseInt("06", 8)) {
+      ssn.GetEndMonthName = "June";
+    }
+    if (scheme_issued_end_month == parseInt("07", 8)) {
+      ssn.GetEndMonthName = "July";
+    }
+    if (scheme_issued_end_month == parseInt("08", 8)) {
+      ssn.GetEndMonthName = "August";
+    }
+    if (scheme_issued_end_month == parseInt("09", 8)) {
+      ssn.GetEndMonthName = "September";
+    }
+    if (scheme_issued_end_month == 10) {
+      ssn.GetEndMonthName = "October";
+    }
+    if (scheme_issued_end_month == 11) {
+      ssn.GetEndMonthName = "November";
+    }
+    if (scheme_issued_end_month == 12) {
+      ssn.GetEndMonthName = "December";
     }
 
     console.log("scheme_issued_start_month" + ssn.GetMonthName);
