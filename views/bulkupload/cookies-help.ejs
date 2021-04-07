@@ -281,6 +281,7 @@
 
     <script>
         var delete_cookie_help = function () {
+
             var getSelectedValue = document.querySelector('input[name="cookies-usage"]:checked');
             if (getSelectedValue != null && getSelectedValue.value == 'off') {
                 document.cookie = '_ga=;expires=;' + new Date();

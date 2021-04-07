@@ -109,7 +109,8 @@
                 <table class="govuk-table">
                     <tbody class="govuk-table__body">
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Is this an ad hoc scheme</th>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Is this an ad hoc scheme
+                            </th>
                             <td class="govuk-table__cell">
                                 <% if(ssn.searchmeasuredetails.adhoc == 'true') { %>
                                 Yes
@@ -119,28 +120,31 @@
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Granting Authority</th>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Granting Authority</th>
                             <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.gaName %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Subsidy scheme number</th>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme number
+                            </th>
                             <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.scNumber %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Subsidy scheme name</th>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme name</th>
                             <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.subsidyMeasureTitle %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Legal basis</th>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Legal basis</th>
                             <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.legalBasisText %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Granting authority policy URL </th>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Granting authority policy
+                                URL </th>
                             <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.gaSubsidyWebLink %>
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Granting authority policy page summary </th>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Granting authority policy
+                                page summary </th>
                             <td class="govuk-table__cell">
                                 <% if(ssn.searchmeasuredetails.gaSubsidyWebLink.includes("https://") || ssn.searchmeasuredetails.gaSubsidyWebLink.includes("http://")) { %>
                                 <a href="<%= ssn.searchmeasuredetails.gaSubsidyWebLink %>"
@@ -152,16 +156,16 @@
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Budget or amount</th>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Budget or amount</th>
                             <td class="govuk-table__cell" id="formatText">£ <%= ssn.searchmeasuredetails.budget %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">Start date</th>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Start date</th>
 
                             <td class="govuk-table__cell"><%= Scheme_Start_Date%></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">End date</th>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">End date</th>
 
                             <td class="govuk-table__cell">
                                 <%= Scheme_End_Date%></td>
