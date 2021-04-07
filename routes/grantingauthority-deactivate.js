@@ -23,9 +23,6 @@ router.get("/", async (req, res) => {
       const apiroles = await axios.get(
         beis_url_accessmanagement + "/accessmanagement/allga"
       );
-      console.log(`Status: ${apiroles.status}`);
-
-      console.log("Body: ", apiroles.data);
 
       apiroles.data.forEach(function (obj) {
         if (ssn.gaId == obj.gaId) azGrpId = obj.azGrpId;
@@ -52,9 +49,11 @@ router.get("/", async (req, res) => {
         if (ssn.dashboard_roles == "BEIS Administrator") {
           gaid = ssn.grantingAuthorityID_Global;
           ganame = ssn.grantingAuthorityName_Global;
+          checkboxError = false;
           res.render("bulkupload/grantingauthority-deactivate", {
             gaid,
             ganame,
+            checkboxError,
             // ssn.GaListArr_Global,
             ssn,
             azGrpId,
