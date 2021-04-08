@@ -1,5 +1,5 @@
 // ********************************************************************
-// Gov.UK public user search results routing module
+// Gov.UK transparency subsidy scheme list module
 // ********************************************************************
 
 const express = require("express");

@@ -195,17 +195,18 @@
 
         <% } %>
 
-        <%  if(isCallfromEditAward ) { %>
-        <h1 class="govuk-heading-xl">Edit subsidy award <%= ssn.Edit_Award_Number_global %></h1>
-        <% } else { %>
-        <h1 class="govuk-heading-xl">Add a subsidy award</h1>
-        <% } %>
+
         <!-- <a rel="external" target="_blank" class="govuk-link head-right govuk-relative-position_title" href="./assets/files/HelpDocumentAddSubsidyAwards.pdf" >
         <p >Download the help file </p>
       </a> -->
 
 
         <div class="govuk-grid-column-two-thirds">
+          <%  if(isCallfromEditAward ) { %>
+          <h1 class="govuk-heading-xl">Edit subsidy award <%= ssn.Edit_Award_Number_global %></h1>
+          <% } else { %>
+          <h1 class="govuk-heading-xl">Add a subsidy award</h1>
+          <% } %>
           <form id="myform" action="/reviewdetail" method="POST">
             <div class="govuk-form-group">
               <label class="govuk-label" for="Subsidy_award_label">

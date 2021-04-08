@@ -1,3 +1,7 @@
+// ********************************************************************
+// Gov.UK transparency Edit Single Subsidy Award module
+// ********************************************************************
+
 const express = require("express");
 var session = require("express-session");
 const router = express.Router();
@@ -10,7 +14,7 @@ router.get("/", (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
-    ssn.Subsidy_Control_Number_Global =
+    ssn.Subsidy_Control_Number_Name_Global =
       fetchawarddetails.subsidyMeasure.scNumber;
     ssn.Subsidy_Measure_Title_Global =
       fetchawarddetails.subsidyMeasure.subsidyMeasureTitle;

@@ -1,5 +1,5 @@
 // ********************************************************************
-// Gov.UK public user search page outing
+// Gov.UK transparency subsidy award fetch details module
 // ********************************************************************
 
 const express = require("express");

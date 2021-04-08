@@ -1,3 +1,7 @@
+// ********************************************************************
+// Gov.UK transparency subsidy award submit for approval or publish module
+// ********************************************************************
+
 const express = require("express");
 var session = require("express-session");
 const router = express.Router();
@@ -113,7 +117,7 @@ router.post("/", async (req, res) => {
 
     if (isCallfromEditAward) {
       const updateAwardRequest = {
-        awardNumber: ssn.Edit_Award_Number_global.trim(),
+        awardNumber: ssn.Edit_Award_Number_global,
         subsidyControlTitle: ssn.Subsidy_Measure_Title_Global.trim(),
         subsidyControlNumber: ssn.Subsidy_Control_Number_Global.trim(),
         nationalIdType: ssn.National_ID_Type_Global.trim(),
