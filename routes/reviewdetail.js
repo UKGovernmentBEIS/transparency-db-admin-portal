@@ -421,16 +421,18 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
-      if (Spending_Region == "Empty") {
+      if (Spending_Region == "") {
         ssn.Spending_Region_Error = true;
         ssn.SubsidyErrors[Additem] = "     Select the spending region";
         ssn.SubsidyFocus[Additem] = "#Spending_Region";
+        Additem = Additem + 1;
       }
 
-      if (Spending_Sector == "Empty") {
+      if (Spending_Sector == "") {
         ssn.Spending_Sector_Error = true;
         ssn.SubsidyErrors[Additem] = "     Select the spending sector";
         ssn.SubsidyFocus[Additem] = "#Spending_Sector";
+        Additem = Additem + 1;
       }
 
       ssn.SubsidyArraySize = ssn.SubsidyErrors.length;

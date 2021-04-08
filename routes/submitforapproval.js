@@ -100,7 +100,7 @@ router.post("/", async (req, res) => {
       orgSize: ssn.Size_of_the_Organisation_Global.trim(),
       subsidyInstrument: ssn.Subsidy_Instrument_Global.trim(),
       subsidyObjective: ssn.Subsidy_Objective_Global.trim(),
-      subsidyAmountRange: Subsidy_Full_Amount_Range_Global_Trim.trim(),
+      subsidyAmountRange: Subsidy_Full_Amount_Range_Global_Trim,
       subsidyAmountExact: Subsidy_Element_Full_Amount_Global_Trim,
       legalGrantingDate: subsidy_legal_granting_date.trim(),
       grantingAuthorityName: ssn.Granting_Authority_Name_Global.trim(),

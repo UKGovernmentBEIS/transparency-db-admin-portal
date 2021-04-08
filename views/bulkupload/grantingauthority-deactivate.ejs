@@ -54,6 +54,23 @@
                     </li>
                 </ol>
             </div>
+            <% if(checkboxError) { %>
+            <div class="govuk-error-summary" role="alert" id="error-alert" tabindex="-1"
+                aria-labelledby="error-summary-title" data-module="govuk-error-summary">
+                <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+
+                <div class="govuk-error-summary__body">
+
+                    <ul class="govuk-list govuk-error-summary__list">
+
+                        <li> <a href="#usersCheckbox"> Please select the checkbox</a> </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+            <% } %>
             <!-- bread crumbs ends here -->
             <form action="/gadeactivated" method="POST">
                 <!-- Body header starts here -->
@@ -65,45 +82,58 @@
                             deactivate this
                             granting authority, you must first remove the following users from it:</p>
                     </div>
-                    <ul class="govuk-list">
-                        <% ssn.GaListArr_Global.forEach(function(item) { %>
+                    <div class="govuk-grid-column-full govuk-grid-row">
+                        <ul class="govuk-list">
+                            <% ssn.GaListArr_Global.forEach(function(item) { %>
 
-                        <li style="color: white;"><%= item.gaName%></li>
-                        <% } ); %>
-                    </ul>
-                    <div class="govuk-checkboxes govuk-form-group" style="margin-bottom: 2%;">
-                        <div class="govuk-checkboxes__item">
-                            <input class="govuk-checkboxes__input" id="userList" name="userList" type="checkbox"
-                                value="Yes">
-                            <label class="govuk-label govuk-checkboxes__label" for="userList" style="color: white;">
-                                Remove all users
-                            </label>
-                        </div>
+                            <li style="color: white;"><%= item.gaName%></li>
+                            <% } ); %>
+                        </ul>
                     </div>
+                    <% if(checkboxError) { %>
+                    <div class=" govuk-form-group govuk-form-group--error" id="usersCheckbox"
+                        style="margin-bottom: 2%;">
+                        <span id="error" class="govuk-error-message">
+                            <span class="govuk-visually-hidden">Error:</span> Please select the checkbox
+                        </span>
+                        <% }else{ %>
+                        <div class=" govuk-form-group" id="usersCheckbox" style="margin-bottom: 2%;">
+                            <% } %>
+                            <div class="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" id="userList" name="userList" type="checkbox"
+                                        value="Yes">
+                                    <label class="govuk-label govuk-checkboxes__label" for="userList"
+                                        style="color: white;">
+                                        Remove all users
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
-                    <% } else {%>
-                    <input type="hidden" value="[]" name="userIds">
-                    <% } %>
-                    <p class="govuk-body govuk-!-font-size-19 govuk-!-width-two-thirds">If you deactivate this
-                        granting
-                        authority, users will no longer be able to add subsidy awards to it.</p>
-                    <!-- Body header ends here -->
-                    <p class="govuk-body govuk-!-font-size-19">Are you sure you want to deactivate this granting
-                        authority?
-                    </p>
-                    <input type="hidden" value="<%= azGrpId%>" name="azGrpId">
-                    <input type="hidden" name="gaid" value="<%= gaid %>">
-                    <input type="hidden" name="ganame" value="<%= ganame %>">
+                        <% } else {%>
+                        <input type="hidden" value="[]" name="userIds">
+                        <% } %>
+                        <p class="govuk-body govuk-!-font-size-19 govuk-!-width-two-thirds">If you deactivate this
+                            granting
+                            authority, users will no longer be able to add subsidy awards to it.</p>
+                        <!-- Body header ends here -->
+                        <p class="govuk-body govuk-!-font-size-19">Are you sure you want to deactivate this granting
+                            authority?
+                        </p>
+                        <input type="hidden" value="<%= azGrpId%>" name="azGrpId">
+                        <input type="hidden" name="gaid" value="<%= gaid %>">
+                        <input type="hidden" name="ganame" value="<%= ganame %>">
 
-                    <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-                        Yes, deactivate granting authority</button>
-                    <a href="/editreviewgrantingauthority?gaid=<%= gaid %>&ganame=<%= ganame %>"
-                        data-module="govuk-button" class="govuk-button govuk-button_sm govuk-button--secondary">
-                        Cancel
-                    </a>
+                        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                            Yes, deactivate granting authority</button>
+                        <a href="/editreviewgrantingauthority?gaid=<%= gaid %>&ganame=<%= ganame %>"
+                            data-module="govuk-button" class="govuk-button govuk-button_sm govuk-button--secondary">
+                            Cancel
+                        </a>
 
 
-                </div>
+                    </div>
             </form>
 
         </main>

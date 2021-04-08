@@ -34,8 +34,7 @@ router.get("/", async (req, res) => {
         ssn.UserPrincileObjectGlobal
       );
       ssn.gaId = req.query.gaid;
-      ssn.gaName =
-        apidata.data.gaList[0].grantingAuthorityName;
+      ssn.gaName = apidata.data.gaList[0].grantingAuthorityName;
       ssn.grantingAuthorityPublish_Global = false;
       ssn.GAstatus = apidata.data.gaList[0].status;
       if (ssn.dashboard_roles == "BEIS Administrator") {
@@ -74,7 +73,9 @@ router.post("/", (req, res) => {
     req.query = JSON.parse(JSON.stringify(req.query));
     var gaID = "";
     // gaID = req.query.ga.split("_");
-    ssn.grantingAuthorityName_Global = req.body.gaName;
+    // ssn.gaId
+    ssn.gaName = req.body.gaName;
+    // ssn.grantingAuthorityName_Global = req.body.gaName;
     // ssn.grantingAuthorityID_Global = req.body.gaId;
     ssn.grantingAuthorityPublish_Global = true;
 

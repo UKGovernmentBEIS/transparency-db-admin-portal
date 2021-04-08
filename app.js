@@ -747,6 +747,9 @@ app.use("/reviewsubsidymeasures", reviewsubsidymeasures);
 var editsubsidymeasures = require("./routes/subsidymeasure-edit");
 app.use("/editsubsidymeasure", editsubsidymeasures);
 
+var cancelsubsidymeasure = require("./routes/subsidymeasure-edit-cancel");
+app.use("/cancelsubsidymeasure", cancelsubsidymeasure);
+
 var subsidymeasurereedit = require("./routes/subsidymeasure-re-edit");
 app.use("/subsidymeasurereedit", subsidymeasurereedit);
 
