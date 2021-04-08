@@ -75,20 +75,24 @@ router.get("/", async (req, res) => {
         ssn.audit_action_sorting_order = "asc";
       }
     } else if (sort_column_name == "audit_action_date") {
+      console.log(
+        "ssn.audit_actiondate_sorting_order",
+        ssn.audit_actiondate_sorting_order
+      );
       if (ssn.audit_actiondate_sorting_order == "asc") {
         ssn.audit_sorting_field = "createdTimestamp,desc";
         ssn.audit_username_arrow = "upanddown";
         ssn.audit_grantingauthority_arrow = "upanddown";
         ssn.audit_actiondate_arrow = "downdecending";
         ssn.audit_action_arrow = "upanddown";
-        ssn.audit_actiondate_order = "desc";
+        ssn.audit_actiondate_sorting_order = "desc";
       } else {
         ssn.audit_sorting_field = "createdTimestamp,asc";
         ssn.audit_username_arrow = "upanddown";
         ssn.audit_grantingauthority_arrow = "upanddown";
         ssn.audit_actiondate_arrow = "upacending";
         ssn.audit_action_arrow = "upanddown";
-        ssn.audit_actiondate_order = "asc";
+        ssn.audit_actiondate_sorting_order = "asc";
       }
     }
     current_page = 1;
@@ -107,25 +111,25 @@ router.get("/", async (req, res) => {
       sortBy: [ssn.sorting_order],
     };
 
-    var userPrincipleRequest =
-      '{"userName":"' +
-      ssn.dashboard_user_name +
-      '","password":"password123",' +
-      '"role":"' +
-      ssn.dashboard_roles +
-      '","grantingAuthorityGroupId":"' +
-      ssn.dashbaord_ga_ID +
-      '","grantingAuthorityGroupName":"' +
-      ssn.dashboard_ga_name +
-      '"}';
+    // var userPrincipleRequest =
+    //   '{"userName":"' +
+    //   ssn.dashboard_user_name +
+    //   '","password":"password123",' +
+    //   '"role":"' +
+    //   ssn.dashboard_roles +
+    //   '","grantingAuthorityGroupId":"' +
+    //   ssn.dashbaord_ga_ID +
+    //   '","grantingAuthorityGroupName":"' +
+    //   ssn.dashboard_ga_name +
+    //   '"}';
 
-    console.log("userprinciple: " + userPrincipleRequest);
-    ssn.UserPrincipleObjectGlobal = {
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-        userPrinciple: userPrincipleRequest,
-      },
-    };
+    // console.log("userprinciple: " + userPrincipleRequest);
+    // ssn.UserPrincipleObjectGlobal = {
+    //   headers: {
+    //     "Content-Type": "application/json;charset=UTF-8",
+    //     userPrinciple: userPrincipleRequest,
+    //   },
+    // };
 
     console.log(
       "user principle object:" + JSON.stringify(ssn.UserPrincipleObjectGlobal)
