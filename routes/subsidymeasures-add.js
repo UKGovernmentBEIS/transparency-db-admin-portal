@@ -25,6 +25,7 @@ router.get("/", (req, res) => {
     ssn.scheme_issued_start_month_Error = false;
     ssn.scheme_issued_start_year_Error = false;
     ssn.Legal_Basis_Error = false;
+    ssn.Granting_Authority_Name_Inactive_Error = false;
     ssn.Granting_Authority_URL_Error = false;
     ssn.Granting_Authority_Policy_Error = false;
     ssn.Budget_Error = false;

@@ -106,7 +106,31 @@ router.post("/", async (req, res) => {
           // ssn.Subsidy_Control_Number_Global_Text,
         });
       } catch (err) {
-        console.log("message error : " + err);
+        ssn.SubsidyErrors = [];
+        ssn.SubsidyFocus = [];
+
+        ssn.Subsidy_Measure_Title_Error = false;
+        ssn.Subsidy_Adhoc_Error = false;
+        ssn.Legal_Basis_Error = false;
+        ssn.Granting_Authority_Name_Error = false;
+        ssn.Granting_Authority_URL_Error = false;
+
+        ssn.Granting_Authority_Policy_Error = false;
+        ssn.Budget_Error = false;
+        ssn.Subsidy_Measure_Title_255_Error = false;
+        ssn.Granting_Authority_URL_255_Error = false;
+        ssn.Granting_Authority_Policy_255_Error = false;
+        ssn.scheme_issued_start_year_Error = false;
+        ssn.scheme_issued_start_month_Error = false;
+        ssn.scheme_issued_start_day_Error = false;
+        ssn.scheme_issued_end_year_Error = false;
+        ssn.scheme_issued_end_month_Error = false;
+        ssn.scheme_issued_end_day_Error = false;
+        ssn.scheme_issued_end_day_lesser_Error = false;
+        ssn.Granting_Authority_Name_Inactive_Error = false;
+        isAddSubsidyPrimarycall = false;
+
+        console.log("message error : " + err.message);
         if (err.toString().includes("401")) {
           res.render("bulkupload/notAuthorized");
         }
@@ -115,6 +139,14 @@ router.post("/", async (req, res) => {
         }
         if (err.toString().includes("500")) {
           res.render("bulkupload/notAvailable");
+        }
+        if (err.toString().includes("400")) {
+          ssn.Granting_Authority_Name_Inactive_Error = true;
+          ssn.SubsidyErrors.push(" Granting authority is not active");
+          ssn.SubsidyFocus.push("#Granting_Authority_Name");
+          // Additem = Additem + 1;
+          ssn.SubsidyArraySize = ssn.SubsidyErrors.length;
+          res.render("bulkupload/subsidymeasures-add", { ssn });
         }
       }
     }

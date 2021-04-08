@@ -15,7 +15,8 @@ router.post("/", async (req, res) => {
       var gaID_Name = {
         name: req.body.grantingAuthorityName,
       };
-
+      console.log("ssn.gaID_extract", ssn.gaID_extract);
+      console.log("gaID_Name", req.body.grantingAuthorityName);
       try {
         const apidata = await axios.put(
           beis_url_searchscheme + "/grantingAuthority/" + ssn.gaID_extract,

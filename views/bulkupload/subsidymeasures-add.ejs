@@ -186,16 +186,20 @@
                         <!-- *****************************************  -->
                         <!-- Get the Granting Authority Name from user  -->
                         <!-- *****************************************  -->
-                        <% if( ssn.Granting_Authority_Name_Error ) { %>
+                        <% if( ssn.Granting_Authority_Name_Error ||   ssn.Granting_Authority_Name_Inactive_Error) { %>
                         <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                             <label class="govuk-label" for="Granting_Authority_Name">
                                 Granting authority name
                             </label>
-
+                            <% if(ssn.Granting_Authority_Name_Inactive_Error){ %>
+                            <span class="govuk-error-message" id="Granting_Authority_Name_Error">
+                                <span class="govuk-visually-hidden">Error:</span> Granting authority is not active
+                            </span>
+                            <% } else { %>
                             <span class="govuk-error-message" id="Granting_Authority_Name_Error">
                                 <span class="govuk-visually-hidden">Error:</span> Enter a granting authority name
                             </span>
-
+                            <% } %>
                             <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
                             <input class="govuk-input govuk-!-width-one-half govuk-input--error"
                                 id="Granting_Authority_Name" name="Granting_Authority_Name" type="text"
