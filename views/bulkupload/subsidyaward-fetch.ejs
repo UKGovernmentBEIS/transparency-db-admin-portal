@@ -15,6 +15,13 @@
         // gtag('js', new Date());
         // gtag('config', 'UA-145652997-21');
     </script>
+    <style>
+        .govuk-inative-status {
+            float: left;
+            width: 100%;
+            padding: 1%;
+        }
+    </style>
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -91,7 +98,8 @@
                         <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add a subsidy award</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Fetch a subsidy award
+                            details</a>
                     </li>
                 </ol>
             </div>
@@ -122,7 +130,7 @@
             </div>
             <% } else { %>
             <!-- Reject Message Block -->
-
+            <% if( fetchawarddetails.subsidyMeasure.status != "Inactive") { %>
             <% if( Get_Award_Status =="Rejected" || Get_Award_Status =="Deleted") { %>
 
             <div class="govuk-form-group app-example">
@@ -137,7 +145,13 @@
                     <% } %>
                 </div>
             </div>
-
+            <% } %>
+            <% } else if(fetchawarddetails.subsidyMeasure.status == "Inactive") {%>
+            <div class="govuk-form-group app-example govuk-inative-status">
+                <div class="app-example__toolbar">
+                    <label>This scheme is not active</label>
+                </div>
+            </div>
             <% } %>
             <!-- Reject Message Block -->
             <div class="govuk-grid-row">
@@ -330,7 +344,7 @@
                         name="Award_status">Cancel</a> -->
                 <% } %>
                 <% } %>
-                <% if(Get_Award_Status.toLowerCase() =="rejected") { %>
+                <% if(Get_Award_Status.toLowerCase() =="rejected" &&  fetchawarddetails.subsidyMeasure.status != "Inactive") { %>
                 <!-- <button class="govuk-button" data-module="govuk-button" name="Award_status" id="Award_status"
                     value="Editaward">
                     Edit</button> -->

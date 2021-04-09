@@ -228,7 +228,7 @@ router.post("/", (req, res) => {
         // Additem = Additem + 1;
       }
 
-      if (Subsidy_Measure_Title != "" && Subsidy_Measure_Title > 255) {
+      if (Subsidy_Measure_Title != "" && Subsidy_Measure_Title.length > 255) {
         ssn.Subsidy_Measure_Title_Error = false;
         ssn.Subsidy_Measure_Title_255_Error = true;
         ssn.SubsidyErrors.push(
@@ -297,7 +297,7 @@ router.post("/", (req, res) => {
       if (!Budget) {
         ssn.Budget_Error = true;
         ssn.SubsidyErrors.push("Enter the valid budget");
-        ssn.SubsidyFocus.push("#Granting_Authority_Policy");
+        ssn.SubsidyFocus.push("#Budget");
         // Additem = Additem + 1;
       }
 
@@ -311,7 +311,7 @@ router.post("/", (req, res) => {
       // day validation starts here
       if (scheme_issued_start_day != "") {
         if (scheme_issued_start_day > 31 || scheme_issued_start_day < 1) {
-          ssn.scheme_issued_end_day_Error = true;
+          ssn.scheme_issued_start_day_Error = true;
 
           ssn.SubsidyErrors.push(
             "Enter the valid legal granting day of the date"

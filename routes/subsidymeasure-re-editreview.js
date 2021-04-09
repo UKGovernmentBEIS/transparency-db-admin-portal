@@ -238,7 +238,7 @@ router.post("/", (req, res) => {
       if (!Budget) {
         ssn.Budget_Error = true;
         ssn.SubsidyErrors.push("Enter the budget");
-        ssn.SubsidyFocus.push("#Granting_Authority_Policy");
+        ssn.SubsidyFocus.push("#Budget");
         // Additem = Additem + 1;
       }
       if (!scheme_issued_start_day) {

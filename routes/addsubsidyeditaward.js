@@ -25,10 +25,7 @@ router.get("/", (req, res) => {
     var subsidy_objective_split_check = subsidy_objective_split[0].toLowerCase();
     if (subsidy_objective_split_check == "other") {
       ssn.Subsidy_Objective_Other_Global = subsidy_objective_split[1];
-      console.log(
-        "ssn.Subsidy_Objective_Other_Global:" +
-          ssn.Subsidy_Objective_Other_Global
-      );
+
       ssn.Subsidy_Objective_Global = "Other";
     } else {
       ssn.Subsidy_Objective_Other_Global = "";
@@ -40,10 +37,7 @@ router.get("/", (req, res) => {
     var subsidy_instrument_split_check = subsidy_instrument_split[0].toLowerCase();
     if (subsidy_instrument_split_check == "other") {
       ssn.Subsidy_Instrument_Other_Global = subsidy_instrument_split[1];
-      console.log(
-        "ssn.Subsidy_Instrument_Other_Global:" +
-          ssn.Subsidy_Instrument_Other_Global
-      );
+
       ssn.Subsidy_Instrument_Global = "Other";
     } else {
       ssn.Subsidy_Instrument_Other_Global = "";
@@ -66,10 +60,7 @@ router.get("/", (req, res) => {
     ssn.National_ID_Number_Global = fetchawarddetails.beneficiary.nationalId;
     ssn.Beneficiary_Name_Global = fetchawarddetails.beneficiary.beneficiaryName;
     ssn.Size_of_the_Organisation_Global = fetchawarddetails.beneficiary.orgSize;
-    console.log(
-      "ssn.Size_of_the_Organisation_Global :" +
-        ssn.Size_of_the_Organisation_Global
-    );
+
     ssn.Granting_Authority_Name_Global =
       fetchawarddetails.grantingAuthorityResponse.grantingAuthorityName;
     ssn.Edit_Award_Number_global = fetchawarddetails.awardNumber;
@@ -79,23 +70,23 @@ router.get("/", (req, res) => {
     ssn.Legal_Granting_Date_Day_Global = Legal_date_split[0];
     var Legal_grating_month_check = Legal_date_split[1].toLowerCase();
     if (Legal_grating_month_check == "january") {
-      ssn.Legal_Granting_Date_Month_Global = parseInt("01", 8);
+      ssn.Legal_Granting_Date_Month_Global = 01;
     } else if (Legal_grating_month_check == "february") {
-      ssn.Legal_Granting_Date_Month_Global = parseInt("02", 8);
+      ssn.Legal_Granting_Date_Month_Global = 02;
     } else if (Legal_grating_month_check == "march") {
-      ssn.Legal_Granting_Date_Month_Global = parseInt("03", 8);
+      ssn.Legal_Granting_Date_Month_Global = 03;
     } else if (Legal_grating_month_check == "april") {
-      ssn.Legal_Granting_Date_Month_Global = parseInt("04", 8);
+      ssn.Legal_Granting_Date_Month_Global = 04;
     } else if (Legal_grating_month_check == "may") {
-      ssn.Legal_Granting_Date_Month_Global = parseInt("05", 8);
+      ssn.Legal_Granting_Date_Month_Global = 05;
     } else if (Legal_grating_month_check == "june") {
-      ssn.Legal_Granting_Date_Month_Global = parseInt("06", 8);
+      ssn.Legal_Granting_Date_Month_Global = 06;
     } else if (Legal_grating_month_check == "july") {
-      ssn.Legal_Granting_Date_Month_Global = parseInt("07", 8);
+      ssn.Legal_Granting_Date_Month_Global = 07;
     } else if (Legal_grating_month_check == "august") {
-      ssn.Legal_Granting_Date_Month_Global = parseInt("08", 8);
+      ssn.Legal_Granting_Date_Month_Global = 08;
     } else if (Legal_grating_month_check == "september") {
-      ssn.Legal_Granting_Date_Month_Global = parseInt("09", 8);
+      ssn.Legal_Granting_Date_Month_Global = 09;
     } else if (Legal_grating_month_check == "october") {
       ssn.Legal_Granting_Date_Month_Global = 10;
     } else if (Legal_grating_month_check == "november") {
@@ -136,6 +127,7 @@ router.get("/", (req, res) => {
     ssn.Goods_or_Services_Error = false;
     ssn.Spending_Region_Error = false;
     ssn.Spending_Sector_Error = false;
+    ssn.SC_Not_active = false;
     SubsidyArraySize = 0;
 
     isCallfromEditAward = true;

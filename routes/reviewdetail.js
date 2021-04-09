@@ -245,7 +245,7 @@ router.post("/", async (req, res) => {
 
       if (
         Subsidy_Instrument == "Other" &&
-        Subsidy_Instrument_Other.length > 255
+        Subsidy_Instrument_Other.length > 249
       ) {
         ssn.Subsidy_Instrument_Other_255_Error = true;
         ssn.Subsidy_Instrument_Other_Error = false;
@@ -298,7 +298,7 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
-      if (Beneficiary_Name.length > 249) {
+      if (Beneficiary_Name != "" && Beneficiary_Name.length > 249) {
         ssn.Beneficiary_Name_Error = false;
         ssn.Beneficiary_Name_255_Error = true;
         ssn.SubsidyErrors[Additem] =
