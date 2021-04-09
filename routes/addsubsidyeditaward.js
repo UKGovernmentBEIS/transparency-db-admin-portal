@@ -70,29 +70,29 @@ router.get("/", (req, res) => {
     ssn.Legal_Granting_Date_Day_Global = Legal_date_split[0];
     var Legal_grating_month_check = Legal_date_split[1].toLowerCase();
     if (Legal_grating_month_check == "january") {
-      ssn.Legal_Granting_Date_Month_Global = 01;
+      ssn.Legal_Granting_Date_Month_Global = "01";
     } else if (Legal_grating_month_check == "february") {
-      ssn.Legal_Granting_Date_Month_Global = 02;
+      ssn.Legal_Granting_Date_Month_Global = "02";
     } else if (Legal_grating_month_check == "march") {
-      ssn.Legal_Granting_Date_Month_Global = 03;
+      ssn.Legal_Granting_Date_Month_Global = "03";
     } else if (Legal_grating_month_check == "april") {
-      ssn.Legal_Granting_Date_Month_Global = 04;
+      ssn.Legal_Granting_Date_Month_Global = "04";
     } else if (Legal_grating_month_check == "may") {
-      ssn.Legal_Granting_Date_Month_Global = 05;
+      ssn.Legal_Granting_Date_Month_Global = "05";
     } else if (Legal_grating_month_check == "june") {
-      ssn.Legal_Granting_Date_Month_Global = 06;
+      ssn.Legal_Granting_Date_Month_Global = "06";
     } else if (Legal_grating_month_check == "july") {
-      ssn.Legal_Granting_Date_Month_Global = 07;
+      ssn.Legal_Granting_Date_Month_Global = "07";
     } else if (Legal_grating_month_check == "august") {
-      ssn.Legal_Granting_Date_Month_Global = 08;
+      ssn.Legal_Granting_Date_Month_Global = "08";
     } else if (Legal_grating_month_check == "september") {
-      ssn.Legal_Granting_Date_Month_Global = 09;
+      ssn.Legal_Granting_Date_Month_Global = "09";
     } else if (Legal_grating_month_check == "october") {
-      ssn.Legal_Granting_Date_Month_Global = 10;
+      ssn.Legal_Granting_Date_Month_Global = "10";
     } else if (Legal_grating_month_check == "november") {
-      ssn.Legal_Granting_Date_Month_Global = 11;
+      ssn.Legal_Granting_Date_Month_Global = "11";
     } else if (Legal_grating_month_check == "december") {
-      ssn.Legal_Granting_Date_Month_Global = 12;
+      ssn.Legal_Granting_Date_Month_Global = "12";
     }
 
     ssn.Legal_Granting_Date_Year_Global = Legal_date_split[2];

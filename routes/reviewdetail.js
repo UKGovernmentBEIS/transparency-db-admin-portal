@@ -298,11 +298,11 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
-      if (Beneficiary_Name != "" && Beneficiary_Name.length > 249) {
+      if (Beneficiary_Name != "" && Beneficiary_Name.length > 255) {
         ssn.Beneficiary_Name_Error = false;
         ssn.Beneficiary_Name_255_Error = true;
         ssn.SubsidyErrors[Additem] =
-          "Recipient organisation name can only be of 249 characters or less";
+          "Recipient organisation name can only be of 255 characters or less";
         ssn.SubsidyFocus[Additem] = "#Beneficiary_Name";
         Additem = Additem + 1;
       }
