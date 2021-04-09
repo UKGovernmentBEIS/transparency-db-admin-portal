@@ -122,13 +122,12 @@
                             authority?
                         </p>
                         <input type="hidden" value="<%= azGrpId%>" name="azGrpId">
-                        <input type="hidden" name="gaid" value="<%= gaid %>">
-                        <input type="hidden" name="ganame" value="<%= ganame %>">
+                        <input type="hidden" name="gaid" value="<%= ssn.gaId %>">
 
                         <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
                             Yes, deactivate granting authority</button>
-                        <a href="/editreviewgrantingauthority?gaid=<%= gaid %>&ganame=<%= ganame %>"
-                            data-module="govuk-button" class="govuk-button govuk-button_sm govuk-button--secondary">
+                        <a href="/editreviewgrantingauthority?gaid=<%= ssn.gaId %>" data-module="govuk-button"
+                            class="govuk-button govuk-button_sm govuk-button--secondary">
                             Cancel
                         </a>
 
