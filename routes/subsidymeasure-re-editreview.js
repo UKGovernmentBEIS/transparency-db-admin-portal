@@ -1,3 +1,7 @@
+// ********************************************************************
+// Gov.UK transparency subsidy scheme add review details module
+// ********************************************************************
+
 const express = require("express");
 var session = require("express-session");
 const router = express.Router();
@@ -234,7 +238,7 @@ router.post("/", (req, res) => {
       if (!Budget) {
         ssn.Budget_Error = true;
         ssn.SubsidyErrors.push("Enter the budget");
-        ssn.SubsidyFocus.push("#Granting_Authority_Policy");
+        ssn.SubsidyFocus.push("#Budget");
         // Additem = Additem + 1;
       }
       if (!scheme_issued_start_day) {

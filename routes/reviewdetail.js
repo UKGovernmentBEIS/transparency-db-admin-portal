@@ -1,3 +1,7 @@
+// ********************************************************************
+// Gov.UK transparency subsidy award review details module
+// ********************************************************************
+
 const express = require("express");
 var session = require("express-session");
 const axios = require("axios");
@@ -241,7 +245,7 @@ router.post("/", async (req, res) => {
 
       if (
         Subsidy_Instrument == "Other" &&
-        Subsidy_Instrument_Other.length > 255
+        Subsidy_Instrument_Other.length > 249
       ) {
         ssn.Subsidy_Instrument_Other_255_Error = true;
         ssn.Subsidy_Instrument_Other_Error = false;
@@ -294,11 +298,11 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
-      if (Beneficiary_Name.length > 249) {
+      if (Beneficiary_Name != "" && Beneficiary_Name.length > 255) {
         ssn.Beneficiary_Name_Error = false;
         ssn.Beneficiary_Name_255_Error = true;
         ssn.SubsidyErrors[Additem] =
-          "Recipient organisation name can only be of 249 characters or less";
+          "Recipient organisation name can only be of 255 characters or less";
         ssn.SubsidyFocus[Additem] = "#Beneficiary_Name";
         Additem = Additem + 1;
       }

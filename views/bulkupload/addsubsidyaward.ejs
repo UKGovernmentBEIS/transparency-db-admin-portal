@@ -195,17 +195,18 @@
 
         <% } %>
 
-        <%  if(isCallfromEditAward ) { %>
-        <h1 class="govuk-heading-xl">Edit subsidy award <%= ssn.Edit_Award_Number_global %></h1>
-        <% } else { %>
-        <h1 class="govuk-heading-xl">Add a subsidy award</h1>
-        <% } %>
+
         <!-- <a rel="external" target="_blank" class="govuk-link head-right govuk-relative-position_title" href="./assets/files/HelpDocumentAddSubsidyAwards.pdf" >
         <p >Download the help file </p>
       </a> -->
 
 
         <div class="govuk-grid-column-two-thirds">
+          <%  if(isCallfromEditAward ) { %>
+          <h1 class="govuk-heading-xl">Edit subsidy award <%= ssn.Edit_Award_Number_global %></h1>
+          <% } else { %>
+          <h1 class="govuk-heading-xl">Add a subsidy award</h1>
+          <% } %>
           <form id="myform" action="/reviewdetail" method="POST">
             <div class="govuk-form-group">
               <label class="govuk-label" for="Subsidy_award_label">
@@ -245,11 +246,18 @@
               <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
                 <span class="govuk-visually-hidden">Error:</span> Enter a valid subsidy control number or name
               </span>
-
+              <%  if(isCallfromEditAward ) { %>
+              <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                aria-describedby="Subsidy_Control_Number-hint" readonly
+                <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global%>"
+                <% } %> />
+              <% } else { %>
               <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
                 id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
                 aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
                 value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
+              <% } %>
             </div>
             <% } else if(ssn.SC_Not_active) {%>
             <div class="govuk-form-group govuk-form-group--error">
@@ -276,11 +284,18 @@
               <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
                 <span class="govuk-visually-hidden">Error:</span> Subsidy control number is not active
               </span>
-
+              <%  if(isCallfromEditAward ) { %>
+              <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                aria-describedby="Subsidy_Control_Number-hint" readonly
+                <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global%>"
+                <% } %> />
+              <% } else { %>
               <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
                 id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
                 aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
                 value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
+              <% } %>
             </div>
             <% } else if(ssn.Subsidy_Adhoc_Error) {%>
             <div class="govuk-form-group govuk-form-group--error">
@@ -308,11 +323,18 @@
                 <span class="govuk-visually-hidden">Error:</span> Scheme type is adhoc hence subsidy control number
                 cannot assigned to another award.
               </span>
-
+              <%  if(isCallfromEditAward ) { %>
+              <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                aria-describedby="Subsidy_Control_Number-hint" readonly
+                <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global%>"
+                <% } %> />
+              <% } else { %>
               <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
                 id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
                 aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
                 value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
+              <% }  %>
             </div>
             <% } else { %>
 
@@ -336,10 +358,18 @@
               <!-- <div id="Subsidy_Control_Number-hint" class="govuk-hint">
                 For example, SC92138. This must match the subsidy scheme that this award is related to.
               </div> -->
+              <%  if(isCallfromEditAward ) { %>
+              <input class="govuk-input govuk-input--width-30" id="Subsidy_Control_Number"
+                placeholder="SC number or name" name="Subsidy_Control_Number_Name" type="text"
+                aria-describedby="Subsidy_Control_Number-hint" readonly
+                <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global %>"
+                <% } %> />
+              <% } else { %>
               <input class="govuk-input govuk-input--width-30" id="Subsidy_Control_Number"
                 placeholder="SC number or name" name="Subsidy_Control_Number_Name" type="text"
                 aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
                 value="<%= ssn.Subsidy_Control_Number_Name_Global %>" <% } %> />
+              <% }  %>
             </div>
             <% }  %>
             <!-- ***************************************  -->
@@ -1448,7 +1478,7 @@
 
 
               <span class="govuk-error-message" id="Beneficiary_Name_Error">
-                <span class="govuk-visually-hidden">Error:</span> Recipient organisation name can only be of 249
+                <span class="govuk-visually-hidden">Error:</span> Recipient organisation name can only be of 255
                 characters or less
               </span>
 

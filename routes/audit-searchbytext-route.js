@@ -1,5 +1,5 @@
 // ********************************************************************
-// Gov.UK transparency subsidy awards routing module
+// Gov.UK transparency subsidy audits search by text module
 // ********************************************************************
 
 const express = require("express");

@@ -1,5 +1,5 @@
 // ********************************************************************
-// Gov.UK public user search page outing
+// Gov.UK transparency subsidy scheme edit cancel module
 // ********************************************************************
 
 const express = require("express");
@@ -23,8 +23,8 @@ router.get("/", async (req, res) => {
     res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
     scNumber = req.query.scheme;
-    
-    res.render("bulkupload/subsidymeasure-edit-cancel", { scNumber});
+
+    res.render("bulkupload/subsidymeasure-edit-cancel", { scNumber });
   }
 });
 

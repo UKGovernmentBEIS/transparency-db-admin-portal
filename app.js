@@ -64,6 +64,7 @@ app.use(
 console.log("Start of the application");
 app.get("/", async (req, res) => {
   var ssn = "";
+
   console.log("Landing root route");
   var id_token = req.header("x-ms-token-aad-id-token");
 
@@ -720,8 +721,8 @@ app.use("/deactivategrantingauthority", deactivategrantingauthority);
 var deactivatedGA = require("./routes/grantingauthority-deactivated-successfully");
 app.use("/gadeactivated", deactivatedGA);
 
-var choosedashboard = require("./routes/choosedashboard");
-app.use("/choosedashboard", choosedashboard);
+// var choosedashboard = require("./routes/choosedashboard");
+// app.use("/choosedashboard", choosedashboard);
 
 var mysubsidymeasures = require("./routes/mysubsidymeasures");
 app.use("/mysubsidymeasures", mysubsidymeasures);

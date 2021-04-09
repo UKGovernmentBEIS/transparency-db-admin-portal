@@ -1,3 +1,7 @@
+// ********************************************************************
+// Gov.UK transparency signout module
+// ********************************************************************
+
 const express = require("express");
 var session = require("express-session");
 const router = express.Router();
@@ -45,10 +49,6 @@ router.get("/", (req, res) => {
           //   var opts = merge({ expires: new Date(1), path: '/' }, options);
 
           //   return this.cookie(CookeiNameExtract, '', opts); }
-        });
-
-        CookeiNames.forEach(function (items1) {
-          // console.log("itesm1:" + items1);
         });
 
         //res.set('x-ms-token-aad-id-token', '');

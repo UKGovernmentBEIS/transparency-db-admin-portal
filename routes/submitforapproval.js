@@ -1,3 +1,7 @@
+// ********************************************************************
+// Gov.UK transparency subsidy award submit for approval or publish module
+// ********************************************************************
+
 const express = require("express");
 var session = require("express-session");
 const router = express.Router();
@@ -112,8 +116,11 @@ router.post("/", async (req, res) => {
     };
 
     if (isCallfromEditAward) {
+      if (ssn.dashboard_roles != "Granting Authority Encoder")
+        status = "Published";
+      else status = "Awaiting Approval";
       const updateAwardRequest = {
-        awardNumber: ssn.Edit_Award_Number_global.trim(),
+        awardNumber: ssn.Edit_Award_Number_global,
         subsidyControlTitle: ssn.Subsidy_Measure_Title_Global.trim(),
         subsidyControlNumber: ssn.Subsidy_Control_Number_Global.trim(),
         nationalIdType: ssn.National_ID_Type_Global.trim(),
@@ -131,6 +138,7 @@ router.post("/", async (req, res) => {
         spendingSector: ssn.Spending_Sector_Global.trim(),
         subsidyObjectiveOther: ssn.Subsidy_Objective_Other_Global.trim(),
         subsidyInstrumentOther: ssn.Subsidy_Instrument_Other_Global.trim(),
+        status: status,
       };
 
       var data = JSON.parse(JSON.stringify(updateAwardRequest));
@@ -143,7 +151,7 @@ router.post("/", async (req, res) => {
     try {
       if (isCallfromEditAward) {
         var apidata = await axios.put(
-          beis_url_publishing + "/award",
+          beis_url_publishing + "/award/" + ssn.Edit_Award_Number_global,
           data,
           ssn.UserPrincileObjectGlobal
         );
