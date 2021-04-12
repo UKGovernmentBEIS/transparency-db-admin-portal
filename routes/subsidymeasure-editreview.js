@@ -76,11 +76,11 @@ router.get("/", async (req, res) => {
       // ssn.Scheme_Legal_Granting_End_Date_Day = date[0];
       // ssn.Scheme_Legal_Granting_End_Date_Year = date[2];
 
-      if (ssn.dashboard_roles !== "Granting Authority Encoder") {
-        res.render("bulkupload/subsidymeasure-editreview");
-      } else {
-        res.render("bulkupload/notAuthorized");
-      }
+      // if (ssn.dashboard_roles !== "Granting Authority Encoder") {
+      res.render("bulkupload/subsidymeasure-editreview");
+      // } else {
+      //   res.render("bulkupload/notAuthorized");
+      // }
     } catch (err) {
       console.error(err);
       if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
