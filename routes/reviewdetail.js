@@ -553,13 +553,13 @@ router.post("/", async (req, res) => {
 
           searchschemes = apidata.data;
 
-          ssn.Subsidy_Measure_Title_Global =
-            searchschemes.schemes[0].subsidyMeasureTitle;
-          ssn.Subsidy_Control_Number_Global = searchschemes.schemes[0].scNumber;
-          ssn.Subsidy_Control_Number_Global_Substring = ssn.Subsidy_Control_Number_Global.substring(
-            2,
-            10
-          );
+          // ssn.Subsidy_Measure_Title_Global =
+          //   searchschemes.schemes[0].subsidyMeasureTitle;
+          // ssn.Subsidy_Control_Number_Global = searchschemes.schemes[0].scNumber;
+          // ssn.Subsidy_Control_Number_Global_Substring = ssn.Subsidy_Control_Number_Global.substring(
+          //   2,
+          //   10
+          // );
           console.log("Status: " + JSON.stringify(searchschemes));
           if (searchschemes.schemes.length == 1) {
             ssn.Subsidy_Measure_Title_Global =
@@ -587,7 +587,7 @@ router.post("/", async (req, res) => {
               });
             }
           } else {
-            for (var item = 0; item < searchschemes.schemes.length; i++) {
+            for (var item = 0; item < searchschemes.schemes.length; item++) {
               // searchschemes.schemes.forEach(function (item) {
               console.log(item.status);
               if (searchschemes.schemes[item].status === "Active") {
