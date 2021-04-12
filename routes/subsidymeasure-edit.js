@@ -132,10 +132,35 @@ router.get("/", async (req, res) => {
           res.render("bulkupload/notAuthorized");
       }
     } else {
+      var month = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+
+      ssn.Scheme_Start_Month_Global =
+        month.indexOf(ssn.GetMonthName) + 1 < "10"
+          ? "0" + (month.indexOf(ssn.GetMonthName) + 1)
+          : month.indexOf(ssn.GetMonthName) + 1;
+
+      ssn.Scheme_End_Month_Global =
+        month.indexOf(ssn.GetEndMonthName) + 1 < "10"
+          ? "0" + (month.indexOf(ssn.GetEndMonthName) + 1)
+          : month.indexOf(ssn.GetEndMonthName) + 1;
+
       const formatter = new Intl.NumberFormat("en-GB");
 
-      if (ssn.Budget_Global.includes(","))
-        Budget = ssn.Budget_Global.split(",").join("");
+      if (formatedCurrency.includes(","))
+        Budget = formatedCurrency.split(",").join("");
       formatedCurrency = formatter.format(Budget);
       if (ssn.dashboard_roles !== "Granting Authority Encoder") {
         res.render("bulkupload/subsidymeasures-edit", { formatedCurrency });
