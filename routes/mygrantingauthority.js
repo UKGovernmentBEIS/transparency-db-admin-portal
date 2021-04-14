@@ -205,8 +205,8 @@ router.get("/", async (req, res) => {
         //  ssn.frontend_totalRecordsPerPage = 10;
       }
       data = {
-        grantingAuthorityName: ssn.grantingAuthorityName_Global,
-        grantingAuthorityID: grantingAuthorityID_global,
+        grantingAuthorityName: ssn.grantingAuthorityName_Global.trim(),
+        grantingAuthorityID: grantingAuthorityID_global.trim(),
         pageNumber: current_page,
         status: status,
         // totalRecordsPerPage: 10,
@@ -422,7 +422,7 @@ router.post("/", async (req, res) => {
     }
 
     if (req.body.hasOwnProperty("grantingAuthorityName")) {
-      grantingAuthority = gatype.test(req.body.grantingAuthorityName);
+      grantingAuthority = gatype.test(req.body.grantingAuthorityName.trim());
       if (grantingAuthority) {
         grantingAuthorityID_global = req.body.grantingAuthorityName;
         grantingAuthorityName = req.body.grantingAuthorityName;
@@ -436,8 +436,8 @@ router.post("/", async (req, res) => {
       }
     }
     const data = {
-      grantingAuthorityName: ssn.grantingAuthorityName_Global,
-      grantingAuthorityID: grantingAuthorityID_global,
+      grantingAuthorityName: ssn.grantingAuthorityName_Global.trim(),
+      grantingAuthorityID: grantingAuthorityID_global.trim(),
       pageNumber: 1,
       status: status,
       totalRecordsPerPage: ssn.frontend_totalRecordsPerPage,

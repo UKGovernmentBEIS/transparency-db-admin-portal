@@ -32,7 +32,7 @@ router.post("/", async (req, res) => {
     Award_selected_status = ssn.awards_status;
 
     Base_URL = beis_url_accessmanagement + "/accessmanagement/searchresults?";
-    Award_text = "searchName=" + ssn.Award_search_text;
+    Award_text = "searchName=" + ssn.Award_search_text.trim();
     Award_status = "status=" + Award_selected_status;
     Award_concate = "&";
     Award_page = "page=" + Award_page;
