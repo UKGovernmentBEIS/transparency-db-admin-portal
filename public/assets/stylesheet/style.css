@@ -147,3 +147,7 @@ table tbody tr:hover{
 /* .govuk-table__row th {
   position: relative;
 } */
+
+.govuk-select {
+  background-color: white;
+}
