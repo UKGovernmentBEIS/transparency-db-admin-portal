@@ -181,7 +181,7 @@ router.post("/", async (req, res) => {
       if (!Subsidy_Control_Number_Name) {
         ssn.Subsidy_Control_Number_Error = true;
         ssn.SubsidyErrors[Additem] =
-          "Enter the either subsidy control number (Or) subsidy scheme name";
+          "You must enter either a subsidy control number or a subsidy scheme title.";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
         Additem = Additem + 1;
         // ssn.Subsidy_Measure_Title_Error = true;
@@ -190,9 +190,16 @@ router.post("/", async (req, res) => {
         // Additem = Additem + 1;
       }
 
-      // if (!Subsidy_Measure_Title) {
-
-      // }
+      if (
+        Subsidy_Control_Number_Name != "" &&
+        Subsidy_Control_Number_Name.length > 255
+      ) {
+        ssn.Subsidy_Measure_Title_Error = true;
+        ssn.SubsidyErrors[Additem] =
+          "The subsidy scheme name must be less than 255 characters. ";
+        ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
+        Additem = Additem + 1;
+      }
       // if (!Subsidy_Adhoc) {
       //   ssn.Subsidy_Adhoc_Error = true;
       //   ssn.SubsidyErrors[Additem] = "     Select the adhoc subsidy scheme";
@@ -202,7 +209,8 @@ router.post("/", async (req, res) => {
 
       if (Subsidy_Objective == "") {
         ssn.Subsidy_Objective_Error = true;
-        ssn.SubsidyErrors[Additem] = "     Select the subsidy purpose";
+        ssn.SubsidyErrors[Additem] =
+          " You must select the purpose of the subsidy.";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Objective";
         Additem = Additem + 1;
       }
@@ -211,7 +219,7 @@ router.post("/", async (req, res) => {
         ssn.Subsidy_Objective_Other_Error = true;
         ssn.Subsidy_Objective_Other_255_Error = false;
         ssn.SubsidyErrors[Additem] =
-          "     Enter the subsidy purpose for other category";
+          "You must enter the details of the subsidy purpose.";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Objective_Other";
         Additem = Additem + 1;
       }
@@ -223,14 +231,14 @@ router.post("/", async (req, res) => {
         ssn.Subsidy_Objective_Other_255_Error = true;
         ssn.Subsidy_Objective_Other_Error = false;
         ssn.SubsidyErrors[Additem] =
-          "Subsidy purpose for other category can only be of 249 characters";
+          "The subsidy purpose must be less than 255 characters.";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Objective_Other";
         Additem = Additem + 1;
       }
 
       if (Subsidy_Instrument == "") {
         ssn.Subsidy_Instrument_Error = true;
-        ssn.SubsidyErrors[Additem] = "     Select the subsidy type";
+        ssn.SubsidyErrors[Additem] = "You must select a subsidy type.";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Instrument";
         Additem = Additem + 1;
       }
@@ -238,7 +246,7 @@ router.post("/", async (req, res) => {
       if (Subsidy_Instrument == "Other" && Subsidy_Instrument_Other == "") {
         ssn.Subsidy_Instrument_Other_Error = true;
         ssn.SubsidyErrors[Additem] =
-          "     Enter the subsidy type for other category";
+          "You must enter the details of the subsidy type";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Instrument_Other";
         Additem = Additem + 1;
       }
@@ -250,7 +258,7 @@ router.post("/", async (req, res) => {
         ssn.Subsidy_Instrument_Other_255_Error = true;
         ssn.Subsidy_Instrument_Other_Error = false;
         ssn.SubsidyErrors[Additem] =
-          " Subsidy type for other category can only be of 249  characters";
+          "The subsidy type must be less than 255 characters. ";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Instrument_Other";
         Additem = Additem + 1;
       }
@@ -262,8 +270,7 @@ router.post("/", async (req, res) => {
         Subsidy_Instrument != "Tax measures (tax credit, or tax/duty exemption)"
       ) {
         ssn.Subsidy_Element_Full_Amount_Error = true;
-        ssn.SubsidyErrors[Additem] =
-          "     Enter the subsidy element full amount";
+        ssn.SubsidyErrors[Additem] = "You must enter the subsidy amount.";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Element_Full_Amount";
         Additem = Additem + 1;
       } else if (
@@ -271,21 +278,24 @@ router.post("/", async (req, res) => {
         Subsidy_Instrument.includes("Tax measures")
       ) {
         ssn.Subsidy_Full_Amount_Range_Error = true;
-        ssn.SubsidyErrors[Additem] = "     Enter the subsidy full amount range";
+        ssn.SubsidyErrors[Additem] =
+          " You must select a subsidy range for tax measure subsidies.";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Full_Amount_Range";
         Additem = Additem + 1;
       }
 
       if (!National_ID_Type) {
         ssn.National_ID_Type_Error = true;
-        ssn.SubsidyErrors[Additem] = "     Choose the national id type";
+        ssn.SubsidyErrors[Additem] =
+          "You must select an ID type for the recipient organisation.";
         ssn.SubsidyFocus[Additem] = "#National_ID_Type";
         Additem = Additem + 1;
       }
 
       if (!National_ID_Number) {
         ssn.National_ID_Number_Error = true;
-        ssn.SubsidyErrors[Additem] = "     Enter the national id number";
+        ssn.SubsidyErrors[Additem] =
+          "You must enter an ID number for the ID type that you have selected.";
         ssn.SubsidyFocus[Additem] = "#National_ID_Number";
         Additem = Additem + 1;
       }
@@ -293,7 +303,7 @@ router.post("/", async (req, res) => {
       if (!Beneficiary_Name) {
         ssn.Beneficiary_Name_Error = true;
         ssn.SubsidyErrors[Additem] =
-          "     Enter the recipient organisation name";
+          "You must enter the name of the recipient organisation";
         ssn.SubsidyFocus[Additem] = "#Beneficiary_Name";
         Additem = Additem + 1;
       }
@@ -302,14 +312,14 @@ router.post("/", async (req, res) => {
         ssn.Beneficiary_Name_Error = false;
         ssn.Beneficiary_Name_255_Error = true;
         ssn.SubsidyErrors[Additem] =
-          "Recipient organisation name can only be of 255 characters or less";
+          "The recipient name must be less than 255 characters.";
         ssn.SubsidyFocus[Additem] = "#Beneficiary_Name";
         Additem = Additem + 1;
       }
 
       if (!Size_of_the_Organisation) {
         ssn.Size_of_the_Organisation_Error = true;
-        ssn.SubsidyErrors[Additem] = "     Choose the size of the organisation";
+        ssn.SubsidyErrors[Additem] = "You must select an organisation size. ";
         ssn.SubsidyFocus[Additem] = "#Size_of_the_Organisation";
         Additem = Additem + 1;
       }
@@ -317,7 +327,8 @@ router.post("/", async (req, res) => {
       if (!Granting_Authority_Name) {
         ssn.Granting_Authority_Name_Error = true;
         ssn.Granting_Authority_Valid_Name_Error = false;
-        ssn.SubsidyErrors[Additem] = "     Enter the granting authority name";
+        ssn.SubsidyErrors[Additem] =
+          "You must enter the name of the granting authority.";
         ssn.SubsidyFocus[Additem] = "#Granting_Authority_Name";
         Additem = Additem + 1;
       }
@@ -325,7 +336,7 @@ router.post("/", async (req, res) => {
       if (!Legal_Granting_Date_Day) {
         ssn.Legal_Granting_Date_Day_Error = true;
         ssn.SubsidyErrors[Additem] =
-          "     Enter the legal granting day of the date";
+          "You must enter the date that the subsidy was awarded.";
         ssn.SubsidyFocus[Additem] = "#Legal_Granting_Date_Day";
         Additem = Additem + 1;
       }
@@ -420,21 +431,24 @@ router.post("/", async (req, res) => {
 
       if (!Goods_or_Services) {
         ssn.Goods_or_Services_Error = true;
-        ssn.SubsidyErrors[Additem] = "     Choose the Goods or Services";
+        ssn.SubsidyErrors[Additem] =
+          "You must select what the recipient organisation provides. This will be either goods or services.";
         ssn.SubsidyFocus[Additem] = "#Goods_or_Services";
         Additem = Additem + 1;
       }
 
       if (Spending_Region == "") {
         ssn.Spending_Region_Error = true;
-        ssn.SubsidyErrors[Additem] = "     Select the spending region";
+        ssn.SubsidyErrors[Additem] =
+          "You must select the region that the recipient organisation is based in.";
         ssn.SubsidyFocus[Additem] = "#Spending_Region";
         Additem = Additem + 1;
       }
 
       if (Spending_Sector == "") {
         ssn.Spending_Sector_Error = true;
-        ssn.SubsidyErrors[Additem] = "     Select the spending sector";
+        ssn.SubsidyErrors[Additem] =
+          "You must select the sector that the recipient organisation belongs to.";
         ssn.SubsidyFocus[Additem] = "#Spending_Sector";
         Additem = Additem + 1;
       }
