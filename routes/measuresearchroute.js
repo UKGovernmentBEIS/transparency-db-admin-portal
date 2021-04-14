@@ -48,7 +48,7 @@ router.post("/", async (req, res) => {
     ssn.sorting_order_pass = JSON.parse(sorting_order_interium);
 
     const data_request = {
-      searchName: ssn.Search_Text_Global,
+      searchName: ssn.Search_Text_Global.trim(),
       pageNumber: 1,
       totalRecordsPerPage: ssn.frontend_totalRecordsPerPage,
       sortBy: ssn.sorting_order_pass,
