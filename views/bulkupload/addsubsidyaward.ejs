@@ -244,7 +244,8 @@
               </details>
 
               <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
-                <span class="govuk-visually-hidden">Error:</span> Enter a valid subsidy control number or name
+                <span class="govuk-visually-hidden">Error:</span> You must enter either a subsidy control number or a
+                subsidy scheme title.
               </span>
               <%  if(isCallfromEditAward ) { %>
               <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
@@ -322,6 +323,45 @@
               <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
                 <span class="govuk-visually-hidden">Error:</span> Scheme type is adhoc hence subsidy control number
                 cannot assigned to another award.
+              </span>
+              <%  if(isCallfromEditAward ) { %>
+              <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                aria-describedby="Subsidy_Control_Number-hint" readonly
+                <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global%>"
+                <% } %> />
+              <% } else { %>
+              <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
+                value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
+              <% }  %>
+            </div>
+            <% } else if(ssn.Subsidy_Measure_Title_Error) {%>
+            <div class="govuk-form-group govuk-form-group--error">
+              <label class="govuk-label" for="Subsidy_Control_Number">
+                Subsidy control number or name
+              </label>
+              <!-- <div id="Subsidy_Control_Number-hint" class="govuk-hint">
+                      For example, SC92138. This must match the subsidy scheme that this award is related to.
+                    </div> -->
+              <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    What is a subsidy control number or name?
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  <b> Subsidy control number</b>
+                  <p>For example, SC92138. This must match the subsidy scheme that this award is related to.</p>
+                  <b> Subsidy control name</b>
+                  <p>This is the name of the subsidy scheme that this award is related to.</p>
+                </div>
+              </details>
+
+              <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
+                <span class="govuk-visually-hidden">Error:</span> The subsidy scheme name must be less than 255
+                characters.
               </span>
               <%  if(isCallfromEditAward ) { %>
               <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
@@ -528,7 +568,7 @@
               </label>
 
               <span class="govuk-error-message" id="Subsidy_Objective_Error">
-                <span class="govuk-visually-hidden">Error:</span> Select the subsidy purpose
+                <span class="govuk-visually-hidden">Error:</span> You must select the purpose of the subsidy.
               </span>
 
               <select class="govuk-select" id="Subsidy_Objective" name="Subsidy_Objective"
@@ -726,7 +766,7 @@
               </label>
 
               <span class="govuk-error-message" id="Subsidy_Objective_Other_Error">
-                <span class="govuk-visually-hidden">Error:</span> Enter a subsidy purpose for other category
+                <span class="govuk-visually-hidden">Error:</span> You must enter the details of the subsidy purpose.
               </span>
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Objective_Other"
@@ -741,7 +781,7 @@
               </label>
 
               <span class="govuk-error-message" id="Subsidy_Objective_Other_Error">
-                <span class="govuk-visually-hidden">Error:</span> Subsidy purpose for other category can only be of 249
+                <span class="govuk-visually-hidden">Error:</span> The subsidy purpose must be less than 255 characters.
                 characters
               </span>
 
@@ -775,7 +815,7 @@
               </label>
 
               <span class="govuk-error-message" id="Subsidy_Instrument_Error">
-                <span class="govuk-visually-hidden">Error:</span> Select the subsidy type
+                <span class="govuk-visually-hidden">Error:</span> You must select a subsidy type.
               </span>
 
               <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument"
@@ -917,7 +957,7 @@
               </label>
 
               <span class="govuk-error-message" id="Subsidy_Instrument_Other_Error">
-                <span class="govuk-visually-hidden">Error:</span> Enter a subsidy type for other category
+                <span class="govuk-visually-hidden">Error:</span>You must enter the details of the subsidy type.
               </span>
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Instrument_Other"
@@ -932,8 +972,7 @@
               </label>
 
               <span class="govuk-error-message" id="Subsidy_Instrument_Other_Error">
-                <span class="govuk-visually-hidden">Error:</span> Subsidy type for other category can only be of 249
-                characters
+                <span class="govuk-visually-hidden">Error:</span> The subsidy type must be less than 255 characters
               </span>
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Instrument_Other"
@@ -1034,7 +1073,8 @@
                   </legend>
 
                   <span class="govuk-error-message" id="Subsidy_Full_Amount_Range_Error">
-                    <span class="govuk-visually-hidden">Error:</span> Select the Subsidy Full Amount Range
+                    <span class="govuk-visually-hidden">Error:</span> You must select a subsidy range for tax measure
+                    subsidies.
                   </span>
 
                   <select class="govuk-select" id="Subsidy_Full_Amount_Range" name="Subsidy_Full_Amount_Range">
@@ -1164,7 +1204,7 @@
                 </label>
 
                 <span class="govuk-error-message" id="Subsidy_Element_Full_Amount_Error">
-                  <span class="govuk-visually-hidden">Error:</span> Enter the subsidy element full amount
+                  <span class="govuk-visually-hidden">Error:</span> You must enter the subsidy amount.
                 </span>
                 <div class="govuk-input__wrapper">
                   <div class="govuk-input__prefix" aria-hidden="true">£</div>
@@ -1228,7 +1268,7 @@
               </label>
 
               <span class="govuk-error-message" id="Granting_Authority_Name_Error">
-                <span class="govuk-visually-hidden">Error:</span> Enter a granting authority name
+                <span class="govuk-visually-hidden">Error:</span> You must enter the name of the granting authority.
               </span>
 
               <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
@@ -1306,7 +1346,8 @@
                 </div>
 
                 <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
-                  <span class="govuk-visually-hidden">Error:</span> Enter the granting date
+                  <span class="govuk-visually-hidden">Error:</span> You must enter the date that the subsidy was
+                  awarded.
                 </span>
 
                 <details class="govuk-details" data-module="govuk-details">
@@ -1462,7 +1503,7 @@
 
 
               <span class="govuk-error-message" id="Beneficiary_Name_Error">
-                <span class="govuk-visually-hidden">Error:</span> Enter the recipient organisation name
+                <span class="govuk-visually-hidden">Error:</span> You must enter the name of the recipient organisation,
               </span>
 
 
@@ -1478,8 +1519,7 @@
 
 
               <span class="govuk-error-message" id="Beneficiary_Name_Error">
-                <span class="govuk-visually-hidden">Error:</span> Recipient organisation name can only be of 255
-                characters or less
+                <span class="govuk-visually-hidden">Error:</span> The recipient name must be less than 255 characters.
               </span>
 
 
@@ -1513,7 +1553,7 @@
 
 
                 <span class="govuk-error-message" id="Size_of_the_Organisation_Error">
-                  <span class="govuk-visually-hidden">Error:</span> Enter the organisation size
+                  <span class="govuk-visually-hidden">Error:</span> You must select an organisation size.
 
                 </span>
 
@@ -1662,7 +1702,8 @@
                 </legend>
 
                 <span class="govuk-error-message" id="National_ID_Type_Error">
-                  <span class="govuk-visually-hidden">Error:</span> Choose the id type
+                  <span class="govuk-visually-hidden">Error:</span> You must select an ID type for the recipient
+                  organisation.
                 </span>
 
 
@@ -1816,7 +1857,8 @@
               </div> -->
 
               <span class="govuk-error-message" id="National_ID_Number_Error">
-                <span class="govuk-visually-hidden">Error:</span> Enter the id number
+                <span class="govuk-visually-hidden">Error:</span>You must enter an ID number for the ID type that you
+                have selected.
               </span>
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="National_ID_Number"
@@ -1875,7 +1917,8 @@
                 </details>
 
                 <span class="govuk-error-message" id="Goods_or_Services_Error">
-                  <span class="govuk-visually-hidden">Error:</span> Enter the Goods or Services
+                  <span class="govuk-visually-hidden">Error:</span> You must select what the recipient organisation
+                  provides. This will be either goods or services.
                 </span>
                 <div class="govuk-radios ">
                   <div class="govuk-radios__item">
@@ -1974,7 +2017,9 @@
                 This is the region that the organisation is based in.
               </div>
               <span class="govuk-error-message" id="Spending_Region_Error">
-                <span class="govuk-visually-hidden">Error:</span> Enter the region
+                <span class="govuk-visually-hidden">Error:</span>You must select the region that the recipient
+                organisation is based in.
+
               </span>
 
               <select class="govuk-select" id="Spending_Region" name="Spending_Region">
@@ -2170,7 +2215,9 @@
                 Sector
               </label>
               <span class="govuk-error-message" id="Spending_Sector_Error">
-                <span class="govuk-visually-hidden">Error:</span> Enter the sector
+                <span class="govuk-visually-hidden">Error:</span> You must select the sector that the recipient
+                organisation belongs to.
+
               </span>
 
               <select class="govuk-select" id="Spending_Sector" name="Spending_Sector">

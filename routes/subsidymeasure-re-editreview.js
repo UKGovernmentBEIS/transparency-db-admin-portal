@@ -75,6 +75,8 @@ router.post("/", (req, res) => {
     formatedCurrency = formatter.format(Budget);
 
     ssn.Budget_Global = Budget;
+    ssn.Scheme_Start_Day_Global = scheme_issued_start_day;
+    ssn.Scheme_Start_Year_Global = scheme_issued_start_year;
 
     if (ssn.Subsidy_Adhoc_Global == "Yes") {
       ssn.Scheme_End_Day_Global = scheme_issued_start_day;

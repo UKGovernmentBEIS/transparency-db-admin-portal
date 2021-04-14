@@ -14,6 +14,41 @@ router.get("/", (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
+    ssn.Subsidy_Control_Number_Error = false;
+    ssn.Subsidy_Measure_Title_Error = false;
+    ssn.Subsidy_Measure_Title_255_Error = false;
+    ssn.Granting_Authority_URL_255_Error = false;
+    ssn.Granting_Authority_Policy_255_Error = false;
+    ssn.SC_Not_active = false;
+    ssn.Subsidy_Adhoc_Error = false;
+    ssn.Subsidy_Objective_Error = false;
+    ssn.Subsidy_Objective_Other_Error = false;
+    ssn.Subsidy_Objective_Other_255_Error = false;
+    ssn.Subsidy_Instrument_Other_255_Error = false;
+    ssn.Beneficiary_Name_255_Error = false;
+    ssn.Subsidy_Instrument_Error = false;
+    ssn.Subsidy_Full_Amount_Range_Exceed_Error = false;
+    ssn.Subsidy_Element_Full_Amount_Exceed_Error = false;
+    ssn.Subsidy_Instrument_Other_Error = false;
+    ssn.Subsidy_Element_Full_Amount_Error = false;
+    ssn.Subsidy_Full_Amount_Range_Error = false;
+    ssn.National_ID_Type_Error = false;
+    ssn.National_ID_Number_Error = false;
+    ssn.Beneficiary_Name_Error = false;
+    ssn.Size_of_the_Organisation_Error = false;
+    ssn.Granting_Authority_Name_Error = false;
+    ssn.Granting_Authority_Valid_Name_Error = false;
+    ssn.Legal_Granting_Date_Day_Error = false;
+    ssn.Legal_Granting_Date_Month_Error = false;
+    ssn.Legal_Granting_Date_Year_Error = false;
+    ssn.Goods_or_Services_Error = false;
+    ssn.Spending_Region_Error = false;
+    ssn.Spending_Sector_Error = false;
+    ssn.SubsidyErrors = [];
+    ssn.SubsidyFocus = [];
+
+    ssn.SubsidyArraySize = 0;
+
     ssn.Subsidy_Control_Number_Name_Global =
       fetchawarddetails.subsidyMeasure.scNumber;
     ssn.Subsidy_Measure_Title_Global =
