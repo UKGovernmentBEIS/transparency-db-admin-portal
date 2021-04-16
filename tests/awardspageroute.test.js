@@ -6,10 +6,12 @@ const index = require("../app");
 const request = require("supertest");
 const express = require("express");
 const app = express();
+var session = require("express-session");
 const bodyParser = require("body-parser");
 const axios = require("axios");
 jest.mock("axios");
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session);
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
@@ -21,7 +23,7 @@ const mockRequest = (sessionData, body) => ({
 
 const res = {};
 
-test("Unit testing for hide filter route Test for GET call", (done) => {
+test("Unit testing for hide filter route Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.nodata = "";
@@ -51,6 +53,12 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
       },
     ],
   };
+
+  global.totalSubsidyAward = "";
+  global.totalAwaitingAward = "";
+  global.totalPublishedAward = "";
+  global.totalInactiveAward = "";
+  global.totalRejectedAward = "";
 
   global.Award_sorting_field = "";
   global.Award_sorting = "";
@@ -94,10 +102,11 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
   request(app)
     .get("/awardspageroute", (req, res))
     .query({ page: "2" })
-    .expect(200, done);
+    .expect(200);
+  // expect(abcd).toBe(200);
 });
 
-test("Unit testing for filter route Test for GET call", (done) => {
+test("Unit testing for filter route Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.nodata = "";
@@ -133,6 +142,13 @@ test("Unit testing for filter route Test for GET call", (done) => {
       },
     ],
   };
+
+  global.totalSubsidyAward = "";
+  global.totalAwaitingAward = "";
+  global.totalPublishedAward = "";
+  global.totalInactiveAward = "";
+  global.totalRejectedAward = "";
+
   global.pageCount = 10;
   global.current_page_active = 1;
   global.previous_page = "";
@@ -167,6 +183,6 @@ test("Unit testing for filter route Test for GET call", (done) => {
   const res = {};
   request(app)
     .post("/awardspageroute", (req, res))
-    .expect(200, done);
-  //   expect(abcd).toBe(200);
+    .expect(200);
+  // expect(abcd).toBe(200);
 });

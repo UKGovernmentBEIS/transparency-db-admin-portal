@@ -6,8 +6,10 @@ const index = require("../app");
 const request = require("supertest");
 const express = require("express");
 const app = express();
+var session = require("express-session");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session);
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
@@ -18,7 +20,7 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -103,11 +105,11 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   request(app)
     .get("/measuresortroute", (req, res))
     .query({ page: "Scheme_Name" })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -196,11 +198,11 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   request(app)
     .get("/measuresortroute", (req, res))
     .query({ page: "Scheme_Name" })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -288,11 +290,11 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   request(app)
     .get("/measuresortroute", (req, res))
     .query({ page: "Control_Number" })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -381,11 +383,11 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   request(app)
     .get("/measuresortroute", (req, res))
     .query({ page: "Control_Number" })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -474,11 +476,11 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   request(app)
     .get("/measuresortroute", (req, res))
     .query({ page: "Granting_Authority" })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -567,11 +569,11 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   request(app)
     .get("/measuresortroute", (req, res))
     .query({ page: "Granting_Authority" })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -660,11 +662,11 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   request(app)
     .get("/measuresortroute", (req, res))
     .query({ page: "Start_Date" })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -753,11 +755,11 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   request(app)
     .get("/measuresortroute", (req, res))
     .query({ page: "Start_Date" })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -846,11 +848,11 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   request(app)
     .get("/measuresortroute", (req, res))
     .query({ page: "End_Date" })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -939,11 +941,11 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   request(app)
     .get("/measuresortroute", (req, res))
     .query({ page: "End_Date" })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -1032,11 +1034,11 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   request(app)
     .get("/measuresortroute", (req, res))
     .query({ page: "Duration" })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -1122,11 +1124,11 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   request(app)
     .get("/measuresortroute", (req, res))
     .query({ page: "Duration" })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -1212,11 +1214,11 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   request(app)
     .get("/measuresortroute", (req, res))
     .query({ page: "Budget" })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -1305,6 +1307,6 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   request(app)
     .get("/measuresortroute", (req, res))
     .query({ page: "Budget" })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });

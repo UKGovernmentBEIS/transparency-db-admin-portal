@@ -6,8 +6,10 @@ const index = require("../app");
 const request = require("supertest");
 const express = require("express");
 const app = express();
+var session = require("express-session");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session);
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
@@ -19,13 +21,22 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
+test("Unit testing for Subsidy Award Fetch Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   const res = {};
   global.noresult = "";
   global.nodata = "";
   global.dashboard_ga_name = "";
+
+  global.totalSubsidyAward = "";
+  global.totalAwaitingAward = "";
+  global.totalPublishedAward = "";
+  global.totalInactiveAward = "";
+  global.totalRejectedAward = "";
+
+  global.buttonValue = "";
+  global.awardnumber = "";
 
   global.Award_sorting_field = "";
   global.Award_sorting = "";
@@ -120,6 +131,6 @@ test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
   request(app)
     .post("/subsidyawardrejectreason", (req, res))
     .send({ search_award_text: "" })
-    //   expect(abcd).toBe(200);
-    .expect(200, done);
+    // expect(abcd).toBe(200);
+    .expect(200);
 });

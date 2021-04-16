@@ -6,8 +6,10 @@ const index = require("../app");
 const request = require("supertest");
 const express = require("express");
 const app = express();
+var session = require("express-session");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session);
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
@@ -19,7 +21,7 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for BEIS Admin route Test for POST call", (done) => {
+test("Unit testing for BEIS Admin route Test for POST call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -86,10 +88,10 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   request(app)
     .get("/measurespageperroute", (req, res))
     .query({ sort: 10 })
-    .expect(200, done);
+    .expect(200);
 });
 
-test("Unit testing for BEIS Admin route Test for POST call", (done) => {
+test("Unit testing for BEIS Admin route Test for POST call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -121,6 +123,7 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   };
 
   isAddSubsidyPrimarycall = false;
+  global.ssn = {};
   ssn.GetMonthName = "";
   SubsidyErrors = [];
   SubsidyFocus = [];
@@ -161,6 +164,6 @@ test("Unit testing for BEIS Admin route Test for POST call", (done) => {
   request(app)
     .get("/measurespageperroute", (req, res))
     .query({ sort: 1 })
-    .expect(200, done);
+    .expect(200);
   // expect(abcd).toBe(200);
 });
