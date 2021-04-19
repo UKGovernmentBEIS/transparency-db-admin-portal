@@ -6,21 +6,24 @@ const index = require("../app");
 const request = require("supertest");
 const express = require("express");
 const app = express();
+var session = require("express-session");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session);
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
 const axios = require("axios");
 jest.mock("axios");
-const mockRequest = (sessionData, body) => ({
-  session: { data: sessionData },
-  body,
-});
+const mockRequest = (sessionData, body) => {
+  return {
+    session: { dashboard_roles_object_id1: "", dashboard_roles_object_id2: "" },
+  };
+};
 
 const res = {};
 
-test("Unit testing for spending filter route - Test for GET call", (done) => {
+test("Unit testing for spending filter route - Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.SubsidyArraySize = 0;
@@ -97,6 +100,6 @@ test("Unit testing for spending filter route - Test for GET call", (done) => {
       Spending_Region_Global: "",
       Spending_Sector_Global: "",
     })
-    .expect(200, done);
+    .expect(200);
   // expect(resp).toBe(200);
 });

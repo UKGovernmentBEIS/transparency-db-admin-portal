@@ -6,8 +6,10 @@ const index = require("../app");
 const request = require("supertest");
 const express = require("express");
 const app = express();
+var session = require("express-session");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session);
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
@@ -18,7 +20,7 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.UserPrincileObjectGlobal = {};
   global.dashboard_roles = "";
@@ -49,9 +51,9 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   //   global.Subsidy_Measure_Title_Error = false;
   //   global.Subsidy_Adhoc_Error = false;
   //   global.Granting_Authority_Name_Error = false;
-  //   global.scheme_issued_start_year_Error = false;
-  //   global.scheme_issued_start_month_Error = false;
-  //   global.scheme_issued_start_day_Error = false;
+  //   global.ssn.scheme_issued_start_year_Error = false;
+  //   global.ssn.scheme_issued_start_month_Error = false;
+  //   global.ssn.scheme_issued_start_day_Error = false;
   //   global.scheme_issued_end_year_Error = false;
   //   global.scheme_issued_end_month_Error = false;
   //   global.scheme_issued_end_day_Error = false;
@@ -73,11 +75,11 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   request(app)
     .post("/subsidymeasurepublished", (req, res))
     .send({ button_value: "add_measure" })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   const res = {};
@@ -108,9 +110,9 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   //   global.Subsidy_Measure_Title_Error = false;
   //   global.Subsidy_Adhoc_Error = false;
   //   global.Granting_Authority_Name_Error = false;
-  //   global.scheme_issued_start_year_Error = false;
-  //   global.scheme_issued_start_month_Error = false;
-  //   global.scheme_issued_start_day_Error = false;
+  //   global.ssn.scheme_issued_start_year_Error = false;
+  //   global.ssn.scheme_issued_start_month_Error = false;
+  //   global.ssn.scheme_issued_start_day_Error = false;
   //   global.scheme_issued_end_year_Error = false;
   //   global.scheme_issued_end_month_Error = false;
   //   global.scheme_issued_end_day_Error = false;
@@ -132,6 +134,6 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   request(app)
     .post("/subsidymeasurepublished", (req, res))
     .send({ button_value: "" })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });

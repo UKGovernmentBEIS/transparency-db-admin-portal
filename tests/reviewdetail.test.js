@@ -6,8 +6,10 @@ const index = require("../app");
 const request = require("supertest");
 const express = require("express");
 const app = express();
+var session = require("express-session");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session);
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
@@ -19,7 +21,7 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for Review details Test for GET call", (done) => {
+test("Unit testing for Review details Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
@@ -35,7 +37,8 @@ test("Unit testing for Review details Test for GET call", (done) => {
   global.Subsidy_Full_Amount_Range_Global = "";
   global.Granting_Authority_Name_Global = "";
   global.Legal_Granting_Date_Day_Global = "";
-  global.GetMonthName = "";
+  global.ssn = {};
+  global.ssn.GetMonthName = "";
   global.Legal_Granting_Date_Year_Global = "";
   global.Beneficiary_Name_Global = "";
   global.Size_of_the_Organisation_Global = "";
@@ -53,10 +56,10 @@ test("Unit testing for Review details Test for GET call", (done) => {
   const res = {};
   request(app)
     .get("/reviewdetail", (req, res))
-    .expect(200, done);
+    .expect(200);
   // expect(abcd).toBe(200);
 });
-test("Unit testing for Review details Test for POSt call", (done) => {
+test("Unit testing for Review details Test for POSt call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.beis_url_accessmanagement = "";
@@ -84,7 +87,7 @@ test("Unit testing for Review details Test for POSt call", (done) => {
   global.Goods_or_Services_Global = "";
   global.Spending_Region_Global = "";
   global.Spending_Sector_Global = "";
-  global.GetMonthName = "";
+  global.ssn.GetMonthName = "";
 
   global.Subsidy_Control_Number_Error = "";
   global.Subsidy_Measure_Title_Error = "";
@@ -133,11 +136,11 @@ test("Unit testing for Review details Test for POSt call", (done) => {
       mylink: "",
       buttonvalue: "",
     })
-    .expect(200, done);
+    .expect(200);
   //   expect(abcd).toBe(200);
 });
 
-test("Unit testing for Review details Test for POSt call", (done) => {
+test("Unit testing for Review details Test for POSt call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.SubsidyArraySize = 0;
@@ -169,7 +172,7 @@ test("Unit testing for Review details Test for POSt call", (done) => {
   global.Goods_or_Services_Global = "";
   global.Spending_Region_Global = "";
   global.Spending_Sector_Global = "";
-  global.GetMonthName = "";
+  global.ssn.GetMonthName = "";
 
   global.Subsidy_Control_Number_Error = "";
   global.Subsidy_Measure_Title_Error = "";
@@ -218,11 +221,11 @@ test("Unit testing for Review details Test for POSt call", (done) => {
       mylink: "",
       buttonvalue: "continue",
     })
-    .expect(200, done);
+    .expect(200);
   // expect(abcd).toBe(200);
 });
 
-test("Unit testing for Review details Test for POSt call", (done) => {
+test("Unit testing for Review details Test for POSt call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.SubsidyArraySize = 0;
@@ -252,7 +255,8 @@ test("Unit testing for Review details Test for POSt call", (done) => {
   global.Goods_or_Services_Global = "";
   global.Spending_Region_Global = "";
   global.Spending_Sector_Global = "";
-  global.GetMonthName = "";
+  global.ssn = {};
+  global.ssn.GetMonthName = "";
 
   global.Subsidy_Control_Number_Error = "";
   global.Subsidy_Measure_Title_Error = "";
@@ -304,6 +308,6 @@ test("Unit testing for Review details Test for POSt call", (done) => {
       mylink: "",
       buttonvalue: "continue",
     })
-    .expect(200, done);
+    .expect(200);
   //   expect(abcd).toBe(200);
 });

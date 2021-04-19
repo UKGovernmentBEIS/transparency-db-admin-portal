@@ -6,8 +6,10 @@ const index = require("../app");
 const request = require("supertest");
 const express = require("express");
 const app = express();
+var session = require("express-session");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session);
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
@@ -19,7 +21,7 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
+test("Unit testing for Subsidy Award Fetch Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   const res = {};
@@ -60,5 +62,5 @@ test("Unit testing for Subsidy Award Fetch Test for GET call", (done) => {
     .get("/editsubsidyaward", (req, res))
     .query({ award: "22" })
     // expect(abcd).toBe(200);
-    .expect(200, done);
+    .expect(200);
 });

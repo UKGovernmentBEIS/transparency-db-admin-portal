@@ -6,12 +6,14 @@ const index = require("../app");
 const request = require("supertest");
 const express = require("express");
 const app = express();
+var session = require("express-session");
 const bodyParser = require("body-parser");
 app.use(
   bodyParser.urlencoded({
     extended: false,
   })
 );
+app.use(session);
 app.use(bodyParser.json());
 app.use(
   express.urlencoded({
@@ -20,14 +22,13 @@ app.use(
 );
 app.use("/", index);
 
-const mockRequest = (sessionData, body) => ({
-  session: {
-    data: sessionData,
-  },
-  body,
-});
+const mockRequest = (sessionData, body) => {
+  return {
+    session: { dashboard_roles_object_id1: "", dashboard_roles_object_id2: "" },
+  };
+};
 
-test("Unit testing for filter route Test for GET call", (done) => {
+test("Unit testing for filter route Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.fetchawarddetails = {
@@ -97,5 +98,5 @@ test("Unit testing for filter route Test for GET call", (done) => {
   const res = {};
   request(app)
     .get("/addsubsidyeditaward", (req, res))
-    .expect(200, done);
+    .expect(200);
 });

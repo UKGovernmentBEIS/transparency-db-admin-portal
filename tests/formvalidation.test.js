@@ -6,8 +6,10 @@ const index = require("../app");
 const request = require("supertest");
 const express = require("express");
 const app = express();
+var session = require("express-session");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session);
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
@@ -21,7 +23,7 @@ const mockRequest = (sessionData, body) => ({
 
 const res = {};
 
-test("Unit testing for update results page per route Test for GET call", (done) => {
+test("Unit testing for update results page per route Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.isFileUploadEmpty = false;
@@ -46,10 +48,10 @@ test("Unit testing for update results page per route Test for GET call", (done) 
       isNotCsvOrExcel: false,
       isExcelFormat: true,
     })
-    .expect(200, done);
+    .expect(200);
 });
 
-test("Unit testing for update results page per route Test for POST call", (done) => {
+test("Unit testing for update results page per route Test for POST call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.isFileUploadEmpty = false;
@@ -75,7 +77,7 @@ test("Unit testing for update results page per route Test for POST call", (done)
       isExcelFormat: true,
     })
     .attach("files", null)
-    .expect(200, done);
+    .expect(200);
 });
 
 test("Unit testing for update results page per route Test for POST call", async () => {

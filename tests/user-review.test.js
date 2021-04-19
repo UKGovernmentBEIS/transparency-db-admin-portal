@@ -6,8 +6,10 @@ const index = require("../app");
 const request = require("supertest");
 const express = require("express");
 const app = express();
+var session = require("express-session");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session);
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
@@ -17,7 +19,7 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   const res = {};
@@ -30,11 +32,11 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
   global.Phone_Number_Global = "";
   request(app)
     .get("/userreview", (req, res))
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });
 
-test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
+test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   const res = {};
@@ -64,6 +66,6 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", (done) => {
       Email_Id: "",
       Phone_Number: "",
     })
-    .expect(200, done);
+    .expect(200);
   //   expect(acd).toBe(200);
 });

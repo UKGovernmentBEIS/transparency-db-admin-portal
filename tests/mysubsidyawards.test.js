@@ -6,12 +6,14 @@ const index = require("../app");
 const request = require("supertest");
 const express = require("express");
 const app = express();
+var session = require("express-session");
 const bodyParser = require("body-parser");
 app.use(
   bodyParser.urlencoded({
     extended: false,
   })
 );
+app.use(session);
 app.use(bodyParser.json());
 app.use(
   express.urlencoded({
@@ -29,13 +31,20 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for filter route Test for GET call", (done) => {
+test("Unit testing for filter route Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.beis_url_accessmanagement =
     "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
   global.awards_status = "Filter results by status";
   global.frontend_totalRecordsPerPage = 10;
+
+  global.totalSubsidyAward = "";
+  global.totalAwaitingAward = "";
+  global.totalPublishedAward = "";
+  global.totalInactiveAward = "";
+  global.totalRejectedAward = "";
+
   global.UserPrincileObjectGlobal = {};
   global.searchawards = {
     awards: [
@@ -87,6 +96,6 @@ test("Unit testing for filter route Test for GET call", (done) => {
   const res = {};
   request(app)
     .get("/mysubsidyawards", (req, res))
-    .expect(200, done);
+    .expect(200);
   //   expect(abcd).toBe(200);
 });

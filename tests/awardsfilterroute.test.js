@@ -6,11 +6,13 @@ const index = require("../app");
 const request = require("supertest");
 const express = require("express");
 const app = express();
+var session = require("express-session");
 const bodyParser = require("body-parser");
 const axios = require("axios");
 const { globalEval } = require("jquery");
 jest.mock("axios");
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session);
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
@@ -21,7 +23,7 @@ const mockRequest = (sessionData, body) => ({
 });
 
 const res = {};
-test("Unit testing for hide filter route Test for GET call", (done) => {
+test("Unit testing for hide filter route Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.beis_url_accessmanagement =
@@ -98,6 +100,6 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
   request(app)
     .get("/awardsfilterroute", (req, res))
     .query({ sort: "Draft" })
-    .expect(200, done);
+    .expect(200);
   // expect(abcd).toBe(200);
 });

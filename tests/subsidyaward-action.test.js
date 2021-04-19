@@ -6,8 +6,10 @@ const index = require("../app");
 const request = require("supertest");
 const express = require("express");
 const app = express();
+var session = require("express-session");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session);
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
@@ -21,7 +23,7 @@ const mockRequest = (sessionData, body) => ({
 
 const res = {};
 
-test("Unit testing for login password complete Test for GET call", (done) => {
+test("Unit testing for login password complete Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.noresult = "";
@@ -109,10 +111,10 @@ test("Unit testing for login password complete Test for GET call", (done) => {
     .post("/subsidyawardaction", (req, res))
     .send({ Award_status: "Published" })
     // expect(abcd).toBe(200);
-    .expect(200, done);
+    .expect(200);
 });
 
-test("Unit testing for login password complete Test for GET call", (done) => {
+test("Unit testing for login password complete Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.nodata = "";
@@ -200,5 +202,5 @@ test("Unit testing for login password complete Test for GET call", (done) => {
     .post("/subsidyawardaction", (req, res))
     .send({ Award_status: "Rejected" })
     // expect(abcd).toBe(200)
-    .expect(200, done);
+    .expect(200);
 });

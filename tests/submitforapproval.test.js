@@ -6,8 +6,10 @@ const index = require("../app");
 const request = require("supertest");
 const express = require("express");
 const app = express();
+var session = require("express-session");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session);
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
@@ -19,11 +21,18 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for submit for approval Test for GET call", (done) => {
+test("Unit testing for submit for approval Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.nodata = "";
   global.noresult = "";
+
+  global.totalSubsidyAward = "";
+  global.totalAwaitingAward = "";
+  global.totalPublishedAward = "";
+  global.totalInactiveAward = "";
+  global.totalRejectedAward = "";
+
   global.UserPrincileObjectGlobal = {};
   global.beis_url_accessmanagement = "";
   global.Subsidy_Full_Amount_Range_Global = "";
@@ -71,17 +80,24 @@ test("Unit testing for submit for approval Test for GET call", (done) => {
   });
   request(app)
     .post("/submitforapproval", (req, res))
-    .expect(200, done);
+    .expect(200);
   // expect(abcd).toBe(200);
 });
 
-test("Unit testing for Submit for approval Test for GET call", (done) => {
+test("Unit testing for Submit for approval Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.SubsidyArraySize = 0;
   global.nodata = "";
   global.noresult = "";
   global.UserPrincileObjectGlobal = {};
+
+  global.totalSubsidyAward = "";
+  global.totalAwaitingAward = "";
+  global.totalPublishedAward = "";
+  global.totalInactiveAward = "";
+  global.totalRejectedAward = "";
+
   global.SubsidyErrors = [];
   global.SubsidyFocus = [];
   global.isAddSubsidyPrimarycall = "";
@@ -166,16 +182,23 @@ test("Unit testing for Submit for approval Test for GET call", (done) => {
   });
   request(app)
     .post("/submitforapproval", (req, res))
-    .expect(200, done);
+    .expect(200);
   // expect(abcd).toBe(200);
 });
 
-test("Unit testing for Submit for approval Test for GET call", (done) => {
+test("Unit testing for Submit for approval Test for GET call", async () => {
   const req = mockRequest();
   global.dashboard_roles = "";
   global.SubsidyArraySize = 0;
   global.nodata = "";
   global.noresult = "";
+
+  global.totalSubsidyAward = "";
+  global.totalAwaitingAward = "";
+  global.totalPublishedAward = "";
+  global.totalInactiveAward = "";
+  global.totalRejectedAward = "";
+
   global.UserPrincileObjectGlobal = {};
   global.SubsidyErrors = [];
   global.SubsidyFocus = [];
@@ -231,6 +254,6 @@ test("Unit testing for Submit for approval Test for GET call", (done) => {
   });
   request(app)
     .post("/submitforapproval", (req, res))
-    .expect(200, done);
+    .expect(200);
   // expect(abcd).toBe(200);
 });
