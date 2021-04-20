@@ -95,7 +95,7 @@ router.get("/", async (req, res) => {
         ssn.SubsidyArraySize = 0;
 
         const formatter = new Intl.NumberFormat("en-GB");
-
+        Budget = measureapidata.data.budget;
         if (measureapidata.data.budget.includes(","))
           Budget = measureapidata.data.budget.split(",").join("");
         formatedCurrency = formatter.format(Budget);
