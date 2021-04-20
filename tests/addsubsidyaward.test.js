@@ -6,12 +6,14 @@ const index = require("../app");
 const request = require("supertest");
 const express = require("express");
 const app = express();
+var session = require("express-session");
 const bodyParser = require("body-parser");
 app.use(
   bodyParser.urlencoded({
     extended: false,
   })
 );
+app.use(session);
 app.use(bodyParser.json());
 app.use(
   express.urlencoded({
@@ -20,120 +22,170 @@ app.use(
 );
 app.use("/", index);
 const axios = require("axios");
+
 jest.mock("axios");
+const mockRequest = (sessionData) => {
+  return {
+    session: sessionData,
+  };
+};
 
-const mockRequest = (sessionData, body) => ({
-  session: {
-    data: sessionData,
-  },
-  body,
-});
+test("Unit testing for spending filter route - Test for POST call", async () => {
+  const req = mockRequest({
+    dashboard_roles_object_id1: "",
+    dashboard_roles_object_id2: "",
+  });
+  global.ssn = req.session;
+  ssn.dashboard_roles = "";
+  ssn.SubsidyArraySize = 0;
+  ssn.SubsidyFocus = [];
+  ssn.SubsidyErrors = [];
 
-test("Unit testing for spending filter route - Test for POST call", (done) => {
-  const req = mockRequest();
-  global.dashboard_roles = "";
-  global.beis_url_accessmanagement = "";
-  global.SubsidyArraySize = 0;
-  global.SubsidyErrors = [];
-  global.SubsidyFocus = [];
-  global.isAddSubsidyPrimarycall = "";
-  global.Edit_Award_Number_global = "";
-  global.Subsidy_Control_Number_Error = "";
-  global.Subsidy_Control_Number_Global = "";
-  global.Subsidy_Adhoc_Global = "";
-  global.Subsidy_Measure_Title_Error = "";
-  global.Subsidy_Measure_Title_Global = "";
-  global.Subsidy_Instrument_Other_Global = "";
-  global.Subsidy_Objective_Error = "";
-  global.Subsidy_Objective_Global = "";
-  global.Subsidy_Objective_Other_Global = "";
-  global.Subsidy_Instrument_Error = "";
-  global.Subsidy_Instrument_Global = "";
-  global.Subsidy_Full_Amount_Range_Error = "";
-  global.Subsidy_Full_Amount_Range_Global = "upto500k";
-  global.Subsidy_Element_Full_Amount_Error = "";
-  global.Subsidy_Element_Full_Amount_Global = "";
-  global.Granting_Authority_Name_Error = "";
-  global.Granting_Authority_Name_Global = "";
-  global.Legal_Granting_Date_Day_Error = "";
-  global.Legal_Granting_Date_Month_Error = "";
-  global.Legal_Granting_Date_Year_Error = "";
-  global.Legal_Granting_Date_Day_Global = "";
-  global.Legal_Granting_Date_Month_Error = "";
-  global.Legal_Granting_Date_Year_Error = "";
-  global.Legal_Granting_Date_Year_Global = "";
-  global.Legal_Granting_Date_Month_Global = "";
-  global.Beneficiary_Name_Error = "";
-  global.Beneficiary_Name_Global = "";
-  global.Size_of_the_Organisation_Error = "";
-  global.Size_of_the_Organisation_Global = "";
-  global.National_ID_Type_Error = "";
-  global.National_ID_Type_Global = "";
-  global.National_ID_Number_Error = "";
-  global.National_ID_Number_Global = "";
-  global.Goods_or_Services_Error = "";
-  global.Goods_or_Services_Global = "";
-  global.Spending_Region_Error = "";
-  global.Spending_Region_Global = "";
-  global.Spending_Sector_Error = "";
-  global.Subsidy_Objective_Other_Error = "";
-  global.Subsidy_Instrument_Other_Error = "";
-  global.Subsidy_Adhoc_Error = "";
-  global.Spending_Sector_Global = "";
-  global.Subsidy_Objective_Plus_Other_Global = "";
-  global.Subsidy_Instrument_Plus_Other_Global = "";
-  global.isCallfromEditAward = "";
-  global.dashboard_ga_name = "";
+  global.isAddSubsidyPrimarycall = false;
+  global.isCallfromEditAward = false;
+  ssn.Edit_Award_Number_global = "";
+  ssn.beis_url_accessmanagement = "";
+  ssn.Subsidy_Element_Full_Amount_Exceed_Error = "";
+  ssn.Granting_Authority_Valid_Name_Error = "";
+  ssn.Subsidy_Full_Amount_Range_Exceed_Error = "";
+  ssn.Subsidy_Control_Number_Error = "";
+  ssn.Subsidy_Control_Number_Name_Global = "";
+  ssn.Subsidy_Measure_Title_Error = "";
+  ssn.Subsidy_Measure_Title_Global = "";
+  ssn.Subsidy_Objective_Error = "";
+  ssn.Subsidy_Objective_Global = "";
+  ssn.Subsidy_Instrument_Error = "";
+  ssn.Subsidy_Instrument_Global = "";
+  ssn.Subsidy_Full_Amount_Range_Error = "";
+  ssn.Subsidy_Full_Amount_Range_Global = "upto500k";
+  ssn.Subsidy_Element_Full_Amount_Error = "";
+  ssn.Subsidy_Element_Full_Amount_Global = "";
+  ssn.Granting_Authority_Name_Error = "";
+  ssn.Granting_Authority_Name_Global = "";
+  ssn.Legal_Granting_Date_Day_Error = "";
+  ssn.Legal_Granting_Date_Month_Error = "";
+  ssn.Legal_Granting_Date_Year_Error = "";
+  ssn.Legal_Granting_Date_Day_Global = "";
+  ssn.Legal_Granting_Date_Year_Global = "";
+  ssn.Legal_Granting_Date_Month_Global = "";
+  ssn.Beneficiary_Name_Error = "";
+  ssn.Beneficiary_Name_Global = "";
+  ssn.Size_of_the_Organisation_Error = "";
+  ssn.Size_of_the_Organisation_Global = "";
+  ssn.National_ID_Type_Error = "";
+  ssn.National_ID_Type_Global = "";
+  ssn.National_ID_Number_Error = "";
+  ssn.National_ID_Number_Global = "";
+  ssn.Goods_or_Services_Error = "";
+  ssn.Goods_or_Services_Global = "";
+  ssn.Spending_Region_Error = "";
+  ssn.Spending_Region_Global = "";
+  ssn.Spending_Sector_Error = "";
+  ssn.Spending_Sector_Global = "";
+  ssn.dashboard_ga_name = "";
+
+  ssn.Subsidy_Measure_Title_255_Error = "";
+  ssn.Granting_Authority_URL_255_Error = "";
+  ssn.Granting_Authority_Policy_255_Error = "";
+  ssn.SC_Not_active = "";
+  ssn.Subsidy_Objective_Other_255_Error = "";
+  ssn.Subsidy_Instrument_Other_255_Error = "";
+  ssn.Beneficiary_Name_255_Error = "";
+
+  ssn.dashboard_roles_object_id1 = "";
+  ssn.dashboard_roles_object_id2 = "";
   const res = {};
+
   request(app)
     .post("/addsubsidyaward", (req, res))
-    .expect(200, done);
+    .query({ scheme: 23 })
+    .send({
+      dashboard_roles_object_id1: "",
+      dashboard_roles_object_id2: "",
+    })
+    .set(req.session, {
+      dashboard_roles_object_id1: "",
+      dashboard_roles_object_id2: "",
+    })
+    .expect(200);
+  // expect(next).toHaveBeenCalled();
+
   // expect(abcd).toBe(200);
 });
 
-test("Unit testing for filter route Test for GET call", (done) => {
-  const req = mockRequest();
-  global.dashboard_roles = "";
-  global.SubsidyArraySize = 0;
-  global.beis_url_accessmanagement = "";
-  global.Subsidy_Control_Number_Error = "";
-  global.Subsidy_Control_Number_Global = "";
-  global.Subsidy_Measure_Title_Error = "";
-  global.Subsidy_Measure_Title_Global = "";
-  global.Subsidy_Objective_Error = "";
-  global.Subsidy_Objective_Global = "";
-  global.Subsidy_Instrument_Error = "";
-  global.Subsidy_Instrument_Global = "";
-  global.Subsidy_Full_Amount_Range_Error = "";
-  global.Subsidy_Full_Amount_Range_Global = "upto500k";
-  global.Subsidy_Element_Full_Amount_Error = "";
-  global.Subsidy_Element_Full_Amount_Global = "";
-  global.Granting_Authority_Name_Error = "";
-  global.Granting_Authority_Name_Global = "";
-  global.Legal_Granting_Date_Day_Error = "";
-  global.Legal_Granting_Date_Month_Error = "";
-  global.Legal_Granting_Date_Year_Error = "";
-  global.Legal_Granting_Date_Day_Global = "";
-  global.Legal_Granting_Date_Year_Global = "";
-  global.Legal_Granting_Date_Month_Global = "";
-  global.Beneficiary_Name_Error = "";
-  global.Beneficiary_Name_Global = "";
-  global.Size_of_the_Organisation_Error = "";
-  global.Size_of_the_Organisation_Global = "";
-  global.National_ID_Type_Error = "";
-  global.National_ID_Type_Global = "";
-  global.National_ID_Number_Error = "";
-  global.National_ID_Number_Global = "";
-  global.Goods_or_Services_Error = "";
-  global.Goods_or_Services_Global = "";
-  global.Spending_Region_Error = "";
-  global.Spending_Region_Global = "";
-  global.Spending_Sector_Error = "";
-  global.Spending_Sector_Global = "";
-  global.dashboard_ga_name = "";
+test("Unit testing for filter route Test for GET call", async () => {
+  const req = mockRequest({
+    dashboard_roles_object_id1: "",
+    dashboard_roles_object_id2: "",
+  });
+  req.session.destroy = jest.fn().mockImplementation((fn) => fn(false));
+  ssn = req.session;
+  ssn.dashboard_roles = "";
+  ssn.SubsidyArraySize = 0;
+  ssn.SubsidyFocus = [];
+  ssn.SubsidyErrors = [];
+
+  global.isAddSubsidyPrimarycall = false;
+  global.isCallfromEditAward = false;
+  ssn.beis_url_accessmanagement = "";
+  ssn.Edit_Award_Number_global = "";
+  ssn.Subsidy_Element_Full_Amount_Exceed_Error = "";
+  ssn.Granting_Authority_Valid_Name_Error = "";
+  ssn.Subsidy_Full_Amount_Range_Exceed_Error = "";
+  ssn.Subsidy_Control_Number_Error = "";
+  ssn.Subsidy_Control_Number_Name_Global = "";
+  ssn.Subsidy_Measure_Title_Error = "";
+  ssn.Subsidy_Measure_Title_Global = "";
+  ssn.Subsidy_Objective_Error = "";
+  ssn.Subsidy_Objective_Global = "";
+  ssn.Subsidy_Instrument_Error = "";
+  ssn.Subsidy_Instrument_Global = "";
+  ssn.Subsidy_Full_Amount_Range_Error = "";
+  ssn.Subsidy_Full_Amount_Range_Global = "upto500k";
+  ssn.Subsidy_Element_Full_Amount_Error = "";
+  ssn.Subsidy_Element_Full_Amount_Global = "";
+  ssn.Granting_Authority_Name_Error = "";
+  ssn.Granting_Authority_Name_Global = "";
+  ssn.Legal_Granting_Date_Day_Error = "";
+  ssn.Legal_Granting_Date_Month_Error = "";
+  ssn.Legal_Granting_Date_Year_Error = "";
+  ssn.Legal_Granting_Date_Day_Global = "";
+  ssn.Legal_Granting_Date_Year_Global = "";
+  ssn.Legal_Granting_Date_Month_Global = "";
+  ssn.Beneficiary_Name_Error = "";
+  ssn.Beneficiary_Name_Global = "";
+  ssn.Size_of_the_Organisation_Error = "";
+  ssn.Size_of_the_Organisation_Global = "";
+  ssn.National_ID_Type_Error = "";
+  ssn.National_ID_Type_Global = "";
+  ssn.National_ID_Number_Error = "";
+  ssn.National_ID_Number_Global = "";
+  ssn.Goods_or_Services_Error = "";
+  ssn.Goods_or_Services_Global = "";
+  ssn.Spending_Region_Error = "";
+  ssn.Spending_Region_Global = "";
+  ssn.Spending_Sector_Error = "";
+  ssn.Spending_Sector_Global = "";
+  ssn.dashboard_ga_name = "";
+  ssn.dashboard_roles_object_id1 = "";
+  ssn.dashboard_roles_object_id2 = "";
+  ssn.Subsidy_Measure_Title_255_Error = "";
+  ssn.Granting_Authority_URL_255_Error = "";
+  ssn.Granting_Authority_Policy_255_Error = "";
+  ssn.SC_Not_active = "";
+  ssn.Subsidy_Objective_Other_255_Error = "";
+  ssn.Subsidy_Instrument_Other_255_Error = "";
+  ssn.Beneficiary_Name_255_Error = "";
+
   const res = {};
   request(app)
     .get("/addsubsidyaward", (req, res))
-    .expect(200, done);
+    .query({ scheme: 23 })
+    .send({ isAddSubsidyPrimarycall: false, isCallfromEditAward: false })
+    .set("cookie", {
+      dashboard_roles_object_id1: "",
+      dashboard_roles_object_id2: "",
+    })
+    .expect(200);
   // expect(abcd).toBe(200);
 });
