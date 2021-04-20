@@ -115,7 +115,7 @@
                     </form> -->
                     <a rel="external" aria-label="Change granting authority details"
                         class="govuk-link head-right govuk-relative-position"
-                        href="/addgrantingauthority?change=<%=ssn.grantingAuthorityID_Global%>">
+                        href="/addgrantingauthority?change=<%=ssn.gaId%>">
                         <p>Change </p>
                     </a>
                 </div>
@@ -141,7 +141,7 @@
             </dl>
             <div class="govuk-grid-row">
                 <form action="/submitgrantingauthority" method="post" class="govuk-grid-column-one-third">
-                    <input type="hidden" id="GaId" name="GaId" value="<%=ssn.grantingAuthorityID_Global%>">
+                    <input type="hidden" id="GaId" name="GaId" value="<%=ssn.gaId%>">
                     <input type="hidden" id="GaName" name="GaName" value="<%=ssn.grantingAuthorityName_Global%>">
                     <button class="govuk-button" data-module="govuk-button">
                         Save granting authority
