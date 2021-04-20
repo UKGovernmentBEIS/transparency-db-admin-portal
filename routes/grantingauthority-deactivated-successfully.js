@@ -23,6 +23,7 @@ router.post("/", async (req, res) => {
     try {
       var checkBox = req.body.userList;
       checkboxError = false;
+      console.log("checkBox", checkBox);
       if (checkBox) {
         gaId = req.body.gaid;
         var azGrpId = req.body.azGrpId.toString();
@@ -126,6 +127,55 @@ router.post("/", async (req, res) => {
             res.render("bulkupload/notAvailable");
           console.log("Error while fetching GA user List", err);
         }
+      } else {
+        gaId = req.body.gaid;
+        var azGrpId = req.body.azGrpId.toString();
+        var users = [];
+
+        console.log(azGrpId);
+        if (ssn.GaListArr_Global.length > 0) {
+          ssn.GaListArr_Global.forEach(function (ids) {
+            users.push(ids.gaId.toString().trim());
+          });
+        } else users = [];
+        console.log("body", users);
+        console.log(
+          "ssn.UserPrincileObjectGlobal",
+          ssn.UserPrincileObjectGlobal
+        );
+        console.log(
+          "Invoking delete method",
+          beis_url_searchscheme + "/group/" + azGrpId
+        );
+        var data = {
+          userIds: users,
+        };
+        UserPrincileObjectGlobal =
+          '{"userName":"' +
+          ssn.dashboard_user_name +
+          '","password":"password123",' +
+          '"role":"' +
+          ssn.dashboard_roles +
+          '","grantingAuthorityGroupId":"' +
+          ssn.dashbaord_ga_ID +
+          '","grantingAuthorityGroupName":"' +
+          ssn.dashboard_ga_name +
+          '"}';
+
+        const apidata = await axios.delete(
+          beis_url_searchscheme + "/group/" + azGrpId,
+          {
+            data,
+            headers: {
+              userPrinciple: UserPrincileObjectGlobal,
+            },
+          }
+        );
+        console.log("BODY", apidata.data.gaId);
+        var gaid = apidata.data.gaId;
+        res.render("bulkupload/grantingauthority-deactivated-successfully", {
+          gaid,
+        });
       }
     } catch (err) {
       console.log("message error deactivate GA : " + err);
