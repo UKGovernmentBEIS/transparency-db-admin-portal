@@ -62,8 +62,9 @@ app.use(
 );
 
 console.log("Start of the application");
+
 app.get("/", async (req, res) => {
-  var ssn = "";
+  var ssn = {};
 
   console.log("Landing root route");
   var id_token = req.header("x-ms-token-aad-id-token");
@@ -618,15 +619,15 @@ app.get("/", async (req, res) => {
   // res.render("bulkupload/logintransparency");
 });
 
-var logintransparency = require("./routes/logintransparency");
-app.use("/logintransparency", logintransparency);
+// var logintransparency = require("./routes/logintransparency");
+// app.use("/logintransparency", logintransparency);
 
 /****************************************************** */
 /* All Router declarations */
 /****************************************************** */
 
-var loginfirstpage = require("./routes/loginfirstpage");
-app.use("/loginfirstpage", loginfirstpage);
+// var loginfirstpage = require("./routes/loginfirstpage");
+// app.use("/loginfirstpage", loginfirstpage);
 
 var mysubsidyawards = require("./routes/mysubsidyawards");
 app.use("/mysubsidyawards", mysubsidyawards);
@@ -637,23 +638,23 @@ app.use("/mysubsidyawards", mysubsidyawards);
 var bulkuploadsubsidy = require("./routes/bulkuploadsubsidy");
 app.use("/bulkuploadsubsidy", bulkuploadsubsidy);
 
-var loginforgetpassword = require("./routes/loginforgetpassword");
-app.use("/loginforgetpassword", loginforgetpassword);
+// var loginforgetpassword = require("./routes/loginforgetpassword");
+// app.use("/loginforgetpassword", loginforgetpassword);
 
-var loginnewpassword = require("./routes/loginnewpassword");
-app.use("/loginnewpassword", loginnewpassword);
+// var loginnewpassword = require("./routes/loginnewpassword");
+// app.use("/loginnewpassword", loginnewpassword);
 
-var loginemailconfirmation = require("./routes/loginemailconfirmation");
-app.use("/loginemailconfirmation", loginemailconfirmation);
+// var loginemailconfirmation = require("./routes/loginemailconfirmation");
+// app.use("/loginemailconfirmation", loginemailconfirmation);
 
-var loginpasswordcomplete = require("./routes/loginpasswordcomplete");
-app.use("/loginpasswordcomplete", loginpasswordcomplete);
+// var loginpasswordcomplete = require("./routes/loginpasswordcomplete");
+// app.use("/loginpasswordcomplete", loginpasswordcomplete);
 
-var loginresetpassword = require("./routes/loginresetpassword");
-app.use("/loginresetpassword", loginresetpassword);
+// var loginresetpassword = require("./routes/loginresetpassword");
+// app.use("/loginresetpassword", loginresetpassword);
 
-var loginemailconfirmationexpiry = require("./routes/loginemailconfirmationexpiry");
-app.use("/loginemailconfirmationexpiry", loginemailconfirmationexpiry);
+// var loginemailconfirmationexpiry = require("./routes/loginemailconfirmationexpiry");
+// app.use("/loginemailconfirmationexpiry", loginemailconfirmationexpiry);
 
 var reviewdetail = require("./routes/reviewdetail");
 app.use("/reviewdetail", reviewdetail);
@@ -819,8 +820,8 @@ app.use("/reviewdetailcancel", reviewdetailcancel);
 
 //Users Pages
 
-var manageusers = require("./routes/users-manage");
-app.use("/manageusers", manageusers);
+// var manageusers = require("./routes/users-manage");
+// app.use("/manageusers", manageusers);
 
 var userselect = require("./routes/user-select");
 app.use("/userselect", userselect);
