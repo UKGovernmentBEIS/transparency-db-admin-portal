@@ -45,3 +45,24 @@
 <!-- <script type="text/javascript" src="/assets/javascripts/govuk-frontend.js"></script> -->
 
 <script type="text/javascript" src="/assets/javascripts/all.js"></script>
+
+<script>
+  var accept = document.cookie.split(";");
+  var abcd = ''
+  accept.forEach(function (item) {
+    if (item.includes('cookies_policy')) {
+      var usage_policy = item.split('=');
+      abcd = JSON.parse(usage_policy[1])
+      if (abcd.usage) {
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+      }
+    }
+  })
+
+</script>
