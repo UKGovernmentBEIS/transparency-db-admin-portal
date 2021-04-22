@@ -619,15 +619,15 @@ app.get("/", async (req, res) => {
   // res.render("bulkupload/logintransparency");
 });
 
-// var logintransparency = require("./routes/logintransparency");
-// app.use("/logintransparency", logintransparency);
+var logintransparency = require("./routes/logintransparency");
+app.use("/logintransparency", logintransparency);
 
 /****************************************************** */
 /* All Router declarations */
 /****************************************************** */
 
-// var loginfirstpage = require("./routes/loginfirstpage");
-// app.use("/loginfirstpage", loginfirstpage);
+var loginfirstpage = require("./routes/loginfirstpage");
+app.use("/loginfirstpage", loginfirstpage);
 
 var mysubsidyawards = require("./routes/mysubsidyawards");
 app.use("/mysubsidyawards", mysubsidyawards);

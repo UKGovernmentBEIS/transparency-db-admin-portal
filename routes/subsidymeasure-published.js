@@ -80,10 +80,10 @@ router.post("/", async (req, res) => {
     const addSchemeRequest = {
       adhoc: ssn.Subsidy_Adhoc_Global_Flag,
       gaName: ssn.Granting_Authority_Name_Measure_Global,
-      subsidyMeasureTitle: ssn.Subsidy_Measure_Title_Global,
-      legalBasisText: ssn.Legal_Basis_Global,
+      subsidyMeasureTitle: ssn.Subsidy_Measure_Title_Global.trim(),
+      legalBasisText: ssn.Legal_Basis_Global.trim(),
       gaSubsidyWebLink: ssn.Granting_Authority_URL_Global,
-      gaSubsidyWebLinkDescription: ssn.Granting_Authority_Policy_Global,
+      gaSubsidyWebLinkDescription: ssn.Granting_Authority_Policy_Global.trim(),
       budget: ssn.Budget_Global,
       startDate: subsidy_start_date,
       endDate: subsidy_end_date,
