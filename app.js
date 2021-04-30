@@ -69,7 +69,7 @@ app.get("/", async (req, res) => {
   console.log("Landing root route");
   var id_token = req.header("x-ms-token-aad-id-token");
 
-  // console.log("id_token " + id_token);
+   console.log("id_token " + id_token);
   // console.log("req.session", req.session);
   ssn = req.session;
   // ssn.Subsidy_Control_Number_Global="";
@@ -247,18 +247,34 @@ app.get("/", async (req, res) => {
   Environment_variable = process.argv[2];
 
   if (Environment_variable == "env=dev") {
-    beis_url_publishing =
-      "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
-    beis_url_accessmanagement =
-      "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
-    beis_url_publicsearch =
-      "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
-    beis_url_searchscheme =
-      "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net";
+    //                    OLD URLs below
+    // beis_url_publishing =        
+    //   "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
+    // beis_url_accessmanagement =
+    //   "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
+    // beis_url_publicsearch =
+    //   "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
+    // beis_url_searchscheme =
+    //   "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net";
 
-    beis_redirect_url = "https://dev-beis-tp-dp-admin-portal.azurewebsites.net";
+    // beis_redirect_url = "https://dev-beis-tp-dp-admin-portal.azurewebsites.net";
+    // beis_public_search =
+    //   "https://dev-beis-tp-db-publicsearch-portal.azurewebsites.net";
+
+    // DM 30-04-21
+    beis_url_publishing =
+      "https://dev-transparency-db-publishing-subsidies-service.azurewebsites.net";
+    beis_url_accessmanagement =
+      "https://dev-transparency-db-access-management-service.azurewebsites.net";
+    beis_url_publicsearch =
+      "https://dev-transparency-db-public-search-service.azurewebsites.net";
+    beis_url_searchscheme =
+      "https://dev-transparency-db-ga-schemes-service.azurewebsites.net";
+
+    beis_redirect_url = "https://dev-transparency-db-admin-portal.azurewebsites.net";
     beis_public_search =
-      "https://dev-beis-tp-db-publicsearch-portal.azurewebsites.net";
+      "https://dev-transparency-db-publicsearch-portal.azurewebsites.net";
+
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
