@@ -69,6 +69,8 @@ app.get("/", async (req, res) => {
   console.log("Landing root route");
   var id_token = req.header("x-ms-token-aad-id-token");
 
+  var id_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiI2NGQwY2I4Ny00YWM0LTRjZDItYTgxMC1jNzA3M2JhODY3YmYiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC80NWY1NDgxNC03MTM0LTQwYTItYjdjMC05ZTJiM2JmZDA3MGMvIiwiaWF0IjoxNjIwMzg0NzcyLCJuYmYiOjE2MjAzODQ3NzIsImV4cCI6MTYyMDM4ODY3MiwiYWlvIjoiQVdRQW0vOFRBQUFBYmFXWDlDU0NkL1pKNURJODNJdWNFK2pZS0xFMWxRL2NnbjZ3a05LNWhhT0ljN09aMHhib0JHanMzV3U5TFNiWTNkcU9Rc2xCSWo3TWlwZFc3WFF3ZmJyTlJpbmRycE5XYlhJRlhwZ1lKZERlK21CTWJiWllwZDJ5TXEvOE9ZTW4iLCJhbXIiOlsid2lhIl0sImVtYWlsIjoiZC5tYW5uQGNnaS5jb20iLCJmYW1pbHlfbmFtZSI6Ik1hbm4iLCJnaXZlbl9uYW1lIjoiRGF2aWQiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOWZlYzY4Yy1jOTJkLTQ2MWUtOWE5Ny0zZDAzYTBmMThiODIvIiwiaW5fY29ycCI6InRydWUiLCJpcGFkZHIiOiIxODUuMTI1LjIyNC40MiIsIm5hbWUiOiJNYW5uLCBEYXZpZCIsIm5vbmNlIjoiYmZjYTg4ZDQ4OTgwNDAwY2JjZTU3YTFlMDdkOGE2MzJfMjAyMTA1MDcxMTAyNTAiLCJvaWQiOiJkMzNlZDBjMy05ZWM3LTQ2YmUtOTU0NC1lMzJlODhlY2FiNTgiLCJyaCI6IjAuQVhvQUZFajFSVFJ4b2tDM3dKNHJPXzBIRElmTDBHVEVTdEpNcUJESEJ6dW9aNzk2QUJBLiIsInJvbGVzIjpbIjI2MzY3YjNjLTQwYTQtNDYwNS05NTk3LWQwZWI5ODlmNTkwNSIsImIwOTBhY2FkLTU5NTAtNGQ3Yi04MjYyLTdlYzZiY2E5NmE3MiIsImY5OTVjMWYwLWMwODktNDU0Zi05ZWU2LWY1ZTY2ZmZkZmIwZSIsImUzZWNlNzBlLWMwMzQtNGViNy04NTI5LTU2MGFlYzU3NjEzNSIsIjY5MmY0NjZiLTM2MmQtNDZlYy1hNGVlLTAwMTNmYmM3NDJmNSIsIjVhZGZmY2YzLTEwYmQtNDJhNC1hMDM3LThhODAyYmI1NDZmMCJdLCJzdWIiOiIwVHNlVF9nd0xLd3FEc00tbmpwOUVFVDBqOFRkU2FLRVJTV1hxZnVqOFJrIiwidGlkIjoiNDVmNTQ4MTQtNzEzNC00MGEyLWI3YzAtOWUyYjNiZmQwNzBjIiwidW5pcXVlX25hbWUiOiJkLm1hbm5AY2dpLmNvbSIsInV0aSI6IlRnZV9uUkJWWGt1M1dMR1NLN2NqQUEiLCJ2ZXIiOiIxLjAifQ.NTK5Xa9BR8ytbftWxDSS4AcPstT7okCRMkefjQTWWbUluS0zGQaX4AFcwM-PNXjKwy-Fdtb5R1UNIIGdOlGIGfYEr5hruvOOUu_KrKilgygtckA5OkdFCIiPVu_-dj84Ozn33Wv4ZNUmJqMI6oEWjxDN3wKDmuKe4RLRbtN7_Kur6mVyDQqfv2HzmZTeZ1_Nd3V0mHmz47dDLEovGmCay-e1m1ifOOEUEgRAZKsUjADwwpq78qS1vzch26nro_ICuKbqGXwlEykABm7G0qjtW9d940q--ItiI_iqoRsxUVDB2tldGAR4kfplMOHuSECuheL7lb-_jXba7_DBxIz8VA";
+  
    console.log("id_token " + id_token);
   // console.log("req.session", req.session);
   ssn = req.session;
@@ -330,14 +332,15 @@ app.get("/", async (req, res) => {
   ssn.frontend_totalRecordsPerPage = 10;
 
   var id_token_decoded = jwt_decode(id_token);
-  // console.log("id_token_decoded " + id_token_decoded);
-  // console.log("logged in user " + id_token_decoded.name);
-  // console.log("id_token_decoded parsed " + JSON.stringify(id_token_decoded));
+  console.log("id_token_decoded " + id_token_decoded);
+  console.log("logged in user " + id_token_decoded.name);
+  console.log("id_token_decoded parsed " + JSON.stringify(id_token_decoded));
   var id_token_json = JSON.parse(JSON.stringify(id_token_decoded));
   ssn.dashboard_user_name = id_token_decoded.name;
   ssn.user_id = id_token_decoded.oid;
   ssn.dashboard_roles_object = JSON.stringify(id_token_json.roles);
-  // console.log("roles :" + ssn.dashboard_roles_object);
+  console.log("username : " + ssn.dashboard_user_name);
+  console.log("roles :" + ssn.dashboard_roles_object);
   ssn.dashboard_roles_object_id1 = ssn.dashboard_roles_object.substr(2, 36);
   ssn.dashboard_roles_object_id2 = ssn.dashboard_roles_object.substr(41, 36);
 
@@ -352,17 +355,17 @@ app.get("/", async (req, res) => {
     var apiroles = await axios.get(
       beis_url_accessmanagement + "/accessmanagement/allga"
     );
-    // console.log(`Status: ${apiroles.status}`);
+    console.log(`Status: ${apiroles.status}`);
     API_response_code = `${apiroles.status}`;
-    // console.log("API_response_code: try" + API_response_code);
-    // console.log("Body: ", apiroles.data);
+    console.log("API_response_code: try" + API_response_code);
+    console.log("Body: ", apiroles.data);
     ssn.apiroles_extract = apiroles.data;
     ssn.apiroles_total_objects = Object.keys(ssn.apiroles_extract).length;
-    // console.log(" apiroles_total_objects: ", ssn.apiroles_total_objects);
+    console.log(" apiroles_total_objects: ", ssn.apiroles_total_objects);
 
     for (var i = 0; i < ssn.apiroles_total_objects; i++) {
       if (ssn.dashboard_roles_object_id1 == ssn.apiroles_extract[i].azGrpId) {
-        // console.log("gaName id1 : " + ssn.apiroles_extract[i].gaId);
+        console.log("gaName id1 : " + ssn.apiroles_extract[i].gaId);
         apiroles_extract_object1 = ssn.apiroles_extract[i].gaName;
         ssn.dashbaord_ga_ID = ssn.apiroles_extract[i].gaId;
       }
@@ -370,7 +373,7 @@ app.get("/", async (req, res) => {
 
     for (var i = 0; i < ssn.apiroles_total_objects; i++) {
       if (ssn.dashboard_roles_object_id2 == ssn.apiroles_extract[i].azGrpId) {
-        //console.log("gaName id2 : " + ssn.apiroles_extract[i].gaName);
+        console.log("gaName id2 : " + ssn.apiroles_extract[i].gaName);
         apiroles_extract_object2 = ssn.apiroles_extract[i].gaName;
       }
     }
@@ -421,8 +424,8 @@ app.get("/", async (req, res) => {
     azGrpId_Global = ssn.dashboard_roles_object_id1;
   }
 
-  // console.log("ssn.dashboard_roles : " + ssn.dashboard_roles);
-  // console.log("ssn.dashboard_ga_name : " + ssn.dashboard_ga_name);
+  console.log("ssn.dashboard_roles : " + ssn.dashboard_roles);
+  console.log("ssn.dashboard_ga_name : " + ssn.dashboard_ga_name);
 
   var userPrincipleRequest =
     '{"userName":"' +
