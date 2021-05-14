@@ -271,7 +271,7 @@ app.get("/", async (req, res) => {
     beis_url_searchscheme =
       "https://dev-transparency-db-ga-schemes-service.azurewebsites.net";
 
-    beis_redirect_url = "https://dev-transparency-db-admin-portal.azurewebsites.net";
+    beis_redirect_url = "https://dev-adminportal-fd.azurefd.net";
     beis_public_search =
       "https://dev-transparency-db-publicsearch-portal.azurewebsites.net";
 
@@ -330,15 +330,15 @@ app.get("/", async (req, res) => {
   ssn.frontend_totalRecordsPerPage = 10;
 
   var id_token_decoded = jwt_decode(id_token);
-  console.log("id_token_decoded " + id_token_decoded);
-  console.log("logged in user " + id_token_decoded.name);
-  console.log("id_token_decoded parsed " + JSON.stringify(id_token_decoded));
+  // console.log("id_token_decoded " + id_token_decoded);
+  // console.log("logged in user " + id_token_decoded.name);
+  // console.log("id_token_decoded parsed " + JSON.stringify(id_token_decoded));
   var id_token_json = JSON.parse(JSON.stringify(id_token_decoded));
   ssn.dashboard_user_name = id_token_decoded.name;
   ssn.user_id = id_token_decoded.oid;
   ssn.dashboard_roles_object = JSON.stringify(id_token_json.roles);
-  console.log("username : " + ssn.dashboard_user_name);
-  console.log("roles :" + ssn.dashboard_roles_object);
+  // console.log("username : " + ssn.dashboard_user_name);
+  // console.log("roles :" + ssn.dashboard_roles_object);
   ssn.dashboard_roles_object_id1 = ssn.dashboard_roles_object.substr(2, 36);
   ssn.dashboard_roles_object_id2 = ssn.dashboard_roles_object.substr(41, 36);
 
@@ -359,7 +359,7 @@ app.get("/", async (req, res) => {
     // console.log("Body: ", apiroles.data);
     ssn.apiroles_extract = apiroles.data;
     ssn.apiroles_total_objects = Object.keys(ssn.apiroles_extract).length;
-    console.log(" apiroles_total_objects: ", ssn.apiroles_total_objects);
+    // console.log(" apiroles_total_objects: ", ssn.apiroles_total_objects);
 
     for (var i = 0; i < ssn.apiroles_total_objects; i++) {
       if (ssn.dashboard_roles_object_id1 == ssn.apiroles_extract[i].azGrpId) {
@@ -422,8 +422,8 @@ app.get("/", async (req, res) => {
     azGrpId_Global = ssn.dashboard_roles_object_id1;
   }
 
-  console.log("ssn.dashboard_roles : " + ssn.dashboard_roles);
-  console.log("ssn.dashboard_ga_name : " + ssn.dashboard_ga_name);
+  // console.log("ssn.dashboard_roles : " + ssn.dashboard_roles);
+  // console.log("ssn.dashboard_ga_name : " + ssn.dashboard_ga_name);
 
   var userPrincipleRequest =
     '{"userName":"' +
