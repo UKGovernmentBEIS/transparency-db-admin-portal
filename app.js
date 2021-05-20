@@ -257,7 +257,8 @@ app.get("/", async (req, res) => {
     // beis_url_searchscheme =
     //   "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net";
 
-    // beis_redirect_url = "https://dev-beis-tp-dp-admin-portal.azurewebsites.net";
+    // beis_
+    _url = "https://dev-beis-tp-dp-admin-portal.azurewebsites.net";
     // beis_public_search =
     //   "https://dev-beis-tp-db-publicsearch-portal.azurewebsites.net";
 
@@ -271,7 +272,7 @@ app.get("/", async (req, res) => {
     beis_url_searchscheme =
       "https://dev-transparency-db-ga-schemes-service.azurewebsites.net";
 
-    beis_redirect_url = "https://dev-adminportal-fd.azurefd.net";
+    beis_redirect_url = "https://manageuksubsidies-dev.beis.gov.uk";
     beis_public_search =
       "https://dev-transparency-db-publicsearch-portal.azurewebsites.net";
 
