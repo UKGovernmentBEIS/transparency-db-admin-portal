@@ -68,7 +68,7 @@ stages:
                     packageForLinux: '$(Pipeline.Workspace)/**/$(Build.BuildId).zip'
       - deployment: DeployLinuxWebAppStg
         displayName: Deploy Linux Web App - Staging
-        environment: 'dev'
+        environment: 'stg'
         pool:
           vmImage: $(vmImageName)
         strategy:
