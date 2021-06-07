@@ -295,15 +295,15 @@ app.get("/", async (req, res) => {
     console.log(beis_url_publishing);
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
-  } else if (Environment_variable == "env=stag") {
+  } else if (Environment_variable == "env=stg") {
     beis_url_publishing =
-      "https://stag-transparency-db-publishing-subsidies-service.azurewebsites.net";
+      "https://stg-transparency-db-publishing-subsidies-service.azurewebsites.net";
     beis_url_accessmanagement =
-      "https://stag-transparency-db-access-management-service.azurewebsites.net";
+      "https://stg-transparency-db-access-management-service.azurewebsites.net";
     beis_url_publicsearch =
-      "https://stag-transparency-db-public-search-service.azurewebsites.net";
+      "https://stg-transparency-db-public-search-service.azurewebsites.net";
     beis_url_searchscheme =
-      "https://stag-transparency-db-ga-schemes-service.azurewebsites.net";
+      "https://stg-transparency-db-ga-schemes-service.azurewebsites.net";
     beis_redirect_url = "https://manageuksubsidies-stg.beis.gov.uk";
     beis_public_search = "https://searchforuksubsidies-stg.beis.gov.uk";
     console.log(beis_url_publishing);
