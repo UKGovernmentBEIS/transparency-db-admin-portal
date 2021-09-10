@@ -303,28 +303,28 @@
                                             <% } %></a>
                                     </td>
                                     <td class="govuk-table__cell">
-                                        <% if( Environment_variable !== "env=prod") { %>
-
-                                        <% var role = item.roleName.split("_"); if(role[1] == 'GrantingAuthorityAdministrators') { %>
-                                        Granting Authority Administrators
-                                        <% } else if(role[1] == 'GrantingAuthorityEncoders') {%>
-                                        Granting Authority Encoders
-                                        <% } else if(role[1] == 'BEISAdministrators') {%>
-                                        BEIS Administrators
-                                        <% } else  {%>
-                                        Granting Authority Approvers
-                                        <% } %>
+                                        <% if(typeof Environment_variable !== "undefined") { %>
+                                            <% if(Environment_variable !== "env=prod") { %>
+                                                <% var role = item.roleName.split("_"); if(role[1] == 'GrantingAuthorityAdministrators') { %>
+                                                Granting Authority Administrators
+                                                <% } else if(role[1] == 'GrantingAuthorityEncoders') {%>
+                                                Granting Authority Encoders
+                                                <% } else if(role[1] == 'BEISAdministrators') {%>
+                                                BEIS Administrators
+                                                <% } else  {%>
+                                                Granting Authority Approvers
+                                                <% } %>
+                                            <% } %>
                                         <% } else { %>
-
-                                        <%  if(item.roleName == 'GrantingAuthorityAdministrators') { %>
-                                        Granting Authority Administrators
-                                        <% } else if(item.roleName == 'GrantingAuthorityEncoders') {%>
-                                        Granting Authority Encoders
-                                        <% } else if(item.roleName == 'BEISAdministrators') {%>
-                                        BEIS Administrators
-                                        <% } else  {%>
-                                        Granting Authority Approvers
-                                        <% } %>
+                                            <%  if(item.roleName == 'GrantingAuthorityAdministrators') { %>
+                                            Granting Authority Administrators
+                                            <% } else if(item.roleName == 'GrantingAuthorityEncoders') {%>
+                                            Granting Authority Encoders
+                                            <% } else if(item.roleName == 'BEISAdministrators') {%>
+                                            BEIS Administrators
+                                            <% } else  {%>
+                                            Granting Authority Approvers
+                                            <% } %>
                                         <% } %>
 
                                     </td>

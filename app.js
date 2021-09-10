@@ -69,6 +69,9 @@ app.get("/", async (req, res) => {
   console.log("Landing root route");
   var id_token = req.header("x-ms-token-aad-id-token");
 
+  if (id_token  == null){
+    id_token = process.env.ID_TOKEN;
+  }
    console.log("id_token " + id_token);
   // console.log("req.session", req.session);
   ssn = req.session;
@@ -244,9 +247,87 @@ app.get("/", async (req, res) => {
 
   // ssn.GaListArr_Global;
 
-  Environment_variable = process.argv[2];
+  var Environment_variable = process.argv[2];
+    
+  if (Environment_variable == "env=local") {
+    var localServices;
+    var localSvcObj = {
+      "publishsubs" : false,
+      "accessmgmt" : false,
+      "publicsearch" : false,
+      "gaschemes" : false
+    }
+    //Parse local service flags to determine whether specific local services are referenced or not.
+    //Note: the ports are important if running locally, check the spring server is running on these
+    if (process.argv.length > 3){
+      localServices = process.argv[3];
+      console.log("app.js: Local process argument is " + localServices);
 
-  if (Environment_variable == "env=dev") {
+      //Example of expected local services input is;
+      // local=publishsubs,accessmgmt,publicsearch,gaschemes
+      //the above example would reference all 4 backend services locally
+      //omitting one would omit it from local reference
+      if (localServices.indexOf("=") !== -1){
+        var str = localServices.split("=")[1];
+        //If single value, i.e. local=accessmgmt push to localServices
+        var localArr = [];
+        if (str.indexOf(",") !== -1){
+          //If str contains , i.e. is more than one service in list
+          localArr = str.split(",");
+        } else {
+          localArr.push(str);
+        }
+        
+        for (var i in localArr){
+          if (localArr[i].toLowerCase().indexOf("publishsubs") !== -1){
+            localSvcObj.publishsubs = true;
+            console.log("app.js: Targeting local publishing subsidies service");
+          }
+          if (localArr[i].toLowerCase().indexOf("accessmgmt") !== -1){
+            localSvcObj.accessmgmt = true;
+            console.log("app.js: Targeting local access management service");
+          }
+          if (localArr[i].toLowerCase().indexOf("publicsearch") !== -1){
+            localSvcObj.publicsearch = true;
+            console.log("app.js: Targeting local public search service");
+          }
+          if (localArr[i].toLowerCase().indexOf("gaschemes") !== -1){
+            localSvcObj.gaschemes = true;
+            console.log("app.js: Targeting local GA schemes service");
+          }
+        }
+      }
+    } else {
+      console.log("app.js: Defaulting to targeting all local backend services");
+      //Default to use all local services if local= omitted
+      localSvcObj.publishsubs = true;
+      localSvcObj.accessmgmt = true;
+      localSvcObj.publicsearch = true;
+      localSvcObj.gaschemes = true;
+    }
+
+    // DM 03-09-21
+    //Ideally need to keep these URLs in a separate file so these URL variables have a single value assignment
+    beis_url_publishing = ((localSvcObj.publishsubs) ?
+      "http://localhost:8178" : "https://dev-transparency-db-publishing-subsidies-service.azurewebsites.net");
+      
+    beis_url_accessmanagement = ((localSvcObj.accessmgmt) ?
+      "http://localhost:8090" : "https://dev-transparency-db-access-management-service.azurewebsites.net"); 
+
+    beis_url_publicsearch = ((localSvcObj.publicsearch) ?
+      "http://localhost:8581" : "https://dev-transparency-db-public-search-service.azurewebsites.net"); 
+      
+    beis_url_searchscheme = ((localSvcObj.gaschemes) ?
+      "http://localhost:8182" : "https://dev-transparency-db-ga-schemes-service.azurewebsites.net"); 
+
+    beis_redirect_url = "http://localhost:3000"; //http://localhost:3000
+    beis_public_search =
+      "http://localhost:3001"; //http://localhost:3001
+
+    console.log(beis_url_publishing);
+    console.log(beis_url_accessmanagement);
+    console.log(beis_url_publicsearch);
+  } else if (Environment_variable == "env=dev") {
     //                    OLD URLs below
     // beis_url_publishing =        
     //   "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
