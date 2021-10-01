@@ -45,8 +45,8 @@ stages:
             inputs:
               targetPath: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
   
-  - stage: Deploy
-    displayName: Deploy stage
+  - stage:
+    displayName: Deploy to dev/test environment
     dependsOn: Build
     condition: succeeded()
     jobs:
@@ -66,6 +66,11 @@ stages:
                     appType: 'webAppLinux'
                     WebAppName: 'dev-transparency-db-admin-portal'
                     packageForLinux: '$(Pipeline.Workspace)/**/$(Build.BuildId).zip'
+  - stage:
+    displayName: Deploy to staging environment
+    dependsOn: Build
+    condition: succeeded()
+    jobs:
       - deployment: DeployLinuxWebAppStg
         displayName: Deploy Linux Web App - Staging
         environment: 'dev'
