@@ -48,7 +48,7 @@ stages:
   - stage:
     displayName: Deploy to dev/test environment
     dependsOn: Build
-    condition: succeeded()
+    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
     jobs:
       - job: waitForValidation
         displayName: Confirm dev/test deployment
@@ -79,12 +79,11 @@ stages:
   - stage:
     displayName: Deploy to staging environment
     dependsOn: Build
-    condition: succeeded()
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     jobs:
       - deployment: DeployLinuxWebAppStg
         displayName: Deploy Linux Web App - Staging
         environment: 'stg'
-        condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
         pool:
           vmImage: $(vmImageName)
         strategy:
