@@ -535,8 +535,12 @@ app.get("/", async (req, res) => {
     // if (ssn.dashboard_roles == "BEIS Administrator")
     //   azGrpId = ssn.dashboard_roles_object_id1;
     // else azGrpId = ssn.dashboard_roles_object_id2;
+    userManagementEndpoint = "/usermanagement/groups/" + azGrpId_Global; // default to users for group
+    if (ssn.dashboard_roles == "BEIS Administrator") {
+        userManagementEndpoint = "/usermanagement/users"; // if BEIS Admin, get all users
+    }
     const apidata = await axios.get(
-      beis_url_accessmanagement + "/usermanagement/groups/" + azGrpId_Global,
+      beis_url_accessmanagement + userManagementEndpoint,
       ssn.UserPrincileObjectGlobal
     );
     console.log(`Status: ${apidata.status}`);
