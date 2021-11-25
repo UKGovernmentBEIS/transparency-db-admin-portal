@@ -530,6 +530,7 @@ app.get("/", async (req, res) => {
   gaApproverCount_Global = 0;
   gaEncoderCount_Global = 0;
   gaTotalCount_Global = 0;
+  azuserUsers = 0;
   try {
     // azGrpId = ssn.dashboard_roles_object_id1;
     // if (ssn.dashboard_roles == "BEIS Administrator")
@@ -554,8 +555,10 @@ app.get("/", async (req, res) => {
         gaApproverCount_Global++;
       if (items.roleName.toLowerCase().includes("encoders"))
         gaEncoderCount_Global++;
+      if(items.roleName == 'Azure-User')
+        azuserUsers++;
     });
-    gaTotalCount_Global = apidata.data.value.length;
+    gaTotalCount_Global = (apidata.data.value.length - azuserUsers);
   } catch (err) {
     response_error_message = err;
     console.log("message error : " + err);
