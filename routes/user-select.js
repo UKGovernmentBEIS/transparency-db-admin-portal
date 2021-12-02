@@ -160,6 +160,8 @@ router.post("/", async (req, res) => {
     No_Selected_GA = false;
     No_Selected_Role = false;
     No_Selected_id = "";
+    ListAll = false;
+    GA_Object_Id = "";
     console.log("button_value  : " + button_value);
     console.log("Granting_Authority_Selected", Granting_Authority_Selected);
     if (button_value == "GASelected") {
@@ -193,6 +195,9 @@ router.post("/", async (req, res) => {
           No_Selected_id,
         });
       }
+    } else if (button_value == "ListAll") {
+      console.log("Listing all users"); 
+      ListAll = true;
     }
 
     if (Granting_Authority_Selected) {
@@ -214,11 +219,15 @@ router.post("/", async (req, res) => {
       }
     }
 
-    console.log("GA_Object_Id", GA_Object_Id);
-    if (Granting_Authority_Selected || GA_Roles_Selected) {
+    //console.log("GA_Object_Id", GA_Object_Id);
+    userManagementEndpoint = "/usermanagement/groups/" + GA_Object_Id; // default to users for group
+    if (ListAll) {
+        userManagementEndpoint = "/usermanagement/users"; // if ListAll, override
+    }
+    if (Granting_Authority_Selected || GA_Roles_Selected || ListAll) {
       try {
         const apidata = await axios.get(
-          beis_url_accessmanagement + "/usermanagement/groups/" + GA_Object_Id,
+          beis_url_accessmanagement + userManagementEndpoint,
           ssn.UserPrincileObjectGlobal
         );
         // console.log(`Status: ${apidata.status}`);
@@ -251,6 +260,7 @@ router.post("/", async (req, res) => {
           No_Selected_GA = false;
           No_Selected_Role = false;
           No_Selected_id = "";
+          ListAll = false;
           ssn.GAUserList_Empty = 0;
           res.render("bulkupload/user-select", {
             No_Selected_text,
