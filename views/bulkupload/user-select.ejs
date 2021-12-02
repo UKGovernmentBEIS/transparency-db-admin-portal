@@ -262,7 +262,13 @@
                                             </div>
 
                                             <div class="govuk-grid-column-two-thirds">
-
+                                                <div class="govuk-grid-column-one-half">
+                                                    <button class="govuk-button" data-module="govuk-button"
+                                                        name="button_value" value="ListAll">
+                                                        List all users
+                                                    </button>
+                                                </div>
+                                                
                                                 <% if(ssn.dashboard_roles == 'BEIS Administrator' || ssn.dashboard_roles == 'Granting Authority Administrator') { %>
                                                 <a href="/adduser" class="govuk-button" data-module="govuk-button">
                                                     Add a new user
