@@ -167,6 +167,7 @@ router.post("/", async (req, res) => {
     if (button_value == "GASelected") {
       GA_Selected = Granting_Authority_Selected;
       ssn.Roles_Selected = "";
+      ListAll = false;
       if (!Granting_Authority_Selected) {
         No_Selected_text = "Please select GA";
         No_Selected_GA = true;
@@ -183,6 +184,7 @@ router.post("/", async (req, res) => {
       ssn.Roles_Selected = GA_Roles_Selected;
       console.log("ssn.Roles_Selected roles:" + ssn.Roles_Selected);
       GA_Selected = "";
+      ListAll = false;
       if (!GA_Roles_Selected) {
         No_Selected_text = "Please select Role";
         No_Selected_GA = false;
@@ -198,6 +200,8 @@ router.post("/", async (req, res) => {
     } else if (button_value == "ListAll") {
       console.log("Listing all users"); 
       ListAll = true;
+      ssn.Roles_Selected = "";
+      GA_Selected = "";
     }
 
     if (Granting_Authority_Selected) {
