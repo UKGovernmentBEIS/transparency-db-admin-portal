@@ -339,13 +339,7 @@
                                     </td>
 
                                     <td class="govuk-table__cell">
-                                        <% if ( ssn.Roles_Selected == 'Granting Authority Administrator' || ssn.Roles_Selected == 'Granting Authority Approver' || ssn.Roles_Selected == 'Granting Authority Encoder' ) {  %>
-                                        NA
-                                        <% } else if (ssn.Roles_Selected == 'BEIS Administrator' ) {  %>
-                                        Department for Business, Energy & Industrial Strategy
-                                        <% } else { %>
-                                        <%= GA_Selected %>
-                                        <% } %>
+                                        <%= item.grantingAuthority %>
                                     </td>
 
                                     <td class="govuk-table__cell">
