@@ -530,13 +530,18 @@ app.get("/", async (req, res) => {
   gaApproverCount_Global = 0;
   gaEncoderCount_Global = 0;
   gaTotalCount_Global = 0;
+  azuserUsers = 0;
   try {
     // azGrpId = ssn.dashboard_roles_object_id1;
     // if (ssn.dashboard_roles == "BEIS Administrator")
     //   azGrpId = ssn.dashboard_roles_object_id1;
     // else azGrpId = ssn.dashboard_roles_object_id2;
+    userManagementEndpoint = "/usermanagement/groups/" + azGrpId_Global; // default to users for group
+    if (ssn.dashboard_roles == "BEIS Administrator") {
+        userManagementEndpoint = "/usermanagement/users"; // if BEIS Admin, get all users
+    }
     const apidata = await axios.get(
-      beis_url_accessmanagement + "/usermanagement/groups/" + azGrpId_Global,
+      beis_url_accessmanagement + userManagementEndpoint,
       ssn.UserPrincileObjectGlobal
     );
     console.log(`Status: ${apidata.status}`);
@@ -550,8 +555,10 @@ app.get("/", async (req, res) => {
         gaApproverCount_Global++;
       if (items.roleName.toLowerCase().includes("encoders"))
         gaEncoderCount_Global++;
+      if(items.roleName == 'Azure-User')
+        azuserUsers++;
     });
-    gaTotalCount_Global = apidata.data.value.length;
+    gaTotalCount_Global = (apidata.data.value.length - azuserUsers);
   } catch (err) {
     response_error_message = err;
     console.log("message error : " + err);

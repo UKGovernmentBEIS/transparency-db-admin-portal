@@ -262,7 +262,13 @@
                                             </div>
 
                                             <div class="govuk-grid-column-two-thirds">
-
+                                                <div class="govuk-grid-column-one-half">
+                                                    <button class="govuk-button" data-module="govuk-button"
+                                                        name="button_value" value="ListAll">
+                                                        List all users
+                                                    </button>
+                                                </div>
+                                                
                                                 <% if(ssn.dashboard_roles == 'BEIS Administrator' || ssn.dashboard_roles == 'Granting Authority Administrator') { %>
                                                 <a href="/adduser" class="govuk-button" data-module="govuk-button">
                                                     Add a new user
@@ -333,13 +339,7 @@
                                     </td>
 
                                     <td class="govuk-table__cell">
-                                        <% if ( ssn.Roles_Selected == 'Granting Authority Administrator' || ssn.Roles_Selected == 'Granting Authority Approver' || ssn.Roles_Selected == 'Granting Authority Encoder' ) {  %>
-                                        NA
-                                        <% } else if (ssn.Roles_Selected == 'BEIS Administrator' ) {  %>
-                                        Department for Business, Energy & Industrial Strategy
-                                        <% } else { %>
-                                        <%= GA_Selected %>
-                                        <% } %>
+                                        <%= item.grantingAuthority %>
                                     </td>
 
                                     <td class="govuk-table__cell">
