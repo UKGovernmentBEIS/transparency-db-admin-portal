@@ -592,15 +592,22 @@ router.post("/", async (req, res) => {
                 "Subsidy control number is not active";
               ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
               Additem = Additem + 1;
-              ssn.SubsidyArraySize = 1;
+              ssn.SubsidyArraySize = ssn.SubsidyArraySize + 1;
               ssn.SC_Not_active = true;
               schemeError = true;
             }
             startDateObj = new Date(searchschemes.schemes[0].startDate);
             endDateObj = new Date(searchschemes.schemes[0].endDate);
-            awardDateObj = new Date(Legal_Granting_Date_Year, Legal_Granting_Date_Month, Legal_Granting_Date_Day);
+            MonthInt = parseInt(Legal_Granting_Date_Month) - 1;
+            MonthStr = MonthInt.toString();
+            awardDateObj = new Date(Legal_Granting_Date_Year, MonthStr, Legal_Granting_Date_Day);
             if ((awardDateObj > endDateObj) || (awardDateObj < startDateObj)) {
               ssn.Award_Date_Not_Valid_Error = true;
+              ssn.SubsidyErrors[Additem] =
+                "Granting date is not valid, it must be between "+searchschemes.schemes[0].startDate+" and "+searchschemes.schemes[0].endDate+" inclusive";
+              ssn.SubsidyFocus[Additem] = "#Legal_Granting_Date";
+              Additem = Additem + 1;
+              ssn.SubsidyArraySize = ssn.SubsidyArraySize + 1;
               schemeError = true;
             }
             if (schemeError) {
