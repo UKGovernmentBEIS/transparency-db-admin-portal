@@ -30,6 +30,7 @@ router.post("/", async (req, res) => {
     ssn.Subsidy_Control_Number_Error = false;
     ssn.Subsidy_Measure_Title_Error = false;
     ssn.SC_Not_active = false;
+    ssn.Award_Date_Not_Valid_Error = false;
     // ssn.Subsidy_Adhoc_Error = false;
     ssn.Subsidy_Objective_Error = false;
     ssn.Subsidy_Objective_Other_Error = false;
@@ -584,14 +585,32 @@ router.post("/", async (req, res) => {
               2,
               10
             );
+            schemeError = false;
             if (searchschemes.schemes[0].status == "Inactive") {
               // ssn.Subsidy_Control_Number_Error = true;
               ssn.SubsidyErrors[Additem] =
                 "Subsidy control number is not active";
               ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
               Additem = Additem + 1;
-              ssn.SubsidyArraySize = 1;
+              ssn.SubsidyArraySize = ssn.SubsidyArraySize + 1;
               ssn.SC_Not_active = true;
+              schemeError = true;
+            }
+            startDateObj = new Date(searchschemes.schemes[0].startDate);
+            endDateObj = new Date(searchschemes.schemes[0].endDate);
+            MonthInt = parseInt(Legal_Granting_Date_Month) - 1;
+            MonthStr = MonthInt.toString();
+            awardDateObj = new Date(Legal_Granting_Date_Year, MonthStr, Legal_Granting_Date_Day);
+            if ((awardDateObj > endDateObj) || (awardDateObj < startDateObj)) {
+              ssn.Award_Date_Not_Valid_Error = true;
+              ssn.SubsidyErrors[Additem] =
+                "Granting date is not valid, it must be between "+searchschemes.schemes[0].startDate+" and "+searchschemes.schemes[0].endDate+" inclusive";
+              ssn.SubsidyFocus[Additem] = "#Legal_Granting_Date";
+              Additem = Additem + 1;
+              ssn.SubsidyArraySize = ssn.SubsidyArraySize + 1;
+              schemeError = true;
+            }
+            if (schemeError) {
               res.render("bulkupload/addsubsidyaward", {
                 ssn,
               });
