@@ -1,5 +1,5 @@
 // ********************************************************************
-// Gov.UK transparency subsidy scheme deactivate module
+// Gov.UK transparency subsidy scheme delete module
 // ********************************************************************
 
 const express = require("express");
