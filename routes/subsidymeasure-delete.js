@@ -13,6 +13,8 @@ router.get("/", async (req, res) => {
     typeof ssn.dashboard_roles_object_id2 === "undefined"
   ) {
     res.redirect("/signout");
+  } else if (ssn.dashboard_roles != "BEIS Administrator") {
+    res.render("bulkupload/notAuthorized");
   } else {
     res.set("X-Frame-Options", "DENY");
     res.set("X-Content-Type-Options", "nosniff");
