@@ -198,6 +198,12 @@
                         Add a subsidy award to this scheme
                     </a>
                     <% } %>
+
+                    <% if (ssn.dashboard_roles == "BEIS Administrator" && ssn.searchmeasuredetails.status != 'Deleted') { %>
+                        <a class="govuk-button govuk-button--warning" href="/deletescheme" data-module="govuk-button" style="float:right">
+                            Delete
+                        </a>
+                    <% } %>
                     <!-- <a href="/cancelreviewsubsidymeasures?scheme=<%= ssn.searchmeasuredetails.scNumber %>"
                         class="govuk-link govuk-cancel-button-link ">
                         Cancel
