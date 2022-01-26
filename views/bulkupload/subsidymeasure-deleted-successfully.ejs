@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - Subsidy Scheme Deleted Successfully</title>
+    <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+         // window.dataLayer = window.dataLayer || [];
+
+        // function gtag() {
+        //     dataLayer.push(arguments);
+        // }
+        // gtag('js', new Date());
+        // gtag('config', 'UA-145652997-21');
+    </script>
+</head>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+
+    <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
+            <%- include('../partials/navigationbar.ejs') %>
+
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mysubsidymeasures">Subsidy schemes</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/editreviewsubsidymeasure?scheme=<%=scNumber_Global%>"><%= ssn.searchmeasuredetails.subsidyMeasureTitle %></a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Delete scheme</a>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+            <div class="govuk-grid-row">
+
+                <div class="govuk-grid-column-two-thirds govuk-form-group">
+                    <div class="govuk-panel govuk-panel--confirmation">
+                        <h1 class="govuk-panel__title">
+                            Subsidy scheme <%=scNumber_Global%> deleted
+                        </h1>
+                    </div>
+                </div>
+                <div class="govuk-grid-column-full govuk-form-group">
+                    <p class="govuk-body govuk-!-font-size-19">You have deleted subsidy scheme <%=scNumber_Global%>.
+                    </p>
+                    <!-- <p class="govuk-body govuk-!-font-size-19">This subsidy scheme is no longer visible on the <a
+                            href="<%=beis_public_search%>"> Search for UK subsidies</a> service.</p> -->
+                </div>
+
+                <div class="govuk-grid-column-full govuk-form-group">
+
+                    <a class="govuk-button" href="/mysubsidymeasures" data-module="govuk-button">
+                        View all subsidy schemes
+                    </a>
+
+                </div>
+            </div>
+
+        </main>
+    </div>
+    <%- include('../partials/footer.ejs') %>
+    <script>
+        document.getElementById('subsidyscheme-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
+</body>
+
+</html>

@@ -17,6 +17,16 @@ router.get("/", async (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
+    var schemeStatus = "Inactive";
+    var render = "bulkupload/subsidymeasure-deactivated-successfully";
+    if (req.baseUrl.includes("/successfullydeletescheme")) {
+      if (ssn.dashboard_roles != "BEIS Administrator"){
+        res.render("bulkupload/notAuthorized");
+      }else{
+        schemeStatus = "Deleted";
+        render = "bulkupload/subsidymeasure-deleted-successfully"
+      }
+    }
     res.set("X-Frame-Options", "DENY");
     res.set("X-Content-Type-Options", "nosniff");
     res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -28,14 +38,14 @@ router.get("/", async (req, res) => {
       const deleteUser = await axios.put(
         beis_url_searchscheme + `/scheme/update/${scNumber_Global}`,
         {
-          status: "Inactive",
+          status: schemeStatus,
         },
         ssn.UserPrincileObjectGlobal
       );
 
       console.log(`Status: ${deleteUser.status}`);
 
-      res.render("bulkupload/subsidymeasure-deactivated-successfully", {
+      res.render(render, {
         scNumber_Global,
       });
     } catch (err) {
