@@ -188,7 +188,7 @@
                     <button class="govuk-button" data-module="govuk-button">
                         Back to subsidy schemes
                     </button>
-                    <% if(ssn.dashboard_roles != 'Granting Authority Encoder' && ssn.searchmeasuredetails.status!='Inactive') { %>
+                    <% if(ssn.dashboard_roles != 'Granting Authority Encoder' && ssn.searchmeasuredetails.status == 'Active') { %>
                     <a class="govuk-button  govuk-button--warning" href="/deactivatescheme" data-module="govuk-button">
                         Deactivate
                     </a>
