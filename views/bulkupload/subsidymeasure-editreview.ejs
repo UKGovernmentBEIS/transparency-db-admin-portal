@@ -120,7 +120,7 @@
                 <div class="govuk-grid-column-full">
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details
                     </h2>
-                    <% if(ssn.searchmeasuredetails.status != 'Inactive' && ssn.dashboard_roles == 'BEIS Administrator') { %>
+                    <% if(ssn.searchmeasuredetails.status == 'Active' && ssn.dashboard_roles == 'BEIS Administrator') { %>
                     <a rel="external" aria-label="Change subsidy scheme details"
                         class="govuk-link head-right govuk-relative-position"
                         href="/editsubsidymeasure?scheme=<%= ssn.searchmeasuredetails.scNumber %>&editsc=No">
