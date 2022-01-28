@@ -586,7 +586,7 @@ router.post("/", async (req, res) => {
               10
             );
             schemeError = false;
-            if (searchschemes.schemes[0].status == "Inactive") {
+            if (searchschemes.schemes[0].status != "Active") {
               // ssn.Subsidy_Control_Number_Error = true;
               ssn.SubsidyErrors[Additem] =
                 "Subsidy control number is not active";
