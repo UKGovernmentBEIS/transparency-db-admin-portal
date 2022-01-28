@@ -154,8 +154,26 @@
             <% } if(fetchawarddetails.subsidyMeasure.status == "Deleted"){%>
                 <div class="govuk-form-group app-example govuk-inative-status">
                     <div class="app-example__toolbar">
-                        <label>This scheme has been deleted</label>
+                        <label>The scheme associated to this award has been deleted</label>
                     </div>
+                    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">
+                                Deleted by
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                <%= fetchawarddetails.subsidyMeasure.deletedBy %>
+                            </dd>
+                        </div>
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">
+                                Deleted date/time
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                <%= fetchawarddetails.subsidyMeasure.deletedTimestamp %>
+                            </dd>
+                        </div>
+                    </dl>
                 </div>
             <% } %>
             <!-- Reject Message Block -->
