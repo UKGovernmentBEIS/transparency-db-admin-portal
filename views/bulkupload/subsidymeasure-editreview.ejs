@@ -92,6 +92,12 @@
                         </div>
                     </div>
                 </div>
+                <% } else if(ssn.searchmeasuredetails.status == "Deleted") {%>
+                    <div class="govuk-form-group app-example govuk-inative-status">
+                        <div class="app-example__toolbar">
+                            <label>This scheme has been deleted</label>
+                        </div>
+                    </div>
                 <% } %>
                 <div class="govuk-grid-column-full">
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details
