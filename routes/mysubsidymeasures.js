@@ -73,6 +73,7 @@ router.get("/", async (req, res) => {
       ssn.allScheme = searchschemes.allScheme;
       ssn.activeScheme = searchschemes.activeScheme;
       ssn.inactiveScheme = searchschemes.inactiveScheme;
+      ssn.deletedScheme = searchschemes.deletedScheme;
 
       var searchschemes_api = apidata.data;
       console.log("searchschemes" + searchschemes_api);
