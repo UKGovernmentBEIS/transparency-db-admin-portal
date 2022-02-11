@@ -112,7 +112,7 @@
         <h3 class="govuk-heading-m">Subsidy schemes</h3>
 
         <div class="govuk-grid-row">
-          <div class="govuk-grid-column-one-third govuk-form-group">
+          <div class="govuk-grid-column-one-half govuk-form-group">
             <div class="govuk-background">
               <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalSubsidyScheme %></p>
@@ -120,8 +120,7 @@
                 <a href="/mysubsidymeasures" class="govuk-description-text">Total subsidy schemes </a> </p>
             </div>
           </div>
-
-          <div class="govuk-grid-column-one-third govuk-form-group">
+          <div class="govuk-grid-column-one-half govuk-form-group">
             <div class="govuk-background">
               <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalActiveScheme %>
@@ -130,7 +129,7 @@
                 <a href="/mysubsidymeasures?sort=Active" class="govuk-description-text">Active</a></p>
             </div>
           </div>
-          <div class="govuk-grid-column-one-third govuk-form-group">
+          <div class="govuk-grid-column-one-half govuk-form-group">
             <div class="govuk-background">
               <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalInactiveScheme %>
@@ -139,7 +138,15 @@
                 <a href="/mysubsidymeasures?sort=Inactive" class="govuk-description-text">Inactive</a></p>
             </div>
           </div>
-
+          <div class="govuk-grid-column-one-half govuk-form-group">
+            <div class="govuk-background">
+              <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
+                <%= dashboardawards.subsidyMeasureUserActionCount.totalDeletedScheme %>
+              </p>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24">
+                <a href="/mysubsidymeasures?sort=Deleted" class="govuk-description-text">Deleted</a></p>
+            </div>
+          </div>
         </div>
         <div class=" form-group">
           <a href="/mysubsidymeasures" class="govuk-button govuk-button--success">
