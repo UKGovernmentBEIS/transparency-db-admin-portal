@@ -45,6 +45,12 @@ router.get("/", async (req, res) => {
 
       console.log(`Status: ${deleteUser.status}`);
 
+      if (schemeStatus == "Deleted"){
+        const deleteAwards = await axios.put(
+          beis_url_publishing + `/award/deletescheme/${scNumber_Global}`, {}, ssn.UserPrincileObjectGlobal
+        );
+      }
+
       res.render(render, {
         scNumber_Global,
       });
