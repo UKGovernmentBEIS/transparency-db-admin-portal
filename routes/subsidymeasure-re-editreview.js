@@ -76,6 +76,7 @@ router.post("/", (req, res) => {
 
     ssn.Budget_Global = Budget;
     ssn.Scheme_Start_Day_Global = scheme_issued_start_day;
+    ssn.Scheme_Start_Month_Global = scheme_issued_start_month;
     ssn.Scheme_Start_Year_Global = scheme_issued_start_year;
 
     if (ssn.Subsidy_Adhoc_Global == "Yes") {
