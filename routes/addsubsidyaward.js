@@ -45,6 +45,7 @@ router.get("/", (req, res) => {
     ssn.Granting_Authority_URL_255_Error = false;
     ssn.Granting_Authority_Policy_255_Error = false;
     ssn.SC_Not_active = false;
+    ssn.Award_Date_Not_Valid_Error = false;
     ssn.Subsidy_Adhoc_Error = false;
     ssn.Subsidy_Objective_Error = false;
     ssn.Subsidy_Objective_Other_Error = false;

@@ -131,27 +131,50 @@
             <% } else { %>
             <!-- Reject Message Block -->
             <% if( fetchawarddetails.subsidyMeasure.status != "Inactive") { %>
-            <% if( Get_Award_Status =="Rejected" || Get_Award_Status =="Deleted") { %>
-
-            <div class="govuk-form-group app-example">
-                <div class="app-example__toolbar">
-                    <label>Comments from approver</label>
-                </div>
-                <div class="app-example__frame">
-                    <% if(fetchawarddetails.status) { %>
-                    <p> <%= fetchawarddetails.rejectReason %></p>
-                    <% } else { %>
-                    <p>The subsidy award reject reason not mentioned by the approver </p>
-                    <% } %>
-                </div>
-            </div>
-            <% } %>
+                <% if( Get_Award_Status =="Rejected" || Get_Award_Status =="Deleted") { %>
+                    <div class="govuk-form-group app-example">
+                        <div class="app-example__toolbar">
+                            <label>Comments from approver</label>
+                        </div>
+                        <div class="app-example__frame">
+                            <% if(fetchawarddetails.status) { %>
+                            <p> <%= fetchawarddetails.rejectReason %></p>
+                            <% } else { %>
+                            <p>The subsidy award reject reason not mentioned by the approver </p>
+                            <% } %>
+                        </div>
+                    </div>
+                <% } %>
             <% } else if(fetchawarddetails.subsidyMeasure.status == "Inactive") {%>
-            <div class="govuk-form-group app-example govuk-inative-status">
-                <div class="app-example__toolbar">
-                    <label>This scheme is not active</label>
+                <div class="govuk-form-group app-example govuk-inative-status">
+                    <div class="app-example__toolbar">
+                        <label>This scheme is not active</label>
+                    </div>
                 </div>
-            </div>
+            <% } if(fetchawarddetails.subsidyMeasure.status == "Deleted"){%>
+                <div class="govuk-form-group app-example govuk-inative-status">
+                    <div class="app-example__toolbar">
+                        <label>The scheme associated to this award has been deleted</label>
+                    </div>
+                    <dl class="govuk-summary-list">
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">
+                                Deleted by
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                <%= fetchawarddetails.subsidyMeasure.deletedBy %>
+                            </dd>
+                        </div>
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">
+                                Deleted date/time
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                <%= fetchawarddetails.subsidyMeasure.deletedTimestamp %>
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
             <% } %>
             <!-- Reject Message Block -->
             <div class="govuk-grid-row">
@@ -237,6 +260,15 @@
                         </dt>
                         <dd class="govuk-summary-list__value">
                             <%= fetchawarddetails.legalGrantingDate %>
+                        </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Published date
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= fetchawarddetails.publishedAwardDate %>
                         </dd>
                     </div>
 

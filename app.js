@@ -530,28 +530,42 @@ app.get("/", async (req, res) => {
   gaApproverCount_Global = 0;
   gaEncoderCount_Global = 0;
   gaTotalCount_Global = 0;
+  azuserUsers = 0;
   try {
     // azGrpId = ssn.dashboard_roles_object_id1;
     // if (ssn.dashboard_roles == "BEIS Administrator")
     //   azGrpId = ssn.dashboard_roles_object_id1;
     // else azGrpId = ssn.dashboard_roles_object_id2;
+    userManagementEndpoint = "/usermanagement/groups/" + azGrpId_Global; // default to users for group
+    if (ssn.dashboard_roles == "BEIS Administrator") {
+        userManagementEndpoint = "/usermanagement/countUsers"; // if BEIS Admin, just get counts
+    }
     const apidata = await axios.get(
-      beis_url_accessmanagement + "/usermanagement/groups/" + azGrpId_Global,
+      beis_url_accessmanagement + userManagementEndpoint,
       ssn.UserPrincileObjectGlobal
     );
     console.log(`Status: ${apidata.status}`);
     API_response_code = `${apidata.status}`;
     console.log("Body GROUPS: ", apidata.data.value);
 
-    apidata.data.value.forEach(function (items) {
-      if (items.roleName.toLowerCase().includes("administrators"))
-        gaAdminCount_Global++;
-      if (items.roleName.toLowerCase().includes("approvers"))
-        gaApproverCount_Global++;
-      if (items.roleName.toLowerCase().includes("encoders"))
-        gaEncoderCount_Global++;
-    });
-    gaTotalCount_Global = apidata.data.value.length;
+    if (ssn.dashboard_roles != "BEIS Administrator") {
+      apidata.data.value.forEach(function (items) {
+        if (items.roleName.toLowerCase().includes("administrators"))
+          gaAdminCount_Global++;
+        if (items.roleName.toLowerCase().includes("approvers"))
+          gaApproverCount_Global++;
+        if (items.roleName.toLowerCase().includes("encoders"))
+          gaEncoderCount_Global++;
+        if(items.roleName == 'Azure-User')
+          azuserUsers++;
+      });
+      gaTotalCount_Global = (apidata.data.value.length - azuserUsers);
+    } else if (ssn.dashboard_roles == "BEIS Administrator") {
+      gaAdminCount_Global = apidata.data.adminCount;
+      gaApproverCount_Global = apidata.data.approverCount;
+      gaEncoderCount_Global = apidata.data.encoderCount;
+      gaTotalCount_Global = apidata.data.totalCount;
+    }
   } catch (err) {
     response_error_message = err;
     console.log("message error : " + err);
@@ -865,6 +879,10 @@ app.use("/deactivatescheme", deactivatescheme);
 
 var successfullydeactivatescheme = require("./routes/subsidymeasure-deactivated-successfully");
 app.use("/successfullydeactivatescheme", successfullydeactivatescheme);
+app.use("/successfullydeletescheme", successfullydeactivatescheme);
+
+var deletescheme = require("./routes/subsidymeasure-delete");
+app.use("/deletescheme", deletescheme);
 
 var awardspageroute = require("./routes/awardspageroute");
 app.use("/awardspageroute", awardspageroute);

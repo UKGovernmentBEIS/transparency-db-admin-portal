@@ -1333,7 +1333,7 @@
             <!-- *****************************************  -->
             <!-- Get the Legal Granting Date     from user  -->
             <!-- *****************************************  -->
-            <% if( ssn.Legal_Granting_Date_Day_Error || ssn.Legal_Granting_Date_Month_Error || ssn.Legal_Granting_Date_Year_Error) { %>
+            <% if( ssn.Legal_Granting_Date_Day_Error || ssn.Legal_Granting_Date_Month_Error || ssn.Legal_Granting_Date_Year_Error || ssn.Award_Date_Not_Valid_Error) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <fieldset class="govuk-fieldset" role="group" aria-describedby="Legal_Granting_Date-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -1347,7 +1347,7 @@
 
                 <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
                   <span class="govuk-visually-hidden">Error:</span> You must enter the date that the subsidy was
-                  awarded.
+                  awarded, and this must be within the start and end dates of the related subsidy scheme.
                 </span>
 
                 <details class="govuk-details" data-module="govuk-details">
@@ -1367,7 +1367,7 @@
                       <label class="govuk-label govuk-date-input__label" for="Legal_Granting_Date_Day">
                         Day
                       </label>
-                      <% if( ssn.Legal_Granting_Date_Day_Error) { %>
+                      <% if( ssn.Legal_Granting_Date_Day_Error || ssn.Award_Date_Not_Valid_Error) { %>
                       <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error"
                         id="Legal_Granting_Date_Day" name="Legal_Granting_Date_Day" type="text" pattern="[0-9]*"
                         inputmode="numeric" <% if(ssn.Legal_Granting_Date_Day_Global) {%>
@@ -1386,7 +1386,7 @@
                         Month
                       </label>
 
-                      <% if( ssn.Legal_Granting_Date_Month_Error) { %>
+                      <% if( ssn.Legal_Granting_Date_Month_Error || ssn.Award_Date_Not_Valid_Error) { %>
                       <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error"
                         id="Legal_Granting_Date_Month" name="Legal_Granting_Date_Month" type="text" pattern="[0-9]*"
                         inputmode="numeric" <% if(ssn.Legal_Granting_Date_Month_Global) {%>
@@ -1405,7 +1405,7 @@
                       <label class="govuk-label govuk-date-input__label" for="Legal_Granting_Date_Year">
                         Year
                       </label>
-                      <% if( ssn.Legal_Granting_Date_Year_Error) { %>
+                      <% if( ssn.Legal_Granting_Date_Year_Error || ssn.Award_Date_Not_Valid_Error) { %>
                       <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error"
                         id="Legal_Granting_Date_Year" name="Legal_Granting_Date_Year" type="text" pattern="[0-9]*"
                         inputmode="numeric" <% if(ssn.Legal_Granting_Date_Year_Global) {%>
