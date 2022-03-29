@@ -523,6 +523,7 @@ app.get("/", async (req, res) => {
   ssn.UserPrincileObjectGlobal = {
     headers: {
       userPrinciple: userPrincipleRequest,
+      "x-ms-token-aad-id-token": id_token,
       "Content-Type": "application/json;charset=UTF-8",
     },
   };
