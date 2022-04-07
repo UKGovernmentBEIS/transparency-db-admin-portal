@@ -348,7 +348,7 @@
                     </div>
 
                 </dl>
-                <% if(ssn.dashboard_roles != 'Granting Authority Encoder') { %>
+                <% if(ssn.dashboard_roles != 'Granting Authority Encoder' && (ssn.dashboard_roles == 'BEIS Administrator' || ssn.dashboard_ga_name == fetchawarddetails.grantingAuthorityResponse.grantingAuthorityName)) { %>
                 <% if(Get_Award_Status.toLowerCase() =="awaiting approval") { %>
                 <input type="hidden" value="Yes" name="PublishAward">
                 <button class="govuk-button" data-module="govuk-button" name="Award_status" id="Award_status"
@@ -376,7 +376,7 @@
                         name="Award_status">Cancel</a> -->
                 <% } %>
                 <% } %>
-                <% if(Get_Award_Status.toLowerCase() =="rejected" &&  fetchawarddetails.subsidyMeasure.status != "Inactive") { %>
+                <% if(Get_Award_Status.toLowerCase() =="rejected" &&  fetchawarddetails.subsidyMeasure.status != "Inactive" && (ssn.dashboard_roles == 'BEIS Administrator' || ssn.dashboard_ga_name == fetchawarddetails.grantingAuthorityResponse.grantingAuthorityName)) { %>
                 <!-- <button class="govuk-button" data-module="govuk-button" name="Award_status" id="Award_status"
                     value="Editaward">
                     Edit</button> -->
