@@ -92,11 +92,35 @@
                         </div>
                     </div>
                 </div>
+                <% } else if(ssn.searchmeasuredetails.status == "Deleted") {%>
+                    <div class="govuk-form-group app-example govuk-inative-status">
+                        <div class="app-example__toolbar">
+                            <label>This scheme has been deleted</label>
+                        </div>
+                        <dl class="govuk-summary-list">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    Deleted by
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    <%= ssn.searchmeasuredetails.deletedBy %>
+                                </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    Deleted date/time
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    <%= ssn.searchmeasuredetails.deletedTimestamp %>
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
                 <% } %>
                 <div class="govuk-grid-column-full">
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details
                     </h2>
-                    <% if(ssn.searchmeasuredetails.status != 'Inactive' && ssn.dashboard_roles == 'BEIS Administrator') { %>
+                    <% if(ssn.searchmeasuredetails.status == 'Active' && ssn.dashboard_roles == 'BEIS Administrator') { %>
                     <a rel="external" aria-label="Change subsidy scheme details"
                         class="govuk-link head-right govuk-relative-position"
                         href="/editsubsidymeasure?scheme=<%= ssn.searchmeasuredetails.scNumber %>&editsc=No">
@@ -188,7 +212,7 @@
                     <button class="govuk-button" data-module="govuk-button">
                         Back to subsidy schemes
                     </button>
-                    <% if(ssn.dashboard_roles != 'Granting Authority Encoder' && ssn.searchmeasuredetails.status!='Inactive') { %>
+                    <% if(ssn.dashboard_roles != 'Granting Authority Encoder' && ssn.searchmeasuredetails.status == 'Active') { %>
                     <a class="govuk-button  govuk-button--warning" href="/deactivatescheme" data-module="govuk-button">
                         Deactivate
                     </a>
@@ -197,6 +221,12 @@
                         data-module="govuk-button">
                         Add a subsidy award to this scheme
                     </a>
+                    <% } %>
+
+                    <% if (ssn.dashboard_roles == "BEIS Administrator" && ssn.searchmeasuredetails.status != 'Deleted') { %>
+                        <a class="govuk-button govuk-button--warning" href="/deletescheme" data-module="govuk-button" style="float:right">
+                            Delete
+                        </a>
                     <% } %>
                     <!-- <a href="/cancelreviewsubsidymeasures?scheme=<%= ssn.searchmeasuredetails.scNumber %>"
                         class="govuk-link govuk-cancel-button-link ">
