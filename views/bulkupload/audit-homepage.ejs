@@ -22,6 +22,13 @@
       }
     }
   </script> -->
+  <script>
+    function formatDateToTwoDigits(input){
+      if(input.value.length === 1){
+        input.value = "0" + input.value;
+      }
+    }
+  </script>
 </head>
 
 
@@ -91,7 +98,7 @@
         </div>
         <% } %>
         <div class="govuk-grid-column-one-half">
-          <form action="/auditsearchbytextroute" method="post" novalidate>
+          <form action="/auditsearchbytextroute" method="post">
             <!-- <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text" type="text">
              -->
             <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text" type="text"
@@ -110,7 +117,7 @@
         <!-- Get the Legal Granting Date     from user  -->
         <!-- *****************************************  -->
         <div class="govuk-grid-column-full govuk-padding-0">
-          <form action="/auditsearchbydateroute" method="post" novalidate>
+          <form action="/auditsearchbydateroute" method="post">
             <div class="govuk-grid-column-one-third">
               <% if( ssn.Audit_Granting_Date_Day_Start_Error || ssn.Audit_Granting_Date_Month_Start_Error || ssn.Audit_Granting_Date_Year_Start_Error) { %>
               <div class="govuk-form-group govuk-form-group--error">
@@ -201,8 +208,10 @@
                           Day
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Day_Start" name="Audit_Granting_Date_Day_Start" type="text"
-                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Day_Start_Global) {%>
+                          id="Audit_Granting_Date_Day_Start" name="Audit_Granting_Date_Day_Start" type="text" 
+                          min="0" max="31" inputmode="numeric" placeholder="DD" 
+                          maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" onblur="formatDateToTwoDigits(this)"
+                          <% if(ssn.Audit_Granting_Date_Day_Start_Global) {%>
                           value="<%= ssn.Audit_Granting_Date_Day_Start_Global%>" <% } %> />
                       </div>
                     </div>
@@ -213,7 +222,9 @@
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                           id="Audit_Granting_Date_Month_Start" name="Audit_Granting_Date_Month_Start" type="text"
-                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Month_Start_Global) {%>
+                          min="0" max="12" inputmode="numeric" placeholder="MM"
+                          maxlength="2" pattern="^(0?[1-9]|1[012])$" onblur="formatDateToTwoDigits(this)"
+                          <% if(ssn.Audit_Granting_Date_Month_Start_Global) {%>
                           value="<%= ssn.Audit_Granting_Date_Month_Start_Global%>" <% } %> />
                       </div>
                     </div>
@@ -224,7 +235,8 @@
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-4"
                           id="Audit_Granting_Date_Year_Start" name="Audit_Granting_Date_Year_Start" type="text"
-                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Year_Start_Global) {%>
+                          inputmode="numeric" placeholder="YYYY" maxlength="4" pattern="^[12][0-9]{3}$"
+                          <% if(ssn.Audit_Granting_Date_Year_Start_Global) {%>
                           value="<%= ssn.Audit_Granting_Date_Year_Start_Global %>" <% } %> />
                       </div>
                     </div>
@@ -332,8 +344,10 @@
                           Day
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Day_End" name="Audit_Granting_Date_Day_End" type="text"
-                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Day_End_Global) {%>
+                          id="Audit_Granting_Date_Day_End" name="Audit_Granting_Date_Day_End" type="text" 
+                          min="0" max="31" inputmode="numeric" placeholder="DD" 
+                          maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" onblur="formatDateToTwoDigits(this)"
+                          <% if(ssn.Audit_Granting_Date_Day_End_Global) {%>
                           value="<%= ssn.Audit_Granting_Date_Day_End_Global%>" <% } %> />
                       </div>
                     </div>
@@ -343,8 +357,10 @@
                           Month
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Month_End" name="Audit_Granting_Date_Month_End" type="text"
-                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Month_End_Global) {%>
+                          id="Audit_Granting_Date_Month_End" name="Audit_Granting_Date_Month_End" type="text" 
+                          min="0" max="12" inputmode="numeric" placeholder="MM"
+                          maxlength="2" pattern="^(0?[1-9]|1[012])$" onblur="formatDateToTwoDigits(this)"
+                          <% if(ssn.Audit_Granting_Date_Month_End_Global) {%>
                           value="<%= ssn.Audit_Granting_Date_Month_End_Global%>" <% } %> />
                       </div>
                     </div>
@@ -355,7 +371,8 @@
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-4"
                           id="Audit_Granting_Date_Year_End" name="Audit_Granting_Date_Year_End" type="text"
-                          pattern="[0-9]*" inputmode="numeric" <% if(ssn.Audit_Granting_Date_Year_End_Global) {%>
+                          inputmode="numeric" placeholder="YYYY" maxlength="4" pattern="^[12][0-9]{3}$"   
+                          <% if(ssn.Audit_Granting_Date_Year_End_Global) {%>
                           value="<%= ssn.Audit_Granting_Date_Year_End_Global %>" <% } %> />
                       </div>
                     </div>

@@ -879,6 +879,10 @@ app.use("/deactivatescheme", deactivatescheme);
 
 var successfullydeactivatescheme = require("./routes/subsidymeasure-deactivated-successfully");
 app.use("/successfullydeactivatescheme", successfullydeactivatescheme);
+app.use("/successfullydeletescheme", successfullydeactivatescheme);
+
+var deletescheme = require("./routes/subsidymeasure-delete");
+app.use("/deletescheme", deletescheme);
 
 var awardspageroute = require("./routes/awardspageroute");
 app.use("/awardspageroute", awardspageroute);

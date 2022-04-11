@@ -235,9 +235,12 @@
               <% } else { %>
               <option value="Inactive">Inactive (<%= ssn.inactiveScheme %>)</option>
               <% }  %>
-
-
-
+              
+              <% if(schemes_status  == "Deleted") { %>
+              <option value="Deleted" selected>Deleted (<%= ssn.deletedScheme %>)</option>
+              <% } else { %>
+              <option value="Deleted">Deleted (<%= ssn.deletedScheme %>)</option>
+              <% }  %>
             </select>
           </form>
           <span id="status-message" style="display:none" aria-hidden="true">

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - Delete Scheme</title>
+    <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+         // window.dataLayer = window.dataLayer || [];
+
+        // function gtag() {
+        //     dataLayer.push(arguments);
+        // }
+        // gtag('js', new Date());
+        // gtag('config', 'UA-145652997-21');
+    </script>
+
+</head>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+
+    <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
+            <%- include('../partials/navigationbar.ejs') %>
+
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mysubsidymeasures">Subsidy schemes</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/editreviewsubsidymeasure?scheme=<%=scNumber_Global%>"><%= ssn.searchmeasuredetails.subsidyMeasureTitle %></a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Delete scheme</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+
+            <!-- Body header starts here -->
+            <div class="govuk-body-cancel govuk-form-group">
+                <h1 class="govuk-heading-l">Delete subsidy scheme</h1>
+
+                <p class="govuk-body govuk-!-font-size-19 govuk-!-width-two-thirds">If you delete this subsidy scheme, all associated "Published" and 
+                    "Awaiting Approval" awards will also be deleted. Users will no longer 
+                    be able to add subsidy awards to this scheme. </p>
+                <p class="govuk-body hljs-strong govuk-!-font-size-19 govuk-!-width-two-thirds">The scheme and all associated awards will no longer be visible 
+                    on the public portal.</p>
+                <!-- Body header ends here -->
+                <p class="govuk-body govuk-!-font-size-19">Are you sure you want to delete this subsidy scheme and associated awards?</p>
+
+                <a href="/successfullydeletescheme" class="govuk-button govuk-button--secondary">
+                    Yes, delete subsidy scheme
+                </a>
+                <a href="/editreviewsubsidymeasure?scheme=<%=scNumber_Global%>"
+                    class="govuk-button govuk-button_sm govuk-button--secondary" data-module="govuk-button">
+                    Cancel
+                </a>
+            </div>
+
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+    <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
+
+</body>
+
+</html>
