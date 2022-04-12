@@ -1039,4 +1039,9 @@ app.use("/auditpageroute", auditpageroute);
 
 var cookieshelp = require("./routes/cookies-help");
 app.use("/cookieshelp", cookieshelp);
+
+// Privacy Notice
+var privacynotice = require("./routes/privacy-notice");
+app.use("/privacy", privacynotice);
+
 module.exports = app;
