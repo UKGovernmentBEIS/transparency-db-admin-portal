@@ -137,29 +137,6 @@
     <script src="/assets/javascripts/jquery.min.js"></script>
     <script src="/assets/javascripts/header-footer-only.js"></script>
     <script src="/assets/javascripts/application.js"></script>
-
-    <script>
-        var delete_cookie_help = function () {
-
-            var getSelectedValue = document.querySelector('input[name="cookies-usage"]:checked');
-            if (getSelectedValue != null && getSelectedValue.value == 'off') {
-                document.cookie = '_gat_gtag_UA_145652997_21=;domain=.beis.gov.uk;expires=' + new Date();
-                document.cookie = '_ga=; domain=.beis.gov.uk; expires=' + new Date();
-                document.cookie = '_gid=; domain=.beis.gov.uk; expires=' + new Date();
-
-            }
-            else if (getSelectedValue != null && getSelectedValue.value == 'on') {
-                window.dataLayer = window.dataLayer || [];
-
-                function gtag() {
-                    dataLayer.push(arguments);
-                }
-                gtag('js', new Date());
-                gtag('config', 'UA-145652997-21');
-            }
-
-        };
-    </script>
 </body>
 
 </html>
