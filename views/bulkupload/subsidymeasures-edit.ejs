@@ -355,6 +355,9 @@
                                                 <label class="govuk-label" for="address-line-1">
                                                     Budget (£)
                                                 </label>
+                                                <div class="govuk-hint">
+                                                    For example, 12000000
+                                                </div>
                                                 <details class="govuk-details" data-module="govuk-details">
                                                     <summary class="govuk-details__summary">
                                                         <span class="govuk-details__summary-text">
@@ -363,7 +366,7 @@
                                                     </summary>
                                                     <div class="govuk-details__text">
                                                         For ad hoc subsidies, enter the exact amount. For other subsidy
-                                                        schemes, enter the overall budget.
+                                                        schemes, enter the overall budget. Please use numeric values only.
                                                     </div>
                                                 </details>
                                                 <% if( ssn.Budget_Error ){ %>
@@ -376,7 +379,8 @@
                                                 <div class="govuk-input__wrapper">
                                                     <div class="govuk-input__prefix" aria-hidden="true">£</div>
                                                     <input class="govuk-input govuk-!-width-one-third" id="Budget"
-                                                        name="Budget" type="text" value="<%= formatedCurrency %>">
+                                                        name="Budget" type="text" value="<%= formatedCurrency %>"
+                                                        inputmode="numeric" pattern="^[0-9]+$">
                                                 </div>
 
                                             </div>
