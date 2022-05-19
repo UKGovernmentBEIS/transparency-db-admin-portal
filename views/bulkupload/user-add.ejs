@@ -16,6 +16,9 @@
         // gtag('config', 'UA-145652997-21');
     </script>
     <!-- <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script> -->
+    <script type="text/javascript">
+     function trim(myString) { return myString.replace(/^\s+|\s+$/g,''); }
+    </script>
     <script>
 
         var url = new URL(window.location.href);
@@ -293,10 +296,12 @@
                             <%  if(ssn.dashboard_roles == 'BEIS Administrator') { %>
                             <input class="govuk-input govuk-!-width-one-half govuk-form-group--error"
                                 placeholder="Granting authority name" type="text" id="GA_Name_User" name="GA_Name_User"
+                                onchange="this.value = trim(this.value);"
                                 <% if(ssn.GA_Name_User_Global) {%> value="<%= ssn.GA_Name_User_Global %>" <% } %>>
                             <% } else { %>
                             <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
                                 type="text" id="GA_Name_User" name="GA_Name_User" disabled
+                                onchange="this.value = trim(this.value);"
                                 value="<%= ssn.dashboard_ga_name   %>">
                             <% } %>
                         </div>
@@ -308,16 +313,16 @@
                             <label class="govuk-label" for="GA_Name_User">
                                 Granting authority name
                             </label>
-
-
                             <!-- <div class="govuk-form-group govuk-grid-column-one-half govuk-padding-0"> -->
                             <%  if(ssn.dashboard_roles == 'BEIS Administrator') { %>
                             <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
-                                type="text" id="GA_Name_User" name="GA_Name_User" <% if(ssn.GA_Name_User_Global) { %>
-                                value="<%= ssn.GA_Name_User_Global %>" <% } %>>
+                                type="text" id="GA_Name_User" name="GA_Name_User"
+                                onchange="this.value = trim(this.value);"
+                                 <% if(ssn.GA_Name_User_Global) { %> value="<%= ssn.GA_Name_User_Global %>" <% } %>>
                             <% } else { %>
                             <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
                                 type="text" id="GA_Name_User" name="GA_Name_User" disabled
+                                onchange="this.value = trim(this.value);"
                                 value="<%= ssn.dashboard_ga_name %>">
                             <% } %>
                         </div>
@@ -330,11 +335,13 @@
                             <!-- <div class="govuk-form-group govuk-grid-column-one-half govuk-padding-0"> -->
                             <%  if(ssn.dashboard_roles == 'BEIS Administrator') { %>
                             <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
-                                type="text" id="GA_Name_User" name="GA_Name_User" <% if(ssn.GA_Name_User_Global) { %>
-                                value="<%= ssn.GA_Name_User_Global %>" <% } %>>
+                                type="text" id="GA_Name_User" name="GA_Name_User" 
+                                onchange="this.value = trim(this.value);"
+                                <% if(ssn.GA_Name_User_Global) { %> value="<%= ssn.GA_Name_User_Global %>" <% } %>>
                             <% } else { %>
                             <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
                                 type="text" id="GA_Name_User" name="GA_Name_User" disabled
+                                onchange="this.value = trim(this.value);"
                                 value="<%= ssn.dashboard_ga_name %>">
                             <% } %>
                         </div>
