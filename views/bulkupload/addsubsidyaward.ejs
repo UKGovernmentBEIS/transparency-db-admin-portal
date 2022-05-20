@@ -285,12 +285,11 @@
               <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
                 <span class="govuk-visually-hidden">Error:</span> Subsidy control number is not active
               </span>
-              <%  if(isCallfromEditAward ) { %>
-              <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
-                id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
-                aria-describedby="Subsidy_Control_Number-hint" readonly
-                <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global%>"
-                <% } %> />
+              <% if(isCallfromEditAward ) { %>
+                <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                  id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                  aria-describedby="Subsidy_Control_Number-hint" readonly
+                  <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global%>"<% } %> />
               <% } else { %>
               <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
                 id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
@@ -298,7 +297,41 @@
                 value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
               <% } %>
             </div>
-            <% } else if(ssn.Subsidy_Adhoc_Error) {%>
+            <% }else if(ssn.Name_Not_active) {%>
+              <div class="govuk-form-group govuk-form-group--error">
+                <label class="govuk-label" for="Subsidy_Control_Number">
+                  Subsidy control number or name
+                </label>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What is a subsidy control number or name?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    <b> Subsidy control number</b>
+                    <p>For example, SC92138. This must match the subsidy scheme that this award is related to.</p>
+                    <b> Subsidy control name</b>
+                    <p>This is the name of the subsidy scheme that this award is related to.</p>
+                  </div>
+                </details>
+  
+                <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
+                  <span class="govuk-visually-hidden">Error:</span> There are no active schemes matching '<%= ssn.Subsidy_Control_Number_Name_Global %>'. Please use SC number instead.
+                </span>
+                <% if(isCallfromEditAward ) { %>
+                  <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                    id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                    aria-describedby="Subsidy_Control_Number-hint" readonly
+                    <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global%>"<% } %> />
+                <% } else { %>
+                <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                  id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                  aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
+                  value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
+                <% } %>
+              </div>
+              <% } else if(ssn.Subsidy_Adhoc_Error) {%>
             <div class="govuk-form-group govuk-form-group--error">
               <label class="govuk-label" for="Subsidy_Control_Number">
                 Subsidy control number or name
