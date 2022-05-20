@@ -31,6 +31,7 @@ router.post("/", async (req, res) => {
     ssn.Subsidy_Measure_Title_Error = false;
     ssn.SC_Not_active = false;
     ssn.Name_Not_active = false;
+    ssn.Multiple_Active_Schemes = false;
     ssn.Award_Date_Not_Valid_Error = false;
     // ssn.Subsidy_Adhoc_Error = false;
     ssn.Subsidy_Objective_Error = false;
@@ -552,6 +553,11 @@ router.post("/", async (req, res) => {
               case (activeCount == 1): // use this
                 break;
               case (activeCount > 1): //error
+                ssn.SubsidyErrors[Additem] = "There are multiple active schemes matching criteria.";
+                ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
+                Additem = Additem + 1;
+                ssn.Multiple_Active_Schemes = true;
+                schemeError = true;
                 break;
             }
           } else if (searchschemes.schemes.length == 1) {
