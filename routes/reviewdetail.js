@@ -536,9 +536,11 @@ router.post("/", async (req, res) => {
 
           if (searchschemes.schemes.length > 1) {
             var activeCount = 0;
-            searchschemes.schemes.forEach(function (scheme){
+            var activeIndex;
+            searchschemes.schemes.forEach(function (scheme, index){
               if (scheme.status == "Active"){
                 activeCount = activeCount + 1;
+                activeIndex = index;
               }
             });
 
@@ -551,6 +553,9 @@ router.post("/", async (req, res) => {
                 schemeError = true;
                 break;
               case (activeCount == 1): // use this
+                var tempScheme = searchschemes.schemes[activeIndex];
+                searchschemes.schemes.length = 0;
+                searchschemes.schemes[0] = tempScheme;
                 break;
               case (activeCount > 1): //error
                 ssn.SubsidyErrors[Additem] = "There are multiple active schemes matching criteria.";
@@ -560,7 +565,8 @@ router.post("/", async (req, res) => {
                 schemeError = true;
                 break;
             }
-          } else if (searchschemes.schemes.length == 1) {
+          }
+          if (searchschemes.schemes.length == 1) {
             ssn.Subsidy_Measure_Title_Global =
               searchschemes.schemes[0].subsidyMeasureTitle;
             ssn.Subsidy_Control_Number_Global =
