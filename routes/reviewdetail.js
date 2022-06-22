@@ -30,6 +30,8 @@ router.post("/", async (req, res) => {
     ssn.Subsidy_Control_Number_Error = false;
     ssn.Subsidy_Measure_Title_Error = false;
     ssn.SC_Not_active = false;
+    ssn.Name_Not_active = false;
+    ssn.Multiple_Active_Schemes = false;
     ssn.Award_Date_Not_Valid_Error = false;
     // ssn.Subsidy_Adhoc_Error = false;
     ssn.Subsidy_Objective_Error = false;
@@ -55,6 +57,7 @@ router.post("/", async (req, res) => {
     ssn.Goods_or_Services_Error = false;
     ssn.Spending_Region_Error = false;
     ssn.Spending_Sector_Error = false;
+    ssn.SchemeCountError = false;
 
     var {
       Subsidy_Control_Number_Name,
@@ -483,53 +486,6 @@ router.post("/", async (req, res) => {
       ) {
         res.render("bulkupload/addsubsidyaward", {
           ssn,
-          // Subsidy_Control_Number_Global,
-          // ssn.Subsidy_Measure_Title_Global,
-          // ssn.Subsidy_Adhoc_Global,
-          // ssn.Subsidy_Objective_Global,
-          // ssn.Subsidy_Objective_Other_Global,
-          // ssn.Subsidy_Instrument_Global,
-          // ssn.Subsidy_Instrument_Other_Global,
-          // ssn.Subsidy_Element_Full_Amount_Global,
-          // ssn.Subsidy_Full_Amount_Range_Global,
-          // ssn.National_ID_Type_Global,
-          // ssn.National_ID_Number_Global,
-          // ssn.Beneficiary_Name_Global,
-          // ssn.Size_of_the_Organisation_Global,
-          // ssn.Granting_Authority_Name_Global,
-          // ssn.Legal_Granting_Date_Day_Global,
-          // ssn.Legal_Granting_Date_Month_Global,
-          // ssn.Legal_Granting_Date_Year_Global,
-          // ssn.Goods_or_Services_Global,
-          // ssn.Spending_Region_Global,
-          // ssn.Spending_Sector_Global,
-
-          // ssn.Subsidy_Control_Number_Error,
-          // ssn.Subsidy_Measure_Title_Error,
-          // ssn.Subsidy_Adhoc_Error,
-          // ssn.Subsidy_Objective_Error,
-          // ssn.Subsidy_Objective_Other_Error,
-          // ssn.Subsidy_Instrument_Error,
-          // ssn.Subsidy_Instrument_Other_Error,
-          // ssn.Subsidy_Element_Full_Amount_Error,
-          // ssn.Subsidy_Full_Amount_Range_Error,
-          // ssn.National_ID_Type_Error,
-          // ssn.National_ID_Number_Error,
-          // ssn.Beneficiary_Name_Error,
-          // ssn.Size_of_the_Organisation_Error,
-          // ssn.Granting_Authority_Name_Error,
-          // ssn.Legal_Granting_Date_Day_Error,
-          // ssn.Legal_Granting_Date_Month_Error,
-          // ssn.Legal_Granting_Date_Year_Error,
-          // ssn.Goods_or_Services_Error,
-          // Spending_Region_Error,
-          // ssn.Spending_Sector_Error,
-
-          // ssn.SubsidyErrors,
-          // ssn.SubsidyArraySize,
-          // ssn.SubsidyFocus,
-
-          // isAddSubsidyPrimarycall,
         });
       } else {
         if (ssn.Subsidy_Objective_Global == "Other") {
@@ -567,6 +523,7 @@ router.post("/", async (req, res) => {
           );
 
           searchschemes = apidata.data;
+          schemeError = false;
 
           // ssn.Subsidy_Measure_Title_Global =
           //   searchschemes.schemes[0].subsidyMeasureTitle;
@@ -576,6 +533,39 @@ router.post("/", async (req, res) => {
           //   10
           // );
           console.log("Status: " + JSON.stringify(searchschemes));
+
+          if (searchschemes.schemes.length > 1) {
+            var activeCount = 0;
+            var activeIndex;
+            searchschemes.schemes.forEach(function (scheme, index){
+              if (scheme.status == "Active"){
+                activeCount = activeCount + 1;
+                activeIndex = index;
+              }
+            });
+
+            switch(true){
+              case (activeCount == 0): //error
+                ssn.SubsidyErrors[Additem] = "There are no active schemes matching criteria.";
+                ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
+                Additem = Additem + 1;
+                ssn.Name_Not_active = true;
+                schemeError = true;
+                break;
+              case (activeCount == 1): // use this
+                var tempScheme = searchschemes.schemes[activeIndex];
+                searchschemes.schemes.length = 0;
+                searchschemes.schemes[0] = tempScheme;
+                break;
+              case (activeCount > 1): //error
+                ssn.SubsidyErrors[Additem] = "There are multiple active schemes matching criteria.";
+                ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
+                Additem = Additem + 1;
+                ssn.Multiple_Active_Schemes = true;
+                schemeError = true;
+                break;
+            }
+          }
           if (searchschemes.schemes.length == 1) {
             ssn.Subsidy_Measure_Title_Global =
               searchschemes.schemes[0].subsidyMeasureTitle;
@@ -585,7 +575,7 @@ router.post("/", async (req, res) => {
               2,
               10
             );
-            schemeError = false;
+
             if (searchschemes.schemes[0].status != "Active") {
               // ssn.Subsidy_Control_Number_Error = true;
               ssn.SubsidyErrors[Additem] =
@@ -610,60 +600,14 @@ router.post("/", async (req, res) => {
               ssn.SubsidyArraySize = ssn.SubsidyArraySize + 1;
               schemeError = true;
             }
-            if (schemeError) {
-              res.render("bulkupload/addsubsidyaward", {
-                ssn,
-              });
-            } else {
-              res.render("bulkupload/reviewdetail", {
-                ssn,
-              });
-            }
+          }
+          if (schemeError) {
+            res.render("bulkupload/addsubsidyaward", {
+              ssn,
+            });
           } else {
-            for (var item = 0; item < searchschemes.schemes.length; item++) {
-              // searchschemes.schemes.forEach(function (item) {
-              console.log(item.status);
-              if (searchschemes.schemes[item].status === "Active") {
-                ssn.Subsidy_Measure_Title_Global =
-                  searchschemes.schemes[item].subsidyMeasureTitle;
-                ssn.Subsidy_Control_Number_Global =
-                  searchschemes.schemes[item].scNumber;
-                ssn.Subsidy_Control_Number_Global_Substring = ssn.Subsidy_Control_Number_Global.substring(
-                  2,
-                  10
-                );
-                break;
-                // return false;
-              }
-            }
-            // });
-
             res.render("bulkupload/reviewdetail", {
               ssn,
-              // Subsidy_Control_Number_Global,
-              // ssn.Subsidy_Control_Number_Global_Substring,
-              // ssn.Subsidy_Measure_Title_Global,
-              // ssn.Subsidy_Adhoc_Global,
-              // ssn.Subsidy_Objective_Global,
-              // ssn.Subsidy_Objective_Other_Global,
-              // ssn.Subsidy_Objective_Plus_Other_Global,
-              // ssn.Subsidy_Instrument_Global,
-              // ssn.Subsidy_Instrument_Other_Global,
-              // Subsidy_Instrument_Plus_Other_Global,
-              // ssn.Subsidy_Element_Full_Amount_Global,
-              // ssn.Subsidy_Full_Amount_Range_Global,
-              // ssn.National_ID_Type_Global,
-              // ssn.National_ID_Number_Global,
-              // ssn.Beneficiary_Name_Global,
-              // ssn.Size_of_the_Organisation_Global,
-              // ssn.Granting_Authority_Name_Global,
-              // ssn.Legal_Granting_Date_Day_Global,
-              // ssn.Legal_Granting_Date_Month_Global,
-              // ssn.Legal_Granting_Date_Year_Global,
-              // ssn.Goods_or_Services_Global,
-              // ssn.Spending_Region_Global,
-              // ssn.Spending_Sector_Global,
-              // ssn.GetMonthName,
             });
           }
         } catch (err) {
