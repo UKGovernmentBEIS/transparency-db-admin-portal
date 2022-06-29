@@ -55,10 +55,19 @@ router.get("/", async (req, res) => {
         scNumber_Global,
       });
     } catch (err) {
+      const status = err.response.status;
       console.log("message error : " + err);
-      if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
-      else if (err.toString().includes("401"))
-        res.render("bulkupload/notAuthorized");
+
+      var render = "bulkupload/notAvailable";
+      switch(status){
+        case 500:
+          break;
+        case 401:
+        case 403:
+          render = "bulkupload/notAuthorized"
+          break;
+      }
+      res.render(render);
     }
   }
 });
