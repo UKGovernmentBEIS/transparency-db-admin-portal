@@ -125,11 +125,7 @@
 
             <form action="/reviewsubsidymeasures" method="POST" id="scheme-form">
                 <section class="govuk-grid-row">
-                    <% if( ssn.Subsidy_Adhoc_Error ){ %>
-                    <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
-                        <% } else { %>
-                        <div class="govuk-form-group govuk-grid-column-two-thirds">
-                            <% }  %>
+                        <div class="govuk-form-group govuk-grid-column-two-thirds" hidden>
                             <label class="govuk-label" for="address-line-1">
                                 Is this for an ad hoc subsidy?
                             </label>
@@ -148,34 +144,10 @@
                             <!-- <div id="adhoc-subsidy-hint" class="govuk-hint">
                                 You will only be able to create one subsidy award under each ad hoc subsidy scheme.
                             </div> -->
-                            <% if( ssn.Subsidy_Adhoc_Error ){ %>
-                            <span class="govuk-error-message" id="Subsidy_adhoc_Error">
-                                <span class="govuk-visually-hidden">Error:</span> Select the adhoc subsidy scheme
-                            </span>
-                            <% }  %>
                             <div class="govuk-radios" id="Subsidy_Adhoc">
                                 <div class="govuk-radios__item">
-                                    <% if(ssn.Subsidy_Adhoc_Global == 'Yes') { %>
-                                    <input class="govuk-radios__input" name="Subsidy_Adhoc" id="adhocyes" type="radio"
-                                        value="Yes" checked>
-                                    <% } else { %>
-                                    <% var ssn_Object = JSON.stringify(ssn)%>
-                                    <input class="govuk-radios__input" name="Subsidy_Adhoc"
-                                        onchange="getSubsidyAdhoc(event)" id="adhocyes" type="radio" value="Yes">
-                                    <% } %>
-                                    <label class="govuk-label govuk-radios__label" for="adhocyes">
-                                        Yes
-                                    </label>
-                                </div>
-                                <div class="govuk-radios__item">
-                                    <% if(ssn.Subsidy_Adhoc_Global == 'No') { %>
                                     <input class="govuk-radios__input" name="Subsidy_Adhoc" id="adhocno" type="radio"
                                         value="No" checked>
-                                    <% } else { %>
-                                    <% var ssn_Object = JSON.stringify(ssn)%>
-                                    <input class="govuk-radios__input" name="Subsidy_Adhoc"
-                                        onchange="getSubsidyAdhoc(event)" id="adhocno" type="radio" value="No">
-                                    <% } %>
                                     <label class="govuk-label govuk-radios__label" for="adhocno">
                                         No
                                     </label>
