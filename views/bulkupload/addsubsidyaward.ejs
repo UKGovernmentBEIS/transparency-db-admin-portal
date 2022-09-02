@@ -39,6 +39,10 @@
 
       // });
 
+      if(document.getElementById('Standalone_Award_Yes').checked){
+        document.getElementById('related-subsidy-scheme').style.display = 'none';
+      }
+
       jQuery('#Subsidy_Control_Number').on('input', function () {
         // alert("changeed: " + $('#Subsidy_Control_Number').val());
         var SubsidyMeasureTitle = document.getElementById("Subsidy_Measure_Title");
@@ -135,6 +139,14 @@
         document.getElementById("other_type").style.display = "block";
       else
         document.getElementById("other_type").style.display = "none";
+    }
+
+    standaloneAwardToggle = (event) => {
+      var display = "block";
+      if(event.target.value == 'Yes'){
+        display = "none";
+      }
+      document.getElementById('related-subsidy-scheme').style.display = display;
     };
   </script>
 </head>
@@ -210,98 +222,77 @@
           <form id="myform" action="/reviewdetail" method="POST">
             <div class="govuk-form-group">
               <label class="govuk-label" for="Subsidy_award_label">
-                This section is for adding one subsidy award.
+                This section is for adding one subsidy award, or standalone subsidy award.
                 You can use the bulk upload to
-                <a href="/bulkuploadsubsidy">add multiple subsidy awards.</a>
+                <a href="/bulkuploadsubsidy">add multiple subsidy awards.</a> This cannot be used to upload multiple standalone subsidy awards.
               </label>
             </div>
-            <h1 class="govuk-heading-l">Related subsidy scheme</h1>
+            <div class="govuk-form-group">
+              <h1 id="Standalong_Award_h1" class="govuk-heading-l">Standalone subsidy award</h1>
+              <fieldset class="govuk-fieldset">
+                <label class="govuk-label" for="Standalone_Award">
+                  Is this a standalone subsidy award?
+                </label>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What is a standalone subsidy award?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    <p>A standalone subsidy award is a subsidy which is not given as part of a scheme. 
+                      All standalone subsidy awards must be uploaded, there is no threshold below which 
+                      there is an exemption from the obligation to upload an award (unless an exemption 
+                      in Part 3 of the Subsidy Control Act applies).
+                    </p>
+                  </div>
+                </details>
+                <div class="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <% if( ssn.isStandaloneAward == 'Yes'){ %>
+                    <input class="govuk-radios__input" id="Standalone_Award_Yes" name="Standalone_Award"
+                      type="radio" value="Yes" checked onclick="standaloneAwardToggle(event);">
 
-            <p class="govuk-body">Enter the details of the subsidy scheme that this award is related to.</p>
-            <!-- ************************************  -->
-            <!-- Get the Subsidy Control Number from user  -->
-            <!-- ************************************  -->
-            <% if( ssn.Subsidy_Control_Number_Error ){ %>
-            <div class="govuk-form-group govuk-form-group--error">
-              <label class="govuk-label" for="Subsidy_Control_Number">
-                Subsidy control number or name
-              </label>
-              <!-- <div id="Subsidy_Control_Number-hint" class="govuk-hint">
-                For example, SC92138. This must match the subsidy scheme that this award is related to.
-              </div> -->
-              <details class="govuk-details" data-module="govuk-details">
-                <summary class="govuk-details__summary">
-                  <span class="govuk-details__summary-text">
-                    What is a subsidy control number or name?
-                  </span>
-                </summary>
-                <div class="govuk-details__text">
-                  <b> Subsidy control number</b>
-                  <p>For example, SC92138. This must match the subsidy scheme that this award is related to.</p>
-                  <b> Subsidy control name</b>
-                  <p>This is the name of the subsidy scheme that this award is related to.</p>
+                    <% } else { %>
+                      <input class="govuk-radios__input" id="Standalone_Award_Yes" name="Standalone_Award"
+                      type="radio" value="Yes" onclick="standaloneAwardToggle(event);">
+                    <% } %>
+                    <label class="govuk-label govuk-radios__label" for="Standalone_Award_Yes">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <% if( ssn.isStandaloneAward == 'No'){ %>
+                    <input class="govuk-radios__input" id="Standalone_Award_No" name="Standalone_Award"
+                      type="radio" value="No" checked onclick="standaloneAwardToggle(event);">
+
+                    <% } else { %>
+                      <input class="govuk-radios__input" id="Standalone_Award_No" name="Standalone_Award"
+                      type="radio" value="No" onclick="standaloneAwardToggle(event);">
+                    <% } %>
+                    <label class="govuk-label govuk-radios__label" for="Standalone_Award_No">
+                      No
+                    </label>
+                  </div>
                 </div>
-              </details>
-
-              <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
-                <span class="govuk-visually-hidden">Error:</span> You must enter either a subsidy control number or a
-                subsidy scheme title.
-              </span>
-              <%  if(isCallfromEditAward ) { %>
-              <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
-                id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
-                aria-describedby="Subsidy_Control_Number-hint" readonly
-                <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global%>"
-                <% } %> />
-              <% } else { %>
-              <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
-                id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
-                aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
-                value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
-              <% } %>
+              </fieldset>
             </div>
-            <% } else if(ssn.SC_Not_active) {%>
-            <div class="govuk-form-group govuk-form-group--error">
-              <label class="govuk-label" for="Subsidy_Control_Number">
-                Subsidy control number or name
-              </label>
-              <!-- <div id="Subsidy_Control_Number-hint" class="govuk-hint">
-                  For example, SC92138. This must match the subsidy scheme that this award is related to.
-                </div> -->
-              <details class="govuk-details" data-module="govuk-details">
-                <summary class="govuk-details__summary">
-                  <span class="govuk-details__summary-text">
-                    What is a subsidy control number or name?
-                  </span>
-                </summary>
-                <div class="govuk-details__text">
-                  <b> Subsidy control number</b>
-                  <p>For example, SC92138. This must match the subsidy scheme that this award is related to.</p>
-                  <b> Subsidy control name</b>
-                  <p>This is the name of the subsidy scheme that this award is related to.</p>
-                </div>
-              </details>
 
-              <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
-                <span class="govuk-visually-hidden">Error:</span> Subsidy control number is not active
-              </span>
-              <% if(isCallfromEditAward ) { %>
-                <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
-                  id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
-                  aria-describedby="Subsidy_Control_Number-hint" readonly
-                  <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global%>"<% } %> />
-              <% } else { %>
-              <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
-                id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
-                aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
-                value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
-              <% } %>
-            </div>
-            <% } else if(ssn.Name_Not_active) {%>
+            <div id="related-subsidy-scheme">
+              <h1 class="govuk-heading-l">Related subsidy scheme</h1>
+
+              <p class="govuk-body">Enter the details of the subsidy scheme that this award is related to.</p>
+              <!-- ************************************  -->
+              <!-- Get the Subsidy Control Number from user  -->
+              <!-- ************************************  -->
+              <% if( ssn.Subsidy_Control_Number_Error ){ %>
               <div class="govuk-form-group govuk-form-group--error">
                 <label class="govuk-label" for="Subsidy_Control_Number">
                   Subsidy control number or name
                 </label>
+                <!-- <div id="Subsidy_Control_Number-hint" class="govuk-hint">
+                  For example, SC92138. This must match the subsidy scheme that this award is related to.
+                </div> -->
                 <details class="govuk-details" data-module="govuk-details">
                   <summary class="govuk-details__summary">
                     <span class="govuk-details__summary-text">
@@ -315,9 +306,48 @@
                     <p>This is the name of the subsidy scheme that this award is related to.</p>
                   </div>
                 </details>
-  
+
                 <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
-                  <span class="govuk-visually-hidden">Error:</span> There are no active schemes matching '<%= ssn.Subsidy_Control_Number_Name_Global %>'. Please use SC number instead.
+                  <span class="govuk-visually-hidden">Error:</span> You must enter either a subsidy control number or a
+                  subsidy scheme title.
+                </span>
+                <%  if(isCallfromEditAward ) { %>
+                <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                  id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                  aria-describedby="Subsidy_Control_Number-hint" readonly
+                  <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global%>"
+                  <% } %> />
+                <% } else { %>
+                <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                  id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                  aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
+                  value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
+                <% } %>
+              </div>
+              <% } else if(ssn.SC_Not_active) {%>
+              <div class="govuk-form-group govuk-form-group--error">
+                <label class="govuk-label" for="Subsidy_Control_Number">
+                  Subsidy control number or name
+                </label>
+                <!-- <div id="Subsidy_Control_Number-hint" class="govuk-hint">
+                    For example, SC92138. This must match the subsidy scheme that this award is related to.
+                  </div> -->
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What is a subsidy control number or name?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    <b> Subsidy control number</b>
+                    <p>For example, SC92138. This must match the subsidy scheme that this award is related to.</p>
+                    <b> Subsidy control name</b>
+                    <p>This is the name of the subsidy scheme that this award is related to.</p>
+                  </div>
+                </details>
+
+                <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
+                  <span class="govuk-visually-hidden">Error:</span> Subsidy control number is not active
                 </span>
                 <% if(isCallfromEditAward ) { %>
                   <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
@@ -331,7 +361,7 @@
                   value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
                 <% } %>
               </div>
-              <% } else if(ssn.Multiple_Active_Schemes) {%>
+              <% } else if(ssn.Name_Not_active) {%>
                 <div class="govuk-form-group govuk-form-group--error">
                   <label class="govuk-label" for="Subsidy_Control_Number">
                     Subsidy control number or name
@@ -351,7 +381,7 @@
                   </details>
     
                   <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
-                    <span class="govuk-visually-hidden">Error:</span> There are multiple active schemes matching '<%= ssn.Subsidy_Control_Number_Name_Global %>'. Please use SC number instead.
+                    <span class="govuk-visually-hidden">Error:</span> There are no active schemes matching '<%= ssn.Subsidy_Control_Number_Name_Global %>'. Please use SC number instead.
                   </span>
                   <% if(isCallfromEditAward ) { %>
                     <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
@@ -365,168 +395,202 @@
                     value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
                   <% } %>
                 </div>
-                <% } else if(ssn.Subsidy_Adhoc_Error) {%>
-            <div class="govuk-form-group govuk-form-group--error">
-              <label class="govuk-label" for="Subsidy_Control_Number">
-                Subsidy control number or name
-              </label>
-              <!-- <div id="Subsidy_Control_Number-hint" class="govuk-hint">
-                    For example, SC92138. This must match the subsidy scheme that this award is related to.
-                  </div> -->
-              <details class="govuk-details" data-module="govuk-details">
-                <summary class="govuk-details__summary">
-                  <span class="govuk-details__summary-text">
-                    What is a subsidy control number or name?
-                  </span>
-                </summary>
-                <div class="govuk-details__text">
-                  <b> Subsidy control number</b>
-                  <p>For example, SC92138. This must match the subsidy scheme that this award is related to.</p>
-                  <b> Subsidy control name</b>
-                  <p>This is the name of the subsidy scheme that this award is related to.</p>
-                </div>
-              </details>
-
-              <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
-                <span class="govuk-visually-hidden">Error:</span> Scheme type is adhoc hence subsidy control number
-                cannot assigned to another award.
-              </span>
-              <%  if(isCallfromEditAward ) { %>
-              <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
-                id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
-                aria-describedby="Subsidy_Control_Number-hint" readonly
-                <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global%>"
-                <% } %> />
-              <% } else { %>
-              <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
-                id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
-                aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
-                value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
-              <% }  %>
-            </div>
-            <% } else if(ssn.Subsidy_Measure_Title_Error) {%>
-            <div class="govuk-form-group govuk-form-group--error">
-              <label class="govuk-label" for="Subsidy_Control_Number">
-                Subsidy control number or name
-              </label>
-              <!-- <div id="Subsidy_Control_Number-hint" class="govuk-hint">
+                <% } else if(ssn.Multiple_Active_Schemes) {%>
+                  <div class="govuk-form-group govuk-form-group--error">
+                    <label class="govuk-label" for="Subsidy_Control_Number">
+                      Subsidy control number or name
+                    </label>
+                    <details class="govuk-details" data-module="govuk-details">
+                      <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                          What is a subsidy control number or name?
+                        </span>
+                      </summary>
+                      <div class="govuk-details__text">
+                        <b> Subsidy control number</b>
+                        <p>For example, SC92138. This must match the subsidy scheme that this award is related to.</p>
+                        <b> Subsidy control name</b>
+                        <p>This is the name of the subsidy scheme that this award is related to.</p>
+                      </div>
+                    </details>
+      
+                    <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
+                      <span class="govuk-visually-hidden">Error:</span> There are multiple active schemes matching '<%= ssn.Subsidy_Control_Number_Name_Global %>'. Please use SC number instead.
+                    </span>
+                    <% if(isCallfromEditAward ) { %>
+                      <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                        id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                        aria-describedby="Subsidy_Control_Number-hint" readonly
+                        <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global%>"<% } %> />
+                    <% } else { %>
+                    <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                      id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                      aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
+                      value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
+                    <% } %>
+                  </div>
+                  <% } else if(ssn.Subsidy_Adhoc_Error) {%>
+              <div class="govuk-form-group govuk-form-group--error">
+                <label class="govuk-label" for="Subsidy_Control_Number">
+                  Subsidy control number or name
+                </label>
+                <!-- <div id="Subsidy_Control_Number-hint" class="govuk-hint">
                       For example, SC92138. This must match the subsidy scheme that this award is related to.
                     </div> -->
-              <details class="govuk-details" data-module="govuk-details">
-                <summary class="govuk-details__summary">
-                  <span class="govuk-details__summary-text">
-                    What is a subsidy control number or name?
-                  </span>
-                </summary>
-                <div class="govuk-details__text">
-                  <b> Subsidy control number</b>
-                  <p>For example, SC92138. This must match the subsidy scheme that this award is related to.</p>
-                  <b> Subsidy control name</b>
-                  <p>This is the name of the subsidy scheme that this award is related to.</p>
-                </div>
-              </details>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What is a subsidy control number or name?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    <b> Subsidy control number</b>
+                    <p>For example, SC92138. This must match the subsidy scheme that this award is related to.</p>
+                    <b> Subsidy control name</b>
+                    <p>This is the name of the subsidy scheme that this award is related to.</p>
+                  </div>
+                </details>
 
-              <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
-                <span class="govuk-visually-hidden">Error:</span> The subsidy scheme name must be less than 255
-                characters.
-              </span>
-              <%  if(isCallfromEditAward ) { %>
-              <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
-                id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
-                aria-describedby="Subsidy_Control_Number-hint" readonly
-                <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global%>"
-                <% } %> />
+                <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
+                  <span class="govuk-visually-hidden">Error:</span> Scheme type is adhoc hence subsidy control number
+                  cannot assigned to another award.
+                </span>
+                <%  if(isCallfromEditAward ) { %>
+                <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                  id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                  aria-describedby="Subsidy_Control_Number-hint" readonly
+                  <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global%>"
+                  <% } %> />
+                <% } else { %>
+                <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                  id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                  aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
+                  value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
+                <% }  %>
+              </div>
+              <% } else if(ssn.Subsidy_Measure_Title_Error) {%>
+              <div class="govuk-form-group govuk-form-group--error">
+                <label class="govuk-label" for="Subsidy_Control_Number">
+                  Subsidy control number or name
+                </label>
+                <!-- <div id="Subsidy_Control_Number-hint" class="govuk-hint">
+                        For example, SC92138. This must match the subsidy scheme that this award is related to.
+                      </div> -->
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What is a subsidy control number or name?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    <b> Subsidy control number</b>
+                    <p>For example, SC92138. This must match the subsidy scheme that this award is related to.</p>
+                    <b> Subsidy control name</b>
+                    <p>This is the name of the subsidy scheme that this award is related to.</p>
+                  </div>
+                </details>
+
+                <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
+                  <span class="govuk-visually-hidden">Error:</span> The subsidy scheme name must be less than 255
+                  characters.
+                </span>
+                <%  if(isCallfromEditAward ) { %>
+                <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                  id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                  aria-describedby="Subsidy_Control_Number-hint" readonly
+                  <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global%>"
+                  <% } %> />
+                <% } else { %>
+                <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
+                  id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
+                  aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
+                  value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
+                <% }  %>
+              </div>
               <% } else { %>
-              <input class="govuk-input govuk-input--width-30 govuk-input--error" placeholder="SC number or name"
-                id="Subsidy_Control_Number" name="Subsidy_Control_Number_Name" type="text"
-                aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
-                value="<%= ssn.Subsidy_Control_Number_Name_Global%>" <% } %> />
-              <% }  %>
-            </div>
-            <% } else { %>
 
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="Subsidy_Control_Number">
-                Subsidy control number or name
-              </label>
-              <details class="govuk-details" data-module="govuk-details">
-                <summary class="govuk-details__summary">
-                  <span class="govuk-details__summary-text">
-                    What is a subsidy control number or name?
-                  </span>
-                </summary>
-                <div class="govuk-details__text">
-                  <b> Subsidy control number</b>
-                  <p>For example, SC92138. This must match the subsidy scheme that this award is related to.</p>
-                  <b> Subsidy control name</b>
-                  <p>This is the name of the subsidy scheme that this award is related to.</p>
-                </div>
-              </details>
-              <!-- <div id="Subsidy_Control_Number-hint" class="govuk-hint">
-                For example, SC92138. This must match the subsidy scheme that this award is related to.
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="Subsidy_Control_Number">
+                  Subsidy control number or name
+                </label>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What is a subsidy control number or name?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    <b> Subsidy control number</b>
+                    <p>For example, SC92138. This must match the subsidy scheme that this award is related to.</p>
+                    <b> Subsidy control name</b>
+                    <p>This is the name of the subsidy scheme that this award is related to.</p>
+                  </div>
+                </details>
+                <!-- <div id="Subsidy_Control_Number-hint" class="govuk-hint">
+                  For example, SC92138. This must match the subsidy scheme that this award is related to.
+                </div> -->
+                <%  if(isCallfromEditAward ) { %>
+                <input class="govuk-input govuk-input--width-30" id="Subsidy_Control_Number"
+                  placeholder="SC number or name" name="Subsidy_Control_Number_Name" type="text"
+                  aria-describedby="Subsidy_Control_Number-hint" readonly
+                  <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global %>"
+                  <% } %> />
+                <% } else { %>
+                <input class="govuk-input govuk-input--width-30" id="Subsidy_Control_Number"
+                  placeholder="SC number or name" name="Subsidy_Control_Number_Name" type="text"
+                  aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
+                  value="<%= ssn.Subsidy_Control_Number_Name_Global %>" <% } %> />
+                <% }  %>
+              </div>
+              <% }  %>
+              <!-- ***************************************  -->
+              <!-- Get the Subsidy Measure Title from user  -->
+              <!-- ***************************************  -->
+
+              <!-- <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold">
+                  Or
+                </label>
               </div> -->
-              <%  if(isCallfromEditAward ) { %>
-              <input class="govuk-input govuk-input--width-30" id="Subsidy_Control_Number"
-                placeholder="SC number or name" name="Subsidy_Control_Number_Name" type="text"
-                aria-describedby="Subsidy_Control_Number-hint" readonly
-                <% if(ssn.Subsidy_Control_Number_Name_Global) {%> value="<%= ssn.Subsidy_Control_Number_Name_Global %>"
-                <% } %> />
+
+
+              <% if( ssn.Subsidy_Measure_Title_Error ){ %>
+              <!-- <div class="govuk-form-group  govuk-form-group--error">
+
+
+                <label class="govuk-label" for="Subsidy_Measure_Title">
+                  Subsidy scheme name
+                </label>
+
+                <div id="Subsidy_Measure_Title-hint" class="govuk-hint">
+                  This is the name of the subsidy scheme that this award is related to.
+                </div>
+
+                <span class="govuk-error-message" id="Subsidy_Measure_Title_Error">
+                  <span class="govuk-visually-hidden">Error:</span> Enter a valid subsidy scheme name
+                </span>
+
+                <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Measure_Title"
+                  name="Subsidy_Measure_Title" type="text" aria-describedby="Subsidy_Measure_Title-hint"
+                  <% if(ssn.Subsidy_Measure_Title_Global) {%> value="<%= ssn.Subsidy_Measure_Title_Global %>" <% } %> />
+              </div> -->
               <% } else { %>
-              <input class="govuk-input govuk-input--width-30" id="Subsidy_Control_Number"
-                placeholder="SC number or name" name="Subsidy_Control_Number_Name" type="text"
-                aria-describedby="Subsidy_Control_Number-hint" <% if(ssn.Subsidy_Control_Number_Name_Global) {%>
-                value="<%= ssn.Subsidy_Control_Number_Name_Global %>" <% } %> />
+
+              <!-- <div class="govuk-form-group">
+                <label class="govuk-label" for="Subsidy_Measure_Title">
+                  Subsidy scheme name
+                </label>
+
+                <div id="Subsidy_Measure_Title-hint" class="govuk-hint">
+                  This is the name of the subsidy scheme that this award is related to.
+                </div>
+
+                <input class="govuk-input govuk-input--width-20" id="Subsidy_Measure_Title" name="Subsidy_Measure_Title"
+                  type="text" aria-describedby="Subsidy_Measure_Title-hint" <% if(ssn.Subsidy_Measure_Title_Global) {%>
+                  value="<%= ssn.Subsidy_Measure_Title_Global%>" <% } %> />
+              </div> -->
               <% }  %>
-            </div>
-            <% }  %>
-            <!-- ***************************************  -->
-            <!-- Get the Subsidy Measure Title from user  -->
-            <!-- ***************************************  -->
-
-            <!-- <div class="govuk-form-group">
-              <label class="govuk-label govuk-!-font-weight-bold">
-                Or
-              </label>
-            </div> -->
-
-
-            <% if( ssn.Subsidy_Measure_Title_Error ){ %>
-            <!-- <div class="govuk-form-group  govuk-form-group--error">
-
-
-              <label class="govuk-label" for="Subsidy_Measure_Title">
-                Subsidy scheme name
-              </label>
-
-              <div id="Subsidy_Measure_Title-hint" class="govuk-hint">
-                This is the name of the subsidy scheme that this award is related to.
-              </div>
-
-              <span class="govuk-error-message" id="Subsidy_Measure_Title_Error">
-                <span class="govuk-visually-hidden">Error:</span> Enter a valid subsidy scheme name
-              </span>
-
-              <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Measure_Title"
-                name="Subsidy_Measure_Title" type="text" aria-describedby="Subsidy_Measure_Title-hint"
-                <% if(ssn.Subsidy_Measure_Title_Global) {%> value="<%= ssn.Subsidy_Measure_Title_Global %>" <% } %> />
-            </div> -->
-            <% } else { %>
-
-            <!-- <div class="govuk-form-group">
-              <label class="govuk-label" for="Subsidy_Measure_Title">
-                Subsidy scheme name
-              </label>
-
-              <div id="Subsidy_Measure_Title-hint" class="govuk-hint">
-                This is the name of the subsidy scheme that this award is related to.
-              </div>
-
-              <input class="govuk-input govuk-input--width-20" id="Subsidy_Measure_Title" name="Subsidy_Measure_Title"
-                type="text" aria-describedby="Subsidy_Measure_Title-hint" <% if(ssn.Subsidy_Measure_Title_Global) {%>
-                value="<%= ssn.Subsidy_Measure_Title_Global%>" <% } %> />
-            </div> -->
-            <% }  %>
-
+          </div>
             <h1 class="govuk-heading-l">Subsidy award details</h1>
 
             <!-- ************************************  -->

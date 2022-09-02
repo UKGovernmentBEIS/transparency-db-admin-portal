@@ -38,6 +38,7 @@ router.get("/", (req, res) => {
     ssn.Spending_Region_Global = "";
     ssn.Spending_Sector_Global = "";
     ssn.SubsidyArraySize = 0;
+    ssn.Standalone_Award_Global = "";
 
     ssn.Subsidy_Control_Number_Error = false;
     ssn.Subsidy_Measure_Title_Error = false;
@@ -72,6 +73,7 @@ router.get("/", (req, res) => {
     ssn.Goods_or_Services_Error = false;
     ssn.Spending_Region_Error = false;
     ssn.Spending_Sector_Error = false;
+    ssn.Standalone_Award_Error = false;
 
     isCallfromEditAward = false;
     var isAddSubsidyPrimarycall = true;

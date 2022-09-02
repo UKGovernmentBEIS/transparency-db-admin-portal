@@ -58,6 +58,8 @@ router.post("/", async (req, res) => {
     ssn.Spending_Region_Error = false;
     ssn.Spending_Sector_Error = false;
     ssn.SchemeCountError = false;
+    ssn.Standalone_Award_Error = false;
+
 
     var {
       Subsidy_Control_Number_Name,
@@ -80,6 +82,7 @@ router.post("/", async (req, res) => {
       Spending_Region,
       Spending_Sector,
       buttonvalue,
+      Standalone_Award,
       mylink,
     } = req.body;
 
@@ -133,6 +136,7 @@ router.post("/", async (req, res) => {
     ssn.Goods_or_Services_Global = Goods_or_Services;
     ssn.Spending_Region_Global = Spending_Region;
     ssn.Spending_Sector_Global = Spending_Sector;
+    ssn.Standalone_Award_Global = Standalone_Award;
 
     console.log("Subsidy_Objective_Other", Subsidy_Objective_Other.length);
     console.log("Subsidy_Instrument_Other", Subsidy_Instrument_Other);
@@ -181,6 +185,14 @@ router.post("/", async (req, res) => {
 
     if (buttonvalue == "continue") {
       //Empty field validations
+
+      if(!Standalone_Award) {
+        ssn.Standalone_Award_Error = true;
+        ssn.SubsidyErrors[Additem] = 
+          "You must specify the standalone status of the subsidy award.";
+        ssn.SubsidyFocus[Additem] = '#Standalong_Award_h1';
+        Additem = Additem + 1;
+      }
 
       if (!Subsidy_Control_Number_Name) {
         ssn.Subsidy_Control_Number_Error = true;
