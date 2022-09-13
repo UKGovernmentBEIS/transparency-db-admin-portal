@@ -44,6 +44,8 @@ router.post("/", (req, res) => {
     ssn.scheme_issued_end_month_Error = false;
     ssn.scheme_issued_end_day_Error = false;
     ssn.scheme_issued_end_day_lesser_Error = false;
+    ssn.spendingsector_accommodation_Error = false;
+    ssn.spendingsector_activities_of_extraterritorial_Error = false;
 
     var {
       Subsidy_Adhoc,
@@ -60,6 +62,8 @@ router.post("/", (req, res) => {
       scheme_issued_end_month,
       scheme_issued_end_day,
       buttonvalue,
+      spendingsector_accommodation,
+      spendingsector_activities_of_extraterritorial,
     } = req.body;
 
     console.log("isAddSubsidyPrimarycall: " + isAddSubsidyPrimarycall);
@@ -108,6 +112,9 @@ router.post("/", (req, res) => {
       ssn.Scheme_End_Year_Global = scheme_issued_end_year;
     }
 
+    ssn.spendingsector_accommodation_Global = spendingsector_accommodation;
+    ssn.spendingsector_activities_of_extraterritorial_Global = spendingsector_activities_of_extraterritorial;
+
     console.log("ssn.Subsidy_Adhoc_Global :" + ssn.Subsidy_Adhoc_Global);
     console.log(
       "ssn.Granting_Authority_Name_Measure_Global :" +
@@ -136,6 +143,8 @@ router.post("/", (req, res) => {
     console.log("ssn.Scheme_End_Day_Global :" + ssn.Scheme_End_Day_Global);
     console.log("ssn.Scheme_End_Month_Global :" + ssn.Scheme_End_Month_Global);
     console.log("ssn.Scheme_End_Year_Global  :" + ssn.Scheme_End_Year_Global);
+    console.log("ssn.spendingsector_accommodation  :" + ssn.spendingsector_accommodation_Global)
+    console.log("ssn.spendingsector_activities_of_extraterritorial  :" + ssn.spendingsector_activities_of_extraterritorial_Global)
 
     if (scheme_issued_start_month == 1) {
       ssn.GetMonthName = "January";
