@@ -24,6 +24,18 @@
             document.getElementById("formatText").textContent = '£ ' + formatedCurrency;
         }
     </script>
+    <!-- <script>
+        clearEndDateFields = (event) => {
+            var checkBox = document.getElementById("myCheck");
+            if (checkBox.checked == true) {
+                document.getElementById("scheme_issued_end_day").value = "";
+                document.getElementById("scheme_issued_end_month").value = "";
+                document.getElementById("scheme_issued_end_year").value = "";
+
+        }
+    } -->
+
+    </script>
 </head>
 
 
@@ -74,7 +86,7 @@
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details
                     </h2>
                     <a rel="external" aria-label="Change subsidy scheme details"
-                        class="govuk-link head-right govuk-relative-position" href="/addreviewsubsidymeasures">
+                        class="govuk-link head-right govuk-relative-position" href="/addreviewsubsidymeasures" onload="clearEndDateFields(event)">
                         <p>Change </p>
                     </a>
                 </div>
@@ -130,8 +142,14 @@
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">End Date</th>
-                            <td class="govuk-table__cell"><%= ssn.Scheme_End_Day_Global %> <%= GetEndMonthName %>
-                                <%= ssn.Scheme_End_Year_Global %></td>
+                            <td class="govuk-table__cell">
+                                <% if((ssn.Scheme_End_Day_Global == 31) && (ssn.Scheme_End_Month_Global == 12) && (ssn.Scheme_End_Year_Global == 9999)) { %>
+                                   Not applicable
+                                <% } else { %>
+                                    <%= ssn.Scheme_End_Day_Global %> <%= GetEndMonthName %>
+                                    <%= ssn.Scheme_End_Year_Global %>
+                                <% } %>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

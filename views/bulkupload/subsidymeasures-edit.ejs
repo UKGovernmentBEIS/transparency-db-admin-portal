@@ -39,13 +39,25 @@
                 document.getElementById("startDateLabel").textContent = "Start Date";
             }
         }
+        getSubsidyNoEndDate = (event) => {
+            var checkBox = document.getElementById("myCheck");
+            if (checkBox.checked == true) {
+                document.getElementById("scheme_issued_end_day").value = "";
+                document.getElementById("scheme_issued_end_month").value = "";
+                document.getElementById("scheme_issued_end_year").value = "";
+            }
+            document.getElementById("scheme_issued_end_day").disabled = checkBox.checked;
+            document.getElementById("scheme_issued_end_month").disabled = checkBox.checked;
+            document.getElementById("scheme_issued_end_year").disabled = checkBox.checked;
+        }
+
     </script>
 
 </head>
 
 
 <body class="govuk-template__body app-example-page"
-    onload="getErrorList('<%=ssn.SubsidyArraySize%>','<%=ssn.Subsidy_Adhoc_Global%>')">
+    onload="getErrorList('<%=ssn.SubsidyArraySize%>','<%=ssn.Subsidy_Adhoc_Global%>'); getSubsidyNoEndDate()">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -529,6 +541,13 @@
                                                                         name="scheme_issued_end_year" type="text"
                                                                         pattern="[0-9]*" inputmode="numeric"
                                                                         placeholder="YYYY"></div>
+                                                            </div>
+                                                            <div class="govuk-date-input__item">
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" onclick="getSubsidyNoEndDate(event)" id="myCheck" name="myCheck" type="checkbox"<% if (ssn.Has_No_End_Date) { %>
+                                                                        checked <% } %> >
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="myCheck"> No End Date </label>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
