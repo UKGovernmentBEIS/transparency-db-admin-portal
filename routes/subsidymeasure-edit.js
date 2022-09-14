@@ -50,7 +50,7 @@ router.get("/", async (req, res) => {
         ssn.Granting_Authority_Policy_Global =
           measureapidata.data.gaSubsidyWebLinkDescription;
         ssn.Budget_Global = measureapidata.data.budget;
-        // ssn.Schemaf4fc86e-1846-4339-9e83-4b1d8c04bc4ce_Start_Day_Global = scheme_issued_start_day;
+        // ssn.Schema_Start_Day_Global = scheme_issued_start_day;
         // ssn.Scheme_Start_Month_Global = scheme_issued_start_month;
         // ssn.Scheme_Start_Year_Global = scheme_issued_start_year;
         // ssn.Scheme_End_Day_Global = scheme_issued_end_day;
