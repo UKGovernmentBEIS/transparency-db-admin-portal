@@ -77,6 +77,8 @@ router.post("/", async (req, res) => {
       ssn.Subsidy_Adhoc_Global_Flag = false;
     }
 
+    console.log("JHERERERERERE ====" + ssn.Has_No_End_Date_Global)
+
     const addSchemeRequest = {
       adhoc: ssn.Subsidy_Adhoc_Global_Flag,
       gaName: ssn.Granting_Authority_Name_Measure_Global,
@@ -88,6 +90,7 @@ router.post("/", async (req, res) => {
       startDate: subsidy_start_date,
       endDate: subsidy_end_date,
       status: "Active",
+      hasNoEndDate: ssn.Has_No_End_Date_Global,
     };
 
     console.log("add scheme data", JSON.stringify(addSchemeRequest));
@@ -169,6 +172,7 @@ router.post("/", async (req, res) => {
         startDate: subsidy_start_date,
         endDate: subsidy_end_date,
         status: "Active",
+        hasNoEndDate: ssn.Has_No_End_Date_Global
       };
 
       updateSchemeUrl =

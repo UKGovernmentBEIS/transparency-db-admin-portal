@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   ssn = req.session;
+  console.log("HERE === " + JSON.stringify(ssn));
   if (
     typeof ssn.dashboard_roles_object_id1 === "undefined" ||
     typeof ssn.dashboard_roles_object_id2 === "undefined"

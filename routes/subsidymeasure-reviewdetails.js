@@ -60,6 +60,8 @@ router.post("/", (req, res) => {
       scheme_issued_end_month,
       scheme_issued_end_day,
       buttonvalue,
+      myCheck,
+      has_no_end_date,
     } = req.body;
 
     console.log("isAddSubsidyPrimarycall: " + isAddSubsidyPrimarycall);
@@ -94,6 +96,8 @@ router.post("/", (req, res) => {
     ssn.Scheme_Start_Day_Global = scheme_issued_start_day;
     ssn.Scheme_Start_Month_Global = scheme_issued_start_month;
     ssn.Scheme_Start_Year_Global = scheme_issued_start_year;
+    ssn.Has_No_End_Date_Global = has_no_end_date;
+    ssn.Has_No_End_Date_Output_Global = "Not applicable";
 
     if (ssn.Subsidy_Adhoc_Global == "Yes") {
       ssn.Scheme_End_Day_Global = scheme_issued_start_day;
@@ -102,6 +106,15 @@ router.post("/", (req, res) => {
       scheme_issued_end_day = scheme_issued_start_day;
       scheme_issued_end_month = scheme_issued_start_month;
       scheme_issued_end_year = scheme_issued_start_year;
+    } else if ((ssn.Subsidy_Adhoc_Global == "No") && (myCheck == "on")) {
+      ssn.Scheme_End_Day_Global = 31;
+      ssn.Scheme_End_Month_Global = 12;
+      ssn.Scheme_End_Year_Global = 9999;
+      ssn.Has_No_End_Date_Global = true;
+      scheme_issued_end_day = 31;
+      scheme_issued_end_month = 12;
+      scheme_issued_end_year = 9999;
+      has_no_end_date = true;
     } else {
       ssn.Scheme_End_Day_Global = scheme_issued_end_day;
       ssn.Scheme_End_Month_Global = scheme_issued_end_month;
