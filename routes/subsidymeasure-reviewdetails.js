@@ -64,6 +64,25 @@ router.post("/", (req, res) => {
       buttonvalue,
       spendingsector_accommodation,
       spendingsector_activities_of_extraterritorial,
+      spendingsector_undifferentiated_goods,
+      spendingsector_administrative,
+      spendingsector_agriculture_forestry_and_fishing,
+      spendingsector_arts_entertainment,
+      spendingsector_construction,
+      spendingsector_education,
+      spendingsector_Electricity_gas_steam_and_air_conditioning_supply,
+      spendingsector_financial_and_insurance_activities,
+      spendingsector_human_health,
+      spendingsector_information_and_communication,
+      spendingsector_Manufacturing,
+      spendingsector_mining_and_quarrying,
+      spendingsector_Other_service_activities,
+      spendingsector_professional,
+      spendingsector_public_administration,
+      spendingsector_real_estate_activities,
+      spendingsector_transportation_and_storage,
+      spendingsector_water_supply,
+      spendingsector_wholesale_and_retail_trade,
     } = req.body;
 
     console.log("isAddSubsidyPrimarycall: " + isAddSubsidyPrimarycall);
@@ -114,6 +133,25 @@ router.post("/", (req, res) => {
 
     ssn.spendingsector_accommodation_Global = spendingsector_accommodation;
     ssn.spendingsector_activities_of_extraterritorial_Global = spendingsector_activities_of_extraterritorial;
+    ssn.spendingsector_undifferentiated_goods_Global = spendingsector_undifferentiated_goods;
+    ssn.spendingsector_administrative_Global = spendingsector_administrative;
+    ssn.spendingsector_agriculture_forestry_and_fishing_Global = spendingsector_agriculture_forestry_and_fishing;
+    ssn.spendingsector_arts_entertainment_Global = spendingsector_arts_entertainment;
+    ssn.spendingsector_construction_Global = spendingsector_construction;
+    ssn.spendingsector_education_Global = spendingsector_education;
+    ssn.spendingsector_Electricity_gas_steam_and_air_conditioning_supply_Global = spendingsector_Electricity_gas_steam_and_air_conditioning_supply;
+    ssn.spendingsector_financial_and_insurance_activities_Global = spendingsector_financial_and_insurance_activities;
+    ssn.spendingsector_human_health_Global = spendingsector_human_health;
+    ssn.spendingsector_information_and_communication_Global = spendingsector_information_and_communication;
+    ssn.spendingsector_Manufacturing_Global = spendingsector_Manufacturing;
+    ssn.spendingsector_mining_and_quarrying_Global = spendingsector_mining_and_quarrying;
+    ssn.spendingsector_Other_service_activities_Global = spendingsector_Other_service_activities;
+    ssn.spendingsector_professional_Global = spendingsector_professional;
+    ssn.spendingsector_public_administration_Global = spendingsector_public_administration;
+    ssn.spendingsector_real_estate_activities_Global = spendingsector_real_estate_activities;
+    ssn.spendingsector_transportation_and_storage_Global = spendingsector_transportation_and_storage;
+    ssn.spendingsector_water_supply_Global = spendingsector_water_supply;
+    ssn.spendingsector_wholesale_and_retail_trade_Global = spendingsector_wholesale_and_retail_trade;
 
     console.log("ssn.Subsidy_Adhoc_Global :" + ssn.Subsidy_Adhoc_Global);
     console.log(
@@ -143,8 +181,28 @@ router.post("/", (req, res) => {
     console.log("ssn.Scheme_End_Day_Global :" + ssn.Scheme_End_Day_Global);
     console.log("ssn.Scheme_End_Month_Global :" + ssn.Scheme_End_Month_Global);
     console.log("ssn.Scheme_End_Year_Global  :" + ssn.Scheme_End_Year_Global);
+
     console.log("ssn.spendingsector_accommodation  :" + ssn.spendingsector_accommodation_Global)
     console.log("ssn.spendingsector_activities_of_extraterritorial  :" + ssn.spendingsector_activities_of_extraterritorial_Global)
+    console.log("ssn.spendingsector_undifferentiated_goods  :" + ssn.spendingsector_undifferentiated_goods_Global)
+    console.log("ssn.spendingsector_administrative  :" + ssn.spendingsector_administrative_Global)
+    console.log("ssn.spendingsector_agriculture_forestry_and_fishing  :" + ssn.spendingsector_agriculture_forestry_and_fishing_Global)
+    console.log("ssn.spendingsector_arts_entertainment  :" + ssn.spendingsector_arts_entertainment_Global)
+    console.log("ssn.spendingsector_construction  :" + ssn.spendingsector_construction_Global)
+    console.log("ssn.spendingsector_education  :" + ssn.spendingsector_education_Global)
+    console.log("ssn.spendingsector_Electricity_gas_steam_and_air_conditioning_supply  :" + ssn.spendingsector_Electricity_gas_steam_and_air_conditioning_supply_Global)
+    console.log("ssn.spendingsector_financial_and_insurance_activities  :" + ssn.spendingsector_financial_and_insurance_activities_Global)
+    console.log("ssn.spendingsector_human_health  :" + ssn.spendingsector_human_health_Global)
+    console.log("ssn.spendingsector_information_and_communication  :" + ssn.spendingsector_information_and_communication_Global)
+    console.log("ssn.spendingsector_Manufacturing  :" + ssn.spendingsector_Manufacturing_Global)
+    console.log("ssn.spendingsector_mining_and_quarrying  :" + ssn.spendingsector_mining_and_quarrying_Global)
+    console.log("ssn.spendingsector_Other_service_activities  :" + ssn.spendingsector_Other_service_activities_Global)
+    console.log("ssn.spendingsector_professional  :" + ssn.spendingsector_professional_Global)
+    console.log("ssn.spendingsector_public_administration  :" + ssn.spendingsector_public_administration_Global)
+    console.log("ssn.spendingsector_real_estate_activities  :" + ssn.spendingsector_real_estate_activities_Global)
+    console.log("ssn.spendingsector_transportation_and_storage  :" + ssn.spendingsector_transportation_and_storage_Global)
+    console.log("ssn.spendingsector_water_supply  :" + ssn.spendingsector_water_supply_Global)
+    console.log("ssn.spendingsector_wholesale_and_retail_trade  :" + ssn.spendingsector_wholesale_and_retail_trade_Global)
 
     if (scheme_issued_start_month == 1) {
       ssn.GetMonthName = "January";
