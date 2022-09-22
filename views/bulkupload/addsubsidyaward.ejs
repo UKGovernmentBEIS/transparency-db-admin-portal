@@ -1999,7 +1999,6 @@
                     <label class="govuk-label govuk-radios__label" for="Goods_or_Services">
                       Goods
                     </label>
-
                   </div>
                   <div class="govuk-radios__item">
                     <% if( ssn.Goods_or_Services_Global == 'Services' ){ %>
@@ -2014,6 +2013,21 @@
                       Services
                     </label>
                   </div>
+
+                  <div class="govuk-radios__item">
+                    <% if( ssn.Goods_or_Services_Global == 'Goods and Services' ){ %>
+                    <input class="govuk-radios__input" id="Goods_and_Services" name="Goods_or_Services" type="radio"
+                      value="Goods and Services" checked>
+                    <% } else { %>
+                    <input class="govuk-radios__input" id="Goods_and_Services" name="Goods_or_Services" type="radio"
+                      value="Goods and Services">
+
+                    <% } %>
+                    <label class="govuk-label govuk-radios__label" for="Goods_and_Services">
+                      Goods and Services
+                    </label>
+                  </div>
+                  
                 </div>
               </fieldset>
             </div>
@@ -2053,6 +2067,7 @@
                     </label>
 
                   </div>
+
                   <div class="govuk-radios__item">
                     <% if( ssn.Goods_or_Services_Global == 'Services' ){ %>
                     <input class="govuk-radios__input" id="Goods_or_Services-2" name="Goods_or_Services" type="radio"
@@ -2066,6 +2081,21 @@
                       Services
                     </label>
                   </div>
+                  
+                  <div class="govuk-radios__item">
+                    <% if( ssn.Goods_or_Services_Global == 'Goods and Services' ){ %>
+                    <input class="govuk-radios__input" id="Goods_or_Services" name="Goods_or_Services" type="radio"
+                      value="Goods and Services" checked>
+                    <% } else { %>
+                    <input class="govuk-radios__input" id="Goods_and_Services" name="Goods_or_Services" type="radio"
+                      value="Goods and Services">
+
+                    <% } %>
+                    <label class="govuk-label govuk-radios__label" for="Goods_and_Services">
+                      Goods and Services
+                    </label>
+                  </div>
+
                 </div>
               </fieldset>
             </div>
