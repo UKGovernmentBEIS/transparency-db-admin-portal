@@ -59,6 +59,7 @@ router.get("/", (req, res) => {
     formatedCurrency = "";
     isCallfromEditAward = false;
     var isAddSubsidyPrimarycall = true;
+    ssn.Has_No_End_Date = "";
 
     if (ssn.dashboard_roles !== "Granting Authority Encoder") {
       res.render("bulkupload/subsidymeasures-add", { isAddSubsidyPrimarycall });
