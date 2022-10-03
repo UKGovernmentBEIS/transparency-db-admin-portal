@@ -28,6 +28,9 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   global.Subsidy_Adhoc_Global = "";
   global.beis_url_accessmanagement = "";
   global.Granting_Authority_Name_Global = "";
+  global.Scheme_Confirmation_Day_Global = "";
+  global.Scheme_Confirmation_Month_Global = "";
+  global.Scheme_Confirmation_Year_Global = "";
   global.Scheme_Start_Day_Global = "";
   global.Scheme_Start_Month_Global = "";
   global.Scheme_Start_Year_Global = "";
@@ -47,6 +50,9 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   global.ssn.Granting_Authority_Policy_Error = "";
   global.ssn.Budget_Error = "";
   global.Granting_Authority_Name_Error = "";
+  global.ssn.scheme_issued_confirmation_day_Error = "";
+  global.ssn.scheme_issued_confirmation_month_Error = "";
+  global.ssn.scheme_issued_confirmation_year_Error = "";
   global.ssn.scheme_issued_start_day_Error = "";
   global.ssn.scheme_issued_start_month_Error = "";
   global.ssn.scheme_issued_start_year_Error = "";
@@ -70,6 +76,9 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
       Granting_Authority_URL: "",
       Granting_Authority_Policy: "",
       Budget: "",
+      scheme_issued_confirmation_day: "",
+      scheme_issued_confirmation_month: "",
+      scheme_issued_confirmation_year: "",
       scheme_issued_start_year: "",
       scheme_issued_start_month: "",
       scheme_issued_start_day: "",
@@ -92,6 +101,9 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   global.beis_url_accessmanagement = "";
 
   global.Granting_Authority_Name_Global = "";
+  global.Scheme_Confirmation_Day_Global = "";
+  global.Scheme_Confirmation_Month_Global = "";
+  global.Scheme_Confirmation_Year_Global = "";
   global.Scheme_Start_Day_Global = "";
   global.Scheme_Start_Month_Global = "";
   global.Scheme_Start_Year_Global = "";
@@ -121,6 +133,9 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
       Granting_Authority_URL: "",
       Granting_Authority_Policy: "",
       Budget: "",
+      scheme_issued_confirmation_day: "",
+      scheme_issued_confirmation_month: "",
+      scheme_issued_confirmation_year: "",
       scheme_issued_start_year: "",
       scheme_issued_start_month: "",
       scheme_issued_start_day: "",

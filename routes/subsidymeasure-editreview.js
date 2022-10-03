@@ -41,6 +41,7 @@ router.get("/", async (req, res) => {
       console.log(`Status: ${measureapidata.status}`);
       console.log("Body: ", measureapidata.data);
       ssn.searchmeasuredetails = measureapidata.data;
+      Scheme_Confirmation_Date = ssn.searchmeasuredetails.confirmationDate;
       Scheme_Start_Date = ssn.searchmeasuredetails.startDate;
       Scheme_End_Date = ssn.searchmeasuredetails.endDate;
 

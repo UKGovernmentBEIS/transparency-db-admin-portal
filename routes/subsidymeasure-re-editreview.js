@@ -21,6 +21,7 @@ router.post("/", (req, res) => {
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
     isAddSubsidyPrimarycall = false;
     ssn.GetMonthName = "";
+    ssn.GetConfirmationMonthName = "";
     ssn.SubsidyErrors = [];
     ssn.SubsidyFocus = [];
     Additem = 0;
@@ -53,6 +54,9 @@ router.post("/", (req, res) => {
       Granting_Authority_URL,
       Granting_Authority_Policy,
       Budget,
+      scheme_issued_confirmation_year,
+      scheme_issued_confirmation_month,
+      scheme_issued_confirmation_day,
       scheme_issued_start_year,
       scheme_issued_start_month,
       scheme_issued_start_day,
@@ -77,6 +81,9 @@ router.post("/", (req, res) => {
     formatedCurrency = formatter.format(Budget);
 
     ssn.Budget_Global = Budget;
+    ssn.Scheme_Confirmation_Day_Global = scheme_issued_confirmation_day;
+    ssn.Scheme_Confirmation_Month_Global = scheme_issued_confirmation_month;
+    ssn.Scheme_Confirmation_Year_Global = scheme_issued_confirmation_year;
     ssn.Scheme_Start_Day_Global = scheme_issued_start_day;
     ssn.Scheme_Start_Month_Global = scheme_issued_start_month;
     ssn.Scheme_Start_Year_Global = scheme_issued_start_year;
@@ -105,79 +112,13 @@ router.post("/", (req, res) => {
       ssn.Scheme_End_Year_Global = scheme_issued_end_year;
     }
 
-    if (scheme_issued_start_month == parseInt("01", 8)) {
-      ssn.GetMonthName = "January";
-    }
-    if (scheme_issued_start_month == parseInt("02", 8)) {
-      ssn.GetMonthName = "February";
-    }
-    if (scheme_issued_start_month == parseInt("03", 8)) {
-      ssn.GetMonthName = "March";
-    }
-    if (scheme_issued_start_month == parseInt("04", 8)) {
-      ssn.GetMonthName = "April";
-    }
-    if (scheme_issued_start_month == parseInt("05", 8)) {
-      ssn.GetMonthName = "May";
-    }
-    if (scheme_issued_start_month == parseInt("06", 8)) {
-      ssn.GetMonthName = "June";
-    }
-    if (scheme_issued_start_month == parseInt("07", 8)) {
-      ssn.GetMonthName = "July";
-    }
-    if (scheme_issued_start_month == parseInt("08", 8)) {
-      ssn.GetMonthName = "August";
-    }
-    if (scheme_issued_start_month == parseInt("09", 8)) {
-      ssn.GetMonthName = "September";
-    }
-    if (scheme_issued_start_month == 10) {
-      ssn.GetMonthName = "October";
-    }
-    if (scheme_issued_start_month == 11) {
-      ssn.GetMonthName = "November";
-    }
-    if (scheme_issued_start_month == 12) {
-      ssn.GetMonthName = "December";
-    }
 
-    if (scheme_issued_end_month == parseInt("01", 8)) {
-      ssn.GetEndMonthName = "January";
-    }
-    if (scheme_issued_end_month == parseInt("02", 8)) {
-      ssn.GetEndMonthName = "February";
-    }
-    if (scheme_issued_end_month == parseInt("03", 8)) {
-      ssn.GetEndMonthName = "March";
-    }
-    if (scheme_issued_end_month == parseInt("04", 8)) {
-      ssn.GetEndMonthName = "April";
-    }
-    if (scheme_issued_end_month == parseInt("05", 8)) {
-      ssn.GetEndMonthName = "May";
-    }
-    if (scheme_issued_end_month == parseInt("06", 8)) {
-      ssn.GetEndMonthName = "June";
-    }
-    if (scheme_issued_end_month == parseInt("07", 8)) {
-      ssn.GetEndMonthName = "July";
-    }
-    if (scheme_issued_end_month == parseInt("08", 8)) {
-      ssn.GetEndMonthName = "August";
-    }
-    if (scheme_issued_end_month == parseInt("09", 8)) {
-      ssn.GetEndMonthName = "September";
-    }
-    if (scheme_issued_end_month == 10) {
-      ssn.GetEndMonthName = "October";
-    }
-    if (scheme_issued_end_month == 11) {
-      ssn.GetEndMonthName = "November";
-    }
-    if (scheme_issued_end_month == 12) {
-      ssn.GetEndMonthName = "December";
-    }
+
+    const monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August','September', 'October', 'November', 'December'];
+
+    ssn.GetConfirmationMonthName = monthArray[((parseInt(scheme_issued_confirmation_month)) - 1)];
+    ssn.GetMonthName = monthArray[((parseInt(scheme_issued_start_month)) - 1)];
+    ssn.GetEndMonthName = monthArray[((parseInt(scheme_issued_end_month)) - 1)];
 
     if (buttonvalue == "Update") {
       //Empty field validations
@@ -313,6 +254,93 @@ router.post("/", (req, res) => {
           ssn.scheme_issued_start_day_Error = true;
           ssn.SubsidyErrors.push("Enter the valid day");
           ssn.SubsidyFocus.push("#scheme_issued_start_day");
+          // Additem = Additem + 1;
+        }
+      }
+      // day velidation ends here
+
+      if (!scheme_issued_confirmation_month) {
+        ssn.scheme_issued_confirmation_month_Error = true;
+        ssn.SubsidyErrors.push(
+          "     Enter the legal confirmation month of the date"
+        );
+        ssn.SubsidyFocus.push("#scheme_issued_confirmation_month");
+        // Additem = Additem + 1;
+      }
+      if (scheme_issued_confirmation_month != "") {
+        if (scheme_issued_confirmation_month > 12 || scheme_issued_confirmation_month == 0) {
+          ssn.scheme_issued_confirmation_month_Error = true;
+          ssn.SubsidyErrors.push(
+            "     Enter the legal confirmation month from 1 to 12"
+          );
+          ssn.SubsidyFocus.push("#scheme_issued_confirmation_month");
+          // Additem = Additem + 1;
+        }
+      }
+      if (!scheme_issued_confirmation_year) {
+        ssn.scheme_issued_confirmation_year_Error = true;
+        ssn.SubsidyErrors.push(
+          "     Enter the legal confirmation year of the date"
+        );
+        ssn.SubsidyFocus.push("#scheme_issued_confirmation_year");
+        // Additem = Additem + 1;
+      }
+      if (!scheme_issued_confirmation_day) {
+        ssn.scheme_issued_confirmation_day_Error = true;
+        ssn.SubsidyErrors.push("     Enter the legal confirmation day of the date");
+        ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
+        // Additem = Additem + 1;
+      }
+      if (scheme_issued_confirmation_day != "") {
+        // day validation starts here
+
+        if (scheme_issued_confirmation_day > 31 || scheme_issued_confirmation_day < 1) {
+          ssn.scheme_issued_confirmation_day_Error = true;
+          ssn.SubsidyErrors.push(
+            "     Enter the valid legal confirmation day of the date"
+          );
+          ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
+          // Additem = Additem + 1;
+        }
+
+        if (
+          scheme_issued_confirmation_day == 31 &&
+          (scheme_issued_confirmation_month == parseInt("02", 8) ||
+            scheme_issued_confirmation_month == parseInt("04", 8) ||
+            scheme_issued_confirmation_month == parseInt("06", 8) ||
+            scheme_issued_confirmation_month == parseInt("09", 8) ||
+            scheme_issued_confirmation_month == 11)
+        ) {
+          ssn.scheme_issued_confirmation_day_Error = true;
+          ssn.SubsidyErrors.push("     Enter the valid day");
+          ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
+          // Additem = Additem + 1;
+        }
+
+        if (
+          scheme_issued_confirmation_day == 29 &&
+          scheme_issued_confirmation_month == parseInt("02", 8)
+        ) {
+          if (
+            (scheme_issued_confirmation_year % 4 == 0 &&
+              scheme_issued_confirmation_year % 100 != 0) ||
+            scheme_issued_confirmation_year % 400 == 0
+          ) {
+          } else {
+            ssn.scheme_issued_confirmation_day_Error = true;
+            ssn.SubsidyErrors.push("     Enter the valid day");
+            ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
+            // Additem = Additem + 1;
+          }
+        }
+
+        if (
+          scheme_issued_confirmation_day == 30 &&
+          scheme_issued_confirmation_month == parseInt("02", 8)
+        ) {
+          ssn.scheme_issued_confirmation_day_Error = true;
+          ssn.SubsidyErrors.push("Enter the valid day");
+          ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
           // Additem = Additem + 1;
         }
       }
@@ -461,6 +489,9 @@ router.post("/", (req, res) => {
         ssn.Subsidy_Measure_Title_Error ||
         ssn.Subsidy_Adhoc_Error ||
         ssn.Granting_Authority_Name_Error ||
+        ssn.scheme_issued_confirmation_day_Error ||
+        ssn.scheme_issued_confirmation_month_Error ||
+        ssn.scheme_issued_confirmation_year_Error ||
         ssn.scheme_issued_start_day_Error ||
         ssn.scheme_issued_start_month_Error ||
         ssn.scheme_issued_start_year_Error ||

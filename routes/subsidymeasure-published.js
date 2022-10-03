@@ -26,12 +26,20 @@ router.post("/", async (req, res) => {
 
     console.log("button_value : " + button_value);
 
+    if (ssn.Scheme_Confirmation_Month_Global.length == 1) {
+      ssn.Scheme_Confirmation_Month_Global = "0" + ssn.Scheme_Confirmation_Month_Global;
+    }
+    if (ssn.Scheme_Confirmation_Day_Global.length < 2) {
+      ssn.Scheme_Confirmation_Day_Global = "0" + ssn.Scheme_Confirmation_Day_Global;
+    }
+
     if (ssn.Scheme_Start_Month_Global.length == 1) {
       ssn.Scheme_Start_Month_Global = "0" + ssn.Scheme_Start_Month_Global;
     }
     if (ssn.Scheme_Start_Day_Global.length < 2) {
       ssn.Scheme_Start_Day_Global = "0" + ssn.Scheme_Start_Day_Global;
     }
+
     if (ssn.Scheme_End_Month_Global.length < 2) {
       ssn.Scheme_End_Month_Global = "0" + ssn.Scheme_End_Month_Global;
     }
@@ -39,6 +47,12 @@ router.post("/", async (req, res) => {
       ssn.Scheme_End_Day_Global = "0" + ssn.Scheme_End_Day_Global;
     }
 
+    subsidy_confirmation_date =
+      ssn.Scheme_Confirmation_Year_Global +
+      "-" +
+      ssn.Scheme_Confirmation_Month_Global +
+      "-" +
+      ssn.Scheme_Confirmation_Day_Global;
     subsidy_start_date =
       ssn.Scheme_Start_Year_Global +
       "-" +
@@ -68,6 +82,9 @@ router.post("/", async (req, res) => {
     ssn.scheme_issued_end_month_Error = false;
     ssn.scheme_issued_end_day_Error = false;
     ssn.scheme_issued_end_day_lesser_Error = false;
+    ssn.scheme_issued_confirmation_day_Error = false;
+    ssn.scheme_issued_confirmation_month_Error = false;
+    ssn.scheme_issued_confirmation_year_Error = false;
 
     // ssn.Granting_Authority_Name_Global = "Big Lottery Fund";
 
@@ -89,6 +106,7 @@ router.post("/", async (req, res) => {
       endDate: subsidy_end_date,
       status: "Active",
       hasNoEndDate: ssn.Has_No_End_Date_Global,
+      confirmationDate: subsidy_confirmation_date
     };
 
     console.log("add scheme data", JSON.stringify(addSchemeRequest));
@@ -135,6 +153,9 @@ router.post("/", async (req, res) => {
         ssn.scheme_issued_end_day_lesser_Error = false;
         ssn.Granting_Authority_Name_Inactive_Error = false;
         isAddSubsidyPrimarycall = false;
+        ssn.scheme_issued_confirmation_day_Error = false;
+        ssn.scheme_issued_confirmation_month_Error = false;
+        ssn.scheme_issued_confirmation_year_Error = false;
 
         console.log("message error : " + err.message);
         if (err.toString().includes("401")) {
@@ -170,7 +191,8 @@ router.post("/", async (req, res) => {
         startDate: subsidy_start_date,
         endDate: subsidy_end_date,
         status: "Active",
-        hasNoEndDate: ssn.Has_No_End_Date_Global
+        hasNoEndDate: ssn.Has_No_End_Date_Global,
+        confirmationDate: subsidy_confirmation_date
       };
 
       updateSchemeUrl =

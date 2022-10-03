@@ -20,6 +20,7 @@ router.post("/", (req, res) => {
     res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
     isAddSubsidyPrimarycall = false;
+    ssn.GetConfirmationMonthName = "";
     ssn.GetMonthName = "";
     ssn.GetEndMonthName = "";
     ssn.SubsidyErrors = [];
@@ -37,6 +38,9 @@ router.post("/", (req, res) => {
     ssn.Subsidy_Measure_Title_255_Error = false;
     ssn.Granting_Authority_URL_255_Error = false;
     ssn.Granting_Authority_Policy_255_Error = false;
+    ssn.scheme_issued_confirmation_year_Error = false;
+    ssn.scheme_issued_confirmation_month_Error = false;
+    ssn.scheme_issued_confirmation_day_Error = false;
     ssn.scheme_issued_start_year_Error = false;
     ssn.scheme_issued_start_month_Error = false;
     ssn.scheme_issued_start_day_Error = false;
@@ -53,6 +57,9 @@ router.post("/", (req, res) => {
       Granting_Authority_URL,
       Granting_Authority_Policy,
       Budget,
+      scheme_issued_confirmation_year,
+      scheme_issued_confirmation_month,
+      scheme_issued_confirmation_day,
       scheme_issued_start_year,
       scheme_issued_start_month,
       scheme_issued_start_day,
@@ -93,9 +100,14 @@ router.post("/", (req, res) => {
 
     ssn.Budget_Global = Budget;
 
+    ssn.Scheme_Confirmation_Day_Global = scheme_issued_confirmation_day;
+    ssn.Scheme_Confirmation_Month_Global = scheme_issued_confirmation_month;
+    ssn.Scheme_Confirmation_Year_Global = scheme_issued_confirmation_year;
+
     ssn.Scheme_Start_Day_Global = scheme_issued_start_day;
     ssn.Scheme_Start_Month_Global = scheme_issued_start_month;
     ssn.Scheme_Start_Year_Global = scheme_issued_start_year;
+
     ssn.Has_No_End_Date_Global = has_no_end_date;
     ssn.Has_No_End_Date_Output_Global = "Not applicable";
 
@@ -139,6 +151,14 @@ router.post("/", (req, res) => {
     );
     console.log("ssn.Budget_Global :" + ssn.Budget_Global);
 
+    console.log("ssn.Scheme_Confirmation_Day_Global :" + ssn.Scheme_Confirmation_Day_Global);
+    console.log(
+      "ssn.Scheme_Confirmation_Month_Global :" + ssn.Scheme_Confirmation_Month_Global
+    );
+    console.log(
+      "ssn.Scheme_Confirmation_Year_Global  :" + ssn.Scheme_Confirmation_Year_Global
+    );
+
     console.log("ssn.Scheme_Start_Day_Global :" + ssn.Scheme_Start_Day_Global);
     console.log(
       "ssn.Scheme_Start_Month_Global :" + ssn.Scheme_Start_Month_Global
@@ -150,79 +170,11 @@ router.post("/", (req, res) => {
     console.log("ssn.Scheme_End_Month_Global :" + ssn.Scheme_End_Month_Global);
     console.log("ssn.Scheme_End_Year_Global  :" + ssn.Scheme_End_Year_Global);
 
-    if (scheme_issued_start_month == 1) {
-      ssn.GetMonthName = "January";
-    }
-    if (scheme_issued_start_month == 2) {
-      ssn.GetMonthName = "February";
-    }
-    if (scheme_issued_start_month == 3) {
-      ssn.GetMonthName = "March";
-    }
-    if (scheme_issued_start_month == 4) {
-      ssn.GetMonthName = "April";
-    }
-    if (scheme_issued_start_month == 5) {
-      ssn.GetMonthName = "May";
-    }
-    if (scheme_issued_start_month == 6) {
-      ssn.GetMonthName = "June";
-    }
-    if (scheme_issued_start_month == 7) {
-      ssn.GetMonthName = "July";
-    }
-    if (scheme_issued_start_month == 8) {
-      ssn.GetMonthName = "August";
-    }
-    if (scheme_issued_start_month == 9) {
-      ssn.GetMonthName = "September";
-    }
-    if (scheme_issued_start_month == 10) {
-      ssn.GetMonthName = "October";
-    }
-    if (scheme_issued_start_month == 11) {
-      ssn.GetMonthName = "November";
-    }
-    if (scheme_issued_start_month == 12) {
-      ssn.GetMonthName = "December";
-    }
+    const monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August','September', 'October', 'November', 'December'];
 
-    if (scheme_issued_end_month == 1) {
-      GetEndMonthName = "January";
-    }
-    if (scheme_issued_end_month == 2) {
-      GetEndMonthName = "February";
-    }
-    if (scheme_issued_end_month == 3) {
-      GetEndMonthName = "March";
-    }
-    if (scheme_issued_end_month == 4) {
-      GetEndMonthName = "April";
-    }
-    if (scheme_issued_end_month == 5) {
-      GetEndMonthName = "May";
-    }
-    if (scheme_issued_end_month == 6) {
-      GetEndMonthName = "June";
-    }
-    if (scheme_issued_end_month == 7) {
-      GetEndMonthName = "July";
-    }
-    if (scheme_issued_end_month == 8) {
-      GetEndMonthName = "August";
-    }
-    if (scheme_issued_end_month == 9) {
-      GetEndMonthName = "September";
-    }
-    if (scheme_issued_end_month == 10) {
-      GetEndMonthName = "October";
-    }
-    if (scheme_issued_end_month == 11) {
-      GetEndMonthName = "November";
-    }
-    if (scheme_issued_end_month == 12) {
-      GetEndMonthName = "December";
-    }
+    ssn.GetConfirmationMonthName = monthArray[((parseInt(scheme_issued_confirmation_month)) - 1)];
+    ssn.GetMonthName = monthArray[((parseInt(scheme_issued_start_month)) - 1)];
+    ssn.GetEndMonthName = monthArray[((parseInt(scheme_issued_end_month)) - 1)];
 
     console.log("scheme_issued_start_month" + ssn.GetMonthName);
 
@@ -519,6 +471,9 @@ router.post("/", (req, res) => {
         ssn.Subsidy_Measure_Title_Error ||
         ssn.Subsidy_Adhoc_Error ||
         ssn.Granting_Authority_Name_Error ||
+        ssn.scheme_issued_confirmation_day_Error ||
+        ssn.scheme_issued_confirmation_month_Error ||
+        ssn.scheme_issued_confirmation_year_Error ||
         ssn.scheme_issued_start_day_Error ||
         ssn.scheme_issued_start_month_Error ||
         ssn.scheme_issued_start_year_Error ||
@@ -587,7 +542,6 @@ router.post("/", (req, res) => {
           // ssn.Scheme_End_Year_Global,
           ssn,
           // ssn.GetMonthName,
-          GetEndMonthName,
           formatedCurrency,
         });
       }
@@ -604,6 +558,10 @@ router.post("/", (req, res) => {
       formatedCurrency = formatter.format(Budget);
 
       ssn.Budget_Global = Budget;
+
+      ssn.Scheme_Confirmation_Day_Global = scheme_issued_confirmation_day;
+      ssn.Scheme_Confirmation_Month_Global = scheme_issued_confirmation_month;
+      ssn.Scheme_Confirmation_Year_Global = scheme_issued_confirmation_year;
 
       ssn.Scheme_Start_Day_Global = scheme_issued_start_day;
       ssn.Scheme_Start_Month_Global = scheme_issued_start_month;

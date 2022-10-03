@@ -57,11 +57,12 @@ router.get("/", async (req, res) => {
         // ssn.Scheme_End_Month_Global = scheme_issued_end_month;
         // ssn.Scheme_End_Year_Global = scheme_issued_end_year;
 
+        Scheme_Confirmation_Date = ssn.searchmeasuredetails.confirmationDate;
         Scheme_Start_Date = ssn.searchmeasuredetails.startDate;
         Scheme_End_Date = ssn.searchmeasuredetails.endDate;
         ssn.Has_No_End_Date = measureapidata.data.hasNoEndDate;
 
-        var date = Scheme_Start_Date.split(" ");
+        // var date = Scheme_Start_Date.split(" ");
 
         var month = [
           "January",
@@ -78,6 +79,15 @@ router.get("/", async (req, res) => {
           "December",
         ];
 
+        var date = Scheme_Confirmation_Date.split(" ");
+        ssn.Scheme_Confirmation_Month_Global =
+          month.indexOf(date[1]) + 1 < 10
+            ? "0" + (month.indexOf(date[1]) + 1)
+            : month.indexOf(date[1]) + 1;
+        ssn.Scheme_Confirmation_Day_Global = date[0];
+        ssn.Scheme_Confirmation_Year_Global = date[2];
+
+        var date = Scheme_Start_Date.split(" ");
         ssn.Scheme_Start_Month_Global =
           month.indexOf(date[1]) + 1 < 10
             ? "0" + (month.indexOf(date[1]) + 1)
@@ -119,6 +129,9 @@ router.get("/", async (req, res) => {
         ssn.scheme_issued_end_day_lesser_Error = false;
         ssn.scheme_issued_end_month_Error = false;
         ssn.scheme_issued_end_year_Error = false;
+        ssn.scheme_issued_confirmation_day_Error = false;
+        ssn.scheme_issued_confirmation_month_Error = false;
+        ssn.scheme_issued_confirmation_year_Error = false;
 
         if (ssn.dashboard_roles !== "Granting Authority Encoder") {
           res.render("bulkupload/subsidymeasures-edit", { formatedCurrency });
@@ -147,6 +160,11 @@ router.get("/", async (req, res) => {
         "November",
         "December",
       ];
+
+      ssn.Scheme_Confirmation_Month_Global =
+        month.indexOf(ssn.GetConfirmationMonthName) + 1 < "10"
+          ? "0" + (month.indexOf(ssn.GetConfirmationMonthName) + 1)
+          : month.indexOf(ssn.GetConfirmationMonthName) + 1;
 
       ssn.Scheme_Start_Month_Global =
         month.indexOf(ssn.GetMonthName) + 1 < "10"
