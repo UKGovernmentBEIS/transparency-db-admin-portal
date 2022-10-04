@@ -151,3 +151,7 @@ table tbody tr:hover{
 .govuk-select {
   background-color: white;
 }
+
+.render-newlines {
+  white-space: pre-line;
+}

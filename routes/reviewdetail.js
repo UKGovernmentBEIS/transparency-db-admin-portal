@@ -5,6 +5,7 @@
 const express = require("express");
 var session = require("express-session");
 const axios = require("axios");
+const e = require("express");
 const router = express.Router();
 
 router.post("/", async (req, res) => {
@@ -59,11 +60,14 @@ router.post("/", async (req, res) => {
     ssn.Spending_Sector_Error = false;
     ssn.SchemeCountError = false;
     ssn.Standalone_Award_Error = false;
+    ssn.Subsidy_Award_Description_Error = false;
+    ssn.Subsidy_Award_Description_Error_Length = false;
 
 
     var {
       Subsidy_Control_Number_Name,
       // Subsidy_Adhoc,
+      Subsidy_Award_Description,
       Subsidy_Objective,
       Subsidy_Objective_Other,
       Subsidy_Instrument,
@@ -94,7 +98,11 @@ router.post("/", async (req, res) => {
 
     // console.log("  Subsidy_Adhoc :" + Subsidy_Adhoc);
 
-    ssn.Subsidy_Control_Number_Name_Global = Subsidy_Control_Number_Name;
+    ssn.Standalone_Award_Global = Standalone_Award;
+    if(ssn.Standalone_Award_Global == 'Yes'){
+      ssn.Subsidy_Control_Number_Global = "";  
+    }
+    ssn.Subsidy_Award_Description_Global = Subsidy_Award_Description;
     // ssn.Subsidy_Measure_Title_Global = Subsidy_Measure_Title;
     // ssn.Subsidy_Adhoc_Global = Subsidy_Adhoc;
     ssn.Subsidy_Objective_Global = Subsidy_Objective;
@@ -136,7 +144,6 @@ router.post("/", async (req, res) => {
     ssn.Goods_or_Services_Global = Goods_or_Services;
     ssn.Spending_Region_Global = Spending_Region;
     ssn.Spending_Sector_Global = Spending_Sector;
-    ssn.Standalone_Award_Global = Standalone_Award;
 
     console.log("Subsidy_Objective_Other", Subsidy_Objective_Other.length);
     console.log("Subsidy_Instrument_Other", Subsidy_Instrument_Other);
@@ -194,34 +201,39 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
-      if (!Subsidy_Control_Number_Name) {
-        ssn.Subsidy_Control_Number_Error = true;
-        ssn.SubsidyErrors[Additem] =
-          "You must enter either a subsidy control number or a subsidy scheme title.";
-        ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
+      if(Standalone_Award != 'Yes'){
+        if (!Subsidy_Control_Number_Name) {
+          ssn.Subsidy_Control_Number_Error = true;
+          ssn.SubsidyErrors[Additem] =
+            "You must enter either a subsidy control number or a subsidy scheme title.";
+          ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
+          Additem = Additem + 1;
+        }  
+        if (
+          Subsidy_Control_Number_Name != "" &&
+          Subsidy_Control_Number_Name.length > 255
+        ) {
+          ssn.Subsidy_Measure_Title_Error = true;
+          ssn.SubsidyErrors[Additem] =
+            "The subsidy scheme name must be less than 255 characters. ";
+          ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
+          Additem = Additem + 1;
+        }
+      }else if(Standalone_Award == 'Yes'){
+        if(Subsidy_Award_Description == ""){
+          ssn.Subsidy_Award_Description_Error = true;
+          ssn.SubsidyErrors[Additem] =
+          "You must provide a descritpion of the standalone subsidy award";
+        ssn.SubsidyFocus[Additem] = "#subsidy-award-description-container";
         Additem = Additem + 1;
-        // ssn.Subsidy_Measure_Title_Error = true;
-        // ssn.SubsidyErrors[Additem] = "     Enter the subsidy scheme name";
-        // ssn.SubsidyFocus[Additem] = "#Subsidy_Measure_Title";
-        // Additem = Additem + 1;
+        }else if(Subsidy_Award_Description.length > 2000){
+          ssn.Subsidy_Award_Description_Error_Length = true;
+          ssn.SubsidyErrors[Additem] =
+            "The subsidy award description must be 2000 characters or less.";
+          ssn.SubsidyFocus[Additem] = "#subsidy-award-description-container";
+          Additem = Additem + 1;
+        }
       }
-
-      if (
-        Subsidy_Control_Number_Name != "" &&
-        Subsidy_Control_Number_Name.length > 255
-      ) {
-        ssn.Subsidy_Measure_Title_Error = true;
-        ssn.SubsidyErrors[Additem] =
-          "The subsidy scheme name must be less than 255 characters. ";
-        ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
-        Additem = Additem + 1;
-      }
-      // if (!Subsidy_Adhoc) {
-      //   ssn.Subsidy_Adhoc_Error = true;
-      //   ssn.SubsidyErrors[Additem] = "     Select the adhoc subsidy scheme";
-      //   ssn.SubsidyFocus[Additem] = "#Subsidy_Adhoc";
-      //   Additem = Additem + 1;
-      // }
 
       if (Subsidy_Objective == "") {
         ssn.Subsidy_Objective_Error = true;
@@ -494,7 +506,10 @@ router.post("/", async (req, res) => {
         ssn.Spending_Sector_Error ||
         ssn.Subsidy_Objective_Other_255_Error ||
         ssn.Subsidy_Instrument_Other_255_Error ||
-        ssn.Beneficiary_Name_255_Error
+        ssn.Beneficiary_Name_255_Error ||
+        ssn.Standalone_Award_Error ||
+        ssn.Subsidy_Award_Description_Error ||
+        ssn.Subsidy_Award_Description_Error_Length
       ) {
         res.render("bulkupload/addsubsidyaward", {
           ssn,
@@ -520,97 +535,99 @@ router.post("/", async (req, res) => {
             ssn.Subsidy_Instrument_Global;
         }
         try {
-          const data_request = {
-            searchName: Subsidy_Control_Number_Name,
-            pageNumber: 1,
-            totalRecordsPerPage: 10,
-            sortBy: ["subsidyMeasureTitle,asc"],
-            status: "",
-          };
-
-          const apidata = await axios.post(
-            beis_url_searchscheme + "/scheme/search",
-            data_request,
-            ssn.UserPrincileObjectGlobal
-          );
-
-          searchschemes = apidata.data;
           schemeError = false;
+          if(Standalone_Award != 'Yes'){
+            const data_request = {
+              searchName: Subsidy_Control_Number_Name,
+              pageNumber: 1,
+              totalRecordsPerPage: 10,
+              sortBy: ["subsidyMeasureTitle,asc"],
+              status: "",
+            };
 
-          // ssn.Subsidy_Measure_Title_Global =
-          //   searchschemes.schemes[0].subsidyMeasureTitle;
-          // ssn.Subsidy_Control_Number_Global = searchschemes.schemes[0].scNumber;
-          // ssn.Subsidy_Control_Number_Global_Substring = ssn.Subsidy_Control_Number_Global.substring(
-          //   2,
-          //   10
-          // );
-          console.log("Status: " + JSON.stringify(searchschemes));
-
-          if (searchschemes.schemes.length > 1) {
-            var activeCount = 0;
-            var activeIndex;
-            searchschemes.schemes.forEach(function (scheme, index){
-              if (scheme.status == "Active"){
-                activeCount = activeCount + 1;
-                activeIndex = index;
-              }
-            });
-
-            switch(true){
-              case (activeCount == 0): //error
-                ssn.SubsidyErrors[Additem] = "There are no active schemes matching criteria.";
-                ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
-                Additem = Additem + 1;
-                ssn.Name_Not_active = true;
-                schemeError = true;
-                break;
-              case (activeCount == 1): // use this
-                var tempScheme = searchschemes.schemes[activeIndex];
-                searchschemes.schemes.length = 0;
-                searchschemes.schemes[0] = tempScheme;
-                break;
-              case (activeCount > 1): //error
-                ssn.SubsidyErrors[Additem] = "There are multiple active schemes matching criteria.";
-                ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
-                Additem = Additem + 1;
-                ssn.Multiple_Active_Schemes = true;
-                schemeError = true;
-                break;
-            }
-          }
-          if (searchschemes.schemes.length == 1) {
-            ssn.Subsidy_Measure_Title_Global =
-              searchschemes.schemes[0].subsidyMeasureTitle;
-            ssn.Subsidy_Control_Number_Global =
-              searchschemes.schemes[0].scNumber;
-            ssn.Subsidy_Control_Number_Global_Substring = ssn.Subsidy_Control_Number_Global.substring(
-              2,
-              10
+            const apidata = await axios.post(
+              beis_url_searchscheme + "/scheme/search",
+              data_request,
+              ssn.UserPrincileObjectGlobal
             );
 
-            if (searchschemes.schemes[0].status != "Active") {
-              // ssn.Subsidy_Control_Number_Error = true;
-              ssn.SubsidyErrors[Additem] =
-                "Subsidy control number is not active";
-              ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
-              Additem = Additem + 1;
-              ssn.SubsidyArraySize = ssn.SubsidyArraySize + 1;
-              ssn.SC_Not_active = true;
-              schemeError = true;
+            searchschemes = apidata.data;
+
+            // ssn.Subsidy_Measure_Title_Global =
+            //   searchschemes.schemes[0].subsidyMeasureTitle;
+            // ssn.Subsidy_Control_Number_Global = searchschemes.schemes[0].scNumber;
+            // ssn.Subsidy_Control_Number_Global_Substring = ssn.Subsidy_Control_Number_Global.substring(
+            //   2,
+            //   10
+            // );
+            console.log("Status: " + JSON.stringify(searchschemes));
+
+            if (searchschemes.schemes.length > 1) {
+              var activeCount = 0;
+              var activeIndex;
+              searchschemes.schemes.forEach(function (scheme, index){
+                if (scheme.status == "Active"){
+                  activeCount = activeCount + 1;
+                  activeIndex = index;
+                }
+              });
+
+              switch(true){
+                case (activeCount == 0): //error
+                  ssn.SubsidyErrors[Additem] = "There are no active schemes matching criteria.";
+                  ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
+                  Additem = Additem + 1;
+                  ssn.Name_Not_active = true;
+                  schemeError = true;
+                  break;
+                case (activeCount == 1): // use this
+                  var tempScheme = searchschemes.schemes[activeIndex];
+                  searchschemes.schemes.length = 0;
+                  searchschemes.schemes[0] = tempScheme;
+                  break;
+                case (activeCount > 1): //error
+                  ssn.SubsidyErrors[Additem] = "There are multiple active schemes matching criteria.";
+                  ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
+                  Additem = Additem + 1;
+                  ssn.Multiple_Active_Schemes = true;
+                  schemeError = true;
+                  break;
+              }
             }
-            startDateObj = new Date(searchschemes.schemes[0].startDate);
-            endDateObj = new Date(searchschemes.schemes[0].endDate);
-            MonthInt = parseInt(Legal_Granting_Date_Month) - 1;
-            MonthStr = MonthInt.toString();
-            awardDateObj = new Date(Legal_Granting_Date_Year, MonthStr, Legal_Granting_Date_Day);
-            if ((awardDateObj > endDateObj) || (awardDateObj < startDateObj)) {
-              ssn.Award_Date_Not_Valid_Error = true;
-              ssn.SubsidyErrors[Additem] =
-                "Granting date is not valid, it must be between "+searchschemes.schemes[0].startDate+" and "+searchschemes.schemes[0].endDate+" inclusive";
-              ssn.SubsidyFocus[Additem] = "#Legal_Granting_Date";
-              Additem = Additem + 1;
-              ssn.SubsidyArraySize = ssn.SubsidyArraySize + 1;
-              schemeError = true;
+            if (searchschemes.schemes.length == 1) {
+              ssn.Subsidy_Measure_Title_Global =
+                searchschemes.schemes[0].subsidyMeasureTitle;
+              ssn.Subsidy_Control_Number_Global =
+                searchschemes.schemes[0].scNumber;
+              ssn.Subsidy_Control_Number_Global_Substring = ssn.Subsidy_Control_Number_Global.substring(
+                2,
+                10
+              );
+
+              if (searchschemes.schemes[0].status != "Active") {
+                // ssn.Subsidy_Control_Number_Error = true;
+                ssn.SubsidyErrors[Additem] =
+                  "Subsidy control number is not active";
+                ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
+                Additem = Additem + 1;
+                ssn.SubsidyArraySize = ssn.SubsidyArraySize + 1;
+                ssn.SC_Not_active = true;
+                schemeError = true;
+              }
+              startDateObj = new Date(searchschemes.schemes[0].startDate);
+              endDateObj = new Date(searchschemes.schemes[0].endDate);
+              MonthInt = parseInt(Legal_Granting_Date_Month) - 1;
+              MonthStr = MonthInt.toString();
+              awardDateObj = new Date(Legal_Granting_Date_Year, MonthStr, Legal_Granting_Date_Day);
+              if ((awardDateObj > endDateObj) || (awardDateObj < startDateObj)) {
+                ssn.Award_Date_Not_Valid_Error = true;
+                ssn.SubsidyErrors[Additem] =
+                  "Granting date is not valid, it must be between "+searchschemes.schemes[0].startDate+" and "+searchschemes.schemes[0].endDate+" inclusive";
+                ssn.SubsidyFocus[Additem] = "#Legal_Granting_Date";
+                Additem = Additem + 1;
+                ssn.SubsidyArraySize = ssn.SubsidyArraySize + 1;
+                schemeError = true;
+              }
             }
           }
           if (schemeError) {
