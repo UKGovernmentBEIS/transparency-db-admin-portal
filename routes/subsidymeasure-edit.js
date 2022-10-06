@@ -62,8 +62,6 @@ router.get("/", async (req, res) => {
         Scheme_End_Date = ssn.searchmeasuredetails.endDate;
         ssn.Has_No_End_Date = measureapidata.data.hasNoEndDate;
 
-        // var date = Scheme_Start_Date.split(" ");
-
         var month = [
           "January",
           "February",

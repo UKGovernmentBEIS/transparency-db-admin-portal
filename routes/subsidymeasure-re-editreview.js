@@ -308,7 +308,7 @@ router.post("/", (req, res) => {
           (scheme_issued_confirmation_month == parseInt("02", 8) ||
             scheme_issued_confirmation_month == parseInt("04", 8) ||
             scheme_issued_confirmation_month == parseInt("06", 8) ||
-            scheme_issued_confirmation_month == parseInt("09", 8) ||
+            scheme_issued_confirmation_month == parseInt("09", 10) ||
             scheme_issued_confirmation_month == 11)
         ) {
           ssn.scheme_issued_confirmation_day_Error = true;
