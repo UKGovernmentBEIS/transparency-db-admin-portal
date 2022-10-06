@@ -201,10 +201,10 @@
                             <% } else { %>
                             <option value="Infrastructure">Infrastructure </option>
                             <% } %>
-                            <% if( ssn.Subsidy_Objective_Global == 'Rescue subsidy ' || ssn.Subsidy_Objective_Global == 'Rescue aid' ){ %>
-                            <option value="Rescue subsidy " selected>Rescue subsidy </option>
+                            <% if( Subsidy_Objective == 'Rescue subsidy' ){ %>
+                            <option value="Rescue subsidy" selected>Rescue subsidy </option>
                             <% } else { %>
-                            <option value="Rescue subsidy ">Rescue subsidy </option>
+                            <option value="Rescue subsidy">Rescue subsidy </option>
                             <% } %>
                             <% if( Subsidy_Objective == 'Other' ){ %>
                             <option value="Other" selected>Other </option>
