@@ -12,14 +12,14 @@
             "envFile": "${workspaceFolder}/.env",
         },
         {
-            "command": "npm start env=dev", //local=publishsubs,accessmgmt,publicsearch,gaschemes
+            "command": "npm start env=dev",
             "name": "Debug Dev",
             "request": "launch",
             "type": "node-terminal",
             "envFile": "${workspaceFolder}/.env",
         },
         {
-            "command": "npm start env=stg", //local=publishsubs,accessmgmt,publicsearch,gaschemes
+            "command": "npm start env=stg",
             "name": "Debug Staging",
             "request": "launch",
             "type": "node-terminal",
