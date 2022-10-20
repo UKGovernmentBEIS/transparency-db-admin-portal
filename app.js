@@ -1045,4 +1045,15 @@ app.use("/cookieshelp", cookieshelp);
 var privacynotice = require("./routes/privacy-notice");
 app.use("/privacy", privacynotice);
 
+// MFA Groupings
+app.use("/mfagroupings", require("./routes/mfagroupings"));
+app.use("/mfagroupingadd", require("./routes/mfagroupingadd"));
+app.use("/mfagroupingreview", require("./routes/mfagroupingreview"));
+app.use("/mfagroupingaddreview", require("./routes/mfagroupingaddreview"));
+app.use("/mfagroupingcancelreview", require("./routes/mfagroupingcancelreview"));
+app.use("/mfagroupingpublished", require("./routes/mfagroupingpublished"));
+app.use("/mfagrouping", require("./routes/mfagrouping"));
+app.use("/mfagroupingdelete", require("./routes/mfagroupingdelete"));
+app.use("/mfagroupingdeletesuccess", require("./routes/mfagroupingdeletesuccess"));
+
 module.exports = app;

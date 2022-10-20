@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - <%= ssn.mfaGroupingDetails.mfaGroupingName %> MFA grouping details page</title>
+    <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <style>
+        .govuk-inative-status {
+            float: left;
+            width: 100%;
+            padding: 1%;
+        }
+    </style>
+</head>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
+            <!-- header start here -->
+            <%- include('../partials/navigationbar.ejs') %>
+
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="#">MFA</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mfagroupings">MFA Groupings</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" aria-current="page"
+                            href="#"><%= ssn.mfaGroupingDetails.mfaGroupingName %></a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds-from-desktop">
+                    <h1 class="govuk-heading-xl"><%= ssn.mfaGroupingDetails.mfaGroupingName %></h1>
+
+                </div>
+                <% if(ssn.mfaGroupingDetails.status == "Deleted") {%>
+                    <div class="govuk-form-group app-example govuk-inative-status">
+                        <div class="app-example__toolbar">
+                            <label>This MFA Grouping has been deleted</label>
+                        </div>
+                        <dl class="govuk-summary-list">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    Deleted by
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    <%= ssn.mfaGroupingDetails.deletedBy %>
+                                </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    Deleted date/time
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    <%= ssn.mfaGroupingDetails.deletedTimestamp %>
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                <% } %>
+                <div class="govuk-grid-column-full">
+                    <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">MFA grouping details
+                    </h2>
+                    <% if(ssn.mfaGroupingDetails.status == 'Active') { %>
+                    <a rel="external" aria-label="Change MFA grouping details"
+                        class="govuk-link head-right govuk-relative-position"
+                        href="/editsubsidymeasure?id=<%= ssn.mfaGroupingDetails.mfaGroupingNumber %>&editsc=No">
+                        <p>Change </p>
+                    </a>
+                    <% } %>
+                </div>
+
+            </div>
+            <section class="govuk-table-responsive">
+                <table class="govuk-table">
+                    <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">MFA grouping number
+                            </th>
+                            <td class="govuk-table__cell"><%= ssn.mfaGroupingDetails.mfaGroupingNumber %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">MFA grouping name</th>
+                            <td class="govuk-table__cell"><%= ssn.mfaGroupingDetails.mfaGroupingName %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Granting Authority</th>
+                            <td class="govuk-table__cell"><%= ssn.mfaGroupingDetails.grantingAuthorityName %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Created by</th>
+                            <td class="govuk-table__cell"><%= ssn.mfaGroupingDetails.createdBy%></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Created date</th>
+                            <td class="govuk-table__cell"><%= ssn.mfaGroupingDetails.createdTimestamp%></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Last modified date</th>
+                            <td class="govuk-table__cell"><%= ssn.mfaGroupingDetails.lastModifiedTimestamp%></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <div class="govuk-grid-row">
+                <!-- <div class="govuk-grid-column-two-thirds govuk-padding-0"> -->
+                <form action="/mfagroupings" method="GET" novalidate>
+                    <input type="hidden" name="answers-checked" value="true">
+
+                    <button class="govuk-button" data-module="govuk-button">
+                        Back to MFA groupings
+                    </button>
+
+                    <% if ((ssn.dashboard_roles == "BEIS Administrator" || ssn.dashboard_roles == "Granting Authority Administrator") && ssn.mfaGroupingDetails.status != 'Deleted') { %>
+                        <a class="govuk-button govuk-button--warning" href="/mfagroupingdelete" data-module="govuk-button" style="float:right">
+                            Delete
+                        </a>
+                    <% } %>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+    <script>
+        document.getElementById('mfa-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
+</body>
+
+</html>
