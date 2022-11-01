@@ -257,7 +257,7 @@ router.post("/", (req, res) => {
           // Additem = Additem + 1;
         }
       }
-      // day velidation ends here
+      // day validation ends here
 
       if (!scheme_issued_confirmation_month) {
         ssn.scheme_issued_confirmation_month_Error = true;

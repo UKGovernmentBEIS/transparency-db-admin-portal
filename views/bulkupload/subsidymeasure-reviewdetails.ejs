@@ -125,12 +125,19 @@
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Confirmation Date</th>
-                            <td class="govuk-table__cell"><%= ssn.Scheme_Confirmation_Day_Global %> <%= ssn.GetConfirmationMonthName %>
-                                <%= ssn.Scheme_Confirmation_Year_Global %></td>
+                            <td class="govuk-table__cell">
+                                <% if(ssn.Scheme_Confirmation_Date == '') { %>
+                                    Not applicable
+                                <% } else { %>
+                                <%= ssn.Scheme_Confirmation_Day_Global %> <%= ssn.GetConfirmationMonthName %>
+                                <%= ssn.Scheme_Confirmation_Year_Global %>
+                                <% } %>
+                            </td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Start Date</th>
-                            <td class="govuk-table__cell"><%= ssn.Scheme_Start_Day_Global %> <%= ssn.GetMonthName %>
+                            <td class="govuk-table__cell">
+                                <%= ssn.Scheme_Start_Day_Global %> <%= ssn.GetMonthName %>
                                 <%= ssn.Scheme_Start_Year_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">

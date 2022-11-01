@@ -78,12 +78,17 @@ router.get("/", async (req, res) => {
         ];
 
         var date = Scheme_Confirmation_Date.split(" ");
-        ssn.Scheme_Confirmation_Month_Global =
+        if (Scheme_Confirmation_Date == '') {
+          ssn.Scheme_Confirmation_Month_Global = '';
+        } else {
+          ssn.Scheme_Confirmation_Month_Global =
           month.indexOf(date[1]) + 1 < 10
             ? "0" + (month.indexOf(date[1]) + 1)
             : month.indexOf(date[1]) + 1;
+        }
         ssn.Scheme_Confirmation_Day_Global = date[0];
         ssn.Scheme_Confirmation_Year_Global = date[2];
+
 
         var date = Scheme_Start_Date.split(" ");
         ssn.Scheme_Start_Month_Global =
