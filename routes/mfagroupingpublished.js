@@ -73,38 +73,29 @@ router.post("/", async (req, res) => {
 
     // this is for update existing subsidy measure using PUT call
     else {
-      const updateSchemeRequest = {
-        adhoc: ssn.Subsidy_Adhoc_Global_Flag,
-        gaName: ssn.Granting_Authority_Name_Measure_Global,
-        subsidyMeasureTitle: ssn.Subsidy_Measure_Title_Global,
-        legalBasisText: ssn.Legal_Basis_Global,
-        gaSubsidyWebLink: ssn.Granting_Authority_URL_Global,
-        gaSubsidyWebLinkDescription: ssn.Granting_Authority_Policy_Global,
-        budget: ssn.Budget_Global,
-        startDate: subsidy_start_date,
-        endDate: subsidy_end_date,
+      const updateMfaGroupingRequest = {
+        mfaGroupingNumber: ssn.MFA_Grouping_Number_Global,
+        mfaGroupingName: ssn.MFA_Grouping_Name_Global.trim(),
+        grantingAuthorityName: ssn.Granting_Authority_Name_Global.trim(),
         status: "Active",
-        hasNoEndDate: ssn.Has_No_End_Date_Global
       };
 
-      updateSchemeUrl =
-        beis_url_searchscheme + "/mfa/grouping/update/" + ssn.scNumber_Global;
+      updateMfaGroupingUrl = beis_url_publishing + "/mfa/grouping/update/" + ssn.MFA_Grouping_Number_Global;
 
       try {
         const apidata = await axios.put(
-          updateSchemeUrl,
-          updateSchemeRequest,
+          updateMfaGroupingUrl,
+          updateMfaGroupingRequest,
           ssn.UserPrincileObjectGlobal
         );
 
         API_response_code = `${apidata.status}`;
 
-        ssn.Subsidy_Control_Number_Global_Text = apidata.data;
+        ssn.MFA_Grouping_Number_Global = apidata.data;
 
-        res.render("bulkupload/subsidymeasure-published", {
+        res.render("mfa/mfagroupingpublished", {
           ssn,
           button_value,
-          // ssn.Subsidy_Control_Number_Global_Text,
         });
       } catch (err) {
         if (err.toString().includes("401")) {

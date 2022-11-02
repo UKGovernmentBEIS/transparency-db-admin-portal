@@ -45,7 +45,7 @@
                     <li class="govuk-breadcrumbs__list-item">
                         <a class="govuk-breadcrumbs__link" aria-current="page"
                             href="#"><% if (button_value == "add_mfa_grouping") { %> Add <% } else { %> Update
-                            <% } %> a MFA grouping</a>
+                            <% } %> an MFA grouping</a>
                     </li>
                 </ol>
             </div>
@@ -65,8 +65,8 @@
                     </div>
                 </div>
                 <div class="govuk-grid-column-full govuk-form-group">
-                    <p class="govuk-body govuk-!-font-size-19">You have published MFA grouping
-                        <%=  ssn.MFA_Grouping_Number_Global %></p>
+                    <p class="govuk-body govuk-!-font-size-19">You have <% if (button_value == "add_mfa_grouping") { %> published <% } else { %> updated
+                        <% } %> MFA grouping <%=  ssn.MFA_Grouping_Number_Global %></p>
 
                 </div>
                 <div class="govuk-grid-column-full govuk-form-group">

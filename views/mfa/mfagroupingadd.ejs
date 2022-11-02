@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - Add MFA Grouping page</title>
+    <title>GOV.UK - <%=addOrEdit%> MFA Grouping page</title>
 
     <%- include('../partials/headercss.ejs') %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -45,7 +45,7 @@
                         <a class="govuk-breadcrumbs__link" href="/mfagroupings">MFA Groupings</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add MFA Grouping</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#"><%=addOrEdit%> MFA Grouping</a>
                     </li>
                 </ol>
             </div>
@@ -69,13 +69,29 @@
 
             <% } %>
             <!-- Body header starts here -->
-            <h1 class="govuk-heading-xl">Add an MFA grouping</h1>
+            <% if(isCallFromEditGrouping){ %> 
+                <h1 class="govuk-heading-xl">Edit MFA grouping <%= ssn.mfaGroupingDetails.mfaGroupingNumber %> </h1>
+            <% }else{ %> 
+                <h1 class="govuk-heading-xl">Add an MFA grouping</h1>
+            <% } %> 
 
             <p class="govuk-body govuk-!-font-size-19">This section is for adding an MFA Grouping. To add a new MFA award, you can click <a href="/mfaawardadd" aria-label="Add MFA Award">here</a>.</p>
             <!-- Body header ends here -->
 
             <form action="/mfagroupingreview" method="POST" id="scheme-form">
                 <section class="govuk-grid-row">
+                <% if (isCallFromEditGrouping){ %> 
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="MFA_Grouping_Number">
+                            MFA grouping number
+                        </label>
+                        <input class="govuk-input govuk-!-width-one-half" id="MFA_Grouping_Number"
+                            name="MFA_Grouping_Number" type="text"
+                            value="<%= ssn.mfaGroupingDetails.mfaGroupingNumber %>" disabled />
+                    </div>
+                <% } %> 
+
+
                 <% if( ssn.MFA_Grouping_Name_Error || ssn.MFA_Grouping_Name_Length_Error ){ %>
                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                 <% } else { %>

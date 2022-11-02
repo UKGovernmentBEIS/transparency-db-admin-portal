@@ -4,9 +4,10 @@
 
 const express = require("express");
 var session = require("express-session");
+const axios = require("axios");
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   ssn = req.session;
   if (
     typeof ssn.dashboard_roles_object_id1 === "undefined" ||
@@ -14,11 +15,7 @@ router.get("/", (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
-    req.query = JSON.parse(JSON.stringify(req.query));
-    if (req.query.hasOwnProperty("mfagrouping"))
-      ssn.MFA_Grouping_Number_Global = req.query.mfagrouping;
-    else ssn.MFA_Grouping_Number_Global = "";
-    
+    ssn.MFA_Grouping_Number_Global = "";
     ssn.MFA_Grouping_Name_Global = "";
     ssn.Granting_Authority_Name_Global = "";
 
@@ -31,8 +28,52 @@ router.get("/", (req, res) => {
     ssn.MFA_Grouping_Name_Length_Error = false;
 
     ssn.MFAGroupingErrors = [];
+    isCallFromEditGrouping = false;
+    addOrEdit = "Add";
 
-    isCallfromEditGrouping = false;
+    req.query = JSON.parse(JSON.stringify(req.query));
+    if (req.baseUrl.includes("mfagroupingedit")){
+      if(!req.query.hasOwnProperty("id")){
+        res.render("bulkupload/notAvailable");
+      }else{
+        isCallFromEditGrouping = true;
+        addOrEdit = "Edit";
+        ssn.MFA_Grouping_Number_Global = req.query.id;
+
+        var mfaGroupingEndpoint = beis_url_publishing + "/mfa/grouping/" + ssn.MFA_Grouping_Number_Global;
+  
+        try {
+          const apiData = await axios.get(
+            mfaGroupingEndpoint,
+            ssn.UserPrincileObjectGlobal
+          );
+    
+          ssn.mfaGroupingDetails = apiData.data;  
+
+          ssn.MFA_Grouping_Number_Global = ssn.mfaGroupingDetails.mfaGroupingNumber;
+          ssn.MFA_Grouping_Name_Global = ssn.mfaGroupingDetails.mfaGroupingName;
+          ssn.Granting_Authority_Name_Global = ssn.mfaGroupingDetails.grantingAuthorityName;
+        } catch (err) {
+          const status = err.response.status;
+          console.error("ERROR: " + err.message);
+    
+          var render = "bulkupload/notAvailable";
+          switch(status){
+            case 500:
+              break;
+            case 401:
+            case 403:
+              render = "bulkupload/notAuthorized"
+              break;
+          }
+          res.render(render);
+        } 
+      }
+    }
+        // continue building edit
+      // else render error screen
+    // else continue with add
+
 
     res.set("X-Frame-Options", "DENY");
     res.set("X-Content-Type-Options", "nosniff");
@@ -41,9 +82,11 @@ router.get("/", (req, res) => {
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
     res.render("mfa/mfagroupingadd", { 
-      ssn
-       });
-    }
+      ssn,
+      isCallFromEditGrouping,
+      addOrEdit
+    });
+  }
 });
 
 module.exports = router;

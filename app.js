@@ -1046,8 +1046,11 @@ var privacynotice = require("./routes/privacy-notice");
 app.use("/privacy", privacynotice);
 
 // MFA Groupings
+var mfaGropingAddEdit = require("./routes/mfagroupingadd");
+
 app.use("/mfagroupings", require("./routes/mfagroupings"));
-app.use("/mfagroupingadd", require("./routes/mfagroupingadd"));
+app.use("/mfagroupingadd", mfaGropingAddEdit);
+app.use("/mfagroupingedit", mfaGropingAddEdit);
 app.use("/mfagroupingreview", require("./routes/mfagroupingreview"));
 app.use("/mfagroupingaddreview", require("./routes/mfagroupingaddreview"));
 app.use("/mfagroupingcancelreview", require("./routes/mfagroupingcancelreview"));

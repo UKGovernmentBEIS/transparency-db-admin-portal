@@ -67,6 +67,12 @@
             <section class="govuk-table-responsive">
                 <table class="govuk-table">
                     <tbody class="govuk-table__body">
+                        <% if (isCallFromEditGrouping){ %> 
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header govuk-!-width-one-half">MFA grouping number</th>
+                                <td class="govuk-table__cell"><%= ssn.mfaGroupingDetails.mfaGroupingNumber %></td>
+                            </tr>
+                        <% } %> 
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">MFA grouping name</th>
                             <td class="govuk-table__cell"><%= ssn.MFA_Grouping_Name_Global %></td>
@@ -79,13 +85,18 @@
                 </table>
             </section>
             <div class="govuk-grid-row">
-                <!-- <div class="govuk-grid-column-one-half govuk-padding-0"> -->
-                <form action="/mfagroupingpublished" class="govuk-grid-column-full" method="POST" novalidate>
+                    <form action="/mfagroupingpublished" class="govuk-grid-column-full" method="POST" novalidate>
                     <input type="hidden" name="answers-checked" value="true">
 
+                <% if (isCallFromEditGrouping){ %> 
+                    <button class="govuk-button" name="button_value" value="update_mfa_grouping" data-module="govuk-button">
+                        Update MFA grouping
+                    </button>
+                <% }else{ %> 
                     <button class="govuk-button" name="button_value" value="add_mfa_grouping" data-module="govuk-button">
                         Publish MFA grouping
                     </button>
+                <% } %> 
                     <a href="/mfagroupingcancelreview" class=" govuk-link govuk-cancel-button-link">Cancel</a>
 
                 </form>
