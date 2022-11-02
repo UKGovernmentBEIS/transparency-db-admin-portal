@@ -27,7 +27,7 @@ table tr th{
 table tr td{
     border: none;
     border-bottom: solid thin gray;
-    
+
 }
 
 table tr td, table tr th{
@@ -52,10 +52,10 @@ table tbody tr:hover{
 }
 
 /* .pagination .col.middle{
-    display: inline-flex; 
+    display: inline-flex;
     justify-content: right;
     text-align: right;
-    margin: 10px 0px; 
+    margin: 10px 0px;
 } */
 
 .pagination .col.last {
@@ -96,7 +96,7 @@ table tbody tr:hover{
 }
 /* .pagination a:hover,
 .pagination a.active {
-   background-color: rgb(229, 235, 236); 
+   background-color: rgb(229, 235, 236);
   text-decoration: none;
 } */
 .pagination a:hover {
@@ -150,4 +150,7 @@ table tbody tr:hover{
 
 .govuk-select {
   background-color: white;
+}
+.render-newlines {
+  white-space: pre-line;
 }

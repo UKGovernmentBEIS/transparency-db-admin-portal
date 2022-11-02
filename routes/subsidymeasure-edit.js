@@ -60,6 +60,8 @@ router.get("/", async (req, res) => {
         Scheme_Start_Date = ssn.searchmeasuredetails.startDate;
         Scheme_End_Date = ssn.searchmeasuredetails.endDate;
         ssn.Has_No_End_Date = measureapidata.data.hasNoEndDate;
+        ssn.Subsidy_Scheme_Description_Global = measureapidata.data.subsidySchemeDescription;
+
 
         var date = Scheme_Start_Date.split(" ");
 
@@ -119,6 +121,8 @@ router.get("/", async (req, res) => {
         ssn.scheme_issued_end_day_lesser_Error = false;
         ssn.scheme_issued_end_month_Error = false;
         ssn.scheme_issued_end_year_Error = false;
+        ssn.Subsidy_Scheme_Description_Error = false;
+        ssn.Subsidy_Scheme_Description_5000_Error = false;
 
         if (ssn.dashboard_roles !== "Granting Authority Encoder") {
           res.render("bulkupload/subsidymeasures-edit", { formatedCurrency });

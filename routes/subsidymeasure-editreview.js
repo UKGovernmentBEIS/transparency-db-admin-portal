@@ -43,6 +43,7 @@ router.get("/", async (req, res) => {
       ssn.searchmeasuredetails = measureapidata.data;
       Scheme_Start_Date = ssn.searchmeasuredetails.startDate;
       Scheme_End_Date = ssn.searchmeasuredetails.endDate;
+      Subsidy_Scheme_Description = ssn.searchmeasuredetails.Subsidy_Scheme_Description;
 
       var date = Scheme_Start_Date.split(" ");
 
