@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - <%=addOrEdit%> MFA AWard page</title>
+
+    <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+
+    <script>
+        getMfaGrouping = (event) => {
+            if (event.target.value == 'Yes') {
+                document.getElementById("MfaGroupingContainer").style.display = "block";
+            } else {
+                document.getElementById("MfaGroupingContainer").style.display = "none";
+            }
+        }
+    </script>
+</head>
+
+
+<body class="govuk-template__body app-example-page" onload="getErrorList('<%=ssn.SubsidyArraySize%>','<%=ssn.Subsidy_Adhoc_Global%>'); checkEndDateCheckBox()">
+    <script>
+        document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+    </script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
+
+            <!-- Header pane starts here -->
+            <%- include('../partials/navigationbar.ejs') %>
+            <!-- Header pane starts here -->
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="#">MFA</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mfaawards">MFA Awards</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#"><%=addOrEdit%> MFA Award</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+            <% if( ssn.MFAAwardErrors.length > 0 ){ %>
+
+            <div tabindex="-1" class="govuk-error-summary" id="error-alert" role="alert" aria-labelledby="error-summary-title" data-module="govuk-error-summary">
+                <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+
+                <div class="govuk-error-summary__body">
+                    <% for(var i=0; i < ssn.MFAAwardErrors.length  ; i++) {%>
+                    <ul class="govuk-list govuk-error-summary__list">
+
+                        <li> <a href="<%= ssn.MFAFocus[i] %>"> <%= ssn.MFAAwardErrors[i] %> </a> </li>
+                    </ul>
+                    <% } %>
+                </div>
+
+            </div>
+
+            <% } %>
+            <!-- Body header starts here -->
+            <% if(isCallFromEditAward){ %>
+            <h1 class="govuk-heading-xl">Edit MFA award <%= ssn.mfaAwardDetails.mfaAwardNumber %> </h1>
+            <% }else{ %>
+            <h1 class="govuk-heading-xl">Add an MFA award</h1>
+            <% } %>
+
+            <p class="govuk-body govuk-!-font-size-19">This section is for adding an MFA or SPEI Assistance Award.</p>
+            <!-- Body header ends here -->
+
+            <form action="/mfaawardreview" method="POST" id="scheme-form">
+                <section class="govuk-grid-row">
+                    <% if (isCallFromEditAward){ %>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="MFA_Award_Number">
+                            MFA award number
+                        </label>
+                        <input class="govuk-input govuk-!-width-one-half" id="MFA_Award_Number" name="MFA_Award_Number" type="text" value="<%= ssn.mfaAwardDetails.mfaAwardNumber %>" disabled />
+                    </div>
+                    <% } %>
+
+
+                    <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.SPEI_Error ){ %> govuk-form-group--error <% } %> ">
+                        <label class="govuk-label" for="address-line-1">
+                            Is this a SPEI Assistance Award?
+                        </label>
+                        <details class="govuk-details" data-module="govuk-details">
+                            <summary class="govuk-details__summary">
+                                <span class="govuk-details__summary-text">
+                                    What is a SPEI Assistance Award?
+                                </span>
+                            </summary>
+                            <div class="govuk-details__text">
+                                Some text explaining SPEI Assistance awards.
+                            </div>
+                        </details>
+
+                        <% if( ssn.SPEI_Error ){ %>
+                        <span class="govuk-error-message" id="Subsidy_adhoc_Error">
+                            <span class="govuk-visually-hidden">Error:</span> You must select the SPEI Assiatance status
+                        </span>
+                        <% }  %>
+
+                        <div class="govuk-radios" id="SPEI">
+                            <div class="govuk-radios__item">
+                                <% if(ssn.SPEI_Global == 'Yes') { %>
+                                <input class="govuk-radios__input" name="SPEI" id="speiyes" type="radio" value="Yes" checked>
+                                <% } else { %>
+                                <% var ssn_Object = JSON.stringify(ssn)%>
+                                <input class="govuk-radios__input" name="SPEI" id="speiyes" type="radio" value="Yes">
+                                <% } %>
+                                <label class="govuk-label govuk-radios__label" for="speiyes">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <% if(ssn.SPEI_Global == 'No') { %>
+                                <input class="govuk-radios__input" name="SPEI" id="speino" type="radio" value="No" checked>
+                                <% } else { %>
+                                <% var ssn_Object = JSON.stringify(ssn)%>
+                                <input class="govuk-radios__input" name="SPEI" id="speino" type="radio" value="No">
+                                <% } %>
+                                <label class="govuk-label govuk-radios__label" for="speino">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Grouping_YesNo_Error ){ %> govuk-form-group--error <% } %>">
+                        <label class="govuk-label" for="address-line-1">
+                            Do you wish to include this award in an MFA Grouping?
+                        </label>
+                        <details class="govuk-details" data-module="govuk-details">
+                            <summary class="govuk-details__summary">
+                                <span class="govuk-details__summary-text">
+                                    What is an MFA Grouping?
+                                </span>
+                            </summary>
+                            <div class="govuk-details__text">
+                                Some text explaining MFA Groupings.
+                            </div>
+                        </details>
+
+                        <% if( ssn.MFA_Grouping_YesNo_Error ){ %>
+                        <span class="govuk-error-message" id="Subsidy_adhoc_Error">
+                            <span class="govuk-visually-hidden">Error:</span> You must indicate if you wish to add this award to an MFA Grouping
+                        </span>
+                        <% }  %>
+
+                        <div class="govuk-radios" id="MFA_Grouping_YesNo">
+                            <div class="govuk-radios__item">
+                                <% if(ssn.MFA_Yes_No_Global == 'Yes') { %>
+                                <input class="govuk-radios__input" name="MFA_Grouping" id="mfaGroupingYes" type="radio" value="Yes" checked>
+                                <% } else { %>
+                                <% var ssn_Object = JSON.stringify(ssn)%>
+                                <input class="govuk-radios__input" name="MFA_Grouping" id="mfaGroupingYes" type="radio" value="Yes" onchange="getMfaGrouping(event)">
+                                <% } %>
+                                <label class="govuk-label govuk-radios__label" for="mfaGroupingYes">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <% if(ssn.MFA_Yes_No_Global == 'No') { %>
+                                <input class="govuk-radios__input" name="MFA_Grouping" id="mfaGroupingNo" type="radio" value="No" checked>
+                                <% } else { %>
+                                <% var ssn_Object = JSON.stringify(ssn)%>
+                                <input class="govuk-radios__input" name="MFA_Grouping" id="mfaGroupingNo" type="radio" value="No" onchange="getMfaGrouping(event)">
+                                <% } %>
+                                <label class="govuk-label govuk-radios__label" for="mfaGroupingNo">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Grouping_Error ){ %> govuk-form-group--error <% } %> " id="MfaGroupingContainer">
+                        <label class="govuk-label" for="address-line-1">
+                            MFA Grouping ID
+                        </label>
+
+                        <div id="Legal_Granting_Date-hint" class="govuk-hint">
+                            For example, MFA10123
+                        </div>
+
+                        <% if(ssn.MFA_Grouping_Empty_Error){
+                            var mfaGroupingErrorMessage="You must provide an MFA Grouping ID";
+                        }
+                        if(ssn.MFA_Grouping_Exist_Error){
+                            var mfaGroupingErrorMessage="MFA grouping does not exist";
+                        }
+                        if(ssn.MFA_Grouping_Active_Error){
+                            var mfaGroupingErrorMessage="MFA grouping is not active";
+                        } %>
+
+                        <% if( ssn.MFA_Grouping_Error ){ %>
+                        <span class="govuk-error-message" id="Subsidy_adhoc_Error">
+                            <span class="govuk-visually-hidden">Error:</span> <%= mfaGroupingErrorMessage %>
+                        </span>
+                        <% }  %>
+
+                        <input class="govuk-input govuk-!-width-one-half" id="MFA_Grouping_ID" name="MFA_Grouping_ID" type="text" aria-describedby="MFA_Grouping_ID" value="<%= ssn.MFA_Grouping_ID_Global %>" />
+                    </div>
+
+                    <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Award_Amount_Error ){ %> govuk-form-group--error <% } %>">
+                        <label class="govuk-label" for="Award_Full_Amount">
+                            Award full amount (£)
+                        </label>
+
+                        <% if( ssn.MFA_Grouping_Error ){ %>
+                        <span class="govuk-error-message" id="Subsidy_adhoc_Error">
+                            <span class="govuk-visually-hidden">Error:</span> You must provide an award amount
+                        </span>
+                        <% }  %>
+
+                        <div class="govuk-input__wrapper">
+                            <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                            <input class="govuk-input govuk-!-width-one-half" id="Award_Full_Amount" name="Award_Full_Amount" type="number" aria-describedby="Award_Full_Amount" value="<%= ssn.Award_Full_Amount_Global %>" />
+                        </div>
+                    </div>
+
+                    <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Award_Confirmation_Day_Error || ssn.MFA_Award_Confirmation_Month_Error || ssn.MFA_Award_Confirmation_Year_Error ){ %> govuk-form-group--error <% } %> ">
+                        <label class="govuk-label" for="address-line-1" id="confirmationDateLabel">
+                            Confirmation Date
+                        </label>
+                        <div class="govuk-hint">
+                            For example, 25 5 2022
+                        </div>
+                        <details class="govuk-details" data-module="govuk-details">
+                            <summary class="govuk-details__summary">
+                                <span class="govuk-details__summary-text">
+                                    What is confirmation date?
+                                </span>
+                            </summary>
+                            <div class="govuk-details__text">
+                                Confirmation date is the date that a public authority confirms the decision to make an award.
+                            </div>
+                        </details>
+                        <% if( ssn.MFA_Award_Confirmation_Day_Error || ssn.MFA_Award_Confirmation_Month_Error || ssn.MFA_Award_Confirmation_Year_Error){ %>
+                        <span class="govuk-error-message" id="Date_Error">
+                            <span class="govuk-visually-hidden">Error:</span>
+                            Enter a valid date
+                        </span>
+                        <% }  %>
+
+                        <div class="govuk-date-input" id="mfa-award-issued">
+                            <div class="govuk-date-input__item">
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="mfa_award_issued_confirmation_day">
+                                        Day
+                                    </label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="mfa_award_issued_confirmation_day" name="mfa_award_issued_confirmation_day" type="text" placeholder="DD" pattern="[0-9]*" inputmode="numeric" value="<%= ssn.MFA_Award_Confirmation_Day_Global%>">
+                                </div>
+                            </div>
+                            <div class="govuk-date-input__item">
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="mfa_award_issued_confirmation_month">
+                                        Month
+                                    </label>
+
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="mfa_award_issued_confirmation_month" value="<%= ssn.MFA_Award_Confirmation_Month_Global%>" name="mfa_award_issued_confirmation_month" placeholder="MM" type="text" pattern="[0-9]*" inputmode="numeric">
+                                </div>
+                            </div>
+                            <div class="govuk-date-input__item">
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="mfa_award_issued_confirmation_year">
+                                        Year
+                                    </label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="mfa_award_issued_confirmation_year" name="mfa_award_issued_confirmation_year" type="text" pattern="[0-9]*" inputmode="numeric" value="<%= ssn.MFA_Award_Confirmation_Year_Global%>" placeholder="YYYY">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <% if( ssn.Granting_Authority_Name_Error || ssn.Granting_Authority_Name_Inactive_Error || ssn.Granting_Authority_Multiple_Error || ssn.Granting_Authority_Exists_Error) { %>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                        <label class="govuk-label" for="Granting_Authority_Name">
+                            Granting authority name
+                        </label>
+                        <% if(ssn.Granting_Authority_Name_Inactive_Error){ %>
+                        <span class="govuk-error-message" id="Granting_Authority_Name_Error">
+                            <span class="govuk-visually-hidden">Error:</span> Granting authority is not active
+                        </span>
+                        <% } else { %>
+                        <span class="govuk-error-message" id="Granting_Authority_Name_Error">
+                            <span class="govuk-visually-hidden">Error:</span> Enter a granting authority name
+                        </span>
+                        <% } %>
+                        <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
+                        <input class="govuk-input govuk-!-width-one-half govuk-input--error" id="Granting_Authority_Name" name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name" <% if(ssn.Granting_Authority_Name_Global) {%> value="<%= ssn.Granting_Authority_Name_Global %>" <% } %> />
+
+                        <% } else { %>
+
+                        <input class="govuk-input govuk-!-width-one-half govuk-input--error" id="Granting_Authority_Name" name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name" value="<%= ssn.dashboard_ga_name %>" disabled />
+                        <% } %>
+                    </div>
+                    <% } else { %>
+
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="Granting_Authority_Name">
+                            Granting authority name
+                        </label>
+
+                        <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
+                        <input class="govuk-input govuk-!-width-one-half" id="Granting_Authority_Name" name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name" <% if(ssn.Granting_Authority_Name_Global) {%> value="<%= ssn.Granting_Authority_Name_Global %>" <% } %> />
+
+                        <% } else { %>
+
+                        <input class="govuk-input govuk-!-width-one-half" id="Granting_Authority_Name" name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name" value="<%= ssn.dashboard_ga_name %>" disabled />
+                        <% } %>
+                    </div>
+                    <% }  %>
+                    <h1 class="govuk-heading-xl govuk-grid-column-two-thirds">Recipient details</h1>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Award_Beneficiary_Name_Error ){ %> govuk-form-group--error <% } %>">
+                        <label class="govuk-label" for="Beneficiary_Name">
+                            Recipient organisation name
+                        </label>
+
+                        <input class="govuk-input govuk-input--width-20" id="Beneficiary_Name" name="Beneficiary_Name" type="text" aria-describedby="Beneficiary_Name" value="<%= ssn.MFA_Award_Beneficiary_Name_Global %>" />
+
+                        <!-- TODO: Add errors for Org Name -->
+                    </div>
+
+
+                    <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Award_National_ID_Type_Error ){ %> govuk-form-group--error <% } %>">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                            <h1 class="govuk-label">
+                                Organisation ID Type
+                            </h1>
+                        </legend>
+                        <% if( ssn.MFA_Grouping_YesNo_Error ){ %>
+                        <span class="govuk-error-message" id="Subsidy_adhoc_Error">
+                            <span class="govuk-visually-hidden">Error:</span> You must chose an ID Type
+                        </span>
+                        <% }  %>
+                        <div class="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="National_ID_Type" name="National_ID_Type" type="radio" value="Company Registration Number" <% if( ssn.National_ID_Type_Global  == 'Company Registration Number' ) { %> checked <% } %>>
+                                <label class="govuk-label govuk-radios__label" for="National_ID_Type">
+                                    Company Registration Number
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="National_ID_Type-2" name="National_ID_Type" type="radio" value="Charity Number" <% if( ssn.National_ID_Type_Global  == 'Charity Number' ) { %> checked <% } %>>
+                                <label class="govuk-label govuk-radios__label" for="National_ID_Type-2">
+                                    Charity Number
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="National_ID_Type-3" name="National_ID_Type" type="radio" value="VAT Number" <% if( ssn.National_ID_Type_Global  == 'VAT Number' ){ %> checked <% } %>>
+                                <label class="govuk-label govuk-radios__label" for="National_ID_Type-3">
+                                    VAT number
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="National_ID_Type-4" name="National_ID_Type" type="radio" value="UTR Number" <% if( ssn.National_ID_Type_Global  == 'UTR Number' ){ %> checked <% } %>>
+                                <label class="govuk-label govuk-radios__label" for="National_ID_Type-4">
+                                    UTR Number
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Award_National_ID_Error ){ %> govuk-form-group--error <% } %>">
+                        <label class="govuk-label" for="National_ID_Number">
+                            ID Number
+                        </label>
+                        <details class="govuk-details" data-module="govuk-details">
+                            <summary class="govuk-details__summary">
+                                <span class="govuk-details__summary-text">
+                                    What is an ID number?
+                                </span>
+                            </summary>
+                            <div class="govuk-details__text">
+                                This must match the ID type. For example, if you selected ‘VAT number’ for ID type, you must enter the
+                                recipient’s VAT number.
+                            </div>
+                        </details>
+                        <% if( ssn.MFA_Award_National_ID_Error ){ %>
+                        <span class="govuk-error-message" id="Subsidy_adhoc_Error">
+                            <span class="govuk-visually-hidden">Error:</span> You must enter an ID number
+                        </span>
+                        <% }  %>
+                        <input class="govuk-input govuk-input--width-20" id="National_ID_Number" name="National_ID_Number" type="text" aria-describedby="National_ID_Number-hint" value="<%= ssn.National_ID_Number_Global%>" />
+                    </div>
+
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <button class="govuk-button" data-module="govuk-button" name="buttonvalue" value="Continue">Continue</button>
+                        <button class="govuk-link govuk-cancel-button-link" data-module="govuk-button" name="buttonvalue" value="Cancel" style="background: transparent;cursor:pointer;
+                                border: 0;color: #1d70b8;  outline: 0px solid transparent;    box-shadow: 0 0px #fd0, 0 0px #0b0c0c;
+                                    text-decoration: underline;">Cancel</button>
+                    </div>
+                </section>
+            </form>
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+    <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
+    <script>
+        document.getElementById('mfa-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
+</body>
+
+</html>

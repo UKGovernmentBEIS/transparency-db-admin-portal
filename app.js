@@ -1046,11 +1046,11 @@ var privacynotice = require("./routes/privacy-notice");
 app.use("/privacy", privacynotice);
 
 // MFA Groupings
-var mfaGropingAddEdit = require("./routes/mfagroupingadd");
+var mfaGroupingAddEdit = require("./routes/mfagroupingadd");
 
 app.use("/mfagroupings", require("./routes/mfagroupings"));
-app.use("/mfagroupingadd", mfaGropingAddEdit);
-app.use("/mfagroupingedit", mfaGropingAddEdit);
+app.use("/mfagroupingadd", mfaGroupingAddEdit);
+app.use("/mfagroupingedit", mfaGroupingAddEdit);
 app.use("/mfagroupingreview", require("./routes/mfagroupingreview"));
 app.use("/mfagroupingaddreview", require("./routes/mfagroupingaddreview"));
 app.use("/mfagroupingcancelreview", require("./routes/mfagroupingcancelreview"));
@@ -1058,5 +1058,12 @@ app.use("/mfagroupingpublished", require("./routes/mfagroupingpublished"));
 app.use("/mfagrouping", require("./routes/mfagrouping"));
 app.use("/mfagroupingdelete", require("./routes/mfagroupingdelete"));
 app.use("/mfagroupingdeletesuccess", require("./routes/mfagroupingdeletesuccess"));
+
+// MFA Awards
+var mfaAwardAddEdit = require("./routes/mfaawardadd");
+
+app.use("/mfaawards", require("./routes/mfaawards"));
+app.use("/mfaawardadd", mfaAwardAddEdit);
+app.use("/mfaawardedit", mfaAwardAddEdit);
 
 module.exports = app;
