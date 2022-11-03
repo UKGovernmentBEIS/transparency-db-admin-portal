@@ -70,10 +70,6 @@ router.get("/", async (req, res) => {
         } 
       }
     }
-        // continue building edit
-      // else render error screen
-    // else continue with add
-
 
     res.set("X-Frame-Options", "DENY");
     res.set("X-Content-Type-Options", "nosniff");
