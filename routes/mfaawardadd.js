@@ -15,16 +15,20 @@ router.get("/", async (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
+
     ssn.MFA_Award_Number_Global = "";
-    ssn.Granting_Authority_Name_Global = "";
     ssn.SPEI_Global = "";
     ssn.MFA_Yes_No_Global = "";
     ssn.MFA_Grouping_ID_Global = "";
     ssn.Award_Full_Amount_Global = ""
-    ssn.MFA_Award_Beneficiary_Name_Global = "";
     ssn.MFA_Award_Confirmation_Day_Global = "";
     ssn.MFA_Award_Confirmation_Month_Global = "";
     ssn.MFA_Award_Confirmation_Year_Global = "";
+    ssn.Granting_Authority_Name_Global = "";
+    ssn.MFA_Award_Beneficiary_Name_Global = "";
+    MFA_Award_National_ID_Type_Global = "";
+    ssn.MFA_Award_National_ID_Global = "";
+    
 
     ssn.Granting_Authority_Name_Error = false;
     ssn.Granting_Authority_Exists_Error = false;

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - <%=addOrEdit%> MFA AWard page</title>
+    <title>GOV.UK - <%=addOrEdit%> MFA Award page</title>
 
     <%- include('../partials/headercss.ejs') %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -16,11 +16,19 @@
                 document.getElementById("MfaGroupingContainer").style.display = "none";
             }
         }
+
+        setMfaGrouping = (yesNo) => {
+            if (yesNo != 'No') {
+                document.getElementById("MfaGroupingContainer").style.display = "block";
+            } else {
+                document.getElementById("MfaGroupingContainer").style.display = "none";
+            }
+        }
     </script>
 </head>
 
 
-<body class="govuk-template__body app-example-page" onload="getErrorList('<%=ssn.SubsidyArraySize%>','<%=ssn.Subsidy_Adhoc_Global%>'); checkEndDateCheckBox()">
+<body class="govuk-template__body app-example-page" onload="setMfaGrouping('<%= ssn.MFA_Yes_No_Global%>');">
     <script>
         document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
     </script>
@@ -116,30 +124,20 @@
                         </details>
 
                         <% if( ssn.SPEI_Error ){ %>
-                        <span class="govuk-error-message" id="Subsidy_adhoc_Error">
+                        <span class="govuk-error-message" id="SPEI_Assistance_Error">
                             <span class="govuk-visually-hidden">Error:</span> You must select the SPEI Assiatance status
                         </span>
                         <% }  %>
 
                         <div class="govuk-radios" id="SPEI">
                             <div class="govuk-radios__item">
-                                <% if(ssn.SPEI_Global == 'Yes') { %>
-                                <input class="govuk-radios__input" name="SPEI" id="speiyes" type="radio" value="Yes" checked>
-                                <% } else { %>
-                                <% var ssn_Object = JSON.stringify(ssn)%>
-                                <input class="govuk-radios__input" name="SPEI" id="speiyes" type="radio" value="Yes">
-                                <% } %>
+                                <input class="govuk-radios__input" name="speiAssistance" id="speiyes" type="radio" value="Yes" <% if(ssn.SPEI_Global == 'Yes') { %> checked <% } %> >
                                 <label class="govuk-label govuk-radios__label" for="speiyes">
                                     Yes
                                 </label>
                             </div>
                             <div class="govuk-radios__item">
-                                <% if(ssn.SPEI_Global == 'No') { %>
-                                <input class="govuk-radios__input" name="SPEI" id="speino" type="radio" value="No" checked>
-                                <% } else { %>
-                                <% var ssn_Object = JSON.stringify(ssn)%>
-                                <input class="govuk-radios__input" name="SPEI" id="speino" type="radio" value="No">
-                                <% } %>
+                                <input class="govuk-radios__input" name="speiAssistance" id="speino" type="radio" value="No" <% if(ssn.SPEI_Global == 'No') { %> checked <% } %> >
                                 <label class="govuk-label govuk-radios__label" for="speino">
                                     No
                                 </label>
@@ -170,23 +168,15 @@
 
                         <div class="govuk-radios" id="MFA_Grouping_YesNo">
                             <div class="govuk-radios__item">
-                                <% if(ssn.MFA_Yes_No_Global == 'Yes') { %>
-                                <input class="govuk-radios__input" name="MFA_Grouping" id="mfaGroupingYes" type="radio" value="Yes" checked>
-                                <% } else { %>
-                                <% var ssn_Object = JSON.stringify(ssn)%>
-                                <input class="govuk-radios__input" name="MFA_Grouping" id="mfaGroupingYes" type="radio" value="Yes" onchange="getMfaGrouping(event)">
-                                <% } %>
+                                
+                                <input class="govuk-radios__input" name="mfaGroupingYesNo" id="mfaGroupingYes" type="radio" value="Yes" <% if(ssn.MFA_Yes_No_Global == 'Yes') { %> checked <% } %> onchange="getMfaGrouping(event)">
                                 <label class="govuk-label govuk-radios__label" for="mfaGroupingYes">
                                     Yes
                                 </label>
                             </div>
                             <div class="govuk-radios__item">
-                                <% if(ssn.MFA_Yes_No_Global == 'No') { %>
-                                <input class="govuk-radios__input" name="MFA_Grouping" id="mfaGroupingNo" type="radio" value="No" checked>
-                                <% } else { %>
-                                <% var ssn_Object = JSON.stringify(ssn)%>
-                                <input class="govuk-radios__input" name="MFA_Grouping" id="mfaGroupingNo" type="radio" value="No" onchange="getMfaGrouping(event)">
-                                <% } %>
+                                
+                                <input class="govuk-radios__input" name="mfaGroupingYesNo" id="mfaGroupingNo" type="radio" value="No" <% if(ssn.MFA_Yes_No_Global == 'No') { %> checked <% } %> onchange="getMfaGrouping(event)">
                                 <label class="govuk-label govuk-radios__label" for="mfaGroupingNo">
                                     No
                                 </label>
@@ -219,7 +209,7 @@
                         </span>
                         <% }  %>
 
-                        <input class="govuk-input govuk-!-width-one-half" id="MFA_Grouping_ID" name="MFA_Grouping_ID" type="text" aria-describedby="MFA_Grouping_ID" value="<%= ssn.MFA_Grouping_ID_Global %>" />
+                        <input class="govuk-input govuk-!-width-one-half" id="MFA_Grouping_ID" name="mfaGroupingId" type="text" aria-describedby="MFA_Grouping_ID" value="<%= ssn.MFA_Grouping_ID_Global %>" />
                     </div>
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Award_Amount_Error ){ %> govuk-form-group--error <% } %>">
@@ -227,7 +217,7 @@
                             Award full amount (£)
                         </label>
 
-                        <% if( ssn.MFA_Grouping_Error ){ %>
+                        <% if( ssn.MFA_Award_Amount_Error ){ %>
                         <span class="govuk-error-message" id="Subsidy_adhoc_Error">
                             <span class="govuk-visually-hidden">Error:</span> You must provide an award amount
                         </span>
@@ -235,7 +225,7 @@
 
                         <div class="govuk-input__wrapper">
                             <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                            <input class="govuk-input govuk-!-width-one-half" id="Award_Full_Amount" name="Award_Full_Amount" type="number" aria-describedby="Award_Full_Amount" value="<%= ssn.Award_Full_Amount_Global %>" />
+                            <input class="govuk-input govuk-!-width-one-half" id="Award_Full_Amount" name="awardFullAmount" type="number" aria-describedby="Award_Full_Amount" value="<%= ssn.Award_Full_Amount_Global %>" />
                         </div>
                     </div>
 
@@ -266,40 +256,44 @@
                         <div class="govuk-date-input" id="mfa-award-issued">
                             <div class="govuk-date-input__item">
                                 <div class="govuk-form-group">
-                                    <label class="govuk-label govuk-date-input__label" for="mfa_award_issued_confirmation_day">
+                                    <label class="govuk-label govuk-date-input__label" for="mfa_award_confirmation_day">
                                         Day
                                     </label>
-                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="mfa_award_issued_confirmation_day" name="mfa_award_issued_confirmation_day" type="text" placeholder="DD" pattern="[0-9]*" inputmode="numeric" value="<%= ssn.MFA_Award_Confirmation_Day_Global%>">
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="mfa_award_confirmation_day" name="mfa_award_confirmation_day" type="text" placeholder="DD" pattern="[0-9]*" inputmode="numeric" value="<%= ssn.MFA_Award_Confirmation_Day_Global%>">
                                 </div>
                             </div>
                             <div class="govuk-date-input__item">
                                 <div class="govuk-form-group">
-                                    <label class="govuk-label govuk-date-input__label" for="mfa_award_issued_confirmation_month">
+                                    <label class="govuk-label govuk-date-input__label" for="mfa_award_confirmation_month">
                                         Month
                                     </label>
 
-                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="mfa_award_issued_confirmation_month" value="<%= ssn.MFA_Award_Confirmation_Month_Global%>" name="mfa_award_issued_confirmation_month" placeholder="MM" type="text" pattern="[0-9]*" inputmode="numeric">
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="mfa_award_confirmation_month" value="<%= ssn.MFA_Award_Confirmation_Month_Global%>" name="mfa_award_confirmation_month" placeholder="MM" type="text" pattern="[0-9]*" inputmode="numeric">
                                 </div>
                             </div>
                             <div class="govuk-date-input__item">
                                 <div class="govuk-form-group">
-                                    <label class="govuk-label govuk-date-input__label" for="mfa_award_issued_confirmation_year">
+                                    <label class="govuk-label govuk-date-input__label" for="mfa_award_confirmation_year">
                                         Year
                                     </label>
-                                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="mfa_award_issued_confirmation_year" name="mfa_award_issued_confirmation_year" type="text" pattern="[0-9]*" inputmode="numeric" value="<%= ssn.MFA_Award_Confirmation_Year_Global%>" placeholder="YYYY">
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="mfa_award_confirmation_year" name="mfa_award_confirmation_year" type="text" pattern="[0-9]*" inputmode="numeric" value="<%= ssn.MFA_Award_Confirmation_Year_Global%>" placeholder="YYYY">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <% if( ssn.Granting_Authority_Name_Error || ssn.Granting_Authority_Name_Inactive_Error || ssn.Granting_Authority_Multiple_Error || ssn.Granting_Authority_Exists_Error) { %>
+                    <% if( ssn.Granting_Authority_Name_Error || ssn.Granting_Authority_Inactive_Error || ssn.Granting_Authority_Multiple_Error || ssn.Granting_Authority_Exists_Error) { %>
                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                         <label class="govuk-label" for="Granting_Authority_Name">
                             Granting authority name
                         </label>
-                        <% if(ssn.Granting_Authority_Name_Inactive_Error){ %>
+                        <% if (ssn.Granting_Authority_Inactive_Error) { %>
                         <span class="govuk-error-message" id="Granting_Authority_Name_Error">
                             <span class="govuk-visually-hidden">Error:</span> Granting authority is not active
+                        </span>
+                        <% } else if (ssn.Granting_Authority_Exists_Error) { %> 
+                        <span class="govuk-error-message" id="Granting_Authority_Name_Error">
+                            <span class="govuk-visually-hidden">Error:</span> Granting authority does not exist
                         </span>
                         <% } else { %>
                         <span class="govuk-error-message" id="Granting_Authority_Name_Error">
@@ -336,9 +330,12 @@
                             Recipient organisation name
                         </label>
 
-                        <input class="govuk-input govuk-input--width-20" id="Beneficiary_Name" name="Beneficiary_Name" type="text" aria-describedby="Beneficiary_Name" value="<%= ssn.MFA_Award_Beneficiary_Name_Global %>" />
-
-                        <!-- TODO: Add errors for Org Name -->
+                        <% if( ssn.MFA_Award_Beneficiary_Name_Error ){ %>
+                        <span class="govuk-error-message" id="Subsidy_adhoc_Error">
+                            <span class="govuk-visually-hidden">Error:</span> You must provide an organisation name
+                        </span>
+                        <% }  %>
+                        <input class="govuk-input govuk-input--width-20" id="Beneficiary_Name" name="organisationName" type="text" aria-describedby="Beneficiary_Name" value="<%= ssn.MFA_Award_Beneficiary_Name_Global %>" />
                     </div>
 
 
@@ -348,32 +345,32 @@
                                 Organisation ID Type
                             </h1>
                         </legend>
-                        <% if( ssn.MFA_Grouping_YesNo_Error ){ %>
+                        <% if( ssn.MFA_Award_National_ID_Type_Error ){ %>
                         <span class="govuk-error-message" id="Subsidy_adhoc_Error">
                             <span class="govuk-visually-hidden">Error:</span> You must chose an ID Type
                         </span>
                         <% }  %>
                         <div class="govuk-radios">
                             <div class="govuk-radios__item">
-                                <input class="govuk-radios__input" id="National_ID_Type" name="National_ID_Type" type="radio" value="Company Registration Number" <% if( ssn.National_ID_Type_Global  == 'Company Registration Number' ) { %> checked <% } %>>
+                                <input class="govuk-radios__input" id="National_ID_Type" name="National_ID_Type" type="radio" value="Company Registration Number" <% if( ssn.MFA_Award_National_ID_Type_Global  == 'Company Registration Number' ) { %> checked <% } %>>
                                 <label class="govuk-label govuk-radios__label" for="National_ID_Type">
                                     Company Registration Number
                                 </label>
                             </div>
                             <div class="govuk-radios__item">
-                                <input class="govuk-radios__input" id="National_ID_Type-2" name="National_ID_Type" type="radio" value="Charity Number" <% if( ssn.National_ID_Type_Global  == 'Charity Number' ) { %> checked <% } %>>
+                                <input class="govuk-radios__input" id="National_ID_Type-2" name="National_ID_Type" type="radio" value="Charity Number" <% if( ssn.MFA_Award_National_ID_Type_Global  == 'Charity Number' ) { %> checked <% } %>>
                                 <label class="govuk-label govuk-radios__label" for="National_ID_Type-2">
                                     Charity Number
                                 </label>
                             </div>
                             <div class="govuk-radios__item">
-                                <input class="govuk-radios__input" id="National_ID_Type-3" name="National_ID_Type" type="radio" value="VAT Number" <% if( ssn.National_ID_Type_Global  == 'VAT Number' ){ %> checked <% } %>>
+                                <input class="govuk-radios__input" id="National_ID_Type-3" name="National_ID_Type" type="radio" value="VAT Number" <% if( ssn.MFA_Award_National_ID_Type_Global  == 'VAT Number' ){ %> checked <% } %>>
                                 <label class="govuk-label govuk-radios__label" for="National_ID_Type-3">
                                     VAT number
                                 </label>
                             </div>
                             <div class="govuk-radios__item">
-                                <input class="govuk-radios__input" id="National_ID_Type-4" name="National_ID_Type" type="radio" value="UTR Number" <% if( ssn.National_ID_Type_Global  == 'UTR Number' ){ %> checked <% } %>>
+                                <input class="govuk-radios__input" id="National_ID_Type-4" name="National_ID_Type" type="radio" value="UTR Number" <% if( ssn.MFA_Award_National_ID_Type_Global  == 'UTR Number' ){ %> checked <% } %>>
                                 <label class="govuk-label govuk-radios__label" for="National_ID_Type-4">
                                     UTR Number
                                 </label>
@@ -400,7 +397,7 @@
                             <span class="govuk-visually-hidden">Error:</span> You must enter an ID number
                         </span>
                         <% }  %>
-                        <input class="govuk-input govuk-input--width-20" id="National_ID_Number" name="National_ID_Number" type="text" aria-describedby="National_ID_Number-hint" value="<%= ssn.National_ID_Number_Global%>" />
+                        <input class="govuk-input govuk-input--width-20" id="National_ID_Number" name="National_ID_Number" type="text" aria-describedby="National_ID_Number-hint" value="<%= ssn.MFA_Award_National_ID_Global%>" />
                     </div>
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds">
