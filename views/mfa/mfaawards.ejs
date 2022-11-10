@@ -44,7 +44,7 @@
       <!-- bread crumbs ends here -->
 
       <!-- Body header starts here -->
-      <h1 class="govuk-heading-xl">MFA Awards</h1>
+      <h1 class="govuk-heading-xl">MFA / SPEIA Awards</h1>
       <!-- Body header ends here -->
       <% if(noresult) { %>
         <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
@@ -72,14 +72,14 @@
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full" id="subsidy_search_text">
             <label class="govuk-label">
-              You can search for MFA awards by entering a name, MFA award number, or granting authority.
+              You can search for MFA awards by entering an MFA award number, MFA grouping name/number, or granting authority.
             </label>
           </div>
 
           <div class="govuk-grid-column-one-half">
             <form action="/mfaawards" method="get" novalidate>
               
-              <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="mfaAwardName" type="text"
+              <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="mfaAwardSearchName" type="text"
                 aria-describedby="subsidy_search_text" value="<%= ssn.MFA_Award_Search_Name_Global%>" />
 
               <button class="govuk-button" data-module="govuk-button">
@@ -99,17 +99,29 @@
                 <option value="">Show all (<%= ssn.allMfaAwards %>)</option>
                 <% }  %>
 
-                <% if(mfaAwardStatus == "Active") { %>
-                <option value="Active" selected>Active (<%= ssn.activeMfaAwards %>)</option>
+                <% if(mfaAwardStatus == "Published") { %>
+                <option value="Published" selected>Published (<%= ssn.publishedMfaAwards %>)</option>
                 <% } else { %>
-                <option value="Active">Active (<%= ssn.activeMfaAwards %>)</option>
+                <option value="Published">Published (<%= ssn.publishedMfaAwards %>)</option>
                 <% }  %>
+
+                <% if(mfaAwardStatus == "Awaiting Approval") { %>
+                  <option value="Awaiting Approval" selected>Awaiting Approval (<%= ssn.awaitingMfaAwards %>)</option>
+                  <% } else { %>
+                  <option value="Awaiting Approval">Awaiting Approval (<%= ssn.awaitingMfaAwards %>)</option>
+                  <% }  %>
 
                 <% if(mfaAwardStatus == "Deleted") { %>
                 <option value="Deleted" selected>Deleted (<%= ssn.deletedMfaAwards %>)</option>
                 <% } else { %>
                 <option value="Deleted">Deleted (<%= ssn.deletedMfaAwards %>)</option>
                 <% }  %>
+
+                <% if(mfaAwardStatus == "Rejected") { %>
+                  <option value="Rejected" selected>Rejected (<%= ssn.rejectedMfaAwards %>)</option>
+                  <% } else { %>
+                  <option value="Rejected">Rejected (<%= ssn.rejectedMfaAwards %>)</option>
+                  <% }  %>
               </select>
             </form>
             <span id="status-message" style="display:none" aria-hidden="true">
@@ -170,17 +182,28 @@
                 <thead class="govuk-table__head">
                   <tr class="govuk-table__row">
                     <th scope="col" class="govuk-table__header app-custom-class">
-                        MFA award name
-                    </th>
-
-                    <th scope="col" class="govuk-table__header app-custom-class">
                         MFA award number
+                    </th>
+                    <th scope="col" class="govuk-table__header app-custom-class">
+                      SPEIA
+                    </th>
+                    <th scope="col" class="govuk-table__header app-custom-class">
+                      MFA grouping number
+                    </th>
+                    <th scope="col" class="govuk-table__header app-custom-class">
+                      MFA grouping name
+                    </th>
+                    <th scope="col" class="govuk-table__header app-custom-class">
+                      Status
+                    </th>
+                    <th scope="col" class="govuk-table__header app-custom-class">
+                      Recipient
                     </th>
                     <th scope="col" class="govuk-table__header app-custom-class">
                         Granting authority
                     </th>
                     <th scope="col" class="govuk-table__header app-custom-class">
-                      Status
+                      Award amount
                   </th>
                   </tr>
                 </thead>
@@ -188,12 +211,26 @@
                 <tbody class="govuk-table__body">
                   <% searchResults.mfaAwards.forEach(function(item) { %>
                   <tr>
-                    <td class="govuk-table__cell"><a href="/mfaaward?id=<%= item.mfaAwardNumber %>">
-                        <%= item.mfaAwardName  %>
-                      </a> </td>
-                    <td class="govuk-table__cell"><%= item.mfaAwardNumber %></td>
-                    <td class="govuk-table__cell"><%= item.grantingAuthorityName %></td>
+                    <td class="govuk-table__cell"><a href="/mfaaward?id=<%= item.mfaAwardNumber %>"><%= item.mfaAwardNumber  %></a></td>
+                    <td class="govuk-table__cell"><%= item.isSpeiAssistance %></td>
+                    <td class="govuk-table__cell">
+                      <% if(item.hasMfaGrouping){ %> 
+                      <a href="/mfagrouping?id=<%= item.mfaGroupingNumber %>"><%= item.mfaGroupingNumber  %></a>
+                      <% }else{ %>
+                        NA
+                      <% } %> 
+                    </td>
+                    <td class="govuk-table__cell">
+                      <% if(item.hasMfaGrouping){ %>
+                        <%= item.mfaGroupingResponse.mfaGroupingName %>
+                      <% }else{ %>
+                        NA
+                      <% } %>
+                      </td>
                     <td class="govuk-table__cell"><%= item.status %></td>
+                    <td class="govuk-table__cell"><%= item.recipientName %></td>
+                    <td class="govuk-table__cell"><%= item.grantingAuthorityName %></td>
+                    <td class="govuk-table__cell">£<%= item.awardAmount %></td>
                   </tr>
                   <% } ); %>
                 </tbody>

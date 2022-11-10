@@ -88,8 +88,10 @@ router.get("/", async (req, res) => {
       searchResults = apidata.data;
 
       ssn.allMfaAwards = searchResults.allMfaAwards;
-      ssn.activeMfaAwards = searchResults.activeMfaAwards;
+      ssn.publishedMfaAwards = searchResults.publishedMfaAwards;
       ssn.deletedMfaAwards = searchResults.deletedMfaAwards;
+      ssn.rejectedMfaAwards = searchResults.rejectedMfaAwards;
+      ssn.awaitingMfaAwards = searchResults.awaitingMfaAwards;
 
       totalrows = searchResults.totalSearchResults;
 
