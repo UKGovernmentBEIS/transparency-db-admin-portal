@@ -87,7 +87,7 @@
                 <div class="govuk-grid-column-full">
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">MFA grouping details
                     </h2>
-                    <% if(ssn.mfaGroupingDetails.status == 'Active') { %>
+                    <% if(ssn.mfaGroupingDetails.status == 'Active' && ssn.mfaGroupingDetails.canEdit) { %>
                     <a rel="external" aria-label="Change MFA grouping details"
                         class="govuk-link head-right govuk-relative-position"
                         href="/mfagroupingedit?id=<%= ssn.mfaGroupingDetails.mfaGroupingNumber %>">
@@ -137,7 +137,7 @@
                         Back to MFA groupings
                     </button>
 
-                    <% if ((ssn.dashboard_roles == "BEIS Administrator" || ssn.dashboard_roles == "Granting Authority Administrator") && ssn.mfaGroupingDetails.status != 'Deleted') { %>
+                    <% if (ssn.mfaGroupingDetails.canDelete) { %>
                         <a class="govuk-button govuk-button--warning" href="/mfagroupingdelete" data-module="govuk-button" style="float:right">
                             Delete
                         </a>
