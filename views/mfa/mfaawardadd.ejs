@@ -147,22 +147,22 @@
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Grouping_YesNo_Error ){ %> govuk-form-group--error <% } %>">
                         <label class="govuk-label" for="address-line-1">
-                            Do you wish to include this award in an MFA Grouping?
+                            Do you wish to include this award in an MFA / SPEIA Grouping?
                         </label>
                         <details class="govuk-details" data-module="govuk-details">
                             <summary class="govuk-details__summary">
                                 <span class="govuk-details__summary-text">
-                                    What is an MFA Grouping?
+                                    What is an MFA / SPEIA Grouping?
                                 </span>
                             </summary>
                             <div class="govuk-details__text">
-                                Some text explaining MFA Groupings.
+                                Some text explaining MFA / SPEIA Groupings.
                             </div>
                         </details>
 
                         <% if( ssn.MFA_Grouping_YesNo_Error ){ %>
                         <span class="govuk-error-message" id="Subsidy_adhoc_Error">
-                            <span class="govuk-visually-hidden">Error:</span> You must indicate if you wish to add this award to an MFA Grouping
+                            <span class="govuk-visually-hidden">Error:</span> You must indicate if you wish to add this award to an MFA / SPEIA Grouping
                         </span>
                         <% }  %>
 
@@ -186,7 +186,7 @@
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Grouping_Error ){ %> govuk-form-group--error <% } %> " id="MfaGroupingContainer">
                         <label class="govuk-label" for="address-line-1">
-                            MFA Grouping ID
+                            MFA / SPEIA Grouping ID
                         </label>
 
                         <div id="Legal_Granting_Date-hint" class="govuk-hint">
@@ -209,7 +209,7 @@
                         </span>
                         <% }  %>
 
-                        <input class="govuk-input govuk-!-width-one-half" id="MFA_Grouping_ID" name="mfaGroupingId" type="text" aria-describedby="MFA_Grouping_ID" value="<%= ssn.MFA_Grouping_ID_Global %>" />
+                        <input style="text-transform: uppercase;" class="govuk-input govuk-!-width-one-half" id="MFA_Grouping_ID" name="mfaGroupingId" type="text" aria-describedby="MFA_Grouping_ID" value="<%= ssn.MFA_Grouping_ID_Global %>" />
                     </div>
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Award_Amount_Error ){ %> govuk-form-group--error <% } %>">

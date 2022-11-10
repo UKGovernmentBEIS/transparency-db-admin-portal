@@ -1066,5 +1066,8 @@ app.use("/mfaawards", require("./routes/mfaawards"));
 app.use("/mfaawardadd", mfaAwardAddEdit);
 app.use("/mfaawardedit", mfaAwardAddEdit);
 app.use("/mfaawardreview", require("./routes/mfaawardreview"));
+app.use("/mfaawardaddreview", require("./routes/mfaawardaddreview"));
+app.use("/mfaawardcancelreview", require("./routes/mfaawardcancelreview"));
+app.use("/mfaawardpublished", require("./routes/mfaawardpublished"));
 
 module.exports = app;

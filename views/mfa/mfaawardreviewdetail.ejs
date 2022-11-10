@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - MFA Award Review details page</title>
+    <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+</head>
+
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
+            <%- include('../partials/navigationbar.ejs') %>
+
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="#">MFA</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mfaawards">MFA Awards</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add MFA Award</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds-from-desktop">
+                    <h1 class="govuk-heading-xl">Review MFA / SPEIA award before publishing</h1>
+
+                    <!-- *************************************
+              Review for subsidy details tab
+              ************************************* -->
+
+                </div>
+                <div class="govuk-grid-column-full">
+                    <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">MFA award details
+                    </h2>
+                    <a rel="external" aria-label="Change MFA award details"
+                        class="govuk-link head-right govuk-relative-position" href="/mfaawardaddreview"> 
+                        <!-- TODO ^^^^ -->
+                        <p>Change </p>
+                    </a>
+                </div>
+            </div>
+            <section class="govuk-table-responsive">
+                <table class="govuk-table">
+                    <tbody class="govuk-table__body">
+                        <% if (isCallFromEditAward){ %> 
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header govuk-!-width-one-half">MFA award number</th>
+                                <td class="govuk-table__cell"><%= ssn.mfaAwardDetails.mfaAwardNumber %></td>
+                            </tr>
+                        <% } %> 
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">SPEI Assistance Award</th>
+                            <td class="govuk-table__cell"><%= ssn.SPEI_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Linked to MFA / SPEIA Grouping</th>
+                            <td class="govuk-table__cell"><%= ssn.MFA_Yes_No_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">MFA Grouping ID</th>
+                            <td class="govuk-table__cell"><%= ssn.MFA_Grouping_ID_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">MFA Grouping Name</th>
+                            <td class="govuk-table__cell"><%= ssn.MFA_Grouping_Name_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Award Amount</th>
+                            <td class="govuk-table__cell"><%= ssn.Award_Full_Amount_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Confirmation Date</th>
+                            <td class="govuk-table__cell"><%= ssn.MFA_Award_Confirmation_Date_String_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Granting Authority</th>
+                            <td class="govuk-table__cell"><%= ssn.Granting_Authority_Name_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Recipient Organisation Name</th>
+                            <td class="govuk-table__cell"><%= ssn.MFA_Award_Beneficiary_Name_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">ID Type</th>
+                            <td class="govuk-table__cell"><%= ssn.MFA_Award_National_ID_Type_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">ID Number</th>
+                            <td class="govuk-table__cell"><%= ssn.MFA_Award_National_ID_Global %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <div class="govuk-grid-row">
+                    <form action="/mfaawardpublished" class="govuk-grid-column-full" method="POST" novalidate>
+                    <input type="hidden" name="answers-checked" value="true">
+
+                <% if (isCallFromEditAward){ %> 
+                    <button class="govuk-button" name="button_value" value="update_mfa_award" data-module="govuk-button">
+                        Update MFA award
+                    </button>
+                <% }else{ %> 
+                    <button class="govuk-button" name="button_value" value="add_mfa_award" data-module="govuk-button">
+                        Publish MFA award
+                    </button>
+                <% } %> 
+                    <a href="/mfaawardcancelreview" class=" govuk-link govuk-cancel-button-link">Cancel</a>
+
+                </form>
+
+
+            </div>
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+    <script>
+        document.getElementById('mfa-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
+</body>
+
+</html>

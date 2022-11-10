@@ -39,6 +39,8 @@ router.post("/", async (req, res) => {
     ssn.MFA_Grouping_Empty_Error = false;
     ssn.MFA_Grouping_Exist_Error = false;
     ssn.MFA_Grouping_Active_Error = false;
+    ssn.MFA_Grouping_Count_Error = false;
+    ssn.MFA_Grouping_GA_Error = false;
     ssn.MFA_Award_Amount_Error = false;
     ssn.MFA_Award_Beneficiary_Name_Error = false;
     ssn.MFA_Award_Beneficiary_Name_Length_Error = false;
@@ -72,7 +74,8 @@ router.post("/", async (req, res) => {
 
     ssn.SPEI_Global = speiAssistance;
     ssn.MFA_Yes_No_Global = mfaGroupingYesNo;
-    ssn.MFA_Grouping_ID_Global = mfaGroupingId;
+    ssn.MFA_Grouping_ID_Global = mfaGroupingId;    
+    ssn.MFA_Grouping_Name_Global = "NA";    
     ssn.Award_Full_Amount_Global = awardFullAmount;
     ssn.MFA_Award_Confirmation_Day_Global = mfa_award_confirmation_day;
     ssn.MFA_Award_Confirmation_Month_Global = mfa_award_confirmation_month;
@@ -240,6 +243,10 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
+      var confirmationDateMonthName = monthArray[((parseInt(mfa_award_confirmation_month)) - 1)];;
+
+      ssn.MFA_Award_Confirmation_Date_String_Global = mfa_award_confirmation_day + " " + confirmationDateMonthName + " " + mfa_award_confirmation_year;
+
       if (
         ssn.Granting_Authority_Name_Error ||
         ssn.SPEI_Error ||
@@ -261,6 +268,9 @@ router.post("/", async (req, res) => {
           ssn,
         });
       } else {
+        /**
+         * Granting authority validation start
+         */
         data = {
           grantingAuthorityName: ssn.Granting_Authority_Name_Global.trim(),
           pageNumber: 1,
@@ -298,26 +308,117 @@ router.post("/", async (req, res) => {
             Additem = Additem + 1;
           }
 
+        /**
+         * Granting authority validation end
+         */
+
+        /**
+         * MFA grouping validation start
+         */
+
+        //TODO Test on other user types
+
+        if(ssn.MFA_Yes_No_Global.toLowerCase() == 'yes'){
+          mfaGroupingData = {
+            searchName: ssn.MFA_Grouping_ID_Global.trim(),
+            grantingAuthorityName: ssn.Granting_Authority_Name_Global.trim(),
+            pageNumber: 1,
+            totalRecordsPerPage: 9000,
+          };
+
+          const apidata = await axios.post(
+            beis_url_publishing + "/mfa/grouping/search",
+            mfaGroupingData,
+            ssn.UserPrincileObjectGlobal
+          );
+
+          var mfaGroupings = apidata.data.mfaGroupings;
+
+          var mfaGroupingsFiltered = mfaGroupings.filter(item => item.mfaGroupingNumber === ssn.MFA_Grouping_ID_Global.trim());
+
+          if(mfaGroupingsFiltered.length == 0){
+            ssn.MFA_Grouping_Exist_Error = true;
+            ssn.MFAAwardErrors[Additem] =
+              "MFA / SPEIA Grouping '" + ssn.MFA_Grouping_ID_Global.trim() + "' does not exist.";
+            ssn.MFAFocus[Additem] = "#MFA_Grouping_ID";
+            Additem = Additem + 1;
+          }else if (mfaGroupingsFiltered.length > 1){
+            // this shouldn't happen as we're filtering the results on the Grouping ID.
+            ssn.MFA_Grouping_Count_Error = true;
+            ssn.MFAAwardErrors[Additem] =
+              "Too many MFA / SPEIA Groupings returned for ID '" + ssn.MFA_Grouping_ID_Global.trim() + "'. Total returned '" + mfaGroupingsFiltered.length + "'. Please raise an incident.";
+            ssn.MFAFocus[Additem] = "#MFA_Grouping_ID";
+            Additem = Additem + 1;
+            console.error("ERROR: Too many MFA / SPEIA Groupings returned for ID '" + ssn.MFA_Grouping_ID_Global.trim() + "'. Total returned '" + mfaGroupingsFiltered.length + "'. Please raise an incident.")
+          } else {
+            mfaGrouping = mfaGroupingsFiltered[0];
+            // everything is ok check the GA
+            if(mfaGrouping.grantingAuthorityName != ssn.Granting_Authority_Name_Global.trim()){
+              ssn.MFA_Grouping_GA_Error = true;
+              ssn.MFAAwardErrors[Additem] =
+                "MFA / SPEIA Grouping '" + ssn.MFA_Grouping_ID_Global.trim() + "' does not belong to granting authority " + ssn.Granting_Authority_Name_Global.trim();
+              ssn.MFAFocus[Additem] = "#MFA_Grouping_ID";
+              Additem = Additem + 1;
+            }
+
+            if(mfaGrouping.status.toLowerCase() != 'active'){
+              ssn.MFA_Grouping_Active_Error = true;
+              ssn.MFAAwardErrors[Additem] =
+                "MFA / SPEIA Grouping '" + ssn.MFA_Grouping_ID_Global.trim() + "' is not active.";
+              ssn.MFAFocus[Additem] = "#MFA_Grouping_ID";
+              Additem = Additem + 1;
+            }
+
+            if(!ssn.MFA_Grouping_GA_Error && !ssn.MFA_Grouping_Active_Error){
+              ssn.MFA_Grouping_Name_Global = mfaGrouping.mfaGroupingName;
+            }
+          }
+        }
+
+         
+
+        /**
+         * MFA grouping validation end
+         */
+
           if (
             ssn.Granting_Authority_Exists_Error ||
             ssn.Granting_Authority_Multiple_Error ||
-            ssn.Granting_Authority_Inactive_Error
+            ssn.Granting_Authority_Inactive_Error ||
+            ssn.MFA_Grouping_Exist_Error ||
+            ssn.MFA_Grouping_Active_Error ||
+            ssn.MFA_Grouping_Count_Error ||
+            ssn.MFA_Grouping_GA_Error
             ) {
             res.render("mfa/mfaawardadd", {
               ssn,
             });
           } else {
+            if(typeof mfaGroupingYesNo !== "undefined"){
+              if(mfaGroupingYesNo.toLowerCase() != 'yes'){
+                ssn.MFA_Grouping_ID_Global = "NA";
+              }
+            }
             res.render("mfa/mfaawardreviewdetail", {
               ssn,
             });
           }
         } catch (err) {
           if (err.toString().includes("404")) {
-            ssn.Granting_Authority_Exists_Error = true;
-            ssn.MFAAwardErrors[Additem] =
-              "Granting authority '" + ssn.Granting_Authority_Name_Global.trim() + "' doesn't exist.";
-            ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
-            Additem = Additem + 1;
+            if(err.request.path.includes("grouping")){
+              ssn.MFA_Grouping_Exist_Error = true;
+              ssn.MFAAwardErrors[Additem] =
+                "MFA / SPEIA Grouping '" + ssn.MFA_Grouping_ID_Global.trim() + "' does not exist.";
+              ssn.MFAFocus[Additem] = "#MFA_Grouping_ID";
+              Additem = Additem + 1;
+            }else{
+              ssn.Granting_Authority_Exists_Error = true;
+              ssn.MFAAwardErrors[Additem] =
+                "Granting authority '" + ssn.Granting_Authority_Name_Global.trim() + "' doesn't exist.";
+              ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
+              Additem = Additem + 1;
+            }
+            
             res.render("mfa/mfaawardadd", {
               ssn,
             });

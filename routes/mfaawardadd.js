@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
     ssn.MFA_Award_Confirmation_Year_Global = "";
     ssn.Granting_Authority_Name_Global = "";
     ssn.MFA_Award_Beneficiary_Name_Global = "";
-    MFA_Award_National_ID_Type_Global = "";
+    ssn.MFA_Award_National_ID_Type_Global = "";
     ssn.MFA_Award_National_ID_Global = "";
     
 
@@ -41,6 +41,8 @@ router.get("/", async (req, res) => {
     ssn.MFA_Grouping_Empty_Error = false;
     ssn.MFA_Grouping_Exist_Error = false;
     ssn.MFA_Grouping_Active_Error = false;
+    ssn.MFA_Grouping_Count_Error = false;
+    ssn.MFA_Grouping_GA_Error = false;
     ssn.MFA_Award_Amount_Error = false;
     ssn.MFA_Award_Beneficiary_Name_Error = false;
     ssn.MFA_Award_National_ID_Type_Error = false;
