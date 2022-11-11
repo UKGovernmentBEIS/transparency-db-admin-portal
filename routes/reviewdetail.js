@@ -67,6 +67,8 @@ router.post("/", async (req, res) => {
       Subsidy_Instrument,
       Subsidy_Instrument_Other,
       Subsidy_Element_Full_Amount,
+      Subsidy_Full_Amount_Range_Lower,
+      Subsidy_Full_Amount_Range_Upper,
       Subsidy_Full_Amount_Range,
       National_ID_Type,
       National_ID_Number,
@@ -98,6 +100,10 @@ router.post("/", async (req, res) => {
     ssn.Subsidy_Objective_Other_Global = Subsidy_Objective_Other;
     ssn.Subsidy_Instrument_Global = Subsidy_Instrument;
     ssn.Subsidy_Instrument_Other_Global = Subsidy_Instrument_Other;
+    ssn.Subsidy_Full_Amount_Range_Lower_Global = Subsidy_Full_Amount_Range_Lower;
+    ssn.Subsidy_Full_Amount_Range_Upper_Global = Subsidy_Full_Amount_Range_Upper;
+
+    Subsidy_Full_Amount_Range = "£" + Subsidy_Full_Amount_Range_Lower + " - £" + Subsidy_Full_Amount_Range_Upper;
 
     if (
       ssn.Subsidy_Instrument_Global !==
@@ -288,6 +294,22 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
+      if ((Subsidy_Full_Amount_Range_Lower > Subsidy_Full_Amount_Range_Upper) && Subsidy_Full_Amount_Range_Upper != "") {
+        ssn.Subsidy_Full_Amount_Range_Bounding_Error = true;
+        ssn.SubsidyErrors[Additem] =
+          " The lower bound of the subsidy tax range cannot be larger than the upper bound";
+        ssn.SubsidyFocus[Additem] = "#Subsidy_Full_Amount_Range";
+        Additem = Additem + 1;
+      }
+
+      if (!Subsidy_Full_Amount_Range_Lower || !Subsidy_Full_Amount_Range_Upper) {
+        ssn.Subsidy_Full_Amount_Range_Error = true;
+        ssn.SubsidyErrors[Additem] =
+          " You must enter a subsidy element full amount range";
+        ssn.SubsidyFocus[Additem] = "#Subsidy_Full_Amount_Range";
+        Additem = Additem + 1;
+      }
+
       if (!National_ID_Type) {
         ssn.National_ID_Type_Error = true;
         ssn.SubsidyErrors[Additem] =
@@ -300,7 +322,7 @@ router.post("/", async (req, res) => {
         ssn.National_ID_Number_Error = true;
         ssn.SubsidyErrors[Additem] =
           "You must enter an ID number for the ID type that you have selected.";
-        ssn.SubsidyFocus[Additem] = "#National_ID_Number";
+      ssn.SubsidyFocus[Additem] = "#National_ID_Number";
         Additem = Additem + 1;
       }
 
@@ -469,6 +491,7 @@ router.post("/", async (req, res) => {
         ssn.Subsidy_Instrument_Other_Error ||
         ssn.Subsidy_Element_Full_Amount_Error ||
         ssn.Subsidy_Full_Amount_Range_Error ||
+        ssn.Subsidy_Full_Amount_Range_Bounding_Error ||
         ssn.National_ID_Type_Error ||
         ssn.National_ID_Number_Error ||
         ssn.Beneficiary_Name_Error ||
