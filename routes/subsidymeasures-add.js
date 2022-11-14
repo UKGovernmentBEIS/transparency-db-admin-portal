@@ -37,6 +37,7 @@ router.get("/", (req, res) => {
     ssn.scheme_issued_end_month_Error = false;
     ssn.scheme_issued_end_year_Error = false;
     ssn.scheme_issued_end_day_lesser_Error = false;
+    ssn.spendingsector_Error = false;
 
     ssn.Subsidy_Measure_Title_Global = "";
     ssn.Subsidy_Adhoc_Global = "";
@@ -56,6 +57,8 @@ router.get("/", (req, res) => {
     ssn.Scheme_End_Day_Global = "";
     ssn.Scheme_End_Month_Global = "";
     ssn.Scheme_End_Year_Global = "";
+    ssn.Scheme_Sector_Json_Global = "";
+    ssn.Spending_Sector_Array_Global = new Array();
     formatedCurrency = "";
     isCallfromEditAward = false;
     var isAddSubsidyPrimarycall = true;
