@@ -41,7 +41,6 @@
 
       if(document.getElementById('Standalone_Award_Yes').checked){
         document.getElementById('related-subsidy-scheme').style.display = 'none';
-        document.getElementById('subsidy-award-description-container').style.display = 'block';
       }
 
       jQuery('#Subsidy_Control_Number').on('input', function () {
@@ -145,10 +144,8 @@
     standaloneAwardToggle = (event) => {
       if(event.target.value == 'Yes'){
         document.getElementById('related-subsidy-scheme').style.display = 'none';
-        document.getElementById('subsidy-award-description-container').style.display = 'block';
       }else{
         document.getElementById('related-subsidy-scheme').style.display = 'block';
-        document.getElementById('subsidy-award-description-container').style.display = 'none';
       }
       
     };
@@ -602,10 +599,10 @@
           </div>
             <h1 class="govuk-heading-l">Subsidy award details</h1>
 
-            <div id="subsidy-award-description-container" <% if(ssn.Standalone_Award_Global != 'No'){ %> hidden <% } %>>
+            <div id="subsidy-award-description-container">
               <div class="govuk-form-group <% if(ssn.Subsidy_Award_Description_Error || ssn.Subsidy_Award_Description_Error_Length) {%> govuk-form-group--error<% } %>">
                 <label class="govuk-label" for="Subsidy_Award_Description">
-                  Description of standalone subsidy award
+                  Description of subsidy award
                 </label>
                 <details class="govuk-details" data-module="govuk-details">
                   <summary class="govuk-details__summary">

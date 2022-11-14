@@ -219,20 +219,14 @@ router.post("/", async (req, res) => {
           ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
           Additem = Additem + 1;
         }
-      }else if(Standalone_Award == 'Yes'){
-        if(Subsidy_Award_Description == ""){
-          ssn.Subsidy_Award_Description_Error = true;
-          ssn.SubsidyErrors[Additem] =
-          "You must provide a descritpion of the standalone subsidy award";
-        ssn.SubsidyFocus[Additem] = "#subsidy-award-description-container";
-        Additem = Additem + 1;
-        }else if(Subsidy_Award_Description.length > 2000){
+      }
+      
+      if(Subsidy_Award_Description.length > 2000){
           ssn.Subsidy_Award_Description_Error_Length = true;
           ssn.SubsidyErrors[Additem] =
             "The subsidy award description must be 2000 characters or less.";
           ssn.SubsidyFocus[Additem] = "#subsidy-award-description-container";
           Additem = Additem + 1;
-        }
       }
 
       if (Subsidy_Objective == "") {
