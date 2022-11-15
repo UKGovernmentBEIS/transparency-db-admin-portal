@@ -61,12 +61,9 @@
 
           </div>
         </div>
-        <% if(ssn.dashboard_roles != 'Granting Authority Encoder' ) { %>
         <a href="/mfaawardadd" class="govuk-button" data-module="govuk-button">
           Add a new MFA Award
         </a>
-
-        <% } %>
       <% } else { %>
 
         <div class="govuk-grid-row">
@@ -128,13 +125,11 @@
               On selecting, the page will reload and display MFA awards.</span>
           </div>
 
-          <% if(ssn.dashboard_roles != 'Granting Authority Encoder' ) { %>
           <div class="govuk-grid-column-one-half"><a href="/mfaawardadd" class="govuk-button"
               data-module="govuk-button">
               Add a new MFA award
             </a>
           </div>
-          <% } %>
 
           <div class="govuk-grid-column-one-half govuk-display-flex govuk-form-group" style="float: right;">
             <label class="govuk-grid-column-two-thirds">
@@ -230,7 +225,7 @@
                     <td class="govuk-table__cell"><%= item.status %></td>
                     <td class="govuk-table__cell"><%= item.recipientName %></td>
                     <td class="govuk-table__cell"><%= item.grantingAuthorityName %></td>
-                    <td class="govuk-table__cell">£<%= item.awardAmount %></td>
+                    <td class="govuk-table__cell">£<%= item.awardAmountFormatted %></td>
                   </tr>
                   <% } ); %>
                 </tbody>

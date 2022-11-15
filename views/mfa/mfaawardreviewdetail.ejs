@@ -127,7 +127,7 @@
                     </button>
                 <% }else{ %> 
                     <button class="govuk-button" name="button_value" value="add_mfa_award" data-module="govuk-button">
-                        Publish MFA award
+                        <% if(ssn.dashboard_roles != 'Granting Authority Encoder'){ %> Publish MFA award <% }else{ %> Submit for Approval <% } %> 
                     </button>
                 <% } %> 
                     <a href="/mfaawardcancelreview" class=" govuk-link govuk-cancel-button-link">Cancel</a>

@@ -60,7 +60,7 @@ router.get("/", async (req, res) => {
       next_page = current_page + 1;
     }
 
-    sorting_column = "[" + '"' + "lastModifiedTimestamp,desc" + '"' + "]";
+    sorting_column = "[" + '"' + "createdTimestamp,desc" + '"' + "]";
     sorting_order_interium = sorting_column.replace(/^"(.*)"$/, "$1");
     ssn.sorting_order_pass = JSON.parse(sorting_order_interium);
     

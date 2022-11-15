@@ -31,19 +31,19 @@ router.post("/", async (req, res) => {
       "-" +
       ssn.MFA_Award_Confirmation_Year_Global;
 
-    const addMfaAwardRequest = {
-      speiAssistance: Boolean(ssn.SPEI_Global.toLowerCase() === "yes"),
-      mfaGroupingPresent: Boolean(ssn.MFA_Yes_No_Global.toLowerCase() === "yes"),
-      mfaGroupingId: ssn.MFA_Grouping_ID_Global,
-      awardFullAmount: ssn.Award_Full_Amount_Global,
-      confirmationDate: mfaAwardConfirmationDate,
-      grantingAuthorityName: ssn.Granting_Authority_Name_Global,
-      beneficiaryName: ssn.MFA_Award_Beneficiary_Name_Global,
-      nationalIdType: ssn.MFA_Award_National_ID_Type_Global,
-      nationalIdNumber: ssn.MFA_Award_National_ID_Global,
-    };
-
     if (button_value == "add_mfa_award") {
+      const addMfaAwardRequest = {
+        speiAssistance: Boolean(ssn.SPEI_Global.toLowerCase() === "yes"),
+        mfaGroupingPresent: Boolean(ssn.MFA_Yes_No_Global.toLowerCase() === "yes"),
+        mfaGroupingId: ssn.MFA_Grouping_ID_Global,
+        awardFullAmount: ssn.Award_Full_Amount_Global,
+        confirmationDate: mfaAwardConfirmationDate,
+        grantingAuthorityName: ssn.Granting_Authority_Name_Global,
+        beneficiaryName: ssn.MFA_Award_Beneficiary_Name_Global,
+        nationalIdType: ssn.MFA_Award_National_ID_Type_Global,
+        nationalIdNumber: ssn.MFA_Award_National_ID_Global,
+      };
+
       addMfaAwardUrl = beis_url_publishing + "/mfa/award/add";
 
       try {
@@ -86,37 +86,71 @@ router.post("/", async (req, res) => {
 
     // this is for update existing subsidy measure using PUT call
     else {
-      const updateMfaAwardRequest = {
-        mfaGroupingNumber: ssn.MFA_Grouping_Number_Global, //todo
-        mfaGroupingName: ssn.MFA_Grouping_Name_Global.trim(),
-        grantingAuthorityName: ssn.Granting_Authority_Name_Global.trim(),
-        status: "Active",
-      };
 
-      updateMfaAwardUrl = beis_url_publishing + "/mfa/award/update/" + ssn.MFA_Award_Number_Global;
-
-      try {
-        const apidata = await axios.put(
-          updateMfaAwardUrl,
-          updateMfaAwardRequest,
-          ssn.UserPrincileObjectGlobal
-        );
-
-        API_response_code = `${apidata.status}`;
-
-        ssn.MFA_Grouping_Number_Global = apidata.data;
-
-        res.render("mfa/mfaawardpublished", {
+      if (button_value == "Deleted" || button_value == "Rejected"){
+        if (button_value == "Rejected") Award_status = "Reject";
+        else Award_status = "Delete";
+        Award_status_lower = Award_status.toLowerCase();
+        awardnumber = ssn.mfaAwardDetails.mfaAwardNumber;
+        res.render("mfa/mfaawarddeletereject", {
           ssn,
-          button_value,
+          Award_status,
+          Award_status_lower,
         });
-      } catch (err) {
-        if (err.toString().includes("401")) {
-          res.render("bulkupload/notAuthorized");
-        } else if (err.toString().includes("500"))
-          res.render("bulkupload/notAvailable");
+      }else{
 
-        console.log("message error : " + err);
+        let updateMfaAwardRequest;
+        if(button_value == "Published"){
+          updateMfaAwardRequest = {
+            mfaAwardNumber: ssn.mfaAwardDetails.mfaAwardNumber,
+            speiAssistance: Boolean(ssn.mfaAwardDetails.isSpeiAssistance.toLowerCase() === "yes"),
+            mfaGroupingPresent: ssn.mfaAwardDetails.hasMfaGrouping,
+            status: "Published",
+          };
+        }else{
+
+          if (ssn.dashboard_roles != "Granting Authority Encoder") awardStatus = "Published";
+          else awardStatus = "Awaiting Approval";
+          updateMfaAwardRequest = {
+            mfaAwardNumber: ssn.mfaAwardDetails.mfaAwardNumber,
+            speiAssistance: Boolean(ssn.SPEI_Global.toLowerCase() === "yes"),
+            mfaGroupingPresent: Boolean(ssn.MFA_Yes_No_Global.toLowerCase() === "yes"),
+            mfaGroupingId: ssn.MFA_Grouping_ID_Global,
+            awardFullAmount: ssn.Award_Full_Amount_Global,
+            confirmationDate: mfaAwardConfirmationDate,
+            grantingAuthorityName: ssn.Granting_Authority_Name_Global,
+            beneficiaryName: ssn.MFA_Award_Beneficiary_Name_Global,
+            nationalIdType: ssn.MFA_Award_National_ID_Type_Global,
+            nationalIdNumber: ssn.MFA_Award_National_ID_Global, //todo get all form values
+            status: awardStatus,
+          };  
+        }
+
+        updateMfaAwardUrl = beis_url_publishing + "/mfa/award/update/" + ssn.mfaAwardDetails.mfaAwardNumber;
+
+        try {
+          const apidata = await axios.put(
+            updateMfaAwardUrl,
+            updateMfaAwardRequest,
+            ssn.UserPrincileObjectGlobal
+          );
+
+          API_response_code = `${apidata.status}`;
+
+          ssn.MFA_Grouping_Number_Global = apidata.data;
+
+          res.render("mfa/mfaawardpublished", {
+            ssn,
+            button_value,
+          });
+        } catch (err) {
+          if (err.toString().includes("401")) {
+            res.render("bulkupload/notAuthorized");
+          } else if (err.toString().includes("500"))
+            res.render("bulkupload/notAvailable");
+
+          console.log("message error : " + err);
+        }
       }
     }
   }
