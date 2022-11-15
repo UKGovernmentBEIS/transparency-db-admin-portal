@@ -42,6 +42,7 @@ router.post("/", async (req, res) => {
     ssn.Subsidy_Instrument_Error = false;
     ssn.Subsidy_Instrument_Other_Error = false;
     ssn.Subsidy_Element_Full_Amount_Error = false;
+    ssn.Subsidy_Full_Amount_Range_Bounding_Error = false;
     ssn.Subsidy_Full_Amount_Range_Error = false;
     ssn.Subsidy_Element_Full_Amount_Exceed_Error = false;
     ssn.Subsidy_Full_Amount_Range_Exceed_Error = false;
@@ -273,7 +274,7 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
-      console.log("subsidy element full amot : " + Subsidy_Element_Full_Amount);
+      console.log("subsidy element full amount : " + Subsidy_Element_Full_Amount);
       console.log("Subsidy_Full_Amount_Range : " + Subsidy_Full_Amount_Range);
       if (
         !Subsidy_Element_Full_Amount &&
@@ -294,10 +295,10 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
-      if ((Subsidy_Full_Amount_Range_Lower > Subsidy_Full_Amount_Range_Upper) && Subsidy_Full_Amount_Range_Upper != "") {
+      if ((parseInt(Subsidy_Full_Amount_Range_Lower) >= parseInt(Subsidy_Full_Amount_Range_Upper)) && Subsidy_Full_Amount_Range_Upper != "") {
         ssn.Subsidy_Full_Amount_Range_Bounding_Error = true;
         ssn.SubsidyErrors[Additem] =
-          " The lower bound of the subsidy tax range cannot be larger than the upper bound";
+          " The lower bound of the subsidy tax range cannot be larger than or equal to the upper bound";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Full_Amount_Range";
         Additem = Additem + 1;
       }
