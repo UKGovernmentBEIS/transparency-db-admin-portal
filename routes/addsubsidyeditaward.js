@@ -54,6 +54,9 @@ router.get("/", (req, res) => {
     ssn.Subsidy_Measure_Title_Global =
       fetchawarddetails.subsidyMeasure.subsidyMeasureTitle;
 
+    ssn.Standalone_Award_Global = fetchawarddetails.standaloneAward;
+    ssn.Subsidy_Award_Description_Global = fetchawarddetails.subsidyAwardDescription;
+
     ssn.Subsidy_Objective_Global = fetchawarddetails.subsidyObjective;
 
     var subsidy_objective_split = ssn.Subsidy_Objective_Global.split("-");

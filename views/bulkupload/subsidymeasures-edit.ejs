@@ -167,11 +167,7 @@
                 <section class="govuk-grid-row">
 
                     <!-- adhoc subsidy details -->
-                    <% if( ssn.Subsidy_Adhoc_Error ){ %>
-                    <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
-                        <% } else { %>
-                        <div class="govuk-form-group govuk-grid-column-two-thirds">
-                            <% }  %>
+                        <div class="govuk-form-group govuk-grid-column-two-thirds" hidden>
                             <label class="govuk-label" for="address-line-1">
                                 Is this for an ad hoc subsidy?
                             </label>
@@ -199,7 +195,7 @@
                                         name="Subsidy_Adhoc" id="adhocyes" type="radio" value="Yes" checked>
                                     <% } else { %>
                                     <input class="govuk-radios__input" onchange="getSubsidyAdhoc(event)"
-                                        name="Subsidy_Adhoc" id="adhocyes" type="radio" value="Yes">
+                                        name="Subsidy_Adhoc" id="adhocyes" type="radio" value="Yes" onclick="return false;">
                                     <% } %>
                                     <label class="govuk-label govuk-radios__label" for="adhocyes">
                                         Yes
@@ -211,7 +207,7 @@
                                         name="Subsidy_Adhoc" id="adhocno" type="radio" value="No" checked>
                                     <% } else { %>
                                     <input class="govuk-radios__input" onchange="getSubsidyAdhoc(event)"
-                                        name="Subsidy_Adhoc" id="adhocno" type="radio" value="No">
+                                        name="Subsidy_Adhoc" id="adhocno" type="radio" value="No" onclick="return false;">
                                     <% } %>
                                     <label class="govuk-label govuk-radios__label" for="adhocno">
                                         No
