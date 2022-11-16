@@ -75,7 +75,6 @@ router.post("/", (req, res) => {
     ssn.Scheme_End_Day_Global = scheme_issued_end_day;
     ssn.Scheme_End_Month_Global = scheme_issued_end_month;
     ssn.Scheme_End_Year_Global = scheme_issued_end_year;
-    ssn.
 
     console.log("ssn.Subsidy_Adhoc_Global :" + ssn.Subsidy_Adhoc_Global);
     console.log(

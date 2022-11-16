@@ -45,7 +45,6 @@ router.post("/", (req, res) => {
     ssn.scheme_issued_end_day_Error = false;
     ssn.scheme_issued_end_day_lesser_Error = false;
     ssn.spendingsector_Error = false;
-  
 
     var {
       Subsidy_Adhoc,

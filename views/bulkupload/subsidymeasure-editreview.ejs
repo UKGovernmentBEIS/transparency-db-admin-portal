@@ -209,11 +209,15 @@
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Spending Sectors</th>
                             <td class="govuk-table__cell">
+                                <% if(spendingSectorArray.length > 0) { %>
                                 <ul class="govuk-list govuk-list--bullet">
-                                    <% spendingSectorArray.forEach(function(item) { %> 
+                                    <% spendingSectorArray.forEach(function(item) { %>
                                     <li> <%=item %> </li>
-                                    <% }); %> 
+                                    <% }); %>
                                 </ul>
+                                <% } else { %>
+                                    NA
+                                 <% } %>
                             </td>
                         </tr>
                     
