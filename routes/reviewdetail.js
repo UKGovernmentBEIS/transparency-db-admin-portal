@@ -100,7 +100,7 @@ router.post("/", async (req, res) => {
 
     ssn.Standalone_Award_Global = Standalone_Award;
     if(ssn.Standalone_Award_Global == 'Yes'){
-      ssn.Subsidy_Control_Number_Global = "";  
+      ssn.Subsidy_Control_Number_Global = "";
     }
     ssn.Subsidy_Award_Description_Global = Subsidy_Award_Description;
     // ssn.Subsidy_Measure_Title_Global = Subsidy_Measure_Title;
@@ -195,7 +195,7 @@ router.post("/", async (req, res) => {
 
       if(!Standalone_Award) {
         ssn.Standalone_Award_Error = true;
-        ssn.SubsidyErrors[Additem] = 
+        ssn.SubsidyErrors[Additem] =
           "You must specify the standalone status of the subsidy award.";
         ssn.SubsidyFocus[Additem] = '#Standalong_Award_h1';
         Additem = Additem + 1;
@@ -208,7 +208,7 @@ router.post("/", async (req, res) => {
             "You must enter either a subsidy control number or a subsidy scheme title.";
           ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
           Additem = Additem + 1;
-        }  
+        }
         if (
           Subsidy_Control_Number_Name != "" &&
           Subsidy_Control_Number_Name.length > 255
@@ -220,7 +220,7 @@ router.post("/", async (req, res) => {
           Additem = Additem + 1;
         }
       }
-      
+
       if(Subsidy_Award_Description.length > 2000){
           ssn.Subsidy_Award_Description_Error_Length = true;
           ssn.SubsidyErrors[Additem] =
@@ -615,9 +615,14 @@ router.post("/", async (req, res) => {
               awardDateObj = new Date(Legal_Granting_Date_Year, MonthStr, Legal_Granting_Date_Day);
               if ((awardDateObj > endDateObj) || (awardDateObj < startDateObj)) {
                 ssn.Award_Date_Not_Valid_Error = true;
+                if(searchschemes.schemes[0].endDate == ''){
                 ssn.SubsidyErrors[Additem] =
-                  "Granting date is not valid, it must be between "+searchschemes.schemes[0].startDate+" and "+searchschemes.schemes[0].endDate+" inclusive";
-                ssn.SubsidyFocus[Additem] = "#Legal_Granting_Date";
+                "Granting date is not valid, it must be on or after "+searchschemes.schemes[0].startDate;
+              }else{
+                ssn.SubsidyErrors[Additem] =
+                    "Granting date is not valid, it must be between "+searchschemes.schemes[0].startDate+" and "+searchschemes.schemes[0].endDate+" inclusive";
+                }
+              ssn.SubsidyFocus[Additem] = "#Legal_Granting_Date";
                 Additem = Additem + 1;
                 ssn.SubsidyArraySize = ssn.SubsidyArraySize + 1;
                 schemeError = true;

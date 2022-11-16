@@ -115,8 +115,14 @@
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">End Date</th>
-                            <td class="govuk-table__cell"><%= ssn.Scheme_End_Day_Global %> <%= ssn.GetEndMonthName %>
-                                <%= ssn.Scheme_End_Year_Global %></td>
+                            <td class="govuk-table__cell">
+                                <% if((ssn.Scheme_End_Day_Global == 31) && (ssn.Scheme_End_Month_Global == 12) && (ssn.Scheme_End_Year_Global == 9999)) { %>
+                                    Not applicable
+                                    <% ssn.Has_No_End_Date = true %>
+                                 <% } else { %>
+                                     <%= ssn.Scheme_End_Day_Global %> <%= ssn.GetEndMonthName %>
+                                     <%= ssn.Scheme_End_Year_Global %>
+                                 <% } %>
                         </tr>
                     </tbody>
                 </table>

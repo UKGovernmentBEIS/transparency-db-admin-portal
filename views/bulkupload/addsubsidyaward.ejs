@@ -385,7 +385,7 @@
                       <p>This is the name of the subsidy scheme that this award is related to.</p>
                     </div>
                   </details>
-    
+
                   <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
                     <span class="govuk-visually-hidden">Error:</span> There are no active schemes matching '<%= ssn.Subsidy_Control_Number_Name_Global %>'. Please use SC number instead.
                   </span>
@@ -684,10 +684,10 @@
                 <option value="Regional development">Regional development​ </option>
                 <% } %>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Rescue aid' ){ %>
-                <option value="Rescue aid" selected>Rescue aid ​ </option>
+                <% if( ssn.Subsidy_Objective_Global == 'Rescue subsidy' || ssn.Subsidy_Objective_Global == 'Rescue aid' ){ %>
+                <option value="Rescue subsidy" selected>Rescue subsidy ​ </option>
                 <% } else { %>
-                <option value="Rescue aid">Rescue aid ​ </option>
+                <option value="Rescue subsidy">Rescue subsidy ​ </option>
                 <% } %>
 
                 <% if( ssn.Subsidy_Objective_Global == 'Research and development' ){ %>
@@ -775,10 +775,10 @@
                 <option value="Regional development">Regional development​ </option>
                 <% } %>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Rescue aid' ){ %>
-                <option value="Rescue aid" selected>Rescue aid ​ </option>
+                <% if( ssn.Subsidy_Objective_Global == 'Rescue subsidy' || ssn.Subsidy_Objective_Global == 'Rescue aid'){ %>
+                <option value="Rescue subsidy" selected>Rescue subsidy ​ </option>
                 <% } else { %>
-                <option value="Rescue aid">Rescue aid ​ </option>
+                <option value="Rescue subsidy">Rescue subsidy ​ </option>
                 <% } %>
 
                 <% if( ssn.Subsidy_Objective_Global == 'Research and development' ){ %>
@@ -1669,15 +1669,15 @@
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Large (more than 250 employees)' ){ %>
+                    <% if( ssn.Size_of_the_Organisation_Global == 'Large (250 or more employees)' || ssn.Size_of_the_Organisation_Global == 'Large (more than 250 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                      type="radio" value="Large (more than 250 employees)" checked>
+                      type="radio" value="Large (250 or more employees)" checked>
                     <% } else { %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                      type="radio" value="Large (more than 250 employees)">
+                      type="radio" value="Large (250 or more employees)">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-4">
-                      Large (more than 250 employees)
+                      Large (250 or more employees)
                     </label>
                   </div>
                 </div>
@@ -1736,15 +1736,15 @@
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Large (more than 250 employees)' ){ %>
+                    <% if( ssn.Size_of_the_Organisation_Global == 'Large (250 or more employees)' || ssn.Size_of_the_Organisation_Global == 'Large (more than 250 employees)' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                      type="radio" value="Large (more than 250 employees)" checked>
+                      type="radio" value="Large (250 or more employees)" checked>
                     <% } else { %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                      type="radio" value="Large (more than 250 employees)">
+                      type="radio" value="Large (250 or more employees)">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-4">
-                      Large (more than 250 employees)
+                      Large (250 or more employees)
                     </label>
                   </div>
                 </div>
@@ -2002,7 +2002,6 @@
                     <label class="govuk-label govuk-radios__label" for="Goods_or_Services">
                       Goods
                     </label>
-
                   </div>
                   <div class="govuk-radios__item">
                     <% if( ssn.Goods_or_Services_Global == 'Services' ){ %>
@@ -2017,6 +2016,21 @@
                       Services
                     </label>
                   </div>
+
+                  <div class="govuk-radios__item">
+                    <% if( ssn.Goods_or_Services_Global == 'Goods and Services' ){ %>
+                    <input class="govuk-radios__input" id="Goods_and_Services" name="Goods_or_Services" type="radio"
+                      value="Goods and Services" checked>
+                    <% } else { %>
+                    <input class="govuk-radios__input" id="Goods_and_Services" name="Goods_or_Services" type="radio"
+                      value="Goods and Services">
+
+                    <% } %>
+                    <label class="govuk-label govuk-radios__label" for="Goods_and_Services">
+                      Goods and Services
+                    </label>
+                  </div>
+                  
                 </div>
               </fieldset>
             </div>
@@ -2056,6 +2070,7 @@
                     </label>
 
                   </div>
+
                   <div class="govuk-radios__item">
                     <% if( ssn.Goods_or_Services_Global == 'Services' ){ %>
                     <input class="govuk-radios__input" id="Goods_or_Services-2" name="Goods_or_Services" type="radio"
@@ -2069,6 +2084,21 @@
                       Services
                     </label>
                   </div>
+                  
+                  <div class="govuk-radios__item">
+                    <% if( ssn.Goods_or_Services_Global == 'Goods and Services' ){ %>
+                    <input class="govuk-radios__input" id="Goods_or_Services" name="Goods_or_Services" type="radio"
+                      value="Goods and Services" checked>
+                    <% } else { %>
+                    <input class="govuk-radios__input" id="Goods_and_Services" name="Goods_or_Services" type="radio"
+                      value="Goods and Services">
+
+                    <% } %>
+                    <label class="govuk-label govuk-radios__label" for="Goods_and_Services">
+                      Goods and Services
+                    </label>
+                  </div>
+
                 </div>
               </fieldset>
             </div>
@@ -2636,7 +2666,7 @@
             <a class="govuk-link govuk-cancel-button-link" id="mylink" value="cancel" href="/canceladdsubsidyaward">
               Cancel
             </a>
-            <!-- 
+            <!--
            <button class="govuk-button" id="buttonvalue" name="buttonvalue" value="cancel" data-module="govuk-button">
             </button> -->
           </form>
