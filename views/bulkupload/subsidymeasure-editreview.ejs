@@ -182,7 +182,7 @@
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">End date</th>
 
                             <td class="govuk-table__cell">
-                                <% if((ssn.Scheme_End_Day_Global == 31) && (ssn.Scheme_End_Month_Global == 12) && (ssn.Scheme_End_Year_Global == 9999)) { %>
+                                <% if(Scheme_End_Date == "") { %>
                                     Not applicable
                                  <% } else { %>
                                     <%= Scheme_End_Date %>
