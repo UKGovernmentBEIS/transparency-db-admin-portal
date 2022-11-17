@@ -124,6 +124,16 @@
                                      <%= ssn.Scheme_End_Year_Global %>
                                  <% } %>
                         </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Spending Sectors</th>
+                            <td class="govuk-table__cell">
+                                <ul class="govuk-list govuk-list--bullet">
+                                    <% spendingSectorArray.forEach(function(item) { %> 
+                                    <li> <%=item %> </li>
+                                    <% }); %> 
+                                </ul>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </section>
