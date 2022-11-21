@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% if(ssn.dashboard_roles != 'Granting Authority Encoder'){ %>
+        <title>GOV.UK - MFA award <% if (button_value == "add_measure") { %> published <% } else { %> updated <% } %> successfully page</title>
+    <% }else{ %>
+        <title>GOV.UK - MFA award submitted for approval page page</title>
+    <% } %>
+    <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+</head>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
+            <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+            <%- include('../partials/navigationbar.ejs') %>
+
+
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="#">MFA</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/mfaawards">MFA Awards</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" aria-current="page"
+                            href="#"><% if (button_value == "add_mfa_award") { %> Add <% } else { %> Update
+                            <% } %> an MFA award</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+            <div class="govuk-grid-row">
+
+                <div class="govuk-grid-column-two-thirds govuk-form-group">
+
+                    <div class="govuk-panel govuk-panel--confirmation">
+                        <% if(ssn.dashboard_roles != 'Granting Authority Encoder'){ %>
+                        <h1 class="govuk-panel__title">
+                            MFA award <% if (button_value == "add_mfa_award") { %> published <% } else { %> updated <% } %>
+                        </h1>
+                        <% }else{ %>
+                            <h1 class="govuk-panel__title">
+                                MFA award submitted for approval
+                            </h1>
+                        <% } %> 
+                        <div class="govuk-panel__body">
+                            MFA award number <%=  ssn.MFA_Award_Number_Global %>
+                        </div>
+                    </div>
+                </div>
+                <div class="govuk-grid-column-full govuk-form-group">
+                    <% if(ssn.dashboard_roles != 'Granting Authority Encoder'){ %>
+                    <p class="govuk-body govuk-!-font-size-19">You have <% if (button_value == "add_mfa_award") { %> published <% } else { %> updated
+                        <% } %> MFA award <%=  ssn.MFA_Award_Number_Global %></p>
+                    <% }else{ %>
+                        <p class="govuk-body govuk-!-font-size-19">MFA award <%=  ssn.MFA_Award_Number_Global %> has been submitted for approval</p>
+                    <% } %> 
+                </div>
+                <div class="govuk-grid-column-full govuk-form-group">
+                    <a class="govuk-button" href="/mfaawards" data-module="govuk-button">
+                        View all MFA awards
+                    </a>
+
+                    <a class="govuk-button" href="/mfaawardadd" data-module="govuk-button" name="buttonvalue"
+                        value="add_measure">Add another MFA award</a>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+    <script>
+        document.getElementById('mfa-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
+
+</body>
+
+</html>
