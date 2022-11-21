@@ -121,7 +121,7 @@ router.post("/", async (req, res) => {
             grantingAuthorityName: ssn.Granting_Authority_Name_Global,
             beneficiaryName: ssn.MFA_Award_Beneficiary_Name_Global,
             nationalIdType: ssn.MFA_Award_National_ID_Type_Global,
-            nationalIdNumber: ssn.MFA_Award_National_ID_Global, //todo get all form values
+            nationalIdNumber: ssn.MFA_Award_National_ID_Global,
             status: awardStatus,
           };  
         }
