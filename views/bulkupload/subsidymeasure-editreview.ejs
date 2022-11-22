@@ -134,17 +134,6 @@
                 <table class="govuk-table">
                     <tbody class="govuk-table__body">
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Is this an ad hoc scheme
-                            </th>
-                            <td class="govuk-table__cell">
-                                <% if(ssn.searchmeasuredetails.adhoc == 'true') { %>
-                                Yes
-                                <% } else { %>
-                                No
-                                <% }  %>
-                            </td>
-                        </tr>
-                        <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Granting Authority</th>
                             <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.gaName %></td>
                         </tr>
@@ -193,7 +182,7 @@
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">End date</th>
 
                             <td class="govuk-table__cell">
-                                <% if((ssn.Scheme_End_Day_Global == 31) && (ssn.Scheme_End_Month_Global == 12) && (ssn.Scheme_End_Year_Global == 9999)) { %>
+                                <% if(Scheme_End_Date == "") { %>
                                     Not applicable
                                  <% } else { %>
                                     <%= Scheme_End_Date %>
@@ -206,6 +195,21 @@
                             <td class="govuk-table__cell">
                                 <%= ssn.searchmeasuredetails.publishedMeasureDate%></td>
                         </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Spending Sectors</th>
+                            <td class="govuk-table__cell">
+                                <% if(spendingSectorArray.length > 0) { %>
+                                <ul class="govuk-list govuk-list--bullet">
+                                    <% spendingSectorArray.forEach(function(item) { %>
+                                    <li> <%=item %> </li>
+                                    <% }); %>
+                                </ul>
+                                <% } else { %>
+                                    NA
+                                 <% } %>
+                            </td>
+                        </tr>
+                    
                     </tbody>
                 </table>
             </section>

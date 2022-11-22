@@ -75,6 +75,17 @@
             }
         }
     </script>
+      <script>
+        function selectAll(source) {
+            checkboxes = document.getElementsByClassName("govuk-checkboxes__input_spendingsector");
+            for(var i=0, n=checkboxes.length;i<n;i++) {
+            checkboxes[i].checked = source.checked;
+            }
+        }
+      </script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+      <script src="/assets/javascripts/jquery.min.js"></script>
+
 </head>
 
 
@@ -148,11 +159,7 @@
 
             <form action="/reviewsubsidymeasures" method="POST" id="scheme-form">
                 <section class="govuk-grid-row">
-                    <% if( ssn.Subsidy_Adhoc_Error ){ %>
-                    <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
-                        <% } else { %>
-                        <div class="govuk-form-group govuk-grid-column-two-thirds">
-                            <% }  %>
+                        <div class="govuk-form-group govuk-grid-column-two-thirds" hidden>
                             <label class="govuk-label" for="address-line-1">
                                 Is this for an ad hoc subsidy?
                             </label>
@@ -171,34 +178,10 @@
                             <!-- <div id="adhoc-subsidy-hint" class="govuk-hint">
                                 You will only be able to create one subsidy award under each ad hoc subsidy scheme.
                             </div> -->
-                            <% if( ssn.Subsidy_Adhoc_Error ){ %>
-                            <span class="govuk-error-message" id="Subsidy_adhoc_Error">
-                                <span class="govuk-visually-hidden">Error:</span> Select the adhoc subsidy scheme
-                            </span>
-                            <% }  %>
                             <div class="govuk-radios" id="Subsidy_Adhoc">
                                 <div class="govuk-radios__item">
-                                    <% if(ssn.Subsidy_Adhoc_Global == 'Yes') { %>
-                                    <input class="govuk-radios__input" name="Subsidy_Adhoc" id="adhocyes" type="radio"
-                                        value="Yes" checked>
-                                    <% } else { %>
-                                    <% var ssn_Object = JSON.stringify(ssn)%>
-                                    <input class="govuk-radios__input" name="Subsidy_Adhoc"
-                                        onchange="getSubsidyAdhoc(event)" id="adhocyes" type="radio" value="Yes">
-                                    <% } %>
-                                    <label class="govuk-label govuk-radios__label" for="adhocyes">
-                                        Yes
-                                    </label>
-                                </div>
-                                <div class="govuk-radios__item">
-                                    <% if(ssn.Subsidy_Adhoc_Global == 'No') { %>
                                     <input class="govuk-radios__input" name="Subsidy_Adhoc" id="adhocno" type="radio"
                                         value="No" checked>
-                                    <% } else { %>
-                                    <% var ssn_Object = JSON.stringify(ssn)%>
-                                    <input class="govuk-radios__input" name="Subsidy_Adhoc"
-                                        onchange="getSubsidyAdhoc(event)" id="adhocno" type="radio" value="No">
-                                    <% } %>
                                     <label class="govuk-label govuk-radios__label" for="adhocno">
                                         No
                                     </label>
@@ -582,26 +565,254 @@
                                                             </div>
                                                             <div class="govuk-date-input__item">
                                                                 <div class="govuk-checkboxes__item">
-                                                                    <input class="govuk-checkboxes__input" onclick="getSubsidyNoEndDate(event)" id="myCheck" name="myCheck" type="checkbox">
+                                                                    <input class="govuk-checkboxes__input" onclick="getSubsidyNoEndDate(event)" id="myCheck" name="myCheck" type="checkbox"<% if (ssn.Has_No_End_Date_Global) { %>
+                                                                        checked <% } %> >
                                                                     <label class="govuk-label govuk-checkboxes__label" for="myCheck"> No End Date </label>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                </div>
+
+                                                <!--************************************
+                                            Gov.UK public user search - Body design
+                                            ************************************ -->
+                                            <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                                <fieldset class="govuk-fieldset" aria-describedby="sector-hint">
+                                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-grid-column-two-thirds">
+                                                    </legend>
+                                                    <div class="govuk-grid-row govuk-form-group">
+                                                    <div class="govuk-grid-column-full">
+                                                        <p id="sector-hint" class="govuk-body " for="subsidylabel">
+                                                        Select one or more sector(s)
+                                                        </p>
+                                                    </div>
                                                     </div>
 
-                                                    <div class="govuk-form-group govuk-grid-column-two-thirds">
-                                                        <button class="govuk-button" data-module="govuk-button"
-                                                            name="buttonvalue" value="Continue">Continue</button>
-                                                        <button class="govuk-link govuk-cancel-button-link"
-                                                            data-module="govuk-button" name="buttonvalue" value="Cancel"
-                                                            style="background: transparent;cursor:pointer;
-                                                                border: 0;color: #1d70b8;  outline: 0px solid transparent;    box-shadow: 0 0px #fd0, 0 0px #0b0c0c;
-                                                                   text-decoration: underline;">Cancel</button>
-                                                        <!-- <a href="/canceladdsubsidymeasures"
-                                                            class="govuk-link govuk-cancel-button-link"
-                                                            data-module="govuk-button" name="buttonvalue"
-                                                            value="Cancel">Cancel</a> -->
+                                                    <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" onclick="selectAll(this)" id="spendingsector-0" name="select-all" type="checkbox"
+                                                        value="Select all"
+                                                        data-aria-controls="conditional-spendingsector-0">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-0">
+                                                        Select all
+                                                        </label>
                                                     </div>
+
+                                                    <div class="govuk-checkboxes__conditional" id="conditional-objective0">
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-accommodation" name="spendingsector_accommodation"
+                                                            type="checkbox" value="Accommodation and food service activities"<% if (ssn.spendingsector_accommodation_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-accommodation">
+                                                            Accommodation and food service activities
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-activities-of-extraterritorial"
+                                                            name="spendingsector_activities_of_extraterritorial" type="checkbox" value="Activities of extraterritorial organisations and bodies"<% if (ssn.spendingsector_activities_of_extraterritorial_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-activities-of-extraterritorial">
+                                                            Activities of extraterritorial organisations and bodies
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-undifferentiated-goods"
+                                                            name="spendingsector_undifferentiated_goods" type="checkbox"
+                                                            value="Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use"<% if (ssn.spendingsector_undifferentiated_goods_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-undifferentiated-goods">
+                                                            Activities of households as employers; undifferentiated goods- and services-producing activities of
+                                                            households for own use
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-administrative" name="spendingsector_administrative"
+                                                            type="checkbox" value="Administrative and support service activities"<% if (ssn.spendingsector_administrative_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-administrative">
+                                                            Administrative and support service activities
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-agriculture-forestry-and-fishing"
+                                                            name="spendingsector_agriculture_forestry_and_fishing" type="checkbox" value="Agriculture, forestry and fishing"<% if (ssn.spendingsector_agriculture_forestry_and_fishing_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label"
+                                                            for="spendingsector-agriculture-forestry-and-fishing">
+                                                            Agriculture, forestry and fishing
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-arts-entertainment" name="spendingsector_arts_entertainment"
+                                                            type="checkbox" value="Arts, entertainment and recreation"<% if (ssn.spendingsector_arts_entertainment_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-arts-entertainment">
+                                                            Arts, entertainment and recreation
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-construction" name="spendingsector_construction"
+                                                            type="checkbox" value="Construction"<% if (ssn.spendingsector_construction_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-construction">
+                                                            Construction
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-education" name="spendingsector_education"
+                                                            type="checkbox" value="Education"<% if (ssn.spendingsector_education_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-education">
+                                                            Education
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector"
+                                                            id="spendingsector-Electricity-gas-steam-and-air-conditioning-supply" name="spendingsector_Electricity_gas_steam_and_air_conditioning_supply"
+                                                            type="checkbox" value="Electricity, gas, steam and air conditioning supply"<% if (ssn.spendingsector_Electricity_gas_steam_and_air_conditioning_supply_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label"
+                                                            for="spendingsector-Electricity-gas-steam-and-air-conditioning-supply">
+                                                            Electricity, gas, steam and air conditioning supply
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-financial-and-insurance-activities"
+                                                            name="spendingsector_financial_and_insurance_activities" type="checkbox" value="Financial and insurance activities"<% if (ssn.spendingsector_financial_and_insurance_activities_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label"
+                                                            for="spendingsector-financial-and-insurance-activities">
+                                                            Financial and insurance activities
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-human-health" name="spendingsector_human_health"
+                                                            type="checkbox" value="Human health and social work activities"<% if (ssn.spendingsector_human_health_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-human-health">
+                                                            Human health and social work activities
+                                                        </label>
+                                                        </div>
+
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-information-and-communication"
+                                                            name="spendingsector_information_and_communication" type="checkbox" value="Information and communication"<% if (ssn.spendingsector_information_and_communication_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-information-and-communication">
+                                                            Information and communication
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-Manufacturing" name="spendingsector_Manufacturing"
+                                                            type="checkbox" value="Manufacturing"<% if (ssn.spendingsector_Manufacturing_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-Manufacturing">
+                                                            Manufacturing
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-mining-and-quarrying" name="spendingsector_mining_and_quarrying"
+                                                            type="checkbox" value="Mining and quarrying"<% if (ssn.spendingsector_mining_and_quarrying_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-mining-and-quarrying">
+                                                            Mining and quarrying
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-Other-service-activities"
+                                                            name="spendingsector_Other_service_activities" type="checkbox" value="Other service activities"<% if (ssn.spendingsector_Other_service_activities_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-Other-service-activities">
+                                                            Other service activities
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-professional" name="spendingsector_professional"
+                                                            type="checkbox" value="Professional, scientific and technical activities"<% if (ssn.spendingsector_professional_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-professional">
+                                                            Professional, scientific and technical activities
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-public-administration" name="spendingsector_public_administration"
+                                                            type="checkbox" value="Public administration and defence; compulsory social security"<% if (ssn.spendingsector_public_administration_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-public-administration">
+                                                            Public administration and defence; compulsory social security
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-real-estate-activities"
+                                                            name="spendingsector_real_estate_activities" type="checkbox" value="Real estate activities"<% if (ssn.spendingsector_real_estate_activities_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-real-estate-activities">
+                                                            Real estate activities
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-transportation-and-storage"
+                                                            name="spendingsector_transportation_and_storage" type="checkbox" value="Transportation and storage"<% if (ssn.spendingsector_transportation_and_storage_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-transportation-and-storage">
+                                                            Transportation and storage
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-water-supply" name="spendingsector_water_supply"
+                                                            type="checkbox" value="Water supply; sewerage, waste management and remediation activities"<% if (ssn.spendingsector_water_supply_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-water-supply">
+                                                            Water supply; sewerage, waste management and remediation activities
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-wholesale-and-retail-trade"
+                                                            name="spendingsector_wholesale_and_retail_trade" type="checkbox"
+                                                            value="Wholesale and retail trade; repair of motor vehicles and motorcycles"<% if (ssn.spendingsector_wholesale_and_retail_trade_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-wholesale-and-retail-trade">
+                                                            Wholesale and retail trade; repair of motor vehicles and motorcycles
+                                                        </label>
+                                                        </div>
+
+                                                    </div>
+                                                    </div>
+
+                                                </fieldset>
+                                            </div>
+
+                                            <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                                <button class="govuk-button" data-module="govuk-button"
+                                                    name="buttonvalue" value="Continue">Continue</button>
+                                                <button class="govuk-link govuk-cancel-button-link"
+                                                    data-module="govuk-button" name="buttonvalue" value="Cancel"
+                                                    style="background: transparent;cursor:pointer;
+                                                        border: 0;color: #1d70b8;  outline: 0px solid transparent;    box-shadow: 0 0px #fd0, 0 0px #0b0c0c;
+                                                            text-decoration: underline;">Cancel</button>
+                                            </div>
+
 
                 </section>
 
