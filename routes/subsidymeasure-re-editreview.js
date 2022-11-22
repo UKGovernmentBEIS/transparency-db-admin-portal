@@ -144,7 +144,7 @@ router.post("/", (req, res) => {
 
     var spendingSectorArray = new Array();
     ssn.Spending_Sector_Array_Global = spendingSectorArray
-    
+
 
     if(spendingsector_accommodation){
       ssn.spendingsector_accommodation_Global = spendingsector_accommodation;
@@ -155,12 +155,12 @@ router.post("/", (req, res) => {
       ssn.spendingsector_activities_of_extraterritorial_Global = spendingsector_activities_of_extraterritorial;
       spendingSectorArray.push(spendingsector_activities_of_extraterritorial);
     }
-    
+
     if(spendingsector_undifferentiated_goods){
       ssn.spendingsector_undifferentiated_goods_Global = spendingsector_undifferentiated_goods;
       spendingSectorArray.push(spendingsector_undifferentiated_goods);
     }
-    
+
     if(spendingsector_administrative){
       ssn.spendingsector_administrative_Global = spendingsector_administrative;
       spendingSectorArray.push(spendingsector_administrative);
@@ -170,7 +170,7 @@ router.post("/", (req, res) => {
       ssn.spendingsector_agriculture_forestry_and_fishing_Global = spendingsector_agriculture_forestry_and_fishing;
       spendingSectorArray.push(spendingsector_agriculture_forestry_and_fishing);
     }
-    
+
     if(spendingsector_arts_entertainment){
       ssn.spendingsector_arts_entertainment_Global = spendingsector_arts_entertainment;
       spendingSectorArray.push(spendingsector_arts_entertainment);
@@ -180,27 +180,27 @@ router.post("/", (req, res) => {
       ssn.spendingsector_construction_Global = spendingsector_construction;
       spendingSectorArray.push(spendingsector_construction);
     }
-    
+
     if(spendingsector_education){
       ssn.spendingsector_education_Global = spendingsector_education;
       spendingSectorArray.push(spendingsector_education);
     }
-    
+
     if(spendingsector_Electricity_gas_steam_and_air_conditioning_supply){
       ssn.spendingsector_Electricity_gas_steam_and_air_conditioning_supply_Global = spendingsector_Electricity_gas_steam_and_air_conditioning_supply;
       spendingSectorArray.push(spendingsector_Electricity_gas_steam_and_air_conditioning_supply);
     }
-    
+
     if(spendingsector_financial_and_insurance_activities){
       ssn.spendingsector_financial_and_insurance_activities_Global = spendingsector_financial_and_insurance_activities;
       spendingSectorArray.push(spendingsector_financial_and_insurance_activities);
     }
-    
+
     if(spendingsector_human_health){
       ssn.spendingsector_human_health_Global = spendingsector_human_health;
       spendingSectorArray.push(spendingsector_human_health);
     }
-    
+
     if(spendingsector_information_and_communication){
       ssn.spendingsector_information_and_communication_Global = spendingsector_information_and_communication;
       spendingSectorArray.push(spendingsector_information_and_communication);
@@ -220,17 +220,17 @@ router.post("/", (req, res) => {
       ssn.spendingsector_Other_service_activities_Global = spendingsector_Other_service_activities;
       spendingSectorArray.push(spendingsector_Other_service_activities);
     }
-    
+
     if(spendingsector_professional){
       ssn.spendingsector_professional_Global = spendingsector_professional;
       spendingSectorArray.push(spendingsector_professional);
     }
-    
+
     if(spendingsector_public_administration){
       ssn.spendingsector_public_administration_Global = spendingsector_public_administration;
       spendingSectorArray.push(spendingsector_public_administration);
     }
-    
+
     if(spendingsector_real_estate_activities){
       ssn.spendingsector_real_estate_activities_Global = spendingsector_real_estate_activities;
       spendingSectorArray.push(spendingsector_real_estate_activities);
@@ -467,6 +467,14 @@ router.post("/", (req, res) => {
           }
         }
 
+        if (scheme_issued_confirmation_year > 9999) {
+          ssn.scheme_issued_confirmation_year_Error = true;
+          ssn.SubsidyErrors.push(
+            "     Maximum year that can be added is 9999"
+          );
+          ssn.SubsidyFocus.push("#scheme_issued_confirmation_year");
+        }
+
         if (
           scheme_issued_confirmation_day == 30 &&
           scheme_issued_confirmation_month == parseInt("02", 8)
@@ -621,7 +629,7 @@ router.post("/", (req, res) => {
             "Enter at least one or more spending sector(s)"
           );
           ssn.SubsidyFocus.push("#spendingSectorArray");
-        }  
+        }
       }
       ssn.SubsidyArraySize = ssn.SubsidyErrors.length;
 

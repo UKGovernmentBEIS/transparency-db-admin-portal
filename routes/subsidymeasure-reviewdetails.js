@@ -428,6 +428,102 @@ router.post("/", (req, res) => {
         // Additem = Additem + 1;
       }
 
+      if (!scheme_issued_confirmation_month) {
+        ssn.scheme_issued_confirmation_month_Error = true;
+        ssn.SubsidyErrors.push(
+          "     Enter the legal confirmation month of the date"
+        );
+        ssn.SubsidyFocus.push("#scheme_issued_confirmation_month");
+        // Additem = Additem + 1;
+      }
+      if (scheme_issued_confirmation_month != "") {
+        if (scheme_issued_confirmation_month > 12 || scheme_issued_confirmation_month == 0) {
+          ssn.scheme_issued_confirmation_month_Error = true;
+          ssn.SubsidyErrors.push(
+            "     Enter the legal confirmation month from 1 to 12"
+          );
+          ssn.SubsidyFocus.push("#scheme_issued_confirmation_month");
+          // Additem = Additem + 1;
+        }
+      }
+      if (!scheme_issued_confirmation_year) {
+        ssn.scheme_issued_confirmation_year_Error = true;
+        ssn.SubsidyErrors.push(
+          "     Enter the legal confirmation year of the date"
+        );
+        ssn.SubsidyFocus.push("#scheme_issued_confirmation_year");
+        // Additem = Additem + 1;
+      }
+      if (!scheme_issued_confirmation_day) {
+        ssn.scheme_issued_confirmation_day_Error = true;
+        ssn.SubsidyErrors.push("     Enter the legal confirmation day of the date");
+        ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
+        // Additem = Additem + 1;
+      }
+      if (scheme_issued_confirmation_day != "") {
+        // day validation starts here
+
+        if (scheme_issued_confirmation_day > 31 || scheme_issued_confirmation_day < 1) {
+          ssn.scheme_issued_confirmation_day_Error = true;
+          ssn.SubsidyErrors.push(
+            "     Enter the valid legal confirmation day of the date"
+          );
+          ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
+          // Additem = Additem + 1;
+        }
+
+        if (
+          scheme_issued_confirmation_day == 31 &&
+          (scheme_issued_confirmation_month == parseInt("02", 8) ||
+            scheme_issued_confirmation_month == parseInt("04", 8) ||
+            scheme_issued_confirmation_month == parseInt("06", 8) ||
+            scheme_issued_confirmation_month == parseInt("09", 10) ||
+            scheme_issued_confirmation_month == 11)
+        ) {
+          ssn.scheme_issued_confirmation_day_Error = true;
+          ssn.SubsidyErrors.push("     Enter the valid day");
+          ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
+          // Additem = Additem + 1;
+        }
+
+        if (
+          scheme_issued_confirmation_day == 29 &&
+          scheme_issued_confirmation_month == parseInt("02", 8)
+        ) {
+          if (
+            (scheme_issued_confirmation_year % 4 == 0 &&
+              scheme_issued_confirmation_year % 100 != 0) ||
+            scheme_issued_confirmation_year % 400 == 0
+          ) {
+          } else {
+            ssn.scheme_issued_confirmation_day_Error = true;
+            ssn.SubsidyErrors.push("     Enter the valid day");
+            ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
+            // Additem = Additem + 1;
+          }
+        }
+
+        if (scheme_issued_confirmation_year > 9999) {
+          ssn.scheme_issued_confirmation_year_Error = true;
+          ssn.SubsidyErrors.push(
+            "     Enter the legal confirmation year from 0 to 9999"
+          );
+          ssn.SubsidyFocus.push("#scheme_issued_confirmation_year");
+          // Additem = Additem + 1;
+        }
+
+        if (
+          scheme_issued_confirmation_day == 30 &&
+          scheme_issued_confirmation_month == parseInt("02", 8)
+        ) {
+          ssn.scheme_issued_confirmation_day_Error = true;
+          ssn.SubsidyErrors.push("Enter the valid day");
+          ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
+          // Additem = Additem + 1;
+        }
+      }
+
+
       // day validation starts here
       if (scheme_issued_start_day != "") {
         if (scheme_issued_start_day > 31 || scheme_issued_start_day < 1) {
