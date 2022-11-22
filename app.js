@@ -1045,4 +1045,33 @@ app.use("/cookieshelp", cookieshelp);
 var privacynotice = require("./routes/privacy-notice");
 app.use("/privacy", privacynotice);
 
+// MFA Groupings
+var mfaGroupingAddEdit = require("./routes/mfagroupingadd");
+
+app.use("/mfagroupings", require("./routes/mfagroupings"));
+app.use("/mfagroupingadd", mfaGroupingAddEdit);
+app.use("/mfagroupingedit", mfaGroupingAddEdit);
+app.use("/mfagroupingreview", require("./routes/mfagroupingreview"));
+app.use("/mfagroupingaddreview", require("./routes/mfagroupingaddreview"));
+app.use("/mfagroupingcancelreview", require("./routes/mfagroupingcancelreview"));
+app.use("/mfagroupingpublished", require("./routes/mfagroupingpublished"));
+app.use("/mfagrouping", require("./routes/mfagrouping"));
+app.use("/mfagroupingdelete", require("./routes/mfagroupingdelete"));
+app.use("/mfagroupingdeletesuccess", require("./routes/mfagroupingdeletesuccess"));
+
+// MFA Awards
+var mfaAwardAddEdit = require("./routes/mfaawardadd");
+
+app.use("/mfaawards", require("./routes/mfaawards"));
+app.use("/mfaawardadd", mfaAwardAddEdit);
+app.use("/mfaawardedit", mfaAwardAddEdit);
+app.use("/mfaawardreview", require("./routes/mfaawardreview"));
+app.use("/mfaawardaddreview", require("./routes/mfaawardaddreview"));
+app.use("/mfaawardcancelreview", require("./routes/mfaawardcancelreview"));
+app.use("/mfaawardpublished", require("./routes/mfaawardpublished"));
+app.use("/mfaaward", require("./routes/mfaaward"));
+app.use("/mfaawardapprovereject", require("./routes/mfaawardpublished"));
+app.use("/mfaawardrejectdelete", require("./routes/mfaawardrejectdelete"))
+app.use("/mfaawardreasonsubmit", require("./routes/mfaawardreasonsubmit"));
+
 module.exports = app;

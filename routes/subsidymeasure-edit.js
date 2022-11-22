@@ -61,6 +61,103 @@ router.get("/", async (req, res) => {
         Scheme_Start_Date = ssn.searchmeasuredetails.startDate;
         Scheme_End_Date = ssn.searchmeasuredetails.endDate;
         ssn.Has_No_End_Date = measureapidata.data.hasNoEndDate;
+        ssn.Spending_Sector_Array_Global = measureapidata.data.spendingSectorArray
+
+        ssn.spendingsector_accommodation_Global = false;
+        ssn.spendingsector_activities_of_extraterritorial_Global = false;
+        ssn.spendingsector_undifferentiated_goods_Global = false;
+        ssn.spendingsector_administrative_Global = false;
+        ssn.spendingsector_agriculture_forestry_and_fishing_Global = false;
+        ssn.spendingsector_arts_entertainment_Global = false;
+        ssn.spendingsector_construction_Global = false;
+        ssn.spendingsector_education_Global = false;
+        ssn.spendingsector_Electricity_gas_steam_and_air_conditioning_supply_Global = false;
+        ssn.spendingsector_financial_and_insurance_activities_Global = false;
+        ssn.spendingsector_human_health_Global = false;
+        ssn.spendingsector_information_and_communication_Global = false;
+        ssn.spendingsector_Manufacturing_Global = false;
+        ssn.spendingsector_mining_and_quarrying_Global = false;
+        ssn.spendingsector_Other_service_activities_Global = false;
+        ssn.spendingsector_professional_Global = false;
+        ssn.spendingsector_public_administration_Global = false;
+        ssn.spendingsector_real_estate_activities_Global = false;
+        ssn.spendingsector_transportation_and_storage_Global = false;
+        ssn.spendingsector_water_supply_Global = false;
+        ssn.spendingsector_wholesale_and_retail_trade_Global = false;
+
+
+        var spendingSectorArray = new Array();
+        if(ssn.searchmeasuredetails.spendingSectors != null){
+          spendingSectorArray = JSON.parse(ssn.searchmeasuredetails.spendingSectors);
+        }
+        spendingSectorArray.forEach(function(spendingSector){
+          switch(spendingSector) {
+            case "Accommodation and food service activities":
+              ssn.spendingsector_accommodation_Global = true;
+              break;
+            case "Activities of extraterritorial organisations and bodies":
+              ssn.spendingsector_activities_of_extraterritorial_Global = true;
+              break;
+            case "Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use":
+              ssn.spendingsector_undifferentiated_goods_Global = true;
+              break;
+            case "Administrative and support service activities":
+              ssn.spendingsector_administrative_Global = true;
+              break;
+            case "Agriculture, forestry and fishing":
+              ssn.spendingsector_agriculture_forestry_and_fishing_Global = true;
+              break;
+            case "Arts, entertainment and recreation":
+              ssn.spendingsector_arts_entertainment_Global = true;
+              break;
+            case "Construction":
+              ssn.spendingsector_construction_Global = true;
+              break;
+            case "Education":
+              ssn.spendingsector_education_Global = true;
+              break;
+            case "Electricity, gas, steam and air conditioning supply":
+              ssn.spendingsector_Electricity_gas_steam_and_air_conditioning_supply_Global = true;
+              break;
+            case "Financial and insurance activities":
+              ssn.spendingsector_financial_and_insurance_activities_Global = true;
+              break;
+            case "Human health and social work activities":
+              ssn.spendingsector_human_health_Global = true;
+              break;
+            case "Information and communication":
+              ssn.spendingsector_information_and_communication_Global = true;
+              break;
+            case "Manufacturing":
+              ssn.spendingsector_Manufacturing_Global = true;
+              break;
+            case "Mining and quarrying":
+              ssn.spendingsector_mining_and_quarrying_Global = true;
+              break;
+            case "Other service activities":
+              ssn.spendingsector_Other_service_activities_Global = true;
+              break;
+            case "Professional, scientific and technical activities":
+              ssn.spendingsector_professional_Global = true;
+              break;
+            case "Public administration and defence; compulsory social security":
+              ssn.spendingsector_public_administration_Global = true;
+              break;
+            case "Real estate activities":
+              ssn.spendingsector_real_estate_activities_Global = true;
+              break;
+            case "Transportation and storage":
+              ssn.spendingsector_transportation_and_storage_Global = true;
+              break;
+            case "Water supply; sewerage, waste management and remediation activities":
+              ssn.spendingsector_water_supply_Global = true;
+              break;
+            case "Wholesale and retail trade; repair of motor vehicles and motorcycles":
+              ssn.spendingsector_wholesale_and_retail_trade_Global = true;
+              break;
+          }
+        });
+
 
         var month = [
           "January",

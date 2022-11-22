@@ -106,7 +106,8 @@ router.post("/", async (req, res) => {
       endDate: subsidy_end_date,
       status: "Active",
       hasNoEndDate: ssn.Has_No_End_Date_Global,
-      confirmationDate: subsidy_confirmation_date
+      confirmationDate: subsidy_confirmation_date,
+      spendingSectorJson: ssn.Scheme_Sector_Json_Global
     };
 
     console.log("add scheme data", JSON.stringify(addSchemeRequest));
@@ -192,7 +193,8 @@ router.post("/", async (req, res) => {
         endDate: subsidy_end_date,
         status: "Active",
         hasNoEndDate: ssn.Has_No_End_Date_Global,
-        confirmationDate: subsidy_confirmation_date
+        confirmationDate: subsidy_confirmation_date,
+        spendingSectorJson: ssn.Scheme_Sector_Json_Global
       };
 
       updateSchemeUrl =

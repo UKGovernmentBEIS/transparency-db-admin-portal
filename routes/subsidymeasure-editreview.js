@@ -45,6 +45,12 @@ router.get("/", async (req, res) => {
       Scheme_Start_Date = ssn.searchmeasuredetails.startDate;
       Scheme_End_Date = ssn.searchmeasuredetails.endDate;
 
+
+      var spendingSectorArray = new Array();
+      if(ssn.searchmeasuredetails.spendingSectors != null){
+        spendingSectorArray = JSON.parse(ssn.searchmeasuredetails.spendingSectors);
+      }
+
       var date = Scheme_Start_Date.split(" ");
 
       var month = [
@@ -78,7 +84,9 @@ router.get("/", async (req, res) => {
       // ssn.Scheme_Legal_Granting_End_Date_Year = date[2];
 
       // if (ssn.dashboard_roles !== "Granting Authority Encoder") {
-      res.render("bulkupload/subsidymeasure-editreview");
+      res.render("bulkupload/subsidymeasure-editreview", {
+        spendingSectorArray
+      });
       // } else {
       //   res.render("bulkupload/notAuthorized");
       // }
