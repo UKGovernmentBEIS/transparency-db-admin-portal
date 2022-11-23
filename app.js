@@ -1074,4 +1074,12 @@ app.use("/mfaawardapprovereject", require("./routes/mfaawardpublished"));
 app.use("/mfaawardrejectdelete", require("./routes/mfaawardrejectdelete"))
 app.use("/mfaawardreasonsubmit", require("./routes/mfaawardreasonsubmit"));
 
+// Admin Programs
+var adminProgramAddEdit = require("./routes/adminprogramadd");
+
+app.use("/adminprograms", require("./routes/adminprograms"));
+app.use("/adminprogramadd", adminProgramAddEdit);
+app.use("/adminprogramedit", adminProgramAddEdit);
+app.use("/adminprogramreview", require("./routes/adminprogramreview"));
+
 module.exports = app;

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - <%=addOrEdit%> Admin Program page</title>
+
+    <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+</head>
+
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
+
+            <!-- Header pane starts here -->
+            <%- include('../partials/navigationbar.ejs') %>
+            <!-- Header pane starts here -->
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/adminprograms">Admin Programs</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#"><%=addOrEdit%> Admin Program</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+            <% if( ssn.errors.length > 0 ){ %>
+
+            <div tabindex="-1" class="govuk-error-summary" id="error-alert" role="alert"
+                aria-labelledby="error-summary-title" data-module="govuk-error-summary">
+                <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+
+                <div class="govuk-error-summary__body">
+                    <% for(var i=0; i < ssn.errors.length  ; i++) {%>
+                    <ul class="govuk-list govuk-error-summary__list">
+
+                        <li> <a href="<%= ssn.focus[i] %>"> <%= ssn.errors[i] %> </a> </li>
+                    </ul>
+                    <% } %>
+                </div>
+
+            </div>
+
+            <% } %>
+            <!-- Body header starts here -->
+            <% if(isCallFromEdit){ %> 
+                <h1 class="govuk-heading-xl">Edit admin program <%= ssn.adminProgramDetails.adminProgramNumber %> </h1>
+            <% }else{ %> 
+                <h1 class="govuk-heading-xl">Add an admin program</h1>
+            <% } %> 
+
+            <p class="govuk-body govuk-!-font-size-19">This section is for adding an admin program.</p>
+            <!-- Body header ends here -->
+
+            <form action="/adminprogramreview" method="POST" id="scheme-form">
+                <section class="govuk-grid-row">
+                <% if (isCallFromEdit){ %> 
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="Admin_Program_Number">
+                            Admin program number
+                        </label>
+                        <input class="govuk-input govuk-!-width-one-half" id="Admin_Program_Number"
+                            name="Admin_Program_Number" type="text"
+                            value="<%= ssn.adminProgramDetails.adminProgramNumber %>" disabled />
+                    </div>
+                <% } %> 
+
+
+                <% if( ssn.Admin_Program_Name_Error || ssn.Admin_Program_Name_Length_Error ){ %>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                <% } else { %>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                <% }  %>
+                    <label class="govuk-label" for="address-line-1">
+                        Admin program name
+                    </label>
+                <% if( ssn.Admin_Program_Name_Length_Error ){ %>
+                    <span class="govuk-error-message" id="Admin_Program_Name_Length_Error">
+                        <span class="govuk-visually-hidden">Error:</span> Admin program name cannot be
+                        greater than 255 characters
+                    </span>
+                <% } %>
+                <% if( ssn.Admin_Program_Name_Error ){ %>
+                    <span class="govuk-error-message" id="Admin_Program_Name_Error">
+                        <span class="govuk-visually-hidden">Error:</span> You must provide an admin program name
+                    </span>
+                <% } %>
+                    <input class="govuk-input govuk-!-width-one-half" id="Admin_Program_Name"
+                        name="Admin_Program_Name" type="text"
+                        value="<%= ssn.Admin_Program_Name_Global %>">
+                    </div>
+
+                <% if( ssn.Granting_Authority_Name_Error || ssn.Granting_Authority_Name_Inactive_Error || ssn.Granting_Authority_Multiple_Error || ssn.Granting_Authority_Exists_Error) { %>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                        <label class="govuk-label" for="Granting_Authority_Name">
+                            Public authority name
+                        </label>
+                        <% if(ssn.Granting_Authority_Name_Inactive_Error){ %>
+                        <span class="govuk-error-message" id="Granting_Authority_Name_Error">
+                            <span class="govuk-visually-hidden">Error:</span> Public authority is not active
+                        </span>
+                        <% } else { %>
+                        <span class="govuk-error-message" id="Granting_Authority_Name_Error">
+                            <span class="govuk-visually-hidden">Error:</span> Enter a public authority name
+                        </span>
+                        <% } %>
+                        <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
+                        <input class="govuk-input govuk-!-width-one-half govuk-input--error"
+                            id="Granting_Authority_Name" name="Granting_Authority_Name" type="text"
+                            aria-describedby="Granting_Authority_Name"
+                            <% if(ssn.Granting_Authority_Name_Global) {%>
+                            value="<%= ssn.Granting_Authority_Name_Global %>" <% } %> />
+
+                        <% } else { %>
+
+                        <input class="govuk-input govuk-!-width-one-half govuk-input--error"
+                            id="Granting_Authority_Name" name="Granting_Authority_Name" type="text"
+                            aria-describedby="Granting_Authority_Name" value="<%= ssn.dashboard_ga_name %>"
+                            disabled />
+                        <% } %>
+                    </div>
+                    <% } else { %>
+
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <label class="govuk-label" for="Granting_Authority_Name">
+                            Public authority name
+                        </label>
+
+                        <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
+                        <input class="govuk-input govuk-!-width-one-half" id="Granting_Authority_Name"
+                            name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name"
+                            <% if(ssn.Granting_Authority_Name_Global) {%>
+                            value="<%= ssn.Granting_Authority_Name_Global %>" <% } %> />
+
+                        <% } else { %>
+
+                        <input class="govuk-input govuk-!-width-one-half" id="Granting_Authority_Name"
+                            name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name"
+                            value="<%= ssn.dashboard_ga_name %>" disabled />
+                        <% } %>
+                    </div>
+                    <% }  %>
+
+                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                        <button class="govuk-button" data-module="govuk-button" name="buttonvalue" value="Continue">Continue</button>
+                        <button class="govuk-link govuk-cancel-button-link" data-module="govuk-button" name="buttonvalue" value="Cancel"
+                            style="background: transparent;cursor:pointer;
+                                border: 0;color: #1d70b8;  outline: 0px solid transparent;    box-shadow: 0 0px #fd0, 0 0px #0b0c0c;
+                                    text-decoration: underline;">Cancel</button>
+                    </div>
+                </section>
+            </form>
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+    <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
+    <script>
+        document.getElementById('admin-program-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
+</body>
+
+</html>
