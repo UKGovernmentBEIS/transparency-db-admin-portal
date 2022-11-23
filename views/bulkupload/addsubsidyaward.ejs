@@ -1070,110 +1070,109 @@
 
 
             <div id="Tax_measures" class="amount_subsidy_tax">
-            <% if( ssn.Subsidy_Full_Amount_Range_Error ) { %>
-              <div class="govuk-form-group govuk-form-group--error">
-                <fieldset class="govuk-fieldset" role="group" aria-describedby="Subsidy_Full_Amount_Range-hint">
-                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                    <h1 class="govuk-label">
-                      Subsidy element full amount range
-                    </h1>
-                  </legend>
-                  <div id="Subsidy_Full_Amount_Range-hint" class="govuk-hint">
-                    For example, 100000-300000
-                  </div>
+              <% if( ssn.Subsidy_Full_Amount_Range_Error || ssn.Subsidy_Full_Amount_Range_Bounding_Error) { %>
+                <div class="govuk-form-group govuk-form-group--error">
+                  <!-- <fieldset class="govuk-fieldset" role="group" aria-describedby="Subsidy_Full_Amount_Range-hint"> -->
+                    <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"> -->
+                      <label class="govuk-label" for="Subsidy_Full_Amount_Range">
+                        Subsidy full amount range
+                      </label>
+                    <!-- </legend> -->
 
-                  <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
-                    <span class="govuk-visually-hidden">Error:</span> TODO
-                  </span>
+                    <span class="govuk-error-message" id="Subsidy_Full_Amount_Range_Error">
+                      <span class="govuk-visually-hidden">Error:</span> You must enter a valid tax range amount
+                    </span>
 
-                  <details class="govuk-details" data-module="govuk-details">
-                    <summary class="govuk-details__summary">
-                      <span class="govuk-details__summary-text">
-                        What is a subsidy element full amount range?
-                      </span>
-                    </summary>
-                    <div class="govuk-details__text">
-                      TODO: Description of tax ranges =
+                    <div id="Subsidy_Full_Amount_Range_Lower_Hint" class="govuk-hint">
+                      For example, 100000 - 300000
                     </div>
-                  </details>
 
-                  <div class="govuk-date-input" id="Subsidy_Full_Amount_Range">
-                    <div class="govuk-date-input__item">
-                      <div class="govuk-form-group">
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-10"
-                          id="Subsidy_Full_Amount_Range_Lower" name="Subsidy_Full_Amount_Range_Lower" type="number" min="0" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Subsidy_Full_Amount_Range_Lower_Global) {%>
-                          value="<%= ssn.Subsidy_Full_Amount_Range_Lower_Global%>" <% } %> />
+                    <details class="govuk-details" data-module="govuk-details">
+                      <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                          What is a subsidy element full amount range?
+                        </span>
+                      </summary>
+                      <div class="govuk-details__text">
+                        Some text explaining subsidy element full amount range.
                       </div>
-                    </div>
-                    <div class="govuk-date-input__item">
-                      <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label">
-                          -
-                        </label>
-                      </div>
-                    </div>
-                    <div class="govuk-date-input__item">
-                      <div class="govuk-form-group">
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-10"
-                          id="Subsidy_Full_Amount_Range_Upper" name="Subsidy_Full_Amount_Range_Upper" type="number" min="0" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Subsidy_Full_Amount_Range_Upper_Global) {%>
-                          value="<%=ssn.Subsidy_Full_Amount_Range_Upper_Global%>" <% } %> />
-                      </div>
-                    </div>
-                    </div>
-                  </div>
-                </fieldset>
-              </div>
-              <% } else { %>
+                    </details>
 
-
-              <div class="govuk-form-group">
-                <fieldset class="govuk-fieldset" role="group" aria-describedby="Subsidy_Full_Amount_Range-hint">
-                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                    <h1 class="govuk-label">
-                      Subsidy element full amount range
-                    </h1>
-                  </legend>
-                  <div id="Subsidy_Full_Amount_Range_Lower_Hint" class="govuk-hint">
-                    For example, 100000 - 300000
-                  </div>
-                  <details class="govuk-details" data-module="govuk-details">
-                    <summary class="govuk-details__summary">
-                      <span class="govuk-details__summary-text">
-                        What is a subsidy element full amount range?
-                      </span>
-                    </summary>
-                    <div class="govuk-details__text">
-                      TODO: Description of tax ranges =
-                    </div>
-                  </details>
-                  <div class="govuk-input__wrapper" id="Subsidy_Full_Amount_Range">
-                    <div class="govuk-input__wrapper">
-                      <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                        <input class="govuk-input govuk-input--width-8"
-                          id="Subsidy_Full_Amount_Range_Lower" name="Subsidy_Full_Amount_Range_Lower" type="number" min="0" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Subsidy_Full_Amount_Range_Lower_Global) {%>
-                          value="<%= ssn.Subsidy_Full_Amount_Range_Lower_Global%>" <% } %> />
-                      </div>
+                    <div class="govuk-input__wrapper" id="Subsidy_Full_Amount_Range_Lower">
+                      <div class="govuk-input__wrapper">
+                        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                          <input class="govuk-input govuk-input--width-8"
+                            id="Subsidy_Full_Amount_Range_Lower" name="Subsidy_Full_Amount_Range_Lower" type="number" min="0" pattern="[0-9]*"
+                            inputmode="numeric" <% if(ssn.Subsidy_Full_Amount_Range_Lower_Global) {%>
+                            value="<%= ssn.Subsidy_Full_Amount_Range_Lower_Global%>" <% } %> />
+                        </div>
                       <div class="govuk-form-group">
-                        <label class="govuk-label" for="Legal_Granting_Date_Month" >
+                        <label class="govuk-label">
                           &ensp; - &ensp;
                         </label>
                       </div>
-                    <div class="govuk-input__wrapper">
-                      <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                        <input class="govuk-input govuk-input--width-8"
-                          id="Subsidy_Full_Amount_Range_Upper" name="Subsidy_Full_Amount_Range_Upper" type="number" min="0" pattern="[0-9]*"
-                          inputmode="numeric" <% if(ssn.Subsidy_Full_Amount_Range_Upper_Global) {%>
-                          value="<%=ssn.Subsidy_Full_Amount_Range_Upper_Global%>" <% } %> />
-                      </div>
+                    <div class="govuk-input__wrapper" id="Subsidy_Full_Amount_Range_Upper"></div>
+                      <div class="govuk-input__wrapper">
+                        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                          <input class="govuk-input govuk-input--width-8"
+                            id="Subsidy_Full_Amount_Range_Upper" name="Subsidy_Full_Amount_Range_Upper" type="number" min="0" pattern="[0-9]*"
+                            inputmode="numeric" <% if(ssn.Subsidy_Full_Amount_Range_Upper_Global) {%>
+                            value="<%=ssn.Subsidy_Full_Amount_Range_Upper_Global%>" <% } %> />
+                        </div>
                     </div>
-                  </div>
+                    <!-- </fieldset> -->
                 </div>
-                </fieldset>
+
+                <% } else { %>
+
+                <div class="govuk-form-group">
+                  <fieldset class="govuk-fieldset" role="group" aria-describedby="Subsidy_Full_Amount_Range-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                      <label class="govuk-label" for="Subsidy_Full_Amount_Range">
+                        Subsidy full amount range
+                      </label>
+                    </legend>
+                    <div id="Subsidy_Full_Amount_Range_Lower_Hint" class="govuk-hint">
+                      For example, 100000 - 300000
+                    </div>
+
+                    <details class="govuk-details" data-module="govuk-details">
+                      <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                          What is a subsidy element full amount range?
+                        </span>
+                      </summary>
+                      <div class="govuk-details__text">
+                        Some text explaining subsidy element full amount range.
+                      </div>
+                    </details>
+
+                    <div class="govuk-input__wrapper" id="Subsidy_Full_Amount_Range">
+                      <div class="govuk-input__wrapper">
+                        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                          <input class="govuk-input govuk-input--width-8"
+                            id="Subsidy_Full_Amount_Range_Lower" name="Subsidy_Full_Amount_Range_Lower" type="number" min="0" pattern="[0-9]*"
+                            inputmode="numeric" <% if(ssn.Subsidy_Full_Amount_Range_Lower_Global) {%>
+                            value="<%= ssn.Subsidy_Full_Amount_Range_Lower_Global%>" <% } %> />
+                        </div>
+                      <div class="govuk-form-group">
+                        <label class="govuk-label">
+                          &ensp; - &ensp;
+                        </label>
+                      </div>
+                      <div class="govuk-input__wrapper">
+                        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                          <input class="govuk-input govuk-input--width-8"
+                            id="Subsidy_Full_Amount_Range_Upper" name="Subsidy_Full_Amount_Range_Upper" type="number" min="0" pattern="[0-9]*"
+                            inputmode="numeric" <% if(ssn.Subsidy_Full_Amount_Range_Upper_Global) {%>
+                            value="<%=ssn.Subsidy_Full_Amount_Range_Upper_Global%>" <% } %> />
+                    </div>
+                  </fieldset>
+                </div>
 
               <% } %>
+
+            </div>
 
             <!-- ***************************************************************  -->
             <!-- Get the Subsidy Element Full Amount - other than TAX measures    -->

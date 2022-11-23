@@ -406,10 +406,6 @@ router.post("/", (req, res) => {
         // Additem = Additem + 1;
       }
 
-      // if (!Subsidy_Measure_Title) {
-
-      // }
-
       if (!Granting_Authority_Name) {
         ssn.Granting_Authority_Name_Error = true;
         ssn.SubsidyErrors.push(" Enter the granting authority name");

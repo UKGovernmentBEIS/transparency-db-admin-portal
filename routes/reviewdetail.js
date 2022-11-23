@@ -302,31 +302,24 @@ router.post("/", async (req, res) => {
         ssn.SubsidyErrors[Additem] = "You must enter the subsidy amount.";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Element_Full_Amount";
         Additem = Additem + 1;
-      } else if (
-        !Subsidy_Full_Amount_Range &&
-        Subsidy_Instrument.includes("Tax measures")
-      ) {
-        ssn.Subsidy_Full_Amount_Range_Error = true;
-        ssn.SubsidyErrors[Additem] =
-          " You must select a subsidy range for tax measure subsidies.";
-        ssn.SubsidyFocus[Additem] = "#Subsidy_Full_Amount_Range";
-        Additem = Additem + 1;
       }
 
-      if ((parseInt(Subsidy_Full_Amount_Range_Lower) >= parseInt(Subsidy_Full_Amount_Range_Upper)) && Subsidy_Full_Amount_Range_Upper != "") {
-        ssn.Subsidy_Full_Amount_Range_Bounding_Error = true;
-        ssn.SubsidyErrors[Additem] =
-          " The lower bound of the subsidy tax range cannot be larger than or equal to the upper bound";
-        ssn.SubsidyFocus[Additem] = "#Subsidy_Full_Amount_Range";
-        Additem = Additem + 1;
-      }
+      if (Subsidy_Instrument == "Tax measures (tax credit, or tax/duty exemption)"){
+        if (!Subsidy_Full_Amount_Range_Lower || !Subsidy_Full_Amount_Range_Upper) {
+          ssn.Subsidy_Full_Amount_Range_Error = true;
+          ssn.SubsidyErrors[Additem] =
+            " You must enter both values of a subsidy full amount range";
+          ssn.SubsidyFocus[Additem] = "#Subsidy_Full_Amount_Range";
+          Additem = Additem + 1;
+        }
 
-      if (!Subsidy_Full_Amount_Range_Lower || !Subsidy_Full_Amount_Range_Upper) {
-        ssn.Subsidy_Full_Amount_Range_Error = true;
-        ssn.SubsidyErrors[Additem] =
-          " You must enter a subsidy element full amount range";
-        ssn.SubsidyFocus[Additem] = "#Subsidy_Full_Amount_Range";
-        Additem = Additem + 1;
+        if ((parseInt(Subsidy_Full_Amount_Range_Lower) >= parseInt(Subsidy_Full_Amount_Range_Upper)) && Subsidy_Full_Amount_Range_Upper != "") {
+          ssn.Subsidy_Full_Amount_Range_Bounding_Error = true;
+          ssn.SubsidyErrors[Additem] =
+            " The lower bound of the subsidy tax range cannot be larger than or equal to the upper bound";
+          ssn.SubsidyFocus[Additem] = "#Subsidy_Full_Amount_Range";
+          Additem = Additem + 1;
+        }
       }
 
       if (!National_ID_Type) {
