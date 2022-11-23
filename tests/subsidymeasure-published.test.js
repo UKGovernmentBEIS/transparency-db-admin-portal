@@ -37,6 +37,10 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   global.Granting_Authority_URL_Global = "";
   global.Granting_Authority_Policy_Global = "";
   global.Budget_Global = "";
+  global.subsidy_confirmation_date = "";
+  global.Scheme_Confirmation_Day_Global = "";
+  global.Scheme_Confirmation_Month_Global = "";
+  global.Scheme_Confirmation_Year_Global = "";
   global.subsidy_start_date = "";
   global.subsidy_end_date = "";
   global.Scheme_Start_Year_Global = "";
@@ -68,6 +72,7 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
       gaSubsidyWebLink: "",
       gaSubsidyWebLinkDescription: "",
       budget: "",
+      confirmationDate:"",
       startDate: "",
       endDate: "",
     },
@@ -98,6 +103,10 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   global.subsidy_start_date = "";
   global.subsidy_end_date = "";
   global.Subsidy_Control_Number_Global_Text = "";
+  global.subsidy_confirmation_date = "";
+  global.Scheme_Confirmation_Day_Global = "";
+  global.Scheme_Confirmation_Month_Global = "";
+  global.Scheme_Confirmation_Year_Global = "";
   global.Scheme_Start_Year_Global = "";
   global.Scheme_Start_Month_Global = "";
   global.Scheme_Start_Day_Global = "";
@@ -127,6 +136,7 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
       gaSubsidyWebLink: "",
       gaSubsidyWebLinkDescription: "",
       budget: "",
+      confirmationDate:"",
       startDate: "",
       endDate: "",
     },
