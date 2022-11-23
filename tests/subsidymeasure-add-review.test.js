@@ -33,9 +33,15 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   global.Granting_Authority_Policy_Global = "";
   global.Budget_Global = "";
   global.Granting_Authority_Name_Measure_Global = "";
+
+  global.Scheme_Confirmation_Day_Global = "";
+  global.Scheme_Confirmation_Month_Global = "";
+  global.Scheme_Confirmation_Year_Global = "";
+
   global.Scheme_Start_Day_Global = "";
   global.Scheme_Start_Month_Global = "";
   global.Scheme_Start_Year_Global = "";
+
   global.Scheme_End_Day_Global = "";
   global.Scheme_End_Month_Global = "";
   global.Scheme_End_Year_Global = "";
@@ -50,9 +56,14 @@ test("Unit testing for Subsidy Scheme Edit Test for GET call", async () => {
   global.ssn.Granting_Authority_URL_Error = "";
   global.ssn.Granting_Authority_Policy_Error = "";
   global.ssn.Budget_Error = "";
-  global.ssn.scheme_issued_start_day_Error = "";
+
   global.Granting_Authority_Name_Error = "";
 
+  global.ssn.scheme_issued_confirmation_day_Error = "";
+  global.ssn.scheme_issued_confirmation_month_Error = "";
+  global.ssn.scheme_issued_confirmation_year_Error = "";
+
+  global.ssn.scheme_issued_start_day_Error = "";
   global.ssn.scheme_issued_start_month_Error = "";
   global.ssn.scheme_issued_start_year_Error = "";
   global.scheme_issued_end_day_Error = "";

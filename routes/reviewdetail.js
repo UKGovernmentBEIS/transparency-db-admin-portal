@@ -23,6 +23,7 @@ router.post("/", async (req, res) => {
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
     isAddSubsidyPrimarycall = false;
+    ssn.GetConfirmationMonthName = "";
     ssn.GetMonthName = "";
     ssn.SubsidyErrors = [];
     ssn.SubsidyFocus = [];
