@@ -59,7 +59,7 @@ router.post("/", (req, res) => {
     if (!req.body.grantingAuthorityName) ssn.grantingAuthorityName_Error = true;
 
     if (ssn.grantingAuthorityName_Error) {
-      ssn.grantingAuthorityName_Error_Msg = "Enter a granting authority name";
+      ssn.grantingAuthorityName_Error_Msg = "Enter a public authority name";
       res.render("bulkupload/grantingauthority-add", {
         ssn,
         // ssn.grantingAuthorityName_Error,

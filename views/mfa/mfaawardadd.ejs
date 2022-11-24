@@ -285,19 +285,19 @@
                     <% if( ssn.Granting_Authority_Name_Error || ssn.Granting_Authority_Inactive_Error || ssn.Granting_Authority_Multiple_Error || ssn.Granting_Authority_Exists_Error) { %>
                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                         <label class="govuk-label" for="Granting_Authority_Name">
-                            Granting authority name
+                            Public authority name
                         </label>
                         <% if (ssn.Granting_Authority_Inactive_Error) { %>
                         <span class="govuk-error-message" id="Granting_Authority_Name_Error">
-                            <span class="govuk-visually-hidden">Error:</span> Granting authority is not active
+                            <span class="govuk-visually-hidden">Error:</span> Public authority is not active
                         </span>
                         <% } else if (ssn.Granting_Authority_Exists_Error) { %> 
                         <span class="govuk-error-message" id="Granting_Authority_Name_Error">
-                            <span class="govuk-visually-hidden">Error:</span> Granting authority does not exist
+                            <span class="govuk-visually-hidden">Error:</span> Public authority does not exist
                         </span>
                         <% } else { %>
                         <span class="govuk-error-message" id="Granting_Authority_Name_Error">
-                            <span class="govuk-visually-hidden">Error:</span> Enter a granting authority name
+                            <span class="govuk-visually-hidden">Error:</span> Enter a public authority name
                         </span>
                         <% } %>
                         <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
@@ -312,7 +312,7 @@
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                         <label class="govuk-label" for="Granting_Authority_Name">
-                            Granting authority name
+                            Public authority name
                         </label>
 
                         <% if(ssn.dashboard_roles == "BEIS Administrator") { %>

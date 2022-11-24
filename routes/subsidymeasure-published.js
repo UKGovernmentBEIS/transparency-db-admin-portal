@@ -149,7 +149,7 @@ router.post("/", async (req, res) => {
         }
         if (err.toString().includes("400")) {
           ssn.Granting_Authority_Name_Inactive_Error = true;
-          ssn.SubsidyErrors.push(" Granting authority is not active");
+          ssn.SubsidyErrors.push(" public authority is not active");
           ssn.SubsidyFocus.push("#Granting_Authority_Name");
           // Additem = Additem + 1;
           ssn.SubsidyArraySize = ssn.SubsidyErrors.length;

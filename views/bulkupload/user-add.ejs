@@ -134,7 +134,7 @@
                                 BEIS Administrator
                             </label>
                             <div id="beis-user-hint" class="govuk-hint govuk-radios__hint">
-                                Will be able to add, edit and approve users, granting authorities, subsidy schemes and
+                                Will be able to add, edit and approve users, public authorities, subsidy schemes and
                                 awards.
                             </div>
                         </div>
@@ -150,7 +150,7 @@
                             <% } %>
 
                             <label class="govuk-label govuk-radios__label" for="GAAdmin">
-                                Granting Authority Administrator
+                                Public Authority Administrator
                             </label>
                             <div id="GA-Admin-user-hint" class="govuk-hint govuk-radios__hint">
                                 Will be able to add, edit and approve users, subsidy schemes and awards.
@@ -167,7 +167,7 @@
                                 onchange="getUserRole('GAApprover','<%=ssn.dashboard_ga_name%>','<%=ssn.dashboard_roles%>','<%=ssn.GA_Name_User_Global%>')">
                             <% } %>
                             <label class="govuk-label govuk-radios__label" for="GAApprover">
-                                Granting Authority Approver
+                                Public Authority Approver
                             </label>
                             <div id="GA-Approver-user-hint" class="govuk-hint govuk-radios__hint">
                                 Will be able to add, edit and approve subsidy schemes and awards.
@@ -184,7 +184,7 @@
                                 onchange="getUserRole('GAEncoder','<%=ssn.dashboard_ga_name%>','<%=ssn.dashboard_roles%>','<%=ssn.GA_Name_User_Global%>')">
                             <% } %>
                             <label class="govuk-label govuk-radios__label" for="GAEncoder">
-                                Granting Authority Encoder
+                                Public Authority Encoder
                             </label>
                             <div id="GA-Encoder-user-hint" class="govuk-hint govuk-radios__hint">
                                 Will be able to add and edit subsidy awards.
@@ -218,7 +218,7 @@
                                 BEIS Administrator
                             </label>
                             <div id="beis-user-hint" class="govuk-hint govuk-radios__hint">
-                                Will be able to add, edit and approve users, granting authorities, subsidy schemes and
+                                Will be able to add, edit and approve users, public authorities, subsidy schemes and
                                 awards.
                             </div>
                         </div>
@@ -234,7 +234,7 @@
                             <% } %>
 
                             <label class="govuk-label govuk-radios__label" for="GAAdmin">
-                                Granting Authority Administrator
+                                Public Authority Administrator
                             </label>
                             <div id="GA-Admin-user-hint" class="govuk-hint govuk-radios__hint">
                                 Will be able to add, edit and approve users, subsidy schemes and awards.
@@ -251,7 +251,7 @@
                                 onchange="getUserRole('GAApprover','<%=ssn.dashboard_ga_name%>','<%=ssn.dashboard_roles%>','<%=ssn.GA_Name_User_Global%>')">
                             <% } %>
                             <label class="govuk-label govuk-radios__label" for="GAApprover">
-                                Granting Authority Approver
+                                Public Authority Approver
                             </label>
                             <div id="GA-Approver-user-hint" class="govuk-hint govuk-radios__hint">
                                 Will be able to add, edit and approve subsidy schemes and awards.
@@ -268,7 +268,7 @@
                                 onchange="getUserRole('GAEncoder','<%=ssn.dashboard_ga_name%>','<%=ssn.dashboard_roles%>','<%=ssn.GA_Name_User_Global%>')">
                             <% } %>
                             <label class="govuk-label govuk-radios__label" for="GAEncoder">
-                                Granting Authority Encoder
+                                Public Authority Encoder
                             </label>
                             <div id="GA-Encoder-user-hint" class="govuk-hint govuk-radios__hint">
                                 Will be able to add and edit subsidy awards.
@@ -282,20 +282,20 @@
                         <% if(ssn.GA_Name_User_Error) { %>
 
                         <span class="govuk-error-message" id="Goods_or_Services_Error">
-                            <span class="govuk-visually-hidden">Error:</span> Enter the granting authority name
+                            <span class="govuk-visually-hidden">Error:</span> Enter the Public authority name
                         </span>
 
                         <div class="govuk-form-group govuk-grid-column-full govuk-form-group--error">
                             <label class="govuk-label" for="GA_Name_User">
-                                Granting authority name
+                                Public authority name
                             </label>
                             <!-- <div class="govuk-form-group govuk-grid-column-one-half govuk-padding-0"> -->
                             <%  if(ssn.dashboard_roles == 'BEIS Administrator') { %>
                             <input class="govuk-input govuk-!-width-one-half govuk-form-group--error"
-                                placeholder="Granting authority name" type="text" id="GA_Name_User" name="GA_Name_User"
+                                placeholder="Public authority name" type="text" id="GA_Name_User" name="GA_Name_User"
                                 <% if(ssn.GA_Name_User_Global) {%> value="<%= ssn.GA_Name_User_Global %>" <% } %>>
                             <% } else { %>
-                            <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
+                            <input class="govuk-input govuk-!-width-one-half" placeholder="Public authority name"
                                 type="text" id="GA_Name_User" name="GA_Name_User" disabled
                                 value="<%= ssn.dashboard_ga_name   %>">
                             <% } %>
@@ -306,17 +306,17 @@
                         </span>
                         <div class="govuk-form-group govuk-grid-column-full govuk-form-group--error">
                             <label class="govuk-label" for="GA_Name_User">
-                                Granting authority name
+                                Public authority name
                             </label>
 
 
                             <!-- <div class="govuk-form-group govuk-grid-column-one-half govuk-padding-0"> -->
                             <%  if(ssn.dashboard_roles == 'BEIS Administrator') { %>
-                            <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
+                            <input class="govuk-input govuk-!-width-one-half" placeholder="Public authority name"
                                 type="text" id="GA_Name_User" name="GA_Name_User" <% if(ssn.GA_Name_User_Global) { %>
                                 value="<%= ssn.GA_Name_User_Global %>" <% } %>>
                             <% } else { %>
-                            <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
+                            <input class="govuk-input govuk-!-width-one-half" placeholder="Public authority name"
                                 type="text" id="GA_Name_User" name="GA_Name_User" disabled
                                 value="<%= ssn.dashboard_ga_name %>">
                             <% } %>
@@ -325,15 +325,15 @@
                         <% } else { %>
                         <div class="govuk-form-group govuk-grid-column-full">
                             <label class="govuk-label" for="GA_Name_User">
-                                Granting authority name
+                                Public authority name
                             </label>
                             <!-- <div class="govuk-form-group govuk-grid-column-one-half govuk-padding-0"> -->
                             <%  if(ssn.dashboard_roles == 'BEIS Administrator') { %>
-                            <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
+                            <input class="govuk-input govuk-!-width-one-half" placeholder="Public authority name"
                                 type="text" id="GA_Name_User" name="GA_Name_User" <% if(ssn.GA_Name_User_Global) { %>
                                 value="<%= ssn.GA_Name_User_Global %>" <% } %>>
                             <% } else { %>
-                            <input class="govuk-input govuk-!-width-one-half" placeholder="Granting authority name"
+                            <input class="govuk-input govuk-!-width-one-half" placeholder="Public authority name"
                                 type="text" id="GA_Name_User" name="GA_Name_User" disabled
                                 value="<%= ssn.dashboard_ga_name %>">
                             <% } %>
