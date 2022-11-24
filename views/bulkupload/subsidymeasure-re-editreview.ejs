@@ -76,11 +76,6 @@
                 <table class="govuk-table">
                     <tbody class="govuk-table__body">
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Is this an ad hoc scheme
-                            </th>
-                            <td class="govuk-table__cell"><%= ssn.Subsidy_Adhoc_Global %></td>
-                        </tr>
-                        <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Granting Authority</th>
                             <td class="govuk-table__cell"><%=ssn.Granting_Authority_Name_Global%></td>
                         </tr>
@@ -118,6 +113,11 @@
                             <td class="govuk-table__cell">£ <%= formatedCurrency %></td>
                         </tr>
                         <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Confirmation Date</th>
+                            <td class="govuk-table__cell"><%= ssn.Scheme_Confirmation_Day_Global %> <%= ssn.GetConfirmationMonthName %>
+                                <%= ssn.Scheme_Confirmation_Year_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Start Date</th>
                             <td class="govuk-table__cell"><%= ssn.Scheme_Start_Day_Global %> <%= ssn.GetMonthName %>
                                 <%= ssn.Scheme_Start_Year_Global %></td>
@@ -132,6 +132,16 @@
                                      <%= ssn.Scheme_End_Day_Global %> <%= ssn.GetEndMonthName %>
                                      <%= ssn.Scheme_End_Year_Global %>
                                  <% } %>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Spending Sectors</th>
+                            <td class="govuk-table__cell">
+                                <ul class="govuk-list govuk-list--bullet">
+                                    <% spendingSectorArray.forEach(function(item) { %> 
+                                    <li> <%=item %> </li>
+                                    <% }); %> 
+                                </ul>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

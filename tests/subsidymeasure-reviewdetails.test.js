@@ -36,6 +36,9 @@ test("Unit testing for Subsidy Scheme Review Details Test for GET call", async (
   global.ssn = {};
   ssn.GetMonthName = "";
   global.dashboard_ga_name = "";
+  Scheme_Confirmation_Day_Global = "";
+  Scheme_Confirmation_Month_Global = "";
+  Scheme_Confirmation_Year_Global = "";
   Scheme_Start_Year_Global = "";
   Scheme_End_Day_Global = "";
   ssn.GetMonthName = "";
@@ -69,6 +72,9 @@ test("Unit testing for Subsidy Scheme Review Details Test for GET call", async (
       Granting_Authority_URL: "",
       Granting_Authority_Policy: "",
       Budget: "",
+      scheme_issued_confirmation_year: "",
+      scheme_issued_confirmation_month: "",
+      scheme_issued_confirmation_day: "",
       scheme_issued_start_year: "",
       scheme_issued_start_month: "",
       scheme_issued_start_day: "",
@@ -97,6 +103,7 @@ test("Unit testing for Subsidy Scheme Review Test for GET call", async () => {
   Scheme_Start_Day_Global = "";
   global.ssn = {};
   ssn.GetMonthName = "";
+  Scheme_Confirmation_Year_Global = "";
   Scheme_Start_Year_Global = "";
   Scheme_End_Day_Global = "";
   ssn.GetMonthName = "";
@@ -116,6 +123,9 @@ test("Unit testing for Subsidy Scheme Review Test for GET call", async () => {
       Granting_Authority_URL: "",
       Granting_Authority_Policy: "",
       Budget: "",
+      scheme_issued_confirmation_year: "",
+      scheme_issued_confirmation_month: "",
+      scheme_issued_confirmation_day: "",
       scheme_issued_start_year: "",
       scheme_issued_start_month: "",
       scheme_issued_start_day: "",
