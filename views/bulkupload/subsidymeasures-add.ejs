@@ -290,13 +290,10 @@
                                             </div>
                                         </details>
 
-                                        <!-- <div class="govuk-hint">A short summary of the policy page that you provided
-                                            the URL for. For example, Water Purity Scheme policy page.
-                                        </div> -->
                                         <% if( ssn.Subsidy_Scheme_Description_Error ){ %>
                                         <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
                                             <span class="govuk-visually-hidden">Error:</span> Enter a valid
-                                            granting authority policy page description
+                                            subsidy scheme description
                                         </span>
 
                                         <% } else if( ssn.Subsidy_Scheme_Description_5000_Error ){ %>
@@ -304,7 +301,7 @@
                                             <span class="govuk-visually-hidden">Error:</span> Subsidy scheme description cannot be greater than 5000 characters
                                         </span>
                                         <% }  %>
-                                            <textarea class="govuk-textarea govuk-js-character-count" id="Subsidy_Scheme_Description" name="Subsidy_Scheme_Description" rows="5" aria-describedby="Subsidy_Scheme_Description-info"><%= ssn.Subsidy_Scheme_Description %></textarea>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="Subsidy_Scheme_Description" name="Subsidy_Scheme_Description" rows="5" aria-describedby="Subsidy_Scheme_Description-info"><%= ssn.Subsidy_Scheme_Description_Global %></textarea>
                                     </div>
 
                             <% if( ssn.Legal_Basis_Error ){ %>

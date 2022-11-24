@@ -107,7 +107,7 @@ router.post("/", async (req, res) => {
       endDate: subsidy_end_date,
       status: "Active",
       hasNoEndDate: ssn.Has_No_End_Date_Global,
-      subsidySchemeDescription: ssn.Subsidy_Scheme_Description_Global
+      subsidySchemeDescription: ssn.Subsidy_Scheme_Description_Global,
       confirmationDate: subsidy_confirmation_date,
       spendingSectorJson: ssn.Scheme_Sector_Json_Global
     };
