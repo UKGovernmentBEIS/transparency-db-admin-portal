@@ -168,14 +168,14 @@
 
                         <div class="govuk-radios" id="MFA_Grouping_YesNo">
                             <div class="govuk-radios__item">
-                                
+
                                 <input class="govuk-radios__input" name="mfaGroupingYesNo" id="mfaGroupingYes" type="radio" value="Yes" <% if(ssn.MFA_Yes_No_Global == 'Yes') { %> checked <% } %> onchange="getMfaGrouping(event)">
                                 <label class="govuk-label govuk-radios__label" for="mfaGroupingYes">
                                     Yes
                                 </label>
                             </div>
                             <div class="govuk-radios__item">
-                                
+
                                 <input class="govuk-radios__input" name="mfaGroupingYesNo" id="mfaGroupingNo" type="radio" value="No" <% if(ssn.MFA_Yes_No_Global == 'No') { %> checked <% } %> onchange="getMfaGrouping(event)">
                                 <label class="govuk-label govuk-radios__label" for="mfaGroupingNo">
                                     No
@@ -225,7 +225,7 @@
 
                         <div class="govuk-input__wrapper">
                             <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                            <input class="govuk-input govuk-!-width-one-half" id="Award_Full_Amount" name="awardFullAmount" type="number" aria-describedby="Award_Full_Amount" value="<%= ssn.Award_Full_Amount_Global %>" />
+                            <input class="govuk-input govuk-!-width-one-half" id="Award_Full_Amount" name="awardFullAmount" type="number" aria-describedby="Award_Full_Amount" value="<%= ssn.Award_Full_Amount_Global %>" min="0" pattern="[0-9]*" />
                         </div>
                     </div>
 
@@ -291,7 +291,7 @@
                         <span class="govuk-error-message" id="Granting_Authority_Name_Error">
                             <span class="govuk-visually-hidden">Error:</span> Granting authority is not active
                         </span>
-                        <% } else if (ssn.Granting_Authority_Exists_Error) { %> 
+                        <% } else if (ssn.Granting_Authority_Exists_Error) { %>
                         <span class="govuk-error-message" id="Granting_Authority_Name_Error">
                             <span class="govuk-visually-hidden">Error:</span> Granting authority does not exist
                         </span>
