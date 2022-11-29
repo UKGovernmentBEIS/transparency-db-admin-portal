@@ -48,12 +48,16 @@ router.post("/", (req, res) => {
     ssn.scheme_issued_end_month_Error = false;
     ssn.scheme_issued_end_day_Error = false;
     ssn.scheme_issued_end_day_lesser_Error = false;
+    ssn.Subsidy_Scheme_Description_Error = false;
+    ssn.Subsidy_Scheme_Description_5000_Error = false;
     ssn.spendingsector_Error = false;
 
     var {
       Subsidy_Adhoc,
       Granting_Authority_Name,
       Subsidy_Measure_Title,
+      Subsidy_Scheme_Description,
+
       Legal_Basis,
       Granting_Authority_URL,
       Granting_Authority_Policy,
@@ -132,6 +136,8 @@ router.post("/", (req, res) => {
 
     ssn.Has_No_End_Date_Global = has_no_end_date;
     ssn.Has_No_End_Date_Output_Global = "Not applicable";
+
+    ssn.Subsidy_Scheme_Description_Global = Subsidy_Scheme_Description;
 
     if (ssn.Subsidy_Adhoc_Global == "Yes") {
       ssn.Scheme_End_Day_Global = scheme_issued_start_day;
@@ -274,6 +280,7 @@ router.post("/", (req, res) => {
     console.log(
       "ssn.Subsidy_Measure_Title_Global :" + ssn.Subsidy_Measure_Title_Global
     );
+    console.log("ssn.Subsidy_Scheme_Description_Global  :" + ssn.Subsidy_Scheme_Description_Global);
     console.log("ssn.Legal_Basis_Global  :" + ssn.Legal_Basis_Global);
     console.log(
       "ssn.Granting_Authority_URL_Global :" + ssn.Granting_Authority_URL_Global
@@ -358,6 +365,15 @@ router.post("/", (req, res) => {
       // if (!Subsidy_Measure_Title) {
 
       // }
+      if (Subsidy_Scheme_Description == ""){
+        ssn.Subsidy_Scheme_Description_Error = true;
+        ssn.SubsidyErrors.push(" Enter the Subsidy scheme description");
+        ssn.SubsidyFocus.push("#Subsidy_Scheme_Description");
+      } else if (Subsidy_Scheme_Description.length > 5000){
+        ssn.Subsidy_Scheme_Description_5000_Error = true;
+        ssn.SubsidyErrors.push(" The subsidy scheme description must be 5000 characters or less.");
+        ssn.SubsidyFocus.push("#Subsidy_Scheme_Description");
+      }
 
       if (!Granting_Authority_Name) {
         ssn.Granting_Authority_Name_Error = true;
@@ -713,6 +729,8 @@ router.post("/", (req, res) => {
         ssn.Subsidy_Measure_Title_255_Error ||
         ssn.Granting_Authority_URL_255_Error ||
         ssn.Granting_Authority_Policy_255_Error ||
+        ssn.Subsidy_Scheme_Description_Error ||
+        ssn.Subsidy_Scheme_Description_5000_Error ||
         ssn.spendingsector_Error
       ) {
         res.render("bulkupload/subsidymeasures-add", {

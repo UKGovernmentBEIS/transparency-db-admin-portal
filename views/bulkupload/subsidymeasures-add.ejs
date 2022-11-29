@@ -270,6 +270,40 @@
                                     name="Subsidy_Measure_Title" type="text"
                                     value="<%= ssn.Subsidy_Measure_Title_Global %>">
                             </div>
+
+                            <% if( ssn.Subsidy_Scheme_Description_Error ||ssn.Subsidy_Scheme_Description_5000_Error){ %>
+                                <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                                    <% } else { %>
+                                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                        <% }  %>
+                                        <label class="govuk-label" for="address-line-1">
+                                            Subsidy scheme description
+                                        </label>
+                                        <details class="govuk-details" data-module="govuk-details">
+                                            <summary class="govuk-details__summary">
+                                                <span class="govuk-details__summary-text">
+                                                    What is a Subsidy scheme description?
+                                                </span>
+                                            </summary>
+                                            <div class="govuk-details__text">
+                                                Please provide a summary description of the subsidy scheme which includes information such as location, enterprise eligibility, the basis for calculating subsidies under the scheme and any other information required by the Subsidy Control (Subsidy Database Information Requirements) Regulations 2022 which is not already included in the database entry.
+                                            </div>
+                                        </details>
+
+                                        <% if( ssn.Subsidy_Scheme_Description_Error ){ %>
+                                        <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
+                                            <span class="govuk-visually-hidden">Error:</span> Enter a valid
+                                            subsidy scheme description
+                                        </span>
+
+                                        <% } else if( ssn.Subsidy_Scheme_Description_5000_Error ){ %>
+                                        <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
+                                            <span class="govuk-visually-hidden">Error:</span> Subsidy scheme description cannot be greater than 5000 characters
+                                        </span>
+                                        <% }  %>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="Subsidy_Scheme_Description" name="Subsidy_Scheme_Description" rows="5" aria-describedby="Subsidy_Scheme_Description-info"><%= ssn.Subsidy_Scheme_Description_Global %></textarea>
+                                    </div>
+
                             <% if( ssn.Legal_Basis_Error ){ %>
                             <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                 <% } else { %>
