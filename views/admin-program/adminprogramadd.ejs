@@ -15,18 +15,22 @@
             }
         }
 
-        function disableCategories(source) {
+        function disableCategories() {
+            var checkBox = document.getElementById("category-na");
             checkboxes = document.getElementsByClassName("govuk-checkboxes__input_categories");
             for(var i=0, n=checkboxes.length;i<n;i++) {
-                checkboxes[i].checked = false;
-                checkboxes[i].disabled = source.checked;
+                if(checkBox.checked){
+                    checkboxes[i].checked = false;
+                }
+                checkboxes[i].disabled = checkBox.checked;
             }
         }
     </script>
 </head>
 
 
-<body class="govuk-template__body app-example-page">
+<body class="govuk-template__body app-example-page"
+    onload="disableCategories()">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -91,6 +95,9 @@
             <!-- Body header ends here -->
 
             <form action="/adminprogramreview" method="POST" id="scheme-form">
+                <label class="govuk-heading-l">
+                    Admin program details
+                </label>
                 <section class="govuk-grid-row">
                 <% if (isCallFromEdit){ %> 
                     <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -109,8 +116,8 @@
                     </label>
                 <% if( ssn.Route_Name_Length_Error ){ %>
                     <span class="govuk-error-message" id="Route_Name_Length_Error">
-                        <span class="govuk-visually-hidden">Error:</span> Streamlined Route or primary public authority schemecannot be
-                        greater than 255 characters
+                        <span class="govuk-visually-hidden">Error:</span> Streamlined Route or primary public authority scheme must be no
+                        longer than 255 characters
                     </span>
                 <% } %>
                 <% if( ssn.Route_Name_Error ){ %>
@@ -123,28 +130,32 @@
                         value="<%= ssn.Admin_Program_Route_Name_Global %>">
                 </div>
 
-                <% if( ssn.Admin_Program_Name_Error || ssn.Admin_Program_Name_Length_Error ){ %>
-                    <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
-                <% } else { %>
-                    <div class="govuk-form-group govuk-grid-column-two-thirds">
-                <% }  %>
+                    <div class="govuk-form-group govuk-grid-column-two-thirds 
+                    <% if( ssn.Subsidy_Control_Number_Error || ssn.Subsidy_Control_Inactive_Error || ssn.Subsidy_Control_Exists_Error || ssn.Subsidy_Control_Multiple_Error ){ %> govuk-form-group--error <% } %>">
                         <label class="govuk-label" for="address-line-1">
                             Subsidy control number
                         </label>
-                    <% if( ssn.Admin_Program_Name_Length_Error ){ %>
-                        <span class="govuk-error-message" id="Admin_Program_Name_Length_Error">
-                            <span class="govuk-visually-hidden">Error:</span> Admin program name cannot be
-                            greater than 255 characters
+                        <div class="govuk-hint">
+                            For example, SC10123
+                        </div>
+                    <% if( ssn.Subsidy_Control_Number_Error ){ %>
+                        <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
+                            <span class="govuk-visually-hidden">Error:</span> You must provide subsidy control number
                         </span>
                     <% } %>
-                    <% if( ssn.Admin_Program_Name_Error ){ %>
-                        <span class="govuk-error-message" id="Admin_Program_Name_Error">
-                            <span class="govuk-visually-hidden">Error:</span> You must provide an admin program name
+                    <% if( ssn.Subsidy_Control_Inactive_Error ){ %>
+                        <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
+                            <span class="govuk-visually-hidden">Error:</span> Subsidy scheme is not active
                         </span>
                     <% } %>
-                        <input class="govuk-input govuk-!-width-one-half" id="Admin_Program_Name"
-                            name="Admin_Program_Name" type="text"
-                            value="<%= ssn.Admin_Program_Name_Global %>">
+                    <% if( ssn.Subsidy_Control_Exists_Error ){ %>
+                        <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
+                            <span class="govuk-visually-hidden">Error:</span> Subsidy scheme does not exist
+                        </span>
+                    <% } %>
+                        <input class="govuk-input govuk-!-width-one-half" id="Subsidy_Control_Number"
+                            name="Subsidy_Control_Number" type="text"
+                            value="<%= ssn.Subsidy_Control_Number_Global %>">
                     </div>
 
 
@@ -172,12 +183,12 @@
                             value="<%= ssn.Admin_Program_Name_Global %>">
                     </div>
 
-                <% if( ssn.Granting_Authority_Name_Error || ssn.Granting_Authority_Name_Inactive_Error || ssn.Granting_Authority_Multiple_Error || ssn.Granting_Authority_Exists_Error) { %>
+                <% if( ssn.Granting_Authority_Name_Error || ssn.Granting_Authority_Inactive_Error || ssn.Granting_Authority_Multiple_Error || ssn.Granting_Authority_Exists_Error) { %>
                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                         <label class="govuk-label" for="Granting_Authority_Name">
                             Public authority name
                         </label>
-                        <% if(ssn.Granting_Authority_Name_Inactive_Error){ %>
+                        <% if(ssn.Granting_Authority_Inactive_Error){ %>
                         <span class="govuk-error-message" id="Granting_Authority_Name_Error">
                             <span class="govuk-visually-hidden">Error:</span> Public authority is not active
                         </span>
@@ -223,62 +234,63 @@
                     </div>
                     <% }  %>
 
-                    <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.Category_Error ){ %> govuk-form-group--error <% } %>">
+                    <div id="Categories" class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.Category_Error ){ %> govuk-form-group--error <% } %>">
                         <label class="govuk-label" for="address-line-1">
                             Category or Categories of the Streamlined Route
                         </label>
-                    <% if( ssn.Route_Name_Error ){ %>
-                        <span class="govuk-error-message" id="Route_Name_Error">
+                    <% if( ssn.Category_Error ){ %>
+                        <span class="govuk-error-message" id="Category_Error">
                             <span class="govuk-visually-hidden">Error:</span> You must select at least one category, or N/A
                         </span>
                     <% } %>
-                    <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">
-
-                        <div class="govuk-checkboxes__item">
-                            <input class="govuk-checkboxes__input govuk-checkboxes__input_categories_na" id="category-na" name="category-na"
-                                type="checkbox" onclick="disableCategories(this)" value="NA"<% if (ssn.spendingsector_accommodation_Global) { %> checked <% } %>>
-                            <label class="govuk-label govuk-checkboxes__label" for="category-na">
-                                NA
-                            </label>
-                        </div>
-
-                        <div class="govuk-checkboxes__item">
-                            <input class="govuk-checkboxes__input govuk-checkboxes__input_categories" onclick="selectAll(this)" id="select-all" name="select-all" type="checkbox"
-                            value="Select all"
-                            data-aria-controls="conditional-select-all">
-                            <label class="govuk-label govuk-checkboxes__label" for="select-all">
-                            Select all
-                            </label>
-                        </div>
-
-                        <div class="govuk-checkboxes__conditional" id="conditional-objective0">
+                        <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">
 
                             <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input govuk-checkboxes__input_categories" id="category-list" name="category-list"
-                                    type="checkbox" value="List"<% if (ssn.spendingsector_accommodation_Global) { %>
-                                        checked <% } %>>
-                                <label class="govuk-label govuk-checkboxes__label" for="category-list">
-                                    List
+                                <input class="govuk-checkboxes__input govuk-checkboxes__input_categories_na" id="category-na" name="category_na"
+                                    type="checkbox" onclick="disableCategories(this)" value="NA"<% if (ssn.admin_program_category_na_global) { %> checked <% } %>>
+                                <label class="govuk-label govuk-checkboxes__label" for="category-na">
+                                    NA
                                 </label>
                             </div>
 
                             <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input govuk-checkboxes__input_categories" id="category-of"
-                                    name="category-of" type="checkbox" value="Of"<% if (ssn.spendingsector_activities_of_extraterritorial_Global) { %>
-                                        checked <% } %>>
-                                <label class="govuk-label govuk-checkboxes__label" for="category-of">
-                                    Of
+                                <input class="govuk-checkboxes__input govuk-checkboxes__input_categories" onclick="selectAll(this)" id="select-all" name="select-all" type="checkbox"
+                                value="Select all"
+                                data-aria-controls="conditional-select-all">
+                                <label class="govuk-label govuk-checkboxes__label" for="select-all">
+                                Select all
                                 </label>
                             </div>
 
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input govuk-checkboxes__input_categories" id="category-categories"
-                                    name="category-categories" type="checkbox"
-                                    value="Categories"<% if (ssn.spendingsector_undifferentiated_goods_Global) { %>
-                                        checked <% } %>>
-                                <label class="govuk-label govuk-checkboxes__label" for="spendingsector-undifferentiated-goods">
-                                    Categories
-                                </label>
+                            <div class="govuk-checkboxes__conditional" id="conditional-objective0">
+
+                                <!-- TODO: Replace with non-placeholder names when categories are known -->
+
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input govuk-checkboxes__input_categories" id="category-list" name="category_list"
+                                        type="checkbox" value="List"<% if (ssn.admin_program_category_list_global) { %>
+                                            checked <% } %>>
+                                    <label class="govuk-label govuk-checkboxes__label" for="category-list">
+                                        List
+                                    </label>
+                                </div>
+
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input govuk-checkboxes__input_categories" id="category-of"
+                                        name="category_of" type="checkbox" value="Of"<% if (ssn.admin_program_category_of_global) { %> checked <% } %>>
+                                    <label class="govuk-label govuk-checkboxes__label" for="category-of">
+                                        Of
+                                    </label>
+                                </div>
+
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input govuk-checkboxes__input_categories" id="category-categories"
+                                        name="category_categories" type="checkbox"
+                                        value="Categories"<% if (ssn.admin_program_category_categories_global) { %> checked <% } %>>
+                                    <label class="govuk-label govuk-checkboxes__label" for="spendingsector-undifferentiated-goods">
+                                        Categories
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -294,7 +306,8 @@
                     <% } %>
                         <div class="govuk-input__wrapper">
                             <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                            <input class="govuk-input govuk-!-width-one-half" id="Award_Full_Amount" name="awardFullAmount" type="number" aria-describedby="Award_Full_Amount" value="<%= ssn.Admin_Program_Budget_Global %>" />
+                            <input class="govuk-input govuk-!-width-one-half" id="Admin_Program_Budget" name="Admin_Program_Budget" type="number" 
+                                aria-describedby="Admin_Program_Budget" min="0" value="<%= ssn.Admin_Program_Budget_Global %>" />
                         </div>
                     </div>
 
