@@ -18,21 +18,36 @@ router.get("/", async (req, res) => {
     ssn.Admin_Program_Number_Global = "";
     ssn.Admin_Program_Name_Global = "";
     ssn.Granting_Authority_Name_Global = "";
+    ssn.Admin_Program_Route_Name_Global = "";
+    ssn.Subsidy_Control_Number_Global = "";
+    ssn.Admin_Program_Budget_Global = "";
 
+    // TODO: Replace variables with non-placeholder names when categories are known
+    ssn.admin_program_category_na_global = false;
+    ssn.admin_program_category_list_global = false;
+    ssn.admin_program_category_of_global = false;
+    ssn.admin_program_category_categories_global = false;
+
+    // Errors Start
     ssn.Granting_Authority_Name_Error = false;
     ssn.Granting_Authority_Exists_Error = false;
     ssn.Granting_Authority_Inactive_Error = false;
     ssn.Granting_Authority_Multiple_Error = false;
-
     ssn.Admin_Program_Name_Error = false;
-    ssn.Admin_Program_Name_Length_Error = false;
+    ssn.Admin_ProgramName_Length_Error = false;
+    ssn.Route_Name_Error = false;
+    ssn.Route_Name_Length_Error = false;
+    ssn.Subsidy_Control_Number_Error = false;
+    ssn.Subsidy_Control_Inactive_Error = false;
+    ssn.Subsidy_Control_Exists_Error = false;
+    ssn.Category_Error = false;
 
     ssn.errors = [];
     isCallFromEdit = false;
     addOrEdit = "Add";
 
     req.query = JSON.parse(JSON.stringify(req.query));
-    if (req.baseUrl.includes("mfaprogramedit")){
+    if (req.baseUrl.includes("adminprogramedit")){
       if(!req.query.hasOwnProperty("id")){
         res.render("bulkupload/notAvailable");
       }else{
