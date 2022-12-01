@@ -46,6 +46,7 @@ router.post("/", async (req, res) => {
     ssn.MFA_Award_Beneficiary_Name_Length_Error = false;
     ssn.MFA_Award_National_ID_Type_Error = false;
     ssn.MFA_Award_National_ID_Error = false;
+    ssn.MFA_Award_National_ID_255_Error = false;
     ssn.MFA_Award_Confirmation_Day_Error = false;
     ssn.MFA_Award_Confirmation_Month_Error = false;
     ssn.MFA_Award_Confirmation_Year_Error = false;
@@ -74,8 +75,8 @@ router.post("/", async (req, res) => {
 
     ssn.SPEI_Global = speiAssistance;
     ssn.MFA_Yes_No_Global = mfaGroupingYesNo;
-    ssn.MFA_Grouping_ID_Global = mfaGroupingId;    
-    ssn.MFA_Grouping_Name_Global = "NA";    
+    ssn.MFA_Grouping_ID_Global = mfaGroupingId;
+    ssn.MFA_Grouping_Name_Global = "NA";
     ssn.Award_Full_Amount_Global = awardFullAmount;
     ssn.MFA_Award_Confirmation_Day_Global = mfa_award_confirmation_day;
     ssn.MFA_Award_Confirmation_Month_Global = mfa_award_confirmation_month;
@@ -219,7 +220,7 @@ router.post("/", async (req, res) => {
         ssn.MFAFocus[Additem] = "#Beneficiary_Name";
         Additem = Additem + 1;
       }
-      
+
       if (organisationName != "" && organisationName.length > 255) {
         ssn.MFA_Award_Beneficiary_Name_Length_Error = true;
         ssn.MFAAwardErrors[Additem] =
@@ -243,6 +244,14 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
+      if ( National_ID_Number.length > 255 ) {
+        ssn.MFA_Award_National_ID_255_Error = true;
+        ssn.MFAAwardErrors[Additem] =
+          "The ID number must be 255 characters or less. ";
+        ssn.MFAFocus[Additem] = "#National_ID_Number";
+        Additem = Additem + 1;
+      }
+
       var confirmationDateMonthName = monthArray[((parseInt(mfa_award_confirmation_month)) - 1)];;
 
       ssn.MFA_Award_Confirmation_Date_String_Global = mfa_award_confirmation_day + " " + confirmationDateMonthName + " " + mfa_award_confirmation_year;
@@ -259,6 +268,7 @@ router.post("/", async (req, res) => {
         ssn.MFA_Award_Beneficiary_Name_Error ||
         ssn.MFA_Award_Beneficiary_Name_Length_Error ||
         ssn.MFA_Award_National_ID_Type_Error ||
+        ssn.MFA_Award_National_ID_255_Error ||
         ssn.MFA_Award_National_ID_Error ||
         ssn.MFA_Award_Confirmation_Day_Error ||
         ssn.MFA_Award_Confirmation_Month_Error ||
@@ -375,7 +385,7 @@ router.post("/", async (req, res) => {
           }
         }
 
-         
+
 
         /**
          * MFA grouping validation end
@@ -418,7 +428,7 @@ router.post("/", async (req, res) => {
               ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
               Additem = Additem + 1;
             }
-            
+
             res.render("mfa/mfaawardadd", {
               ssn,
             });
