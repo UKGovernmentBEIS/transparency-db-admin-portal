@@ -147,7 +147,7 @@
       }else{
         document.getElementById('related-subsidy-scheme').style.display = 'block';
       }
-      
+
     };
   </script>
 </head>
@@ -241,9 +241,9 @@
                     </span>
                   </summary>
                   <div class="govuk-details__text">
-                    <p>A standalone subsidy award is a subsidy which is not given as part of a scheme. 
-                      All standalone subsidy awards must be uploaded, there is no threshold below which 
-                      there is an exemption from the obligation to upload an award (unless an exemption 
+                    <p>A standalone subsidy award is a subsidy which is not given as part of a scheme.
+                      All standalone subsidy awards must be uploaded, there is no threshold below which
+                      there is an exemption from the obligation to upload an award (unless an exemption
                       in Part 3 of the Subsidy Control Act applies).
                     </p>
                   </div>
@@ -419,7 +419,7 @@
                         <p>This is the name of the subsidy scheme that this award is related to.</p>
                       </div>
                     </details>
-      
+
                     <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
                       <span class="govuk-visually-hidden">Error:</span> There are multiple active schemes matching '<%= ssn.Subsidy_Control_Number_Name_Global %>'. Please use SC number instead.
                     </span>
@@ -616,7 +616,7 @@
                 </details>
                 <% if(ssn.Subsidy_Award_Description_Error || ssn.Subsidy_Award_Description_Error_Length){ %>
                   <span class="govuk-error-message" id="Subsidy_Objective_Error">
-                    <span class="govuk-visually-hidden">Error:</span> 
+                    <span class="govuk-visually-hidden">Error:</span>
                     <% if(ssn.Subsidy_Award_Description_Error){ %>
                       You must provide a descritpion of the standalone subsidy award
                     <% } else { %>
@@ -1094,7 +1094,9 @@
                         </span>
                       </summary>
                       <div class="govuk-details__text">
-                        Some text explaining subsidy element full amount range.
+                        <p>Where a public authority is making an entry on the database for the amount of a tax measure, they may provide that information by way of a tax range. The tax ranges that can be used are set out in regulation 6 of The Subsidy Control (Subsidy Database Information Requirements) Regulations 2022.</p>
+                        <br />
+                        <p>The public authority may alternatively choose to provide the amount of the tax measure.</p>
                       </div>
                     </details>
 
@@ -1143,7 +1145,9 @@
                         </span>
                       </summary>
                       <div class="govuk-details__text">
-                        Some text explaining subsidy element full amount range.
+                        <p>Where a public authority is making an entry on the database for the amount of a tax measure, they may provide that information by way of a tax range. The tax ranges that can be used are set out in regulation 6 of The Subsidy Control (Subsidy Database Information Requirements) Regulations 2022.</p>
+                        <br />
+                        <p>The public authority may alternatively choose to provide the amount of the tax measure.</p>
                       </div>
                     </details>
 

@@ -179,8 +179,7 @@
                                 <% if (Scheme_Confirmation_Date == '') { %>
                                     Not applicable
                                 <% } else { %>
-                                    <%= ssn.Scheme_Confirmation_Day_Global %> <%= ssn.GetConfirmationMonthName %>
-                                    <%= ssn.Scheme_Confirmation_Year_Global %>
+                                    <%= Scheme_Confirmation_Date %>
                                 <% } %>
                             </td>
                         </tr>
@@ -220,7 +219,7 @@
                                  <% } %>
                             </td>
                         </tr>
-                    
+
                     </tbody>
                 </table>
             </section>
