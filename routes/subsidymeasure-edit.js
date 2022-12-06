@@ -50,12 +50,8 @@ router.get("/", async (req, res) => {
         ssn.Granting_Authority_Policy_Global =
           measureapidata.data.gaSubsidyWebLinkDescription;
         ssn.Budget_Global = measureapidata.data.budget;
-        // ssn.Schema_Start_Day_Global = scheme_issued_start_day;
-        // ssn.Scheme_Start_Month_Global = scheme_issued_start_month;
-        // ssn.Scheme_Start_Year_Global = scheme_issued_start_year;
-        // ssn.Scheme_End_Day_Global = scheme_issued_end_day;
-        // ssn.Scheme_End_Month_Global = scheme_issued_end_month;
-        // ssn.Scheme_End_Year_Global = scheme_issued_end_year;
+
+        ssn.Maximum_Amount_Under_Scheme_Global = ssn.searchmeasuredetails.maximumAmountUnderScheme;
 
         Scheme_Confirmation_Date = ssn.searchmeasuredetails.confirmationDate;
         Scheme_Start_Date = ssn.searchmeasuredetails.startDate;
@@ -236,6 +232,7 @@ router.get("/", async (req, res) => {
         ssn.scheme_issued_confirmation_day_Error = false;
         ssn.scheme_issued_confirmation_month_Error = false;
         ssn.scheme_issued_confirmation_year_Error = false;
+        ssn.Maximum_Amount_Under_Scheme_255_Error = false;
 
         if (ssn.dashboard_roles !== "Granting Authority Encoder") {
           res.render("bulkupload/subsidymeasures-edit", { formatedCurrency });

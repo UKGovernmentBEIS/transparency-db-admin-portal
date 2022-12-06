@@ -86,6 +86,7 @@ router.post("/", async (req, res) => {
     ssn.scheme_issued_confirmation_day_Error = false;
     ssn.scheme_issued_confirmation_month_Error = false;
     ssn.scheme_issued_confirmation_year_Error = false;
+    ssn.Maximum_Amount_Under_Scheme_255_Error = false;
 
     // ssn.Granting_Authority_Name_Global = "Big Lottery Fund";
 
@@ -109,7 +110,8 @@ router.post("/", async (req, res) => {
       hasNoEndDate: ssn.Has_No_End_Date_Global,
       subsidySchemeDescription: ssn.Subsidy_Scheme_Description_Global,
       confirmationDate: subsidy_confirmation_date,
-      spendingSectorJson: ssn.Scheme_Sector_Json_Global
+      spendingSectorJson: ssn.Scheme_Sector_Json_Global,
+      maximumAmountUnderScheme: ssn.Maximum_Amount_Under_Scheme_Global
     };
 
     console.log("add scheme data", JSON.stringify(addSchemeRequest));
@@ -161,6 +163,7 @@ router.post("/", async (req, res) => {
         ssn.scheme_issued_confirmation_day_Error = false;
         ssn.scheme_issued_confirmation_month_Error = false;
         ssn.scheme_issued_confirmation_year_Error = false;
+        ssn.Maximum_Amount_Under_Scheme_255_Error = false;
 
         console.log("message error : " + err.message);
         if (err.toString().includes("401")) {
@@ -199,7 +202,8 @@ router.post("/", async (req, res) => {
         hasNoEndDate: ssn.Has_No_End_Date_Global,
         subsidySchemeDescription: ssn.Subsidy_Scheme_Description_Global,
         confirmationDate: subsidy_confirmation_date,
-        spendingSectorJson: ssn.Scheme_Sector_Json_Global
+        spendingSectorJson: ssn.Scheme_Sector_Json_Global,
+        maximumAmountUnderScheme: ssn.Maximum_Amount_Under_Scheme_Global
       };
 
       updateSchemeUrl =

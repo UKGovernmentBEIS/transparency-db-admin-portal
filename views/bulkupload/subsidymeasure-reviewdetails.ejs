@@ -123,10 +123,20 @@
                             <td class="govuk-table__cell" id="formatText">£ <%= ssn.Budget_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Maximum amount given under this scheme</th>
+                            <td class="govuk-table__cell">
+                                <% if(ssn.Maximum_Amount_Under_Scheme_Global=='' ) { %>
+                                    NA
+                                <% } else { %>
+                                <%= ssn.Maximum_Amount_Under_Scheme_Global %>
+                                <% } %>
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Confirmation Date</th>
                             <td class="govuk-table__cell">
                                 <% if(ssn.Scheme_Confirmation_Date == '') { %>
-                                    Not applicable
+                                    NA
                                 <% } else { %>
                                 <%= ssn.Scheme_Confirmation_Day_Global %> <%= ssn.GetConfirmationMonthName %>
                                 <%= ssn.Scheme_Confirmation_Year_Global %>
@@ -143,7 +153,7 @@
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">End Date</th>
                             <td class="govuk-table__cell">
                                 <% if((ssn.Scheme_End_Day_Global == 31) && (ssn.Scheme_End_Month_Global == 12) && (ssn.Scheme_End_Year_Global == 9999)) { %>
-                                   Not applicable
+                                   NA
                                 <% } else { %>
                                     <%= ssn.Scheme_End_Day_Global %> <%= ssn.GetEndMonthName %>
                                     <%= ssn.Scheme_End_Year_Global %>
@@ -152,11 +162,11 @@
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Spending Sectors</th>
-                            <td class="govuk-table__cell">  
+                            <td class="govuk-table__cell">
                                 <ul class="govuk-list govuk-list--bullet">
-                                    <% spendingSectorArray.forEach(function(item) { %> 
+                                    <% spendingSectorArray.forEach(function(item) { %>
                                     <li> <%=item %> </li>
-                                    <% }); %> 
+                                    <% }); %>
                                 </ul>
                             </td>
                         </tr>

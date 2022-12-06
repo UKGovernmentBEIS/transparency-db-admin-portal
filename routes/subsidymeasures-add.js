@@ -43,6 +43,7 @@ router.get("/", (req, res) => {
     ssn.scheme_issued_end_year_Error = false;
     ssn.scheme_issued_end_day_lesser_Error = false;
     ssn.spendingsector_Error = false;
+    ssn.Maximum_Amount_Under_Scheme_255_Error = false;
 
     ssn.Subsidy_Measure_Title_Global = "";
     ssn.Subsidy_Adhoc_Global = "";
@@ -57,6 +58,7 @@ router.get("/", (req, res) => {
     ssn.Granting_Authority_URL_Global = "";
     ssn.Granting_Authority_Policy_Global = "";
     ssn.Budget_Global = "";
+    ssn.Maximum_Amount_Under_Scheme_Global = "";
     ssn.Scheme_Confirmation_Day_Global = "";
     ssn.Scheme_Confirmation_Month_Global = "";
     ssn.Scheme_Confirmation_Year_Global = "";
