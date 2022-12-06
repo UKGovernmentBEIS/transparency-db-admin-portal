@@ -74,8 +74,8 @@ router.post("/", async (req, res) => {
 
     ssn.SPEI_Global = speiAssistance;
     ssn.MFA_Yes_No_Global = mfaGroupingYesNo;
-    ssn.MFA_Grouping_ID_Global = mfaGroupingId;    
-    ssn.MFA_Grouping_Name_Global = "NA";    
+    ssn.MFA_Grouping_ID_Global = mfaGroupingId;
+    ssn.MFA_Grouping_Name_Global = "NA";
     ssn.Award_Full_Amount_Global = awardFullAmount;
     ssn.MFA_Award_Confirmation_Day_Global = mfa_award_confirmation_day;
     ssn.MFA_Award_Confirmation_Month_Global = mfa_award_confirmation_month;
@@ -149,6 +149,12 @@ router.post("/", async (req, res) => {
         ssn.MFAFocus[Additem] = "#mfa_award_confirmation_year";
         Additem = Additem + 1;
       }
+      if (mfa_award_confirmation_year >= 9999) {
+        ssn.MFA_Award_Confirmation_Year_Error = true;
+        ssn.MFAAwardErrors[Additem] = "Enter a confirmation year before 9999";
+        ssn.MFAFocus[Additem] = "#mfa_award_confirmation_year";
+        Additem = Additem + 1;
+      }
       if (mfa_award_confirmation_day != "") {
         // day validation starts here
 
@@ -219,7 +225,7 @@ router.post("/", async (req, res) => {
         ssn.MFAFocus[Additem] = "#Beneficiary_Name";
         Additem = Additem + 1;
       }
-      
+
       if (organisationName != "" && organisationName.length > 255) {
         ssn.MFA_Award_Beneficiary_Name_Length_Error = true;
         ssn.MFAAwardErrors[Additem] =
@@ -375,7 +381,7 @@ router.post("/", async (req, res) => {
           }
         }
 
-         
+
 
         /**
          * MFA grouping validation end
@@ -418,7 +424,7 @@ router.post("/", async (req, res) => {
               ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
               Additem = Additem + 1;
             }
-            
+
             res.render("mfa/mfaawardadd", {
               ssn,
             });
