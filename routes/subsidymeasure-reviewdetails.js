@@ -362,9 +362,6 @@ router.post("/", (req, res) => {
         ssn.SubsidyFocus.push("#Subsidy_Measure_Title");
       }
 
-      // if (!Subsidy_Measure_Title) {
-
-      // }
       if (Subsidy_Scheme_Description == ""){
         ssn.Subsidy_Scheme_Description_Error = true;
         ssn.SubsidyErrors.push(" Enter the Subsidy scheme description");
