@@ -377,7 +377,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Award_National_ID_Error ){ %> govuk-form-group--error <% } %>">
+                    <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Award_National_ID_Error || ssn.MFA_Award_National_ID_255_Error ){ %> govuk-form-group--error <% } %>">
                         <label class="govuk-label" for="National_ID_Number">
                             ID Number
                         </label>
@@ -396,7 +396,11 @@
                         <span class="govuk-error-message" id="Subsidy_adhoc_Error">
                             <span class="govuk-visually-hidden">Error:</span> You must enter an ID number
                         </span>
-                        <% }  %>
+                        <% } else if ( ssn.MFA_Award_National_ID_255_Error ){ %>
+                        <span class="govuk-error-message" id="National_ID_Number">
+                            <span class="govuk-visually-hidden">Error:</span> The ID number must be 255 characters or less.
+                            </span>
+                        <% } %>
                         <input class="govuk-input govuk-input--width-20" id="National_ID_Number" name="National_ID_Number" type="text" aria-describedby="National_ID_Number-hint" value="<%= ssn.MFA_Award_National_ID_Global%>" />
                     </div>
 
