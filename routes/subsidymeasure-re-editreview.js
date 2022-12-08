@@ -44,6 +44,8 @@ router.post("/", (req, res) => {
     ssn.scheme_issued_end_month_Error = false;
     ssn.scheme_issued_end_day_Error = false;
     ssn.scheme_issued_end_day_lesser_Error = false;
+    ssn.Subsidy_Scheme_Description_Error = false;
+    ssn.Subsidy_Scheme_Description_5000_Error = false;
     ssn.spendingsector_Error = false;
 
     var {
@@ -88,6 +90,7 @@ router.post("/", (req, res) => {
       spendingsector_wholesale_and_retail_trade,
       myCheck,
       has_no_end_date,
+      Subsidy_Scheme_Description
     } = req.body;
 
     ssn.Subsidy_Adhoc_Global = Subsidy_Adhoc;
@@ -97,6 +100,7 @@ router.post("/", (req, res) => {
     ssn.Legal_Basis_Global = Legal_Basis;
     ssn.Granting_Authority_URL_Global = Granting_Authority_URL;
     ssn.Granting_Authority_Policy_Global = Granting_Authority_Policy;
+    ssn.Subsidy_Scheme_Description_Global = Subsidy_Scheme_Description;
     const formatter = new Intl.NumberFormat("en-GB");
 
     if (Budget.includes(",")) Budget = Budget.split(",").join("");
@@ -303,6 +307,17 @@ router.post("/", (req, res) => {
         ssn.SubsidyFocus.push("#Subsidy_Adhoc");
         // Additem = Additem + 1;
       }
+
+      if (Subsidy_Scheme_Description == ""){
+        ssn.Subsidy_Scheme_Description_Error = true;
+        ssn.SubsidyErrors.push("You must provide a descritpion of the standalone subsidy award");
+        ssn.SubsidyFocus.push("#Subsidy_Scheme_Description");
+      } else if (Subsidy_Scheme_Description.length > 5000){
+        ssn.Subsidy_Scheme_Description_5000_Error = true;
+        ssn.SubsidyErrors.push("The subsidy scheme description must be 5000 characters or less.");
+        ssn.SubsidyFocus.push("#Subsidy_Scheme_Description");
+      }
+
       if (!Legal_Basis) {
         ssn.Legal_Basis_Error = true;
         ssn.SubsidyErrors.push("Enter a valid legal basis");
@@ -654,6 +669,8 @@ router.post("/", (req, res) => {
         ssn.Subsidy_Measure_Title_255_Error ||
         ssn.Granting_Authority_URL_255_Error ||
         ssn.Granting_Authority_Policy_255_Error ||
+        ssn.Subsidy_Scheme_Description_Error ||
+        ssn.Subsidy_Scheme_Description_5000_Error ||
         ssn.spendingsector_Error
       ) {
         res.render("bulkupload/subsidymeasures-edit", {

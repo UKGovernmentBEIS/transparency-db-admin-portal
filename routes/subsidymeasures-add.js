@@ -32,6 +32,8 @@ router.get("/", (req, res) => {
     ssn.scheme_issued_start_month_Error = false;
     ssn.scheme_issued_start_year_Error = false;
     ssn.Legal_Basis_Error = false;
+    ssn.Subsidy_Scheme_Description_Error = false;
+    ssn.Subsidy_Scheme_Description_5000_Error = false;
     ssn.Granting_Authority_Name_Inactive_Error = false;
     ssn.Granting_Authority_URL_Error = false;
     ssn.Granting_Authority_Policy_Error = false;
@@ -44,6 +46,7 @@ router.get("/", (req, res) => {
 
     ssn.Subsidy_Measure_Title_Global = "";
     ssn.Subsidy_Adhoc_Global = "";
+    ssn.Subsidy_Scheme_Description_Global = "";
 
     ssn.SubsidyArraySize = 0;
 
@@ -89,7 +92,7 @@ router.get("/", (req, res) => {
     formatedCurrency = "";
     isCallfromEditAward = false;
     var isAddSubsidyPrimarycall = true;
-    ssn.Has_No_End_Date = "";
+    ssn.Has_No_End_Date_Global = false;
 
     if (ssn.dashboard_roles !== "Granting Authority Encoder") {
       res.render("bulkupload/subsidymeasures-add", { isAddSubsidyPrimarycall });

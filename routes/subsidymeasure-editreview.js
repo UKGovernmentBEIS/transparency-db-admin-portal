@@ -44,6 +44,7 @@ router.get("/", async (req, res) => {
       Scheme_Confirmation_Date = ssn.searchmeasuredetails.confirmationDate;
       Scheme_Start_Date = ssn.searchmeasuredetails.startDate;
       Scheme_End_Date = ssn.searchmeasuredetails.endDate;
+      Subsidy_Scheme_Description = ssn.searchmeasuredetails.Subsidy_Scheme_Description;
 
 
       var spendingSectorArray = new Array();
