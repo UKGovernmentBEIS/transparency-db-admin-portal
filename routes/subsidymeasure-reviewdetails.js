@@ -434,7 +434,7 @@ router.post("/", (req, res) => {
         ssn.SubsidyFocus.push("#Budget");
       }
       if (Maximum_Amount_Under_Scheme.length > 255) {
-        ssn.Maximum_Amount_Under_Scheme_Error = true;
+        ssn.Maximum_Amount_Under_Scheme_255_Error = true;
         ssn.SubsidyErrors.push("Maximum amount under a scheme cannot be greater than 255 characters");
         ssn.SubsidyFocus.push("#Maximum_Amount_Under_Scheme");
       }
