@@ -147,7 +147,7 @@
       }else{
         document.getElementById('related-subsidy-scheme').style.display = 'block';
       }
-      
+
     };
   </script>
 </head>
@@ -241,9 +241,9 @@
                     </span>
                   </summary>
                   <div class="govuk-details__text">
-                    <p>A standalone subsidy award is a subsidy which is not given as part of a scheme. 
-                      All standalone subsidy awards must be uploaded, there is no threshold below which 
-                      there is an exemption from the obligation to upload an award (unless an exemption 
+                    <p>A standalone subsidy award is a subsidy which is not given as part of a scheme.
+                      All standalone subsidy awards must be uploaded, there is no threshold below which
+                      there is an exemption from the obligation to upload an award (unless an exemption
                       in Part 3 of the Subsidy Control Act applies).
                     </p>
                   </div>
@@ -419,7 +419,7 @@
                         <p>This is the name of the subsidy scheme that this award is related to.</p>
                       </div>
                     </details>
-      
+
                     <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
                       <span class="govuk-visually-hidden">Error:</span> There are multiple active schemes matching '<%= ssn.Subsidy_Control_Number_Name_Global %>'. Please use SC number instead.
                     </span>
@@ -602,7 +602,7 @@
             <div id="subsidy-award-description-container">
               <div class="govuk-form-group <% if(ssn.Subsidy_Award_Description_Error || ssn.Subsidy_Award_Description_Error_Length) {%> govuk-form-group--error<% } %>">
                 <label class="govuk-label" for="Subsidy_Award_Description">
-                  Description of subsidy award
+                  Subsidy award description
                 </label>
                 <details class="govuk-details" data-module="govuk-details">
                   <summary class="govuk-details__summary">
@@ -616,7 +616,7 @@
                 </details>
                 <% if(ssn.Subsidy_Award_Description_Error || ssn.Subsidy_Award_Description_Error_Length){ %>
                   <span class="govuk-error-message" id="Subsidy_Objective_Error">
-                    <span class="govuk-visually-hidden">Error:</span> 
+                    <span class="govuk-visually-hidden">Error:</span>
                     <% if(ssn.Subsidy_Award_Description_Error){ %>
                       You must provide a descritpion of the standalone subsidy award
                     <% } else { %>
@@ -2030,7 +2030,7 @@
                       Goods and Services
                     </label>
                   </div>
-                  
+
                 </div>
               </fieldset>
             </div>
@@ -2084,7 +2084,7 @@
                       Services
                     </label>
                   </div>
-                  
+
                   <div class="govuk-radios__item">
                     <% if( ssn.Goods_or_Services_Global == 'Goods and Services' ){ %>
                     <input class="govuk-radios__input" id="Goods_or_Services" name="Goods_or_Services" type="radio"
