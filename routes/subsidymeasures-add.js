@@ -92,7 +92,7 @@ router.get("/", (req, res) => {
     formatedCurrency = "";
     isCallfromEditAward = false;
     var isAddSubsidyPrimarycall = true;
-    ssn.Has_No_End_Date = "";
+    ssn.Has_No_End_Date_Global = false;
 
     if (ssn.dashboard_roles !== "Granting Authority Encoder") {
       res.render("bulkupload/subsidymeasures-add", { isAddSubsidyPrimarycall });
