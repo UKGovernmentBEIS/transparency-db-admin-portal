@@ -310,7 +310,7 @@ router.post("/", (req, res) => {
 
       if (Subsidy_Scheme_Description == ""){
         ssn.Subsidy_Scheme_Description_Error = true;
-        ssn.SubsidyErrors.push("You must provide a descritpion of the standalone subsidy award");
+        ssn.SubsidyErrors.push("Enter the Subsidy scheme description");
         ssn.SubsidyFocus.push("#Subsidy_Scheme_Description");
       } else if (Subsidy_Scheme_Description.length > 5000){
         ssn.Subsidy_Scheme_Description_5000_Error = true;
