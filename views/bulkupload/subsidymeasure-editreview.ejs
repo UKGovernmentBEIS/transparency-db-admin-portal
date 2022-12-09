@@ -179,10 +179,19 @@
                             <td class="govuk-table__cell" id="formatText">£ <%= ssn.searchmeasuredetails.budget %></td>
                         </tr>
                         <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Maximum amount given under this scheme</th>
+                            <td class="govuk-table__cell">
+                                <% if (ssn.searchmeasuredetails.maximumAmountUnderScheme == null) { %>
+                                    NA
+                                <% } else { %>
+                                    <%= ssn.searchmeasuredetails.maximumAmountUnderScheme %>
+                                <% } %>
+                        </tr>
+                        <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Confirmation date</th>
                             <td class="govuk-table__cell">
                                 <% if (Scheme_Confirmation_Date == '') { %>
-                                    Not applicable
+                                    NA
                                 <% } else { %>
                                     <%= Scheme_Confirmation_Date %>
                                 <% } %>
@@ -198,7 +207,7 @@
 
                             <td class="govuk-table__cell">
                                 <% if(Scheme_End_Date == "") { %>
-                                    Not applicable
+                                    NA
                                  <% } else { %>
                                     <%= Scheme_End_Date %>
                                  <% } %>

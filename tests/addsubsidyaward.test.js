@@ -91,6 +91,8 @@ test("Unit testing for spending filter route - Test for POST call", async () => 
   ssn.Subsidy_Objective_Other_255_Error = "";
   ssn.Subsidy_Instrument_Other_255_Error = "";
   ssn.Beneficiary_Name_255_Error = "";
+  ssn.Maximum_Amount_Under_Scheme_Error = "";
+  ssn.Maximum_Amount_Under_Scheme_255_Error = "";
 
   ssn.dashboard_roles_object_id1 = "";
   ssn.dashboard_roles_object_id2 = "";
@@ -176,6 +178,8 @@ test("Unit testing for filter route Test for GET call", async () => {
   ssn.Subsidy_Objective_Other_255_Error = "";
   ssn.Subsidy_Instrument_Other_255_Error = "";
   ssn.Beneficiary_Name_255_Error = "";
+  ssn.Maximum_Amount_Under_Scheme_Error = "";
+  ssn.Maximum_Amount_Under_Scheme_255_Error = "";
 
   const res = {};
   request(app)
