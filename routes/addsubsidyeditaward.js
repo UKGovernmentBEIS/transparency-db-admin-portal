@@ -98,8 +98,8 @@ router.get("/", (req, res) => {
       ssn.Subsidy_Element_Full_Amount_Global = "";
     } else {
         ssn.Subsidy_Full_Amount_Range_Global = "";
-        ssn.Subsidy_Full_Amount_Range_Lower = "";
-        ssn.Subsidy_Full_Amount_Range_Upper = "";
+        ssn.Subsidy_Full_Amount_Range_Lower_Global = "";
+        ssn.Subsidy_Full_Amount_Range_Upper_Global = "";
         ssn.Subsidy_Element_Full_Amount_Global =
         fetchawarddetails.subsidyFullAmountExact;
     }
