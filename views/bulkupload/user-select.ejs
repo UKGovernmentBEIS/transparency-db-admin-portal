@@ -244,9 +244,9 @@
 
                                                         <% gaRolesList.forEach(function(items){ %>
                                                         <% if (ssn.Roles_Selected == items) { %>
-                                                        <option selected value="<%= items %>"> <%= items %> </option>
+                                                        <option selected value="<%= items %>"> <%= items.replace('Granting', 'Public') %> </option>
                                                         <% } else { %>
-                                                        <option value="<%= items %>"> <%= items %> </option>
+                                                        <option value="<%= items %>"> <%= items.replace('Granting', 'Public') %> </option>
                                                         <% } %>
                                                         <% })%>
 
@@ -290,8 +290,7 @@
                                     <th scope="col" class="govuk-table__header app-custom-class"
                                         style="color: #1D70B8;">Status</th>
                                     <th scope="col" class="govuk-table__header app-custom-class"
-                                        style="color: #1D70B8;">Granting
-                                        authority</th>
+                                        style="color: #1D70B8;">Public authority</th>
                                     <th scope="col" class="govuk-table__header app-custom-class"
                                         style="color: #1D70B8;">Email
                                         address</th>
