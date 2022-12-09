@@ -21,6 +21,7 @@ router.post("/", (req, res) => {
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
     isAddSubsidyPrimarycall = false;
     ssn.GetMonthName = "";
+    ssn.GetConfirmationMonthName = "";
     ssn.SubsidyErrors = [];
     ssn.SubsidyFocus = [];
     Additem = 0;
@@ -43,7 +44,10 @@ router.post("/", (req, res) => {
     ssn.scheme_issued_end_month_Error = false;
     ssn.scheme_issued_end_day_Error = false;
     ssn.scheme_issued_end_day_lesser_Error = false;
+    ssn.Subsidy_Scheme_Description_Error = false;
+    ssn.Subsidy_Scheme_Description_5000_Error = false;
     ssn.spendingsector_Error = false;
+    ssn.Maximum_Amount_Under_Scheme_255_Error = false;
 
     var {
       Subsidy_Adhoc,
@@ -54,6 +58,10 @@ router.post("/", (req, res) => {
       Granting_Authority_URL,
       Granting_Authority_Policy,
       Budget,
+      Maximum_Amount_Under_Scheme,
+      scheme_issued_confirmation_year,
+      scheme_issued_confirmation_month,
+      scheme_issued_confirmation_day,
       scheme_issued_start_year,
       scheme_issued_start_month,
       scheme_issued_start_day,
@@ -84,6 +92,7 @@ router.post("/", (req, res) => {
       spendingsector_wholesale_and_retail_trade,
       myCheck,
       has_no_end_date,
+      Subsidy_Scheme_Description
     } = req.body;
 
     ssn.Subsidy_Adhoc_Global = Subsidy_Adhoc;
@@ -93,17 +102,22 @@ router.post("/", (req, res) => {
     ssn.Legal_Basis_Global = Legal_Basis;
     ssn.Granting_Authority_URL_Global = Granting_Authority_URL;
     ssn.Granting_Authority_Policy_Global = Granting_Authority_Policy;
+    ssn.Subsidy_Scheme_Description_Global = Subsidy_Scheme_Description;
     const formatter = new Intl.NumberFormat("en-GB");
 
     if (Budget.includes(",")) Budget = Budget.split(",").join("");
     formatedCurrency = formatter.format(Budget);
 
     ssn.Budget_Global = Budget;
+    ssn.Maximum_Amount_Under_Scheme_Global = Maximum_Amount_Under_Scheme;
+    ssn.Scheme_Confirmation_Day_Global = scheme_issued_confirmation_day;
+    ssn.Scheme_Confirmation_Month_Global = scheme_issued_confirmation_month;
+    ssn.Scheme_Confirmation_Year_Global = scheme_issued_confirmation_year;
     ssn.Scheme_Start_Day_Global = scheme_issued_start_day;
     ssn.Scheme_Start_Month_Global = scheme_issued_start_month;
     ssn.Scheme_Start_Year_Global = scheme_issued_start_year;
     ssn.Has_No_End_Date_Global = has_no_end_date;
-    ssn.Has_No_End_Date_Output_Global = "Not applicable";
+    ssn.Has_No_End_Date_Output_Global = "NA";
 
     if (ssn.Subsidy_Adhoc_Global == "Yes") {
       ssn.Scheme_End_Day_Global = scheme_issued_start_day;
@@ -127,83 +141,17 @@ router.post("/", (req, res) => {
       ssn.Scheme_End_Year_Global = scheme_issued_end_year;
     }
 
-    if (scheme_issued_start_month == parseInt("01", 8)) {
-      ssn.GetMonthName = "January";
-    }
-    if (scheme_issued_start_month == parseInt("02", 8)) {
-      ssn.GetMonthName = "February";
-    }
-    if (scheme_issued_start_month == parseInt("03", 8)) {
-      ssn.GetMonthName = "March";
-    }
-    if (scheme_issued_start_month == parseInt("04", 8)) {
-      ssn.GetMonthName = "April";
-    }
-    if (scheme_issued_start_month == parseInt("05", 8)) {
-      ssn.GetMonthName = "May";
-    }
-    if (scheme_issued_start_month == parseInt("06", 8)) {
-      ssn.GetMonthName = "June";
-    }
-    if (scheme_issued_start_month == parseInt("07", 8)) {
-      ssn.GetMonthName = "July";
-    }
-    if (scheme_issued_start_month == parseInt("08", 8)) {
-      ssn.GetMonthName = "August";
-    }
-    if (scheme_issued_start_month == parseInt("09", 8)) {
-      ssn.GetMonthName = "September";
-    }
-    if (scheme_issued_start_month == 10) {
-      ssn.GetMonthName = "October";
-    }
-    if (scheme_issued_start_month == 11) {
-      ssn.GetMonthName = "November";
-    }
-    if (scheme_issued_start_month == 12) {
-      ssn.GetMonthName = "December";
-    }
 
-    if (scheme_issued_end_month == parseInt("01", 8)) {
-      ssn.GetEndMonthName = "January";
-    }
-    if (scheme_issued_end_month == parseInt("02", 8)) {
-      ssn.GetEndMonthName = "February";
-    }
-    if (scheme_issued_end_month == parseInt("03", 8)) {
-      ssn.GetEndMonthName = "March";
-    }
-    if (scheme_issued_end_month == parseInt("04", 8)) {
-      ssn.GetEndMonthName = "April";
-    }
-    if (scheme_issued_end_month == parseInt("05", 8)) {
-      ssn.GetEndMonthName = "May";
-    }
-    if (scheme_issued_end_month == parseInt("06", 8)) {
-      ssn.GetEndMonthName = "June";
-    }
-    if (scheme_issued_end_month == parseInt("07", 8)) {
-      ssn.GetEndMonthName = "July";
-    }
-    if (scheme_issued_end_month == parseInt("08", 8)) {
-      ssn.GetEndMonthName = "August";
-    }
-    if (scheme_issued_end_month == parseInt("09", 8)) {
-      ssn.GetEndMonthName = "September";
-    }
-    if (scheme_issued_end_month == 10) {
-      ssn.GetEndMonthName = "October";
-    }
-    if (scheme_issued_end_month == 11) {
-      ssn.GetEndMonthName = "November";
-    }
-    if (scheme_issued_end_month == 12) {
-      ssn.GetEndMonthName = "December";
-    }
+
+    const monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August','September', 'October', 'November', 'December'];
+
+    ssn.GetConfirmationMonthName = monthArray[((parseInt(scheme_issued_confirmation_month)) - 1)];
+    ssn.GetMonthName = monthArray[((parseInt(scheme_issued_start_month)) - 1)];
+    ssn.GetEndMonthName = monthArray[((parseInt(scheme_issued_end_month)) - 1)];
 
     var spendingSectorArray = new Array();
     ssn.Spending_Sector_Array_Global = spendingSectorArray
-    
+
 
     if(spendingsector_accommodation){
       ssn.spendingsector_accommodation_Global = spendingsector_accommodation;
@@ -214,12 +162,12 @@ router.post("/", (req, res) => {
       ssn.spendingsector_activities_of_extraterritorial_Global = spendingsector_activities_of_extraterritorial;
       spendingSectorArray.push(spendingsector_activities_of_extraterritorial);
     }
-    
+
     if(spendingsector_undifferentiated_goods){
       ssn.spendingsector_undifferentiated_goods_Global = spendingsector_undifferentiated_goods;
       spendingSectorArray.push(spendingsector_undifferentiated_goods);
     }
-    
+
     if(spendingsector_administrative){
       ssn.spendingsector_administrative_Global = spendingsector_administrative;
       spendingSectorArray.push(spendingsector_administrative);
@@ -229,7 +177,7 @@ router.post("/", (req, res) => {
       ssn.spendingsector_agriculture_forestry_and_fishing_Global = spendingsector_agriculture_forestry_and_fishing;
       spendingSectorArray.push(spendingsector_agriculture_forestry_and_fishing);
     }
-    
+
     if(spendingsector_arts_entertainment){
       ssn.spendingsector_arts_entertainment_Global = spendingsector_arts_entertainment;
       spendingSectorArray.push(spendingsector_arts_entertainment);
@@ -239,27 +187,27 @@ router.post("/", (req, res) => {
       ssn.spendingsector_construction_Global = spendingsector_construction;
       spendingSectorArray.push(spendingsector_construction);
     }
-    
+
     if(spendingsector_education){
       ssn.spendingsector_education_Global = spendingsector_education;
       spendingSectorArray.push(spendingsector_education);
     }
-    
+
     if(spendingsector_Electricity_gas_steam_and_air_conditioning_supply){
       ssn.spendingsector_Electricity_gas_steam_and_air_conditioning_supply_Global = spendingsector_Electricity_gas_steam_and_air_conditioning_supply;
       spendingSectorArray.push(spendingsector_Electricity_gas_steam_and_air_conditioning_supply);
     }
-    
+
     if(spendingsector_financial_and_insurance_activities){
       ssn.spendingsector_financial_and_insurance_activities_Global = spendingsector_financial_and_insurance_activities;
       spendingSectorArray.push(spendingsector_financial_and_insurance_activities);
     }
-    
+
     if(spendingsector_human_health){
       ssn.spendingsector_human_health_Global = spendingsector_human_health;
       spendingSectorArray.push(spendingsector_human_health);
     }
-    
+
     if(spendingsector_information_and_communication){
       ssn.spendingsector_information_and_communication_Global = spendingsector_information_and_communication;
       spendingSectorArray.push(spendingsector_information_and_communication);
@@ -279,17 +227,17 @@ router.post("/", (req, res) => {
       ssn.spendingsector_Other_service_activities_Global = spendingsector_Other_service_activities;
       spendingSectorArray.push(spendingsector_Other_service_activities);
     }
-    
+
     if(spendingsector_professional){
       ssn.spendingsector_professional_Global = spendingsector_professional;
       spendingSectorArray.push(spendingsector_professional);
     }
-    
+
     if(spendingsector_public_administration){
       ssn.spendingsector_public_administration_Global = spendingsector_public_administration;
       spendingSectorArray.push(spendingsector_public_administration);
     }
-    
+
     if(spendingsector_real_estate_activities){
       ssn.spendingsector_real_estate_activities_Global = spendingsector_real_estate_activities;
       spendingSectorArray.push(spendingsector_real_estate_activities);
@@ -353,15 +301,23 @@ router.post("/", (req, res) => {
         ssn.SubsidyFocus.push("#Granting_Authority_Policy");
         // Additem = Additem + 1;
       }
-      // if (!Subsidy_Measure_Title) {
-
-      // }
       if (!Subsidy_Adhoc) {
         ssn.Subsidy_Adhoc_Error = true;
         ssn.SubsidyErrors.push(" Select the adhoc subsidy scheme");
         ssn.SubsidyFocus.push("#Subsidy_Adhoc");
         // Additem = Additem + 1;
       }
+
+      if (Subsidy_Scheme_Description == ""){
+        ssn.Subsidy_Scheme_Description_Error = true;
+        ssn.SubsidyErrors.push("You must provide a descritpion of the standalone subsidy award");
+        ssn.SubsidyFocus.push("#Subsidy_Scheme_Description");
+      } else if (Subsidy_Scheme_Description.length > 5000){
+        ssn.Subsidy_Scheme_Description_5000_Error = true;
+        ssn.SubsidyErrors.push("The subsidy scheme description must be 5000 characters or less.");
+        ssn.SubsidyFocus.push("#Subsidy_Scheme_Description");
+      }
+
       if (!Legal_Basis) {
         ssn.Legal_Basis_Error = true;
         ssn.SubsidyErrors.push("Enter a valid legal basis");
@@ -389,6 +345,11 @@ router.post("/", (req, res) => {
         ssn.SubsidyErrors.push("Enter the budget");
         ssn.SubsidyFocus.push("#Budget");
         // Additem = Additem + 1;
+      }
+      if (Maximum_Amount_Under_Scheme.length > 255) {
+        ssn.Maximum_Amount_Under_Scheme_255_Error = true;
+        ssn.SubsidyErrors.push("Maximum amount under a scheme cannot be greater than 255 characters");
+        ssn.SubsidyFocus.push("#Maximum_Amount_Under_Scheme");
       }
       if (!scheme_issued_start_day) {
         ssn.scheme_issued_start_day_Error = true;
@@ -446,6 +407,101 @@ router.post("/", (req, res) => {
           ssn.scheme_issued_start_day_Error = true;
           ssn.SubsidyErrors.push("Enter the valid day");
           ssn.SubsidyFocus.push("#scheme_issued_start_day");
+          // Additem = Additem + 1;
+        }
+      }
+      // day validation ends here
+
+      if (!scheme_issued_confirmation_month) {
+        ssn.scheme_issued_confirmation_month_Error = true;
+        ssn.SubsidyErrors.push(
+          "     Enter the legal confirmation month of the date"
+        );
+        ssn.SubsidyFocus.push("#scheme_issued_confirmation_month");
+        // Additem = Additem + 1;
+      }
+      if (scheme_issued_confirmation_month != "") {
+        if (scheme_issued_confirmation_month > 12 || scheme_issued_confirmation_month == 0) {
+          ssn.scheme_issued_confirmation_month_Error = true;
+          ssn.SubsidyErrors.push(
+            "     Enter the legal confirmation month from 1 to 12"
+          );
+          ssn.SubsidyFocus.push("#scheme_issued_confirmation_month");
+          // Additem = Additem + 1;
+        }
+      }
+      if (!scheme_issued_confirmation_year) {
+        ssn.scheme_issued_confirmation_year_Error = true;
+        ssn.SubsidyErrors.push(
+          "     Enter the legal confirmation year of the date"
+        );
+        ssn.SubsidyFocus.push("#scheme_issued_confirmation_year");
+        // Additem = Additem + 1;
+      }
+      if (!scheme_issued_confirmation_day) {
+        ssn.scheme_issued_confirmation_day_Error = true;
+        ssn.SubsidyErrors.push("     Enter the legal confirmation day of the date");
+        ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
+        // Additem = Additem + 1;
+      }
+      if (scheme_issued_confirmation_day != "") {
+        // day validation starts here
+
+        if (scheme_issued_confirmation_day > 31 || scheme_issued_confirmation_day < 1) {
+          ssn.scheme_issued_confirmation_day_Error = true;
+          ssn.SubsidyErrors.push(
+            "     Enter the valid legal confirmation day of the date"
+          );
+          ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
+          // Additem = Additem + 1;
+        }
+
+        if (
+          scheme_issued_confirmation_day == 31 &&
+          (scheme_issued_confirmation_month == parseInt("02", 8) ||
+            scheme_issued_confirmation_month == parseInt("04", 8) ||
+            scheme_issued_confirmation_month == parseInt("06", 8) ||
+            scheme_issued_confirmation_month == parseInt("09", 10) ||
+            scheme_issued_confirmation_month == 11)
+        ) {
+          ssn.scheme_issued_confirmation_day_Error = true;
+          ssn.SubsidyErrors.push("     Enter the valid day");
+          ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
+          // Additem = Additem + 1;
+        }
+
+        if (
+          scheme_issued_confirmation_day == 29 &&
+          scheme_issued_confirmation_month == parseInt("02", 8)
+        ) {
+          if (
+            (scheme_issued_confirmation_year % 4 == 0 &&
+              scheme_issued_confirmation_year % 100 != 0) ||
+            scheme_issued_confirmation_year % 400 == 0
+          ) {
+          } else {
+            ssn.scheme_issued_confirmation_day_Error = true;
+            ssn.SubsidyErrors.push("     Enter the valid day");
+            ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
+            // Additem = Additem + 1;
+          }
+        }
+
+        if (scheme_issued_confirmation_year > 9999) {
+          ssn.scheme_issued_confirmation_year_Error = true;
+          ssn.SubsidyErrors.push(
+            "     Maximum year that can be added is 9999"
+          );
+          ssn.SubsidyFocus.push("#scheme_issued_confirmation_year");
+        }
+
+        if (
+          scheme_issued_confirmation_day == 30 &&
+          scheme_issued_confirmation_month == parseInt("02", 8)
+        ) {
+          ssn.scheme_issued_confirmation_day_Error = true;
+          ssn.SubsidyErrors.push("Enter the valid day");
+          ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
           // Additem = Additem + 1;
         }
       }
@@ -593,7 +649,7 @@ router.post("/", (req, res) => {
             "Enter at least one or more spending sector(s)"
           );
           ssn.SubsidyFocus.push("#spendingSectorArray");
-        }  
+        }
       }
       ssn.SubsidyArraySize = ssn.SubsidyErrors.length;
 
@@ -601,6 +657,9 @@ router.post("/", (req, res) => {
         ssn.Subsidy_Measure_Title_Error ||
         ssn.Subsidy_Adhoc_Error ||
         ssn.Granting_Authority_Name_Error ||
+        ssn.scheme_issued_confirmation_day_Error ||
+        ssn.scheme_issued_confirmation_month_Error ||
+        ssn.scheme_issued_confirmation_year_Error ||
         ssn.scheme_issued_start_day_Error ||
         ssn.scheme_issued_start_month_Error ||
         ssn.scheme_issued_start_year_Error ||
@@ -615,7 +674,10 @@ router.post("/", (req, res) => {
         ssn.Subsidy_Measure_Title_255_Error ||
         ssn.Granting_Authority_URL_255_Error ||
         ssn.Granting_Authority_Policy_255_Error ||
-        ssn.spendingsector_Error
+        ssn.Subsidy_Scheme_Description_Error ||
+        ssn.Subsidy_Scheme_Description_5000_Error ||
+        ssn.spendingsector_Error ||
+        ssn.Maximum_Amount_Under_Scheme_255_Error
       ) {
         res.render("bulkupload/subsidymeasures-edit", {
           ssn,

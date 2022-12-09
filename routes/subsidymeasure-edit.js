@@ -50,16 +50,15 @@ router.get("/", async (req, res) => {
         ssn.Granting_Authority_Policy_Global =
           measureapidata.data.gaSubsidyWebLinkDescription;
         ssn.Budget_Global = measureapidata.data.budget;
-        // ssn.Schema_Start_Day_Global = scheme_issued_start_day;
-        // ssn.Scheme_Start_Month_Global = scheme_issued_start_month;
-        // ssn.Scheme_Start_Year_Global = scheme_issued_start_year;
-        // ssn.Scheme_End_Day_Global = scheme_issued_end_day;
-        // ssn.Scheme_End_Month_Global = scheme_issued_end_month;
-        // ssn.Scheme_End_Year_Global = scheme_issued_end_year;
 
+        ssn.Maximum_Amount_Under_Scheme_Global = ssn.searchmeasuredetails.maximumAmountUnderScheme;
+
+        Scheme_Confirmation_Date = ssn.searchmeasuredetails.confirmationDate;
         Scheme_Start_Date = ssn.searchmeasuredetails.startDate;
         Scheme_End_Date = ssn.searchmeasuredetails.endDate;
         ssn.Has_No_End_Date = measureapidata.data.hasNoEndDate;
+        ssn.Subsidy_Scheme_Description_Global = measureapidata.data.subsidySchemeDescription;
+
         ssn.Spending_Sector_Array_Global = measureapidata.data.spendingSectorArray
 
         ssn.spendingsector_accommodation_Global = false;
@@ -77,7 +76,7 @@ router.get("/", async (req, res) => {
         ssn.spendingsector_Manufacturing_Global = false;
         ssn.spendingsector_mining_and_quarrying_Global = false;
         ssn.spendingsector_Other_service_activities_Global = false;
-        ssn.spendingsector_professional_Global = false; 
+        ssn.spendingsector_professional_Global = false;
         ssn.spendingsector_public_administration_Global = false;
         ssn.spendingsector_real_estate_activities_Global = false;
         ssn.spendingsector_transportation_and_storage_Global = false;
@@ -93,9 +92,9 @@ router.get("/", async (req, res) => {
           switch(spendingSector) {
             case "Accommodation and food service activities":
               ssn.spendingsector_accommodation_Global = true;
-              break;  
+              break;
             case "Activities of extraterritorial organisations and bodies":
-              ssn.spendingsector_activities_of_extraterritorial_Global = true; 
+              ssn.spendingsector_activities_of_extraterritorial_Global = true;
               break;
             case "Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use":
               ssn.spendingsector_undifferentiated_goods_Global = true;
@@ -134,13 +133,13 @@ router.get("/", async (req, res) => {
               ssn.spendingsector_mining_and_quarrying_Global = true;
               break;
             case "Other service activities":
-              ssn.spendingsector_Other_service_activities_Global = true; 
-              break; 
+              ssn.spendingsector_Other_service_activities_Global = true;
+              break;
             case "Professional, scientific and technical activities":
-              ssn.spendingsector_professional_Global = true; 
+              ssn.spendingsector_professional_Global = true;
               break;
             case "Public administration and defence; compulsory social security":
-              ssn.spendingsector_public_administration_Global = true; 
+              ssn.spendingsector_public_administration_Global = true;
               break;
             case "Real estate activities":
               ssn.spendingsector_real_estate_activities_Global = true;
@@ -157,8 +156,6 @@ router.get("/", async (req, res) => {
           }
         });
 
-        
-        var date = Scheme_Start_Date.split(" ");
 
         var month = [
           "January",
@@ -175,6 +172,20 @@ router.get("/", async (req, res) => {
           "December",
         ];
 
+        var date = Scheme_Confirmation_Date.split(" ");
+        if (Scheme_Confirmation_Date == '') {
+          ssn.Scheme_Confirmation_Month_Global = '';
+        } else {
+          ssn.Scheme_Confirmation_Month_Global =
+          month.indexOf(date[1]) + 1 < 10
+            ? "0" + (month.indexOf(date[1]) + 1)
+            : month.indexOf(date[1]) + 1;
+        }
+        ssn.Scheme_Confirmation_Day_Global = date[0];
+        ssn.Scheme_Confirmation_Year_Global = date[2];
+
+
+        var date = Scheme_Start_Date.split(" ");
         ssn.Scheme_Start_Month_Global =
           month.indexOf(date[1]) + 1 < 10
             ? "0" + (month.indexOf(date[1]) + 1)
@@ -216,6 +227,12 @@ router.get("/", async (req, res) => {
         ssn.scheme_issued_end_day_lesser_Error = false;
         ssn.scheme_issued_end_month_Error = false;
         ssn.scheme_issued_end_year_Error = false;
+        ssn.Subsidy_Scheme_Description_Error = false;
+        ssn.Subsidy_Scheme_Description_5000_Error = false;
+        ssn.scheme_issued_confirmation_day_Error = false;
+        ssn.scheme_issued_confirmation_month_Error = false;
+        ssn.scheme_issued_confirmation_year_Error = false;
+        ssn.Maximum_Amount_Under_Scheme_255_Error = false;
 
         if (ssn.dashboard_roles !== "Granting Authority Encoder") {
           res.render("bulkupload/subsidymeasures-edit", { formatedCurrency });
@@ -244,6 +261,11 @@ router.get("/", async (req, res) => {
         "November",
         "December",
       ];
+
+      ssn.Scheme_Confirmation_Month_Global =
+        month.indexOf(ssn.GetConfirmationMonthName) + 1 < "10"
+          ? "0" + (month.indexOf(ssn.GetConfirmationMonthName) + 1)
+          : month.indexOf(ssn.GetConfirmationMonthName) + 1;
 
       ssn.Scheme_Start_Month_Global =
         month.indexOf(ssn.GetMonthName) + 1 < "10"

@@ -424,14 +424,14 @@
                   <td class="govuk-table__cell" style="text-align:center"><%= item.startDate%></td>
                   <td class="govuk-table__cell" style="text-align:center">
                     <% if((!item.endDate) || (item.endDate == "31 December 9999")){ %>
-                      Not applicable
+                      NA
                     <% } else { %>
                         <%= item.endDate%>
                     <% } %>
                   </td>
                   <td class="govuk-table__cell">
                     <% if((!item.endDate) || (item.endDate == "31 December 9999")){ %>
-                      Not applicable
+                      NA
                       <% } else { %>
                           <%= item.duration%>
                       <% } %>

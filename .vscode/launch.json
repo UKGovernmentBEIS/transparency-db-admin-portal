@@ -25,7 +25,7 @@
             "type": "node-terminal",
             "envFile": "${workspaceFolder}/.env",
         },
-        {​​
+        {
             "type": "node",
             "name": "vscode-jest-tests",
             "request": "launch",
@@ -37,6 +37,6 @@
             "internalConsoleOptions": "neverOpen",
             "program": "${workspaceFolder}/node_modules/jest/bin/jest",
             "outFiles" : ["${workspaceRoot}/compiled/**/*.js"]
-        }​​
+        }
     ]
 }

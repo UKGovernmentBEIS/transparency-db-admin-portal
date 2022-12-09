@@ -147,6 +147,11 @@
                             <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.subsidyMeasureTitle %></td>
                         </tr>
                         <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme description</th>
+                            <td
+                            class="govuk-table__cell render-newlines"><%= ssn.searchmeasuredetails.subsidySchemeDescription %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Legal basis</th>
                             <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.legalBasisText %></td>
                         </tr>
@@ -174,6 +179,25 @@
                             <td class="govuk-table__cell" id="formatText">£ <%= ssn.searchmeasuredetails.budget %></td>
                         </tr>
                         <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Maximum amount given under this scheme</th>
+                            <td class="govuk-table__cell">
+                                <% if (ssn.searchmeasuredetails.maximumAmountUnderScheme == null) { %>
+                                    NA
+                                <% } else { %>
+                                    <%= ssn.searchmeasuredetails.maximumAmountUnderScheme %>
+                                <% } %>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Confirmation date</th>
+                            <td class="govuk-table__cell">
+                                <% if (Scheme_Confirmation_Date == '') { %>
+                                    NA
+                                <% } else { %>
+                                    <%= Scheme_Confirmation_Date %>
+                                <% } %>
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Start date</th>
 
                             <td class="govuk-table__cell"><%= Scheme_Start_Date%></td>
@@ -183,7 +207,7 @@
 
                             <td class="govuk-table__cell">
                                 <% if(Scheme_End_Date == "") { %>
-                                    Not applicable
+                                    NA
                                  <% } else { %>
                                     <%= Scheme_End_Date %>
                                  <% } %>
@@ -209,7 +233,7 @@
                                  <% } %>
                             </td>
                         </tr>
-                    
+
                     </tbody>
                 </table>
             </section>
