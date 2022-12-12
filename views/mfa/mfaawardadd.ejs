@@ -94,6 +94,17 @@
             <% } %>
 
             <p class="govuk-body govuk-!-font-size-19">This section is for adding an MFA or SPEI Assistance Award.</p>
+            <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                        What is an MFA Award?
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    Minimal Financial Assistance (MFA) allows public authorities to award low value subsidies without needing to comply with the majority of the subsidy control requirements.
+                    MFA has a financial threshold so no recipient can receive more than £315,000 over three years.
+                    Any MFA awards which exceed £100,000 must be uploaded to the database.
+            </details>
             <!-- Body header ends here -->
 
             <form action="/mfaawardreview" method="POST" id="scheme-form">
@@ -119,7 +130,8 @@
                                 </span>
                             </summary>
                             <div class="govuk-details__text">
-                                Some text explaining SPEI Assistance awards.
+                                Services of Public Economic Interest Assistance (SPEIA) allows public authorities to award lower value subsidies to Services of Public Economic Interest without needing to comply with the majority of the subsidy control requirements.
+                                SPEIA has a financial threshold so that no recipient can receive more than £725,000 over three years. Any SPEI award which exceeds £100,000 must be uploaded to the database.
                             </div>
                         </details>
 
@@ -156,7 +168,10 @@
                                 </span>
                             </summary>
                             <div class="govuk-details__text">
-                                Some text explaining MFA / SPEIA Groupings.
+                                An MFA/SPEIA grouping exists only for the purposes of uploading MFA and SPEIA awards to the database.
+                                A grouping provides a unique reference which can be used to bulk upload MFA/SPEIA awards.
+                                An MFA/SPEIA grouping makes it easier for public authorities to individually upload MFA/SPEIA awards.
+                                A public authority may upload multiple MFA/SPEIA groupings if needed.
                             </div>
                         </details>
 
@@ -377,7 +392,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Award_National_ID_Error ){ %> govuk-form-group--error <% } %>">
+                    <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Award_National_ID_Error || ssn.MFA_Award_National_ID_255_Error ){ %> govuk-form-group--error <% } %>">
                         <label class="govuk-label" for="National_ID_Number">
                             ID Number
                         </label>
@@ -396,7 +411,11 @@
                         <span class="govuk-error-message" id="Subsidy_adhoc_Error">
                             <span class="govuk-visually-hidden">Error:</span> You must enter an ID number
                         </span>
-                        <% }  %>
+                        <% } else if ( ssn.MFA_Award_National_ID_255_Error ){ %>
+                        <span class="govuk-error-message" id="National_ID_Number">
+                            <span class="govuk-visually-hidden">Error:</span> The ID number must be 255 characters or less.
+                            </span>
+                        <% } %>
                         <input class="govuk-input govuk-input--width-20" id="National_ID_Number" name="National_ID_Number" type="text" aria-describedby="National_ID_Number-hint" value="<%= ssn.MFA_Award_National_ID_Global%>" />
                     </div>
 

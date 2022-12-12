@@ -47,6 +47,7 @@ router.post("/", (req, res) => {
     ssn.Subsidy_Scheme_Description_Error = false;
     ssn.Subsidy_Scheme_Description_5000_Error = false;
     ssn.spendingsector_Error = false;
+    ssn.Maximum_Amount_Under_Scheme_255_Error = false;
 
     var {
       Subsidy_Adhoc,
@@ -57,6 +58,7 @@ router.post("/", (req, res) => {
       Granting_Authority_URL,
       Granting_Authority_Policy,
       Budget,
+      Maximum_Amount_Under_Scheme,
       scheme_issued_confirmation_year,
       scheme_issued_confirmation_month,
       scheme_issued_confirmation_day,
@@ -107,6 +109,7 @@ router.post("/", (req, res) => {
     formatedCurrency = formatter.format(Budget);
 
     ssn.Budget_Global = Budget;
+    ssn.Maximum_Amount_Under_Scheme_Global = Maximum_Amount_Under_Scheme;
     ssn.Scheme_Confirmation_Day_Global = scheme_issued_confirmation_day;
     ssn.Scheme_Confirmation_Month_Global = scheme_issued_confirmation_month;
     ssn.Scheme_Confirmation_Year_Global = scheme_issued_confirmation_year;
@@ -114,7 +117,7 @@ router.post("/", (req, res) => {
     ssn.Scheme_Start_Month_Global = scheme_issued_start_month;
     ssn.Scheme_Start_Year_Global = scheme_issued_start_year;
     ssn.Has_No_End_Date_Global = has_no_end_date;
-    ssn.Has_No_End_Date_Output_Global = "Not applicable";
+    ssn.Has_No_End_Date_Output_Global = "NA";
 
     if (ssn.Subsidy_Adhoc_Global == "Yes") {
       ssn.Scheme_End_Day_Global = scheme_issued_start_day;
@@ -298,9 +301,6 @@ router.post("/", (req, res) => {
         ssn.SubsidyFocus.push("#Granting_Authority_Policy");
         // Additem = Additem + 1;
       }
-      // if (!Subsidy_Measure_Title) {
-
-      // }
       if (!Subsidy_Adhoc) {
         ssn.Subsidy_Adhoc_Error = true;
         ssn.SubsidyErrors.push(" Select the adhoc subsidy scheme");
@@ -345,6 +345,11 @@ router.post("/", (req, res) => {
         ssn.SubsidyErrors.push("Enter the budget");
         ssn.SubsidyFocus.push("#Budget");
         // Additem = Additem + 1;
+      }
+      if (Maximum_Amount_Under_Scheme.length > 255) {
+        ssn.Maximum_Amount_Under_Scheme_255_Error = true;
+        ssn.SubsidyErrors.push("Maximum amount under a scheme cannot be greater than 255 characters");
+        ssn.SubsidyFocus.push("#Maximum_Amount_Under_Scheme");
       }
       if (!scheme_issued_start_day) {
         ssn.scheme_issued_start_day_Error = true;
@@ -671,7 +676,8 @@ router.post("/", (req, res) => {
         ssn.Granting_Authority_Policy_255_Error ||
         ssn.Subsidy_Scheme_Description_Error ||
         ssn.Subsidy_Scheme_Description_5000_Error ||
-        ssn.spendingsector_Error
+        ssn.spendingsector_Error ||
+        ssn.Maximum_Amount_Under_Scheme_255_Error
       ) {
         res.render("bulkupload/subsidymeasures-edit", {
           ssn,

@@ -441,6 +441,40 @@
 
                                             </div>
 
+                                            <% if( ssn.Maximum_Amount_Under_Scheme_255_Error ){ %>
+                                                <div
+                                                    class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                                                    <% } else { %>
+                                                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                                        <% }  %>
+                                                        <label class="govuk-label" for="address-line-1">
+                                                            Maximum amount given under scheme
+                                                        </label>
+                                                        <div class="govuk-hint">
+                                                            For example, 12000000 or 10%
+                                                        </div>
+                                                        <details class="govuk-details" data-module="govuk-details">
+                                                            <summary class="govuk-details__summary">
+                                                                <span class="govuk-details__summary-text">
+                                                                    What is the maximum amount given under scheme?
+                                                                </span>
+                                                            </summary>
+                                                            <div class="govuk-details__text">
+                                                                SOME TEXT HERE
+                                                            </div>
+                                                        </details>
+                                                        <% if( ssn.Maximum_Amount_Under_Scheme_255_Error ){ %>
+                                                            <span class="govuk-error-message" id="Maximum_Amount_Under_Scheme_255_Error">
+                                                                <span class="govuk-visually-hidden">Error:</span> The maximum amount that can be given under a scheme
+                                                                 cannot be greater than 255 characters
+                                                            </span>
+                                                            <% }  %>
+                                                        <div class="govuk-input__wrapper">
+                                                            <input class="govuk-input" id="Maximum_Amount_Under_Scheme" name="Maximum_Amount_Under_Scheme" type="text"
+                                                                value="<%= ssn.Maximum_Amount_Under_Scheme_Global%>">
+                                                        </div>
+                                                    </div>
+
                                             <% if( ssn.scheme_issued_confirmation_day_Error || ssn.scheme_issued_confirmation_month_Error || ssn.scheme_issued_confirmation_year_Error ){ %>
                                                 <div
                                                     class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
@@ -675,7 +709,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                            <div class="govuk-form-group govuk-grid-column-two-thirds">        
+                                                            <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                                 <fieldset class="govuk-fieldset" aria-describedby="sector-hint">
                                                                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-grid-column-two-thirds">
                                                                     <!-- <div class="govuk-grid-row">
@@ -690,7 +724,7 @@
                                                                         </p>
                                                                     </div>
                                                                     </div>
-                                                        
+
                                                                     <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">
                                                                     <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" onclick="selectAll(this)" id="spendingsector-0" name="select-all" type="checkbox"
@@ -700,9 +734,9 @@
                                                                         Select all
                                                                         </label>
                                                                     </div>
-                                                        
+
                                                                     <div class="govuk-checkboxes__conditional" id="conditional-objective0">
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-accommodation" name="spendingsector_accommodation"
                                                                             type="checkbox" value="Accommodation and food service activities"<% if (ssn.spendingsector_accommodation_Global) { %>
@@ -711,7 +745,7 @@
                                                                             Accommodation and food service activities
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-activities-of-extraterritorial"
                                                                             name="spendingsector_activities_of_extraterritorial" type="checkbox" value="Activities of extraterritorial organisations and bodies" <% if (ssn.spendingsector_activities_of_extraterritorial_Global) { %>
@@ -720,18 +754,18 @@
                                                                             Activities of extraterritorial organisations and bodies
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-undifferentiated-goods"
                                                                             name="spendingsector_undifferentiated_goods" type="checkbox"
                                                                             value="Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use" <% if (ssn.spendingsector_undifferentiated_goods_Global) { %>
-                                                                                checked <% } %>> 
+                                                                                checked <% } %>>
                                                                         <label class="govuk-label govuk-checkboxes__label" for="spendingsector-undifferentiated-goods">
                                                                             Activities of households as employers; undifferentiated goods- and services-producing activities of
                                                                             households for own use
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-administrative" name="spendingsector_administrative"
                                                                             type="checkbox" value="Administrative and support service activities" <% if (ssn.spendingsector_administrative_Global) { %>
@@ -740,7 +774,7 @@
                                                                             Administrative and support service activities
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-agriculture-forestry-and-fishing"
                                                                             name="spendingsector_agriculture_forestry_and_fishing" type="checkbox" value="Agriculture, forestry and fishing" <% if (ssn.spendingsector_agriculture_forestry_and_fishing_Global) { %>
@@ -750,7 +784,7 @@
                                                                             Agriculture, forestry and fishing
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-arts-entertainment" name="spendingsector_arts_entertainment"
                                                                             type="checkbox" value="Arts, entertainment and recreation" <% if (ssn.spendingsector_arts_entertainment_Global) { %>
@@ -759,7 +793,7 @@
                                                                             Arts, entertainment and recreation
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-construction" name="spendingsector_construction"
                                                                             type="checkbox" value="Construction" <% if (ssn.spendingsector_construction_Global) { %>
@@ -768,7 +802,7 @@
                                                                             Construction
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-education" name="spendingsector_education"
                                                                             type="checkbox" value="Education" <% if (ssn.spendingsector_education_Global) { %>
@@ -777,7 +811,7 @@
                                                                             Education
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector"
                                                                             id="spendingsector-Electricity-gas-steam-and-air-conditioning-supply" name="spendingsector_Electricity_gas_steam_and_air_conditioning_supply"
@@ -788,7 +822,7 @@
                                                                             Electricity, gas, steam and air conditioning supply
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-financial-and-insurance-activities"
                                                                             name="spendingsector_financial_and_insurance_activities" type="checkbox" value="Financial and insurance activities" <% if (ssn.spendingsector_financial_and_insurance_activities_Global) { %>
@@ -798,7 +832,7 @@
                                                                             Financial and insurance activities
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-human-health" name="spendingsector_human_health"
                                                                             type="checkbox" value="Human health and social work activities" <% if (ssn.spendingsector_human_health_Global) { %>
@@ -807,8 +841,8 @@
                                                                             Human health and social work activities
                                                                         </label>
                                                                         </div>
-                                                        
-                                                        
+
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-information-and-communication"
                                                                             name="spendingsector_information_and_communication" type="checkbox" value="Information and communication" <% if (ssn.spendingsector_information_and_communication_Global) { %>
@@ -817,7 +851,7 @@
                                                                             Information and communication
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-Manufacturing" name="spendingsector_Manufacturing"
                                                                             type="checkbox" value="Manufacturing" <% if (ssn.spendingsector_Manufacturing_Global) { %>
@@ -826,7 +860,7 @@
                                                                             Manufacturing
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-mining-and-quarrying" name="spendingsector_mining_and_quarrying"
                                                                             type="checkbox" value="Mining and quarrying" <% if (ssn.spendingsector_mining_and_quarrying_Global) { %>
@@ -835,7 +869,7 @@
                                                                             Mining and quarrying
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-Other-service-activities"
                                                                             name="spendingsector_Other_service_activities" type="checkbox" value="Other service activities" <% if (ssn.spendingsector_Other_service_activities_Global) { %>
@@ -844,7 +878,7 @@
                                                                             Other service activities
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-professional" name="spendingsector_professional"
                                                                             type="checkbox" value="Professional, scientific and technical activities" <% if (ssn.spendingsector_professional_Global) { %>
@@ -853,7 +887,7 @@
                                                                             Professional, scientific and technical activities
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-public-administration" name="spendingsector_public_administration"
                                                                             type="checkbox" value="Public administration and defence; compulsory social security" <% if (ssn.spendingsector_public_administration_Global) { %>
@@ -862,7 +896,7 @@
                                                                             Public administration and defence; compulsory social security
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-real-estate-activities"
                                                                             name="spendingsector_real_estate_activities" type="checkbox" value="Real estate activities" <% if (ssn.spendingsector_real_estate_activities_Global) { %>
@@ -871,7 +905,7 @@
                                                                             Real estate activities
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-transportation-and-storage"
                                                                             name="spendingsector_transportation_and_storage" type="checkbox" value="Transportation and storage" <% if (ssn.spendingsector_transportation_and_storage_Global) { %>
@@ -880,7 +914,7 @@
                                                                             Transportation and storage
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-water-supply" name="spendingsector_water_supply"
                                                                             type="checkbox" value="Water supply; sewerage, waste management and remediation activities" <% if (ssn.spendingsector_water_supply_Global) { %>
@@ -889,7 +923,7 @@
                                                                             Water supply; sewerage, waste management and remediation activities
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                         <div class="govuk-checkboxes__item">
                                                                         <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-wholesale-and-retail-trade"
                                                                             name="spendingsector_wholesale_and_retail_trade" type="checkbox"
@@ -899,10 +933,10 @@
                                                                             Wholesale and retail trade; repair of motor vehicles and motorcycles
                                                                         </label>
                                                                         </div>
-                                                        
+
                                                                     </div>
                                                                     </div>
-                                                        
+
                                                                 </fieldset>
                                                             </div>
 

@@ -40,6 +40,8 @@ router.get("/", (req, res) => {
     ssn.Spending_Region_Global = "";
     ssn.Spending_Sector_Global = "";
     ssn.SubsidyArraySize = 0;
+    ssn.Subsidy_Full_Amount_Range_Lower_Global = "";
+    ssn.Subsidy_Full_Amount_Range_Upper_Global = "";
     ssn.Standalone_Award_Global = "";
 
     ssn.Subsidy_Control_Number_Error = false;

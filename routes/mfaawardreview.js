@@ -46,6 +46,7 @@ router.post("/", async (req, res) => {
     ssn.MFA_Award_Beneficiary_Name_Length_Error = false;
     ssn.MFA_Award_National_ID_Type_Error = false;
     ssn.MFA_Award_National_ID_Error = false;
+    ssn.MFA_Award_National_ID_255_Error = false;
     ssn.MFA_Award_Confirmation_Day_Error = false;
     ssn.MFA_Award_Confirmation_Month_Error = false;
     ssn.MFA_Award_Confirmation_Year_Error = false;
@@ -249,6 +250,14 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
+      if ( National_ID_Number.length > 255 ) {
+        ssn.MFA_Award_National_ID_255_Error = true;
+        ssn.MFAAwardErrors[Additem] =
+          "The ID number must be 255 characters or less. ";
+        ssn.MFAFocus[Additem] = "#National_ID_Number";
+        Additem = Additem + 1;
+      }
+
       var confirmationDateMonthName = monthArray[((parseInt(mfa_award_confirmation_month)) - 1)];;
 
       ssn.MFA_Award_Confirmation_Date_String_Global = mfa_award_confirmation_day + " " + confirmationDateMonthName + " " + mfa_award_confirmation_year;
@@ -265,6 +274,7 @@ router.post("/", async (req, res) => {
         ssn.MFA_Award_Beneficiary_Name_Error ||
         ssn.MFA_Award_Beneficiary_Name_Length_Error ||
         ssn.MFA_Award_National_ID_Type_Error ||
+        ssn.MFA_Award_National_ID_255_Error ||
         ssn.MFA_Award_National_ID_Error ||
         ssn.MFA_Award_Confirmation_Day_Error ||
         ssn.MFA_Award_Confirmation_Month_Error ||

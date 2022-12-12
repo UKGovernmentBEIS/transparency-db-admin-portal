@@ -61,6 +61,7 @@ router.post("/", (req, res) => {
       scheme_issued_end_year,
       scheme_issued_end_month,
       scheme_issued_end_day,
+      Maximum_Amount_Under_Scheme,
       buttonvalue,
     } = req.body;
 
@@ -84,6 +85,7 @@ router.post("/", (req, res) => {
     ssn.Scheme_End_Day_Global = scheme_issued_end_day;
     ssn.Scheme_End_Month_Global = scheme_issued_end_month;
     ssn.Scheme_End_Year_Global = scheme_issued_end_year;
+    ssn.Maximum_Amount_Under_Scheme_Global = Maximum_Amount_Under_Scheme;
 
 
     console.log("ssn.Subsidy_Adhoc_Global :" + ssn.Subsidy_Adhoc_Global);
@@ -103,6 +105,7 @@ router.post("/", (req, res) => {
         ssn.Granting_Authority_Policy_Global
     );
     console.log("ssn.Budget_Global :" + ssn.Budget_Global);
+    console.log("ssn.Maximum_Amount_Under_Scheme_Global :" + ssn.Maximum_Amount_Under_Scheme_Global);
     console.log(
       "ssn.Granting_Authority_Name_Global:" + ssn.Granting_Authority_Name_Global
     );
