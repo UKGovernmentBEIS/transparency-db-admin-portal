@@ -310,7 +310,7 @@ router.post("/", (req, res) => {
 
       if (Subsidy_Scheme_Description == ""){
         ssn.Subsidy_Scheme_Description_Error = true;
-        ssn.SubsidyErrors.push("You must provide a descritpion of the standalone subsidy award");
+        ssn.SubsidyErrors.push("Enter the Subsidy scheme description");
         ssn.SubsidyFocus.push("#Subsidy_Scheme_Description");
       } else if (Subsidy_Scheme_Description.length > 5000){
         ssn.Subsidy_Scheme_Description_5000_Error = true;
@@ -325,21 +325,18 @@ router.post("/", (req, res) => {
         // Additem = Additem + 1;
       }
 
-      if (!Granting_Authority_URL) {
-        ssn.Granting_Authority_URL_Error = true;
-        ssn.SubsidyErrors.push("Enter the granting authority url");
-        ssn.SubsidyFocus.push("#Granting_Authority_URL");
-        // Additem = Additem + 1;
+      if (Granting_Authority_URL != "" && !Granting_Authority_Policy) {
+        ssn.Granting_Authority_Policy_Error = true;
+        ssn.SubsidyErrors.push("If you provide a URL, you must also provide a policy description");
+        ssn.SubsidyFocus.push("#Granting_Authority_Policy");
       }
 
-      if (!Granting_Authority_Policy) {
-        ssn.Granting_Authority_Policy_Error = true;
-        ssn.SubsidyErrors.push(
-          "Enter the granting authority policy description"
-        );
-        ssn.SubsidyFocus.push("#Granting_Authority_Policy");
-        // Additem = Additem + 1;
+      if (Granting_Authority_Policy != "" && !Granting_Authority_URL) {
+        ssn.Granting_Authority_URL_Error = true;
+        ssn.SubsidyErrors.push("If you provide a policy description, you must also provide a URL");
+        ssn.SubsidyFocus.push("#Granting_Authority_URL");
       }
+
       if (!Budget) {
         ssn.Budget_Error = true;
         ssn.SubsidyErrors.push("Enter the budget");
