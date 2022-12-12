@@ -283,7 +283,7 @@ router.post("/", (req, res) => {
         ssn.Granting_Authority_URL_Error = false;
         ssn.Granting_Authority_URL_255_Error = true;
         ssn.SubsidyErrors.push(
-          "Granting authority policy url cannot be greater than 255 characters"
+          "Public authority policy url cannot be greater than 255 characters"
         );
         ssn.SubsidyFocus.push("#Granting_Authority_URL");
         // Additem = Additem + 1;
@@ -296,7 +296,7 @@ router.post("/", (req, res) => {
         ssn.Granting_Authority_Policy_Error = false;
         ssn.Granting_Authority_Policy_255_Error = true;
         ssn.SubsidyErrors.push(
-          "Granting authority policy description cannot be greater than 255 characters"
+          "Public authority policy description cannot be greater than 255 characters"
         );
         ssn.SubsidyFocus.push("#Granting_Authority_Policy");
         // Additem = Additem + 1;

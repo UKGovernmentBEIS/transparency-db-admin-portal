@@ -3,9 +3,9 @@
 
 <head>
     <% if(review == 'true') { %>
-    <title>GOV.UK - Granting authority updated successfully page</title>
+    <title>GOV.UK - Public authority updated successfully page</title>
     <% } else { %>
-    <title>GOV.UK - Granting authority added successfully page</title>
+    <title>GOV.UK - Public authority added successfully page</title>
     <% } %>
     <%- include('../partials/headercss.ejs') %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -89,10 +89,10 @@
                         <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Granting Authority</a>
+                        <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Public Authority</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add granting authority</a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add public authority</a>
                     </li>
                 </ol>
             </div>
@@ -101,16 +101,16 @@
 
                 <div class="govuk-grid-column-two-thirds govuk-form-group">
                     <% if(review == 'true') { %>
-                    <h1 class="govuk-heading-xl">Edit granting authority</h1>
+                    <h1 class="govuk-heading-xl">Edit public authority</h1>
                     <% } else { %>
-                    <h1 class="govuk-heading-xl">Add granting authority</h1>
+                    <h1 class="govuk-heading-xl">Add public authority</h1>
                     <% } %>
                     <div class="govuk-panel govuk-panel--confirmation">
                         <h1 class="govuk-panel__title">
                             <% if(review == 'true') { %>
-                            Granting authority updated
+                            Public authority updated
                             <% } else { %>
-                            Granting authority added
+                            Public authority added
                             <% } %>
                         </h1>
                         <div class="govuk-panel__body">
@@ -120,26 +120,26 @@
                 </div>
                 <div class="govuk-grid-column-full govuk-form-group">
                     <% if(review == 'true') { %>
-                    <p class="govuk-body govuk-!-font-size-19">You have updated granting authority
+                    <p class="govuk-body govuk-!-font-size-19">You have updated public authority
                         <%=ssn.gaID_extract%>.
                     </p>
                     <% } else { %>
-                    <p class="govuk-body govuk-!-font-size-19">You have added granting authority <%=ssn.gaID_extract%>.
+                    <p class="govuk-body govuk-!-font-size-19">You have added public authority <%=ssn.gaID_extract%>.
                     </p>
                     <p class="govuk-body govuk-!-font-size-19">You can now <a href="/adduser?newuser=yes">add users</a>
                         to this
-                        granting authority.</p>
+                        public authority.</p>
                     <% } %>
                 </div>
                 <div class="govuk-grid-column-full govuk-form-group">
 
                     <a class="govuk-button" href="/mygrantingauthority" data-module="govuk-button">
-                        View all granting authorities
+                        View all public authorities
                     </a>
                     <% if(review != 'true') { %>
                     <a class="govuk-button" href="/addgrantingauthority" data-module="govuk-button">Add
                         another
-                        granting authority</a>
+                        public authority</a>
                     <% } %>
                 </div>
             </div>

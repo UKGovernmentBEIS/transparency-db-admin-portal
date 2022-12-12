@@ -89,7 +89,7 @@
                                     <th scope="col" class="govuk-table__header app-custom-class"
                                         style="color: #1D70B8;">Status</th>
                                     <th scope="col" class="govuk-table__header app-custom-class"
-                                        style="color: #1D70B8;">Granting authority</th>
+                                        style="color: #1D70B8;">Public authority</th>
                                     <th scope="col" class="govuk-table__header app-custom-class"
                                         style="color: #1D70B8;">Email address</th>
                                 </tr>
@@ -103,13 +103,13 @@
                                     </td>
                                     <td class="govuk-table__cell">
                                         <% var role = item.roleName.split("_"); if(role[1] == 'GrantingAuthorityAdministrators') { %>
-                                        Granting Authority Administrators
+                                        Public Authority Administrators
                                         <% } else if(role[1] == 'GrantingAuthorityEncoders') {%>
-                                        Granting Authority Encoders
+                                        Public Authority Encoders
                                         <% } else if(role[1] == 'BEISAdministrators') {%>
                                         BEIS Administrators
                                         <% } else  {%>
-                                        Granting Authority Approvers
+                                        Public Authority Approvers
                                         <% } %>
                                     </td>
                                     <td class="govuk-table__cell">

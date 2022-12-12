@@ -1250,11 +1250,11 @@
             <% if( ssn.Granting_Authority_Name_Error && !ssn.Granting_Authority_Valid_Name_Error) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <label class="govuk-label" for="Granting_Authority_Name">
-                Granting authority name
+                Public authority name
               </label>
 
               <span class="govuk-error-message" id="Granting_Authority_Name_Error">
-                <span class="govuk-visually-hidden">Error:</span> You must enter the name of the granting authority.
+                <span class="govuk-visually-hidden">Error:</span> You must enter the name of the public authority.
               </span>
 
               <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
@@ -1273,11 +1273,11 @@
             <%} else if(ssn.Granting_Authority_Valid_Name_Error) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <label class="govuk-label" for="Granting_Authority_Name">
-                Granting authority name
+                Public authority name
               </label>
 
               <span class="govuk-error-message">
-                <span class="govuk-visually-hidden">Error:</span> Please enter a valid granting authority.
+                <span class="govuk-visually-hidden">Error:</span> Please enter a valid public authority.
               </span>
 
               <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
@@ -1297,7 +1297,7 @@
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="Granting_Authority_Name">
-                Granting authority name
+                Public authority name
               </label>
 
               <% if(ssn.dashboard_roles == "BEIS Administrator") { %>

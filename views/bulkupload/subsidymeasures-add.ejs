@@ -195,15 +195,15 @@
                         <% if( ssn.Granting_Authority_Name_Error ||   ssn.Granting_Authority_Name_Inactive_Error) { %>
                         <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                             <label class="govuk-label" for="Granting_Authority_Name">
-                                Granting authority name
+                                Public authority name
                             </label>
                             <% if(ssn.Granting_Authority_Name_Inactive_Error){ %>
                             <span class="govuk-error-message" id="Granting_Authority_Name_Error">
-                                <span class="govuk-visually-hidden">Error:</span> Granting authority is not active
+                                <span class="govuk-visually-hidden">Error:</span> Public authority is not active
                             </span>
                             <% } else { %>
                             <span class="govuk-error-message" id="Granting_Authority_Name_Error">
-                                <span class="govuk-visually-hidden">Error:</span> Enter a granting authority name
+                                <span class="govuk-visually-hidden">Error:</span> Enter a public authority name
                             </span>
                             <% } %>
                             <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
@@ -225,7 +225,7 @@
 
                         <div class="govuk-form-group govuk-grid-column-two-thirds">
                             <label class="govuk-label" for="Granting_Authority_Name">
-                                Granting authority name
+                                Public authority name
                             </label>
 
                             <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
@@ -338,12 +338,12 @@
                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                         <% }  %>
                                         <label class="govuk-label" for="address-line-1">
-                                            Granting authority policy URL
+                                            Public authority policy URL
                                         </label>
                                         <details class="govuk-details" data-module="govuk-details">
                                             <summary class="govuk-details__summary">
                                                 <span class="govuk-details__summary-text">
-                                                    What is Granting authority policy URL?
+                                                    What is Public authority policy URL?
                                                 </span>
                                             </summary>
                                             <div class="govuk-details__text">
@@ -360,7 +360,7 @@
                                         </span>
                                         <% } else if( ssn.Granting_Authority_URL_255_Error ){ %>
                                         <span class="govuk-error-message" id="Granting_Authority_URL_Error">
-                                            <span class="govuk-visually-hidden">Error:</span> Granting authority policy
+                                            <span class="govuk-visually-hidden">Error:</span> Public authority policy
                                             url cannot be greater than 255 characters
                                         </span>
                                         <% } %>
@@ -374,12 +374,12 @@
                                         <div class="govuk-form-group govuk-grid-column-two-thirds">
                                             <% }  %>
                                             <label class="govuk-label" for="address-line-1">
-                                                Granting authority policy page description
+                                                Public authority policy page description
                                             </label>
                                             <details class="govuk-details" data-module="govuk-details">
                                                 <summary class="govuk-details__summary">
                                                     <span class="govuk-details__summary-text">
-                                                        What should a Granting authority policy page description be?
+                                                        What should a Public authority policy page description be?
                                                     </span>
                                                 </summary>
                                                 <div class="govuk-details__text">
@@ -391,12 +391,12 @@
                                             <% if( ssn.Granting_Authority_Policy_Error ){ %>
                                             <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
                                                 <span class="govuk-visually-hidden">Error:</span> Enter a valid
-                                                granting authority policy page description
+                                                public authority policy page description
                                             </span>
 
                                             <% } else if( ssn.Granting_Authority_Policy_255_Error ){ %>
                                             <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
-                                                <span class="govuk-visually-hidden">Error:</span> Granting authority
+                                                <span class="govuk-visually-hidden">Error:</span> Public authority
                                                 policy description cannot be greater than 255 characters
                                             </span>
                                             <% }  %>

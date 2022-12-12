@@ -367,7 +367,7 @@ router.post("/", async (req, res) => {
         ssn.Granting_Authority_Name_Error = true;
         ssn.Granting_Authority_Valid_Name_Error = false;
         ssn.SubsidyErrors[Additem] =
-          "You must enter the name of the granting authority.";
+          "You must enter the name of the public authority.";
         ssn.SubsidyFocus[Additem] = "#Granting_Authority_Name";
         Additem = Additem + 1;
       }

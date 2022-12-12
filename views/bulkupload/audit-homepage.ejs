@@ -86,14 +86,14 @@
         <div class="govuk-grid-column-full" id="audit_search_text">
           <label class="govuk-label">
             Below is a list of all activity within the system ordered by latest at the top. You can search and filter
-            for a specific person or granting authority.
+            for a specific person or public authority.
           </label>
         </div>
 
         <% } else { %>
         <div class="govuk-grid-column-full" id="audit_search_text">
           <label class="govuk-label">
-            You can search and filter for a specific person or granting authority.
+            You can search and filter for a specific person or public authority.
           </label>
         </div>
         <% } %>
@@ -478,7 +478,7 @@
 
                   <th scope="col" class="govuk-table__header app-custom-class govuk-!-width-one-quarter">
                     <a href="/auditsortroute/?page=granting_authority" style="text-decoration: none">
-                      Granting authority
+                      Public authority
                       <% if (ssn.audit_grantingauthority_arrow == "upanddown" ) { %>
                       <img id="audit_grantingauthority_updownarrow" src="/assets/images/UpDownArrow.jpg"
                         alt="Currently not sorted">

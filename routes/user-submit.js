@@ -65,9 +65,9 @@ router.post("/", async (req, res) => {
       UserErrors = [];
       UserFocus = [];
       ssn.GA_Error = true;
-      ssn.GA_msg = "Invalid granting authority";
+      ssn.GA_msg = "Invalid public authority";
       ssn.UserErrorLength_Global = 1;
-      UserErrors.push("Invalid granting authority");
+      UserErrors.push("Invalid public authority");
       UserFocus.push("#GA_Name_User");
 
       res.render("bulkupload/user-add", {

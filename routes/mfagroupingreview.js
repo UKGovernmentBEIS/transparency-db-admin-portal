@@ -71,7 +71,7 @@ router.post("/", async (req, res) => {
       if (!Granting_Authority_Name) {
         ssn.Granting_Authority_Name_Error = true;
         ssn.MFAGroupingErrors[Additem] =
-          "You must enter a granting authority name";
+          "You must enter a public authority name";
         ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
         Additem = Additem + 1;
       }
@@ -105,19 +105,19 @@ router.post("/", async (req, res) => {
           if (gaFiltered.length == 0) {
             ssn.Granting_Authority_Exists_Error = true;
             ssn.MFAGroupingErrors[Additem] =
-              "Granting authority' " + ssn.Granting_Authority_Name_Global.trim() + " 'doesn't exist.";
+              "Public authority' " + ssn.Granting_Authority_Name_Global.trim() + " 'doesn't exist.";
             ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
             Additem = Additem + 1;
           }else if(gaFiltered.length > 1){
             ssn.Granting_Authority_Multiple_Error = true;
             ssn.MFAGroupingErrors[Additem] =
-              "Multiple results for granting authority '" + ssn.Granting_Authority_Name_Global.trim() + "'. Please be more specific.";
+              "Multiple results for public authority '" + ssn.Granting_Authority_Name_Global.trim() + "'. Please be more specific.";
             ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
             Additem = Additem + 1;
           }else if(gaFiltered[0].status == 'Inactive' || gaFiltered[0].status == null){
             ssn.Granting_Authority_Inactive_Error = true;
             ssn.MFAGroupingErrors[Additem] =
-              "Granting authority '" + ssn.Granting_Authority_Name_Global.trim() + "' is inactive.";
+              "Public authority '" + ssn.Granting_Authority_Name_Global.trim() + "' is inactive.";
             ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
             Additem = Additem + 1;
           }
@@ -139,7 +139,7 @@ router.post("/", async (req, res) => {
           if (err.toString().includes("404")) {
             ssn.Granting_Authority_Exists_Error = true;
             ssn.MFAGroupingErrors[Additem] =
-              "Granting authority '" + ssn.Granting_Authority_Name_Global.trim() + "' doesn't exist.";
+              "Public authority '" + ssn.Granting_Authority_Name_Global.trim() + "' doesn't exist.";
             ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
             Additem = Additem + 1;
             res.render("mfa/mfagroupingadd", {

@@ -70,11 +70,11 @@
                                     address</a></p> -->
                             Role
                         </th>
-                        <td class="govuk-table__cell"><%= ssn.dashboard_roles%></td>
+                        <td class="govuk-table__cell"><%= ssn.dashboard_roles.replace('Granting', 'Public') %></td>
                         <!-- <td class="govuk-table__cell">£109.80 per week</td> -->
                     </tr>
                     <tr class="govuk-table__row">
-                        <th scope="row" class="govuk-table__header">Granting authority name</th>
+                        <th scope="row" class="govuk-table__header">Public authority name</th>
                         <td class="govuk-table__cell"><%= ssn.dashboard_ga_name%></td>
                     </tr>
                     <tr class="govuk-table__row">
