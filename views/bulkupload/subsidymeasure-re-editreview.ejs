@@ -76,12 +76,7 @@
                 <table class="govuk-table">
                     <tbody class="govuk-table__body">
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Is this an ad hoc scheme
-                            </th>
-                            <td class="govuk-table__cell"><%= ssn.Subsidy_Adhoc_Global %></td>
-                        </tr>
-                        <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Granting Authority</th>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Public Authority</th>
                             <td class="govuk-table__cell"><%=ssn.Granting_Authority_Name_Global%></td>
                         </tr>
                         <tr class="govuk-table__row">
@@ -94,17 +89,21 @@
                             <td class="govuk-table__cell"><%= ssn.scNumber_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme description</th>
+                            <td class="govuk-table__cell render-newlines"><%= ssn.Subsidy_Scheme_Description_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Legal basis</th>
                             <td class="govuk-table__cell"><%= ssn.Legal_Basis_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Granting authority policy
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Public authority policy
                                 URL </th>
                             <td class="govuk-table__cell"><%= ssn.Granting_Authority_URL_Global %>
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Granting authority policy
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Public authority policy
                                 page summary </th>
                             <td class="govuk-table__cell"><%= ssn.Granting_Authority_Policy_Global %>
                             </td>
@@ -114,14 +113,45 @@
                             <td class="govuk-table__cell">£ <%= formatedCurrency %></td>
                         </tr>
                         <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Maximum amount given under this scheme</th>
+                            <td class="govuk-table__cell">
+                                <% if ( ssn.Maximum_Amount_Under_Scheme_Global == '') { %>
+                                    NA
+                                <% } else { %>
+                                    <%= ssn.Maximum_Amount_Under_Scheme_Global %>
+                                <% } %>
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Confirmation Date</th>
+                            <td class="govuk-table__cell"><%= ssn.Scheme_Confirmation_Day_Global %> <%= ssn.GetConfirmationMonthName %>
+                                <%= ssn.Scheme_Confirmation_Year_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Start Date</th>
                             <td class="govuk-table__cell"><%= ssn.Scheme_Start_Day_Global %> <%= ssn.GetMonthName %>
                                 <%= ssn.Scheme_Start_Year_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">End Date</th>
-                            <td class="govuk-table__cell"><%= ssn.Scheme_End_Day_Global %> <%= ssn.GetEndMonthName %>
-                                <%= ssn.Scheme_End_Year_Global %></td>
+                            <td class="govuk-table__cell">
+                                <% if((ssn.Scheme_End_Day_Global == 31) && (ssn.Scheme_End_Month_Global == 12) && (ssn.Scheme_End_Year_Global == 9999)) { %>
+                                    NA
+                                    <% ssn.Has_No_End_Date = true %>
+                                 <% } else { %>
+                                     <%= ssn.Scheme_End_Day_Global %> <%= ssn.GetEndMonthName %>
+                                     <%= ssn.Scheme_End_Year_Global %>
+                                 <% } %>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Spending Sectors</th>
+                            <td class="govuk-table__cell">
+                                <ul class="govuk-list govuk-list--bullet">
+                                    <% spendingSectorArray.forEach(function(item) { %>
+                                    <li> <%=item %> </li>
+                                    <% }); %>
+                                </ul>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

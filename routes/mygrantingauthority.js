@@ -353,7 +353,7 @@ router.get("/", async (req, res) => {
         nogas = true;
         noresult = true;
         if (err.toString().includes("404")) {
-          noGrantingAuthority = "No granting authority available";
+          noGrantingAuthority = "No public authority available";
           res.render("bulkupload/mygrantingauthority", {
             noGrantingAuthority,
             noresult,
@@ -362,7 +362,7 @@ router.get("/", async (req, res) => {
         } else if (err.toString().includes("401"))
           res.render("bulkupload/notAuthorized");
         else {
-          noGrantingAuthority = "No granting authority available";
+          noGrantingAuthority = "No public authority available";
           res.render("bulkupload/mygrantingauthority", {
             noGrantingAuthority,
             noresult,
@@ -536,7 +536,7 @@ router.post("/", async (req, res) => {
         grantingAuthorityName = req.body.grantingAuthorityName;
 
       if (err == "Error: Request failed with status code 404") {
-        noGrantingAuthority = "No granting authority available";
+        noGrantingAuthority = "No public authority available";
         noresult = true;
         nogas = false;
         res.render("bulkupload/mygrantingauthority", {

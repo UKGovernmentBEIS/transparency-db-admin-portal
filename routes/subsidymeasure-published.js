@@ -26,12 +26,20 @@ router.post("/", async (req, res) => {
 
     console.log("button_value : " + button_value);
 
+    if (ssn.Scheme_Confirmation_Month_Global.length == 1) {
+      ssn.Scheme_Confirmation_Month_Global = "0" + ssn.Scheme_Confirmation_Month_Global;
+    }
+    if (ssn.Scheme_Confirmation_Day_Global.length < 2) {
+      ssn.Scheme_Confirmation_Day_Global = "0" + ssn.Scheme_Confirmation_Day_Global;
+    }
+
     if (ssn.Scheme_Start_Month_Global.length == 1) {
       ssn.Scheme_Start_Month_Global = "0" + ssn.Scheme_Start_Month_Global;
     }
     if (ssn.Scheme_Start_Day_Global.length < 2) {
       ssn.Scheme_Start_Day_Global = "0" + ssn.Scheme_Start_Day_Global;
     }
+
     if (ssn.Scheme_End_Month_Global.length < 2) {
       ssn.Scheme_End_Month_Global = "0" + ssn.Scheme_End_Month_Global;
     }
@@ -39,6 +47,12 @@ router.post("/", async (req, res) => {
       ssn.Scheme_End_Day_Global = "0" + ssn.Scheme_End_Day_Global;
     }
 
+    subsidy_confirmation_date =
+      ssn.Scheme_Confirmation_Year_Global +
+      "-" +
+      ssn.Scheme_Confirmation_Month_Global +
+      "-" +
+      ssn.Scheme_Confirmation_Day_Global;
     subsidy_start_date =
       ssn.Scheme_Start_Year_Global +
       "-" +
@@ -68,6 +82,11 @@ router.post("/", async (req, res) => {
     ssn.scheme_issued_end_month_Error = false;
     ssn.scheme_issued_end_day_Error = false;
     ssn.scheme_issued_end_day_lesser_Error = false;
+    ssn.Subsidy_Scheme_Description_5000_Error = false;
+    ssn.scheme_issued_confirmation_day_Error = false;
+    ssn.scheme_issued_confirmation_month_Error = false;
+    ssn.scheme_issued_confirmation_year_Error = false;
+    ssn.Maximum_Amount_Under_Scheme_255_Error = false;
 
     // ssn.Granting_Authority_Name_Global = "Big Lottery Fund";
 
@@ -88,6 +107,11 @@ router.post("/", async (req, res) => {
       startDate: subsidy_start_date,
       endDate: subsidy_end_date,
       status: "Active",
+      hasNoEndDate: ssn.Has_No_End_Date_Global,
+      subsidySchemeDescription: ssn.Subsidy_Scheme_Description_Global,
+      confirmationDate: subsidy_confirmation_date,
+      spendingSectorJson: ssn.Scheme_Sector_Json_Global,
+      maximumAmountUnderScheme: ssn.Maximum_Amount_Under_Scheme_Global
     };
 
     console.log("add scheme data", JSON.stringify(addSchemeRequest));
@@ -134,6 +158,12 @@ router.post("/", async (req, res) => {
         ssn.scheme_issued_end_day_lesser_Error = false;
         ssn.Granting_Authority_Name_Inactive_Error = false;
         isAddSubsidyPrimarycall = false;
+        ssn.Subsidy_Scheme_Description_Error = false;
+        ssn.Subsidy_Scheme_Description_5000_Error = false;
+        ssn.scheme_issued_confirmation_day_Error = false;
+        ssn.scheme_issued_confirmation_month_Error = false;
+        ssn.scheme_issued_confirmation_year_Error = false;
+        ssn.Maximum_Amount_Under_Scheme_255_Error = false;
 
         console.log("message error : " + err.message);
         if (err.toString().includes("401")) {
@@ -147,7 +177,7 @@ router.post("/", async (req, res) => {
         }
         if (err.toString().includes("400")) {
           ssn.Granting_Authority_Name_Inactive_Error = true;
-          ssn.SubsidyErrors.push(" Granting authority is not active");
+          ssn.SubsidyErrors.push(" public authority is not active");
           ssn.SubsidyFocus.push("#Granting_Authority_Name");
           // Additem = Additem + 1;
           ssn.SubsidyArraySize = ssn.SubsidyErrors.length;
@@ -169,6 +199,11 @@ router.post("/", async (req, res) => {
         startDate: subsidy_start_date,
         endDate: subsidy_end_date,
         status: "Active",
+        hasNoEndDate: ssn.Has_No_End_Date_Global,
+        subsidySchemeDescription: ssn.Subsidy_Scheme_Description_Global,
+        confirmationDate: subsidy_confirmation_date,
+        spendingSectorJson: ssn.Scheme_Sector_Json_Global,
+        maximumAmountUnderScheme: ssn.Maximum_Amount_Under_Scheme_Global
       };
 
       updateSchemeUrl =
@@ -203,94 +238,3 @@ router.post("/", async (req, res) => {
 });
 
 module.exports = router;
-
-// if (add_award_response.totalErrors > 0) {
-//   add_award_response.validationErrorResult.forEach(function (i, obj) {
-//     if (obj.column == "subsidyControlTitle") {
-//       ssn.Subsidy_Measure_Title_Error = true;
-//       SubsidyErrors[Additem] = obj.message;
-//       SubsidyFocus[Additem] = "#Subsidy_Measure_Title";
-//       Additem = Additem + 1;
-//     }
-
-//     if (obj.column == "nationalId") {
-//       ssn.National_ID_Number_Error = true;
-//       SubsidyErrors[Additem] = obj.message;
-//       SubsidyFocus[Additem] = "#National_ID_Number";
-//       Additem = Additem + 1;
-//     }
-
-//     if (obj.column == "nationalIdType") {
-//       ssn.National_ID_Type_Error = true;
-//       SubsidyErrors[Additem] = obj.message;
-//       SubsidyFocus[Additem] = "#National_ID_Type";
-//       Additem = Additem + 1;
-//     }
-
-//     if (obj.column == "subsidyObjective") {
-//       ssn.Subsidy_Objective_Error = true;
-//       SubsidyErrors[Additem] = obj.message;
-//       SubsidyFocus[Additem] = "#Subsidy_Objective";
-//       Additem = Additem + 1;
-//     }
-
-//     if (obj.column == "SubsidyObjective-other") {
-//       ssn.Subsidy_Objective_Other_Error = true;
-//       SubsidyErrors[Additem] = obj.message;
-//       SubsidyFocus[Additem] = "#Subsidy_Objective_Other";
-//       Additem = Additem + 1;
-//     }
-
-//     if (obj.column == "spendingRegion") {
-//       ssn.Spending_Region_Error = true;
-//       SubsidyErrors[Additem] = obj.message;
-//       SubsidyFocus[Additem] = "#Spending_Region";
-//       Additem = Additem + 1;
-//     }
-
-//     if (obj.column == "subsidyInstrument") {
-//       ssn.Subsidy_Instrument_Error = true;
-//       SubsidyErrors[Additem] = obj.message;
-//       SubsidyFocus[Additem] = "#Subsidy_Instrument";
-//       Additem = Additem + 1;
-//     }
-
-//     if (obj.column == "SubsidyInstrument-other") {
-//       ssn.Subsidy_Instrument_Other_Error = true;
-//       SubsidyErrors[Additem] = obj.message;
-//       SubsidyFocus[Additem] = "#Subsidy_Instrument_Other";
-//       Additem = Additem + 1;
-//     }
-
-//     if (obj.column == "subsidyAmountExact") {
-//       ssn.Subsidy_Element_Full_Amount_Error = true;
-//       SubsidyErrors[Additem] = obj.message;
-//       SubsidyFocus[Additem] = "#Subsidy_Element_Full_Amount";
-//       Additem = Additem + 1;
-//     }
-
-//     if (obj.column == "grantingAuthorityName") {
-//       ssn.Granting_Authority_Name_Error = true;
-//       SubsidyErrors[Additem] = obj.message;
-//       SubsidyFocus[Additem] = "#Granting_Authority_Name";
-//       Additem = Additem + 1;
-//     }
-//     s;
-//   });
-
-//   var SubsidyArraySize = SubsidyErrors.length;
-//   var isAddSubsidyPrimarycall = false;
-
-//   res.render("bulkupload/addsubsidymeasures", {
-//     ssn.Subsidy_Measure_Title_Global,
-//     ssn.Subsidy_Adhoc_Global,
-
-//     ssn.Subsidy_Measure_Title_Error,
-//     ssn.Subsidy_Adhoc_Error,
-//     SubsidyErrors,
-//     SubsidyArraySize,
-//     SubsidyFocus,
-
-//     isAddSubsidyPrimarycall,
-//   });
-// } else {

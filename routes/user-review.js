@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
       userRole !== "BEIS Administrator"
     ) {
       ssn.GA_Name_User_Error = true;
-      UserErrors.push(" Enter the granting authority name");
+      UserErrors.push(" Enter the public authority name");
       UserFocus.push("#EmailId");
     }
 

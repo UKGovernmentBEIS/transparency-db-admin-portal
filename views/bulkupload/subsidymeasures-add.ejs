@@ -37,6 +37,17 @@
             }
         }
 
+        getSubsidyNoEndDate = (event) => {
+            var checkBox = document.getElementById("myCheck");
+            if (checkBox.checked == true) {
+                document.getElementById("scheme_issued_end_day").value = "";
+                document.getElementById("scheme_issued_end_month").value = "";
+                document.getElementById("scheme_issued_end_year").value = "";
+            }
+            document.getElementById("scheme_issued_end_day").disabled = checkBox.checked;
+            document.getElementById("scheme_issued_end_month").disabled = checkBox.checked;
+            document.getElementById("scheme_issued_end_year").disabled = checkBox.checked;
+        }
 
 
         getErrorList = (errorArray, adhoc) => {
@@ -51,12 +62,35 @@
                 document.getElementById("startDateLabel").textContent = "Start Date";
             }
         }
+
+        checkEndDateCheckBox = (event)  => {
+            var checkBox = document.getElementById("myCheck");
+            if (checkBox.checked == true){
+                document.getElementById("scheme_issued_end_day").disabled = checkBox.checked;
+                document.getElementById("scheme_issued_end_month").disabled = checkBox.checked;
+                document.getElementById("scheme_issued_end_year").disabled = checkBox.checked;
+                document.getElementById("scheme_issued_end_day").value = "";
+                document.getElementById("scheme_issued_end_month").value = "";
+                document.getElementById("scheme_issued_end_year").value = "";
+            }
+        }
     </script>
+      <script>
+        function selectAll(source) {
+            checkboxes = document.getElementsByClassName("govuk-checkboxes__input_spendingsector");
+            for(var i=0, n=checkboxes.length;i<n;i++) {
+            checkboxes[i].checked = source.checked;
+            }
+        }
+      </script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+      <script src="/assets/javascripts/jquery.min.js"></script>
+
 </head>
 
 
 <body class="govuk-template__body app-example-page"
-    onload="getErrorList('<%=ssn.SubsidyArraySize%>','<%=ssn.Subsidy_Adhoc_Global%>')">
+    onload="getErrorList('<%=ssn.SubsidyArraySize%>','<%=ssn.Subsidy_Adhoc_Global%>'); checkEndDateCheckBox()">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -125,11 +159,7 @@
 
             <form action="/reviewsubsidymeasures" method="POST" id="scheme-form">
                 <section class="govuk-grid-row">
-                    <% if( ssn.Subsidy_Adhoc_Error ){ %>
-                    <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
-                        <% } else { %>
-                        <div class="govuk-form-group govuk-grid-column-two-thirds">
-                            <% }  %>
+                        <div class="govuk-form-group govuk-grid-column-two-thirds" hidden>
                             <label class="govuk-label" for="address-line-1">
                                 Is this for an ad hoc subsidy?
                             </label>
@@ -148,34 +178,10 @@
                             <!-- <div id="adhoc-subsidy-hint" class="govuk-hint">
                                 You will only be able to create one subsidy award under each ad hoc subsidy scheme.
                             </div> -->
-                            <% if( ssn.Subsidy_Adhoc_Error ){ %>
-                            <span class="govuk-error-message" id="Subsidy_adhoc_Error">
-                                <span class="govuk-visually-hidden">Error:</span> Select the adhoc subsidy scheme
-                            </span>
-                            <% }  %>
                             <div class="govuk-radios" id="Subsidy_Adhoc">
                                 <div class="govuk-radios__item">
-                                    <% if(ssn.Subsidy_Adhoc_Global == 'Yes') { %>
-                                    <input class="govuk-radios__input" name="Subsidy_Adhoc" id="adhocyes" type="radio"
-                                        value="Yes" checked>
-                                    <% } else { %>
-                                    <% var ssn_Object = JSON.stringify(ssn)%>
-                                    <input class="govuk-radios__input" name="Subsidy_Adhoc"
-                                        onchange="getSubsidyAdhoc(event)" id="adhocyes" type="radio" value="Yes">
-                                    <% } %>
-                                    <label class="govuk-label govuk-radios__label" for="adhocyes">
-                                        Yes
-                                    </label>
-                                </div>
-                                <div class="govuk-radios__item">
-                                    <% if(ssn.Subsidy_Adhoc_Global == 'No') { %>
                                     <input class="govuk-radios__input" name="Subsidy_Adhoc" id="adhocno" type="radio"
                                         value="No" checked>
-                                    <% } else { %>
-                                    <% var ssn_Object = JSON.stringify(ssn)%>
-                                    <input class="govuk-radios__input" name="Subsidy_Adhoc"
-                                        onchange="getSubsidyAdhoc(event)" id="adhocno" type="radio" value="No">
-                                    <% } %>
                                     <label class="govuk-label govuk-radios__label" for="adhocno">
                                         No
                                     </label>
@@ -189,15 +195,15 @@
                         <% if( ssn.Granting_Authority_Name_Error ||   ssn.Granting_Authority_Name_Inactive_Error) { %>
                         <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                             <label class="govuk-label" for="Granting_Authority_Name">
-                                Granting authority name
+                                Public authority name
                             </label>
                             <% if(ssn.Granting_Authority_Name_Inactive_Error){ %>
                             <span class="govuk-error-message" id="Granting_Authority_Name_Error">
-                                <span class="govuk-visually-hidden">Error:</span> Granting authority is not active
+                                <span class="govuk-visually-hidden">Error:</span> Public authority is not active
                             </span>
                             <% } else { %>
                             <span class="govuk-error-message" id="Granting_Authority_Name_Error">
-                                <span class="govuk-visually-hidden">Error:</span> Enter a granting authority name
+                                <span class="govuk-visually-hidden">Error:</span> Enter a public authority name
                             </span>
                             <% } %>
                             <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
@@ -219,7 +225,7 @@
 
                         <div class="govuk-form-group govuk-grid-column-two-thirds">
                             <label class="govuk-label" for="Granting_Authority_Name">
-                                Granting authority name
+                                Public authority name
                             </label>
 
                             <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
@@ -264,6 +270,40 @@
                                     name="Subsidy_Measure_Title" type="text"
                                     value="<%= ssn.Subsidy_Measure_Title_Global %>">
                             </div>
+
+                            <% if( ssn.Subsidy_Scheme_Description_Error ||ssn.Subsidy_Scheme_Description_5000_Error){ %>
+                                <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                                    <% } else { %>
+                                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                        <% }  %>
+                                        <label class="govuk-label" for="address-line-1">
+                                            Subsidy scheme description
+                                        </label>
+                                        <details class="govuk-details" data-module="govuk-details">
+                                            <summary class="govuk-details__summary">
+                                                <span class="govuk-details__summary-text">
+                                                    What is a Subsidy scheme description?
+                                                </span>
+                                            </summary>
+                                            <div class="govuk-details__text">
+                                                Please provide a summary description of the subsidy scheme which includes information such as location, enterprise eligibility, the basis for calculating subsidies under the scheme and any other information required by the Subsidy Control (Subsidy Database Information Requirements) Regulations 2022 which is not already included in the database entry.
+                                            </div>
+                                        </details>
+
+                                        <% if( ssn.Subsidy_Scheme_Description_Error ){ %>
+                                        <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
+                                            <span class="govuk-visually-hidden">Error:</span> Enter a valid
+                                            subsidy scheme description
+                                        </span>
+
+                                        <% } else if( ssn.Subsidy_Scheme_Description_5000_Error ){ %>
+                                        <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
+                                            <span class="govuk-visually-hidden">Error:</span> Subsidy scheme description cannot be greater than 5000 characters
+                                        </span>
+                                        <% }  %>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="Subsidy_Scheme_Description" name="Subsidy_Scheme_Description" rows="5" aria-describedby="Subsidy_Scheme_Description-info"><%= ssn.Subsidy_Scheme_Description_Global %></textarea>
+                                    </div>
+
                             <% if( ssn.Legal_Basis_Error ){ %>
                             <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                 <% } else { %>
@@ -298,12 +338,12 @@
                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                         <% }  %>
                                         <label class="govuk-label" for="address-line-1">
-                                            Granting authority policy URL
+                                            Public authority policy URL
                                         </label>
                                         <details class="govuk-details" data-module="govuk-details">
                                             <summary class="govuk-details__summary">
                                                 <span class="govuk-details__summary-text">
-                                                    What is Granting authority policy URL?
+                                                    What is Public authority policy URL?
                                                 </span>
                                             </summary>
                                             <div class="govuk-details__text">
@@ -320,7 +360,7 @@
                                         </span>
                                         <% } else if( ssn.Granting_Authority_URL_255_Error ){ %>
                                         <span class="govuk-error-message" id="Granting_Authority_URL_Error">
-                                            <span class="govuk-visually-hidden">Error:</span> Granting authority policy
+                                            <span class="govuk-visually-hidden">Error:</span> Public authority policy
                                             url cannot be greater than 255 characters
                                         </span>
                                         <% } %>
@@ -328,18 +368,18 @@
                                             id="Granting_Authority_URL" type="text"
                                             value="<%= ssn.Granting_Authority_URL_Global%>">
                                     </div>
-                                    <% if( ssn.Granting_Authority_Policy_Error ||ssn.Granting_Authority_Policy_255_Error){ %>
+                                    <% if( ssn.Granting_Authority_Policy_Error || ssn.Granting_Authority_Policy_255_Error){ %>
                                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                         <% } else { %>
                                         <div class="govuk-form-group govuk-grid-column-two-thirds">
                                             <% }  %>
                                             <label class="govuk-label" for="address-line-1">
-                                                Granting authority policy page description
+                                                Public authority policy page description
                                             </label>
                                             <details class="govuk-details" data-module="govuk-details">
                                                 <summary class="govuk-details__summary">
                                                     <span class="govuk-details__summary-text">
-                                                        What should a Granting authority policy page description be?
+                                                        What should a Public authority policy page description be?
                                                     </span>
                                                 </summary>
                                                 <div class="govuk-details__text">
@@ -348,18 +388,15 @@
                                                 </div>
                                             </details>
 
-                                            <!-- <div class="govuk-hint">A short summary of the policy page that you provided
-                                                the URL for. For example, Water Purity Scheme policy page.
-                                            </div> -->
                                             <% if( ssn.Granting_Authority_Policy_Error ){ %>
                                             <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
                                                 <span class="govuk-visually-hidden">Error:</span> Enter a valid
-                                                granting authority policy page description
+                                                public authority policy page description
                                             </span>
 
                                             <% } else if( ssn.Granting_Authority_Policy_255_Error ){ %>
                                             <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
-                                                <span class="govuk-visually-hidden">Error:</span> Granting authority
+                                                <span class="govuk-visually-hidden">Error:</span> Public authority
                                                 policy description cannot be greater than 255 characters
                                             </span>
                                             <% }  %>
@@ -406,6 +443,116 @@
                                                 </div>
 
                                             </div>
+                                            <% if( ssn.Maximum_Amount_Under_Scheme_255_Error ){ %>
+                                                <div
+                                                    class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                                                    <% } else { %>
+                                                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                                        <% }  %>
+                                                        <label class="govuk-label" for="address-line-1">
+                                                            Maximum amount given under scheme
+                                                        </label>
+                                                        <div class="govuk-hint">
+                                                            For example, 12000000 or 10%
+                                                        </div>
+                                                        <details class="govuk-details" data-module="govuk-details">
+                                                            <summary class="govuk-details__summary">
+                                                                <span class="govuk-details__summary-text">
+                                                                    What is the maximum amount given under scheme?
+                                                                </span>
+                                                            </summary>
+                                                            <div class="govuk-details__text">
+                                                                SOME TEXT HERE
+                                                            </div>
+                                                        </details>
+                                                        <% if( ssn.Maximum_Amount_Under_Scheme_255_Error ){ %>
+                                                            <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
+                                                                <span class="govuk-visually-hidden">Error:</span> The maximum amount that can be given under a scheme
+                                                                cannot be greater than 255 characters
+                                                            </span>
+                                                            <% } %>
+                                                        <div class="govuk-input__wrapper">
+                                                            <input class="govuk-input" id="Maximum_Amount_Under_Scheme" name="Maximum_Amount_Under_Scheme" type="text"
+                                                                value="<%= ssn.Maximum_Amount_Under_Scheme_Global%>">
+                                                        </div>
+                                                    </div>
+                                            <% if( ssn.scheme_issued_confirmation_day_Error || ssn.scheme_issued_confirmation_month_Error || ssn.scheme_issued_confirmation_year_Error ){ %>
+                                                <div
+                                                    class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                                                    <% } else { %>
+                                                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                                        <% }  %>
+                                                        <label class="govuk-label" for="address-line-1" id="confirmationDateLabel">
+                                                            Confirmation Date
+                                                        </label>
+                                                        <div class="govuk-hint">
+                                                            For example, 25 5 2022
+                                                        </div>
+                                                        <details class="govuk-details" data-module="govuk-details">
+                                                            <summary class="govuk-details__summary">
+                                                                <span class="govuk-details__summary-text">
+                                                                    What is confirmation date?
+                                                                </span>
+                                                            </summary>
+                                                            <div class="govuk-details__text">
+                                                                Confirmation date is the date that a public authority confirms the decision to make a subsidy scheme.
+                                                            </div>
+                                                        </details>
+                                                        <% if( ssn.scheme_issued_confirmation_day_Error || ssn.scheme_issued_confirmation_month_Error || ssn.scheme_issued_confirmation_year_Error){ %>
+                                                        <span class="govuk-error-message" id="Date_Error">
+                                                            <span class="govuk-visually-hidden">Error:</span>
+                                                            Enter a valid date
+                                                        </span>
+                                                        <% }  %>
+
+
+                                                        <div class="govuk-date-input" id="scheme-issued">
+                                                            <div class="govuk-date-input__item">
+                                                                <div class="govuk-form-group">
+                                                                    <label class="govuk-label govuk-date-input__label"
+                                                                        for="scheme_issued_confirmation_day">
+                                                                        Day
+                                                                    </label>
+                                                                    <input
+                                                                        class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                                        id="scheme_issued_confirmation_day"
+                                                                        name="scheme_issued_confirmation_day" type="text"
+                                                                        placeholder="DD" pattern="[0-9]*"
+                                                                        inputmode="numeric"
+                                                                        value="<%= ssn.Scheme_Confirmation_Day_Global%>">
+                                                                </div>
+                                                            </div>
+                                                            <div class="govuk-date-input__item">
+                                                                <div class="govuk-form-group">
+                                                                    <label class="govuk-label govuk-date-input__label"
+                                                                        for="scheme_issued_confirmation_month">
+                                                                        Month
+                                                                    </label>
+
+                                                                    <input
+                                                                        class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                                        id="scheme_issued_confirmation_month"
+                                                                        value="<%= ssn.Scheme_Confirmation_Month_Global%>"
+                                                                        name="scheme_issued_confirmation_month" placeholder="MM"
+                                                                        type="text" pattern="[0-9]*" inputmode="numeric">
+                                                                </div>
+                                                            </div>
+                                                            <div class="govuk-date-input__item">
+                                                                <div class="govuk-form-group">
+                                                                    <label class="govuk-label govuk-date-input__label"
+                                                                        for="scheme_issued_confirmation_year">
+                                                                        Year
+                                                                    </label>
+                                                                    <input
+                                                                        class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                                                        id="scheme_issued_confirmation_year"
+                                                                        name="scheme_issued_confirmation_year" type="text"
+                                                                        pattern="[0-9]*" inputmode="numeric"
+                                                                        value="<%= ssn.Scheme_Confirmation_Year_Global%>"
+                                                                        placeholder="YYYY"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
                                             <% if( ssn.scheme_issued_start_day_Error || ssn.scheme_issued_start_month_Error || ssn.scheme_issued_start_year_Error ){ %>
                                             <div
@@ -557,22 +704,256 @@
 
                                                                 </div>
                                                             </div>
+                                                            <div class="govuk-date-input__item">
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" onclick="getSubsidyNoEndDate(event)" id="myCheck" name="myCheck" type="checkbox"<% if (ssn.Has_No_End_Date_Global) { %>
+                                                                        checked <% } %> >
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="myCheck"> No End Date </label>
+                                                                </div>
+                                                            </div>
                                                         </div>
+                                                </div>
+
+                                                <!--************************************
+                                            Gov.UK public user search - Body design
+                                            ************************************ -->
+                                            <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                                <fieldset class="govuk-fieldset" aria-describedby="sector-hint">
+                                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-grid-column-two-thirds">
+                                                    </legend>
+                                                    <div class="govuk-grid-row govuk-form-group">
+                                                    <div class="govuk-grid-column-full">
+                                                        <p id="sector-hint" class="govuk-body " for="subsidylabel">
+                                                        Select one or more sector(s)
+                                                        </p>
+                                                    </div>
                                                     </div>
 
-                                                    <div class="govuk-form-group govuk-grid-column-two-thirds">
-                                                        <button class="govuk-button" data-module="govuk-button"
-                                                            name="buttonvalue" value="Continue">Continue</button>
-                                                        <button class="govuk-link govuk-cancel-button-link"
-                                                            data-module="govuk-button" name="buttonvalue" value="Cancel"
-                                                            style="background: transparent;cursor:pointer;
-                                                                border: 0;color: #1d70b8;  outline: 0px solid transparent;    box-shadow: 0 0px #fd0, 0 0px #0b0c0c;
-                                                                   text-decoration: underline;">Cancel</button>
-                                                        <!-- <a href="/canceladdsubsidymeasures"
-                                                            class="govuk-link govuk-cancel-button-link"
-                                                            data-module="govuk-button" name="buttonvalue"
-                                                            value="Cancel">Cancel</a> -->
+                                                    <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" onclick="selectAll(this)" id="spendingsector-0" name="select-all" type="checkbox"
+                                                        value="Select all"
+                                                        data-aria-controls="conditional-spendingsector-0">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-0">
+                                                        Select all
+                                                        </label>
                                                     </div>
+
+                                                    <div class="govuk-checkboxes__conditional" id="conditional-objective0">
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-accommodation" name="spendingsector_accommodation"
+                                                            type="checkbox" value="Accommodation and food service activities"<% if (ssn.spendingsector_accommodation_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-accommodation">
+                                                            Accommodation and food service activities
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-activities-of-extraterritorial"
+                                                            name="spendingsector_activities_of_extraterritorial" type="checkbox" value="Activities of extraterritorial organisations and bodies"<% if (ssn.spendingsector_activities_of_extraterritorial_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-activities-of-extraterritorial">
+                                                            Activities of extraterritorial organisations and bodies
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-undifferentiated-goods"
+                                                            name="spendingsector_undifferentiated_goods" type="checkbox"
+                                                            value="Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use"<% if (ssn.spendingsector_undifferentiated_goods_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-undifferentiated-goods">
+                                                            Activities of households as employers; undifferentiated goods- and services-producing activities of
+                                                            households for own use
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-administrative" name="spendingsector_administrative"
+                                                            type="checkbox" value="Administrative and support service activities"<% if (ssn.spendingsector_administrative_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-administrative">
+                                                            Administrative and support service activities
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-agriculture-forestry-and-fishing"
+                                                            name="spendingsector_agriculture_forestry_and_fishing" type="checkbox" value="Agriculture, forestry and fishing"<% if (ssn.spendingsector_agriculture_forestry_and_fishing_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label"
+                                                            for="spendingsector-agriculture-forestry-and-fishing">
+                                                            Agriculture, forestry and fishing
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-arts-entertainment" name="spendingsector_arts_entertainment"
+                                                            type="checkbox" value="Arts, entertainment and recreation"<% if (ssn.spendingsector_arts_entertainment_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-arts-entertainment">
+                                                            Arts, entertainment and recreation
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-construction" name="spendingsector_construction"
+                                                            type="checkbox" value="Construction"<% if (ssn.spendingsector_construction_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-construction">
+                                                            Construction
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-education" name="spendingsector_education"
+                                                            type="checkbox" value="Education"<% if (ssn.spendingsector_education_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-education">
+                                                            Education
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector"
+                                                            id="spendingsector-Electricity-gas-steam-and-air-conditioning-supply" name="spendingsector_Electricity_gas_steam_and_air_conditioning_supply"
+                                                            type="checkbox" value="Electricity, gas, steam and air conditioning supply"<% if (ssn.spendingsector_Electricity_gas_steam_and_air_conditioning_supply_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label"
+                                                            for="spendingsector-Electricity-gas-steam-and-air-conditioning-supply">
+                                                            Electricity, gas, steam and air conditioning supply
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-financial-and-insurance-activities"
+                                                            name="spendingsector_financial_and_insurance_activities" type="checkbox" value="Financial and insurance activities"<% if (ssn.spendingsector_financial_and_insurance_activities_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label"
+                                                            for="spendingsector-financial-and-insurance-activities">
+                                                            Financial and insurance activities
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-human-health" name="spendingsector_human_health"
+                                                            type="checkbox" value="Human health and social work activities"<% if (ssn.spendingsector_human_health_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-human-health">
+                                                            Human health and social work activities
+                                                        </label>
+                                                        </div>
+
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-information-and-communication"
+                                                            name="spendingsector_information_and_communication" type="checkbox" value="Information and communication"<% if (ssn.spendingsector_information_and_communication_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-information-and-communication">
+                                                            Information and communication
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-Manufacturing" name="spendingsector_Manufacturing"
+                                                            type="checkbox" value="Manufacturing"<% if (ssn.spendingsector_Manufacturing_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-Manufacturing">
+                                                            Manufacturing
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-mining-and-quarrying" name="spendingsector_mining_and_quarrying"
+                                                            type="checkbox" value="Mining and quarrying"<% if (ssn.spendingsector_mining_and_quarrying_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-mining-and-quarrying">
+                                                            Mining and quarrying
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-Other-service-activities"
+                                                            name="spendingsector_Other_service_activities" type="checkbox" value="Other service activities"<% if (ssn.spendingsector_Other_service_activities_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-Other-service-activities">
+                                                            Other service activities
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-professional" name="spendingsector_professional"
+                                                            type="checkbox" value="Professional, scientific and technical activities"<% if (ssn.spendingsector_professional_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-professional">
+                                                            Professional, scientific and technical activities
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-public-administration" name="spendingsector_public_administration"
+                                                            type="checkbox" value="Public administration and defence; compulsory social security"<% if (ssn.spendingsector_public_administration_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-public-administration">
+                                                            Public administration and defence; compulsory social security
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-real-estate-activities"
+                                                            name="spendingsector_real_estate_activities" type="checkbox" value="Real estate activities"<% if (ssn.spendingsector_real_estate_activities_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-real-estate-activities">
+                                                            Real estate activities
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-transportation-and-storage"
+                                                            name="spendingsector_transportation_and_storage" type="checkbox" value="Transportation and storage"<% if (ssn.spendingsector_transportation_and_storage_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-transportation-and-storage">
+                                                            Transportation and storage
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-water-supply" name="spendingsector_water_supply"
+                                                            type="checkbox" value="Water supply; sewerage, waste management and remediation activities"<% if (ssn.spendingsector_water_supply_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-water-supply">
+                                                            Water supply; sewerage, waste management and remediation activities
+                                                        </label>
+                                                        </div>
+
+                                                        <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="spendingsector-wholesale-and-retail-trade"
+                                                            name="spendingsector_wholesale_and_retail_trade" type="checkbox"
+                                                            value="Wholesale and retail trade; repair of motor vehicles and motorcycles"<% if (ssn.spendingsector_wholesale_and_retail_trade_Global) { %>
+                                                                checked <% } %>>
+                                                        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-wholesale-and-retail-trade">
+                                                            Wholesale and retail trade; repair of motor vehicles and motorcycles
+                                                        </label>
+                                                        </div>
+
+                                                    </div>
+                                                    </div>
+
+                                                </fieldset>
+                                            </div>
+
+                                            <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                                <button class="govuk-button" data-module="govuk-button"
+                                                    name="buttonvalue" value="Continue">Continue</button>
+                                                <button class="govuk-link govuk-cancel-button-link"
+                                                    data-module="govuk-button" name="buttonvalue" value="Cancel"
+                                                    style="background: transparent;cursor:pointer;
+                                                        border: 0;color: #1d70b8;  outline: 0px solid transparent;    box-shadow: 0 0px #fd0, 0 0px #0b0c0c;
+                                                            text-decoration: underline;">Cancel</button>
+                                            </div>
+
 
                 </section>
 

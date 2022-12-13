@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Edit Granting Authority page</title>
+  <title>GOV.UK - Edit Public Authority page</title>
   <%- include('../partials/headercss.ejs') %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
@@ -49,30 +49,30 @@
             <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
           </li>
           <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Granting Authority</a>
+            <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Public Authority</a>
           </li>
           <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Edit Granting Authority</a>
+            <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Edit Public Authority</a>
           </li>
         </ol>
       </div>
 
 
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
-        <h1 class="govuk-fieldset__heading">Edit Granting Authorities</h1>
+        <h1 class="govuk-fieldset__heading">Edit Public Authorities</h1>
       </legend>
       <div class="govuk-grid-row">
         <form action="/editreviewgrantingauthority" method="POST">
           <div class="govuk-grid-column-three-quarters govuk-form-group">
             <!-- <form action="/filtersearch" method="POST" > -->
-            <p>Granting Authority ID</p>
+            <p>Public Authority ID</p>
             <input class="govuk-input govuk-input--width-2" value="<%= ssn.gaId%>" disabled name="gaId" type="text" />
             <!-- </form>  -->
           </div>
 
           <div class="govuk-grid-column-one-half govuk-form-group">
             <!-- <form action="/filtersearch" method="POST" > -->
-            <p>Granting authority name</p>
+            <p>Public authority name</p>
             <input class="govuk-input" value="<%= ssn.gaName%>" name="gaName" type="text" />
             <!-- </form>  -->
           </div>

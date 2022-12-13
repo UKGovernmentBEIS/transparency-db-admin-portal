@@ -63,18 +63,9 @@
 
                 </div>
                 <div class="govuk-grid-column-full">
-                    <h3 class="govuk-heading-m">Adding an ad hoc subsidy scheme</h3>
-                    <p class="govuk-body">An ad hoc
-                        subsidy scheme is a scheme that is created for one subsidy award.
-                    </p>
-                    <p class="govuk-body"> If you want to add more than one subsidy award to a subsidy scheme,
-                        select No
-                        for this question.
-                    </p>
+                    <h4 class="govuk-heading-s">Public authority name</h4>
 
-                    <h4 class="govuk-heading-s">Granting authority name</h4>
-
-                    <p class="govuk-body">The name of your granting authority will appear automatically.
+                    <p class="govuk-body">The name of your public authority will appear automatically.
                     </p>
 
                     <h4 class="govuk-heading-s">Subsidy scheme name</h4>
@@ -83,18 +74,23 @@
                             href="<%=beis_public_search%>"> Search for UK subsidies</a>.
                     </p>
 
+                    <h4 class="govuk-heading-s">Subsidy scheme description</h4>
+
+                    <p class="govuk-body">You must enter a description of the subsidy scheme.
+                    </p>
+
                     <h4 class="govuk-heading-s">Legal basis</h4>
                     <p class="govuk-body">You must provide a legal justification for each subsidy scheme. This can
                         be a
                         short summary of the policy or economic background of the scheme.
                     </p>
-                    <h4 class="govuk-heading-s">Granting authority policy URL</h4>
+                    <h4 class="govuk-heading-s">Public authority policy URL</h4>
                     <p class="govuk-body">You must provide a URL for the webpage that contains the policy that this
                         subsidy scheme relates to. For example, if you are adding a subsidy scheme that relates to
                         water
                         purity, you should provide the URL for the water purity policy.
                     </p>
-                    <h4 class="govuk-heading-s">Granting authority policy page description</h4>
+                    <h4 class="govuk-heading-s">Public authority policy page description</h4>
                     <p class="govuk-body">You must provide a short summary of the page that you have entered the URL
                         for. This will make it easier for other users to understand the contents of the page,
                         without
@@ -103,11 +99,20 @@
                     <h4 class="govuk-heading-s">Budget</h4>
                     <p class="govuk-body">You must enter the budget for the subsidy scheme.
                     </p>
+                    <h4 class="govuk-heading-s">Confirmation date</h4>
+                    <p class="govuk-body">You must enter the date that the subsidy scheme was confirmed.
+                    </p>
                     <h4 class="govuk-heading-s">Start date</h4>
                     <p class="govuk-body">You must enter the date that the subsidy scheme will start.
                     </p>
                     <h4 class="govuk-heading-s">End date</h4>
                     <p class="govuk-body">You must enter the date that the subsidy scheme will end.
+                        However, there is an option for 'No End Date', which can be selected and the end date field will become void.
+                    </p>
+                    <h4 class="govuk-heading-s">Spending Sectors</h4>
+                    <p class="govuk-body">You must tick one or more of the checkboxes that represent the
+                        corespending spending sector, this can also be to select all by checking
+                        "Select All" or to select none by checking "Select none".
                     </p>
 
                 </div>
@@ -146,6 +151,11 @@
                         the subsidy awards page or main dashboard.
                     </p>
 
+
+                    <h4 class="govuk-heading-s">Standalone subsidy award</h4>
+                    <p class="govuk-body">You must select whether the award is standalone or not.
+                        If it is, the 'Related subsidy scheme' section will be removed as the award is not linked to a scheme.
+                    </p>
                     <h4 class="govuk-heading-s">Related subsidy scheme</h4>
                     <p class="govuk-body">You must enter the details of the subsidy scheme that this award relates to.
                         You can choose to enter either:
@@ -156,6 +166,9 @@
                         </li>
                         <li> the subsidy scheme name</li>
                     </ul>
+                    <h4 class="govuk-heading-s">Subsidy award description</h4>
+                    <p class="govuk-body">This is an optional section. You have the ability to input a description of the subsidy award.
+                    </p>
                     <h4 class="govuk-heading-s">Subsidy purpose</h4>
                     <p class="govuk-body">You must select the purpose of the subsidy award. If you select ‘Other’, you
                         must provide a summary of the subsidy purpose.
@@ -165,8 +178,8 @@
                         provide a summary of the subsidy type.
                     </p>
 
-                    <h4 class="govuk-heading-s">Granting authority name</h4>
-                    <p class="govuk-body">The name of your granting authority will appear automatically.
+                    <h4 class="govuk-heading-s">Public authority name</h4>
+                    <p class="govuk-body">The name of your public authority will appear automatically.
                     </p>
                     <h4 class="govuk-heading-s">Granting date</h4>
                     <p class="govuk-body">You must enter the date that the subsidy award was granted.
@@ -224,10 +237,8 @@
                         make the changes that you need to.
                     </p>
                     <p class="govuk-body">When you’re ready to submit the subsidy award for approval, select <b>Submit
-                            for approval</b>. This will send a notification to all the approvers in your granting
-                        authority,
-                        so they
-                        can approve the subsidy award.
+                            for approval</b>. This will send a notification to all the approvers in your public authority,
+                            so they can approve the subsidy award.
                     </p>
                 </div>
                 <div class="govuk-grid-column-full">
@@ -260,32 +271,79 @@
                         for approval again.</p>
                 </div>
                 <div class="govuk-grid-column-full">
-                    <h2 class="govuk-heading-l">Adding a new granting authority</h2>
-                    <h4 class="govuk-heading-s">If you are a BEIS administrator</h4>
-                    <p class="govuk-body">You can add a new granting authority by selecting <b>Add a new granting
-                            authority</b> on the granting authorities page .
-                    </p>
+                    <h2 class="govuk-heading-l">Adding MFA / SPEIA grouping</h2>
 
-                    <p class="govuk-body">You can enter the granting authority name and save the details.</p>
-                    <h4 class="govuk-heading-s">If you are a granting authority administrator, approver or encoder</h4>
-                    <p class="govuk-body">You will need to send an email to subsidycontrol@beis.gov.uk to request a new
-                        granting authority.
+                    <p class="govuk-body">You can add a new MFA grouping by selecting <b>Add a new MFA grouping </b>on
+                        the MFA / SPEIA groupings page.
+                    </p>
+                    <h4 class="govuk-heading-s">MFA grouping name</h4>
+                    <p class="govuk-body">You must enter the MFA grouping name.
+                    </p>
+                    <h4 class="govuk-heading-s">Public authority name</h4>
+                    <p class="govuk-body">You must enter the Public authority name.
+                </div>
+
+                <div class="govuk-grid-column-full">
+                    <h2 class="govuk-heading-l">Adding MFA / SPEIA awards</h2>
+
+                    <p class="govuk-body">You can add a new MFA awards by selecting <b>Add a new MFA award </b>on
+                        the MFA / SPEIA awards page.
+                    </p>
+                    <h4 class="govuk-heading-s">Is this a SPEI Assistance Award?</h4>
+                    <p class="govuk-body">You must select 'Yes' or 'No'.
+                    </p>
+                    <h4 class="govuk-heading-s">Do you wish to include this award in an MFA / SPEIA Grouping?</h4>
+                    <p class="govuk-body">You must select 'Yes' or 'No'. Selecting 'No' will remove the 'MFA / SPEIA Grouping ID' section.
+                    </p>
+                    <h4 class="govuk-heading-s">MFA / SPEIA Grouping ID</h4>
+                    <p class="govuk-body">You must enter an MFA / SPEIA Grouping ID.
+                    </p>
+                    <h4 class="govuk-heading-s">Award full amount (£)</h4>
+                    <p class="govuk-body">You must enter an award full amount.
+                    </p>
+                    <h4 class="govuk-heading-s">Confirmation Date</h4>
+                    <p class="govuk-body">You must enter the date that the MFA / SPEIA award was confirmed.
+                    </p>
+                    <h4 class="govuk-heading-s">Public authority name</h4>
+                    <p class="govuk-body">The name of your public authority will appear automatically.
+                    </p>
+                    <h4 class="govuk-heading-s">Recipient organisation name</h4>
+                    <p class="govuk-body">You must enter the name of the organisation that will receive the MFA award.
+                    </p>
+                    <h4 class="govuk-heading-s">Organisation ID Type</h4>
+                    <p class="govuk-body">You must select the type of ID that you will provide for the recipient organisation.
+                    </p>
+                    <h4 class="govuk-heading-s">ID number</h4>
+                    <p class="govuk-body">You must enter the ID number that matches the ID type you selected. For example, if you selected ‘VAT number’, you must enter the recipient organisation’s VAT number.
                     </p>
                 </div>
                 <div class="govuk-grid-column-full">
-                    <h3 class="govuk-heading-l">Deactivating a granting authority</h3>
+                    <h2 class="govuk-heading-l">Adding a new public authority</h2>
+                    <h4 class="govuk-heading-s">If you are a BEIS administrator</h4>
+                    <p class="govuk-body">You can add a new public authority by selecting <b>Add a new public
+                            authority</b> on the public authorities page.
+                    </p>
 
-                    <p class="govuk-body">On the granting authorities page, select the granting authority that you want
+                    <p class="govuk-body">You can enter the public authority name and save the details.</p>
+                    <h4 class="govuk-heading-s">If you are a public authority administrator, approver or encoder</h4>
+                    <p class="govuk-body">You will need to send an email to subsidycontrol@beis.gov.uk to request a new
+                        public authority.
+                    </p>
+                </div>
+                <div class="govuk-grid-column-full">
+                    <h3 class="govuk-heading-l">Deactivating a public authority</h3>
+
+                    <p class="govuk-body">On the public authorities page, select the public authority that you want
                         to deactivate, then select <b>Deactivate</b>.
                     </p>
-                    <p class="govuk-body">If there are active users linked to the granting authority, you must remove
+                    <p class="govuk-body">If there are active users linked to the public authority, you must remove
                         them.
                     </p>
 
                 </div>
                 <div class="govuk-grid-column-full">
                     <h3 class="govuk-heading-l">Adding a new user</h3>
-                    <h4 class="govuk-heading-s">If you are a BEIS or granting authority administrator</h4>
+                    <h4 class="govuk-heading-s">If you are a BEIS or public authority administrator</h4>
                     <p class="govuk-body">Select <b>Add a new user</b> from the users page, dashboard or menu.
                     </p>
                     <p class="govuk-body">You can choose the user’s role – this will affect their account permissions.
@@ -293,28 +351,28 @@
                     </p>
                     <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
                         <li>
-                            BEIS administrator - will be able to add, edit and approve users, granting authorities,
+                            BEIS administrator - will be able to add, edit and approve users, public authorities,
                             subsidy schemes and awards
                         </li>
                         <li>
-                            Granting authority administrator - will be able to add, edit and approve users, subsidy
+                            Public authority administrator - will be able to add, edit and approve users, subsidy
                             schemes and awards
                         </li>
                         <li>
-                            Granting authority approver - will be able to add, edit and approve subsidy schemes and
+                            Public authority approver - will be able to add, edit and approve subsidy schemes and
                             awards
                         </li>
-                        <li>Granting authority encoder - will be able to add and edit subsidy awards</li>
+                        <li>Public authority encoder - will be able to add and edit subsidy awards</li>
                     </ul>
 
 
-                    <h4 class="govuk-heading-s">If you are a granting authority approver or encoder</h4>
-                    <p class="govuk-body">You will need to contact your granting authority’s administrator to request a
+                    <h4 class="govuk-heading-s">If you are a public authority approver or encoder</h4>
+                    <p class="govuk-body">You will need to contact your public authority’s administrator to request a
                         new user.
                     </p>
-                    <h4 class="govuk-heading-s">Adding an existing user to a different granting authority</h4>
+                    <h4 class="govuk-heading-s">Adding an existing user to a different public authority</h4>
                     <p class="govuk-body">You will first need to make sure that the user has a separate email address
-                        for the granting authority – they will not be able to access different granting authorities with
+                        for the public authority – they will not be able to access different public authorities with
                         one email address.
                     </p>
                     <p class="govuk-body">If the user has a separate email address, you can follow the steps for adding
@@ -360,7 +418,7 @@
                             updates to subsidy schemes and awards
                         </li>
                         <li>
-                            updates to granting authorities
+                            updates to public authorities
                         </li>
                         <li>
                             updates to user information

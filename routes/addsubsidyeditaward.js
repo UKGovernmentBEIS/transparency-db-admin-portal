@@ -54,6 +54,9 @@ router.get("/", (req, res) => {
     ssn.Subsidy_Measure_Title_Global =
       fetchawarddetails.subsidyMeasure.subsidyMeasureTitle;
 
+    ssn.Standalone_Award_Global = fetchawarddetails.standaloneAward;
+    ssn.Subsidy_Award_Description_Global = fetchawarddetails.subsidyAwardDescription;
+
     ssn.Subsidy_Objective_Global = fetchawarddetails.subsidyObjective;
 
     var subsidy_objective_split = ssn.Subsidy_Objective_Global.split("-");
@@ -84,10 +87,20 @@ router.get("/", (req, res) => {
     ) {
       ssn.Subsidy_Full_Amount_Range_Global =
         fetchawarddetails.subsidyFullAmountRange;
+      var rangeSplit = ssn.Subsidy_Full_Amount_Range_Global.split(" - ")
+      if (rangeSplit.length == 2) {
+        ssn.Subsidy_Full_Amount_Range_Lower_Global = Number(rangeSplit[0].replace(/[^0-9.-]+/g, ""));
+        ssn.Subsidy_Full_Amount_Range_Upper_Global = Number(rangeSplit[1].replace(/[^0-9.-]+/g, ""));
+      } else {
+        ssn.Subsidy_Full_Amount_Range_Lower_Global = "";
+        ssn.Subsidy_Full_Amount_Range_Upper_Global = "";
+      }
       ssn.Subsidy_Element_Full_Amount_Global = "";
     } else {
-      ssn.Subsidy_Full_Amount_Range_Global = "";
-      ssn.Subsidy_Element_Full_Amount_Global =
+        ssn.Subsidy_Full_Amount_Range_Global = "";
+        ssn.Subsidy_Full_Amount_Range_Lower_Global = "";
+        ssn.Subsidy_Full_Amount_Range_Upper_Global = "";
+        ssn.Subsidy_Element_Full_Amount_Global =
         fetchawarddetails.subsidyFullAmountExact;
     }
 

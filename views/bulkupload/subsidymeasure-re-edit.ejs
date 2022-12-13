@@ -179,7 +179,7 @@
 
                         <div class="govuk-form-group govuk-grid-column-two-thirds">
                             <label class="govuk-label" for="address-line-1">
-                                Granting Authority
+                                Public Authority
                             </label>
                             <input class="govuk-input govuk-!-width-one-half" id="Granting_Authority_Name"
                                 value="Cardiff Council" disabled readonly name="Granting_Authority_Name" type="text">
@@ -230,7 +230,7 @@
                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                         <% }  %>
                                         <label class="govuk-label" for="address-line-1">
-                                            Granting authority policy URL
+                                            Public authority policy URL
                                         </label>
                                         <div class="govuk-hint">This is the web address for the policy that
                                             this subsidy scheme is related to.</div>
@@ -250,7 +250,7 @@
                                         <div class="govuk-form-group govuk-grid-column-two-thirds">
                                             <% }  %>
                                             <label class="govuk-label" for="address-line-1">
-                                                Granting authority policy page description
+                                                Public authority policy page description
                                             </label>
                                             <div class="govuk-hint">A short summary of the policy page that you
                                                 provided the URL for. For example, Water Purity Scheme policy page.
@@ -290,6 +290,107 @@
                                                 </div>
 
                                             </div>
+                                        </div>
+                                        <% if( ssn.Maximum_Amount_Under_Scheme_255_Error ){ %>
+                                            <div
+                                                class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                                                <% } else { %>
+                                                <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                                    <% }  %>
+                                                    <label class="govuk-label" for="address-line-1">
+                                                        Maximum amount given under scheme
+                                                    </label>
+                                                    <div class="govuk-hint">
+                                                        For example, 12000000 or 10%
+                                                    </div>
+                                                    <details class="govuk-details" data-module="govuk-details">
+                                                        <summary class="govuk-details__summary">
+                                                            <span class="govuk-details__summary-text">
+                                                                What is the maximum amount given under scheme?
+                                                            </span>
+                                                        </summary>
+                                                        <div class="govuk-details__text">
+                                                            SOME TEXT HERE
+                                                        </div>
+                                                    </details>
+                                                    <% if( ssn.Maximum_Amount_Under_Scheme_255_Error ){ %>
+                                                        <span class="govuk-error-message" id="Maximum_Amount_Under_Scheme_255_Error">
+                                                            <span class="govuk-visually-hidden">Error:</span> The maximum amount that can be given under a scheme
+                                                             cannot be greater than 255 characters
+                                                        </span>
+                                                        <% }  %>
+                                                    <div class="govuk-input__wrapper">
+                                                        <input class="govuk-input" id="Maximum_Amount_Under_Scheme" name="Maximum_Amount_Under_Scheme" type="text"
+                                                            value="<%= ssn.Maximum_Amount_Under_Scheme_Global%>">
+                                                    </div>
+                                                </div>
+                                        <% if( ssn.scheme_issued_confirmation_day_Error || ssn.scheme_issued_confirmation_month_Error || ssn.scheme_issued_confirmation_year_Error ){ %>
+                                            <div
+                                                class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                                                <% } else { %>
+                                                <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                                    <% }  %>
+                                                    <label class="govuk-label" for="address-line-1" id="confirmationDateLabel">
+                                                        Confirmation Date
+                                                    </label>
+                                                    <div class="govuk-hint">
+                                                        For example, 25 5 2022
+                                                    </div>
+                                                    <% if( ssn.scheme_issued_confirmation_day_Error || ssn.scheme_issued_confirmation_month_Error || ssn.scheme_issued_confirmation_year_Error){ %>
+                                                    <span class="govuk-error-message" id="Date_Error">
+                                                        <span class="govuk-visually-hidden">Error:</span>
+                                                        Enter a valid date
+                                                    </span>
+                                                    <% }  %>
+
+
+                                                    <div class="govuk-date-input" id="scheme-issued">
+                                                        <div class="govuk-date-input__item">
+                                                            <div class="govuk-form-group">
+                                                                <label class="govuk-label govuk-date-input__label"
+                                                                    for="scheme_issued_confirmation_day">
+                                                                    Day
+                                                                </label>
+                                                                <input
+                                                                    class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                                    id="scheme_issued_confirmation_day"
+                                                                    name="scheme_issued_confirmation_day" type="text"
+                                                                    placeholder="DD" pattern="[0-9]*"
+                                                                    inputmode="numeric"
+                                                                    value="<%= ssn.Scheme_Confirmation_Day_Global%>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="govuk-date-input__item">
+                                                            <div class="govuk-form-group">
+                                                                <label class="govuk-label govuk-date-input__label"
+                                                                    for="scheme_issued_confirmation_month">
+                                                                    Month
+                                                                </label>
+
+                                                                <input
+                                                                    class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                                    id="scheme_issued_confirmation_month"
+                                                                    value="<%= ssn.Scheme_Confirmation_Month_Global%>"
+                                                                    name="scheme_issued_confirmation_month" placeholder="MM"
+                                                                    type="text" pattern="[0-9]*" inputmode="numeric">
+                                                            </div>
+                                                        </div>
+                                                        <div class="govuk-date-input__item">
+                                                            <div class="govuk-form-group">
+                                                                <label class="govuk-label govuk-date-input__label"
+                                                                    for="scheme_issued_confirmation_year">
+                                                                    Year
+                                                                </label>
+                                                                <input
+                                                                    class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                                                    id="scheme_issued_confirmation_year"
+                                                                    name="scheme_issued_confirmation_year" type="text"
+                                                                    pattern="[0-9]*" inputmode="numeric"
+                                                                    value="<%= ssn.Scheme_Confirmation_Year_Global%>"
+                                                                    placeholder="YYYY"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             <% if( ssn.scheme_issued_start_day_Error || ssn.scheme_issued_start_month_Error || ssn.scheme_issued_start_year_Error ){ %>
                                             <div
                                                 class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">

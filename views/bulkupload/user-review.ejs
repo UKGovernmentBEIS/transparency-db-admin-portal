@@ -76,13 +76,13 @@
                         Role
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        <%= ssn.User_Role_Global %>
+                        <%= ssn.User_Role_Global.replace('Granting', 'Public') %>
                     </dd>
 
                 </div>
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Granting Authority name
+                        Public Authority name
                     </dt>
                     <dd class="govuk-summary-list__value">
                         <%= ssn.GA_Name_User_Global %>

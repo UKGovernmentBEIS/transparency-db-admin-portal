@@ -41,8 +41,17 @@ router.get("/", async (req, res) => {
       console.log(`Status: ${measureapidata.status}`);
       console.log("Body: ", measureapidata.data);
       ssn.searchmeasuredetails = measureapidata.data;
+      Scheme_Confirmation_Date = ssn.searchmeasuredetails.confirmationDate;
       Scheme_Start_Date = ssn.searchmeasuredetails.startDate;
       Scheme_End_Date = ssn.searchmeasuredetails.endDate;
+      Subsidy_Scheme_Description = ssn.searchmeasuredetails.Subsidy_Scheme_Description;
+      Maximum_Amount_Under_Scheme = ssn.searchmeasuredetails.maximumAmountUnderScheme;
+
+
+      var spendingSectorArray = new Array();
+      if(ssn.searchmeasuredetails.spendingSectors != null){
+        spendingSectorArray = JSON.parse(ssn.searchmeasuredetails.spendingSectors);
+      }
 
       var date = Scheme_Start_Date.split(" ");
 
@@ -61,26 +70,10 @@ router.get("/", async (req, res) => {
         "December",
       ];
       console.log("Scheme_Start_Date", Scheme_Start_Date);
-      // ssn.Scheme_Legal_Granting_Start_Date_Month =
-      //   month.indexOf(date[1]) + 1 < 10
-      //     ? "0" + (month.indexOf(date[1]) + 1)
-      //     : month.indexOf(date[1]) + 1;
-      // Scheme_Legal_Granting_Start_Date_Day = date[0];
-      // Scheme_Legal_Granting_Start_Date_Year = date[2];
 
-      // var date = Scheme_End_Date.split(" ");
-      // ssn.Scheme_Legal_Granting_End_Date_Month =
-      //   month.indexOf(date[1]) + 1 < 10
-      //     ? "0" + (month.indexOf(date[1]) + 1)
-      //     : month.indexOf(date[1]) + 1;
-      // ssn.Scheme_Legal_Granting_End_Date_Day = date[0];
-      // ssn.Scheme_Legal_Granting_End_Date_Year = date[2];
-
-      // if (ssn.dashboard_roles !== "Granting Authority Encoder") {
-      res.render("bulkupload/subsidymeasure-editreview");
-      // } else {
-      //   res.render("bulkupload/notAuthorized");
-      // }
+      res.render("bulkupload/subsidymeasure-editreview", {
+        spendingSectorArray
+      });
     } catch (err) {
       const status = err.response.status;
       console.error("ERROR: " + err.message);

@@ -201,10 +201,10 @@
                             <% } else { %>
                             <option value="Infrastructure">Infrastructure </option>
                             <% } %>
-                            <% if( Subsidy_Objective == 'Rescue aid' ){ %>
-                            <option value="Rescue aid" selected>Rescue aid </option>
+                            <% if( Subsidy_Objective == 'Rescue subsidy' || Subsidy_Objective == 'Rescue aid' ){ %>
+                            <option value="Rescue subsidy" selected>Rescue subsidy </option>
                             <% } else { %>
-                            <option value="Rescue aid">Rescue aid </option>
+                            <option value="Rescue subsidy">Rescue subsidy </option>
                             <% } %>
                             <% if( Subsidy_Objective == 'Other' ){ %>
                             <option value="Other" selected>Other </option>
@@ -304,7 +304,7 @@
                     </div>
                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                         <label class="govuk-label" for="address-line-1">
-                            Granting authority name
+                            Public authority name
                         </label>
 
                         <input class="govuk-input govuk-!-width-one-third" value="<%= Granting_Authority_Name %>"

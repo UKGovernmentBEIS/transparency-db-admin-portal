@@ -235,7 +235,7 @@
               <% } else { %>
               <option value="Inactive">Inactive (<%= ssn.inactiveScheme %>)</option>
               <% }  %>
-              
+
               <% if(schemes_status  == "Deleted") { %>
               <option value="Deleted" selected>Deleted (<%= ssn.deletedScheme %>)</option>
               <% } else { %>
@@ -336,7 +336,7 @@
                   <th scope="col" class="govuk-table__header app-custom-class">
 
                     <a href="/measuresortroute/?page=Granting_Authority" style="text-decoration: none">
-                      Granting authority
+                      Public authority
                       <% if (granting_authority_arrow == "upanddown" ) { %>
                       <img id="granting_authority_updownarrow" src="/assets/images/UpDownArrow.jpg"
                         alt="Currently not sorted">
@@ -422,8 +422,19 @@
                   <td class="govuk-table__cell"><%= item.scNumber %></td>
                   <td class="govuk-table__cell"><%= item.gaName %></td>
                   <td class="govuk-table__cell" style="text-align:center"><%= item.startDate%></td>
-                  <td class="govuk-table__cell" style="text-align:center"><%= item.endDate%></td>
-                  <td class="govuk-table__cell"><%= item.duration%></td>
+                  <td class="govuk-table__cell" style="text-align:center">
+                    <% if((!item.endDate) || (item.endDate == "31 December 9999")){ %>
+                      NA
+                    <% } else { %>
+                        <%= item.endDate%>
+                    <% } %>
+                  </td>
+                  <td class="govuk-table__cell">
+                    <% if((!item.endDate) || (item.endDate == "31 December 9999")){ %>
+                      NA
+                      <% } else { %>
+                          <%= item.duration%>
+                      <% } %>
                   <td class="govuk-table__cell"> £ <%= item.budget%></td>
                 </tr>
                 <% } ); %>
@@ -447,7 +458,7 @@
 
               <% } %>
 
-              <div class="govuk-grid-column-two-thirds last govuk-padding-0 govuk-display-flex" style="text-align: right;   
+              <div class="govuk-grid-column-two-thirds last govuk-padding-0 govuk-display-flex" style="text-align: right;
         align-items: center;
         justify-content: flex-end;">
                 <% if (pageCount > 1) { %>

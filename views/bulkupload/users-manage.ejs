@@ -73,7 +73,7 @@
                         <ul class="govuk-sub-navigation__list">
                             <li class="govuk-sub-navigation__item">
                                 <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
-                                    Granting Authorities
+                                    Public Authorities
                                 </a>
                             </li>
 
@@ -140,7 +140,7 @@
                         <form class="govuk-!-width-full" action="/subsidyawardsearch" method="POST">
                             <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text"
                                 name="search_award_text"
-                                aria-label="User input text box for Searching either Subsidy Measure Title, Subsidy Control number, or Granting Authority"
+                                aria-label="User input text box for Searching either Subsidy Measure Title, Subsidy Control number, or Public Authority"
                                 type="text" <% if( ssn.Award_search_text) {%> value="<%=  ssn.Award_search_text%>"
                                 <% } %> />
 
@@ -154,9 +154,9 @@
                             aria-label="Drop down list that shows Filter by type">
                             <option value="" selected disabled>Filter by role</option>
                             <option>BIES Administrators (6)</option>
-                            <option>Granting Authority Administrators (72)</option>
-                            <option>Granting Authority Approvers (144)</option>
-                            <option>Granting Authority Encoders (1440)</option>
+                            <option>Public Authority Administrators (72)</option>
+                            <option>Public Authority Approvers (144)</option>
+                            <option>Public Authority Encoders (1440)</option>
                             <option>Awaiting approval (1)</option>
                             <option>Show all (1,663)</option>
                         </select>
