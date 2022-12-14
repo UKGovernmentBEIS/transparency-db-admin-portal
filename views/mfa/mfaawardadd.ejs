@@ -297,12 +297,12 @@
                         </div>
                     </div>
 
-                    <% if( ssn.Granting_Authority_Name_Error || ssn.Granting_Authority_Inactive_Error || ssn.Granting_Authority_Multiple_Error || ssn.Granting_Authority_Exists_Error) { %>
+                    <% if( ssn.Granting_Authority_Name_Error || ssn.Granting_Authority_Name_Inactive_Error || ssn.Granting_Authority_Multiple_Error || ssn.Granting_Authority_Exists_Error) { %>
                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                         <label class="govuk-label" for="Granting_Authority_Name">
                             Public authority name
                         </label>
-                        <% if (ssn.Granting_Authority_Inactive_Error) { %>
+                        <% if (ssn.Granting_Authority_Name_Inactive_Error) { %>
                         <span class="govuk-error-message" id="Granting_Authority_Name_Error">
                             <span class="govuk-visually-hidden">Error:</span> Public authority is not active
                         </span>
