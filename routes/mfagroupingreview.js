@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
 
     ssn.Granting_Authority_Name_Error = false;
     ssn.Granting_Authority_Exists_Error = false;
-    ssn.Granting_Authority_Inactive_Error = false;
+    ssn.Granting_Authority_Name_Inactive_Error = false;
     ssn.Granting_Authority_Multiple_Error = false;
 
     ssn.MFA_Grouping_Name_Error = false;
@@ -115,7 +115,7 @@ router.post("/", async (req, res) => {
             ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
             Additem = Additem + 1;
           }else if(gaFiltered[0].status == 'Inactive' || gaFiltered[0].status == null){
-            ssn.Granting_Authority_Inactive_Error = true;
+            ssn.Granting_Authority_Name_Inactive_Error = true;
             ssn.MFAGroupingErrors[Additem] =
               "Public authority '" + ssn.Granting_Authority_Name_Global.trim() + "' is inactive.";
             ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
@@ -125,7 +125,7 @@ router.post("/", async (req, res) => {
           if (
             ssn.Granting_Authority_Exists_Error ||
             ssn.Granting_Authority_Multiple_Error ||
-            ssn.Granting_Authority_Inactive_Error
+            ssn.Granting_Authority_Name_Inactive_Error
             ) {
             res.render("mfa/mfagroupingadd", {
               ssn,
