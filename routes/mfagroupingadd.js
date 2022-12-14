@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 
     ssn.Granting_Authority_Name_Error = false;
     ssn.Granting_Authority_Exists_Error = false;
-    ssn.Granting_Authority_Inactive_Error = false;
+    ssn.Granting_Authority_Name_Inactive_Error = false;
     ssn.Granting_Authority_Multiple_Error = false;
 
     ssn.MFA_Grouping_Name_Error = false;
