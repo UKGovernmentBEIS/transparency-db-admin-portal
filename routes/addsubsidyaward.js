@@ -14,10 +14,14 @@ router.get("/", (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
+    var addToScheme = false;
     req.query = JSON.parse(JSON.stringify(req.query));
-    if (req.query.hasOwnProperty("scheme"))
+    if (req.query.hasOwnProperty("scheme")){
       ssn.Subsidy_Control_Number_Name_Global = req.query.scheme;
-    else ssn.Subsidy_Control_Number_Name_Global = "";
+      addToScheme = true;
+    }else{
+      ssn.Subsidy_Control_Number_Name_Global = "";
+    } 
     ssn.Subsidy_Measure_Title_Global = "";
     ssn.Subsidy_Control_Number_Global = "";
     ssn.Subsidy_Award_Description_Global = "";
@@ -89,7 +93,7 @@ router.get("/", (req, res) => {
     res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-    res.render("bulkupload/addsubsidyaward", { isAddSubsidyPrimarycall });
+    res.render("bulkupload/addsubsidyaward", { isAddSubsidyPrimarycall, addToScheme });
   }
 });
 

@@ -179,6 +179,7 @@ router.get("/", (req, res) => {
     SubsidyArraySize = 0;
 
     isCallfromEditAward = true;
+    addToScheme = false;
 
     res.set("X-Frame-Options", "DENY");
     res.set("X-Content-Type-Options", "nosniff");
@@ -188,6 +189,7 @@ router.get("/", (req, res) => {
 
     res.render("bulkupload/addsubsidyaward", {
       isCallfromEditAward,
+      addToScheme,
       ssn,
       // ssn.Subsidy_Control_Number_Global,
       // ssn.Subsidy_Measure_Title_Global,

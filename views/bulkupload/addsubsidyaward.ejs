@@ -261,20 +261,20 @@
 
                     <% } else { %>
                       <input class="govuk-radios__input" id="Standalone_Award_Yes" name="Standalone_Award"
-                      type="radio" value="Yes" <%  if(isCallfromEditAward ) { %> disabled <% } %> onclick="standaloneAwardToggle(event);">
+                      type="radio" value="Yes" <%  if(isCallfromEditAward || addToScheme ) { %> disabled <% } %> onclick="standaloneAwardToggle(event);">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Standalone_Award_Yes">
                       Yes
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( ssn.Standalone_Award_Global == 'No'){ %>
+                    <% if( ssn.Standalone_Award_Global == 'No' || addToScheme){ %>
                     <input class="govuk-radios__input" id="Standalone_Award_No" name="Standalone_Award"
                       type="radio" value="No" checked onclick="standaloneAwardToggle(event);">
 
                     <% } else { %>
                       <input class="govuk-radios__input" id="Standalone_Award_No" name="Standalone_Award"
-                      type="radio" value="No" <%  if(isCallfromEditAward ) { %> disabled <% } %> onclick="standaloneAwardToggle(event);">
+                      type="radio" value="No" <%  if(isCallfromEditAward || addToScheme) { %> disabled <% } %> onclick="standaloneAwardToggle(event);">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Standalone_Award_No">
                       No
