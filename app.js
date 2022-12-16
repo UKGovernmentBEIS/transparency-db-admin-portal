@@ -248,7 +248,7 @@ app.get("/", async (req, res) => {
   // ssn.GaListArr_Global;
 
   var Environment_variable = process.argv[2];
-    
+
   if (Environment_variable == "env=local") {
     var localServices;
     var localSvcObj = {
@@ -277,7 +277,7 @@ app.get("/", async (req, res) => {
         } else {
           localArr.push(str);
         }
-        
+
         for (var i in localArr){
           if (localArr[i].toLowerCase().indexOf("publishsubs") !== -1){
             localSvcObj.publishsubs = true;
@@ -310,15 +310,15 @@ app.get("/", async (req, res) => {
     //Ideally need to keep these URLs in a separate file so these URL variables have a single value assignment
     beis_url_publishing = ((localSvcObj.publishsubs) ?
       "http://localhost:8178" : "https://dev-transparency-db-publishing-subsidies-service.azurewebsites.net");
-      
+
     beis_url_accessmanagement = ((localSvcObj.accessmgmt) ?
-      "http://localhost:8090" : "https://dev-transparency-db-access-management-service.azurewebsites.net"); 
+      "http://localhost:8090" : "https://dev-transparency-db-access-management-service.azurewebsites.net");
 
     beis_url_publicsearch = ((localSvcObj.publicsearch) ?
-      "http://localhost:8581" : "https://dev-transparency-db-public-search-service.azurewebsites.net"); 
-      
+      "http://localhost:8581" : "https://dev-transparency-db-public-search-service.azurewebsites.net");
+
     beis_url_searchscheme = ((localSvcObj.gaschemes) ?
-      "http://localhost:8182" : "https://dev-transparency-db-ga-schemes-service.azurewebsites.net"); 
+      "http://localhost:8182" : "https://dev-transparency-db-ga-schemes-service.azurewebsites.net");
 
     beis_redirect_url = "http://localhost:3000"; //http://localhost:3000
     beis_public_search =
@@ -329,7 +329,7 @@ app.get("/", async (req, res) => {
     console.log(beis_url_publicsearch);
   } else if (Environment_variable == "env=dev") {
     //                    OLD URLs below
-    // beis_url_publishing =        
+    // beis_url_publishing =
     //   "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
     // beis_url_accessmanagement =
     //   "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
@@ -751,6 +751,9 @@ app.use("/mysubsidyawards", mysubsidyawards);
 
 var bulkuploadsubsidy = require("./routes/bulkuploadsubsidy");
 app.use("/bulkuploadsubsidy", bulkuploadsubsidy);
+
+var bulkuploadsubsidyschemes = require("./routes/bulkuploadsubsidyschemes");
+app.use("/bulkuploadsubsidyschemes", bulkuploadsubsidyschemes);
 
 // var loginforgetpassword = require("./routes/loginforgetpassword");
 // app.use("/loginforgetpassword", loginforgetpassword);

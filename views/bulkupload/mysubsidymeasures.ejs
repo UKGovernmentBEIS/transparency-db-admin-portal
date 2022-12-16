@@ -74,6 +74,10 @@
         Add a new subsidy scheme
       </a>
 
+      <a class="govuk-button" href="/bulkuploadsubsidyschemes" data-module="govuk-button">
+        Add multiple subsidy schemes
+      </a>
+
       <% } %>
       <% } else { %>
       <!-- <h2 class="govuk-heading-m"><%= nodata%></h2> -->
@@ -144,9 +148,15 @@
         </div>
 
         <% if(ssn.dashboard_roles != 'Granting Authority Encoder' ) { %>
-        <div class="govuk-grid-column-one-half"><a href="/addsubsidymeasures" class="govuk-button"
+        <div class="govuk-grid-column-one-half">
+
+          <a class="govuk-button" href="/addsubsidymeasures" class="govuk-button"
             data-module="govuk-button">
             Add a new subsidy scheme
+          </a>
+
+          <a class="govuk-button" href="/bulkuploadsubsidyschemes" data-module="govuk-button">
+            Add multiple subsidy schemes
           </a>
         </div>
         <% } %>
@@ -248,11 +258,17 @@
         </div>
 
         <% if(ssn.dashboard_roles != 'Granting Authority Encoder' ) { %>
-        <div class="govuk-grid-column-one-half"><a href="/addsubsidymeasures" class="govuk-button"
-            data-module="govuk-button">
-            Add a new subsidy scheme
+        <div class="govuk-grid-column-one-half">
+          <a href="/addsubsidymeasures" class="govuk-button"
+          data-module="govuk-button">
+          Add a new subsidy scheme
+          </a>
+
+          <a class="govuk-button" href="/bulkuploadsubsidyschemes" data-module="govuk-button">
+            Add multiple subsidy schemes
           </a>
         </div>
+
         <% } %>
 
         <div class="govuk-grid-column-one-half govuk-display-flex govuk-form-group" style="float: right;">

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Bulk upload subsidy award page</title>
+  <title>GOV.UK - Bulk upload subsidy schemes page</title>
   <!-- <%- include('../partials/headersubsidy.ejs') %> -->
   <%- include('../partials/headercss.ejs') %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -38,50 +38,7 @@
         </p>
       </div>
       <%- include('../partials/navigationbar.ejs') %>
-      <!-- <div class="govuk-grid-row govuk-form-group">
-        <div class="govuk-grid-column-full">
-          <nav aria-label="Sub navigation">
-            <ul class="govuk-sub-navigation__list">
-              <li class="govuk-sub-navigation__item">
-                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
-                  Granting Authorities
-                </a>
-              </li>
 
-              <li class="govuk-sub-navigation__item">
-                <a class="govuk-sub-navigation__link" href="/userselect">
-                  Users
-                </a>
-              </li>
-              <li class="govuk-sub-navigation__item">
-                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                  Subsidy Schemes
-                </a>
-              </li>
-              <li class="govuk-sub-navigation__item">
-                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidyawards">
-                  Subsidy Awards
-                </a>
-              </li>
-
-
-
-              <li class="govuk-sub-navigation__item head-right">
-                <a class="govuk-sub-navigation__link" href="/logintransparency">
-                  Sign out
-                </a>
-              </li>
-              <li class="govuk-sub-navigation__item head-right">
-                <a class="govuk-sub-navigation__link" href="/useraccount">
-                  My account
-                </a>
-              </li>
-            </ul>
-          </nav>
-
-        </div>
-
-      </div> -->
       <!-- bread crumbs start here -->
       <div class="govuk-breadcrumbs ">
         <ol class="govuk-breadcrumbs__list">
@@ -89,15 +46,15 @@
             <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
           </li>
           <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">Subsidy awards</a>
+            <a class="govuk-breadcrumbs__link" href="/mysubsidymeasures">Subsidy schemes</a>
           </li>
           <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add multiple subsidy awards</a>
+            <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add multiple subsidy schemes</a>
           </li>
         </ol>
       </div>
       <!-- bread crumbs ends here -->
-      <h1 class="govuk-heading-xl">Add multiple subsidy awards</h1>
+      <h1 class="govuk-heading-xl">Add multiple subsidy schemes</h1>
 
       <div class="govuk-tabs" data-module="govuk-tabs">
         <h2 class="govuk-tabs__title">
@@ -120,35 +77,26 @@
           </li>
         </ul>
 
-
-        <!-- <a rel="external" target="_blank" class="govuk-link head-right govuk-relative-position"
-          href="./assets/files/HelpDocumentBulkUpload.pdf">
-          <p>Download the help file </p>
-        </a> -->
-
-
         <div class="govuk-tabs__panel  govuk-tabs__panel--hidden" id="download-template">
           <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
               <form method="get" action="./assets/files/Bulk_Upload_Awards_Template.xlsx">
                 <h2 class="govuk-heading-l">Download template</h2>
                 <p class="govuk-body">
-                  You can use the template to fill in the required information for the subsidy awards you want to add.
+                  You can use the template to fill in the required information for the subsidy schemes you want to add.
                 </p>
                 <p class="govuk-body govuk-form-group">You can download the user guide for
                   <a rel="external" target="_blank" class="govuk-link"
                     href="./assets/files/HelpDocumentBulkUpload.docx">
-                    help with adding multiple subsidy awards.
+                    help with adding multiple subsidy schemes.
                   </a>
                 </p>
                 <button class="govuk-button" data-module="govuk-button">Download template file </button>
-                <a class="govuk-link govuk-cancel-button-link" href="/mysubsidyawards"> Cancel </a>
+                <a class="govuk-link govuk-cancel-button-link" href="/mysubsidymeasures"> Cancel </a>
               </form>
             </div>
           </div>
         </div>
-
-
 
 
         <div class="govuk-tabs__panel" id="upload-csv">
@@ -180,11 +128,8 @@
                     <% } %>
                   </span>
                   <div class="govuk-input__wrapper">
-                    <!-- <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
-                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"> -->
                     <input class="govuk-file-upload" name="file_upload_1" type="file"
                       accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-                    <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                 </div>
 
@@ -211,15 +156,9 @@
                     <p> The file format must be .xlsx</p>
                   </label>
                   <div class="govuk-input__wrapper">
-                    <!-- <input class="govuk-file-upload" type="file" id="file-upload-1" name="file_upload_1"> -->
                     <input class="govuk-file-upload" type="file" name="file_upload_1"
                       accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-                    <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
-
-                  <!-- <label class="govuk-label-grey" for="file-upload-2">
-                    <p> The file must be a CSV or Microsoft Excel spreadsheet</p>
-                  </label> -->
                 </div>
 
 
@@ -286,8 +225,6 @@
 
                 <% } else if( locals.isCsvFormat){ %>
 
-
-                <!-- <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main"> -->
                 <div class="govuk-grid-row">
                   <div class="govuk-grid-column-two-thirds">
                     <div class="govuk-panel govuk-panel--confirmation">
@@ -316,11 +253,11 @@
                     </section>
                     <h3 class="govuk-heading-m">What happens next</h3>
                     <p class="govuk-body">
-                      All the records have been successfully uploaded and saved as draft under 'My subsidy awards'
-                      tab. Proceed to 'My subsidy awards' for any further actions.
+                      All the records have been successfully uploaded and saved as draft under 'My subsidy schemes'
+                      tab. Proceed to 'My subsidy schemes' for any further actions.
                     </p>
-                    <form action="/mysubsidyawards" method="GET" novalidate="">
-                      <button class="govuk-button" data-module="govuk-button">Proceed to My subsidy awards
+                    <form action="/mysubsidymeasures" method="GET" novalidate="">
+                      <button class="govuk-button" data-module="govuk-button">Proceed to My subsidy schemes
                         &#62;</button>
                     </form>
                   </div>
@@ -341,12 +278,9 @@
                   <div class="govuk-input__wrapper">
                     <input class="govuk-file-upload" name="file_upload_1" type="file"
                       accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-                    <!-- <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
-                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"> -->
-                    <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
 
-                  <p>Uploading will update the status of every subsidy award in the file to
+                  <p>Uploading will update the status of every subsidy scheme in the file to
                     <%if(ssn.dashboard_roles!='Granting Authority Encoder') { %> 'Published'. <%} else {%>'Awaiting
                     approval' and submit them for approval. <% } %> </p>
 
@@ -362,11 +296,7 @@
           </div>
         </div>
 
-
-
-
       </div>
-      <!-- <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script> -->
       <script src="/assets/javascripts/govuk-frontend-tabdefault.js"></script>
       <script src="/assets/javascripts/example.js"></script>
 
