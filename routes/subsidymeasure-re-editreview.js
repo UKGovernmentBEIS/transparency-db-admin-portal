@@ -504,6 +504,20 @@ router.post("/", (req, res) => {
       }
       // day velidation ends here
 
+      if(!ssn.scheme_issued_confirmation_day_Error && !ssn.scheme_issued_confirmation_month_Error && !ssn.scheme_issued_confirmation_year_Error){
+        const now = Date.now();
+        const confirmationDateString = scheme_issued_confirmation_year.concat('-',scheme_issued_confirmation_month,'-',scheme_issued_confirmation_day);
+        const confirmationDate = Date.parse(confirmationDateString);
+
+        if(confirmationDate > now){
+          ssn.scheme_issued_confirmation_year_Error = true;
+          ssn.scheme_issued_confirmation_month_Error = true;
+          ssn.scheme_issued_confirmation_day_Error = true;
+          ssn.SubsidyErrors.push("Confirmation date cannot be in the future");
+          ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
+        }
+      }
+
       if (!scheme_issued_start_month) {
         ssn.scheme_issued_start_month_Error = true;
         ssn.SubsidyErrors.push(
