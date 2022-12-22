@@ -15,13 +15,15 @@ router.get("/", async (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
-    ssn.Admin_Program_Number_Global = "";
-    ssn.Admin_Program_Name_Global = "";
-    ssn.Granting_Authority_Name_Global = "";
-    ssn.Admin_Program_Route_Name_Global = "";
-    ssn.Subsidy_Control_Number_Global = "";
-    ssn.Admin_Program_Budget_Global = "";
-    ssn.Admin_Program_Budget_Formatted_Global = "";
+    if (!req.get('Referrer').includes("review")) {
+      ssn.Admin_Program_Number_Global = "";
+      ssn.Admin_Program_Name_Global = "";
+      ssn.Granting_Authority_Name_Global = "";
+      ssn.Admin_Program_Route_Name_Global = "";
+      ssn.Subsidy_Control_Number_Global = "";
+      ssn.Admin_Program_Budget_Global = "";
+      ssn.Admin_Program_Budget_Formatted_Global = "";
+    }
 
     // TODO: Replace variables with non-placeholder names when categories are known
     ssn.admin_program_category_na_global = false;
