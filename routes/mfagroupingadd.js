@@ -15,13 +15,15 @@ router.get("/", async (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
-    ssn.MFA_Grouping_Number_Global = "";
-    ssn.MFA_Grouping_Name_Global = "";
-    ssn.Granting_Authority_Name_Global = "";
+    if(!req.get('Referrer').includes("review")){
+      ssn.MFA_Grouping_Number_Global = "";
+      ssn.MFA_Grouping_Name_Global = "";
+      ssn.Granting_Authority_Name_Global = "";
+    }
 
     ssn.Granting_Authority_Name_Error = false;
     ssn.Granting_Authority_Exists_Error = false;
-    ssn.Granting_Authority_Inactive_Error = false;
+    ssn.Granting_Authority_Name_Inactive_Error = false;
     ssn.Granting_Authority_Multiple_Error = false;
 
     ssn.MFA_Grouping_Name_Error = false;
@@ -41,14 +43,14 @@ router.get("/", async (req, res) => {
         ssn.MFA_Grouping_Number_Global = req.query.id;
 
         var mfaGroupingEndpoint = beis_url_publishing + "/mfa/grouping/" + ssn.MFA_Grouping_Number_Global;
-  
+
         try {
           const apiData = await axios.get(
             mfaGroupingEndpoint,
             ssn.UserPrincileObjectGlobal
           );
-    
-          ssn.mfaGroupingDetails = apiData.data;  
+
+          ssn.mfaGroupingDetails = apiData.data;
 
           ssn.MFA_Grouping_Number_Global = ssn.mfaGroupingDetails.mfaGroupingNumber;
           ssn.MFA_Grouping_Name_Global = ssn.mfaGroupingDetails.mfaGroupingName;
@@ -56,7 +58,7 @@ router.get("/", async (req, res) => {
         } catch (err) {
           const status = err.response.status;
           console.error("ERROR: " + err.message);
-    
+
           var render = "bulkupload/notAvailable";
           switch(status){
             case 500:
@@ -67,7 +69,7 @@ router.get("/", async (req, res) => {
               break;
           }
           res.render(render);
-        } 
+        }
       }
     }
 
@@ -77,7 +79,7 @@ router.get("/", async (req, res) => {
     res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-    res.render("mfa/mfagroupingadd", { 
+    res.render("mfa/mfagroupingadd", {
       ssn,
       isCallFromEditGrouping,
       addOrEdit

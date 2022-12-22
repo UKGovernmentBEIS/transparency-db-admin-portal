@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - Deactivate Granting Authority page</title>
+    <title>GOV.UK - Deactivate Public Authority page</title>
     <%- include('../partials/headercss.ejs') %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
@@ -47,10 +47,10 @@
                         <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Granting Authority</a>
+                        <a class="govuk-breadcrumbs__link" href="/mygrantingauthority">Public Authority</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add granting authority </a>
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add public authority </a>
                     </li>
                 </ol>
             </div>
@@ -75,12 +75,12 @@
             <form action="/gadeactivated" method="POST">
                 <!-- Body header starts here -->
                 <div class="govuk-body-cancel govuk-form-group">
-                    <h1 class="govuk-heading-l">Deactivate granting authority</h1>
+                    <h1 class="govuk-heading-l">Deactivate public authority</h1>
                     <% if(ssn.GaListArr_Global.length > 0) { %>
                     <div class="govuk-grid-column-full govuk-grid-row">
                         <p class="govuk-body govuk-!-font-size-19 govuk-grid-column-two-thirds govuk-padding-0">To
                             deactivate this
-                            granting authority, you must first remove the following users from it:</p>
+                            public authority, you must first remove the following users from it:</p>
                     </div>
                     <div class="govuk-grid-column-full govuk-grid-row">
                         <ul class="govuk-list">
@@ -122,7 +122,7 @@
                     <input type="hidden" name="gaid" value="<%= ssn.gaId %>">
 
                     <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-                        Yes, deactivate granting authority</button>
+                        Yes, deactivate public authority</button>
                     <a href="/editreviewgrantingauthority?gaid=<%= ssn.gaId %>" data-module="govuk-button"
                         class="govuk-button govuk-button_sm govuk-button--secondary">
                         Cancel

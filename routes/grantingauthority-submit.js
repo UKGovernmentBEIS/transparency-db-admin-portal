@@ -95,7 +95,7 @@ router.post("/", async (req, res) => {
         if (err.toString().includes("500")) {
           ssn.grantingAuthorityName_Error = true;
           ssn.grantingAuthorityName_Error_Msg =
-            "Granting Authority already added";
+            "Public Authority already added";
           ssn.grantingAuthorityName_Global = req.body.GaName;
           res.render("bulkupload/grantingauthority-add", {
             ssn,

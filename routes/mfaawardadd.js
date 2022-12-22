@@ -15,26 +15,28 @@ router.get("/", async (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
+    if (!req.get('Referrer').includes("review")) {
 
-    ssn.MFA_Award_Number_Global = "";
-    ssn.SPEI_Global = "";
-    ssn.MFA_Yes_No_Global = "";
-    ssn.MFA_Grouping_ID_Global = "";
-    ssn.Award_Full_Amount_Global = ""
-    ssn.MFA_Award_Confirmation_Day_Global = "";
-    ssn.MFA_Award_Confirmation_Month_Global = "";
-    ssn.MFA_Award_Confirmation_Year_Global = "";
-    ssn.Granting_Authority_Name_Global = "";
-    ssn.MFA_Award_Beneficiary_Name_Global = "";
-    ssn.MFA_Award_National_ID_Type_Global = "";
-    ssn.MFA_Award_National_ID_Global = "";
-    
+      ssn.MFA_Award_Number_Global = "";
+      ssn.SPEI_Global = "";
+      ssn.MFA_Yes_No_Global = "";
+      ssn.MFA_Grouping_ID_Global = "";
+      ssn.Award_Full_Amount_Global = ""
+      ssn.MFA_Award_Confirmation_Day_Global = "";
+      ssn.MFA_Award_Confirmation_Month_Global = "";
+      ssn.MFA_Award_Confirmation_Year_Global = "";
+      ssn.Granting_Authority_Name_Global = "";
+      ssn.MFA_Award_Beneficiary_Name_Global = "";
+      ssn.MFA_Award_National_ID_Type_Global = "";
+      ssn.MFA_Award_National_ID_Global = "";
+    }
+
 
     ssn.Granting_Authority_Name_Error = false;
     ssn.Granting_Authority_Exists_Error = false;
-    ssn.Granting_Authority_Inactive_Error = false;
+    ssn.Granting_Authority_Name_Inactive_Error = false;
     ssn.Granting_Authority_Multiple_Error = false;
-    
+
     ssn.SPEI_Error = false;
     ssn.MFA_Grouping_YesNo_Error = false;
     ssn.MFA_Grouping_Error = false;
@@ -66,13 +68,13 @@ router.get("/", async (req, res) => {
         ssn.MFA_Award_Number_Global = req.query.id;
 
         var mfaAwardEndpoint = beis_url_publishing + "/mfa/award/" + ssn.MFA_Award_Number_Global;
-  
+
         try {
           const apiData = await axios.get(
             mfaAwardEndpoint,
             ssn.UserPrincileObjectGlobal
           );
-    
+
           ssn.mfaAwardDetails = apiData.data;
 
           var dateArray = ssn.mfaAwardDetails.confirmationDate.split(" ");
@@ -82,7 +84,7 @@ router.get("/", async (req, res) => {
           if(month.length == 1){
             month = "0" + month;
           }
-          
+
 
           ssn.MFA_Award_Number_Global = ssn.mfaAwardDetails.mfaAwardNumber;
           ssn.Granting_Authority_Name_Global = ssn.mfaAwardDetails.grantingAuthorityName;
@@ -101,7 +103,7 @@ router.get("/", async (req, res) => {
         } catch (err) {
           const status = err.response.status;
           console.error("ERROR: " + err.message);
-    
+
           var render = "bulkupload/notAvailable";
           switch(status){
             case 500:
@@ -112,7 +114,7 @@ router.get("/", async (req, res) => {
               break;
           }
           res.render(render);
-        } 
+        }
       }
     }
 
@@ -122,7 +124,7 @@ router.get("/", async (req, res) => {
     res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-    res.render("mfa/mfaawardadd", { 
+    res.render("mfa/mfaawardadd", {
       ssn,
       isCallFromEditAward,
       addOrEdit

@@ -14,10 +14,14 @@ router.get("/", (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
+    ssn.addToScheme = false;
     req.query = JSON.parse(JSON.stringify(req.query));
-    if (req.query.hasOwnProperty("scheme"))
+    if (req.query.hasOwnProperty("scheme")){
       ssn.Subsidy_Control_Number_Name_Global = req.query.scheme;
-    else ssn.Subsidy_Control_Number_Name_Global = "";
+      ssn.addToScheme = true;
+    }else{
+      ssn.Subsidy_Control_Number_Name_Global = "";
+    } 
     ssn.Subsidy_Measure_Title_Global = "";
     ssn.Subsidy_Control_Number_Global = "";
     ssn.Subsidy_Award_Description_Global = "";
@@ -40,6 +44,8 @@ router.get("/", (req, res) => {
     ssn.Spending_Region_Global = "";
     ssn.Spending_Sector_Global = "";
     ssn.SubsidyArraySize = 0;
+    ssn.Subsidy_Full_Amount_Range_Lower_Global = "";
+    ssn.Subsidy_Full_Amount_Range_Upper_Global = "";
     ssn.Standalone_Award_Global = "";
 
     ssn.Subsidy_Control_Number_Error = false;

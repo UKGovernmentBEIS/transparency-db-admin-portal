@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
 
     ssn.Granting_Authority_Name_Error = false;
     ssn.Granting_Authority_Exists_Error = false;
-    ssn.Granting_Authority_Inactive_Error = false;
+    ssn.Granting_Authority_Name_Inactive_Error = false;
     ssn.Granting_Authority_Multiple_Error = false;
 
     ssn.SPEI_Error = false;
@@ -46,6 +46,7 @@ router.post("/", async (req, res) => {
     ssn.MFA_Award_Beneficiary_Name_Length_Error = false;
     ssn.MFA_Award_National_ID_Type_Error = false;
     ssn.MFA_Award_National_ID_Error = false;
+    ssn.MFA_Award_National_ID_255_Error = false;
     ssn.MFA_Award_Confirmation_Day_Error = false;
     ssn.MFA_Award_Confirmation_Month_Error = false;
     ssn.MFA_Award_Confirmation_Year_Error = false;
@@ -74,8 +75,8 @@ router.post("/", async (req, res) => {
 
     ssn.SPEI_Global = speiAssistance;
     ssn.MFA_Yes_No_Global = mfaGroupingYesNo;
-    ssn.MFA_Grouping_ID_Global = mfaGroupingId;    
-    ssn.MFA_Grouping_Name_Global = "NA";    
+    ssn.MFA_Grouping_ID_Global = mfaGroupingId;
+    ssn.MFA_Grouping_Name_Global = "NA";
     ssn.Award_Full_Amount_Global = awardFullAmount;
     ssn.MFA_Award_Confirmation_Day_Global = mfa_award_confirmation_day;
     ssn.MFA_Award_Confirmation_Month_Global = mfa_award_confirmation_month;
@@ -149,6 +150,12 @@ router.post("/", async (req, res) => {
         ssn.MFAFocus[Additem] = "#mfa_award_confirmation_year";
         Additem = Additem + 1;
       }
+      if (mfa_award_confirmation_year >= 9999) {
+        ssn.MFA_Award_Confirmation_Year_Error = true;
+        ssn.MFAAwardErrors[Additem] = "Enter a confirmation year before 9999";
+        ssn.MFAFocus[Additem] = "#mfa_award_confirmation_year";
+        Additem = Additem + 1;
+      }
       if (mfa_award_confirmation_day != "") {
         // day validation starts here
 
@@ -207,7 +214,7 @@ router.post("/", async (req, res) => {
       if (!Granting_Authority_Name) {
         ssn.Granting_Authority_Name_Error = true;
         ssn.MFAAwardErrors[Additem] =
-          "You must enter a granting authority name";
+          "You must enter a public authority name";
         ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
         Additem = Additem + 1;
       }
@@ -215,11 +222,11 @@ router.post("/", async (req, res) => {
       if (!organisationName) {
         ssn.MFA_Award_Beneficiary_Name_Error = true;
         ssn.MFAAwardErrors[Additem] =
-          "You must enter a granting authority name";
+          "You must enter a public authority name";
         ssn.MFAFocus[Additem] = "#Beneficiary_Name";
         Additem = Additem + 1;
       }
-      
+
       if (organisationName != "" && organisationName.length > 255) {
         ssn.MFA_Award_Beneficiary_Name_Length_Error = true;
         ssn.MFAAwardErrors[Additem] =
@@ -243,6 +250,14 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
+      if ( National_ID_Number.length > 255 ) {
+        ssn.MFA_Award_National_ID_255_Error = true;
+        ssn.MFAAwardErrors[Additem] =
+          "The ID number must be 255 characters or less. ";
+        ssn.MFAFocus[Additem] = "#National_ID_Number";
+        Additem = Additem + 1;
+      }
+
       var confirmationDateMonthName = monthArray[((parseInt(mfa_award_confirmation_month)) - 1)];;
 
       ssn.MFA_Award_Confirmation_Date_String_Global = mfa_award_confirmation_day + " " + confirmationDateMonthName + " " + mfa_award_confirmation_year;
@@ -259,6 +274,7 @@ router.post("/", async (req, res) => {
         ssn.MFA_Award_Beneficiary_Name_Error ||
         ssn.MFA_Award_Beneficiary_Name_Length_Error ||
         ssn.MFA_Award_National_ID_Type_Error ||
+        ssn.MFA_Award_National_ID_255_Error ||
         ssn.MFA_Award_National_ID_Error ||
         ssn.MFA_Award_Confirmation_Day_Error ||
         ssn.MFA_Award_Confirmation_Month_Error ||
@@ -291,19 +307,19 @@ router.post("/", async (req, res) => {
           if (gaFiltered.length == 0) {
             ssn.Granting_Authority_Exists_Error = true;
             ssn.MFAAwardErrors[Additem] =
-              "Granting authority' " + ssn.Granting_Authority_Name_Global.trim() + " 'doesn't exist.";
+              "Public authority' " + ssn.Granting_Authority_Name_Global.trim() + " 'doesn't exist.";
             ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
             Additem = Additem + 1;
           }else if(gaFiltered.length > 1){
             ssn.Granting_Authority_Multiple_Error = true;
             ssn.MFAAwardErrors[Additem] =
-              "Multiple results for granting authority '" + ssn.Granting_Authority_Name_Global.trim() + "'. Please be more specific.";
+              "Multiple results for public authority '" + ssn.Granting_Authority_Name_Global.trim() + "'. Please be more specific.";
             ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
             Additem = Additem + 1;
           }else if(gaFiltered[0].status == 'Inactive' || gaFiltered[0].status == null){
-            ssn.Granting_Authority_Inactive_Error = true;
+            ssn.Granting_Authority_Name_Inactive_Error = true;
             ssn.MFAAwardErrors[Additem] =
-              "Granting authority '" + ssn.Granting_Authority_Name_Global.trim() + "' is inactive.";
+              "Public authority '" + ssn.Granting_Authority_Name_Global.trim() + "' is inactive.";
             ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
             Additem = Additem + 1;
           }
@@ -356,7 +372,7 @@ router.post("/", async (req, res) => {
             if(mfaGrouping.grantingAuthorityName != ssn.Granting_Authority_Name_Global.trim()){
               ssn.MFA_Grouping_GA_Error = true;
               ssn.MFAAwardErrors[Additem] =
-                "MFA / SPEIA Grouping '" + ssn.MFA_Grouping_ID_Global.trim() + "' does not belong to granting authority " + ssn.Granting_Authority_Name_Global.trim();
+                "MFA / SPEIA Grouping '" + ssn.MFA_Grouping_ID_Global.trim() + "' does not belong to public authority " + ssn.Granting_Authority_Name_Global.trim();
               ssn.MFAFocus[Additem] = "#MFA_Grouping_ID";
               Additem = Additem + 1;
             }
@@ -375,7 +391,7 @@ router.post("/", async (req, res) => {
           }
         }
 
-         
+
 
         /**
          * MFA grouping validation end
@@ -384,7 +400,7 @@ router.post("/", async (req, res) => {
           if (
             ssn.Granting_Authority_Exists_Error ||
             ssn.Granting_Authority_Multiple_Error ||
-            ssn.Granting_Authority_Inactive_Error ||
+            ssn.Granting_Authority_Name_Inactive_Error ||
             ssn.MFA_Grouping_Exist_Error ||
             ssn.MFA_Grouping_Active_Error ||
             ssn.MFA_Grouping_Count_Error ||
@@ -414,11 +430,11 @@ router.post("/", async (req, res) => {
             }else{
               ssn.Granting_Authority_Exists_Error = true;
               ssn.MFAAwardErrors[Additem] =
-                "Granting authority '" + ssn.Granting_Authority_Name_Global.trim() + "' doesn't exist.";
+                "Public authority '" + ssn.Granting_Authority_Name_Global.trim() + "' doesn't exist.";
               ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
               Additem = Additem + 1;
             }
-            
+
             res.render("mfa/mfaawardadd", {
               ssn,
             });

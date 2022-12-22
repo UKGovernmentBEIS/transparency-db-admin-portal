@@ -195,15 +195,15 @@
                         <% if( ssn.Granting_Authority_Name_Error ||   ssn.Granting_Authority_Name_Inactive_Error) { %>
                         <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                             <label class="govuk-label" for="Granting_Authority_Name">
-                                Granting authority name
+                                Public authority name
                             </label>
                             <% if(ssn.Granting_Authority_Name_Inactive_Error){ %>
                             <span class="govuk-error-message" id="Granting_Authority_Name_Error">
-                                <span class="govuk-visually-hidden">Error:</span> Granting authority is not active
+                                <span class="govuk-visually-hidden">Error:</span> Public authority is not active
                             </span>
                             <% } else { %>
                             <span class="govuk-error-message" id="Granting_Authority_Name_Error">
-                                <span class="govuk-visually-hidden">Error:</span> Enter a granting authority name
+                                <span class="govuk-visually-hidden">Error:</span> Enter a public authority name
                             </span>
                             <% } %>
                             <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
@@ -225,7 +225,7 @@
 
                         <div class="govuk-form-group govuk-grid-column-two-thirds">
                             <label class="govuk-label" for="Granting_Authority_Name">
-                                Granting authority name
+                                Public authority name
                             </label>
 
                             <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
@@ -270,6 +270,40 @@
                                     name="Subsidy_Measure_Title" type="text"
                                     value="<%= ssn.Subsidy_Measure_Title_Global %>">
                             </div>
+
+                            <% if( ssn.Subsidy_Scheme_Description_Error ||ssn.Subsidy_Scheme_Description_5000_Error){ %>
+                                <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                                    <% } else { %>
+                                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                        <% }  %>
+                                        <label class="govuk-label" for="address-line-1">
+                                            Subsidy scheme description
+                                        </label>
+                                        <details class="govuk-details" data-module="govuk-details">
+                                            <summary class="govuk-details__summary">
+                                                <span class="govuk-details__summary-text">
+                                                    What is a Subsidy scheme description?
+                                                </span>
+                                            </summary>
+                                            <div class="govuk-details__text">
+                                                Please provide a summary description of the subsidy scheme which includes information such as location, enterprise eligibility, the basis for calculating subsidies under the scheme and any other information required by the Subsidy Control (Subsidy Database Information Requirements) Regulations 2022 which is not already included in the database entry.
+                                            </div>
+                                        </details>
+
+                                        <% if( ssn.Subsidy_Scheme_Description_Error ){ %>
+                                        <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
+                                            <span class="govuk-visually-hidden">Error:</span> Enter a valid
+                                            subsidy scheme description
+                                        </span>
+
+                                        <% } else if( ssn.Subsidy_Scheme_Description_5000_Error ){ %>
+                                        <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
+                                            <span class="govuk-visually-hidden">Error:</span> Subsidy scheme description cannot be greater than 5000 characters
+                                        </span>
+                                        <% }  %>
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="Subsidy_Scheme_Description" name="Subsidy_Scheme_Description" rows="5" aria-describedby="Subsidy_Scheme_Description-info"><%= ssn.Subsidy_Scheme_Description_Global %></textarea>
+                                    </div>
+
                             <% if( ssn.Legal_Basis_Error ){ %>
                             <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                 <% } else { %>
@@ -304,12 +338,12 @@
                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                         <% }  %>
                                         <label class="govuk-label" for="address-line-1">
-                                            Granting authority policy URL
+                                            Public authority policy URL
                                         </label>
                                         <details class="govuk-details" data-module="govuk-details">
                                             <summary class="govuk-details__summary">
                                                 <span class="govuk-details__summary-text">
-                                                    What is Granting authority policy URL?
+                                                    What is Public authority policy URL?
                                                 </span>
                                             </summary>
                                             <div class="govuk-details__text">
@@ -326,7 +360,7 @@
                                         </span>
                                         <% } else if( ssn.Granting_Authority_URL_255_Error ){ %>
                                         <span class="govuk-error-message" id="Granting_Authority_URL_Error">
-                                            <span class="govuk-visually-hidden">Error:</span> Granting authority policy
+                                            <span class="govuk-visually-hidden">Error:</span> Public authority policy
                                             url cannot be greater than 255 characters
                                         </span>
                                         <% } %>
@@ -334,18 +368,18 @@
                                             id="Granting_Authority_URL" type="text"
                                             value="<%= ssn.Granting_Authority_URL_Global%>">
                                     </div>
-                                    <% if( ssn.Granting_Authority_Policy_Error ||ssn.Granting_Authority_Policy_255_Error){ %>
+                                    <% if( ssn.Granting_Authority_Policy_Error || ssn.Granting_Authority_Policy_255_Error){ %>
                                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                         <% } else { %>
                                         <div class="govuk-form-group govuk-grid-column-two-thirds">
                                             <% }  %>
                                             <label class="govuk-label" for="address-line-1">
-                                                Granting authority policy page description
+                                                Public authority policy page description
                                             </label>
                                             <details class="govuk-details" data-module="govuk-details">
                                                 <summary class="govuk-details__summary">
                                                     <span class="govuk-details__summary-text">
-                                                        What should a Granting authority policy page description be?
+                                                        What should a Public authority policy page description be?
                                                     </span>
                                                 </summary>
                                                 <div class="govuk-details__text">
@@ -354,18 +388,15 @@
                                                 </div>
                                             </details>
 
-                                            <!-- <div class="govuk-hint">A short summary of the policy page that you provided
-                                                the URL for. For example, Water Purity Scheme policy page.
-                                            </div> -->
                                             <% if( ssn.Granting_Authority_Policy_Error ){ %>
                                             <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
                                                 <span class="govuk-visually-hidden">Error:</span> Enter a valid
-                                                granting authority policy page description
+                                                public authority policy page description
                                             </span>
 
                                             <% } else if( ssn.Granting_Authority_Policy_255_Error ){ %>
                                             <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
-                                                <span class="govuk-visually-hidden">Error:</span> Granting authority
+                                                <span class="govuk-visually-hidden">Error:</span> Public authority
                                                 policy description cannot be greater than 255 characters
                                             </span>
                                             <% }  %>
@@ -383,7 +414,7 @@
                                                     Budget (£)
                                                 </label>
                                                 <div class="govuk-hint">
-                                                    For example, 12000000
+                                                    This can be an estimate, for example, 12000000
                                                 </div>
                                                 <details class="govuk-details" data-module="govuk-details">
                                                     <summary class="govuk-details__summary">
@@ -392,8 +423,8 @@
                                                         </span>
                                                     </summary>
                                                     <div class="govuk-details__text">
-                                                        For ad hoc subsidies, enter the exact amount. For other subsidy
-                                                        schemes, enter the overall budget. Please use numeric values only.
+                                                        Please enter the budget for the subsidy scheme. If an exact amount is not known, or the scheme does not have a budget, 
+                                                        please enter an estimate and note in the scheme description that the budget is an estimate only. Please use numeric values only.
                                                     </div>
                                                 </details>
 
@@ -412,6 +443,116 @@
                                                 </div>
 
                                             </div>
+                                            <% if( ssn.Maximum_Amount_Under_Scheme_255_Error ){ %>
+                                                <div
+                                                    class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                                                    <% } else { %>
+                                                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                                        <% }  %>
+                                                        <label class="govuk-label" for="address-line-1">
+                                                            Maximum amount given under scheme
+                                                        </label>
+                                                        <div class="govuk-hint">
+                                                            For example, 12000000 or 10%
+                                                        </div>
+                                                        <details class="govuk-details" data-module="govuk-details">
+                                                            <summary class="govuk-details__summary">
+                                                                <span class="govuk-details__summary-text">
+                                                                    What is the maximum amount given under scheme?
+                                                                </span>
+                                                            </summary>
+                                                            <div class="govuk-details__text">
+                                                                Please enter the maximum amount of an individual subsidy that may be given under the scheme as outlined in regulation 4(3)(e)(i) of the Database Regulations.
+                                                            </div>
+                                                        </details>
+                                                        <% if( ssn.Maximum_Amount_Under_Scheme_255_Error ){ %>
+                                                            <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
+                                                                <span class="govuk-visually-hidden">Error:</span> The maximum amount that can be given under a scheme
+                                                                cannot be greater than 255 characters
+                                                            </span>
+                                                            <% } %>
+                                                        <div class="govuk-input__wrapper">
+                                                            <input class="govuk-input" id="Maximum_Amount_Under_Scheme" name="Maximum_Amount_Under_Scheme" type="text"
+                                                                value="<%= ssn.Maximum_Amount_Under_Scheme_Global%>">
+                                                        </div>
+                                                    </div>
+                                            <% if( ssn.scheme_issued_confirmation_day_Error || ssn.scheme_issued_confirmation_month_Error || ssn.scheme_issued_confirmation_year_Error ){ %>
+                                                <div
+                                                    class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                                                    <% } else { %>
+                                                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                                        <% }  %>
+                                                        <label class="govuk-label" for="address-line-1" id="confirmationDateLabel">
+                                                            Confirmation Date
+                                                        </label>
+                                                        <div class="govuk-hint">
+                                                            For example, 25 5 2022
+                                                        </div>
+                                                        <details class="govuk-details" data-module="govuk-details">
+                                                            <summary class="govuk-details__summary">
+                                                                <span class="govuk-details__summary-text">
+                                                                    What is confirmation date?
+                                                                </span>
+                                                            </summary>
+                                                            <div class="govuk-details__text">
+                                                                Confirmation date is the date that a public authority confirms the decision to make a subsidy scheme.
+                                                            </div>
+                                                        </details>
+                                                        <% if( ssn.scheme_issued_confirmation_day_Error || ssn.scheme_issued_confirmation_month_Error || ssn.scheme_issued_confirmation_year_Error){ %>
+                                                        <span class="govuk-error-message" id="Date_Error">
+                                                            <span class="govuk-visually-hidden">Error:</span>
+                                                            Enter a valid date
+                                                        </span>
+                                                        <% }  %>
+
+
+                                                        <div class="govuk-date-input" id="scheme-issued">
+                                                            <div class="govuk-date-input__item">
+                                                                <div class="govuk-form-group">
+                                                                    <label class="govuk-label govuk-date-input__label"
+                                                                        for="scheme_issued_confirmation_day">
+                                                                        Day
+                                                                    </label>
+                                                                    <input
+                                                                        class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                                        id="scheme_issued_confirmation_day"
+                                                                        name="scheme_issued_confirmation_day" type="text"
+                                                                        placeholder="DD" pattern="[0-9]*"
+                                                                        inputmode="numeric"
+                                                                        value="<%= ssn.Scheme_Confirmation_Day_Global%>">
+                                                                </div>
+                                                            </div>
+                                                            <div class="govuk-date-input__item">
+                                                                <div class="govuk-form-group">
+                                                                    <label class="govuk-label govuk-date-input__label"
+                                                                        for="scheme_issued_confirmation_month">
+                                                                        Month
+                                                                    </label>
+
+                                                                    <input
+                                                                        class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                                        id="scheme_issued_confirmation_month"
+                                                                        value="<%= ssn.Scheme_Confirmation_Month_Global%>"
+                                                                        name="scheme_issued_confirmation_month" placeholder="MM"
+                                                                        type="text" pattern="[0-9]*" inputmode="numeric">
+                                                                </div>
+                                                            </div>
+                                                            <div class="govuk-date-input__item">
+                                                                <div class="govuk-form-group">
+                                                                    <label class="govuk-label govuk-date-input__label"
+                                                                        for="scheme_issued_confirmation_year">
+                                                                        Year
+                                                                    </label>
+                                                                    <input
+                                                                        class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                                                        id="scheme_issued_confirmation_year"
+                                                                        name="scheme_issued_confirmation_year" type="text"
+                                                                        pattern="[0-9]*" inputmode="numeric"
+                                                                        value="<%= ssn.Scheme_Confirmation_Year_Global%>"
+                                                                        placeholder="YYYY"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
                                             <% if( ssn.scheme_issued_start_day_Error || ssn.scheme_issued_start_month_Error || ssn.scheme_issued_start_year_Error ){ %>
                                             <div
@@ -496,9 +637,7 @@
                                                             End Date
                                                         </label>
                                                         <div class="govuk-hint">
-                                                            For example, 25 11 2021. If this is an ad hoc subsidy
-                                                            award,
-                                                            the end date must be the same as the start date.
+                                                            For example, 25 11 2021
                                                         </div>
                                                         <% if( ssn.scheme_issued_end_day_Error  || ssn.scheme_issued_end_month_Error || ssn.scheme_issued_end_year_Error){ %>
                                                         <span class="govuk-error-message" id="EndDate_Error">

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Granting Authority page</title>
+  <title>GOV.UK - Public Authority page</title>
   <%- include('../partials/headercss.ejs') %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
@@ -51,7 +51,7 @@
             <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
           </li>
           <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Granting authorities</a>
+            <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Public authorities</a>
           </li>
         </ol>
       </div>
@@ -59,7 +59,7 @@
       <!-- <div class="govuk-tabs" data-module="govuk-tabs">
         <div id="myGA" class="govuk-tabs__panel"> -->
       <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-margin-bottom"> -->
-      <h1 class="govuk-heading-xl">Granting authorities</h1>
+      <h1 class="govuk-heading-xl">Public authorities</h1>
       <!-- </legend> -->
       <% if(noresult && nogas) { %>
       <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
@@ -93,7 +93,7 @@
           <!-- <form action="/filtersearch" method="POST" > -->
           <label class="govuk-label govuk-fieldset__legend govuk-!-font-weight-bold" for="filter-input">Search</label>
           <p class="label-2 label" id="SearchGAHint" class="govuk-hint">
-            Search for granting authority name or ID
+            Search for public authority name or ID
           </p>
           <div class="govuk-grid-column-three-quarters govuk-filter-input-position-div govuk-p-0">
             <div class="govuk-grid-column-one-half govuk-p-0">
@@ -134,7 +134,7 @@
           </div>
           <div class="govuk-grid-column-full govuk-p-0">
             <a href="/addgrantingauthority" class="govuk-button govuk-button--success">
-              Add a new granting authority
+              Add a new public authority
             </a>
             <div class="govuk-grid-column-one-third govuk-display-flex" style="float: right;text-align: right;">
               <label>Results per page</label>
@@ -184,7 +184,7 @@
           <!-- <form action="/filtersearch" method="POST" > -->
           <label class="govuk-label govuk-fieldset__legend govuk-!-font-weight-bold" for="filter-input">Search</label>
           <p class="label-2 label" id="SearchGAHint" class="govuk-hint">
-            Search for granting authority name or ID
+            Search for public authority name or ID
           </p>
           <div class="govuk-grid-column-three-quarters govuk-filter-input-position-div govuk-p-0">
             <div class="govuk-grid-column-one-half govuk-p-0">
@@ -225,7 +225,7 @@
           </div>
           <div class="govuk-grid-column-full govuk-p-0">
             <a href="/addgrantingauthority" class="govuk-button govuk-button--success">
-              Add a new granting authority
+              Add a new public authority
             </a>
             <div class="govuk-grid-column-one-third govuk-display-flex" style="float: right;text-align: right;">
               <label>Results per page</label>
@@ -278,15 +278,15 @@
               <th scope="col" style="text-align: left" class="govuk-table__header app-custom-class">
                 <% if (ssn.gaId_no_arrow == "upanddown" ) { %>
                 <a href="/mygrantingauthority?sort=gaId&arrow=upanddown" style="text-decoration: none">
-                  Granting Authority ID <img id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
+                  Public Authority ID <img id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
                     aria-label="Currently not sorted"></a>
                 <% } else if (ssn.gaId_no_arrow == "downdecending" ) { %>
                 <a href="/mygrantingauthority?sort=gaId&arrow=downdecending" style="text-decoration: none">
-                  Granting Authority ID <img id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
+                  Public Authority ID <img id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
                     aria-label="Currently sorted by Descending order"></a>
                 <% } else { %>
                 <a href="/mygrantingauthority?sort=gaId&arrow=upacending" style="text-decoration: none">
-                  Granting Authority ID <img id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
+                  Public Authority ID <img id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
                     aria-label="Currently sorted by Ascending order"></a>
                 <% } %>
 
@@ -295,17 +295,17 @@
                 <% if (ssn.ganame_arrow == "upanddown" ) { %>
                 <a href="/mygrantingauthority?sort=gaName&arrow=upanddown" aria-sort="Currently not sorted"
                   style="text-decoration: none">
-                  Granting Authority name <img id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
+                  Public Authority name <img id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
                     aria-label="Currently not sorted"></a>
                 <% } else if (ssn.ganame_arrow == "downdecending" ) { %>
                 <a href="/mygrantingauthority?sort=gaName&arrow=downdecending"
                   aria-sort="Currently sorted by Descending order" style="text-decoration: none">
-                  Granting Authority name <img id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
+                  Public Authority name <img id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
                     aria-label="Currently sorted by Descending order"></a>
                 <% } else { %>
                 <a href="/mygrantingauthority?sort=gaName&arrow=upacending"
                   aria-sort="Currently sorted by Ascending order" style="text-decoration: none">
-                  Granting Authority name <img id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
+                  Public Authority name <img id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
                     aria-label="Currently sorted by Ascending order"></a>
                 <% } %>
               </th>

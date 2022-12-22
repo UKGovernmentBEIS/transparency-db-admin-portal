@@ -157,7 +157,7 @@
                     <% if(No_Selected_GA){ %>
                     <div class="govuk-grid-column-three-quarters govuk-form-group govuk-form-group--error">
                         <label class="govuk-label" for="sort-ga">
-                            Search by granting authority
+                            Search by public authority
                         </label>
                         <div class="govuk-grid-column-one-half govuk-padding-0">
                             <span id="passport-issued-error" class="govuk-error-message">
@@ -169,7 +169,7 @@
                                 <% } else { %>
                                 <div class="govuk-grid-column-three-quarters govuk-form-group">
                                     <label class="govuk-label" for="sort-ga">
-                                        Search by granting authority
+                                        Search by public authority
                                     </label>
                                     <div class="govuk-grid-column-one-half govuk-padding-0">
                                         <select class="govuk-select" id="sort-ga" name="Granting_Authority_Selected"
@@ -177,7 +177,7 @@
                                             <% } %>
 
                                             <% if ( isUserSelectIsPrimaryCall ) { %>
-                                            <option value="" selected disabled>Filter by granting authority</option>
+                                            <option value="" selected disabled>Filter by public authority</option>
                                             <% gaNamesList.forEach(function(items){ %>
                                             <option value="<%= items %>"> <%= items %> </option>
                                             <% })%>
@@ -185,7 +185,7 @@
                                             <% } else { %>
 
                                             <% if ( !GA_Selected ) { %>
-                                            <option value="" selected disabled>Filter by granting authority</option>
+                                            <option value="" selected disabled>Filter by public authority</option>
                                             <% } %>
 
                                             <% gaNamesList.forEach(function(items){ %>
@@ -203,7 +203,7 @@
                                     <div class="govuk-grid-column-one-half">
                                         <button class="govuk-button" data-module="govuk-button" name="button_value"
                                             value="GASelected">
-                                            List users by granting authority
+                                            List users by public authority
                                         </button>
                                     </div>
                                 </div>
@@ -244,9 +244,9 @@
 
                                                         <% gaRolesList.forEach(function(items){ %>
                                                         <% if (ssn.Roles_Selected == items) { %>
-                                                        <option selected value="<%= items %>"> <%= items %> </option>
+                                                        <option selected value="<%= items %>"> <%= items.replace('Granting', 'Public') %> </option>
                                                         <% } else { %>
-                                                        <option value="<%= items %>"> <%= items %> </option>
+                                                        <option value="<%= items %>"> <%= items.replace('Granting', 'Public') %> </option>
                                                         <% } %>
                                                         <% })%>
 
@@ -290,8 +290,7 @@
                                     <th scope="col" class="govuk-table__header app-custom-class"
                                         style="color: #1D70B8;">Status</th>
                                     <th scope="col" class="govuk-table__header app-custom-class"
-                                        style="color: #1D70B8;">Granting
-                                        authority</th>
+                                        style="color: #1D70B8;">Public authority</th>
                                     <th scope="col" class="govuk-table__header app-custom-class"
                                         style="color: #1D70B8;">Email
                                         address</th>
@@ -312,24 +311,24 @@
                                         <% if(typeof Environment_variable !== "undefined") { %>
                                             <% if(Environment_variable !== "env=prod") { %>
                                                 <% var role = item.roleName.split("_"); if(role[1] == 'GrantingAuthorityAdministrators') { %>
-                                                Granting Authority Administrators
+                                                Public Authority Administrators
                                                 <% } else if(role[1] == 'GrantingAuthorityEncoders') {%>
-                                                Granting Authority Encoders
+                                                Public Authority Encoders
                                                 <% } else if(role[1] == 'BEISAdministrators') {%>
                                                 BEIS Administrators
                                                 <% } else  {%>
-                                                Granting Authority Approvers
+                                                Public Authority Approvers
                                                 <% } %>
                                             <% } %>
                                         <% } else { %>
                                             <%  if(item.roleName == 'GrantingAuthorityAdministrators') { %>
-                                            Granting Authority Administrators
+                                            Public Authority Administrators
                                             <% } else if(item.roleName == 'GrantingAuthorityEncoders') {%>
-                                            Granting Authority Encoders
+                                            Public Authority Encoders
                                             <% } else if(item.roleName == 'BEISAdministrators') {%>
                                             BEIS Administrators
                                             <% } else  {%>
-                                            Granting Authority Approvers
+                                            Public Authority Approvers
                                             <% } %>
                                         <% } %>
 

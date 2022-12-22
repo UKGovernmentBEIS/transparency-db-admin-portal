@@ -87,10 +87,20 @@ router.get("/", (req, res) => {
     ) {
       ssn.Subsidy_Full_Amount_Range_Global =
         fetchawarddetails.subsidyFullAmountRange;
+      var rangeSplit = ssn.Subsidy_Full_Amount_Range_Global.split(" - ")
+      if (rangeSplit.length == 2) {
+        ssn.Subsidy_Full_Amount_Range_Lower_Global = Number(rangeSplit[0].replace(/[^0-9.-]+/g, ""));
+        ssn.Subsidy_Full_Amount_Range_Upper_Global = Number(rangeSplit[1].replace(/[^0-9.-]+/g, ""));
+      } else {
+        ssn.Subsidy_Full_Amount_Range_Lower_Global = "";
+        ssn.Subsidy_Full_Amount_Range_Upper_Global = "";
+      }
       ssn.Subsidy_Element_Full_Amount_Global = "";
     } else {
-      ssn.Subsidy_Full_Amount_Range_Global = "";
-      ssn.Subsidy_Element_Full_Amount_Global =
+        ssn.Subsidy_Full_Amount_Range_Global = "";
+        ssn.Subsidy_Full_Amount_Range_Lower_Global = "";
+        ssn.Subsidy_Full_Amount_Range_Upper_Global = "";
+        ssn.Subsidy_Element_Full_Amount_Global =
         fetchawarddetails.subsidyFullAmountExact;
     }
 
@@ -169,6 +179,7 @@ router.get("/", (req, res) => {
     SubsidyArraySize = 0;
 
     isCallfromEditAward = true;
+    ssn.addToScheme = false;
 
     res.set("X-Frame-Options", "DENY");
     res.set("X-Content-Type-Options", "nosniff");
@@ -179,26 +190,6 @@ router.get("/", (req, res) => {
     res.render("bulkupload/addsubsidyaward", {
       isCallfromEditAward,
       ssn,
-      // ssn.Subsidy_Control_Number_Global,
-      // ssn.Subsidy_Measure_Title_Global,
-      // ssn.Subsidy_Adhoc_Global,
-      // ssn.Subsidy_Objective_Global,
-      // ssn.Subsidy_Objective_Other_Global,
-      // ssn.Subsidy_Instrument_Global,
-      // ssn.Subsidy_Instrument_Other_Global,
-      // ssn.Subsidy_Element_Full_Amount_Global,
-      // ssn.Subsidy_Full_Amount_Range_Global,
-      // ssn.National_ID_Type_Global,
-      // ssn.National_ID_Number_Global,
-      // ssn.Beneficiary_Name_Global,
-      // ssn.Size_of_the_Organisation_Global,
-      // ssn.Granting_Authority_Name_Global,
-      // ssn.Legal_Granting_Date_Day_Global,
-      // ssn.Legal_Granting_Date_Month_Global,
-      // ssn.Legal_Granting_Date_Year_Global,
-      // ssn.Goods_or_Services_Global,
-      // ssn.Spending_Region_Global,
-      // ssn.Spending_Sector_Global,
     });
   }
 });

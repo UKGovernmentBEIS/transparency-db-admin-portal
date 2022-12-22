@@ -94,6 +94,17 @@
             <% } %>
 
             <p class="govuk-body govuk-!-font-size-19">This section is for adding an MFA or SPEI Assistance Award.</p>
+            <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                        What is an MFA Award?
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    Minimal Financial Assistance (MFA) allows public authorities to award low value subsidies without needing to comply with the majority of the subsidy control requirements.
+                    MFA has a financial threshold so no recipient can receive more than £315,000 over three years.
+                    Any MFA awards which exceed £100,000 must be uploaded to the database.
+            </details>
             <!-- Body header ends here -->
 
             <form action="/mfaawardreview" method="POST" id="scheme-form">
@@ -119,7 +130,8 @@
                                 </span>
                             </summary>
                             <div class="govuk-details__text">
-                                Some text explaining SPEI Assistance awards.
+                                Services of Public Economic Interest Assistance (SPEIA) allows public authorities to award lower value subsidies to Services of Public Economic Interest without needing to comply with the majority of the subsidy control requirements.
+                                SPEIA has a financial threshold so that no recipient can receive more than £725,000 over three years. Any SPEI award which exceeds £100,000 must be uploaded to the database.
                             </div>
                         </details>
 
@@ -156,7 +168,14 @@
                                 </span>
                             </summary>
                             <div class="govuk-details__text">
-                                Some text explaining MFA / SPEIA Groupings.
+                                Linking an MFA/SPEIA award to an MFA/SPEIA grouping is optional.
+                                </br>
+                                </br>
+                                An MFA/SPEIA grouping exists only for the purposes of uploading MFA and SPEIA awards to the database.
+                                A grouping provides a unique reference which can be used to bulk upload MFA/SPEIA awards.
+                                An MFA/SPEIA grouping makes it easier for public authorities to individually upload MFA/SPEIA awards.
+                                A public authority may upload multiple MFA/SPEIA groupings if needed.
+                                
                             </div>
                         </details>
 
@@ -168,14 +187,14 @@
 
                         <div class="govuk-radios" id="MFA_Grouping_YesNo">
                             <div class="govuk-radios__item">
-                                
+
                                 <input class="govuk-radios__input" name="mfaGroupingYesNo" id="mfaGroupingYes" type="radio" value="Yes" <% if(ssn.MFA_Yes_No_Global == 'Yes') { %> checked <% } %> onchange="getMfaGrouping(event)">
                                 <label class="govuk-label govuk-radios__label" for="mfaGroupingYes">
                                     Yes
                                 </label>
                             </div>
                             <div class="govuk-radios__item">
-                                
+
                                 <input class="govuk-radios__input" name="mfaGroupingYesNo" id="mfaGroupingNo" type="radio" value="No" <% if(ssn.MFA_Yes_No_Global == 'No') { %> checked <% } %> onchange="getMfaGrouping(event)">
                                 <label class="govuk-label govuk-radios__label" for="mfaGroupingNo">
                                     No
@@ -225,7 +244,7 @@
 
                         <div class="govuk-input__wrapper">
                             <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                            <input class="govuk-input govuk-!-width-one-half" id="Award_Full_Amount" name="awardFullAmount" type="number" aria-describedby="Award_Full_Amount" value="<%= ssn.Award_Full_Amount_Global %>" />
+                            <input class="govuk-input govuk-!-width-one-half" id="Award_Full_Amount" name="awardFullAmount" type="number" aria-describedby="Award_Full_Amount" value="<%= ssn.Award_Full_Amount_Global %>" min="0" pattern="[0-9]*" />
                         </div>
                     </div>
 
@@ -282,22 +301,22 @@
                         </div>
                     </div>
 
-                    <% if( ssn.Granting_Authority_Name_Error || ssn.Granting_Authority_Inactive_Error || ssn.Granting_Authority_Multiple_Error || ssn.Granting_Authority_Exists_Error) { %>
+                    <% if( ssn.Granting_Authority_Name_Error || ssn.Granting_Authority_Name_Inactive_Error || ssn.Granting_Authority_Multiple_Error || ssn.Granting_Authority_Exists_Error) { %>
                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                         <label class="govuk-label" for="Granting_Authority_Name">
-                            Granting authority name
+                            Public authority name
                         </label>
-                        <% if (ssn.Granting_Authority_Inactive_Error) { %>
+                        <% if (ssn.Granting_Authority_Name_Inactive_Error) { %>
                         <span class="govuk-error-message" id="Granting_Authority_Name_Error">
-                            <span class="govuk-visually-hidden">Error:</span> Granting authority is not active
+                            <span class="govuk-visually-hidden">Error:</span> Public authority is not active
                         </span>
-                        <% } else if (ssn.Granting_Authority_Exists_Error) { %> 
+                        <% } else if (ssn.Granting_Authority_Exists_Error) { %>
                         <span class="govuk-error-message" id="Granting_Authority_Name_Error">
-                            <span class="govuk-visually-hidden">Error:</span> Granting authority does not exist
+                            <span class="govuk-visually-hidden">Error:</span> Public authority does not exist
                         </span>
                         <% } else { %>
                         <span class="govuk-error-message" id="Granting_Authority_Name_Error">
-                            <span class="govuk-visually-hidden">Error:</span> Enter a granting authority name
+                            <span class="govuk-visually-hidden">Error:</span> Enter a public authority name
                         </span>
                         <% } %>
                         <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
@@ -312,7 +331,7 @@
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                         <label class="govuk-label" for="Granting_Authority_Name">
-                            Granting authority name
+                            Public authority name
                         </label>
 
                         <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
@@ -377,7 +396,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Award_National_ID_Error ){ %> govuk-form-group--error <% } %>">
+                    <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Award_National_ID_Error || ssn.MFA_Award_National_ID_255_Error ){ %> govuk-form-group--error <% } %>">
                         <label class="govuk-label" for="National_ID_Number">
                             ID Number
                         </label>
@@ -396,7 +415,11 @@
                         <span class="govuk-error-message" id="Subsidy_adhoc_Error">
                             <span class="govuk-visually-hidden">Error:</span> You must enter an ID number
                         </span>
-                        <% }  %>
+                        <% } else if ( ssn.MFA_Award_National_ID_255_Error ){ %>
+                        <span class="govuk-error-message" id="National_ID_Number">
+                            <span class="govuk-visually-hidden">Error:</span> The ID number must be 255 characters or less.
+                            </span>
+                        <% } %>
                         <input class="govuk-input govuk-input--width-20" id="National_ID_Number" name="National_ID_Number" type="text" aria-describedby="National_ID_Number-hint" value="<%= ssn.MFA_Award_National_ID_Global%>" />
                     </div>
 
