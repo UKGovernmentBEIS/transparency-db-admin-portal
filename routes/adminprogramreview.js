@@ -7,6 +7,7 @@ var session = require("express-session");
 const axios = require("axios");
 const { ajaxTransport } = require("jquery");
 const router = express.Router();
+var utils = require("../utils");
 
 router.post("/", async (req, res) => {
   ssn = req.session;
@@ -36,7 +37,6 @@ router.post("/", async (req, res) => {
     ssn.Subsidy_Control_Number_Error = false;
     ssn.Subsidy_Control_Inactive_Error = false;
     ssn.Subsidy_Control_Exists_Error = false;
-    ssn.Subsidy_Control_Multiple_Error = false;
     ssn.Category_Error = false;
   
 
@@ -157,6 +157,8 @@ router.post("/", async (req, res) => {
           ssn,
         });
       } else {
+        ssn.Admin_Program_Budget_Formatted_Global = utils.formatCurrency(ssn.Admin_Program_Budget_Global);
+
         let gaResponse;
         let gaRequest = {
           grantingAuthorityName: ssn.Granting_Authority_Name_Global.trim(),

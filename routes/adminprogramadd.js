@@ -21,6 +21,7 @@ router.get("/", async (req, res) => {
     ssn.Admin_Program_Route_Name_Global = "";
     ssn.Subsidy_Control_Number_Global = "";
     ssn.Admin_Program_Budget_Global = "";
+    ssn.Admin_Program_Budget_Formatted_Global = "";
 
     // TODO: Replace variables with non-placeholder names when categories are known
     ssn.admin_program_category_na_global = false;
