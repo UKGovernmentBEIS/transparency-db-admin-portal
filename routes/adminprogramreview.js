@@ -33,8 +33,6 @@ router.post("/", async (req, res) => {
 
     ssn.Admin_Program_Name_Error = false;
     ssn.Admin_ProgramName_Length_Error = false;
-    ssn.Route_Name_Error = false;
-    ssn.Route_Name_Length_Error = false;
     ssn.Subsidy_Control_Number_Error = false;
     ssn.Subsidy_Control_Inactive_Error = false;
     ssn.Subsidy_Control_Exists_Error = false;
@@ -97,23 +95,6 @@ router.post("/", async (req, res) => {
 
     if (buttonvalue.toLowerCase() == "continue") {
       //Empty field validations
-
-      if (!Route_Name) {
-        ssn.Route_Name_Error = true;
-        ssn.errors[Additem] =
-          "You must enter streamlined route / primary public authority scheme name";
-        ssn.focus[Additem] = "#Route_Name";
-        Additem = Additem + 1;
-      }
-
-      if (Route_Name != "" && Route_Name.length > 255) {
-        ssn.Route_Name_Length_Error = true;
-        ssn.errors[Additem] =
-          "The route / primary public authority scheme name must be no longer than 255 characters.";
-        ssn.focus[Additem] = "#Route_Name";
-        Additem = Additem + 1;
-      }
-
       if (!Subsidy_Control_Number) {
         ssn.Subsidy_Control_Number_Error = true;
         ssn.errors[Additem] =

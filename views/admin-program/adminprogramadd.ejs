@@ -108,24 +108,6 @@
                     </div>
                     <% } %>
 
-                    <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.Route_Name_Error || ssn.Route_Name_Length_Error ){ %> govuk-form-group--error <% } %>">
-                        <label class="govuk-label" for="address-line-1">
-                            Name of the Streamlined Route or primary public authority scheme
-                        </label>
-                        <% if( ssn.Route_Name_Length_Error ){ %>
-                        <span class="govuk-error-message" id="Route_Name_Length_Error">
-                            <span class="govuk-visually-hidden">Error:</span> Streamlined Route or primary public authority scheme must be no
-                            longer than 255 characters
-                        </span>
-                        <% } %>
-                        <% if( ssn.Route_Name_Error ){ %>
-                        <span class="govuk-error-message" id="Route_Name_Error">
-                            <span class="govuk-visually-hidden">Error:</span> You must provide a streamlined route or primary public authority scheme
-                        </span>
-                        <% } %>
-                        <input class="govuk-input govuk-!-width-one-half" id="Route_Name" name="Route_Name" type="text" value="<%= ssn.Admin_Program_Route_Name_Global %>">
-                    </div>
-
                     <div class="govuk-form-group govuk-grid-column-two-thirds 
                     <% if( ssn.Subsidy_Control_Number_Error || ssn.Subsidy_Control_Inactive_Error || ssn.Subsidy_Control_Exists_Error || ssn.Subsidy_Control_Multiple_Error ){ %> govuk-form-group--error <% } %>">
                         <label class="govuk-label" for="address-line-1">
