@@ -210,16 +210,9 @@ router.post("/", async (req, res) => {
           }
 
           let subsidyResponse;
-          let subsidyRequest = {
-            searchName: ssn.Subsidy_Control_Number_Global.trim(),
-            pageNumber: 1,
-            totalRecordsPerPage: 9000,
-          };
           try{
-            subsidyResponse = await axios.post(
-              beis_url_searchscheme + "/scheme/search",
-              subsidyRequest,
-              ssn.UserPrincileObjectGlobal
+            subsidyResponse = await axios.get(
+              beis_url_publicsearch + "/schemes/scheme/" + ssn.Subsidy_Control_Number_Global.trim(),
             );
           }catch(err){
             if (err.toString().includes("404")) {
@@ -236,38 +229,23 @@ router.post("/", async (req, res) => {
             return false;
           }
 
-          var subsidyList = subsidyResponse.data.schemes;
-          var subsidyFiltered = subsidyList.filter(item => item.scNumber.toLowerCase() === ssn.Subsidy_Control_Number_Global.trim().toLowerCase())
+          var scheme = subsidyResponse.data;
 
-          if (subsidyFiltered.length == 0) {
-            ssn.Subsidy_Control_Exists_Error = true;
-            ssn.errors[Additem] =
-              "Subsidy scheme '" + ssn.Subsidy_Control_Number_Global.trim() + "' doesn't exist.";
-            ssn.focus[Additem] = "#Subsidy_Control_Number";
-            Additem = Additem + 1;
-          }else if(subsidyFiltered.length > 1){
-            ssn.Subsidy_Control_Multiple_Error = true;
-            ssn.errors[Additem] =
-              "Multiple results for subsidy scheme '" + ssn.Subsidy_Control_Number_Global.trim() + "'. Please be more specific.";
-            ssn.focus[Additem] = "#Subsidy_Control_Number";
-            Additem = Additem + 1;
-          }else if(subsidyFiltered[0].status != 'Active' || subsidyFiltered[0].status == null){
+          if(scheme.status != 'Active' || scheme.status == null){
             ssn.Subsidy_Control_Inactive_Error = true;
             ssn.errors[Additem] =
               "Subsidy scheme '" + ssn.Subsidy_Control_Number_Global.trim() + "' is not active.";
             ssn.focus[Additem] = "#Subsidy_Control_Number";
             Additem = Additem + 1;
           }else{
-            ssn.Subsidy_Measure_Title_Global = subsidyFiltered[0].subsidyMeasureTitle;
+            ssn.Subsidy_Measure_Title_Global = scheme.subsidyMeasureTitle;
           }
 
           if (
             ssn.Granting_Authority_Exists_Error ||
             ssn.Granting_Authority_Multiple_Error ||
             ssn.Granting_Authority_Inactive_Error ||
-            ssn.Subsidy_Control_Inactive_Error ||
-            ssn.Subsidy_Control_Exists_Error ||
-            ssn.Subsidy_Control_Multiple_Error
+            ssn.Subsidy_Control_Inactive_Error
             ) {
             res.render("admin-program/adminprogramadd", {
               ssn,
