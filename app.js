@@ -1081,5 +1081,7 @@ app.use("/adminprograms", require("./routes/adminprograms"));
 app.use("/adminprogramadd", adminProgramAddEdit);
 app.use("/adminprogramedit", adminProgramAddEdit);
 app.use("/adminprogramreview", require("./routes/adminprogramreview"));
+app.use("/adminprogramaddreview", require("./routes/adminprogramaddreview"));
+app.use("/adminprogramcancelreview", require("./routes/adminprogramcancelreview"));
 
 module.exports = app;
