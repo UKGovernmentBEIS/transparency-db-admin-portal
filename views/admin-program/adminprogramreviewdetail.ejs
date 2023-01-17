@@ -87,16 +87,6 @@
                             <td class="govuk-table__cell"><%= ssn.Granting_Authority_Name_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Category or Categories of the Streamlined Route</th>
-                            <td class="govuk-table__cell">
-                                <ul class="govuk-list govuk-list--bullet">
-                                    <% ssn.Category_Array_Global.forEach(function(item) { %> 
-                                    <% if(item != "NA"){ %><li><%= item %></li> <% }else{ %> <%= item %> <% } %> 
-                                    <% }); %> 
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Budget of the grouping of subsidy awards</th>
                             <td class="govuk-table__cell"><%= ssn.Admin_Program_Budget_Formatted_Global %></td>
                         </tr>

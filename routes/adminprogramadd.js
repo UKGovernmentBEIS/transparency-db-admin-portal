@@ -23,13 +23,6 @@ router.get("/", async (req, res) => {
       ssn.Subsidy_Control_Number_Global = "";
       ssn.Admin_Program_Budget_Global = "";
       ssn.Admin_Program_Budget_Formatted_Global = "";
-    
-
-      // TODO: Replace variables with non-placeholder names when categories are known
-      ssn.admin_program_category_na_global = false;
-      ssn.admin_program_category_list_global = false;
-      ssn.admin_program_category_of_global = false;
-      ssn.admin_program_category_categories_global = false;
     }
 
     // Errors Start

@@ -7,29 +7,10 @@
     <%- include('../partials/headercss.ejs') %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
-    <script>
-        function selectAll(source) {
-            checkboxes = document.getElementsByClassName("govuk-checkboxes__input_categories");
-            for (var i = 0, n = checkboxes.length; i < n; i++) {
-                checkboxes[i].checked = source.checked;
-            }
-        }
-
-        function disableCategories() {
-            var checkBox = document.getElementById("category-na");
-            checkboxes = document.getElementsByClassName("govuk-checkboxes__input_categories");
-            for (var i = 0, n = checkboxes.length; i < n; i++) {
-                if (checkBox.checked) {
-                    checkboxes[i].checked = false;
-                }
-                checkboxes[i].disabled = checkBox.checked;
-            }
-        }
-    </script>
 </head>
 
 
-<body class="govuk-template__body app-example-page" onload="disableCategories()">
+<body class="govuk-template__body app-example-page">
     <script>
         document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
     </script>
@@ -191,59 +172,6 @@
                     </div>
                     <% }  %>
 
-                    <div id="Categories" class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.Category_Error ){ %> govuk-form-group--error <% } %>">
-                        <label class="govuk-label" for="address-line-1">
-                            Category or Categories of the Streamlined Route
-                        </label>
-                        <% if( ssn.Category_Error ){ %>
-                        <span class="govuk-error-message" id="Category_Error">
-                            <span class="govuk-visually-hidden">Error:</span> You must select at least one category, or N/A
-                        </span>
-                        <% } %>
-                        <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">
-
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input govuk-checkboxes__input_categories_na" id="category-na" name="category_na" type="checkbox" onclick="disableCategories(this)" value="NA" <% if (ssn.admin_program_category_na_global) { %> checked <% } %>>
-                                <label class="govuk-label govuk-checkboxes__label" for="category-na">
-                                    NA
-                                </label>
-                            </div>
-
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input govuk-checkboxes__input_categories" onclick="selectAll(this)" id="select-all" name="select-all" type="checkbox" value="Select all" data-aria-controls="conditional-select-all">
-                                <label class="govuk-label govuk-checkboxes__label" for="select-all">
-                                    Select all
-                                </label>
-                            </div>
-
-                            <div class="govuk-checkboxes__conditional" id="conditional-objective0">
-
-                                <!-- TODO: Replace with non-placeholder names when categories are known -->
-
-                                <div class="govuk-checkboxes__item">
-                                    <input class="govuk-checkboxes__input govuk-checkboxes__input_categories" id="category-list" name="category_list" type="checkbox" value="List" <% if (ssn.admin_program_category_list_global) { %> checked <% } %>>
-                                    <label class="govuk-label govuk-checkboxes__label" for="category-list">
-                                        List
-                                    </label>
-                                </div>
-
-                                <div class="govuk-checkboxes__item">
-                                    <input class="govuk-checkboxes__input govuk-checkboxes__input_categories" id="category-of" name="category_of" type="checkbox" value="Of" <% if (ssn.admin_program_category_of_global) { %> checked <% } %>>
-                                    <label class="govuk-label govuk-checkboxes__label" for="category-of">
-                                        Of
-                                    </label>
-                                </div>
-
-                                <div class="govuk-checkboxes__item">
-                                    <input class="govuk-checkboxes__input govuk-checkboxes__input_categories" id="category-categories" name="category_categories" type="checkbox" value="Categories" <% if (ssn.admin_program_category_categories_global) { %> checked <% } %>>
-                                    <label class="govuk-label govuk-checkboxes__label" for="spendingsector-undifferentiated-goods">
-                                        Categories
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.Budget_Error ){ %> govuk-form-group--error <% } %>">
                         <label class="govuk-label" for="address-line-1">
                             Budget of the grouping of subsidy awards (£)
@@ -258,8 +186,6 @@
                             <input class="govuk-input govuk-!-width-one-half" id="Admin_Program_Budget" name="Admin_Program_Budget" type="number" aria-describedby="Admin_Program_Budget" min="0" value="<%= ssn.Admin_Program_Budget_Global %>" />
                         </div>
                     </div>
-
-
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                         <button class="govuk-button" data-module="govuk-button" name="buttonvalue" value="Continue">Continue</button>

@@ -60,32 +60,6 @@ router.post("/", async (req, res) => {
     ssn.Admin_Program_Name_Global = Admin_Program_Name;
     ssn.Admin_Program_Budget_Global = Admin_Program_Budget;
 
-    // TODO: Replace variables with non-placeholder names when categories are known
-    ssn.admin_program_category_na_global = category_na;
-    ssn.admin_program_category_list_global = category_list;
-    ssn.admin_program_category_of_global = category_of;
-    ssn.admin_program_category_categories_global = category_categories;
-
-    var categoryArray = new Array()
-
-    if(category_na){
-      categoryArray.push(category_na);
-    }
-
-    if(category_list){
-      categoryArray.push(category_list);
-    }
-
-    if(category_of){
-      categoryArray.push(category_of);
-    }
-
-    if(category_categories){
-      categoryArray.push(category_categories);
-    }
-
-    ssn.Category_Array_Global = categoryArray;
-
     if (ssn.dashboard_roles == "BEIS Administrator") {
       ssn.Granting_Authority_Name_Global = Granting_Authority_Name;
     } else {
@@ -124,14 +98,6 @@ router.post("/", async (req, res) => {
         ssn.errors[Additem] =
           "The admin program name must be no longer than 255 characters.";
         ssn.focus[Additem] = "#Admin_Program_Name";
-        Additem = Additem + 1;
-      }
-
-      if(categoryArray.length == 0){
-        ssn.Category_Error = true;
-        ssn.errors[Additem] =
-          "You must select at least one category";
-        ssn.focus[Additem] = "#Categories";
         Additem = Additem + 1;
       }
 
