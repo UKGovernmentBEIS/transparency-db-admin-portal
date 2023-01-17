@@ -45,10 +45,6 @@ router.post("/", async (req, res) => {
       Subsidy_Control_Number,
       Admin_Program_Name,
       Granting_Authority_Name,
-      category_na,
-      category_list,
-      category_of,
-      category_categories,
       Admin_Program_Budget,
       buttonvalue,
     } = req.body;
