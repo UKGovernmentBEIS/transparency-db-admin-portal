@@ -19,7 +19,6 @@ router.get("/", async (req, res) => {
       ssn.Admin_Program_Number_Global = "";
       ssn.Admin_Program_Name_Global = "";
       ssn.Granting_Authority_Name_Global = "";
-      ssn.Admin_Program_Route_Name_Global = "";
       ssn.Subsidy_Control_Number_Global = "";
       ssn.Admin_Program_Budget_Global = "";
       ssn.Admin_Program_Budget_Formatted_Global = "";

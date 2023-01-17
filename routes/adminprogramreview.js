@@ -41,7 +41,6 @@ router.post("/", async (req, res) => {
   
 
     var {
-      Route_Name,
       Subsidy_Control_Number,
       Admin_Program_Name,
       Granting_Authority_Name,
@@ -50,8 +49,6 @@ router.post("/", async (req, res) => {
     } = req.body;
 
     ssn.Subsidy_Measure_Title_Global = "";
-
-    ssn.Admin_Program_Route_Name_Global = Route_Name;
     ssn.Subsidy_Control_Number_Global = Subsidy_Control_Number;
     ssn.Admin_Program_Name_Global = Admin_Program_Name;
     ssn.Admin_Program_Budget_Global = Admin_Program_Budget;
