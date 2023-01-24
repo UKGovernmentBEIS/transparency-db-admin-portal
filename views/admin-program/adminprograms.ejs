@@ -167,11 +167,19 @@
                 <thead class="govuk-table__head">
                   <tr class="govuk-table__row">
                     <th scope="col" class="govuk-table__header app-custom-class">
+                      Admin program number
+                    </th>
+                    <th scope="col" class="govuk-table__header app-custom-class">
                         Admin program name
                     </th>
-
                     <th scope="col" class="govuk-table__header app-custom-class">
-                        Adming program number
+                      Admin program budget
+                    </th>
+                    <th scope="col" class="govuk-table__header app-custom-class">
+                      Subsidy scheme
+                    </th>
+                    <th scope="col" class="govuk-table__header app-custom-class">
+                      Subsidy scheme number
                     </th>
                     <th scope="col" class="govuk-table__header app-custom-class">
                         Public authority
@@ -185,11 +193,14 @@
                 <tbody class="govuk-table__body">
                   <% searchResults.adminPrograms.forEach(function(item) { %>
                   <tr>
-                    <td class="govuk-table__cell"><a href="/adminprogram?id=<%= item.adminProgramNumber %>">
-                        <%= item.adminProgramName  %>
-                      </a> </td>
-                    <td class="govuk-table__cell"><%= item.adminProgramNumber %></td>
-                    <td class="govuk-table__cell"><%= item.grantingAuthorityName %></td>
+                    <td class="govuk-table__cell">
+                      <a href="/adminprogram?id=<%= item.apNumber %>"><%= item.apNumber  %></a> 
+                    </td>
+                    <td class="govuk-table__cell"><%= item.adminProgramName  %></td>
+                    <td class="govuk-table__cell">£<%= item.budgetFormatted %></td>
+                    <td class="govuk-table__cell"><%= item.subsidyMeasure.subsidyMeasureTitle %></td>
+                    <td class="govuk-table__cell"><%= item.subsidyMeasure.scNumber %></td>
+                    <td class="govuk-table__cell"><%= item.gaName %></td>
                     <td class="govuk-table__cell"><%= item.status %></td>
                   </tr>
                   <% } ); %>
