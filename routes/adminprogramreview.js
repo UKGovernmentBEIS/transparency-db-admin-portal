@@ -49,12 +49,12 @@ router.post("/", async (req, res) => {
     } = req.body;
 
     ssn.Subsidy_Measure_Title_Global = "";
-    ssn.Subsidy_Control_Number_Global = Subsidy_Control_Number;
-    ssn.Admin_Program_Name_Global = Admin_Program_Name;
-    ssn.Admin_Program_Budget_Global = Admin_Program_Budget;
+    ssn.Subsidy_Control_Number_Global = Subsidy_Control_Number.trim();
+    ssn.Admin_Program_Name_Global = Admin_Program_Name.trim();
+    ssn.Admin_Program_Budget_Global = Admin_Program_Budget.trim();
 
     if (ssn.dashboard_roles == "BEIS Administrator") {
-      ssn.Granting_Authority_Name_Global = Granting_Authority_Name;
+      ssn.Granting_Authority_Name_Global = Granting_Authority_Name.trim();
     } else {
       ssn.Granting_Authority_Name_Global = ssn.dashboard_ga_name;
       Granting_Authority_Name = ssn.dashboard_ga_name;
