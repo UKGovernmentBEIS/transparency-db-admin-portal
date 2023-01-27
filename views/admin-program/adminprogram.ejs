@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - Admin program details page</title>
+    <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <style>
+        .govuk-inative-status {
+            float: left;
+            width: 100%;
+            padding: 1%;
+        }
+    </style>
+</head>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
+
+    <div class="govuk-width-container ">
+
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
+            <%- include('../partials/navigationbar.ejs') %>
+
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/adminprograms">Admin programs</a>
+                    </li>
+                    <% if(!noresult) { %>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" aria-current="page"
+                            href="#"><%= ssn.adminProgramDetails.apNumber %></a>
+                    </li>
+                    <% } %>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-three-quarters">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl">
+                            Admin program details
+                        </h1>
+                    </legend>
+                </div>
+
+            </div>
+
+            <% if(noresult) { %>
+                <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+                  data-module="govuk-error-summary">
+        
+                  <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                      <li>
+        
+                        <a aria-label="<%= nodata%>"><%= nodata %></a>
+                      </li>
+        
+                    </ul>
+        
+                  </div>
+                </div>
+                <a href="/adminprograms" class="govuk-button govuk-button--secondary" data-module="govuk-button">Back to admin program list</a>
+              <% } else { %>
+            <!-- Reject Message Block -->
+            <% if( ssn.adminProgramDetails.status =="Deleted") { %>
+                <div class="govuk-form-group app-example">
+                    <div class="app-example__frame">
+                        <p> <%= ssn.adminProgramDetails.reason %></p>
+                    </div>
+                </div>
+            <% } %>
+            <!-- Reject Message Block -->
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">
+                        Admin program details
+                    </h2>
+                </div>
+            </div>
+            <!-- <h2 class="govuk-heading-m">
+                Subsidy details
+            </h2> -->
+
+            <form action="/mfaawardapprovereject" method="POST">
+                <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Admin program number
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= ssn.adminProgramDetails.apNumber %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Admin program name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= ssn.adminProgramDetails.adminProgramName %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Admin program budget
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            £<%= ssn.adminProgramDetails.budgetFormatted %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Subsidy scheme number
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <a href="/editreviewsubsidymeasure?scheme=<%=ssn.adminProgramDetails.subsidyMeasure.scNumber%>"><%=ssn.adminProgramDetails.subsidyMeasure.scNumber%> </a>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Subsidy scheme name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= ssn.adminProgramDetails.subsidyMeasure.subsidyMeasureTitle  %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Public Authority
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= ssn.adminProgramDetails.gaName  %>
+                        </dd>
+                    </div>
+                </dl>
+
+
+                </dl>
+                <% if(ssn.adminProgramDetails.canEdit) { %>
+                    <% if(ssn.adminProgramDetails.status.toLowerCase() == "active"){ %>
+                    <input type="hidden" value="No" name="PublishAdminProgram">
+                    <button class="govuk-button govuk-button--warning" data-module="govuk-button" name="button_value"
+                        id="Admin_prorgam_status" value="Deleted">
+                        Delete </button>
+                    <% } %>
+                <% } %>
+                <% if(ssn.adminProgramDetails.canEdit) { %>
+                <input type="hidden" value="Yes" name="PublishAward">
+                <a href="/adminprogramedit?id=<%= ssn.adminProgramDetails.apNumber %>"" style="color : rgb(250, 245, 245); text-decoration: none"
+                    class="govuk-button" data-module="govuk-button">Edit
+                </a>
+                <% } %>
+
+                <a href="/adminprograms" class="govuk-button govuk-button--secondary" data-module="govuk-button">Back to admin program list</a>
+            </form>
+            <% }  %>
+        </main>
+
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+    <script>
+        document.getElementById('admin-program-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
+</body>
+
+</html>
