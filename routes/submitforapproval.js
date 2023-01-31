@@ -43,7 +43,6 @@ router.post("/", async (req, res) => {
     ssn.Subsidy_Measure_Title_Error = false;
     ssn.Subsidy_Adhoc_Error = false;
     ssn.Subsidy_Objective_Error = false;
-    // ssn.Subsidy_Control_Number_Adhoc_Error = false;
     ssn.Subsidy_Objective_Other_Error = false;
     ssn.Subsidy_Objective_Other_255_Error = false;
     ssn.Subsidy_Instrument_Other_255_Error = false;
@@ -117,6 +116,7 @@ router.post("/", async (req, res) => {
       spendingSector: ssn.Spending_Sector_Global.trim(),
       subsidyObjectiveOther: ssn.Subsidy_Objective_Other_Global.trim(),
       subsidyInstrumentOther: ssn.Subsidy_Instrument_Other_Global.trim(),
+      adminProgramNumber: ssn.Admin_Program_Number_Global.trim()
     };
 
     if (isCallfromEditAward) {
@@ -144,6 +144,7 @@ router.post("/", async (req, res) => {
         spendingSector: ssn.Spending_Sector_Global.trim(),
         subsidyObjectiveOther: ssn.Subsidy_Objective_Other_Global.trim(),
         subsidyInstrumentOther: ssn.Subsidy_Instrument_Other_Global.trim(),
+        adminProgramNumber: ssn.Admin_Program_Number_Global.trim(),
         status: status,
       };
 
@@ -317,17 +318,6 @@ router.post("/", async (req, res) => {
             Additem = Additem + 1;
           }
 
-          // if (
-          //   add_award_response.validationErrorResult[i].column ==
-          //   "subsidyAmountExact"
-          // ) {
-          //   ssn.Subsidy_Element_Full_Amount_Error = true;
-          //   ssn.SubsidyErrors[Additem] =
-          //     add_award_response.validationErrorResult[i].message;
-          //   ssn.SubsidyFocus[Additem] = "#Subsidy_Element_Full_Amount";
-          //   Additem = Additem + 1;
-          // }
-
           if (
             add_award_response.validationErrorResult[i].column ==
             "grantingAuthorityName"
@@ -346,52 +336,6 @@ router.post("/", async (req, res) => {
 
         res.render("bulkupload/addsubsidyaward", {
           ssn,
-          // ssn.Subsidy_Control_Number_Global,
-          // ssn.Subsidy_Measure_Title_Global,
-          // ssn.Subsidy_Adhoc_Global,
-          // ssn.Subsidy_Objective_Global,
-          // ssn.Subsidy_Objective_Other_Global,
-          // ssn.Subsidy_Instrument_Global,
-          // ssn.Subsidy_Instrument_Other_Global,
-          // ssn.Subsidy_Element_Full_Amount_Global,
-          // ssn.Subsidy_Full_Amount_Range_Global,
-          // ssn.National_ID_Type_Global,
-          // ssn.National_ID_Number_Global,
-          // ssn.Beneficiary_Name_Global,
-          // ssn.Size_of_the_Organisation_Global,
-          // ssn.Granting_Authority_Name_Global,
-          // ssn.Legal_Granting_Date_Day_Global,
-          // ssn.Legal_Granting_Date_Month_Global,
-          // ssn.Legal_Granting_Date_Year_Global,
-          // ssn.Goods_or_Services_Global,
-          // ssn.Spending_Region_Global,
-          // ssn.Spending_Sector_Global,
-
-          // ssn.Subsidy_Control_Number_Error,
-          // ssn.Subsidy_Measure_Title_Error,
-          // ssn.Subsidy_Adhoc_Error,
-          // ssn.Subsidy_Objective_Error,
-          // ssn.Subsidy_Objective_Other_Error,
-          // ssn.Subsidy_Instrument_Error,
-          // ssn.Subsidy_Instrument_Other_Error,
-          // ssn.Subsidy_Element_Full_Amount_Error,
-          // ssn.Subsidy_Full_Amount_Range_Error,
-          // ssn.National_ID_Type_Error,
-          // ssn.National_ID_Number_Error,
-          // ssn.Beneficiary_Name_Error,
-          // ssn.Size_of_the_Organisation_Error,
-          // ssn.Granting_Authority_Name_Error,
-          // ssn.Legal_Granting_Date_Day_Error,
-          // ssn.Legal_Granting_Date_Month_Error,
-          // ssn.Legal_Granting_Date_Year_Error,
-          // ssn.Goods_or_Services_Error,
-          // ssn.Spending_Region_Error,
-          // ssn.Spending_Sector_Error,
-
-          // SubsidyErrors,
-          // SubsidyArraySize,
-          // SubsidyFocus,
-
           isAddSubsidyPrimarycall,
         });
       } else {
@@ -403,7 +347,6 @@ router.post("/", async (req, res) => {
         res.render("bulkupload/submitforapproval", {
           bulkupload,
           SubsidyAwardNumber,
-          // ssn.Subsidy_Control_Number_Global_Substring,
         });
       }
     } catch (err) {
@@ -412,8 +355,6 @@ router.post("/", async (req, res) => {
         res.render("bulkupload/notAuthorized");
       else if (err.toString().includes("500"))
         res.render("bulkupload/notAvailable");
-
-      // res.render('bulkupload/submitforapproval',{ ssn.Subsidy_Control_Number_Global,ssn.Subsidy_Control_Number_Global_Substring })
     }
   }
 });

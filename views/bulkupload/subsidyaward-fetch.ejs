@@ -44,50 +44,6 @@
                 </p>
             </div>
             <%- include('../partials/navigationbar.ejs') %>
-            <!-- <div class="govuk-grid-row govuk-form-group">
-                <div class="govuk-grid-column-full">
-                    <nav aria-label="Sub navigation">
-                        <ul class="govuk-sub-navigation__list">
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mygrantingauthority">
-                                    Granting Authorities
-                                </a>
-                            </li>
-
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/userselect">
-                                    Users
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" href="/mysubsidymeasures">
-                                    Subsidy Schemes
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item">
-                                <a class="govuk-sub-navigation__link" aria-current="page" href="/mysubsidyawards">
-                                    Subsidy Awards
-                                </a>
-                            </li>
-
-
-
-                            <li class="govuk-sub-navigation__item head-right">
-                                <a class="govuk-sub-navigation__link" href="/logintransparency">
-                                    Sign out
-                                </a>
-                            </li>
-                            <li class="govuk-sub-navigation__item head-right">
-                                <a class="govuk-sub-navigation__link" href="/useraccount">
-                                    My account
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-
-                </div>
-
-            </div> -->
             <!-- bread crumbs start here -->
             <div class="govuk-breadcrumbs ">
                 <ol class="govuk-breadcrumbs__list">
@@ -182,14 +138,8 @@
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">
                         Subsidy details
                     </h2>
-                    <!-- <a rel="external" class="govuk-link head-right govuk-relative-position" href="/addsubsidyaward">
-                    <p>Change </p>
-                </a> -->
                 </div>
             </div>
-            <!-- <h2 class="govuk-heading-m">
-                Subsidy details
-            </h2> -->
 
             <form action="/subsidyawardaction" method="POST">
                 <dl class="govuk-summary-list govuk-!-margin-bottom-9">
@@ -221,6 +171,22 @@
                         </dt>
                         <dd class="govuk-summary-list__value">
                             <%= fetchawarddetails.subsidyMeasure.subsidyMeasureTitle %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Admin program (AP) number
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= fetchawarddetails.adminProgramNumber %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Admin program name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= fetchawarddetails.adminProgramName %>
                         </dd>
                     </div>
                     <div class="govuk-summary-list__row">
