@@ -258,24 +258,23 @@
         </div>
 
         <% if(ssn.dashboard_roles != 'Granting Authority Encoder' ) { %>
-        <div class="govuk-grid-column-one-half">
-          <a href="/addsubsidymeasures" class="govuk-button"
-          data-module="govuk-button">
+        <div class="govuk-grid-column-two-thirds">
+
+          <a class="govuk-button" href="/addsubsidymeasures" class="govuk-button">
           Add a new subsidy scheme
           </a>
 
-          <a class="govuk-button" href="/bulkuploadsubsidyschemes" data-module="govuk-button">
-            Add multiple subsidy schemes
+          <a class="govuk-button" href="/bulkuploadsubsidyschemes" class="govuk-button">
+          Add mutliple subsidy schemes
           </a>
         </div>
 
         <% } %>
 
-        <div class="govuk-grid-column-one-half govuk-display-flex govuk-form-group" style="float: right;">
-          <label class="govuk-grid-column-two-thirds">
-            Results per page
-          </label>
-          <div class="pagination pagination-style-modified govuk-padding-0 govuk-!-width-one-third"
+        <div class="govuk-grid-column-one-third govuk-form-group govuk-display-flex govuk-padding-0"
+          style="float:right;text-align: right;">
+          <label>Results per page</label>
+          <div class="pagination pagination-style-modified govuk-padding-0 govuk-!-width-one-half"
             style="display: inline;  margin: 0;">
             <!-- <form class="govuk-grid-column-one-third" action="/measurespageperroute" method="GET"> -->
             <% if( ssn.frontend_totalRecordsPerPage  == 10) { %>

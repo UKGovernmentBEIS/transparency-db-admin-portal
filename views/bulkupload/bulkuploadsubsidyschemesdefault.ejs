@@ -80,7 +80,7 @@
         <div class="govuk-tabs__panel  govuk-tabs__panel--hidden" id="download-template">
           <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
-              <form method="get" action="./assets/files/Bulk_Upload_Awards_Template.xlsx">
+              <form method="get" action="./assets/files/Bulk_Upload_Schemes_Template.xlsx">
                 <h2 class="govuk-heading-l">Download template</h2>
                 <p class="govuk-body">
                   You can use the template to fill in the required information for the subsidy schemes you want to add.
@@ -102,7 +102,7 @@
         <div class="govuk-tabs__panel" id="upload-csv">
           <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
-              <form enctype="multipart/form-data" action="/formvalidation" method="post" novalidate="">
+              <form enctype="multipart/form-data" action="/formvalidationschemes" method="post" novalidate="">
 
                 <% if( locals.isFileUploadEmpty || locals.isNotCsvOrExcel){ %>
 
@@ -304,7 +304,7 @@
   </div>
   <%- include('../partials/footer.ejs') %>
   <script>
-    document.getElementById('subsidyaward-li').firstElementChild.setAttribute("aria-current", 'page');
+    document.getElementById('subsidyscheme-li').firstElementChild.setAttribute("aria-current", 'page');
   </script>
 </body>
 

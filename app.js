@@ -779,6 +779,9 @@ app.use("/reviewdetail", reviewdetail);
 var formvalidation = require("./routes/formvalidation");
 app.use("/formvalidation", formvalidation);
 
+var formvalidationschemes = require("./routes/formvalidationschemes");
+app.use("/formvalidationschemes", formvalidationschemes);
+
 var addsubsidyaward = require("./routes/addsubsidyaward");
 app.use("/addsubsidyaward", addsubsidyaward);
 
@@ -805,6 +808,9 @@ app.use("/addsubsidyeditaward", addsubsidyeditaward);
 
 var submitforapproval = require("./routes/submitforapproval");
 app.use("/submitforapproval", submitforapproval);
+
+var bulksubsidymeasurepublished = require("./routes/bulksubsidymeasure-published");
+app.use("/bulksubsidymeasure-published", bulksubsidymeasurepublished);
 
 var mygrantingauthority = require("./routes/mygrantingauthority");
 app.use("/mygrantingauthority", mygrantingauthority);
