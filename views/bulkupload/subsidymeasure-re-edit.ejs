@@ -274,9 +274,7 @@
                                                 <label class="govuk-label" for="address-line-1">
                                                     Budget (£)
                                                 </label>
-                                                <div class="govuk-hint">For ad hoc subsidies, enter the exact
-                                                    amount.
-                                                    For other subsidy schemes, enter the overall budget.</div>
+                                                <div class="govuk-hint">Enter the overall budget. Please use numeric values only.</div>
                                                 <% if( ssn.Budget_Error ){ %>
                                                 <span class="govuk-error-message" id="Budget_Error">
                                                     <span class="govuk-visually-hidden">Error:</span> Enter a valid
@@ -310,7 +308,7 @@
                                                             </span>
                                                         </summary>
                                                         <div class="govuk-details__text">
-                                                            SOME TEXT HERE
+                                                            Please enter the maximum amount of an individual subsidy that may be given under the scheme as outlined in regulation 4(3)(e)(i) of the Database Regulations.
                                                         </div>
                                                     </details>
                                                     <% if( ssn.Maximum_Amount_Under_Scheme_255_Error ){ %>

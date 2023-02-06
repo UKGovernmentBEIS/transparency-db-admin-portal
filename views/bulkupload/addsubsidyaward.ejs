@@ -261,20 +261,20 @@
 
                     <% } else { %>
                       <input class="govuk-radios__input" id="Standalone_Award_Yes" name="Standalone_Award"
-                      type="radio" value="Yes" <%  if(isCallfromEditAward || addToScheme ) { %> disabled <% } %> onclick="standaloneAwardToggle(event);">
+                      type="radio" value="Yes" <%  if(isCallfromEditAward || ssn.addToScheme ) { %> disabled <% } %> onclick="standaloneAwardToggle(event);">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Standalone_Award_Yes">
                       Yes
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( ssn.Standalone_Award_Global == 'No' || addToScheme){ %>
+                    <% if( ssn.Standalone_Award_Global == 'No' || ssn.addToScheme){ %>
                     <input class="govuk-radios__input" id="Standalone_Award_No" name="Standalone_Award"
                       type="radio" value="No" checked onclick="standaloneAwardToggle(event);">
 
                     <% } else { %>
                       <input class="govuk-radios__input" id="Standalone_Award_No" name="Standalone_Award"
-                      type="radio" value="No" <%  if(isCallfromEditAward || addToScheme) { %> disabled <% } %> onclick="standaloneAwardToggle(event);">
+                      type="radio" value="No" <%  if(isCallfromEditAward || ssn.addToScheme) { %> disabled <% } %> onclick="standaloneAwardToggle(event);">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Standalone_Award_No">
                       No
@@ -611,7 +611,7 @@
                     </span>
                   </summary>
                   <div class="govuk-details__text">
-                    <p>This decription should include TCA requirements such as relevant time limits or other conditions attached to the scheme.</p>
+                    <p>This description should include TCA requirements such as relevant time limits or other conditions attached to the scheme.</p>
                   </div>
                 </details>
                 <% if(ssn.Subsidy_Award_Description_Error || ssn.Subsidy_Award_Description_Error_Length){ %>

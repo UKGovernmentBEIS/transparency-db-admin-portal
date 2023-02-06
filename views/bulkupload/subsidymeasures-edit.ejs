@@ -412,7 +412,7 @@
                                                     Budget (£)
                                                 </label>
                                                 <div class="govuk-hint">
-                                                    For example, 12000000
+                                                    This can be an estimate, for example, 12000000 
                                                 </div>
                                                 <details class="govuk-details" data-module="govuk-details">
                                                     <summary class="govuk-details__summary">
@@ -421,8 +421,8 @@
                                                         </span>
                                                     </summary>
                                                     <div class="govuk-details__text">
-                                                        For ad hoc subsidies, enter the exact amount. For other subsidy
-                                                        schemes, enter the overall budget. Please use numeric values only.
+                                                        Please enter the budget for the subsidy scheme. If an exact amount is not known, or the scheme does not have a budget, 
+                                                        please enter an estimate and note in the scheme description that the budget is an estimate only. Please use numeric values only.
                                                     </div>
                                                 </details>
                                                 <% if( ssn.Budget_Error ){ %>
@@ -460,7 +460,7 @@
                                                                 </span>
                                                             </summary>
                                                             <div class="govuk-details__text">
-                                                                SOME TEXT HERE
+                                                                Please enter the maximum amount of an individual subsidy that may be given under the scheme as outlined in regulation 4(3)(e)(i) of the Database Regulations.
                                                             </div>
                                                         </details>
                                                         <% if( ssn.Maximum_Amount_Under_Scheme_255_Error ){ %>
@@ -640,7 +640,7 @@
                                                             End Date
                                                         </label>
                                                         <div class="govuk-hint">
-                                                            For example, 25 3 2021
+                                                            For example, 25 11 2021
                                                         </div>
                                                         <% if( ssn.scheme_issued_end_day_Error  || ssn.scheme_issued_end_month_Error || ssn.scheme_issued_end_year_Error){ %>
                                                         <span class="govuk-error-message" id="EndDate_Error">
