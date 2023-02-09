@@ -98,9 +98,6 @@
                     </h2>
                 </div>
             </div>
-            <!-- <h2 class="govuk-heading-m">
-                Subsidy details
-            </h2> -->
 
             <form action="/mfaawardapprovereject" method="POST">
                 <dl class="govuk-summary-list govuk-!-margin-bottom-9">
@@ -154,8 +151,58 @@
                     </div>
                 </dl>
 
+                <div class="govuk-grid-row" id="adminProgramAwardsWrapper">
+                    <div class="govuk-grid-column-three-quarters">
+                            <h1 class="govuk-heading-xl">Awards</h1>
+                    </div>    
 
-                </dl>
+                    <% if(ssn.adminProgramDetails.awardResponseList.length > 0){ %> 
+                    <div class="govuk-grid-column-full">
+                        <table id="adminProgramAwardsTable " class="govuk-table">
+                            <thead class="govuk-table__head">
+                                <tr class="govuk-table__row">
+                                    <th scope="col" class="govuk-table__header">Award number</th>
+                                    <th scope="col" class="govuk-table__header">Scheme name</th>
+                                    <th scope="col" class="govuk-table__header">Status</th>
+                                    <th scope="col" class="govuk-table__header">Recipient</th>
+                                    <th scope="col" class="govuk-table__header">Public authority</th>
+                                    <th scope="col" class="govuk-table__header">Subsidy amount</th>
+                                </tr>
+                            </thead>
+                            <tbody class="govuk-table__body">
+                                <% ssn.adminProgramDetails.awardResponseList.forEach(function(item) { %>
+                                    <tr class="govuk-table__row">
+                                        <td class="govuk-table__cell"><a href="/subsidyawardfetch/?award=<%= item.awardNumber %>"><%= item.awardNumber %></a></td>
+                                        <td class="govuk-table__cell"><%= item.subsidyMeasure.subsidyMeasureTitle %> </td>
+                                        <td class="govuk-table__cell"><%= item.status %> </td>
+                                        <td class="govuk-table__cell"><%= item.beneficiary.beneficiaryName %> </td>
+                                        <td class="govuk-table__cell"><%= item.grantingAuthorityResponse.grantingAuthorityName %> </td>
+                                        <td class="govuk-table__cell">
+                                            <% if (item.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
+                                                <%= item.subsidyFullAmountRange %>
+                                            <% } else { %>
+                                                £<%= item.subsidyFullAmountExact %>
+                                            <% } %>
+                                        </td>
+                                    </tr>
+                                <% }); %> 
+                            </tbody>
+                        </table>
+                    </div>
+                    <% }else{ %> 
+                        <div class="govuk-error-summary govuk-grid-column-three-quarters" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+                        data-module="govuk-error-summary">
+              
+                        <div class="govuk-error-summary__body">
+                            <ul class="govuk-list govuk-error-summary__list">
+                                <li>
+                                    There are no awards assocaited to this admin program
+                                </li>
+                            </ul>
+                        </div>
+                      </div>
+                    <% } %> 
+                </div> <!-- Awards Wrapper End -->
                 <% if(ssn.adminProgramDetails.canEdit) { %>
                     <% if(ssn.adminProgramDetails.status.toLowerCase() == "active"){ %>
                     <input type="hidden" value="No" name="PublishAdminProgram">
