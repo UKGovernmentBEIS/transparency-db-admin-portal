@@ -67,7 +67,7 @@
             <% } %>
             <!-- Body header starts here -->
             <% if(isCallFromEdit){ %>
-            <h1 class="govuk-heading-xl">Edit admin program <%= ssn.adminProgramDetails.adminProgramNumber %> </h1>
+            <h1 class="govuk-heading-xl">Edit admin program <%= ssn.adminProgramDetails.apNumber %> </h1>
             <% }else{ %>
             <h1 class="govuk-heading-xl">Add an admin program</h1>
             <% } %>
@@ -85,7 +85,8 @@
                         <label class="govuk-label" for="Admin_Program_Number">
                             Admin program number
                         </label>
-                        <input class="govuk-input govuk-!-width-one-half" id="Admin_Program_Number" name="Admin_Program_Number" type="text" value="<%= ssn.adminProgramDetails.adminProgramNumber %>" disabled />
+                        <input class="govuk-input govuk-!-width-one-half" id="Admin_Program_Number" name="Admin_Program_Number" type="text" value="<%= ssn.adminProgramDetails.apNumber %>" disabled />
+                        <input class="govuk-input govuk-!-width-one-half" id="Admin_Program_Number_Hidden" name="Admin_Program_Number_Hidden" type="hidden" value="<%= ssn.adminProgramDetails.apNumber %>" readonly/>
                     </div>
                     <% } %>
 
@@ -112,6 +113,11 @@
                             <span class="govuk-visually-hidden">Error:</span> Subsidy scheme does not exist
                         </span>
                         <% } %>
+                        <% if( ssn.Admin_Program_Has_Awards_Error ){ %>
+                            <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
+                                <span class="govuk-visually-hidden">Error:</span> Cannot change associated subsidy scheme, as admin program has associated awards
+                            </span>
+                            <% } %>
                         <input class="govuk-input govuk-!-width-one-half" id="Subsidy_Control_Number" name="Subsidy_Control_Number" type="text" value="<%= ssn.Subsidy_Control_Number_Global %>">
                     </div>
 

@@ -20,6 +20,7 @@ router.get("/", async (req, res) => {
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
     var id = "";
+    noresult = false;
 
     if(req.query.hasOwnProperty("id")){
         id = req.query.id;

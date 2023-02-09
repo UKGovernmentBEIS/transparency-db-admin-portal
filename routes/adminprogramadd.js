@@ -36,7 +36,7 @@ router.get("/", async (req, res) => {
     ssn.Subsidy_Control_Number_Error = false;
     ssn.Subsidy_Control_Inactive_Error = false;
     ssn.Subsidy_Control_Exists_Error = false;
-    ssn.Category_Error = false;
+    ssn.Admin_Program_Has_Awards_Error = false;
 
     ssn.errors = [];
     isCallFromEdit = false;
@@ -61,9 +61,11 @@ router.get("/", async (req, res) => {
     
           ssn.adminProgramDetails = apiData.data;  
 
-          ssn.Admin_Program_Number_Global = ssn.adminProgramDetails.adminProgramNumber;
+          ssn.Admin_Program_Number_Global = ssn.adminProgramDetails.apNumber;
           ssn.Admin_Program_Name_Global = ssn.adminProgramDetails.adminProgramName;
-          ssn.Granting_Authority_Name_Global = ssn.adminProgramDetails.grantingAuthorityName;
+          ssn.Granting_Authority_Name_Global = ssn.adminProgramDetails.gaName;
+          ssn.Subsidy_Control_Number_Global = ssn.adminProgramDetails.subsidyMeasure.scNumber;
+          ssn.Admin_Program_Budget_Global = ssn.adminProgramDetails.budget;
         } catch (err) {
           const status = err.response.status;
           console.error("ERROR: " + err.message);

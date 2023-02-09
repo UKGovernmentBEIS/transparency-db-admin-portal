@@ -37,12 +37,14 @@ router.post("/", async (req, res) => {
     ssn.Subsidy_Control_Number_Error = false;
     ssn.Subsidy_Control_Inactive_Error = false;
     ssn.Subsidy_Control_Exists_Error = false;
-    ssn.Category_Error = false;
+    
+    ssn.Admin_Program_Has_Awards_Error = false;
   
 
     var {
       Subsidy_Control_Number,
       Admin_Program_Name,
+      Admin_Program_Number_Hidden,
       Granting_Authority_Name,
       Admin_Program_Budget,
       buttonvalue,
@@ -109,8 +111,7 @@ router.post("/", async (req, res) => {
         ssn.Route_Name_Length_Error ||
         ssn.Subsidy_Control_Number_Error ||
         ssn.Subsidy_Control_Inactive_Error ||
-        ssn.Subsidy_Control_Exists_Error ||
-        ssn.Category_Error
+        ssn.Subsidy_Control_Exists_Error
       ) {
         res.render("admin-program/adminprogramadd", {
           ssn,
@@ -188,6 +189,32 @@ router.post("/", async (req, res) => {
             }
             console.log("error in scheme", err);
             return false;
+          }
+
+          if(Admin_Program_Number_Hidden != ""){
+            var endpoint = beis_url_searchscheme + "/adminprogram/" + Admin_Program_Number_Hidden.trim();
+            try{
+              const apiData = await axios.get(
+                endpoint,
+                ssn.UserPrincileObjectGlobal
+              );        
+              ssn.adminProgramDetails = apiData.data;
+
+              if(ssn.adminProgramDetails.awardResponseList.length > 0 && 
+                ssn.adminProgramDetails.subsidyMeasure.scNumber.toLowerCase() != ssn.Subsidy_Control_Number_Global.toLowerCase()){
+                  ssn.Admin_Program_Has_Awards_Error = true;
+                  ssn.Subsidy_Control_Number_Global = ssn.adminProgramDetails.subsidyMeasure.scNumber;
+                  ssn.errors[Additem] =
+                    "Cannot change associated subsidy scheme, as admin program has associated awards";
+                  ssn.focus[Additem] = "#Subsidy_Control_Number";
+                  Additem = Additem + 1;
+                  res.render("admin-program/adminprogramadd", {
+                    ssn,
+                  });
+                }
+            }catch(err){
+
+            }
           }
 
           var scheme = subsidyResponse.data;
