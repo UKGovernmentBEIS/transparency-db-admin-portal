@@ -208,9 +208,6 @@ router.post("/", async (req, res) => {
                     "Cannot change associated subsidy scheme, as admin program has associated awards";
                   ssn.focus[Additem] = "#Subsidy_Control_Number";
                   Additem = Additem + 1;
-                  res.render("admin-program/adminprogramadd", {
-                    ssn,
-                  });
                 }
             }catch(err){
 
@@ -233,7 +230,8 @@ router.post("/", async (req, res) => {
             ssn.Granting_Authority_Exists_Error ||
             ssn.Granting_Authority_Multiple_Error ||
             ssn.Granting_Authority_Inactive_Error ||
-            ssn.Subsidy_Control_Inactive_Error
+            ssn.Subsidy_Control_Inactive_Error ||
+            ssn.Admin_Program_Has_Awards_Error
             ) {
             res.render("admin-program/adminprogramadd", {
               ssn,

@@ -91,7 +91,7 @@
                     <% } %>
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds 
-                    <% if( ssn.Subsidy_Control_Number_Error || ssn.Subsidy_Control_Inactive_Error || ssn.Subsidy_Control_Exists_Error ){ %> govuk-form-group--error <% } %>">
+                    <% if( ssn.Subsidy_Control_Number_Error || ssn.Subsidy_Control_Inactive_Error || ssn.Subsidy_Control_Exists_Error || ssn.Admin_Program_Has_Awards_Error ){ %> govuk-form-group--error <% } %>">
                         <label class="govuk-label" for="address-line-1">
                             Subsidy control number
                         </label>
@@ -118,7 +118,8 @@
                                 <span class="govuk-visually-hidden">Error:</span> Cannot change associated subsidy scheme, as admin program has associated awards
                             </span>
                             <% } %>
-                        <input class="govuk-input govuk-!-width-one-half" id="Subsidy_Control_Number" name="Subsidy_Control_Number" type="text" value="<%= ssn.Subsidy_Control_Number_Global %>">
+                        <input class="govuk-input govuk-!-width-one-half" id="Subsidy_Control_Number" 
+                            name="Subsidy_Control_Number" type="text" value="<%= ssn.Subsidy_Control_Number_Global %>" <% if (ssn.adminProgramDetails.awardResponseList.length > 0){%> readonly <% } %>>
                     </div>
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.Admin_Program_Name_Error || ssn.Admin_Program_Name_Length_Error ){ %> govuk-form-group--error <% } %>">
