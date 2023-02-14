@@ -155,11 +155,14 @@
                         </span>
                         <% } %>
                         <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
-                        <input class="govuk-input govuk-!-width-one-half govuk-input--error" id="Granting_Authority_Name" name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name" <% if(ssn.Granting_Authority_Name_Global) {%> value="<%= ssn.Granting_Authority_Name_Global %>" <% } %> />
+                        <input class="govuk-input govuk-!-width-one-half govuk-input--error" id="Granting_Authority_Name" name="Granting_Authority_Name" 
+                            type="text" aria-describedby="Granting_Authority_Name" <% if(ssn.Granting_Authority_Name_Global) {%> value="<%= ssn.Granting_Authority_Name_Global %>" <% } %> 
+                            <% if(isCallFromEdit){ %> readonly <% } %>/>
 
                         <% } else { %>
 
-                        <input class="govuk-input govuk-!-width-one-half govuk-input--error" id="Granting_Authority_Name" name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name" value="<%= ssn.dashboard_ga_name %>" disabled />
+                        <input class="govuk-input govuk-!-width-one-half govuk-input--error" id="Granting_Authority_Name" name="Granting_Authority_Name" type="text"
+                            aria-describedby="Granting_Authority_Name" value="<%= ssn.dashboard_ga_name %>" disabled />
                         <% } %>
                     </div>
                     <% } else { %>
@@ -170,7 +173,9 @@
                         </label>
 
                         <% if(ssn.dashboard_roles == "BEIS Administrator") { %>
-                        <input class="govuk-input govuk-!-width-one-half" id="Granting_Authority_Name" name="Granting_Authority_Name" type="text" aria-describedby="Granting_Authority_Name" <% if(ssn.Granting_Authority_Name_Global) {%> value="<%= ssn.Granting_Authority_Name_Global %>" <% } %> />
+                        <input class="govuk-input govuk-!-width-one-half" id="Granting_Authority_Name" name="Granting_Authority_Name" type="text" 
+                            aria-describedby="Granting_Authority_Name" <% if(ssn.Granting_Authority_Name_Global) {%> value="<%= ssn.Granting_Authority_Name_Global %>" <% } %> 
+                            <% if(isCallFromEdit){ %> readonly <% } %>/>
 
                         <% } else { %>
 
