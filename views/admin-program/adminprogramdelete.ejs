@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - Delete Admin Program</title>
+    <%- include('../partials/headercss.ejs') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+</head>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+
+    <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main id="main-content" role="main">
+            <div class="govuk-phase-banner">
+                <p class="govuk-phase-banner__content">
+                    <strong class="govuk-tag govuk-phase-banner__content__tag">
+                        beta
+                    </strong>
+                    <span class="govuk-phase-banner__text">
+                        This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+                        us to improve it.
+                    </span>
+                </p>
+            </div>
+            <%- include('../partials/navigationbar.ejs') %>
+
+            <!-- bread crumbs start here -->
+            <div class="govuk-breadcrumbs ">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/adminprograms">Admin programs</a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" aria-current="page"
+                            href="/adminprogram?id=<%= ssn.adminProgramDetails.apNumber %>"><%= ssn.adminProgramDetails.adminProgramName %></a>
+                    </li>
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Delete admin program</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- bread crumbs ends here -->
+
+            <!-- Body header starts here -->
+            <div class="govuk-body-cancel govuk-form-group">
+                <h1 class="govuk-heading-l">Delete admin program</h1>
+
+                <p class="govuk-body govuk-!-font-size-19">If you delete this admin program, the the link with associated awards will be removed.
+                    Users will no longer be able to associate awards with this admin program.</p>
+                <% if(ssn.adminProgramDetails.awardResponseList.length > 0){ %>
+                    <p class="govuk-body govuk-!-font-size-19 govuk-!-font-weight-bold">This will impact <%=ssn.adminProgramDetails.awardResponseList.length%> awards.</p>
+                <% } %>
+                <!-- Body header ends here -->
+                <p class="govuk-body govuk-!-font-size-19">Are you sure you want to delete this admin program?</p>
+
+                <a href="/adminprogramdeletesuccess" class="govuk-button govuk-button--secondary">
+                    Yes, delete admin program
+                </a>
+                <a href="/adminprogram?id=<%=ssn.adminProgramDetails.apNumber%>"
+                    class="govuk-button govuk-button_sm govuk-button--secondary" data-module="govuk-button">
+                    Cancel
+                </a>
+            </div>
+
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+    <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
+    <script>
+        document.getElementById('admin-program-li').firstElementChild.setAttribute("aria-current", 'page');
+    </script>
+
+</body>
+
+</html>
