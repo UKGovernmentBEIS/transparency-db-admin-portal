@@ -228,19 +228,11 @@ router.post("/", async (req, res) => {
           ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
           Additem = Additem + 1;
         }
-
-        /*
-          ssn.Admin_Program_Error = false;
-          ssn.Admin_Program_255_Error = false;
-          ssn.Admin_Program_Exist_Error = false;
-          ssn.Admin_Program_Active_Error = false;
-          ssn.Admin_Program_Match_Error = false;
-        */
         
         if(Admin_Program_Number != "" &&
             Admin_Program_Number.length > 255){
           ssn.Admin_Program_Error = true;
-          ssn.Admin_Program_Empty_Error = true;
+          ssn.Admin_Program_255_Error = true;
 
           ssn.SubsidyErrors[Additem] =
           "Admin program number must be no greater than 255 characters";
