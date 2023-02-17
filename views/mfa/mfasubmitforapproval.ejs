@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GOV.UK - MFA/SPEIA Award submitted for approval page</title>
+  <%- include('../partials/headercss.ejs') %>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+  <script>
+     // window.dataLayer = window.dataLayer || [];
+
+        // function gtag() {
+        //     dataLayer.push(arguments);
+        // }
+        // gtag('js', new Date());
+        // gtag('config', 'UA-145652997-21');
+  </script>
+</head>
+
+
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+  <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
+  <div class="govuk-width-container">
+    <main id="main-content" role="main">
+      <div class="govuk-phase-banner">
+        <p class="govuk-phase-banner__content">
+          <strong class="govuk-tag govuk-phase-banner__content__tag">
+            beta
+          </strong>
+          <span class="govuk-phase-banner__text">
+            This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+            us to improve it.
+          </span>
+        </p>
+      </div>
+      <%- include('../partials/navigationbar.ejs') %>
+      <div class="govuk-breadcrumbs ">
+        <ol class="govuk-breadcrumbs__list">
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">MFA</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">MFA awards</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add multiple MFA awards</a>
+          </li>
+        </ol>
+      </div>
+      <!-- bread crumbs ends here -->
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <div class="govuk-panel govuk-panel--confirmation">
+            <h1 class="govuk-panel__title">
+              MFA/SPEIA <% if(bulkupload) { %> awards <% } else { %> award <% } %>
+              <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %> submitted for approval
+              <% } else { %>
+              published<% } %>
+            </h1>
+            <!-- <h2 class="govuk-panel__body">
+              Subsidy award number <%= ssn.Subsidy_Control_Number_Global_Substring %>
+            </h2> -->
+          </div>
+
+          <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %>
+          <% if(bulkupload) { %>
+          <p class="govuk-body">You have successfully submitted <%= SubsidyAwardNumber%> MFA/SPEIA
+            awards for approval.
+          </p>
+          <% } else { %><p class="govuk-body">You have successfully submitted MFA/SPEIA award <%= SubsidyAwardNumber%> for
+            approval.
+          </p> <% } %>
+          <% } else { %>
+          <%  if(bulkupload) { %>
+          <p class="govuk-body">You have approved <%= SubsidyAwardNumber%> MFA/SPEIA awards and it is now
+            published.</p>
+          <% } else { %>
+          <p class="govuk-body">You have approved MFA/SPEIA award
+            <%= SubsidyAwardNumber%> and it is now published.</p>
+          <% } %>
+          <% } %>
+          <h2 class="govuk-heading-m">What happens next</h2>
+          <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %>
+          <p class="govuk-body">We have sent a notification to an approver so they can review the MFA/SPEIA award(s). You
+            will receive a notification when they have reviewed it.</p>
+          <% } else { %>
+          <!-- <p class="govuk-body">We have sent a notification to the person who submitted this award for approval.</p> -->
+          <p class="govuk-body">This MFA/SPEIA award is now visible on the <a href="<%=beis_public_search%>"> Search
+              for UK subsidies </a>service.</p>
+          <% } %>
+          <!-- <p class="govuk-body">1. The award has been submitted for approval and is now in 'Awaiting approval' state.
+          </p>
+          <p class="govuk-body">2. Once approved, by an approver, it will be published.</p>
+          <p class="govuk-body">3. If rejected, you will receive the notification with the reason</p> -->
+          <!-- <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full"> -->
+          <!-- <form action="" method="GET" novalidate=""> -->
+          <a href="/mfaawards" class="govuk-button" data-module="govuk-button">View all MFA/SPEIA awards</a>
+          <% if(!bulkupload) { %>
+          <a href="/addsubsidyaward" class=" govuk-button govuk-button--secondary ">
+            Add another award
+          </a>
+          <% } %>
+          <!-- </form> -->
+          <!-- <form action="" method="GET" class="govuk-grid-column-one-half govuk-padding-0"> -->
+
+          <!-- </form> -->
+          <!-- </div>
+          </div> -->
+        </div>
+      </div>
+    </main>
+  </div>
+  <%- include('../partials/footer.ejs') %>
+  <script>
+    document.getElementById('mfa-li').firstElementChild.setAttribute("aria-current", 'page');
+  </script>
+</body>
+
+</html>
