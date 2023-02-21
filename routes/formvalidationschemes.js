@@ -31,7 +31,7 @@ router.get("/", (req, res) => {
     res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-    res.render("bulkupload/bulkuploadsubsidyschemes", {
+    res.render("bulkupload/bulkuploadsubsidyscheme", {
       isFileUploadEmpty,
       isNotCsvOrExcel,
       isExcelFormat,
@@ -62,7 +62,7 @@ router.post("/", async (req, res) => {
       isFileUploadEmpty = true;
       console.log("file not uploaded");
       console.log("isFileUploadEmpty: " + isFileUploadEmpty);
-      res.render("bulkupload/bulkuploadsubsidyschemes", { isFileUploadEmpty });
+      res.render("bulkupload/bulkuploadsubsidyscheme", { isFileUploadEmpty });
     } else {
       var file = req.files.file_upload_1;
       var file_upload = file.name;
