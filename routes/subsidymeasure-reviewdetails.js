@@ -30,6 +30,7 @@ router.post("/", (req, res) => {
     ssn.Subsidy_Measure_Title_Error = false;
     ssn.Subsidy_Adhoc_Error = false;
     ssn.Legal_Basis_Error = false;
+    ssn.Legal_Basis_5000_Error = false;
     ssn.Granting_Authority_Name_Error = false;
     ssn.Granting_Authority_URL_Error = false;
     ssn.Granting_Authority_Policy_Error = false;
@@ -389,6 +390,10 @@ router.post("/", (req, res) => {
         ssn.Legal_Basis_Error = true;
         ssn.SubsidyErrors.push("Enter a valid legal basis");
         ssn.SubsidyFocus.push("#Legal_Basis");
+      } else if (Legal_Basis && Legal_Basis.length > 5000) {
+        ssn.Legal_Basis_5000_Error = true;
+        ssn.SubsidyErrors.push("The legal basis must be 5000 characters or less.");
+        ssn.SubsidyFocus.push("#Legal_Basis");
       }
 
       if (Granting_Authority_URL != "" && !Granting_Authority_Policy) {
@@ -740,6 +745,7 @@ router.post("/", (req, res) => {
         ssn.scheme_issued_start_month_Error ||
         ssn.scheme_issued_start_year_Error ||
         ssn.Legal_Basis_Error ||
+        ssn.Legal_Basis_5000_Error ||
         ssn.Granting_Authority_URL_Error ||
         ssn.Granting_Authority_Policy_Error ||
         ssn.Budget_Error ||
