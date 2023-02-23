@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GOV.UK - Subsidy Scheme submitted for approval page</title>
+  <%- include('../partials/headercss.ejs') %>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+  <script>
+     // window.dataLayer = window.dataLayer || [];
+
+        // function gtag() {
+        //     dataLayer.push(arguments);
+        // }
+        // gtag('js', new Date());
+        // gtag('config', 'UA-145652997-21');
+  </script>
+</head>
+
+
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+  <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
+  <div class="govuk-width-container">
+    <main id="main-content" role="main">
+      <div class="govuk-phase-banner">
+        <p class="govuk-phase-banner__content">
+          <strong class="govuk-tag govuk-phase-banner__content__tag">
+            beta
+          </strong>
+          <span class="govuk-phase-banner__text">
+            This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help
+            us to improve it.
+          </span>
+        </p>
+      </div>
+      <%- include('../partials/navigationbar.ejs') %>
+      <!-- bread crumbs start here -->
+      <div class="govuk-breadcrumbs ">
+        <ol class="govuk-breadcrumbs__list">
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/mysubsidymeasures">Subsidy schemes</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <% if(bulkupload) { %>
+            <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add multiple subsidy schemes</a>
+            <% } else { %>
+            <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add a subsidy scheme</a>
+            <% } %>
+          </li>
+        </ol>
+      </div>
+      <!-- bread crumbs ends here -->
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <div class="govuk-panel govuk-panel--confirmation">
+            <h1 class="govuk-panel__title">
+              Subsidy schemes published
+            </h1>
+          </div>
+
+          <%  if(bulkupload) { %>
+          <p class="govuk-body">
+            <% if(SubsidySchemeNumber > 1) { %>
+            You have created <%= SubsidySchemeNumber%> subsidy schemes and they are now
+            published.
+            <% } else { %>
+              You have created <%= SubsidySchemeNumber%> subsidy scheme and it is now
+            published.
+            <% } %>
+            </p>
+          <h2 class="govuk-heading-m">What happens next</h2>
+
+          <p class="govuk-body">This subsidy scheme is now visible on the <a href="<%=beis_public_search%>"> Search
+              for UK subsidies </a>service.</p>
+
+          <% } %>
+          <a href="/mysubsidymeasures" class="govuk-button" data-module="govuk-button">View all subsidy schemes</a>
+          <% if(!bulkupload) { %>
+          <a href="/addsubsidyscheme" class=" govuk-button govuk-button--secondary ">
+            Add another scheme
+          </a>
+          <% } %>
+        </div>
+      </div>
+    </main>
+  </div>
+  <%- include('../partials/footer.ejs') %>
+  <script>
+    document.getElementById('subsidyscheme-li').firstElementChild.setAttribute("aria-current", 'page');
+  </script>
+</body>
+
+</html>
