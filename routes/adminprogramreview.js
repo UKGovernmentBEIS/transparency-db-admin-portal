@@ -191,7 +191,7 @@ router.post("/", async (req, res) => {
             return false;
           }
 
-          if(Admin_Program_Number_Hidden != ""){
+          if(typeof Admin_Program_Number_Hidden !== "undefined" && Admin_Program_Number_Hidden != ""){
             var endpoint = beis_url_searchscheme + "/adminprogram/" + Admin_Program_Number_Hidden.trim();
             try{
               const apiData = await axios.get(
