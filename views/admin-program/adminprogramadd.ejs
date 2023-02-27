@@ -119,7 +119,7 @@
                             </span>
                             <% } %>
                         <input class="govuk-input govuk-!-width-one-half" id="Subsidy_Control_Number" 
-                            name="Subsidy_Control_Number" type="text" value="<%= ssn.Subsidy_Control_Number_Global %>" <% if (ssn.adminProgramDetails.awardResponseList.length > 0){%> readonly <% } %>>
+                            name="Subsidy_Control_Number" type="text" value="<%= ssn.Subsidy_Control_Number_Global %>" <% if (isCallFromEdit && ssn.adminProgramDetails.awardResponseList.length > 0){%> readonly <% } %>>
                     </div>
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.Admin_Program_Name_Error || ssn.Admin_Program_Name_Length_Error ){ %> govuk-form-group--error <% } %>">
