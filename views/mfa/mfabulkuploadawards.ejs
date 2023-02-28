@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GOV.UK - Bulk upload MFA award uploaded page</title>
+  <!-- <%- include('../partials/headersubsidy.ejs') %> -->
+  <%- include('../partials/headercss.ejs') %>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+  <script>
+     // window.dataLayer = window.dataLayer || [];
+
+        // function gtag() {
+        //     dataLayer.push(arguments);
+        // }
+        // gtag('js', new Date());
+        // gtag('config', 'UA-145652997-21');
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/bulkuploadpdfgen.js"></script>
+  <script>
+    var url = window.location.href;
+    window.location.href = url + "#upload-csv";
+    getErrorList = (isFileUploadEmpty, isExcelFormat, isXlsxOk) => {
+      if (isFileUploadEmpty || !isExcelFormat || !isXlsxOk) {
+        document.getElementById("error-alert").focus();
+      }
+    }
+  </script>
+</head>
+
+<body class="govuk-template__body app-example-page"
+  onload="getErrorList('<%=locals.isFileUploadEmpty%>','<%=locals.isExcelFormat%>','<%=locals.isXlsxOk%>')">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+  <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
+  <div class="govuk-width-container ">
+    <main id="main-content" role="main">
+      <div class="govuk-phase-banner">
+        <p class="govuk-phase-banner__content">
+          <strong class="govuk-tag govuk-phase-banner__content__tag">
+            beta
+          </strong>
+          <span class="govuk-phase-banner__text">
+            This is a new service – your <a class="govuk-link" href="/feedbackform">feedback</a> will help us to improve
+            it.
+          </span>
+        </p>
+      </div>
+      <%- include('../partials/navigationbar.ejs') %>
+      <div class="govuk-breadcrumbs ">
+        <ol class="govuk-breadcrumbs__list">
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/">Dashboard</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">MFA</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/mysubsidyawards">MFA awards</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" aria-current="page" href="#">Add multiple MFA awards</a>
+          </li>
+        </ol>
+      </div>
+      <!-- bread crumbs ends here -->
+
+      <h1 class="govuk-heading-xl">Add multiple MFA awards</h1>
+
+      <!-- *************************************************
+       Section : Two tabs 1. Download template 2. upload file 
+       ************************************************** -->
+
+      <div class="govuk-tabs" data-module="govuk-tabs">
+        <h2 class="govuk-tabs__title">
+          Contents
+        </h2>
+
+
+        <ul class="govuk-tabs__list" role="tablist">
+          <li class="govuk-tabs__list-item" role="presentation">
+            <a class="govuk-tabs__tab" href="#download-template" id="tab_download-template" role="tab"
+              aria-controls="download-template" aria-selected="false" tabindex="-1">
+              Download template
+            </a>
+          </li>
+          <li class="govuk-tabs__list-item" role="presentation">
+            <a class=" govuk-tabs__tab" href="#upload-csv" id="tab_upload-csv" role="tab" aria-controls="upload-csv"
+              aria-selected="true" tabindex="0">
+              Upload file
+            </a>
+          </li>
+        </ul>
+
+
+        <!-- <a rel="external" target="_blank" class="govuk-link head-right govuk-relative-position"
+          href="./assets/files/HelpDocumentBulkUpload.pdf">
+          <p>Download the help file </p>
+        </a> -->
+
+        <!-- *************************************************
+       Section : 1. Download template 
+       ************************************************** -->
+
+        <div class="govuk-tabs__panel  govuk-tabs__panel--hidden" id="download-template">
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+              <form method="get" action="./assets/files/MFA_Bulk_Upload_Awards_Template.xlsx">
+                <h2 class="govuk-heading-m">Download template</h2>
+                <p class="govuk-body">
+                  You can use the template to fill in the required information for the MFA awards you want to add.
+                </p>
+                <p class="govuk-body govuk-form-group">You can download the user guide for
+                  <a rel="external" target="_blank" class="govuk-link"
+                    href="./assets/files/HelpDocumentMFABulkUpload.docx">
+                    help with adding multiple MFA awards.
+                  </a>
+                </p>
+              </form>
+              <div class="govuk-grid-row">
+                <form method="get" action="./assets/files/helptemplatefile.csv" class="govuk-grid-column-one-third">
+                  <button class="govuk-button">Download the template file </button>
+                </form>
+                <a class="govuk-link govuk-cancel-button-link" href="/mfaawards"> Cancel </a>
+                <!-- <div class="govuk-grid-column-one-third">
+                  <button class="govuk-link govuk-cancel-button-link" data-module="govuk-button">Cancel </button></div>
+              </div> -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- *************************************************
+       Section : 2. upload file 
+       ************************************************** -->
+
+
+        <div class="govuk-tabs__panel" id="upload-csv">
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+
+
+
+              <% if( locals.isFileUploadEmpty || !locals.isExcelFormat){ %>
+
+              <form encType="multipart/form-data" action="/formvalidationmfa" method="post" novalidate="">
+
+                <div tabindex="-1" class="govuk-error-summary" id="error-alert" role="alert"
+                  aria-labelledby="error-summary-title" data-module="govuk-error-summary">
+                  <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+                  <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                      <% if( locals.isFileUploadEmpty ) { %>
+                      <li> <a href="#file-upload-1"> Choose a file to upload </a> </li>
+                      <% } else { %>
+                      <li> <a href="#file-upload-1"> Upload a file in excel format.File failed to upload. </a> </li>
+                      <% } %>
+                  </div>
+                </div>
+                <div class="govuk-form-group govuk-form-group--error">
+                  <label class="govuk-label"> Upload file</label>
+                  <label class="govuk-label-grey" for="file-upload-2">
+                    <p> The file format must be .xlsx</p>
+                  </label>
+                  <span id="file-upload-1-error" class="govuk-error-message">
+                    <% if( locals.isFileUploadEmpty ) { %>
+                    <span class="govuk-visually-hidden">Error:</span> Choose a file to upload
+                    <% } else { %>
+                    <span class="govuk-visually-hidden">Error:</span> Retry uploading the file
+                    <% } %>
+                  </span>
+
+                  <!-- <input class="govuk-file-upload govuk-file-upload--error" id="file-upload-1" name="file_upload_1"
+                    type="file" aria-describedby="file-upload-1-error"> -->
+                  <div class="govuk-input__wrapper">
+                    <input class="govuk-file-upload" name="file_upload_1" type="file"
+                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                    <!-- <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
+                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"> -->
+                    <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
+                  </div>
+                </div>
+
+
+                <button class="govuk-button" data-module="govuk-button" aria-label="Upload file"
+                  value="Upload file">Upload file </button>
+
+              </form>
+
+              <% } else if( locals.isExcelFormat && !locals.isXlsxOk ){ %>
+
+              <form encType="multipart/form-data" action="/formvalidationmfa" method="post" novalidate="">
+                <div tabindex="-1" class="govuk-error-summary" id="error-alert" role="alert"
+                  aria-labelledby="error-summary-title" data-module="govuk-error-summary">
+                  <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem in
+                    <%= locals.validationerrors.errorRows %>
+                    out of <%= locals.validationerrors.totalRows %> records</h2>
+                  <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                      <li> <a href="#file-upload-1"> You must fix the errors listed below and upload the file again
+                        </a>
+                      </li>
+                  </div>
+                </div>
+
+                <div class="govuk-form-group">
+                  <label class="govuk-label"> Upload a file</label>
+                  <!-- <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
+                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"> -->
+                  <input class="govuk-file-upload" name="file_upload_1" type="file"
+                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                  <label class="govuk-label-grey" for="file-upload-2">
+                    <p> The file must be a Microsoft Excel spreadsheet</p>
+                  </label>
+                </div>
+
+
+                <button class="govuk-button" data-module="govuk-button" aria-label="Upload file"
+                  value="Upload file">Upload file </button>
+
+              </form>
+              <hr />
+              <div class="govuk-form-group govuk-form-group--error">
+                <span id="file-upload-1-error" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> Errors found in Bulk
+                  <%= locals.file_upload_name %>
+                </span>
+
+                <!-- <label class="govuk-label" for="file-upload-1">
+                  You can also download a PDF of errors (opens in a new window or tab)
+                </label> -->
+
+                <!-- <script type="text/javascript"
+                  src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+                <script type="text/javascript"
+                  src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+                <script type="text/javascript" src="/assets/javascripts/bulkuploadpdfgen.js"></script>
+ -->
+
+                <!-- <div>
+                  <p> You can also
+                    <button class="link" value="Export"
+                      onclick="Export('<%= errorsvalidationpass %>','<%= locals.validationerrors.errorRows %>', '<%= locals.file_upload_name %>')">
+                      <p>download the PDF of errors </p>
+                    </button>
+                    to fix errors offline or at a later stage
+                  </p>
+                  <div id="dvTable"></div>
+                </div> -->
+                <!-- </form> -->
+
+
+              </div>
+
+
+
+              <%- include('../partials/pagination.ejs') %>
+
+              <!-- ************************************ -->
+              <!-- CSV file uploaded section            -->
+              <!-- ************************************ -->
+
+              <% } else if( locals.isXlsxOk){ %>
+              <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                  <div class="govuk-panel govuk-panel--confirmation">
+                    <h1 class="govuk-panel__title">
+                      MFA award submitted <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %> for
+                      approval
+                      <% } %>
+                    </h1>
+                  </div>
+
+                  <p class="govuk-body">You have successfully submitted <%= locals.validationerrors.totalRows %>
+                    MFA award
+                    <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %>
+                    for approval
+                    <% } %>
+                  </p>
+                  <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %>
+                  <h2 class="govuk-heading-m">What happens next</h2>
+                  <p class="govuk-body">We have sent a notification to an approver so they can review the MFA
+                    award.
+                    You will receive a notification when they have reviewed it.</p>
+                  <% } %>
+
+                  <a href="/mysubsidyawards" class="govuk-button" data-module="govuk-button">View all MFA
+                    awards</a>
+                </div>
+              </div>
+
+              <!-- <div class="govuk-grid-column-two-thirds">
+                  <div class="govuk-panel govuk-panel--confirmation">
+                    <p class="govuk-panel__title ">
+                      File uploaded successfully
+                    </p>
+                    <div class="govuk-panel__body">
+                      Subsidy awards submitted <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %> for approval
+                      <% } %>
+                      <%= locals.validationerrors.totalRows %> records have been submitted for approval and are now
+                      in 'Awaiting approval' state
+                    </div>
+
+                  </div>
+
+                  <section class="govuk-table-responsive">
+                    <table class="govuk-table" id="datatable">
+                      <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                          <th scope="col" class="govuk-table__header">File uploaded</th>
+                          <th scope="col" class="govuk-table__header govuk-table__cell--numeric">Number of records
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody class="govuk-table__body">
+                        <tr>
+                          <td class="govuk-table__cell"><%= file_upload_name %> </td>
+                          <td class="govuk-table__cell govuk-table__cell--numeric">
+                            <%= locals.validationerrors.totalRows %> </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </section>
+
+                  <h3 class="govuk-heading-m">What happens next</h3>
+                  <p class="govuk-body">1. The awards have been submitted for approval and is now in 'Awaiting
+                    approval'
+                    state.</p>
+                  <p class="govuk-body">2. Once approved,they will be published.</p>
+                  <p class="govuk-body">3. If rejected, you will receive the notification with the reason</p>
+                </div> -->
+              <div class="govuk-grid-column-two-thirds govuk-padding-0 ">
+                <form action="/mysubsidyawards" method="GET" class="govuk-grid-column-one-half">
+
+                  <!-- <button class="govuk-button">Proceed to My subsidy awards &#62;</button> -->
+                  <button class="govuk-button" data-module="govuk-button">
+                    Proceed to My MFA awards
+                    <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19"
+                      viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+                      <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                    </svg></a>
+                  </button>
+                </form>
+
+                <form action="/bulkuploadsubsidy" method="GET" class="govuk-grid-column-one-half">
+                  <button class=" govuk-button govuk-button--secondary ">
+                    Upload another file
+                  </button>
+                </form>
+              </div>
+              <!-- </div> -->
+              <!-- </main> -->
+
+
+
+              <!-- ************************************ -->
+              <!-- Default render of bulkupload section -->
+              <!-- ************************************ -->
+
+              <% } else { %>
+              <form encType="multipart/form-data" action="/formvalidationmfa" method="post" novalidate="">
+                <div class="govuk-form-group">
+                  <label class="govuk-label"> Upload a file</label>
+                  <!-- <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
+                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"> -->
+                  <input class="govuk-file-upload" name="file_upload_1" type="file"
+                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                  <label class="govuk-label-grey" for="file-upload-2">
+                    <p> The file must be a Microsoft Excel spreadsheet</p>
+                  </label>
+                </div>
+
+
+                <button class="govuk-button" data-module="govuk-button" aria-label="Upload File"
+                  value="Upload file">Upload file </button>
+
+                <% } %>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+    </main>
+  </div>
+  <%- include('../partials/footer.ejs') %>
+  <!-- <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+
+  <script src="/assets/javascripts/govuk-frontend.js"></script>
+  <script src="/assets/javascripts/example.js"></script> -->
+  <script>
+    document.getElementById('mfa-li').firstElementChild.setAttribute("aria-current", 'page');
+  </script>
+</body>
+
+</html>

@@ -779,6 +779,15 @@ app.use("/reviewdetail", reviewdetail);
 var formvalidation = require("./routes/formvalidation");
 app.use("/formvalidation", formvalidation);
 
+var formvalidationmfa = require("./routes/formvalidationmfa");
+app.use("/formvalidationmfa", formvalidationmfa);
+
+var mfabulkuploadawards = require("./routes/mfabulkuploadawards");
+app.use("/mfabulkuploadawards", mfabulkuploadawards);
+
+var mfasubmitforapproval = require("./routes/mfasubmitforapproval");
+app.use("/mfasubmitforapproval", mfasubmitforapproval);
+
 var formvalidationschemes = require("./routes/formvalidationschemes");
 app.use("/formvalidationschemes", formvalidationschemes);
 
@@ -1082,5 +1091,7 @@ app.use("/mfaaward", require("./routes/mfaaward"));
 app.use("/mfaawardapprovereject", require("./routes/mfaawardpublished"));
 app.use("/mfaawardrejectdelete", require("./routes/mfaawardrejectdelete"))
 app.use("/mfaawardreasonsubmit", require("./routes/mfaawardreasonsubmit"));
+app.use("/mfabulkuploadawards", require("./routes/mfabulkuploadawards"));
+
 
 module.exports = app;
