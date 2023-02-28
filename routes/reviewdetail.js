@@ -25,6 +25,7 @@ router.post("/", async (req, res) => {
     isAddSubsidyPrimarycall = false;
     ssn.GetConfirmationMonthName = "";
     ssn.GetMonthName = "";
+    ssn.Admin_Program_Name_Global = "";
     ssn.SubsidyErrors = [];
     ssn.SubsidyFocus = [];
     Additem = 0;
@@ -35,7 +36,6 @@ router.post("/", async (req, res) => {
     ssn.Name_Not_active = false;
     ssn.Multiple_Active_Schemes = false;
     ssn.Award_Date_Not_Valid_Error = false;
-    // ssn.Subsidy_Adhoc_Error = false;
     ssn.Subsidy_Objective_Error = false;
     ssn.Subsidy_Objective_Other_Error = false;
     ssn.Subsidy_Objective_Other_255_Error = false;
@@ -64,6 +64,11 @@ router.post("/", async (req, res) => {
     ssn.Standalone_Award_Error = false;
     ssn.Subsidy_Award_Description_Error = false;
     ssn.Subsidy_Award_Description_Error_Length = false;
+    ssn.Admin_Program_Error = false;
+    ssn.Admin_Program_255_Error = false;
+    ssn.Admin_Program_Exist_Error = false;
+    ssn.Admin_Program_Active_Error = false;
+    ssn.Admin_Program_Match_Error = false;
 
 
     var {
@@ -91,24 +96,20 @@ router.post("/", async (req, res) => {
       Spending_Sector,
       buttonvalue,
       Standalone_Award,
+      Admin_Program_Number,
       mylink,
     } = req.body;
 
-    // console.log("isAddSubsidyPrimarycall: " + isAddSubsidyPrimarycall);
-    // console.log("Subsidy_Instrument :" + ssn.Subsidy_Instrument);
-    // console.log("buttonvalue:" + buttonvalue);
-    // console.log("mylink:" + mylink);
-    // console.log("Granting_Authority_Name from award: " + Granting_Authority_Name);
-
-    // console.log("  Subsidy_Adhoc :" + Subsidy_Adhoc);
-
     ssn.Standalone_Award_Global = Standalone_Award;
     if(ssn.Standalone_Award_Global == 'Yes'){
-      ssn.Subsidy_Control_Number_Global = "";
+      ssn.Subsidy_Control_Number_Name_Global = "";
+      ssn.Admin_Program_Number_Global = "";
+    }else{
+      ssn.Admin_Program_Number_Global = Admin_Program_Number;
+      ssn.Subsidy_Control_Number_Name_Global = Subsidy_Control_Number_Name;
     }
+
     ssn.Subsidy_Award_Description_Global = Subsidy_Award_Description;
-    // ssn.Subsidy_Measure_Title_Global = Subsidy_Measure_Title;
-    // ssn.Subsidy_Adhoc_Global = Subsidy_Adhoc;
     ssn.Subsidy_Objective_Global = Subsidy_Objective;
     ssn.Subsidy_Objective_Other_Global = Subsidy_Objective_Other;
     ssn.Subsidy_Instrument_Global = Subsidy_Instrument;
@@ -225,6 +226,17 @@ router.post("/", async (req, res) => {
           ssn.SubsidyErrors[Additem] =
             "The subsidy scheme name must be less than 255 characters. ";
           ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
+          Additem = Additem + 1;
+        }
+        
+        if(Admin_Program_Number != "" &&
+            Admin_Program_Number.length > 255){
+          ssn.Admin_Program_Error = true;
+          ssn.Admin_Program_255_Error = true;
+
+          ssn.SubsidyErrors[Additem] =
+          "Admin program number must be no greater than 255 characters";
+          ssn.SubsidyFocus[Additem] = '#AdminProgramContainer';
           Additem = Additem + 1;
         }
       }
@@ -565,13 +577,6 @@ router.post("/", async (req, res) => {
 
             searchschemes = apidata.data;
 
-            // ssn.Subsidy_Measure_Title_Global =
-            //   searchschemes.schemes[0].subsidyMeasureTitle;
-            // ssn.Subsidy_Control_Number_Global = searchschemes.schemes[0].scNumber;
-            // ssn.Subsidy_Control_Number_Global_Substring = ssn.Subsidy_Control_Number_Global.substring(
-            //   2,
-            //   10
-            // );
             console.log("Status: " + JSON.stringify(searchschemes));
 
             if (searchschemes.schemes.length > 1) {
@@ -617,7 +622,6 @@ router.post("/", async (req, res) => {
               );
 
               if (searchschemes.schemes[0].status != "Active") {
-                // ssn.Subsidy_Control_Number_Error = true;
                 ssn.SubsidyErrors[Additem] =
                   "Subsidy control number is not active";
                 ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
@@ -647,15 +651,6 @@ router.post("/", async (req, res) => {
               }
             }
           }
-          if (schemeError) {
-            res.render("bulkupload/addsubsidyaward", {
-              ssn,
-            });
-          } else {
-            res.render("bulkupload/reviewdetail", {
-              ssn,
-            });
-          }
         } catch (err) {
           if (err.toString().includes("404")) {
             ssn.Subsidy_Control_Number_Error = true;
@@ -670,6 +665,64 @@ router.post("/", async (req, res) => {
           }
           console.log("error in scheme", err);
         }
+
+        if(Standalone_Award != 'Yes' && ssn.Admin_Program_Number_Global.trim() != ""){
+          var endpoint = beis_url_searchscheme + "/adminprogram/" + ssn.Admin_Program_Number_Global.trim();
+          try {
+            const apiData = await axios.get(
+              endpoint,
+              ssn.UserPrincileObjectGlobal
+            );
+    
+            adminProgram = apiData.data;
+
+            ssn.Admin_Program_Name_Global = adminProgram.adminProgramName;
+
+            if(adminProgram.status.toLowerCase() != "active"){
+              ssn.Admin_Program_Error = true;
+              ssn.Admin_Program_Active_Error = true;
+              ssn.SubsidyErrors[Additem] =
+                "Admin program is not active";
+                ssn.SubsidyFocus[Additem] = '#AdminProgramContainer';
+                Additem = Additem + 1;
+                ssn.SubsidyArraySize = ssn.SubsidyArraySize + 1;
+            }
+
+            if(ssn.Standalone_Award_Global.toLowerCase() != "yes"){
+              if(ssn.Subsidy_Control_Number_Global.toUpperCase() != adminProgram.subsidyMeasure.scNumber.toUpperCase()){
+                ssn.Admin_Program_Error = true;
+                ssn.Admin_Program_Match_Error = true;
+                ssn.SubsidyErrors[Additem] =
+                  "Admin program scheme must match that of the award scheme";
+                  ssn.SubsidyFocus[Additem] = '#AdminProgramContainer';
+                  Additem = Additem + 1;
+                  ssn.SubsidyArraySize = ssn.SubsidyArraySize + 1;
+              }
+            }
+
+          }catch (err){
+            if (err.toString().includes("404")) {
+              ssn.Admin_Program_Error = true;
+              ssn.Admin_Program_Exist_Error = true;
+              ssn.SubsidyErrors[Additem] =
+                "Admin program does not exist";
+              ssn.SubsidyFocus[Additem] = "#AdminProgramContainer";
+              Additem = Additem + 1;
+              ssn.SubsidyArraySize = ssn.SubsidyArraySize + 1;
+            }
+          }
+        }
+
+        if (schemeError || ssn.Admin_Program_Error) {
+          res.render("bulkupload/addsubsidyaward", {
+            ssn,
+          });
+        } else {
+          res.render("bulkupload/reviewdetail", {
+            ssn,
+          });
+        }
+
       }
     } else {
       res.render("bulkupload/subsidyaward-cancel");

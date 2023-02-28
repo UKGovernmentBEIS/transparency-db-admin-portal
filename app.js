@@ -1094,4 +1094,18 @@ app.use("/mfaawardreasonsubmit", require("./routes/mfaawardreasonsubmit"));
 app.use("/mfabulkuploadawards", require("./routes/mfabulkuploadawards"));
 
 
+// Admin Programs
+var adminProgramAddEdit = require("./routes/adminprogramadd");
+
+app.use("/adminprograms", require("./routes/adminprograms"));
+app.use("/adminprogramadd", adminProgramAddEdit);
+app.use("/adminprogramedit", adminProgramAddEdit);
+app.use("/adminprogramreview", require("./routes/adminprogramreview"));
+app.use("/adminprogramaddreview", require("./routes/adminprogramaddreview"));
+app.use("/adminprogramcancelreview", require("./routes/adminprogramcancelreview"));
+app.use("/adminprogrampublished", require("./routes/adminprogrampublished"));
+app.use("/adminprogram", require("./routes/adminprogram"));
+app.use("/adminprogramdelete", require("./routes/adminprogramdelete"));
+app.use("/adminprogramdeletesuccess", require("./routes/adminprogramdeletesuccess"));
+
 module.exports = app;

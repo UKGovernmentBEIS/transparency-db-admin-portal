@@ -49,15 +49,6 @@ router.get("/", async (req, res) => {
       ) {
         res.render("bulkupload/subsidyaward-fetch");
       }
-      // else if (Get_Award_Status == "Awaiting approval") {
-      //   res.render('bulkupload/subsidyaward-fetch-approval')  ;
-      // }
-      // else if (Get_Award_Status == "Published") {
-      //   res.render('bulkupload/subsidyaward-fetch-published')  ;
-      // }
-      // else if (Get_Award_Status == "Deleted") {
-      //   res.render('bulkupload/subsidyaward-fetch-deleted')  ;
-      // }
       else {
         res.render("bulkupload/subsidyaward-fetch-notfound");
       }
