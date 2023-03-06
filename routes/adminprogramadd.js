@@ -37,6 +37,7 @@ router.get("/", async (req, res) => {
     ssn.Subsidy_Control_Inactive_Error = false;
     ssn.Subsidy_Control_Exists_Error = false;
     ssn.Admin_Program_Has_Awards_Error = false;
+    ssn.Budget_Error = false;
 
     ssn.errors = [];
     isCallFromEdit = false;
