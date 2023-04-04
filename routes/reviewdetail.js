@@ -654,14 +654,12 @@ router.post("/", async (req, res) => {
         } catch (err) {
           if (err.toString().includes("404")) {
             ssn.Subsidy_Control_Number_Error = true;
+            schemeError = true;
             ssn.SubsidyErrors[Additem] =
               "Either subsidy control number (Or) subsidy scheme name is not valid";
             ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
             Additem = Additem + 1;
             ssn.SubsidyArraySize = 1;
-            res.render("bulkupload/addsubsidyaward", {
-              ssn,
-            });
           }
           console.log("error in scheme", err);
         }
