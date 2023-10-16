@@ -38,12 +38,12 @@ router.post("/", async (req, res) => {
       console.log(" ssn.apiroles_total_objects: ", ssn.apiroles_total_objects);
 
       for (var i = 0; i < ssn.apiroles_total_objects; i++) {
-        if (ssn.User_Role_Global == ssn.apiroles_extract[i].gaName) {
+        if (ssn.User_Role_Global.trim() == ssn.apiroles_extract[i].gaName) {
           console.log("gaName id1 : " + ssn.apiroles_extract[i].azGrpId);
           apiroles_gaRole_object = ssn.apiroles_extract[i].azGrpId;
         }
 
-        if (ssn.GA_Name_User_Global == ssn.apiroles_extract[i].gaName) {
+        if (ssn.GA_Name_User_Global.trim() == ssn.apiroles_extract[i].gaName) {
           console.log("gaName id2 : " + ssn.apiroles_extract[i].azGrpId);
           apiroles_gaName_object = ssn.apiroles_extract[i].azGrpId;
         }
