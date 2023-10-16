@@ -1034,6 +1034,9 @@ app.use("/usereditreview", usereditreview);
 var usereditsubmit = require("./routes/user-edit-success");
 app.use("/usereditsubmit", usereditsubmit);
 
+var userreinvite = require("./routes/user-reinvite");
+app.use("/userreinvite", userreinvite);
+
 //audit routes
 
 var audithomepage = require("./routes/audit-homepage-route");
