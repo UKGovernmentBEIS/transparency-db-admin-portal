@@ -141,7 +141,8 @@
                 </div>
             </div>
 
-            <form action="/subsidyawardaction" method="POST">
+            <!-- <form action="/subsidyawardaction" method="POST"> -->
+            <section class="govuk-table-responsive"
                 <dl class="govuk-summary-list govuk-!-margin-bottom-9">
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">
@@ -328,6 +329,7 @@
                     </div>
 
                 </dl>
+            </section>
                 <% if(ssn.dashboard_roles != 'Granting Authority Encoder' && (ssn.dashboard_roles == 'BEIS Administrator' || ssn.dashboard_ga_name == fetchawarddetails.grantingAuthorityResponse.grantingAuthorityName)) { %>
                 <% if(Get_Award_Status.toLowerCase() =="awaiting approval") { %>
                 <input type="hidden" value="Yes" name="PublishAward">

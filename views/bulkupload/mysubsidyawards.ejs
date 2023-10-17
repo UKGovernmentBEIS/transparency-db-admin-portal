@@ -181,7 +181,7 @@
         <div class="govuk-grid-column-one-third govuk-padding-0">
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
-              aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
+              aria-label="Drop down list that shows subsidy award by status" id="filter-select" onchange="this.form.submit()">
               <% if(ssn.awards_status  == "") { %>
               <option value="" selected>Show all (<%=totalSubsidyAward%>)</option>
               <% } else { %>
@@ -285,7 +285,7 @@
         <div class="govuk-grid-column-one-third govuk-padding-0">
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
-              aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
+              aria-label="Drop down list that shows subsidy award by status" id="filter-select" onchange="this.form.submit()">
               <% if(ssn.awards_status  == "") { %>
               <option value="" selected>Show all (<%=totalSubsidyAward%>)</option>
               <% } else { %>
@@ -367,7 +367,7 @@
 
       <!-- <form action="/collectcheckbox" method="GET" novalidate=""> -->
       <section class="govuk-table-responsive">
-        <table class="govuk-table" id="datatable">
+        <table class="govuk-table" id="searchresult-table">
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
               <th scope="col" class="govuk-table__header app-custom-class">
@@ -462,13 +462,14 @@
           </thead>
 
 
-          <tbody class="govuk-table__body">
+          <tbody id="searchresult-table-body" class="govuk-table__body" >
             <% searchawards.awards.forEach(function(item) { %>
             <tr>
               <td class="govuk-table__cell">
                 <a href="/subsidyawardfetch/?award=<%= item.awardNumber %>"><%= item.awardNumber %></a>
               </td>
 
+              <td hidden><%= item.subsidyAwardDescription %></td>
 
               <td class="govuk-table__cell">
                 <%= item.subsidyMeasureTitle %>

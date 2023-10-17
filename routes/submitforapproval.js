@@ -80,7 +80,7 @@ router.post("/", async (req, res) => {
       Subsidy_Full_Amount_Range_Global_Trim = firstVal + "-" + secondVal;
     }
     Subsidy_Element_Full_Amount_Global_Trim = parseFloat(
-      ssn.Subsidy_Element_Full_Amount_Global.replace(/\,/g, "")
+      ssn.Subsidy_Element_Full_Amount_Global.replace(/£|,/g, "")
     );
 
     console.log(

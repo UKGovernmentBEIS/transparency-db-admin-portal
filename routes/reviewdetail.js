@@ -228,7 +228,7 @@ router.post("/", async (req, res) => {
           ssn.SubsidyFocus[Additem] = "#Subsidy_Control_Number";
           Additem = Additem + 1;
         }
-        
+
         if(Admin_Program_Number != "" &&
             Admin_Program_Number.length > 255){
           ssn.Admin_Program_Error = true;
@@ -309,7 +309,7 @@ router.post("/", async (req, res) => {
       console.log("Subsidy_Full_Amount_Range : " + Subsidy_Full_Amount_Range);
       if (
         !Subsidy_Element_Full_Amount &&
-        Subsidy_Instrument != "Tax measures (tax credit, or tax/duty exemption)"
+        Subsidy_Instrument != "Tax measures (tax credit, or tax/duty exemption)" && Subsidy_Element_Full_Amount
       ) {
         ssn.Subsidy_Element_Full_Amount_Error = true;
         ssn.SubsidyErrors[Additem] = "You must enter the subsidy amount.";
@@ -671,7 +671,7 @@ router.post("/", async (req, res) => {
               endpoint,
               ssn.UserPrincileObjectGlobal
             );
-    
+
             adminProgram = apiData.data;
 
             ssn.Admin_Program_Name_Global = adminProgram.adminProgramName;

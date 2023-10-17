@@ -73,7 +73,7 @@ router.get("/", async (req, res) => {
     try {
       const apidata = await axios.get(
         Award_search_URL,
-        ssn.UserPrincileObjectGlobal
+        ssn.UserPrincileObjectGlobal,
       );
       console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
