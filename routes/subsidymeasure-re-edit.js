@@ -181,7 +181,7 @@ router.post("/", (req, res) => {
       // }
       if (!Subsidy_Adhoc) {
         ssn.Subsidy_Adhoc_Error = true;
-        ssn.SubsidyErrors.push(" Select the adhoc subsidy scheme");
+        ssn.SubsidyErrors.push("Select the adhoc subsidy scheme");
         ssn.SubsidyFocus.push("#Subsidy_Adhoc");
         // Additem = Additem + 1;
       }
@@ -213,7 +213,7 @@ router.post("/", (req, res) => {
       }
       if (!scheme_issued_start_day) {
         ssn.scheme_issued_start_day_Error = true;
-        ssn.SubsidyErrors.push("     Enter the legal granting day of the date");
+        ssn.SubsidyErrors.push("Enter the legal starting day of the date");
         ssn.SubsidyFocus.push("#scheme_issued_start_day");
         // Additem = Additem + 1;
       }
@@ -223,7 +223,7 @@ router.post("/", (req, res) => {
       if (scheme_issued_start_day > 31 || scheme_issued_start_day < 1) {
         ssn.scheme_issued_start_day_Error = true;
         ssn.SubsidyErrors.push(
-          "     Enter the valid legal granting day of the date"
+          "Enter a valid starting day"
         );
         ssn.SubsidyFocus.push("#scheme_issued_start_day");
         // Additem = Additem + 1;
@@ -238,7 +238,7 @@ router.post("/", (req, res) => {
           scheme_issued_start_month == 11)
       ) {
         ssn.scheme_issued_start_day_Error = true;
-        ssn.SubsidyErrors.push("     Enter the valid day");
+        ssn.SubsidyErrors.push("Enter a valid starting day");
         ssn.SubsidyFocus.push("#scheme_issued_start_day");
         // Additem = Additem + 1;
       }
@@ -254,7 +254,7 @@ router.post("/", (req, res) => {
         ) {
         } else {
           ssn.scheme_issued_start_day_Error = true;
-          ssn.SubsidyErrors.push("     Enter the valid day");
+          ssn.SubsidyErrors.push("Enter a valid starting day");
           ssn.SubsidyFocus.push("#scheme_issued_start_day");
           // Additem = Additem + 1;
         }
@@ -265,7 +265,7 @@ router.post("/", (req, res) => {
         scheme_issued_start_month == parseInt("02", 8)
       ) {
         ssn.scheme_issued_start_day_Error = true;
-        ssn.SubsidyErrors.push("Enter the valid day");
+        ssn.SubsidyErrors.push("Enter a valid starting day");
         ssn.SubsidyFocus.push("#scheme_issued_start_day");
         // Additem = Additem + 1;
       }
@@ -275,7 +275,7 @@ router.post("/", (req, res) => {
       if (!scheme_issued_start_month) {
         ssn.scheme_issued_start_month_Error = true;
         ssn.SubsidyErrors.push(
-          "     Enter the legal granting month of the date"
+          "Enter the legal starting month of the date"
         );
         ssn.SubsidyFocus.push("#scheme_issued_start_month");
         // Additem = Additem + 1;
@@ -284,7 +284,7 @@ router.post("/", (req, res) => {
       if (scheme_issued_start_month > 12 || scheme_issued_start_month == 0) {
         ssn.scheme_issued_start_month_Error = true;
         ssn.SubsidyErrors.push(
-          "     Enter the legal granting month from 1 to 12"
+          "Enter a valid starting month from 1 to 12"
         );
         ssn.SubsidyFocus.push("#scheme_issued_start_month");
         // Additem = Additem + 1;
@@ -293,7 +293,7 @@ router.post("/", (req, res) => {
       if (!scheme_issued_start_year) {
         ssn.scheme_issued_start_year_Error = true;
         ssn.SubsidyErrors.push(
-          "     Enter the legal granting year of the date"
+          "Enter the legal starting year of the date"
         );
         ssn.SubsidyFocus.push("#scheme_issued_start_year");
         // Additem = Additem + 1;
@@ -311,7 +311,7 @@ router.post("/", (req, res) => {
       if (scheme_issued_confirmation_day > 31 || scheme_issued_confirmation_day < 1) {
         ssn.scheme_issued_confirmation_day_Error = true;
         ssn.SubsidyErrors.push(
-          "     Enter the valid legal confirmation day of the date"
+          "Enter the valid legal confirmation day of the date"
         );
         ssn.SubsidyFocus.push("#scheme_issued_confirmation_day");
         // Additem = Additem + 1;
