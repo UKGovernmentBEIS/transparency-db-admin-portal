@@ -170,10 +170,10 @@
         <div class="govuk-grid-column-one-half ">
           <form class="govuk-!-width-full govuk-padding-0" action="/subsidyawardsearch" method="POST">
 
-            <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text" name="search_award_text"
+            <input class="govuk-input govuk-!-width-three-quarters" id="search-text" name="search_award_text"
               aria-label="User input text box for Searching Subsidy Award" type="text" <% if( ssn.Award_search_text) {%>
               value="<%=  ssn.Award_search_text%>" <% } %> />
-            <button class="govuk-button" data-module="govuk-button">
+            <button class="govuk-button" data-module="govuk-button" id="search-button">
               Search
             </button>
           </form>
@@ -274,10 +274,10 @@
         <div class="govuk-grid-column-one-half ">
           <form class="govuk-!-width-full govuk-padding-0" action="/subsidyawardsearch" method="POST">
 
-            <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text" name="search_award_text"
+            <input class="govuk-input govuk-!-width-three-quarters" id="search-text" name="search_award_text"
               aria-label="User input text box for Searching Subsidy Award" type="text" <% if(ssn.Award_search_text) {%>
               value="<%= ssn.Award_search_text%>" <% } %> />
-            <button class="govuk-button" data-module="govuk-button">
+            <button class="govuk-button" data-module="govuk-button" id="search-button">
               Search
             </button>
           </form>
