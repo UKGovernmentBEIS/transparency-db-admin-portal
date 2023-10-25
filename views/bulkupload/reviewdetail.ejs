@@ -88,10 +88,10 @@
             Subsidy control (SC) number
           </dt>
           <dd class="govuk-summary-list__value">
-            <% if (ssn.Subsidy_Control_Number_Global !== '') { %>
-            <%= ssn.Subsidy_Control_Number_Global %>
+            <% if (ssn.Subsidy_Control_Number_Global == '' || !ssn.Subsidy_Control_Number_Global) { %>
+              NA
             <% } else { %>
-            NA
+              <%= ssn.Subsidy_Control_Number_Global %>
             <% } %>
           </dd>
 
