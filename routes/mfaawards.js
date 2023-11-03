@@ -137,7 +137,7 @@ router.get("/", async (req, res) => {
     } catch (err) {
       if (err.toString().includes("404")) {
         noresult = true;
-        nodata = "No MFA awards available";
+        nodata = (ssn.allMfaAwards > 0) ? "No data available for filtered criteria" :"No MFA awards available";
         res.render("mfa/mfaawards", {
           noresult,
           nodata,
