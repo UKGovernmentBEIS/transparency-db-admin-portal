@@ -309,7 +309,7 @@ router.post("/", async (req, res) => {
       console.log("Subsidy_Full_Amount_Range : " + Subsidy_Full_Amount_Range);
       if (
         !Subsidy_Element_Full_Amount &&
-        Subsidy_Instrument != "Tax measures (tax credit, or tax/duty exemption)" && Subsidy_Element_Full_Amount
+        Subsidy_Instrument != "Tax measures (tax credit, or tax/duty exemption)"
       ) {
         ssn.Subsidy_Element_Full_Amount_Error = true;
         ssn.SubsidyErrors[Additem] = "You must enter the subsidy amount.";

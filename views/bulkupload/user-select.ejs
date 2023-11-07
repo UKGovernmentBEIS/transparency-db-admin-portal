@@ -268,7 +268,7 @@
                                                         List all users
                                                     </button>
                                                 </div>
-                                                
+
                                                 <% if(ssn.dashboard_roles == 'BEIS Administrator' || ssn.dashboard_roles == 'Granting Authority Administrator') { %>
                                                 <a href="/adduser" class="govuk-button" data-module="govuk-button">
                                                     Add a new user
@@ -296,7 +296,7 @@
                                         address</th>
                                 </tr>
                             </thead>
-                            <tbody class="govuk-table__body">
+                            <tbody id="searchresult-table-body" class="govuk-table__body">
                                 <% ssn.GAUserList.value.forEach(function(item) { %>
                                 <tr>
                                     <td class="govuk-table__cell">

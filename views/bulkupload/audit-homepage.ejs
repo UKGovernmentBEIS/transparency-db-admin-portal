@@ -105,7 +105,7 @@
               aria-describedby="subsidy_search_text" <% if(ssn.audit_search_by_text) {%>
               value="<%= ssn.audit_search_by_text %>" <% } %> />
 
-            <button class="govuk-button" data-module="govuk-button">
+            <button class="govuk-button" data-module="govuk-button" id="search-button">
               Search
             </button>
           </form>
@@ -208,8 +208,8 @@
                           Day
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Day_Start" name="Audit_Granting_Date_Day_Start" type="text" 
-                          min="0" max="31" inputmode="numeric" placeholder="DD" 
+                          id="Audit_Granting_Date_Day_Start" name="Audit_Granting_Date_Day_Start" type="text"
+                          min="0" max="31" inputmode="numeric" placeholder="DD"
                           maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" onblur="formatDateToTwoDigits(this)"
                           <% if(ssn.Audit_Granting_Date_Day_Start_Global) {%>
                           value="<%= ssn.Audit_Granting_Date_Day_Start_Global%>" <% } %> />
@@ -319,7 +319,7 @@
                         <% } %>
                       </div>
                     </div>
-                    <button class="govuk-button" data-module="govuk-button">
+                    <button class="govuk-button" data-module="govuk-button" id="date-search-button">
                       Search
                     </button>
 
@@ -344,8 +344,8 @@
                           Day
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Day_End" name="Audit_Granting_Date_Day_End" type="text" 
-                          min="0" max="31" inputmode="numeric" placeholder="DD" 
+                          id="Audit_Granting_Date_Day_End" name="Audit_Granting_Date_Day_End" type="text"
+                          min="0" max="31" inputmode="numeric" placeholder="DD"
                           maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" onblur="formatDateToTwoDigits(this)"
                           <% if(ssn.Audit_Granting_Date_Day_End_Global) {%>
                           value="<%= ssn.Audit_Granting_Date_Day_End_Global%>" <% } %> />
@@ -357,7 +357,7 @@
                           Month
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Month_End" name="Audit_Granting_Date_Month_End" type="text" 
+                          id="Audit_Granting_Date_Month_End" name="Audit_Granting_Date_Month_End" type="text"
                           min="0" max="12" inputmode="numeric" placeholder="MM"
                           maxlength="2" pattern="^(0?[1-9]|1[012])$" onblur="formatDateToTwoDigits(this)"
                           <% if(ssn.Audit_Granting_Date_Month_End_Global) {%>
@@ -371,7 +371,7 @@
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-4"
                           id="Audit_Granting_Date_Year_End" name="Audit_Granting_Date_Year_End" type="text"
-                          inputmode="numeric" placeholder="YYYY" maxlength="4" pattern="^[12][0-9]{3}$"   
+                          inputmode="numeric" placeholder="YYYY" maxlength="4" pattern="^[12][0-9]{3}$"
                           <% if(ssn.Audit_Granting_Date_Year_End_Global) {%>
                           value="<%= ssn.Audit_Granting_Date_Year_End_Global %>" <% } %> />
                       </div>
@@ -398,7 +398,7 @@
 
         <!-- <div class="govuk-grid-column-one-third">
 
-               
+
               <div>
                 <button class="govuk-button" data-module="govuk-button">
                   Search
@@ -580,7 +580,7 @@
 
               <% } %>
 
-              <div class="govuk-grid-column-two-thirds last govuk-padding-0 govuk-display-flex" style="text-align: right;   
+              <div class="govuk-grid-column-two-thirds last govuk-padding-0 govuk-display-flex" style="text-align: right;
         align-items: center;
         justify-content: flex-end;">
                 <% if (pageCount > 1) { %>

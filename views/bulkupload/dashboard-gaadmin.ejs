@@ -46,18 +46,14 @@
 
 
       <div class="govuk-beis-heading govuk-form-group">
-        <h1 class="govuk-heading-l">Dashboard</h1>
+        <h1 class="govuk-heading-l" id="dashboard">Dashboard</h1>
         <h2 class="govuk-heading-xl"><%= ssn.dashboard_user_name %></h2>
       </div>
 
-      <h3 class="govuk-heading-l">
-        <!-- <h3 class="govuk-heading-l"> -->
-        Public authority: <%= ssn.dashboard_ga_name %>
-        <!-- </h2> -->
-      </h3>
+      <h3 class="govuk-heading-l">Public authority: <%= ssn.dashboard_ga_name %></h3>
 
 
-      <div class="govuk-border-top">
+      <div class="govuk-border-top" id="users-dashboard-card">
 
         <h3 class="govuk-heading-l">Users</h3>
         <div class="govuk-grid-row">
@@ -67,8 +63,8 @@
                 <%= gaTotalCount_Global %>
               </p>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24">
-                <a href="/userselect" class="govuk-description-text">Total active
-                  users in <%= ssn.dashboard_ga_name %></a> </p>
+                <a href="/userselect" class="govuk-description-text">Total active users in <%= ssn.dashboard_ga_name %></a>
+              </p>
             </div>
 
           </div>
@@ -110,7 +106,7 @@
         </div>
 
       </div>
-      <div class="govuk-border-top">
+      <div class="govuk-border-top" id="subsidy-schemes-dashboard-card">
 
         <h3 class="govuk-heading-l">Subsidy schemes</h2>
 
@@ -162,7 +158,7 @@
           </div>
 
       </div>
-      <div class="govuk-border-top">
+      <div class="govuk-border-top" id="subsidy-awards-dashboard-card">
 
         <h3 class="govuk-heading-l">Subsidy awards</h2>
 
@@ -182,8 +178,8 @@
                   <%= dashboardawards.awardUserActionCount.totalAwaitingAward %>
                 </p>
                 <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 ">
-                  <a href="/mysubsidyawards?sort=Awaiting Approval" class="govuk-description-text">Awaiting
-                    approval</a></p>
+                  <a href="/mysubsidyawards?sort=Awaiting Approval" class="govuk-description-text">Awaiting approval</a>
+                </p>
               </div>
             </div>
             <div class="govuk-grid-column-one-third govuk-form-group">
@@ -225,7 +221,7 @@
             </a>
           </div>
       </div>
-      <div class="govuk-border-top">
+      <div class="govuk-border-top" id="audit-log-dashboard-card">
 
         <h3 class="govuk-heading-l">Audit log</h3>
 

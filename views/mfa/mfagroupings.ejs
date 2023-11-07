@@ -78,11 +78,11 @@
 
           <div class="govuk-grid-column-one-half">
             <form action="/mfagroupings" method="get" novalidate>
-              
-              <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="mfaGroupingName" type="text"
+
+              <input class="govuk-input govuk-!-width-three-quarters" id="search-text" name="mfaGroupingName" type="text"
                 aria-describedby="subsidy_search_text" value="<%= ssn.MFA_Grouping_Search_Name_Global%>" />
 
-              <button class="govuk-button" data-module="govuk-button">
+              <button class="govuk-button" data-module="govuk-button" id="search-button">
                 Search
               </button>
             </form>
@@ -163,7 +163,7 @@
 
           <form action="/homepage" method="POST">
             <section class="govuk-table-responsive govuk-grid-column-full">
-              <table class="govuk-table">
+              <table class="govuk-table" id="searchresult-table">
                 <caption class="govuk-table__caption">
                   <h1 class="govuk-fieldset__heading"></h1>
                 </caption>
@@ -185,7 +185,7 @@
                   </tr>
                 </thead>
 
-                <tbody class="govuk-table__body">
+                <tbody class="govuk-table__body" id="searchresult-table-body">
                   <% searchResults.mfaGroupings.forEach(function(item) { %>
                   <tr>
                     <td class="govuk-table__cell"><a href="/mfagrouping?id=<%= item.mfaGroupingNumber %>">
