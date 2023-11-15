@@ -78,7 +78,7 @@
 
           <div class="govuk-grid-column-one-half">
             <form action="/mfaawards" method="get" novalidate>
-              
+
               <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="mfaAwardSearchName" type="text"
                 aria-describedby="subsidy_search_text" value="<%= ssn.MFA_Award_Search_Name_Global%>" />
 
@@ -91,7 +91,7 @@
           <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
             <form class="govuk-!-width-full govuk-padding-0" action="/mfaawards" method="GET">
               <select class="govuk-!-width-full govuk-select" name="status" aria-describedby="status-message"
-                aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
+                aria-label="Drop down list that shows mfa award by status" id="filter-select" onchange="this.form.submit()">
                 <% if(mfaAwardStatus == "") { %>
                 <option value="" selected>Show all (<%= ssn.allMfaAwards %>)
                 </option>
@@ -176,7 +176,7 @@
 
           <form action="/homepage" method="POST">
             <section class="govuk-table-responsive govuk-grid-column-full">
-              <table class="govuk-table">
+              <table class="govuk-table" id="searchresult-table">
                 <caption class="govuk-table__caption">
                   <h1 class="govuk-fieldset__heading"></h1>
                 </caption>
@@ -209,17 +209,17 @@
                   </tr>
                 </thead>
 
-                <tbody class="govuk-table__body">
+                <tbody class="govuk-table__body" id="searchresult-table-body">
                   <% searchResults.mfaAwards.forEach(function(item) { %>
                   <tr>
                     <td class="govuk-table__cell"><a href="/mfaaward?id=<%= item.mfaAwardNumber %>"><%= item.mfaAwardNumber  %></a></td>
                     <td class="govuk-table__cell"><%= item.isSpeiAssistance %></td>
                     <td class="govuk-table__cell">
-                      <% if(item.hasMfaGrouping){ %> 
+                      <% if(item.hasMfaGrouping){ %>
                       <a href="/mfagrouping?id=<%= item.mfaGroupingNumber %>"><%= item.mfaGroupingNumber  %></a>
                       <% }else{ %>
                         NA
-                      <% } %> 
+                      <% } %>
                     </td>
                     <td class="govuk-table__cell">
                       <% if(item.hasMfaGrouping){ %>
