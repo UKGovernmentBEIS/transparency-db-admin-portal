@@ -52,7 +52,7 @@ coverage/lcov-report/transparency-db-admin-portal/routes/subsidymeasure-edit.js.
 coverage/lcov-report/transparency-db-admin-portal/routes/subsidymeasure-reviewdetails.js.html
 coverage/lcov-report/transparency-db-admin-portal/routes/subsidymeasures-add.js.html
 test-report.html
-
+.DS_Store*
 
 
 
