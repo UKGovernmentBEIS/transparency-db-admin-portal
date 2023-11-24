@@ -67,7 +67,7 @@
         </a>
 
         <% } %>
-      <% } else { %>
+      <% }%>
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full" id="subsidy_search_text">
@@ -160,7 +160,7 @@
             </div>
 
           </div>
-
+          <% if(!nodata) { %>
           <form action="/homepage" method="POST">
             <section class="govuk-table-responsive govuk-grid-column-full">
               <table class="govuk-table">
@@ -291,8 +291,8 @@
             <!-- Pagination ends here -->
             <!-- ********************** -->
           </form>
+          <% } %>
         </div>
-      <% } %>
     </main>
   </div>
 
