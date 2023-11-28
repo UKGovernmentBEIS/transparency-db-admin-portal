@@ -101,7 +101,7 @@
           <form action="/auditsearchbytextroute" method="post">
             <!-- <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text" type="text">
              -->
-            <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text" type="text"
+            <input class="govuk-input govuk-!-width-three-quarters" id="search-text" name="search_text" type="text"
               aria-describedby="subsidy_search_text" <% if(ssn.audit_search_by_text) {%>
               value="<%= ssn.audit_search_by_text %>" <% } %> />
 
@@ -529,7 +529,7 @@
                 </tr>
               </thead>
 
-              <tbody class="govuk-table__body">
+              <tbody id="searchresult-table-body" class="govuk-table__body">
                 <% searchAudits.auditLogs.forEach(function(item) { %>
                 <tr>
 
@@ -586,7 +586,7 @@
                 <% if (pageCount > 1) { %>
 
                 <% if (current_page_active != 1) { %>
-                <a href="/auditpageroute/?page=1" id="paginationlink" class="first round">
+                <a href="/auditpageroute/?page=1" id="paginationlink_first_page" class="first round">
                   <!-- <img id="govuk-left-arrow"
                   src="/assets/images/govuk-left-arrow.jpg"> -->
                   <svg version="1.1" width="19px" height="30px">
@@ -622,7 +622,7 @@
 
                 <% if (current_page_active != pageCount) { %>
                 <a href="/auditpageroute/?page=<%= next_page %>" id="paginationlink" class="next round">Next Page</a>
-                <a href="/auditpageroute/?page=<%= pageCount %>" id="paginationlink" class="last round">
+                <a href="/auditpageroute/?page=<%= pageCount %>" id="paginationlink_last_page" class="last round">
                   <!-- <img
                   id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg"> -->
                   <svg version="1.1" width="19px" height="30px" class="left-arrow">
