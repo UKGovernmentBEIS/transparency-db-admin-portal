@@ -29,6 +29,7 @@ router.post("/", async (req, res) => {
       );
       apiroles_gaRole_object = "";
       apiroles_gaName_object = "";
+      var gaInactive = false;
       console.log(`Status: ${apiroles.status}`);
       API_response_code = `${apiroles.status}`;
       console.log("API_response_code: try" + API_response_code);
@@ -45,7 +46,11 @@ router.post("/", async (req, res) => {
 
         if (ssn.GA_Name_User_Global == ssn.apiroles_extract[i].gaName) {
           console.log("gaName id2 : " + ssn.apiroles_extract[i].azGrpId);
-          apiroles_gaName_object = ssn.apiroles_extract[i].azGrpId;
+          if (ssn.apiroles_extract[i].status == 'Inactive') {
+            gaInactive = true;
+          } else {
+            apiroles_gaName_object = ssn.apiroles_extract[i].azGrpId;
+          }
         }
       }
     } catch (err) {
@@ -65,9 +70,15 @@ router.post("/", async (req, res) => {
       UserErrors = [];
       UserFocus = [];
       ssn.GA_Error = true;
-      ssn.GA_msg = "Invalid public authority";
       ssn.UserErrorLength_Global = 1;
-      UserErrors.push("Invalid public authority");
+      if(gaInactive){
+        ssn.GA_msg = "Inactive public authority";
+        UserErrors.push("Inactive public authority");
+      } else {
+        ssn.GA_msg = "Invalid public authority";
+        UserErrors.push("Invalid public authority");
+      }
+
       UserFocus.push("#GA_Name_User");
 
       res.render("bulkupload/user-add", {
