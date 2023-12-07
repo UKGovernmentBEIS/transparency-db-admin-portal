@@ -709,7 +709,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <% if(ssn.spendingsector_Error){ %>
+                                                        <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                                                            <% } else { %>
                                                             <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                                                <% } %>
                                                                 <fieldset class="govuk-fieldset" aria-describedby="sector-hint">
                                                                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-grid-column-two-thirds">
                                                                     <!-- <div class="govuk-grid-row">
@@ -718,11 +722,17 @@
                                                                         </div> -->
                                                                     </legend>
                                                                     <div class="govuk-grid-row govuk-form-group">
-                                                                    <div class="govuk-grid-column-full">
-                                                                        <p id="sector-hint" class="govuk-body " for="subsidylabel">
-                                                                        Select one or more sector(s)
-                                                                        </p>
-                                                                    </div>
+                                                                        <div class="govuk-grid-column-full">
+                                                                            <p id="sector-hint" class="govuk-body " for="subsidylabel">
+                                                                            Select one or more sector(s)
+                                                                            </p>
+                                                                            <% if(ssn.spendingsector_Error){ %>
+                                                                            <span class="govuk-error-message" id="spendingSectorArray">
+                                                                                <span class="govuk-visually-hidden">Error:</span>
+                                                                                Enter at least one or more spending sector(s)
+                                                                            </span>
+                                                                            <% } %>
+                                                                        </div>  
                                                                     </div>
 
                                                                     <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">

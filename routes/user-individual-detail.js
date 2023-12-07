@@ -23,6 +23,9 @@ router.get("/", (req, res) => {
     console.log("ssn.GAUserList", ssn.GAUserList);
     ssn.Delete_UserId = req.query.userObject;
     ssn.addUser_extract = req.query.userObject;
+    ssn.user_id = req.query.userObject;
+
+    var externalUserState;
 
     ssn.GAUserList.value.forEach(function (item) {
       if (ssn.Delete_UserId == item.id) {
@@ -57,6 +60,8 @@ router.get("/", (req, res) => {
         if (!item.mail) ssn.User_Email_Single = item.userPrincipalName;
         else ssn.User_Email_Single = item.mail;
         ssn.User_Mobile_Single = item.mobilePhone;
+
+        externalUserState = item.externalUserState;
       }
     });
 
@@ -71,7 +76,9 @@ router.get("/", (req, res) => {
     //   }
     // }
 
-    res.render("bulkupload/user-individual-detail");
+    res.render("bulkupload/user-individual-detail",{
+      externalUserState
+    });
   }
 });
 

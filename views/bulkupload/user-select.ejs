@@ -233,7 +233,7 @@
                                                         <% if ( isUserSelectIsPrimaryCall ) { %>
                                                         <option value="" selected disabled>Filter by roles</option>
                                                         <% gaRolesList.forEach(function(items){%>
-                                                        <option value="<%= items %>"> <%= items %> </option>
+                                                        <option value="<%= items %>"> <%= items.replace('Granting', 'Public') %> </option>
                                                         <% })%>
 
                                                         <% } else { %>

@@ -7,13 +7,42 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
     <script>
-         // window.dataLayer = window.dataLayer || [];
+        function updateCopyIcon(state){
+            var success = document.getElementById("copy-icon-success");
+            var copy = document.getElementById("copy-icon-default")
+            switch(state) {
+                case "copied":
+                    success.style.display = "inline-block"
+                    copy.style.display = "none";
+                    break;
+                default:
+                    success.style.display = "none"
+                    copy.style.display = "inline-block";
+                    break;
+            }
+        }
 
-        // function gtag() {
-        //     dataLayer.push(arguments);
-        // }
-        // gtag('js', new Date());
-        // gtag('config', 'UA-145652997-21');
+        function selectText(input) {
+            input.focus();
+            input.select();
+            input.setSelectionRange(0, 99999); // For mobile devices
+        }
+
+        function writeToClipboard(el){
+            navigator.clipboard.writeText(el.value);
+        }
+
+        function copyRedemptionLink(button) {
+            var copyText = document.getElementById("redemptionLink");
+
+            selectText(copyText);
+            writeToClipboard(copyText);
+            selectText(copyText);
+
+            // update the copy icon, then revert it after 3 seconds
+            updateCopyIcon("copied");
+            setTimeout(() => {  updateCopyIcon(); }, 3000);
+        }
     </script>
 </head>
 
@@ -56,11 +85,63 @@
                 <div class="govuk-grid-column-two-thirds-from-desktop">
 
                     <h1 class="govuk-heading-xl"> <%= ssn.User_Name_Single %> <%= ssn.User_Last_Name_Single %> </h1>
-
-                    <!-- *************************************
+                </div>
+            <!-- *************************************
               Review for subsidy details tab
               ************************************* -->
+                <div class="govuk-grid-column-full">
+                    <% if (typeof inviteSent != "undefined"){ %>
+                        <% if(inviteSent) { %>
+                            <div class="govuk-notification-banner govuk-notification-banner--success" role="alert"
+                            aria-labelledby="govuk-notification-banner-title"
+                            data-module="govuk-notification-banner">
+                                <div class="govuk-notification-banner__header">
+                                    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                                    Success
+                                    </h2>
+                                </div>
+                                <div class="govuk-notification-banner__content">
+                                    <h3 class="govuk-notification-banner__heading">
+                                    <%= messageHeader %>
+                                    </h3>
+                                    <%= messageBody %>
+                                    <br/>
+                                    <br/>
+                                    <label class="govuk-label" for="redemptionLink">
+                                        Redemption link
+                                      </label>
+                                    <div class="govuk-input__wrapper">
+                                        <input class="govuk-input govuk-!-width-full" id="redemptionLink" name="redemptionLink" type="text" value="<%=redemptionLink%>" readonly>
+                                        <div class="govuk-input__suffix" aria-hidden="true">
+                                            <button id="redemptionCopy" type="button" data-view-component="true" onclick="copyRedemptionLink(this)" title="Copy redemption link">
+                                                <span class="Button-content">
+                                                  <span class="Button-label">
+                                                      <svg id="copy-icon-default" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" style="display: inline-block;">
+                                                        <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path>
+                                                        <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+                                                      </svg>
+                                                      <svg id="copy-icon-success" style="display: none;" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true">
+                                                        <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+                                                      </svg>
+                                                  </span>
+                                              </span>
+                                          </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } else { %>
+                            <div class="govuk-warning-text">
+                                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                                <strong class="govuk-warning-text__text">
+                                    <span class="govuk-warning-text__assistive">Warning</span>
+                                    <%= messageBody %>
+                                </strong>
+                            </div>
+                        <% } %>
+                    <% } %>
                 </div>
+
                 <div class="govuk-grid-column-full">
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">User details</h2>
                     <a rel="external" class="govuk-link head-right govuk-relative-position" href="/edituser">
@@ -150,6 +231,14 @@
                 <button class="govuk-button govuk-button--warning" data-module="govuk-button">
                     Deactivate
                 </button>
+                <% if (typeof externalUserState != "undefined"){ %>
+                    <% if ( (ssn.dashboard_roles == 'Granting Authority Administrator' 
+                            || ssn.dashboard_roles == 'BEIS Administrator') && externalUserState == 'PendingAcceptance' ) { %>
+                    <a class="govuk-button" href="/userreinvite?userID=<%= ssn.user_id %>" data-module="govuk-button" style="float:right">
+                    Resend invitation
+                    </a>
+                    <% } %>
+                <% } %>
             </form>
         </main>
     </div>

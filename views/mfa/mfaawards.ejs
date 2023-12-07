@@ -61,13 +61,7 @@
 
           </div>
         </div>
-        <a href="/mfaawardadd" class="govuk-button" data-module="govuk-button">
-          Add a new MFA Award
-        </a>
-        <a  href="/mfabulkuploadawards" class="govuk-button" data-module="govuk-button">
-          Add multiple MFA awards
-        </a>
-      <% } else { %>
+      <% } %>
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full" id="subsidy_search_text">
@@ -136,7 +130,7 @@
               Add multiple MFA awards
             </a>
           </div>
-
+          <% if(!noresult) { %>
           <div class="govuk-grid-column-one-half govuk-display-flex govuk-form-group" style="float: right;">
             <label class="govuk-grid-column-two-thirds">
               Results per page
@@ -173,7 +167,7 @@
             </div>
 
           </div>
-
+          
           <form action="/homepage" method="POST">
             <section class="govuk-table-responsive govuk-grid-column-full">
               <table class="govuk-table" id="searchresult-table">
@@ -329,8 +323,8 @@
             <!-- Pagination ends here -->
             <!-- ********************** -->
           </form>
+          <% } %>
         </div>
-      <% } %>
     </main>
   </div>
 
