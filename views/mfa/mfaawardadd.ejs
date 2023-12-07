@@ -295,7 +295,7 @@
                                     <label class="govuk-label govuk-date-input__label" for="mfa_award_confirmation_year">
                                         Year
                                     </label>
-                                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="mfa_award_confirmation_year" name="mfa_award_confirmation_year" type="text" pattern="[0-9]*" inputmode="numeric" value="<%= ssn.MFA_Award_Confirmation_Year_Global%>" placeholder="YYYY">
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="mfa_award_confirmation_year" name="mfa_award_confirmation_year" type="text" pattern="[0-9]{4}" title="Use YYYY format" inputmode="numeric" value="<%= ssn.MFA_Award_Confirmation_Year_Global%>" placeholder="YYYY">
                                 </div>
                             </div>
                         </div>
