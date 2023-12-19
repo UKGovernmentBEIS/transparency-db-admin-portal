@@ -328,15 +328,14 @@
                     </div>
 
                 </dl>
+            </section>
                 <% if(ssn.dashboard_roles != 'Granting Authority Encoder' && (ssn.dashboard_roles == 'BEIS Administrator' || ssn.dashboard_ga_name == fetchawarddetails.grantingAuthorityResponse.grantingAuthorityName)) { %>
                 <% if(Get_Award_Status.toLowerCase() =="awaiting approval") { %>
                 <input type="hidden" value="Yes" name="PublishAward">
                 <button class="govuk-button" data-module="govuk-button" name="Award_status" id="Award_status"
-                    value="Published">
-                    Approve and publish </button>
+                    value="Published">Approve and publish</button>
                 <button class="govuk-button govuk-button--warning" data-module="govuk-button" name="Award_status"
-                    id="Award_status" value="Rejected">
-                    Reject </button>
+                    id="Award_status" value="Rejected">Reject</button>
 
                 <!-- <a value="Cancel" href="/subsidyawardfetchcancel"
                     aria-label="cancel the current award rejection page and " class="govuk-button-cancel"
@@ -346,8 +345,7 @@
                 <% if(Get_Award_Status.toLowerCase() == "published" || Get_Award_Status.toLowerCase() == "rejected") { %>
                 <input type="hidden" value="No" name="PublishAward">
                 <button class="govuk-button govuk-button--warning" data-module="govuk-button" name="Award_status"
-                    id="Award_status" value="Deleted">
-                    Delete </button>
+                    id="Award_status" value="Deleted">Delete</button>
                 <!-- <button class="govuk-button govuk-button--warning" data-module="govuk-button" name="Award_status"
                   id="Award_status" value="Rejected">
                   Reject </button> -->
@@ -363,8 +361,7 @@
                 <!-- <a href="/editsubsidyaward?award=<%= awardnumber%>" -->
                 <input type="hidden" value="Yes" name="PublishAward">
                 <a href="/addsubsidyeditaward" style="color : rgb(250, 245, 245); text-decoration: none"
-                    class="govuk-button" data-module="govuk-button">Edit
-                </a>
+                    class="govuk-button" data-module="govuk-button">Edit</a>
                 <!-- <button class="govuk-button govuk-button--warning" data-module="govuk-button" name="Award_status"
                     id="Award_status" value="Rejected">
                     Reject </button> -->

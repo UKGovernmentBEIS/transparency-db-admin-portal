@@ -6,9 +6,9 @@
   <%- include('../partials/headercss.ejs') %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
-  <!-- 
+  <!--
   <script>
-  
+
   </script> -->
   <link href="/assets/stylesheet/govuk-transparencyDb.css" rel="stylesheet" type="text/css" />
 </head>
@@ -43,15 +43,15 @@
       <%- include('../partials/navigationbar.ejs') %>
 
       <div class="govuk-beis-heading">
-        <h1 class="govuk-heading-l">Dashboard</h1>
+        <h1 class="govuk-heading-l" id="dashboard">Dashboard</h1>
         <!--  -->
         <h2 class="govuk-heading-xl"><%= ssn.dashboard_user_name %></h2>
         <!-- </legend> -->
       </div>
       <!--  -->
-      <h3 class="govuk-heading-l">Public authorities</h3>
+      <h3 class="govuk-heading-l" >Public authorities</h3>
       <!-- </legend> -->
-      <div class="govuk-grid-row">
+      <div class="govuk-grid-row" id="public-authorities-dashboard-card">
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
@@ -92,7 +92,7 @@
         </a>
       </div>
 
-      <div class="govuk-border-top">
+      <div class="govuk-border-top" id="users-dashboard-card">
 
         <h3 class="govuk-heading-l">Users</h3>
         <div class="govuk-grid-row">
@@ -151,7 +151,7 @@
         </div>
 
       </div>
-      <div class="govuk-border-top">
+      <div class="govuk-border-top" id="subsidy-schemes-dashboard-card">
         <h3 class="govuk-heading-l">Subsidy schemes</h3>
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-half govuk-form-group">
@@ -203,7 +203,7 @@
         </div>
 
       </div>
-      <div class="govuk-border-top">
+      <div class="govuk-border-top" id="subsidy-awards-dashboard-card">
 
         <h3 class="govuk-heading-l">Subsidy awards</h3>
         <div class="govuk-grid-row">
@@ -226,8 +226,7 @@
                 <%= dashboardawards.awardUserActionCount.totalAwaitingAward %>
               </p>
               <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 ">
-                <a href="/mysubsidyawards?sort=Awaiting Approval" class="govuk-description-text">Awaiting
-                  approval</a>
+                <a href="/mysubsidyawards?sort=Awaiting Approval" class="govuk-description-text">Awaiting approval</a>
               </p>
             </div>
           </div>
@@ -278,7 +277,7 @@
 
       </div>
 
-      <div class="govuk-border-top">
+      <div class="govuk-border-top" id="audit-log-dashboard-card">
 
         <h3 class="govuk-heading-l">Audit log</h3>
 

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Public Authority page</title>
+  <title>GOV.UK - Public Authorities search page</title>
   <%- include('../partials/headercss.ejs') %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
@@ -99,16 +99,16 @@
             <div class="govuk-grid-column-one-half govuk-p-0">
               <form action="/mygrantingauthority" method="POST">
                 <input class="govuk-input govuk-!-width-three-quarters" aria-describedby="SearchGAHint"
-                  id="filter-input" name="grantingAuthorityName" type="text" value="<%= grantingAuthorityName%>"
+                  id="search-text" name="grantingAuthorityName" type="text" value="<%= grantingAuthorityName%>"
                   autocomplete="off" />
-                <button class="govuk-button govuk-button--success" id="getFilterTags">
+                <button class="govuk-button govuk-button--success" id="search-button">
                   Search
                 </button>
               </form>
             </div>
 
-            <form class="govuk-grid-column-one-half" action="/mygrantingauthority" method="POST">
-              <select class="govuk-select" name="status" style="width: 100%" onchange="this.form.submit()"
+            <form class="govuk-grid-column-one-half" action="/mygrantingauthority"  method="POST">
+              <select class="govuk-select" name="status" style="width: 100%" id='filter-select' nchange="this.form.submit()"
                 aria-label="Results as per status shown in current page" aria-describedby="info-message"
                 aria-autocomplete="list">
                 <% if(status == 'Active') { %>
@@ -142,33 +142,33 @@
               <div class="pagination pagination-style-modified govuk-!-width-one-half"
                 style="display: inline;  margin: 0;">
                 <% if( ssn.frontend_totalRecordsPerPage  == 10) { %>
-                <a aria-label="10 records per page  selected" aria-selected="true" class="round btn-page active"
+                <a id="results-per-page-10" aria-label="10 records per page  selected" aria-selected="true" class="round btn-page active"
                   href="/mygrantingauthority/?totalRecordsPerPage=10">10</a>
                 <% } else { %>
-                <a aria-label="10 records per page " class="round btn-page"
+                <a id="results-per-page-10" aria-label="10 records per page " class="round btn-page"
                   href="/mygrantingauthority/?totalRecordsPerPage=10">10</a>
                 <% }  %>
                 <% if( ssn.frontend_totalRecordsPerPage  == 20) { %>
-                <a aria-label="20 records per page  selected" aria-selected="true" class="round btn-page active"
+                <a id="results-per-page-20" aria-label="20 records per page  selected" aria-selected="true" class="round btn-page active"
                   href="/mygrantingauthority/?totalRecordsPerPage=20">20</a>
                 <% } else { %>
-                <a aria-label="20 records per page  selected" aria-selected="true" class="round btn-page"
+                <a id="results-per-page-20" aria-label="20 records per page  selected" aria-selected="true" class="round btn-page"
                   href="/mygrantingauthority/?totalRecordsPerPage=20">20</a>
                 <% }  %>
 
                 <% if( ssn.frontend_totalRecordsPerPage  == 50) { %>
-                <a aria-label="50 records per page  selected" aria-selected="true" class="round btn-page active"
+                <a id="results-per-page-50" aria-label="50 records per page  selected" aria-selected="true" class="round btn-page active"
                   href="/mygrantingauthority/?totalRecordsPerPage=50">50</a>
                 <% } else { %>
-                <a aria-label="50 records per page " class="round btn-page"
+                <a id="results-per-page-50" aria-label="50 records per page " class="round btn-page"
                   href="/mygrantingauthority/?totalRecordsPerPage=50">50</a>
                 <% }  %>
 
                 <% if( ssn.frontend_totalRecordsPerPage  == 100) { %>
-                <a aria-label="100 records per page  selected" aria-selected="true" class="round btn-page active"
+                <a id="results-per-page-100" aria-label="100 records per page  selected" aria-selected="true" class="round btn-page active"
                   href="/mygrantingauthority/?totalRecordsPerPage=100">100</a>
                 <% } else { %>
-                <a aria-label="100 records per page " class="round btn-page"
+                <a id="results-per-page-100" aria-label="100 records per page " class="round btn-page"
                   href="/mygrantingauthority/?totalRecordsPerPage=100">100</a>
                 <% }  %>
               </div>
@@ -190,16 +190,16 @@
             <div class="govuk-grid-column-one-half govuk-p-0">
               <form action="/mygrantingauthority" method="POST">
                 <input class="govuk-input govuk-!-width-three-quarters" aria-describedby="SearchGAHint"
-                  id="filter-input" name="grantingAuthorityName" type="text" value="<%= grantingAuthorityName%>"
+                  id="search-text" name="grantingAuthorityName" type="text" value="<%= grantingAuthorityName%>"
                   autocomplete="off" />
-                <button class="govuk-button govuk-button--success" id="getFilterTags">
+                <button class="govuk-button govuk-button--success" id="search-button">
                   Search
                 </button>
               </form>
             </div>
 
-            <form class="govuk-grid-column-one-half" action="/mygrantingauthority" method="POST">
-              <select class="govuk-select" name="status" style="width: 100%" onchange="this.form.submit()"
+            <form class="govuk-grid-column-one-half" action="/mygrantingauthority"  method="POST">
+              <select class="govuk-select" name="status" style="width: 100%" id='filter-select' onchange="this.form.submit()"
                 aria-label="Results as per status shown in current page" aria-describedby="info-message"
                 aria-autocomplete="list">
                 <% if(status == 'Active') { %>
@@ -233,33 +233,33 @@
               <div class="pagination pagination-style-modified govuk-!-width-one-half"
                 style="display: inline;  margin: 0;">
                 <% if( ssn.frontend_totalRecordsPerPage  == 10) { %>
-                <a aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
+                <a id="results-per-page-10" aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
                   href="/mygrantingauthority/?totalRecordsPerPage=10">10</a>
                 <% } else { %>
-                <a aria-label="10 records per page " class="round btn-page"
+                <a id="results-per-page-10" aria-label="10 records per page " class="round btn-page"
                   href="/mygrantingauthority/?totalRecordsPerPage=10">10</a>
                 <% }  %>
                 <% if( ssn.frontend_totalRecordsPerPage  == 20) { %>
-                <a aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
+                <a id="results-per-page-20" aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
                   href="/mygrantingauthority/?totalRecordsPerPage=20">20</a>
                 <% } else { %>
-                <a aria-label="20 records per page " class="round btn-page"
+                <a id="results-per-page-20" aria-label="20 records per page " class="round btn-page"
                   href="/mygrantingauthority/?totalRecordsPerPage=20">20</a>
                 <% }  %>
 
                 <% if( ssn.frontend_totalRecordsPerPage  == 50) { %>
-                <a aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
+                <a id="results-per-page-50" aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
                   href="/mygrantingauthority/?totalRecordsPerPage=50">50</a>
                 <% } else { %>
-                <a aria-label="50 records per page " class="round btn-page"
+                <a id="results-per-page-50" aria-label="50 records per page " class="round btn-page"
                   href="/mygrantingauthority/?totalRecordsPerPage=50">50</a>
                 <% }  %>
 
                 <% if( ssn.frontend_totalRecordsPerPage  == 100) { %>
-                <a aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
+                <a id="results-per-page-100" aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
                   href="/mygrantingauthority/?totalRecordsPerPage=100">100</a>
                 <% } else { %>
-                <a aria-label="100 records per page " class="round btn-page"
+                <a id="results-per-page-100" aria-label="100 records per page " class="round btn-page"
                   href="/mygrantingauthority/?totalRecordsPerPage=100">100</a>
                 <% }  %>
               </div>
@@ -272,7 +272,7 @@
 
 
       <section class="govuk-table-responsive">
-        <table class="govuk-table">
+        <table class="govuk-table" id="searchresult-table">
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
               <th scope="col" style="text-align: left" class="govuk-table__header app-custom-class">
@@ -343,15 +343,15 @@
               </th>
               <th scope="col" class="govuk-table__header app-custom-class">
                 <% if (ssn.created_on_arrow == "upanddown" ) { %>
-                <a href="/mygrantingauthority?sort=created_on&arrow=upanddown" style="text-decoration: none">
+                <a href="/mygrantingauthority?sort=created_on&arrow=upanddown" data-type="date" style="text-decoration: none">
                   Created on <img id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
                     aria-label="Currently not sorted"></a>
                 <% } else if (ssn.created_on_arrow == "downdecending" ) { %>
-                <a href="/mygrantingauthority?sort=created_on&arrow=downdecending" style="text-decoration: none">
+                <a href="/mygrantingauthority?sort=created_on&arrow=downdecending" data-type="date" style="text-decoration: none">
                   Created on <img id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
                     aria-label="Currently sorted by Descending order"></a>
                 <% } else { %>
-                <a href="/mygrantingauthority?sort=created_on&arrow=upacending" style="text-decoration: none">
+                <a href="/mygrantingauthority?sort=created_on&arrow=upacending" data-type="date" style="text-decoration: none">
                   Created on <img id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
                     aria-label="Currently sorted by Ascending order"></a>
                 <% } %>
@@ -359,15 +359,15 @@
               </th>
               <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
                 <% if (ssn.last_modified_arrow == "upanddown" ) { %>
-                <a href="/mygrantingauthority?sort=last_modified&arrow=upanddown" style="text-decoration: none">
+                <a href="/mygrantingauthority?sort=last_modified&arrow=upanddown" data-type="date" style="text-decoration: none">
                   Last modified <img id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
                     aria-label="Currently not sorted"></a>
                 <% } else if (ssn.last_modified_arrow == "downdecending" ) { %>
-                <a href="/mygrantingauthority?sort=last_modified&arrow=downdecending" style="text-decoration: none">
+                <a href="/mygrantingauthority?sort=last_modified&arrow=downdecending" data-type="date" style="text-decoration: none">
                   Last modified <img id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
                     aria-label="Currently sorted by Descending order"></a>
                 <% } else { %>
-                <a href="/mygrantingauthority?sort=last_modified&arrow=upacending" style="text-decoration: none">
+                <a href="/mygrantingauthority?sort=last_modified&arrow=upacending" data-type="date" style="text-decoration: none">
                   Last modified <img id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
                     aria-label="Currently sorted by Ascending order"></a>
                 <% } %>
@@ -375,7 +375,7 @@
               </th>
             </tr>
           </thead>
-          <tbody class="govuk-table__body">
+          <tbody id="searchresult-table-body" class="govuk-table__body">
             <% grantingAuthorityList.gaList.forEach(function(item) { %>
             <tr>
               <td style="text-align: center;" class="govuk-table__cell"><a
@@ -439,7 +439,7 @@
           <% if (pageCount > 1) { %>
 
           <% if (current_page != 1) { %>
-          <a href="/mygrantingauthority/?page=1" id="paginationlink" class="first round">
+          <a href="/mygrantingauthority/?page=1" id="paginationlink_first_page" class="first round">
             <svg version="1.1" width="19px" height="30px">
               <defs>
                 <mask fill="white" id="clip2">

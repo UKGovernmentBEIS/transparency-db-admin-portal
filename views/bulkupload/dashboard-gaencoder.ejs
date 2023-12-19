@@ -42,7 +42,7 @@
       </div>
       <%- include('../partials/navigationbar.ejs') %>
       <div class="govuk-beis-heading govuk-form-group">
-        <h1 class="govuk-heading-l">Dashboard</h1>
+        <h1 class="govuk-heading-l" id="dashboard">Dashboard</h1>
         <h2 class="govuk-heading-xl"><%= ssn.dashboard_user_name %></h2>
       </div>
 
@@ -50,14 +50,15 @@
         Subsidy awards
       </h3>
 
-      <div class="govuk-grid-row">
+      <div class="govuk-grid-row" id="subsidy-awards-dashboard-card">
         <div class="govuk-grid-column-one-half govuk-form-group">
           <div class="govuk-background">
             <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
               <%= dashboardawards.awardUserActionCount.totalSubsidyAward %>
             </p>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24">
-              <a href="/mysubsidyawards" class="govuk-description-text">Total subsidy awards </a></p>
+              <a href="/mysubsidyawards" class="govuk-description-text">Total subsidy awards</a>
+            </p>
           </div>
         </div>
         <div class="govuk-grid-column-one-half govuk-form-group">
@@ -66,8 +67,8 @@
               <%= dashboardawards.awardUserActionCount.totalAwaitingAward %>
             </p>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24">
-              <a href="/mysubsidyawards?sort=Awaiting Approval" class="govuk-description-text">Awaiting
-                approval</a></p>
+              <a href="/mysubsidyawards?sort=Awaiting Approval" class="govuk-description-text">Awaiting approval</a>
+            </p>
           </div>
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group">
@@ -107,7 +108,7 @@
         </a>
       </div>
 
-      <div class="govuk-border-top">
+      <div class="govuk-border-top" id="subsidy-schemes-dashboard-card">
 
         <h3 class="govuk-heading-m">Subsidy schemes</h3>
 

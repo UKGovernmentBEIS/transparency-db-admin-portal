@@ -106,11 +106,11 @@
           <form action="/measuresearchroute" method="post" novalidate>
             <!-- <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text" type="text">
              -->
-            <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text" type="text"
+            <input class="govuk-input govuk-!-width-three-quarters" id="search-text" name="search_text" type="text"
               aria-describedby="subsidy_search_text" <% if(ssn.Search_Text_Global) {%>
               value="<%= ssn.Search_Text_Global%>" <% } %> />
 
-            <button class="govuk-button" data-module="govuk-button">
+            <button class="govuk-button" data-module="govuk-button" id="search-button">
               Search
             </button>
           </form>
@@ -120,7 +120,7 @@
         <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
           <form class="govuk-!-width-full govuk-padding-0" action="/measuresfilterroute" method="GET">
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
-              aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
+              aria-label="Drop down list that shows subsidy scheme by status" id="filter-select" onchange="this.form.submit()">
               <% if(schemes_status  == "") { %>
               <option value="" selected>Show all (<%= ssn.allScheme %>)
               </option>
@@ -213,11 +213,11 @@
           <form action="/measuresearchroute" method="post" novalidate>
             <!-- <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text" type="text">
                -->
-            <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text" type="text"
+            <input class="govuk-input govuk-!-width-three-quarters" id="search-text" name="search_text" type="text"
               aria-describedby="subsidy_search_text" <% if(ssn.Search_Text_Global) {%>
               value="<%= ssn.Search_Text_Global%>" <% } %> />
 
-            <button class="govuk-button" data-module="govuk-button">
+            <button class="govuk-button" data-module="govuk-button" id="search-button">
               Search
             </button>
           </form>
@@ -227,7 +227,7 @@
         <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
           <form class="govuk-!-width-full govuk-padding-0" action="/measuresfilterroute" method="GET">
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
-              aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
+              aria-label="Drop down list that shows subsidy scheme by status" id="filter-select" onchange="this.form.submit()">
               <% if(schemes_status  == "") { %>
               <option value="" selected>Show all (<%= ssn.allScheme %>)
               </option>
@@ -278,31 +278,31 @@
             style="display: inline;  margin: 0;">
             <!-- <form class="govuk-grid-column-one-third" action="/measurespageperroute" method="GET"> -->
             <% if( ssn.frontend_totalRecordsPerPage  == 10) { %>
-            <a aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
+            <a id="results-per-page-10" aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
               href="/measurespageperroute/?sort=10">10</a>
 
             <% } else { %>
-            <a aria-label="10 records per page " class="round btn-page" href="/measurespageperroute/?sort=10">10</a>
+            <a id="results-per-page-10" aria-label="10 records per page " class="round btn-page" href="/measurespageperroute/?sort=10">10</a>
             <% }  %>
             <% if( ssn.frontend_totalRecordsPerPage  == 20) { %>
-            <a aria-label="20 records per page  selected" aria-selected="true" class="round btn-page active"
+            <a id="results-per-page-20" aria-label="20 records per page  selected" aria-selected="true" class="round btn-page active"
               href="/measurespageperroute/?sort=20">20</a>
             <% } else { %>
-            <a aria-label="20 records per page " class="round btn-page" href="/measurespageperroute/?sort=20">20</a>
+            <a id="results-per-page-20" aria-label="20 records per page " class="round btn-page" href="/measurespageperroute/?sort=20">20</a>
             <% }  %>
 
             <% if( ssn.frontend_totalRecordsPerPage  == 50) { %>
-            <a aria-label="50 records per page selected" aria-selected="true " class="round btn-page active"
+            <a id="results-per-page-50" aria-label="50 records per page selected" aria-selected="true " class="round btn-page active"
               href="/measurespageperroute/?sort=50">50</a>
             <% } else { %>
-            <a aria-label="50 records per page " class="round btn-page" href="/measurespageperroute/?sort=50">50</a>
+            <a id="results-per-page-50" aria-label="50 records per page " class="round btn-page" href="/measurespageperroute/?sort=50">50</a>
             <% }  %>
 
             <% if( ssn.frontend_totalRecordsPerPage  == 100) { %>
-            <a aria-label="100 records per page selected" aria-selected="true " class="round btn-page active"
+            <a id="results-per-page-100" aria-label="100 records per page selected" aria-selected="true " class="round btn-page active"
               href="/measurespageperroute/?sort=100">100</a>
             <% } else { %>
-            <a aria-label="100 records per page " class="round btn-page" href="/measurespageperroute/?sort=100">100</a>
+            <a id="results-per-page-100" aria-label="100 records per page " class="round btn-page" href="/measurespageperroute/?sort=100">100</a>
             <% }  %>
           </div>
 
@@ -310,7 +310,7 @@
 
         <form action="/homepage" method="POST">
           <section class="govuk-table-responsive govuk-grid-column-full">
-            <table class="govuk-table">
+            <table class="govuk-table" id="searchresult-table">
               <caption class="govuk-table__caption">
                 <h1 class="govuk-fieldset__heading"></h1>
               </caption>
@@ -367,7 +367,7 @@
 
                   </th>
                   <th scope="col" class="govuk-table__header app-custom-class">
-                    <a href="/measuresortroute/?page=Start_Date" style="text-decoration: none">
+                    <a href="/measuresortroute/?page=Start_Date" style="text-decoration: none" data-type="date">
                       Start date
                       <% if (start_date_arrow == "upanddown" ) { %>
                       <img id="start_date_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Currently not sorted">
@@ -383,7 +383,7 @@
 
                   </th>
                   <th scope="col" class="govuk-table__header app-custom-class">
-                    <a href="/measuresortroute/?page=End_Date" style="text-decoration: none">
+                    <a href="/measuresortroute/?page=End_Date" style="text-decoration: none" data-type="date">
                       End date
                       <% if (end_date_arrow == "upanddown" ) { %>
                       <img id="end_date_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Currently not sorted">
@@ -428,7 +428,7 @@
                 </tr>
               </thead>
 
-              <tbody class="govuk-table__body">
+              <tbody id="searchresult-table-body" class="govuk-table__body">
                 <% searchschemes.schemes.forEach(function(item) { %>
                 <tr>
                   <td class="govuk-table__cell"><a href="/editreviewsubsidymeasure?scheme=<%= item.scNumber %>">
@@ -479,7 +479,7 @@
                 <% if (pageCount > 1) { %>
 
                 <% if (current_page_active != 1) { %>
-                <a href="/measurespageroute/?page=1" id="paginationlink" class="first round">
+                <a href="/measurespageroute/?page=1" id="paginationlink_first_page" class="first round">
                   <!-- <img id="govuk-left-arrow"
                   src="/assets/images/govuk-left-arrow.jpg"> -->
                   <svg version="1.1" width="19px" height="30px">
@@ -516,8 +516,8 @@
                 <% } %>
 
                 <% if (current_page_active != pageCount) { %>
-                <a href="/measurespageroute/?page=<%= next_page %>" id="paginationlink" class="next round">Next Page</a>
-                <a href="/measurespageroute/?page=<%= pageCount %>" id="paginationlink" class="last round">
+                <a href="/measurespageroute/?page=<%= next_page %>" id="paginationlink_next_page" class="next round">Next Page</a>
+                <a href="/measurespageroute/?page=<%= pageCount %>" id="paginationlink_last_page" class="last round">
                   <!-- <img
                   id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg"> -->
                   <svg version="1.1" width="19px" height="30px" class="left-arrow">
