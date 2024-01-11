@@ -177,10 +177,10 @@
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
               aria-label="Drop down list that shows subsidy award by status" id="filter-select" onchange="this.form.submit()">
-              <% if(ssn.awards_status  == "") { %>
-              <option value="" selected>Show all (<%=totalSubsidyAward%>)</option>
+              <% if(ssn.awards_status  == "Show all") { %>
+              <option value="Show all" selected>Show all (<%=totalSubsidyAward%>)</option>
               <% } else { %>
-              <option value="">Show all(<%=totalSubsidyAward%>)</option>
+              <option value="Show all">Show all(<%=totalSubsidyAward%>)</option>
               <% }  %>
               <% if(ssn.awards_status  == "Awaiting Approval") { %>
               <option value="Awaiting Approval" selected>Awaiting Approval (<%=totalAwaitingAward%>)</option>
@@ -279,10 +279,10 @@
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
               aria-label="Drop down list that shows subsidy award by status" id="filter-select" onchange="this.form.submit()">
-              <% if(ssn.awards_status  == "") { %>
-              <option value="" selected>Show all (<%=totalSubsidyAward%>)</option>
+              <% if(ssn.awards_status  == "Show all") { %>
+              <option value="Show all" selected>Show all (<%=totalSubsidyAward%>)</option>
               <% } else { %>
-              <option value="">Show all(<%=totalSubsidyAward%>)</option>
+              <option value="Show all">Show all(<%=totalSubsidyAward%>)</option>
               <% }  %>
               <% if(ssn.awards_status  == "Awaiting Approval") { %>
               <option value="Awaiting Approval" selected>Awaiting Approval (<%=totalAwaitingAward%>) </option>

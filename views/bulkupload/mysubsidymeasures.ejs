@@ -79,7 +79,7 @@
       </a>
 
       <% } %>
-      <% } else { %>
+      <!-- <% } %> -->
       <!-- <h2 class="govuk-heading-m"><%= nodata%></h2> -->
       <% if(noresult) { %>
       <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
@@ -308,6 +308,7 @@
 
         </div>
 
+        <% if(!nodata) { %>
         <form action="/homepage" method="POST">
           <section class="govuk-table-responsive govuk-grid-column-full">
             <table class="govuk-table" id="searchresult-table">

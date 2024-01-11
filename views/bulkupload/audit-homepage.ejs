@@ -416,31 +416,31 @@
             style="display: inline;  margin: 0;">
             <!-- <form class="govuk-grid-column-one-third" action="/auditrecordsperpageroute" method="GET"> -->
             <% if( ssn.frontend_totalRecordsPerPage  == 10) { %>
-            <a aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
+            <a id="results-per-page-10" aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
               href="/auditrecordsperpageroute/?sort=10">10</a>
 
             <% } else { %>
-            <a aria-label="10 records per page " class="round btn-page" href="/auditrecordsperpageroute/?sort=10">10</a>
+            <a id="results-per-page-10" aria-label="10 records per page " class="round btn-page" href="/auditrecordsperpageroute/?sort=10">10</a>
             <% }  %>
             <% if( ssn.frontend_totalRecordsPerPage  == 20) { %>
-            <a aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
+            <a id="results-per-page-20" aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
               href="/auditrecordsperpageroute/?sort=20">20</a>
             <% } else { %>
-            <a aria-label="20 records per page " class="round btn-page" href="/auditrecordsperpageroute/?sort=20">20</a>
+            <a id="results-per-page-20" aria-label="20 records per page " class="round btn-page" href="/auditrecordsperpageroute/?sort=20">20</a>
             <% }  %>
 
             <% if( ssn.frontend_totalRecordsPerPage  == 50) { %>
-            <a aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
+            <a id="results-per-page-50" aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
               href="/auditrecordsperpageroute/?sort=50">50</a>
             <% } else { %>
-            <a aria-label="50 records per page " class="round btn-page" href="/auditrecordsperpageroute/?sort=50">50</a>
+            <a id="results-per-page-50" aria-label="50 records per page " class="round btn-page" href="/auditrecordsperpageroute/?sort=50">50</a>
             <% }  %>
 
             <% if( ssn.frontend_totalRecordsPerPage  == 100) { %>
-            <a aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
+            <a id="results-per-page-100" aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
               href="/auditrecordsperpageroute/?sort=100">100</a>
             <% } else { %>
-            <a aria-label="100 records per page " class="round btn-page"
+            <a id="results-per-page-100" aria-label="100 records per page " class="round btn-page"
               href="/auditrecordsperpageroute/?sort=100">100</a>
             <% }  %>
           </div>
@@ -454,7 +454,7 @@
 
           <!-- <form action="/homepage" method="POST"> -->
           <section class="govuk-table-responsive govuk-grid-column-full">
-            <table class="govuk-table">
+            <table class="govuk-table" id="searchresult-table">
               <caption class="govuk-table__caption">
                 <h1 class="govuk-fieldset__heading"></h1>
               </caption>
@@ -621,7 +621,7 @@
                 <% } %>
 
                 <% if (current_page_active != pageCount) { %>
-                <a href="/auditpageroute/?page=<%= next_page %>" id="paginationlink" class="next round">Next Page</a>
+                <a href="/auditpageroute/?page=<%= next_page %>" id="paginationlink_next_page" class="next round">Next Page</a>
                 <a href="/auditpageroute/?page=<%= pageCount %>" id="paginationlink_last_page" class="last round">
                   <!-- <img
                   id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg"> -->
