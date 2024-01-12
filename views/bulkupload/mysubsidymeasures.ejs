@@ -54,33 +54,6 @@
       <!-- Body header starts here -->
       <h1 class="govuk-heading-xl">Subsidy schemes</h1>
       <!-- Body header ends here -->
-      <% if(noresult && noscheme ) { %>
-      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
-        data-module="govuk-error-summary">
-
-        <div class="govuk-error-summary__body">
-          <ul class="govuk-list govuk-error-summary__list">
-            <li>
-
-              <a aria-label="<%= nodata%>"><%= nodata %></a>
-            </li>
-
-          </ul>
-
-        </div>
-      </div>
-      <% if(ssn.dashboard_roles != 'Granting Authority Encoder' ) { %>
-      <a href="/addsubsidymeasures" class="govuk-button" data-module="govuk-button">
-        Add a new subsidy scheme
-      </a>
-
-      <a class="govuk-button" href="/bulkuploadsubsidyschemes" data-module="govuk-button">
-        Add multiple subsidy schemes
-      </a>
-
-      <% } %>
-      <% } else { %>
-      <!-- <h2 class="govuk-heading-m"><%= nodata%></h2> -->
       <% if(noresult) { %>
       <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
         data-module="govuk-error-summary">
@@ -88,119 +61,16 @@
         <div class="govuk-error-summary__body">
           <ul class="govuk-list govuk-error-summary__list">
             <li>
+
               <a aria-label="<%= nodata%>"><%= nodata %></a>
             </li>
+
           </ul>
-        </div>
-      </div>
-
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-full" id="subsidy_search_text">
-          <label class="govuk-label">
-            You can search for specific subsidy schemes by entering a subsidy scheme title, control number or granting
-            authority.
-          </label>
-        </div>
-
-        <div class="govuk-grid-column-one-half">
-          <form action="/measuresearchroute" method="post" novalidate>
-            <!-- <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text" type="text">
-             -->
-            <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text" type="text"
-              aria-describedby="subsidy_search_text" <% if(ssn.Search_Text_Global) {%>
-              value="<%= ssn.Search_Text_Global%>" <% } %> />
-
-            <button class="govuk-button" data-module="govuk-button">
-              Search
-            </button>
-          </form>
-        </div>
-
-
-        <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
-          <form class="govuk-!-width-full govuk-padding-0" action="/measuresfilterroute" method="GET">
-            <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
-              aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
-              <% if(schemes_status  == "") { %>
-              <option value="" selected>Show all (<%= ssn.allScheme %>)
-              </option>
-              <% } else { %>
-              <option value="">Show all (<%= ssn.allScheme %>)</option>
-              <% }  %>
-              <% if(schemes_status  == "Active") { %>
-              <option value="Active" selected>Active (<%= ssn.activeScheme %>)</option>
-              <% } else { %>
-              <option value="Active">Active (<%= ssn.activeScheme %>)</option>
-              <% }  %>
-
-              <% if(schemes_status  == "Inactive") { %>
-              <option value="Inactive" selected>Inactive (<%= ssn.inactiveScheme %>)</option>
-              <% } else { %>
-              <option value="Inactive">Inactive (<%= ssn.inactiveScheme %>)</option>
-              <% }  %>
-
-
-
-            </select>
-          </form>
-          <span id="status-message" style="display:none" aria-hidden="true">
-            On selecting, the page will reload and display the subsidy awards.</span>
-        </div>
-
-        <% if(ssn.dashboard_roles != 'Granting Authority Encoder' ) { %>
-        <div class="govuk-grid-column-one-half">
-
-          <a class="govuk-button" href="/addsubsidymeasures" class="govuk-button"
-            data-module="govuk-button">
-            Add a new subsidy scheme
-          </a>
-
-          <a class="govuk-button" href="/bulkuploadsubsidyschemes" data-module="govuk-button">
-            Add multiple subsidy schemes
-          </a>
-        </div>
-        <% } %>
-
-        <div class="govuk-grid-column-one-half govuk-display-flex govuk-form-group" style="float: right;">
-          <label class="govuk-grid-column-two-thirds">
-            Results per page
-          </label>
-          <div class="pagination pagination-style-modified govuk-padding-0 govuk-!-width-one-third"
-            style="display: inline;  margin: 0;">
-            <!-- <form class="govuk-grid-column-one-third" action="/measurespageperroute" method="GET"> -->
-            <% if( ssn.frontend_totalRecordsPerPage  == 10) { %>
-            <a aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
-              href="/measurespageperroute/?sort=10">10</a>
-
-            <% } else { %>
-            <a aria-label="10 records per page " class="round btn-page" href="/measurespageperroute/?sort=10">10</a>
-            <% }  %>
-            <% if( ssn.frontend_totalRecordsPerPage  == 20) { %>
-            <a aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
-              href="/measurespageperroute/?sort=20">20</a>
-            <% } else { %>
-            <a aria-label="20 records per page " class="round btn-page" href="/measurespageperroute/?sort=20">20</a>
-            <% }  %>
-
-            <% if( ssn.frontend_totalRecordsPerPage  == 50) { %>
-            <a aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
-              href="/measurespageperroute/?sort=50">50</a>
-            <% } else { %>
-            <a aria-label="50 records per page " class="round btn-page" href="/measurespageperroute/?sort=50">50</a>
-            <% }  %>
-
-            <% if( ssn.frontend_totalRecordsPerPage  == 100) { %>
-            <a aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
-              href="/measurespageperroute/?sort=100">100</a>
-            <% } else { %>
-            <a aria-label="100 records per page " class="round btn-page" href="/measurespageperroute/?sort=100">100</a>
-            <% }  %>
-          </div>
 
         </div>
       </div>
-      <% }  else { %>
-
+      <% } %>
+      <!-- <h2 class="govuk-heading-m"><%= nodata%></h2> -->
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full" id="subsidy_search_text">
           <label class="govuk-label">
@@ -307,9 +177,9 @@
           </div>
 
         </div>
-
         <form action="/homepage" method="POST">
           <section class="govuk-table-responsive govuk-grid-column-full">
+            <% if(!nodata) { %>
             <table class="govuk-table">
               <caption class="govuk-table__caption">
                 <h1 class="govuk-fieldset__heading"></h1>
@@ -455,6 +325,7 @@
                 <% } ); %>
               </tbody>
             </table>
+            <% } %>
 
             <!-- ********************** -->
             <!-- Pagination starts here -->
@@ -548,8 +419,6 @@
           <!-- Pagination ends here -->
           <!-- ********************** -->
         </form>
-        <% } %>
-        <% } %>
       </div>
     </main>
   </div>
