@@ -73,10 +73,10 @@
           <div class="govuk-grid-column-one-half">
             <form action="/mfaawards" method="get" novalidate>
 
-              <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="mfaAwardSearchName" type="text"
+              <input class="govuk-input govuk-!-width-three-quarters" id="search-text" name="mfaAwardSearchName" type="text"
                 aria-describedby="subsidy_search_text" value="<%= ssn.MFA_Award_Search_Name_Global%>" />
 
-              <button class="govuk-button" data-module="govuk-button">
+              <button class="govuk-button" data-module="govuk-button" id="search-button">
                 Search
               </button>
             </form>
@@ -167,7 +167,7 @@
             </div>
 
           </div>
-          
+
           <form action="/homepage" method="POST">
             <section class="govuk-table-responsive govuk-grid-column-full">
               <table class="govuk-table" id="searchresult-table">
