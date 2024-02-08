@@ -53,7 +53,9 @@ router.get("/", async (req, res) => {
         res.render("bulkupload/notAuthorized");
       }
     } catch (err) {
-      if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
+      if (err.toString().includes("500") || err.toString().includes("404"))
+        res.render("bulkupload/notAvailable");
+      
       console.log("message error deactivate GA : " + err);
       // res.render("publicusersearch/noresults");
     }
