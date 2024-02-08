@@ -72,7 +72,7 @@ router.get("/", async (req, res) => {
           res.render("bulkupload/notAuthorized");
         console.log("message error deactivate GA : " + err);
         // res.render("publicusersearch/noresults");
-      } 
+      }
     } catch (err) {
       if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
       console.log("Error while fetching GA user List", err);
