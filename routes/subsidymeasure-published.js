@@ -82,7 +82,7 @@ router.post("/", async (req, res) => {
     ssn.scheme_issued_end_month_Error = false;
     ssn.scheme_issued_end_day_Error = false;
     ssn.scheme_issued_end_day_lesser_Error = false;
-    ssn.Subsidy_Scheme_Description_5000_Error = false;
+    ssn.Subsidy_Scheme_Description_Length_Error = false;
     ssn.scheme_issued_confirmation_day_Error = false;
     ssn.scheme_issued_confirmation_month_Error = false;
     ssn.scheme_issued_confirmation_year_Error = false;
@@ -159,7 +159,7 @@ router.post("/", async (req, res) => {
         ssn.Granting_Authority_Name_Inactive_Error = false;
         isAddSubsidyPrimarycall = false;
         ssn.Subsidy_Scheme_Description_Error = false;
-        ssn.Subsidy_Scheme_Description_5000_Error = false;
+        ssn.Subsidy_Scheme_Description_Length_Error = false;
         ssn.scheme_issued_confirmation_day_Error = false;
         ssn.scheme_issued_confirmation_month_Error = false;
         ssn.scheme_issued_confirmation_year_Error = false;
@@ -176,9 +176,18 @@ router.post("/", async (req, res) => {
           res.render("bulkupload/notAvailable");
         }
         if (err.toString().includes("400")) {
-          ssn.Granting_Authority_Name_Inactive_Error = true;
-          ssn.SubsidyErrors.push(" public authority is not active");
-          ssn.SubsidyFocus.push("#Granting_Authority_Name");
+          console.log(err.response.data);
+          if (err.response.data.message.includes("description")) 
+          { 
+            ssn.Subsidy_Scheme_Description_Length_Error = true;
+            ssn.SubsidyErrors.push("Subsidy scheme description cannot be greater than 10000 characters");
+            ssn.SubsidyFocus.push("#Subsidy_Scheme_Description");
+          }
+          else {
+            ssn.Granting_Authority_Name_Inactive_Error = true;
+            ssn.SubsidyErrors.push(" public authority is not active");
+            ssn.SubsidyFocus.push("#Granting_Authority_Name");
+          }
           // Additem = Additem + 1;
           ssn.SubsidyArraySize = ssn.SubsidyErrors.length;
           res.render("bulkupload/subsidymeasures-add", { ssn });
