@@ -264,7 +264,7 @@
                                     value="<%= ssn.Subsidy_Measure_Title_Global %>">
                             </div>
 
-                                <% if( ssn.Subsidy_Scheme_Description_Error ||ssn.Subsidy_Scheme_Description_5000_Error){ %>
+                                <% if( ssn.Subsidy_Scheme_Description_Error ||ssn.Subsidy_Scheme_Description_Length_Error){ %>
                                     <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
                                         <% } else { %>
                                         <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -292,9 +292,9 @@
                                                 granting authority policy page description
                                             </span>
 
-                                            <% } else if( ssn.Subsidy_Scheme_Description_5000_Error ){ %>
+                                            <% } else if( ssn.Subsidy_Scheme_Description_Length_Error ){ %>
                                             <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
-                                                <span class="govuk-visually-hidden">Error:</span> Subsidy scheme description cannot be greater than 5000 characters
+                                                <span class="govuk-visually-hidden">Error:</span> Subsidy scheme description cannot be greater than 10000 characters
                                             </span>
                                             <% }  %>
                                             <!-- <input class="govuk-input" id="Subsidy_Scheme_Description"
