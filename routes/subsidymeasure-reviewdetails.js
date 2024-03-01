@@ -50,7 +50,7 @@ router.post("/", (req, res) => {
     ssn.scheme_issued_end_day_Error = false;
     ssn.scheme_issued_end_day_lesser_Error = false;
     ssn.Subsidy_Scheme_Description_Error = false;
-    ssn.Subsidy_Scheme_Description_5000_Error = false;
+    ssn.Subsidy_Scheme_Description_Length_Error = false;
     ssn.spendingsector_Error = false;
     ssn.Maximum_Amount_Under_Scheme_255_Error = false;
 
@@ -374,9 +374,9 @@ router.post("/", (req, res) => {
         ssn.Subsidy_Scheme_Description_Error = true;
         ssn.SubsidyErrors.push("Enter the Subsidy scheme description");
         ssn.SubsidyFocus.push("#Subsidy_Scheme_Description");
-      } else if (Subsidy_Scheme_Description.length > 5000){
-        ssn.Subsidy_Scheme_Description_5000_Error = true;
-        ssn.SubsidyErrors.push(" The subsidy scheme description must be 5000 characters or less.");
+      } else if (Subsidy_Scheme_Description.length > 10000){
+        ssn.Subsidy_Scheme_Description_Length_Error = true;
+        ssn.SubsidyErrors.push(" The subsidy scheme description must be 10000 characters or less.");
         ssn.SubsidyFocus.push("#Subsidy_Scheme_Description");
       }
 
@@ -757,7 +757,7 @@ router.post("/", (req, res) => {
         ssn.Granting_Authority_URL_255_Error ||
         ssn.Granting_Authority_Policy_255_Error ||
         ssn.Subsidy_Scheme_Description_Error ||
-        ssn.Subsidy_Scheme_Description_5000_Error ||
+        ssn.Subsidy_Scheme_Description_Length_Error ||
         ssn.spendingsector_Error ||
         ssn.Maximum_Amount_Under_Scheme_255_Error
       ) {
