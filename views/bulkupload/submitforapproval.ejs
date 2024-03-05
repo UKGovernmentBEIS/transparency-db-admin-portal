@@ -71,18 +71,18 @@
 
           <% if(ssn.dashboard_roles == 'Granting Authority Encoder'){ %>
           <% if(bulkupload) { %>
-          <p class="govuk-body">You have successfully submitted <%= SubsidyAwardNumber%> subsidy
+          <p class="govuk-body" id="published-text">You have successfully submitted <%= SubsidyAwardNumber%> subsidy
             awards for approval.
           </p>
-          <% } else { %><p class="govuk-body">You have successfully submitted subsidy award <%= SubsidyAwardNumber%> for
+          <% } else { %><p class="govuk-body" id="published-text"></p>You have successfully submitted subsidy award <%= SubsidyAwardNumber%> for
             approval.
           </p> <% } %>
           <% } else { %>
           <%  if(bulkupload) { %>
-          <p class="govuk-body">You have approved <%= SubsidyAwardNumber%> subsidy awards and it is now
+          <p class="govuk-body" id="published-text">You have approved <%= SubsidyAwardNumber%> subsidy awards and it is now
             published.</p>
           <% } else { %>
-          <p class="govuk-body">You have approved subsidy award
+          <p class="govuk-body" id="published-text">You have approved subsidy award
             <%= SubsidyAwardNumber%> and it is now published.</p>
           <% } %>
           <% } %>

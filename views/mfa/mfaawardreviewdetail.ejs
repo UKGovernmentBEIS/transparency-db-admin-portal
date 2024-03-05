@@ -59,20 +59,20 @@
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">MFA award details
                     </h2>
                     <a rel="external" aria-label="Change MFA award details"
-                        class="govuk-link head-right govuk-relative-position" href="/mfaawardaddreview"> 
-                        <p>Change </p>
+                        class="govuk-link head-right govuk-relative-position" href="/mfaawardaddreview">
+                        <p>Change</p>
                     </a>
                 </div>
             </div>
             <section class="govuk-table-responsive">
                 <table class="govuk-table">
                     <tbody class="govuk-table__body">
-                        <% if (isCallFromEditAward){ %> 
+                        <% if (isCallFromEditAward){ %>
                             <tr class="govuk-table__row">
                                 <th scope="row" class="govuk-table__header govuk-!-width-one-half">MFA award number</th>
                                 <td class="govuk-table__cell"><%= ssn.mfaAwardDetails.mfaAwardNumber %></td>
                             </tr>
-                        <% } %> 
+                        <% } %>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">SPEI Assistance Award</th>
                             <td class="govuk-table__cell"><%= ssn.SPEI_Global %></td>
@@ -120,15 +120,15 @@
                     <form action="/mfaawardpublished" class="govuk-grid-column-full" method="POST" novalidate>
                     <input type="hidden" name="answers-checked" value="true">
 
-                <% if (isCallFromEditAward){ %> 
+                <% if (isCallFromEditAward){ %>
                     <button class="govuk-button" name="button_value" value="update_mfa_award" data-module="govuk-button">
                         Update MFA award
                     </button>
-                <% }else{ %> 
+                <% }else{ %>
                     <button class="govuk-button" name="button_value" value="add_mfa_award" data-module="govuk-button">
-                        <% if(ssn.dashboard_roles != 'Granting Authority Encoder'){ %> Publish MFA award <% }else{ %> Submit for Approval <% } %> 
+                        <% if(ssn.dashboard_roles != 'Granting Authority Encoder'){ %> Publish MFA award <% }else{ %> Submit for Approval <% } %>
                     </button>
-                <% } %> 
+                <% } %>
                     <a href="/mfaawardcancelreview" class=" govuk-link govuk-cancel-button-link">Cancel</a>
 
                 </form>

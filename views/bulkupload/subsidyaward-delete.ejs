@@ -108,13 +108,9 @@
                 <form action="/rejectsubsidyaward" method="POST">
                     <input type="hidden" value="<%=Award_status%>" name="status">
                     <input type="hidden" value="<%=awardnumber%>" name="awardnumber">
-                    <button class="govuk-button govuk-button--secondary">
-                        Yes, <%=Award_status_lower%> subsidy award
-                    </button>
+                    <button class="govuk-button govuk-button--secondary">Yes, <%=Award_status_lower%> subsidy award</button>
                     <a href="/subsidyawardfetch/?award=<%=awardnumber%>"
-                        class="govuk-button govuk-button_sm govuk-button--secondary" data-module="govuk-button">
-                        Cancel
-                    </a>
+                        class="govuk-button govuk-button_sm govuk-button--secondary" data-module="govuk-button">Cancel</a>
                 </form>
 
 
