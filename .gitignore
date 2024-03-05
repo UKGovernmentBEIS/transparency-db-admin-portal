@@ -53,10 +53,4 @@ coverage/lcov-report/transparency-db-admin-portal/routes/subsidymeasure-reviewde
 coverage/lcov-report/transparency-db-admin-portal/routes/subsidymeasures-add.js.html
 test-report.html
 .DS_Store*
-
-
-
-
-package-lock.json
 signout.js
-

@@ -241,10 +241,10 @@ router.post("/", async (req, res) => {
         }
       }
 
-      if(Subsidy_Award_Description.length > 2000){
+      if(Subsidy_Award_Description.length > 10000){
           ssn.Subsidy_Award_Description_Error_Length = true;
           ssn.SubsidyErrors[Additem] =
-            "The subsidy award description must be 2000 characters or less.";
+            "The subsidy award description must be 10000 characters or less.";
           ssn.SubsidyFocus[Additem] = "#subsidy-award-description-container";
           Additem = Additem + 1;
       }
