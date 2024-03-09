@@ -112,7 +112,7 @@
             <a class="govuk-button" href="/mygrantingauthority" data-module="govuk-button">
                 Back to public authority list
             </a>
-            <% if(ssn.GAstatus == 'Active') { %>
+            <% if(ssn.GAstatus == 'Active' && !ssn.protectedGA) { %>
             <a class="govuk-button govuk-button--warning" href="/deactivategrantingauthority"
                 data-module="govuk-button">
                 Deactivate public authority
