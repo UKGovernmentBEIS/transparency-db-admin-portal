@@ -295,12 +295,12 @@ router.post("/", async (req, res) => {
 
       if (
         Subsidy_Instrument == "Other" &&
-        Subsidy_Instrument_Other.length > 249
+        Subsidy_Instrument_Other.length > 256
       ) {
-        ssn.Subsidy_Instrument_Other_255_Error = true;
+        ssn.Subsidy_Instrument_Other_256_Error = true;
         ssn.Subsidy_Instrument_Other_Error = false;
         ssn.SubsidyErrors[Additem] =
-          "The subsidy form must be less than 255 characters. ";
+          "The subsidy form must be less than 256 characters. ";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Instrument_Other";
         Additem = Additem + 1;
       }
