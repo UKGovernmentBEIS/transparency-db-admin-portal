@@ -61,14 +61,7 @@
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l form-group">
         <h1 class="govuk-fieldset__heading">Edit Public Authorities</h1>
       </legend>
-      <div class="govuk-form-group">
-        <label class="govuk-label" for="Subsidy_award_label">
-          A database entry must include all the information required by the 
-          <a href="https://www.legislation.gov.uk/uksi/2022/1153/resources">(Subsidy Database Information Requirements) Regulations 2022.</a> 
-          Failure to make an accurate database entry is a breach of those statutory requirements and could potentially have implications for the 
-          limitation period for an interested party to apply for a review by the Competition Appeals Tribunal.
-        </label>
-      </div>
+      <%- include('../partials/subsidy-database-requirements.ejs') %>
       <div class="govuk-grid-row">
         <form action="/editreviewgrantingauthority" method="POST">
           <div class="govuk-grid-column-three-quarters govuk-form-group">
