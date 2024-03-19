@@ -161,6 +161,7 @@
           <h1 class="govuk-heading-xl">Add a subsidy award</h1>
           <% } %>
           <form id="myform" action="/reviewdetail" method="POST">
+            <%- include('../partials/subsidy-database-requirements.ejs') %>
             <div class="govuk-form-group">
               <label class="govuk-label" for="Subsidy_award_label">
                 This section is for adding one subsidy award, or standalone subsidy award.
