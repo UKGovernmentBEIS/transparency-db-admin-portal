@@ -181,15 +181,12 @@
                     <% } %>
                   </span>
                   <div class="govuk-input__wrapper">
-                    <!-- <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
-                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"> -->
-                    <input class="govuk-file-upload" name="file_upload_1" type="file"
+                    <input id="bulk-upload-file" class="govuk-file-upload" name="file_upload_1" type="file"
                       accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-                    <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
                 </div>
 
-                <button class="govuk-button" data-module="govuk-button" aria-label="Upload file"
+                <button id="upload-file-button" class="govuk-button" data-module="govuk-button" aria-label="Upload file"
                   value="Upload file">Upload file </button>
 
                 <% } else if( locals.isExcelFormat){ %>
@@ -212,19 +209,13 @@
                     <p> The file format must be .xlsx</p>
                   </label>
                   <div class="govuk-input__wrapper">
-                    <!-- <input class="govuk-file-upload" type="file" id="file-upload-1" name="file_upload_1"> -->
-                    <input class="govuk-file-upload" type="file" name="file_upload_1"
+                    <input id="bulk-upload-file" class="govuk-file-upload" type="file" name="file_upload_1"
                       accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-                    <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
-
-                  <!-- <label class="govuk-label-grey" for="file-upload-2">
-                    <p> The file must be a CSV or Microsoft Excel spreadsheet</p>
-                  </label> -->
                 </div>
 
 
-                <button class="govuk-button" data-module="govuk-button" value="Upload file">Upload file </button>
+                <button id="upload-file-button" class="govuk-button" data-module="govuk-button" value="Upload file">Upload file </button>
 
 
                 <div class="govuk-form-group govuk-form-group--error">
@@ -340,11 +331,8 @@
                     <p> The file format must be .xlsx</p>
                   </label>
                   <div class="govuk-input__wrapper">
-                    <input class="govuk-file-upload" name="file_upload_1" type="file"
+                    <input id="bulk-upload-file" class="govuk-file-upload" name="file_upload_1" type="file"
                       accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-                    <!-- <input class="govuk-file-upload" id="file-upload-1" name="file_upload_1" type="file"
-                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"> -->
-                    <!-- <button class="govuk-button govuk-button--secondary">Browse...</button> -->
                   </div>
 
                   <p>Uploading will update the status of every subsidy award in the file to
@@ -353,7 +341,7 @@
 
                 </div>
 
-                <button class="govuk-button" data-module="govuk-button" aria-label="Upload file"
+                <button id="upload-file-button" class="govuk-button" data-module="govuk-button" aria-label="Upload file"
                   value="Upload file">Upload file </button>
 
                 <% } %>

@@ -103,7 +103,8 @@
                 <a href="/subsidyawardfetch/?award=<%= awardnumber %>" class="govuk-back-link"> Back</a>
             </p>
             <!-- bread crumbs ends here -->
-            <div class="govuk-grid-row">
+            <div class="govuk-grid-row" id="regression-search-area">
+                <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
                     <h1 class="govuk-heading-xl">Add comments</h1>
                     <form action="/subsidyawardrejectreason" method="POST">
@@ -136,14 +137,10 @@
                             name="reject_reason_text" rows="6"></textarea> -->
                         <% if(Award_status == 'Reject') { %>
                         <button class="govuk-button govuk-button--warning" value="Rejected" name="buttonValue"
-                            data-module="govuk-button">
-                            Reject subsidy award
-                        </button>
+                            data-module="govuk-button">Reject subsidy award</button>
                         <% } else { %>
                         <button class="govuk-button govuk-button--warning" name="buttonValue" value="Deleted"
-                            data-module="govuk-button">
-                            Delete subsidy award
-                        </button>
+                            data-module="govuk-button">Delete subsidy award</button>
                         <!-- <a href="/subsidyawardfetch/?award=<%= awardnumber %>"
                             class="govuk-link govuk-cancel-button-link"> Cancel</a> -->
                         <% } %>

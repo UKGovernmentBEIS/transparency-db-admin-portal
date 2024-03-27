@@ -98,8 +98,8 @@
 
             </div>
             <section class="govuk-table-responsive">
-                <table class="govuk-table">
-                    <tbody class="govuk-table__body">
+                <table class="govuk-table" id="searchresult-table">
+                    <tbody class="govuk-table__body" id="searchresult-table-body">
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">MFA grouping number
                             </th>
@@ -138,9 +138,7 @@
                     </button>
 
                     <% if (ssn.mfaGroupingDetails.canDelete && ssn.mfaGroupingDetails.status != "Deleted") { %>
-                        <a class="govuk-button govuk-button--warning" href="/mfagroupingdelete" data-module="govuk-button" style="float:right">
-                            Delete
-                        </a>
+                        <a class="govuk-button govuk-button--warning" href="/mfagroupingdelete" data-module="govuk-button" style="float:right">Delete</a>
                     <% } %>
                 </form>
             </div>

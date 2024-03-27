@@ -137,14 +137,9 @@
       </div>
       <!-- <h2 class="govuk-heading-m"><%= nodata%></h2> -->
 
-      <a class="govuk-button" href="/addsubsidyaward" data-module="govuk-button">
-        Add a new subsidy award
-      </a>
+      <a class="govuk-button" href="/addsubsidyaward" data-module="govuk-button">Add a new subsidy award</a>
 
-      <a class="govuk-button" href="/bulkuploadsubsidy" data-module="govuk-button">
-        Add multiple subsidy awards
-      </a>
-
+      <a class="govuk-button" href="/bulkuploadsubsidy" data-module="govuk-button">Add multiple subsidy awards</a>
       <% } else { %>
       <% if(noresult) { %>
       <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
@@ -170,10 +165,10 @@
         <div class="govuk-grid-column-one-half ">
           <form class="govuk-!-width-full govuk-padding-0" action="/subsidyawardsearch" method="POST">
 
-            <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text" name="search_award_text"
+            <input class="govuk-input govuk-!-width-three-quarters" id="search-text" name="search_award_text"
               aria-label="User input text box for Searching Subsidy Award" type="text" <% if( ssn.Award_search_text) {%>
               value="<%=  ssn.Award_search_text%>" <% } %> />
-            <button class="govuk-button" data-module="govuk-button">
+            <button class="govuk-button" data-module="govuk-button" id="search-button">
               Search
             </button>
           </form>
@@ -181,11 +176,11 @@
         <div class="govuk-grid-column-one-third govuk-padding-0">
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
-              aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
-              <% if(ssn.awards_status  == "") { %>
-              <option value="" selected>Show all (<%=totalSubsidyAward%>)</option>
+              aria-label="Drop down list that shows subsidy award by status" id="filter-select" onchange="this.form.submit()">
+              <% if(ssn.awards_status  == "Show all") { %>
+              <option value="Show all" selected>Show all (<%=totalSubsidyAward%>)</option>
               <% } else { %>
-              <option value="">Show all(<%=totalSubsidyAward%>)</option>
+              <option value="Show all">Show all(<%=totalSubsidyAward%>)</option>
               <% }  %>
               <% if(ssn.awards_status  == "Awaiting Approval") { %>
               <option value="Awaiting Approval" selected>Awaiting Approval (<%=totalAwaitingAward%>)</option>
@@ -217,9 +212,7 @@
 
 
         <div class="govuk-grid-column-two-thirds">
-          <a class="govuk-button" href="/addsubsidyaward" data-module="govuk-button">
-            Add a new subsidy award
-          </a>
+          <a class="govuk-button" href="/addsubsidyaward" data-module="govuk-button">Add a new subsidy award</a>
 
           <a class="govuk-button" href="/bulkuploadsubsidy" data-module="govuk-button">
             Add multiple subsidy awards
@@ -274,10 +267,10 @@
         <div class="govuk-grid-column-one-half ">
           <form class="govuk-!-width-full govuk-padding-0" action="/subsidyawardsearch" method="POST">
 
-            <input class="govuk-input govuk-!-width-three-quarters" id="search_award_text" name="search_award_text"
+            <input class="govuk-input govuk-!-width-three-quarters" id="search-text" name="search_award_text"
               aria-label="User input text box for Searching Subsidy Award" type="text" <% if(ssn.Award_search_text) {%>
               value="<%= ssn.Award_search_text%>" <% } %> />
-            <button class="govuk-button" data-module="govuk-button">
+            <button class="govuk-button" data-module="govuk-button" id="search-button">
               Search
             </button>
           </form>
@@ -285,11 +278,11 @@
         <div class="govuk-grid-column-one-third govuk-padding-0">
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
-              aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
-              <% if(ssn.awards_status  == "") { %>
-              <option value="" selected>Show all (<%=totalSubsidyAward%>)</option>
+              aria-label="Drop down list that shows subsidy award by status" id="filter-select" onchange="this.form.submit()">
+              <% if(ssn.awards_status  == "Show all") { %>
+              <option value="Show all" selected>Show all (<%=totalSubsidyAward%>)</option>
               <% } else { %>
-              <option value="">Show all(<%=totalSubsidyAward%>)</option>
+              <option value="Show all">Show all(<%=totalSubsidyAward%>)</option>
               <% }  %>
               <% if(ssn.awards_status  == "Awaiting Approval") { %>
               <option value="Awaiting Approval" selected>Awaiting Approval (<%=totalAwaitingAward%>) </option>
@@ -320,9 +313,7 @@
 
         <div class="govuk-grid-column-two-thirds">
 
-          <a class="govuk-button" href="/addsubsidyaward" data-module="govuk-button">
-            Add a new subsidy award
-          </a>
+          <a class="govuk-button" href="/addsubsidyaward" data-module="govuk-button">Add a new subsidy award</a>
 
           <a class="govuk-button" href="/bulkuploadsubsidy" data-module="govuk-button">
             Add multiple subsidy awards
@@ -335,30 +326,30 @@
             style="display: inline;  margin: 0;">
             <!-- <form class="govuk-grid-column-one-third" action="/awardspageperroute" method="GET"> -->
             <% if(ssn.frontend_totalRecordsPerPage  == 10) { %>
-            <a aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
+            <a id="results-per-page-10" aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
               href="/awardspageperroute/?sort=10">10</a>
             <% } else { %>
-            <a aria-label="10 records per page " class="round btn-page" href="/awardspageperroute/?sort=10">10</a>
+            <a id="results-per-page-10" aria-label="10 records per page " class="round btn-page" href="/awardspageperroute/?sort=10">10</a>
             <% }  %>
             <% if(ssn.frontend_totalRecordsPerPage  == 20) { %>
-            <a aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
+            <a id="results-per-page-20" aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
               href="/awardspageperroute/?sort=20">20</a>
             <% } else { %>
-            <a aria-label="20 records per page " class="round btn-page" href="/awardspageperroute/?sort=20">20</a>
+            <a id="results-per-page-20" aria-label="20 records per page " class="round btn-page" href="/awardspageperroute/?sort=20">20</a>
             <% }  %>
 
             <% if(ssn.frontend_totalRecordsPerPage  == 50) { %>
-            <a aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
+            <a id="results-per-page-50" aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
               href="/awardspageperroute/?sort=50">50</a>
             <% } else { %>
-            <a aria-label="50 records per page " class="round btn-page" href="/awardspageperroute/?sort=50">50</a>
+            <a id="results-per-page-50" aria-label="50 records per page " class="round btn-page" href="/awardspageperroute/?sort=50">50</a>
             <% }  %>
 
             <% if(ssn.frontend_totalRecordsPerPage  == 100) { %>
-            <a aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
+            <a id="results-per-page-100" aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
               href="/awardspageperroute/?sort=100">100</a>
             <% } else { %>
-            <a aria-label="100 records per page " class="round btn-page" href="/awardspageperroute/?sort=100">100</a>
+            <a id="results-per-page-100" aria-label="100 records per page " class="round btn-page" href="/awardspageperroute/?sort=100">100</a>
             <% }  %>
           </div>
         </div>
@@ -367,7 +358,7 @@
 
       <!-- <form action="/collectcheckbox" method="GET" novalidate=""> -->
       <section class="govuk-table-responsive">
-        <table class="govuk-table" id="datatable">
+        <table class="govuk-table" id="searchresult-table">
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
               <th scope="col" class="govuk-table__header app-custom-class">
@@ -462,14 +453,12 @@
           </thead>
 
 
-          <tbody class="govuk-table__body">
+          <tbody id="searchresult-table-body" class="govuk-table__body" >
             <% searchawards.awards.forEach(function(item) { %>
             <tr>
               <td class="govuk-table__cell">
                 <a href="/subsidyawardfetch/?award=<%= item.awardNumber %>"><%= item.awardNumber %></a>
               </td>
-
-
               <td class="govuk-table__cell">
                 <%= item.subsidyMeasureTitle %>
               </td>
@@ -512,7 +501,7 @@
             <% if (pageCount > 1) { %>
 
             <% if (current_page_active != 1) { %>
-            <a href="/awardspageroute/?page=1" id="paginationlink" class="first round">
+            <a href="/awardspageroute/?page=1" id="paginationlink_first_page" class="first round">
               <svg version="1.1" width="19px" height="30px" aria-label="go to subsidy awards first page">
                 <defs>
                   <mask fill="white" id="clip2">

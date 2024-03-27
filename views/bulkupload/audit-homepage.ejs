@@ -101,11 +101,11 @@
           <form action="/auditsearchbytextroute" method="post">
             <!-- <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text" type="text">
              -->
-            <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="search_text" type="text"
+            <input class="govuk-input govuk-!-width-three-quarters" id="search-text" name="search_text" type="text"
               aria-describedby="subsidy_search_text" <% if(ssn.audit_search_by_text) {%>
               value="<%= ssn.audit_search_by_text %>" <% } %> />
 
-            <button class="govuk-button" data-module="govuk-button">
+            <button class="govuk-button" data-module="govuk-button" id="search-button">
               Search
             </button>
           </form>
@@ -208,8 +208,8 @@
                           Day
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Day_Start" name="Audit_Granting_Date_Day_Start" type="text" 
-                          min="0" max="31" inputmode="numeric" placeholder="DD" 
+                          id="Audit_Granting_Date_Day_Start" name="Audit_Granting_Date_Day_Start" type="text"
+                          min="0" max="31" inputmode="numeric" placeholder="DD"
                           maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" onblur="formatDateToTwoDigits(this)"
                           <% if(ssn.Audit_Granting_Date_Day_Start_Global) {%>
                           value="<%= ssn.Audit_Granting_Date_Day_Start_Global%>" <% } %> />
@@ -319,7 +319,7 @@
                         <% } %>
                       </div>
                     </div>
-                    <button class="govuk-button" data-module="govuk-button">
+                    <button class="govuk-button" data-module="govuk-button" id="date-search-button">
                       Search
                     </button>
 
@@ -344,8 +344,8 @@
                           Day
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Day_End" name="Audit_Granting_Date_Day_End" type="text" 
-                          min="0" max="31" inputmode="numeric" placeholder="DD" 
+                          id="Audit_Granting_Date_Day_End" name="Audit_Granting_Date_Day_End" type="text"
+                          min="0" max="31" inputmode="numeric" placeholder="DD"
                           maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" onblur="formatDateToTwoDigits(this)"
                           <% if(ssn.Audit_Granting_Date_Day_End_Global) {%>
                           value="<%= ssn.Audit_Granting_Date_Day_End_Global%>" <% } %> />
@@ -357,7 +357,7 @@
                           Month
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                          id="Audit_Granting_Date_Month_End" name="Audit_Granting_Date_Month_End" type="text" 
+                          id="Audit_Granting_Date_Month_End" name="Audit_Granting_Date_Month_End" type="text"
                           min="0" max="12" inputmode="numeric" placeholder="MM"
                           maxlength="2" pattern="^(0?[1-9]|1[012])$" onblur="formatDateToTwoDigits(this)"
                           <% if(ssn.Audit_Granting_Date_Month_End_Global) {%>
@@ -371,14 +371,14 @@
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-4"
                           id="Audit_Granting_Date_Year_End" name="Audit_Granting_Date_Year_End" type="text"
-                          inputmode="numeric" placeholder="YYYY" maxlength="4" pattern="^[12][0-9]{3}$"   
+                          inputmode="numeric" placeholder="YYYY" maxlength="4" pattern="^[12][0-9]{3}$"
                           <% if(ssn.Audit_Granting_Date_Year_End_Global) {%>
                           value="<%= ssn.Audit_Granting_Date_Year_End_Global %>" <% } %> />
                       </div>
                     </div>
                     <div style="margin: 0%;display: inline-flex;
                       align-items: center;">
-                      <button class="govuk-button" data-module="govuk-button">
+                      <button class="govuk-button" data-module="govuk-button" id="date-search-button">
                         Search
                       </button>
                     </div>
@@ -398,7 +398,7 @@
 
         <!-- <div class="govuk-grid-column-one-third">
 
-               
+
               <div>
                 <button class="govuk-button" data-module="govuk-button">
                   Search
@@ -416,31 +416,31 @@
             style="display: inline;  margin: 0;">
             <!-- <form class="govuk-grid-column-one-third" action="/auditrecordsperpageroute" method="GET"> -->
             <% if( ssn.frontend_totalRecordsPerPage  == 10) { %>
-            <a aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
+            <a id="results-per-page-10" aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
               href="/auditrecordsperpageroute/?sort=10">10</a>
 
             <% } else { %>
-            <a aria-label="10 records per page " class="round btn-page" href="/auditrecordsperpageroute/?sort=10">10</a>
+            <a id="results-per-page-10" aria-label="10 records per page " class="round btn-page" href="/auditrecordsperpageroute/?sort=10">10</a>
             <% }  %>
             <% if( ssn.frontend_totalRecordsPerPage  == 20) { %>
-            <a aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
+            <a id="results-per-page-20" aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
               href="/auditrecordsperpageroute/?sort=20">20</a>
             <% } else { %>
-            <a aria-label="20 records per page " class="round btn-page" href="/auditrecordsperpageroute/?sort=20">20</a>
+            <a id="results-per-page-20" aria-label="20 records per page " class="round btn-page" href="/auditrecordsperpageroute/?sort=20">20</a>
             <% }  %>
 
             <% if( ssn.frontend_totalRecordsPerPage  == 50) { %>
-            <a aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
+            <a id="results-per-page-50" aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
               href="/auditrecordsperpageroute/?sort=50">50</a>
             <% } else { %>
-            <a aria-label="50 records per page " class="round btn-page" href="/auditrecordsperpageroute/?sort=50">50</a>
+            <a id="results-per-page-50" aria-label="50 records per page " class="round btn-page" href="/auditrecordsperpageroute/?sort=50">50</a>
             <% }  %>
 
             <% if( ssn.frontend_totalRecordsPerPage  == 100) { %>
-            <a aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
+            <a id="results-per-page-100" aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
               href="/auditrecordsperpageroute/?sort=100">100</a>
             <% } else { %>
-            <a aria-label="100 records per page " class="round btn-page"
+            <a id="results-per-page-100" aria-label="100 records per page " class="round btn-page"
               href="/auditrecordsperpageroute/?sort=100">100</a>
             <% }  %>
           </div>
@@ -454,7 +454,7 @@
 
           <!-- <form action="/homepage" method="POST"> -->
           <section class="govuk-table-responsive govuk-grid-column-full">
-            <table class="govuk-table">
+            <table class="govuk-table" id="searchresult-table">
               <caption class="govuk-table__caption">
                 <h1 class="govuk-fieldset__heading"></h1>
               </caption>
@@ -529,7 +529,7 @@
                 </tr>
               </thead>
 
-              <tbody class="govuk-table__body">
+              <tbody id="searchresult-table-body" class="govuk-table__body">
                 <% searchAudits.auditLogs.forEach(function(item) { %>
                 <tr>
 
@@ -580,13 +580,13 @@
 
               <% } %>
 
-              <div class="govuk-grid-column-two-thirds last govuk-padding-0 govuk-display-flex" style="text-align: right;   
+              <div class="govuk-grid-column-two-thirds last govuk-padding-0 govuk-display-flex" style="text-align: right;
         align-items: center;
         justify-content: flex-end;">
                 <% if (pageCount > 1) { %>
 
                 <% if (current_page_active != 1) { %>
-                <a href="/auditpageroute/?page=1" id="paginationlink" class="first round">
+                <a href="/auditpageroute/?page=1" id="paginationlink_first_page" class="first round">
                   <!-- <img id="govuk-left-arrow"
                   src="/assets/images/govuk-left-arrow.jpg"> -->
                   <svg version="1.1" width="19px" height="30px">
@@ -621,8 +621,8 @@
                 <% } %>
 
                 <% if (current_page_active != pageCount) { %>
-                <a href="/auditpageroute/?page=<%= next_page %>" id="paginationlink" class="next round">Next Page</a>
-                <a href="/auditpageroute/?page=<%= pageCount %>" id="paginationlink" class="last round">
+                <a href="/auditpageroute/?page=<%= next_page %>" id="paginationlink_next_page" class="next round">Next Page</a>
+                <a href="/auditpageroute/?page=<%= pageCount %>" id="paginationlink_last_page" class="last round">
                   <!-- <img
                   id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg"> -->
                   <svg version="1.1" width="19px" height="30px" class="left-arrow">
