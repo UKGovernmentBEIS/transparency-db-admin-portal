@@ -59,8 +59,7 @@ router.get("/", async (req, res) => {
     ssn.frontend_totalRecordsPerPage = perPage;
     try {
       const data = {
-        searchText: scnumber,
-        id: "",
+        scNumber: scnumber,
         pageNumber: currentPage,
         status: "",
         totalRecordsPerPage: ssn.frontend_totalRecordsPerPage,
