@@ -280,7 +280,7 @@ router.post("/", async (req, res) => {
 
       if (Subsidy_Instrument == "") {
         ssn.Subsidy_Instrument_Error = true;
-        ssn.SubsidyErrors[Additem] = "You must select a subsidy type.";
+        ssn.SubsidyErrors[Additem] = "You must select a subsidy form.";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Instrument";
         Additem = Additem + 1;
       }
@@ -288,7 +288,7 @@ router.post("/", async (req, res) => {
       if (Subsidy_Instrument == "Other" && Subsidy_Instrument_Other == "") {
         ssn.Subsidy_Instrument_Other_Error = true;
         ssn.SubsidyErrors[Additem] =
-          "You must enter the details of the subsidy type";
+          "You must enter the details of the subsidy form";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Instrument_Other";
         Additem = Additem + 1;
       }
@@ -300,7 +300,7 @@ router.post("/", async (req, res) => {
         ssn.Subsidy_Instrument_Other_255_Error = true;
         ssn.Subsidy_Instrument_Other_Error = false;
         ssn.SubsidyErrors[Additem] =
-          "The subsidy type must be less than 255 characters. ";
+          "The subsidy form must be less than 255 characters. ";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Instrument_Other";
         Additem = Additem + 1;
       }
