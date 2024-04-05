@@ -6,9 +6,9 @@
   <%- include('../partials/headercss.ejs') %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
-  <!-- 
+  <!--
   <script>
-  
+
   </script> -->
   <link href="/assets/stylesheet/govuk-transparencyDb.css" rel="stylesheet" type="text/css" />
 </head>
@@ -43,23 +43,24 @@
       <%- include('../partials/navigationbar.ejs') %>
 
       <div class="govuk-beis-heading">
-        <h1 class="govuk-heading-l">Dashboard</h1>
+        <h1 class="govuk-heading-l" id="dashboard">Dashboard</h1>
         <!--  -->
         <h2 class="govuk-heading-xl"><%= ssn.dashboard_user_name %></h2>
         <!-- </legend> -->
       </div>
       <!--  -->
-      <h3 class="govuk-heading-l">Public authorities</h3>
+      <h3 class="govuk-heading-l" >Public authorities</h3>
       <!-- </legend> -->
-      <div class="govuk-grid-row">
+      <div class="govuk-grid-row" id="public-authorities-dashboard-card">
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
             <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
               <%= dashboardawards.grantingAuthorityUserActionCount.totalGrantingAuthority %>
             </p>
-            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24"> <a href="/mygrantingauthority"
-                class="govuk-description-text">Total public authorities</a></p>
-          </div>
+            <a href="/mygrantingauthority" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+              Total public authorities
+            </a>
+        </div>
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group">
           <div class="govuk-background">
@@ -67,8 +68,9 @@
             <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
               <%= dashboardawards.grantingAuthorityUserActionCount.totalActiveGA %>
             </p>
-            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24"><a
-                href="/mygrantingauthority?status=Active" class="govuk-description-text">Active</a></p>
+            <a href="/mygrantingauthority?status=Active" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+              Active
+            </a>
           </div>
         </div>
         <div class="govuk-grid-column-one-third govuk-form-group">
@@ -77,8 +79,9 @@
             <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
               <%= dashboardawards.grantingAuthorityUserActionCount.totalDeactiveGA %>
             </p>
-            <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24"><a
-                href="/mygrantingauthority?status=Inactive" class="govuk-description-text">Inactive</a></p>
+            <a href="/mygrantingauthority?status=Inactive" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                Inactive
+            </a>
           </div>
         </div>
 
@@ -92,7 +95,7 @@
         </a>
       </div>
 
-      <div class="govuk-border-top">
+      <div class="govuk-border-top" id="users-dashboard-card">
 
         <h3 class="govuk-heading-l">Users</h3>
         <div class="govuk-grid-row">
@@ -103,8 +106,9 @@
               <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                 <%= gaTotalCount_Global %>
               </p>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 "><a href="/userselect"
-                  class="govuk-description-text">Total active users </a></p>
+              <a id="users-page-link" href="/userselect" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                 Total active users
+              </a>
             </div>
           </div>
 
@@ -151,7 +155,7 @@
         </div>
 
       </div>
-      <div class="govuk-border-top">
+      <div class="govuk-border-top" id="subsidy-schemes-dashboard-card">
         <h3 class="govuk-heading-l">Subsidy schemes</h3>
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-half govuk-form-group">
@@ -159,8 +163,9 @@
               <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalSubsidyScheme %>
               </p>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 ">
-                <a href="/mysubsidymeasures" class="govuk-description-text">Total subsidy schemes</a></p>
+              <a href="/mysubsidymeasures" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                  Total subsidy schemes
+              </a>
             </div>
           </div>
 
@@ -169,8 +174,9 @@
               <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalActiveScheme %>
               </p>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 ">
-                <a href="/mysubsidymeasures?sort=Active" class="govuk-description-text">Active</a></p>
+              <a href="/mysubsidymeasures?sort=Active" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                  Active
+              </a>
             </div>
           </div>
           <div class="govuk-grid-column-one-half govuk-form-group">
@@ -178,8 +184,9 @@
               <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalInactiveScheme %>
               </p>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24">
-                <a href="/mysubsidymeasures?sort=Inactive" class="govuk-description-text">Inactive</a></p>
+              <a href="/mysubsidymeasures?sort=Inactive" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                  Inactive
+              </a>
             </div>
           </div>
           <div class="govuk-grid-column-one-half govuk-form-group">
@@ -187,8 +194,9 @@
               <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                 <%= dashboardawards.subsidyMeasureUserActionCount.totalDeletedScheme %>
               </p>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24">
-                <a href="/mysubsidymeasures?sort=Deleted" class="govuk-description-text">Deleted</a></p>
+              <a href="/mysubsidymeasures?sort=Deleted" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                  Deleted
+              </a>
             </div>
           </div>
         </div>
@@ -203,7 +211,7 @@
         </div>
 
       </div>
-      <div class="govuk-border-top">
+      <div class="govuk-border-top" id="subsidy-awards-dashboard-card">
 
         <h3 class="govuk-heading-l">Subsidy awards</h3>
         <div class="govuk-grid-row">
@@ -214,8 +222,9 @@
               <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                 <%= dashboardawards.awardUserActionCount.totalSubsidyAward %>
               </p>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24"><a href="/mysubsidyawards"
-                  class="govuk-description-text">Total subsidy awards </a></p>
+              <a href="/mysubsidyawards" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                Total subsidy awards
+              </a>
             </div>
           </div>
           <div class="govuk-grid-column-one-half govuk-form-group">
@@ -225,10 +234,9 @@
               <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                 <%= dashboardawards.awardUserActionCount.totalAwaitingAward %>
               </p>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 ">
-                <a href="/mysubsidyawards?sort=Awaiting Approval" class="govuk-description-text">Awaiting
-                  approval</a>
-              </p>
+              <a href="/mysubsidyawards?sort=Awaiting Approval" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                Awaiting approval
+              </a>
             </div>
           </div>
           <div class="govuk-grid-column-one-third govuk-form-group">
@@ -238,9 +246,9 @@
               <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                 <%= dashboardawards.awardUserActionCount.totalPublishedAward %>
               </p>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24">
-                <a href="/mysubsidyawards?sort=Published" class="govuk-description-text">Published</a>
-              </p>
+              <a href="/mysubsidyawards?sort=Published" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                Published
+              </a>
             </div>
           </div>
           <div class="govuk-grid-column-one-third govuk-form-group">
@@ -250,8 +258,9 @@
               <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                 <%= dashboardawards.awardUserActionCount.totalRejectedAward %>
               </p>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24">
-                <a href="/mysubsidyawards?sort=Rejected" class="govuk-description-text">Rejected</a></p>
+              <a href="/mysubsidyawards?sort=Rejected" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                Rejected
+              </a>
             </div>
           </div>
           <div class="govuk-grid-column-one-third govuk-form-group">
@@ -261,8 +270,9 @@
               <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                 <%= dashboardawards.awardUserActionCount.totalDeleteAward %>
               </p>
-              <p class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24">
-                <a href="/mysubsidyawards?sort=Deleted" class="govuk-description-text">Deleted</a></p>
+              <a href="/mysubsidyawards?sort=Deleted" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
+                Deleted
+              </a>
             </div>
           </div>
 
@@ -278,7 +288,7 @@
 
       </div>
 
-      <div class="govuk-border-top">
+      <div class="govuk-border-top" id="audit-log-dashboard-card">
 
         <h3 class="govuk-heading-l">Audit log</h3>
 

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - MFA Award <%= Award_status %> page</title>
+    <title>GOV.UK - MFA Award <%=Award_status%> page</title>
     <%- include('../partials/headercss.ejs') %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
@@ -54,7 +54,7 @@
                 <a href="/mfaaward?id=<%=awardnumber%>" class="govuk-back-link"> Back</a>
             </p>
             <!-- bread crumbs ends here -->
-            <div class="govuk-grid-row">
+            <div class="govuk-grid-row" id="regression-search-area">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
                     <h1 class="govuk-heading-xl">Add comments</h1>
                     <form action="/mfaawardreasonsubmit" method="POST">
