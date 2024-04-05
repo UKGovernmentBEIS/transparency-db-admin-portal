@@ -831,19 +831,19 @@
             <% if( ssn.Subsidy_Instrument_Error && !isAddSubsidyPrimarycall ) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <label class="govuk-label" for="Subsidy_Instrument">
-                Subsidy type
+                Subsidy form
               </label>
 
               <span class="govuk-error-message" id="Subsidy_Instrument_Error">
-                <span class="govuk-visually-hidden">Error:</span> You must select a subsidy type.
+                <span class="govuk-visually-hidden">Error:</span> You must select a subsidy form.
               </span>
 
               <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument"
                 onchange="changeSubsidyType(event)">
                 <% if( ssn.Subsidy_Instrument_Global == '' ) { %>
-                <option value="" selected>Select subsidy type (8)</option>
+                <option value="" selected>Select subsidy form (8)</option>
                 <% } else { %>
-                <option value="">Select subsidy type (8)</option>
+                <option value="">Select subsidy form (8)</option>
                 <% } %>
                 <% if( ssn.Subsidy_Instrument_Global == 'Direct Grant' ) { %>
                 <option value="Direct Grant" selected>Direct Grant</option>
@@ -898,14 +898,14 @@
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="Subsidy_Instrument">
-                Subsidy type
+                Subsidy form
               </label>
               <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument"
                 onchange="changeSubsidyType(event)">
                 <% if( ssn.Subsidy_Instrument_Global == '' ) { %>
-                <option value="" selected>Select subsidy type (8)</option>
+                <option value="" selected>Select subsidy form (8)</option>
                 <% } else { %>
-                <option value="">Select subsidy type (8)</option>
+                <option value="">Select subsidy form (8)</option>
                 <% } %>
                 <% if( ssn.Subsidy_Instrument_Global == 'Direct Grant' ) { %>
                 <option value="Direct Grant" selected>Direct Grant</option>
@@ -973,11 +973,11 @@
             <% if( ssn.Subsidy_Instrument_Other_Error ){ %>
             <div id="other_type" class="govuk-form-group govuk-form-group--error" style="display: none;">
               <label class="govuk-label" for="Subsidy_Instrument_Other">
-                Other type
+                Other form
               </label>
 
               <span class="govuk-error-message" id="Subsidy_Instrument_Other_Error">
-                <span class="govuk-visually-hidden">Error:</span>You must enter the details of the subsidy type.
+                <span class="govuk-visually-hidden">Error:</span>You must enter the details of the subsidy form.
               </span>
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Instrument_Other"
@@ -988,11 +988,11 @@
             <% } else if(ssn.Subsidy_Instrument_Other_255_Error) {%>
             <div id="other_type" class="govuk-form-group govuk-form-group--error" style="display: none;">
               <label class="govuk-label" for="Subsidy_Instrument_Other">
-                Other type
+                Other form
               </label>
 
               <span class="govuk-error-message" id="Subsidy_Instrument_Other_Error">
-                <span class="govuk-visually-hidden">Error:</span> The subsidy type must be less than 255 characters
+                <span class="govuk-visually-hidden">Error:</span> The subsidy form must be less than 255 characters
               </span>
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Instrument_Other"
@@ -1004,7 +1004,7 @@
 
             <div id="other_type" class="govuk-form-group" style="display: none;">
               <label class="govuk-label" for="Subsidy_Instrument_Other">
-                Other type
+                Other form
               </label>
 
               <input class="govuk-input govuk-input--width-20" id="Subsidy_Instrument_Other"
