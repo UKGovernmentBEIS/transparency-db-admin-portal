@@ -43,8 +43,6 @@ router.get("/", async (req, res) => {
           totalPages = 1;
         currentPage = Math.max(1,Math.min(pageParse, totalPages));
       }
-      if(currentPage != pageParse)
-        currentURI = utils.setURIParameter("page", currentPage);
     }
     prevPage = Math.max(1,currentPage-1);
     perPage = ssn.frontend_totalRecordsPerPage;
@@ -78,7 +76,7 @@ router.get("/", async (req, res) => {
         Maximum_Amount_Under_Scheme = ssn.searchmeasuredetails.maximumAmountUnderScheme
         console.log(`Status: ${response.status}`);
         console.log("Body: ", response.data);
-
+        
         totalSearchResults = response.data.awardSearchResults.totalSearchResults;
         totalPages = response.data.awardSearchResults.totalPages;
         hasAwards = totalSearchResults > 0;
@@ -88,7 +86,6 @@ router.get("/", async (req, res) => {
         endRecord = Math.min((currentPage * ssn.frontend_totalRecordsPerPage), totalSearchResults);
 
         searchawards = response.data.awardSearchResults.responseList;
-        totalPages = Math.ceil(totalSearchResults / ssn.frontend_totalRecordsPerPage);
         nextPage = Math.min(totalPages, currentPage + 1);
         pagingStart = Math.max(1, currentPage - 5);
         pagingEnd = Math.min(totalPages, currentPage + 5);
