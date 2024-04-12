@@ -311,24 +311,24 @@
                                         <% if(typeof Environment_variable !== "undefined") { %>
                                             <% if(Environment_variable !== "env=prod") { %>
                                                 <% var role = item.roleName.split("_"); if(role[1] == 'GrantingAuthorityAdministrators') { %>
-                                                Public Authority Administrators
+                                                Public Authority Administrator
                                                 <% } else if(role[1] == 'GrantingAuthorityEncoders') {%>
-                                                Public Authority Encoders
+                                                Public Authority Encoder
                                                 <% } else if(role[1] == 'BEISAdministrators') {%>
-                                                BEIS Administrators
+                                                BEIS Administrator
                                                 <% } else  {%>
-                                                Public Authority Approvers
+                                                Public Authority Approver
                                                 <% } %>
                                             <% } %>
                                         <% } else { %>
                                             <%  if(item.roleName == 'GrantingAuthorityAdministrators') { %>
-                                            Public Authority Administrators
+                                            Public Authority Administrator
                                             <% } else if(item.roleName == 'GrantingAuthorityEncoders') {%>
-                                            Public Authority Encoders
+                                            Public Authority Encoder
                                             <% } else if(item.roleName == 'BEISAdministrators') {%>
-                                            BEIS Administrators
+                                            BEIS Administrator
                                             <% } else  {%>
-                                            Public Authority Approvers
+                                            Public Authority Approver
                                             <% } %>
                                         <% } %>
 
