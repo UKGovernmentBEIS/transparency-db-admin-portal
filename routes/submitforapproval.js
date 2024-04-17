@@ -121,7 +121,9 @@ router.post("/", async (req, res) => {
       spendingSector: ssn.Spending_Sector_Global.trim(),
       subsidyObjectiveOther: ssn.Subsidy_Objective_Other_Global.trim(),
       subsidyInstrumentOther: ssn.Subsidy_Instrument_Other_Global.trim(),
-      adminProgramNumber: ssn.Admin_Program_Number_Global.trim()
+      adminProgramNumber: ssn.Admin_Program_Number_Global.trim(),
+      authorityURL: ssn.Authority_URL_Global.trim(),
+      authorityURLDescription: ssn.Authority_URL_Description_Global.trim(),
     };
 
     if (isCallfromEditAward) {
@@ -150,6 +152,8 @@ router.post("/", async (req, res) => {
         subsidyObjectiveOther: ssn.Subsidy_Objective_Other_Global.trim(),
         subsidyInstrumentOther: ssn.Subsidy_Instrument_Other_Global.trim(),
         adminProgramNumber: ssn.Admin_Program_Number_Global.trim(),
+        authorityURL: ssn.Authority_URL_Global.trim(),
+        authorityURLDescription: ssn.Authority_URL_Description_Global.trim(),
         status: status,
       };
 

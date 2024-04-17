@@ -84,6 +84,8 @@ router.get("/", (req, res) => {
     ssn.Spending_Sector_Error = false;
     ssn.Standalone_Award_Error = false;
     ssn.Subsidy_Award_Description_Error = false;
+    ssn.Authority_URL_Error = false;
+    ssn.Authority_URL_Description_Error = false;
 
     isCallfromEditAward = false;
     var isAddSubsidyPrimarycall = true;
