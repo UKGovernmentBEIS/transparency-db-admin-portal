@@ -230,42 +230,6 @@
                 </div>
               </fieldset>
             </div>
-            <div id="authority-url-and-description-container" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>>
-              <div class="<%- ssn.Authority_URL_Error ? 'govuk-form-group--error' : 'govuk-form-group' %>" id="authority-url-container">
-                <label class="govuk-label" for="authority-url">
-                  Public authority policy URL
-                </label>
-                <details class="govuk-details" data-module="govuk-details">
-                  <summary class="govuk-details__summary">
-                      <span class="govuk-details__summary-text">
-                          What is Public authority policy URL?
-                      </span>
-                  </summary>
-                  <div class="govuk-details__text">
-                      This is the web address for the policy that
-                      this standalone subsidy award is related to.
-                  </div>
-              </details>
-                <input id="authority_url" class="govuk-input" name="Authority_URL" maxlength="500" value="<%=ssn.Authority_URL_Global%>"/>
-              </div>
-              <div class="<%- ssn.Authority_URL_Description_Error ? 'govuk-form-group--error' : 'govuk-form-group' %>" id="authority-url-description-container">
-                <label class="govuk-label" for="authority-url-description">
-                  Public authority policy page description
-                </label>
-                <details class="govuk-details" data-module="govuk-details">
-                  <summary class="govuk-details__summary">
-                      <span class="govuk-details__summary-text">
-                          What should a Public authority policy page description be?
-                      </span>
-                  </summary>
-                  <div class="govuk-details__text">
-                      A short summary of the policy page that you provided the URL for.
-                      For example, Water Purity award policy page.
-                  </div>
-              </details>
-                <input id="authority-url-description" class="govuk-input" value="<%=ssn.Authority_URL_Description_Global%>" name="Authority_URL_Description" maxlength="255"/>
-              </div>
-            </div>
             <div id="related-subsidy-scheme" <% if(ssn.Standalone_Award_Global == 'Yes'){ %> hidden <% } %>>
               <h1 class="govuk-heading-l">Related subsidy scheme</h1>
 
@@ -620,7 +584,42 @@
                 <textarea class="govuk-textarea govuk-js-character-count" id="Subsidy_Award_Description" name="Subsidy_Award_Description" rows="5" aria-describedby="Subsidy_Award_Description-info"><%= ssn.Subsidy_Award_Description_Global %></textarea>
               </div>
             </div>
-
+            <div id="authority-url-and-description-container" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>>
+              <div class="<%- ssn.Authority_URL_Error ? 'govuk-form-group--error' : 'govuk-form-group' %>" id="authority-url-container">
+                <label class="govuk-label" for="authority-url">
+                  Public authority policy URL
+                </label>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text">
+                          What is a Public authority policy URL?
+                      </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                      This is the web address for the policy that
+                      this standalone subsidy award is related to.
+                  </div>
+              </details>
+                <input id="authority_url" class="govuk-input" name="Authority_URL" maxlength="500" value="<%=ssn.Authority_URL_Global%>"/>
+              </div>
+              <div class="<%- ssn.Authority_URL_Description_Error ? 'govuk-form-group--error' : 'govuk-form-group' %>" id="authority-url-description-container">
+                <label class="govuk-label" for="authority-url-description">
+                  Public authority policy page description
+                </label>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text">
+                          What should a Public authority policy page description be?
+                      </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                      A short summary of the policy page that you provided the URL for.
+                      For example, Water Purity award policy page.
+                  </div>
+              </details>
+                <input id="authority-url-description" class="govuk-input" value="<%=ssn.Authority_URL_Description_Global%>" name="Authority_URL_Description" maxlength="255"/>
+              </div>
+            </div>
             <!-- *************************************  -->
             <!-- Get the  Subsidy Objective  from user  -->
             <!-- *************************************  -->
