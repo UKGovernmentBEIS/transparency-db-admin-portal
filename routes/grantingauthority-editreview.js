@@ -25,8 +25,8 @@ router.get("/", async (req, res) => {
 
     try {
       const data = {
-        grantingAuthorityName: "",
-        grantingAuthorityID: req.query.gaid,
+        searchText: "",
+        id: req.query.gaid,
         pageNumber: 1,
         status: "",
         totalRecordsPerPage: 10,
@@ -38,9 +38,9 @@ router.get("/", async (req, res) => {
         ssn.UserPrincileObjectGlobal
       );
       ssn.gaId = req.query.gaid;
-      ssn.gaName = apidata.data.gaList[0].grantingAuthorityName;
+      ssn.gaName = apidata.data.responseList[0].grantingAuthorityName;
       ssn.grantingAuthorityPublish_Global = false;
-      ssn.GAstatus = apidata.data.gaList[0].status;
+      ssn.GAstatus = apidata.data.responseList[0].status;
       if (ssn.dashboard_roles == "BEIS Administrator") {
         res.render("bulkupload/grantingauthority-editreview", {
           // ssn.grantingAuthorityID_Global,
