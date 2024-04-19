@@ -97,6 +97,8 @@ router.post("/", async (req, res) => {
       buttonvalue,
       Standalone_Award,
       Admin_Program_Number,
+      Authority_URL,
+      Authority_URL_Description,
       mylink,
     } = req.body;
 
@@ -104,7 +106,11 @@ router.post("/", async (req, res) => {
     if(ssn.Standalone_Award_Global == 'Yes'){
       ssn.Subsidy_Control_Number_Name_Global = "";
       ssn.Admin_Program_Number_Global = "";
+      ssn.Authority_URL_Global = Authority_URL;
+      ssn.Authority_URL_Description_Global = Authority_URL_Description;
     }else{
+      ssn.Authority_URL_Global = "";
+      ssn.Authority_URL_Description_Global = "";
       ssn.Admin_Program_Number_Global = Admin_Program_Number;
       ssn.Subsidy_Control_Number_Name_Global = Subsidy_Control_Number_Name;
     }
@@ -136,7 +142,7 @@ router.post("/", async (req, res) => {
     } else {
       ssn.Subsidy_Full_Amount_Range_Global = "n/a";
     }
-
+    
     ssn.National_ID_Type_Global = National_ID_Type;
     ssn.National_ID_Number_Global = National_ID_Number;
     ssn.Beneficiary_Name_Global = Beneficiary_Name;
