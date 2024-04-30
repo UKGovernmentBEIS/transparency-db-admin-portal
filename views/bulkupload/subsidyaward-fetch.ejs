@@ -234,34 +234,30 @@
                         </dd>
                     </div>
                     
-                    <%if(fetchawarddetails.standaloneAward === "Yes") { %>
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">
                             Public authority policy URL
                         </dt>
                         <dd class="govuk-summary-list__value">
                         <% if(typeof fetchawarddetails.authorityURL != 'undefined') { %>
-                            <% if(fetchawarddetails.authorityURL.includes('https://')) { %>
                                 <a aria-label="Weblink to public authority" target="_blank"
-                                  href="<%= fetchawarddetails.authorityURL %>">
-                                  <%= fetchawarddetails.authorityURL %>
-                              <% } else { %>
-                                <a aria-label="Weblink to public authority" target="_blank"
-                                  href="https://<%= fetchawarddetails.authorityURL %>">
-                                  <%= fetchawarddetails.authorityURL %>
+                                  href="<%= (fetchawarddetails.authorityURL.includes('https://')) ?  fetchawarddetails.authorityURL 
+                                  : 'https://'+fetchawarddetails.authorityURL %>">
+                                  <%=fetchawarddetails.authorityURL %>
                                 </a>
-                        <% }} %>
+                        <% } else { %>
+                            <a aria-label="Public authority policy URL not applicable" >NA</a>
                         </dd>
+                        <%  } %>
                     </div>
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">
                             Public authority policy page summary
                         </dt>
                         <dd class="govuk-summary-list__value">
-                            <%= fetchawarddetails.authorityURLDescription  %>
+                            <%= (fetchawarddetails.standaloneAward === 'No') ? 'NA' : fetchawarddetails.authorityURLDescription %>
                         </dd>
                     </div>
-                    <% } %>
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">
                             Award date
