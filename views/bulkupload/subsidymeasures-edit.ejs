@@ -264,45 +264,112 @@
                                     value="<%= ssn.Subsidy_Measure_Title_Global %>">
                             </div>
 
-                                <% if( ssn.Subsidy_Scheme_Description_Error ||ssn.Subsidy_Scheme_Description_Length_Error){ %>
-                                    <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
-                                        <% } else { %>
-                                        <div class="govuk-form-group govuk-grid-column-two-thirds">
-                                            <% }  %>
-                                            <label class="govuk-label" for="address-line-1">
-                                                Subsidy scheme description
-                                            </label>
-                                            <details class="govuk-details" data-module="govuk-details">
-                                                <summary class="govuk-details__summary">
-                                                    <span class="govuk-details__summary-text">
-                                                        What is a Subsidy scheme description?
-                                                    </span>
-                                                </summary>
-                                                <div class="govuk-details__text">
-                                                    Please provide a summary description of the subsidy scheme which includes information such as location, enterprise eligibility, the basis for calculating subsidies under the scheme and any other information required by the Subsidy Control (Subsidy Database Information Requirements) Regulations 2022 which is not already included in the database entry.
-                                                </div>
-                                            </details>
-
-                                            <!-- <div class="govuk-hint">A short summary of the policy page that you provided
-                                                the URL for. For example, Water Purity Scheme policy page.
-                                            </div> -->
-                                            <% if( ssn.Subsidy_Scheme_Description_Error ){ %>
-                                            <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
-                                                <span class="govuk-visually-hidden">Error:</span> Enter a valid
-                                                granting authority policy page description
-                                            </span>
-
-                                            <% } else if( ssn.Subsidy_Scheme_Description_Length_Error ){ %>
-                                            <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
-                                                <span class="govuk-visually-hidden">Error:</span> Subsidy scheme description cannot be greater than 10000 characters
-                                            </span>
-                                            <% }  %>
-                                            <!-- <input class="govuk-input" id="Subsidy_Scheme_Description"
-                                                name="Subsidy_Scheme_Description" type="text"
-                                                value="<%= ssn.Subsidy_Scheme_Description_Global%>"> -->
-
-                                                <textarea class="govuk-textarea govuk-js-character-count" id="Subsidy_Scheme_Description" name="Subsidy_Scheme_Description" rows="5" aria-describedby="Subsidy_Scheme_Description-info"><%= ssn.Subsidy_Scheme_Description_Global %></textarea>
+                            <div
+                            class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.Subsidy_Scheme_Interest_Error ){ %> govuk-form-group--error <% } %>">
+                            <label class="govuk-label" for="address-line-1">
+                                <br />
+                                Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
+                            </label>
+                            <details class="govuk-details" data-module="govuk-details">
+                                <summary class="govuk-details__summary">
+                                    <span class="govuk-details__summary-text">
+                                        What are Subsidies or Schemes of Interest (SSoI) and Subsidies or Schemes of Particular Interest
+                                        (SSoPI)?
+                                    </span>
+                                </summary>
+                                <div class="govuk-details__text">
+                                    Subsidy or Scheme of Interest (SSoI) and Subsidy Scheme of Particular Interest (SSoPI) are two distinct
+                                    categories of
+                                    subsidy or subsidy scheme that have been identified as having greater potential to lead to negative effects
+                                    on
+                                    competition or investment in the UK, or on international trade or investment. <a
+                                        href="https://assets.publishing.service.gov.uk/media/658025b295bf65000d719140/uk_subsidy_control_regime_statutory_guidance.pdf">[See
+                                        Chapter 10 of the Subsidy Control Statutory Guidance]</a>
+                                </div>
+                            </details>
+                        
+                            <% if( ssn.Subsidy_Scheme_Interest_Error ){ %>
+                                <span class="govuk-error-message" id="Subsidy_Scheme_Interest_Error">
+                                    <span class="govuk-visually-hidden">Error:</span> You must select if this scheme is a Scheme of Interest
+                                    (SSoI), Schemes of Particular Interest (SSoPI) or neither
+                                </span>
+                                <% } %>
+                        
+                                    <div class="govuk-radios" id="Subsidy_Scheme_Interest">
+                                        <div class="govuk-radios__item">
+                        
+                                            <input class="govuk-radios__input" name="Subsidy_Scheme_Interest" 
+                                                id="Scheme_Of_Interest" type="radio" value="Subsidies or Schemes of Interest (SSoI)" <% if(ssn.Subsidy_Scheme_Interest_Global=='Subsidies or Schemes of Interest (SSoI)'
+                                                ) { %> checked <% } %> >
+                                                <label class="govuk-label govuk-radios__label" for="Subsidy_Of_Interest">
+                                                    Subsidies or Schemes of Interest (SSoI)
+                                                </label>
                                         </div>
+                                        <div class="govuk-radios__item">
+                        
+                                            <input class="govuk-radios__input" name="Subsidy_Scheme_Interest"
+                                                id="Subsidy_Of_Particular_Interest" type="radio"
+                                                value="Subsidies or Schemes of Particular Interest (SSoPI)" <% if(ssn.Subsidy_Scheme_Interest_Global=='Subsidies or Schemes of Particular Interest (SSoPI)' )
+                                                { %> checked <% } %> >
+                                                <label class="govuk-label govuk-radios__label" for="Subsidy_Of_Particular_Interest">
+                                                    Subsidies or Schemes of Particular Interest (SSoPI)
+                                                </label>
+                                        </div>
+                                        <div class="govuk-radios__item">
+                        
+                                            <input class="govuk-radios__input" name="Subsidy_Scheme_Interest"
+                                                id="Neither_Interest_Or_Particular_Interest " type="radio" 
+                                                value="Neither" <% if(ssn.Subsidy_Scheme_Interest_Global=='Neither' )
+                                                { %> checked <% } %> >
+                                                <label class="govuk-label govuk-radios__label" for="Subsidy_Of_Particular_Interest">
+                                                Neither
+                                                </label>
+                                        </div>
+                                    </div>
+                            </div>
+
+
+                            <% if( ssn.Subsidy_Scheme_Description_Error ||ssn.Subsidy_Scheme_Description_Length_Error){ %>
+                                <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                                    <% } else { %>
+                                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                        <% }  %>
+                                        <label class="govuk-label" for="address-line-1">
+                                            <br />
+                                            Subsidy scheme description
+                                        </label>
+                                        <details class="govuk-details" data-module="govuk-details">
+                                            <summary class="govuk-details__summary">
+                                                <span class="govuk-details__summary-text">
+                                                    What is a Subsidy scheme description?
+                                                </span>
+                                            </summary>
+                                            <div class="govuk-details__text">
+                                                Please provide a summary description of the subsidy scheme which includes information such as location, enterprise eligibility, the basis for calculating subsidies under the scheme and any other information required by the Subsidy Control (Subsidy Database Information Requirements) Regulations 2022 which is not already included in the database entry.
+                                            </div>
+                                        </details>
+
+                                        <!-- <div class="govuk-hint">A short summary of the policy page that you provided
+                                            the URL for. For example, Water Purity Scheme policy page.
+                                        </div> -->
+                                        <% if( ssn.Subsidy_Scheme_Description_Error ){ %>
+                                        <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
+                                            <span class="govuk-visually-hidden">Error:</span> Enter a valid
+                                            granting authority policy page description
+                                        </span>
+
+                                        <% } else if( ssn.Subsidy_Scheme_Description_Length_Error ){ %>
+                                        <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
+                                            <span class="govuk-visually-hidden">Error:</span> Subsidy scheme description cannot be greater than 10000 characters
+                                        </span>
+                                        <% }  %>
+                                        <!-- <input class="govuk-input" id="Subsidy_Scheme_Description"
+                                            name="Subsidy_Scheme_Description" type="text"
+                                            value="<%= ssn.Subsidy_Scheme_Description_Global%>"> -->
+
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="Subsidy_Scheme_Description" name="Subsidy_Scheme_Description" rows="5" aria-describedby="Subsidy_Scheme_Description-info"><%= ssn.Subsidy_Scheme_Description_Global %></textarea>
+                                </div>
+                                        
 
                             <!-- legal basis details -->
 
