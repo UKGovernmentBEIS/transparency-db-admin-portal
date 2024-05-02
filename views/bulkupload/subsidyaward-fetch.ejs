@@ -156,7 +156,7 @@
                             Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
                         </dt>
                         <dd class="govuk-summary-list__value">
-                            <%= fetchawarddetails.subsidyAwardInterest %>
+                            <%= (fetchawarddetails.standaloneAward === 'No') ? 'NA' : fetchawarddetails.subsidyAwardInterest %>
                         </dd>
                     </div>
                     <div class="govuk-summary-list__row">
