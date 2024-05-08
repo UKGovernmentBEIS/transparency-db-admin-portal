@@ -83,6 +83,20 @@ router.get("/", async (req, res) => {
         ssn.spendingsector_water_supply_Global = false;
         ssn.spendingsector_wholesale_and_retail_trade_Global = false;
 
+        ssn.Purpose_Array_Global = measureapidata.data.purposeArray
+
+        ssn.purpose_culture_or_heritage_Global = false;
+        ssn.purpose_employment_Global = false;
+        ssn.purpose_energy_efficiency_Global = false;
+        ssn.purpose_environmental_protection_Global = false;
+        ssn.purpose_infrastructure_Global = false;
+        ssn.purpose_regional_development_Global = false;
+        ssn.purpose_rescue_subsidy_Global = false;
+        ssn.purpose_research_and_development_Global = false;
+        ssn.purpose_sme_support_Global = false;
+        ssn.purpose_training_Global = false;
+        ssn.purpose_other_Global = false;
+
 
         var spendingSectorArray = new Array();
         if(ssn.searchmeasuredetails.spendingSectors != null){
@@ -156,6 +170,47 @@ router.get("/", async (req, res) => {
           }
         });
 
+        var purposeArray = new Array();
+        if(ssn.searchmeasuredetails.purpose != null){
+          purposeArray = JSON.parse(ssn.searchmeasuredetails.purpose);
+        }
+        purposeArray.forEach(function(purpose){
+          switch(purpose) {
+            case "Culture or Heritage":
+              ssn.purpose_culture_or_heritage_Global = true;
+              break;
+            case "Employment":
+              ssn.purpose_employment_Global = true;
+              break;
+            case "Energy efficiency":
+              ssn.purpose_energy_efficiency_Global = true;
+              break;
+            case "Environmental protection":
+              ssn.purpose_environmental_protection_Global = true;
+              break;
+            case "Infrastructure":
+              ssn.purpose_infrastructure_Global = true;
+              break;
+            case "Regional development":
+              ssn.purpose_regional_devlopment_Global = true;
+              break;
+            case "Rescue subsidy":
+              ssn.purpose_rescue_subsidy_Global = true;
+              break;
+            case "Research and development":
+              ssn.purpose_research_and_development_Global = true;
+              break;
+            case "SME (Small/Medium-sized enterprise) support":
+              ssn.purpose_sme_support_Global = true;
+              break;
+            case "Training":
+              ssn.purpose_training_Global = true;
+              break;
+            case "Other":
+              ssn.purpose_other_Global = true;
+              break;
+          }
+        });
 
         var month = [
           "January",
