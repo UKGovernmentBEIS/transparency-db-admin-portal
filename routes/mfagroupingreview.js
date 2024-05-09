@@ -98,7 +98,7 @@ router.post("/", async (req, res) => {
             ssn.UserPrincileObjectGlobal
           );
 
-          var gaList = apidata.data.gaList;
+          var gaList = apidata.data.responseList;
 
           var gaFiltered = gaList.filter(item => item.grantingAuthorityName.toLowerCase() === ssn.Granting_Authority_Name_Global.trim().toLowerCase())
 
