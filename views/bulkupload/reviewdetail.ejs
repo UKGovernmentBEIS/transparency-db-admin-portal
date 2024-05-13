@@ -207,7 +207,7 @@
             Public authority policy URL
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= ssn.Authority_URL_Global %>
+            <%= (ssn.Standalone_Award_Global === 'No') ? 'NA' : ssn.Authority_URL_Global %>
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -215,7 +215,7 @@
             Public authority policy page summary
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= ssn.Authority_URL_Description_Global %>
+            <%= (ssn.Standalone_Award_Global === 'No') ? 'NA' : ssn.Authority_URL_Description_Global %>
           </dd>
         </div>
 
