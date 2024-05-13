@@ -48,6 +48,8 @@ router.get("/", (req, res) => {
     ssn.Subsidy_Full_Amount_Range_Upper_Global = "";
     ssn.Standalone_Award_Global = "";
     ssn.Admin_Program_Number_Global = "";
+    ssn.Authority_URL_Global = "";
+    ssn.Authority_URL_Description_Global = "";
 
     ssn.Subsidy_Control_Number_Error = false;
     ssn.Subsidy_Measure_Title_Error = false;
