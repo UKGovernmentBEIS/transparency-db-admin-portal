@@ -51,6 +51,8 @@ router.post("/", (req, res) => {
     ssn.scheme_issued_end_day_lesser_Error = false;
     ssn.Subsidy_Scheme_Description_Error = false;
     ssn.Subsidy_Scheme_Description_Length_Error = false;
+    ssn.Specific_Policy_Objective_Error = false;
+    ssn.Specific_Policy_Objective_Length_Error=false;
     ssn.spendingsector_Error = false;
     ssn.Maximum_Amount_Under_Scheme_255_Error = false;
 
@@ -59,6 +61,7 @@ router.post("/", (req, res) => {
       Subsidy_Adhoc,
       Granting_Authority_Name,
       Subsidy_Measure_Title,
+      Specific_Policy_Objective,
       Subsidy_Scheme_Description,
 
       Legal_Basis,
@@ -144,6 +147,7 @@ router.post("/", (req, res) => {
     ssn.Has_No_End_Date_Output_Global = "NA";
 
     ssn.Subsidy_Scheme_Description_Global = Subsidy_Scheme_Description;
+    ssn.Specific_Policy_Objective_Global = Specific_Policy_Objective;
 
     if (ssn.Subsidy_Adhoc_Global == "Yes") {
       ssn.Scheme_End_Day_Global = scheme_issued_start_day;
@@ -286,6 +290,8 @@ router.post("/", (req, res) => {
     console.log(
       "ssn.Subsidy_Measure_Title_Global :" + ssn.Subsidy_Measure_Title_Global
     );
+    console.log("ssn.Specific_Policy_Objective_Global  :" + ssn.Specific_Policy_Objective_Global);
+
     console.log("ssn.Subsidy_Scheme_Description_Global  :" + ssn.Subsidy_Scheme_Description_Global);
     console.log("ssn.Legal_Basis_Global  :" + ssn.Legal_Basis_Global);
     console.log(
@@ -368,6 +374,16 @@ router.post("/", (req, res) => {
           "Subsidy scheme name cannot be greater than 255 characters"
         );
         ssn.SubsidyFocus.push("#Subsidy_Measure_Title");
+      }
+
+      if (Specific_Policy_Objective == ""){
+        ssn.Specific_Policy_Objective_Error = true;
+        ssn.SubsidyErrors.push("Enter the Specific Policy Objective");
+        ssn.SubsidyFocus.push("#Specific_Policy_Objective");
+      } else if (Specific_Policy_Objective.length > 1500){
+        ssn.Specific_Policy_Objective_Length_Error = true;
+        ssn.SubsidyErrors.push(" The specific policy objective must be 1500 characters or less.");
+        ssn.SubsidyFocus.push("#Specific_Policy_Objective");
       }
 
       if (Subsidy_Scheme_Description == ""){
@@ -758,6 +774,8 @@ router.post("/", (req, res) => {
         ssn.Granting_Authority_Policy_255_Error ||
         ssn.Subsidy_Scheme_Description_Error ||
         ssn.Subsidy_Scheme_Description_Length_Error ||
+        ssn.Specific_Policy_Objective_Error ||
+        ssn.Specific_Policy_Objective_Length_Error ||
         ssn.spendingsector_Error ||
         ssn.Maximum_Amount_Under_Scheme_255_Error
       ) {

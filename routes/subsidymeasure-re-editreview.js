@@ -46,6 +46,8 @@ router.post("/", (req, res) => {
     ssn.scheme_issued_end_day_lesser_Error = false;
     ssn.Subsidy_Scheme_Description_Error = false;
     ssn.Subsidy_Scheme_Description_Length_Error = false;
+    ssn.Specific_Policy_Objective_Error = false;
+    ssn.Specific_Policy_objective_Length_Error = false;
     ssn.spendingsector_Error = false;
     ssn.Maximum_Amount_Under_Scheme_255_Error = false;
 
@@ -92,7 +94,8 @@ router.post("/", (req, res) => {
       spendingsector_wholesale_and_retail_trade,
       myCheck,
       has_no_end_date,
-      Subsidy_Scheme_Description
+      Subsidy_Scheme_Description,
+      Specific_Policy_Objective,
     } = req.body;
 
     ssn.Subsidy_Adhoc_Global = Subsidy_Adhoc;
@@ -103,6 +106,7 @@ router.post("/", (req, res) => {
     ssn.Granting_Authority_URL_Global = Granting_Authority_URL;
     ssn.Granting_Authority_Policy_Global = Granting_Authority_Policy;
     ssn.Subsidy_Scheme_Description_Global = Subsidy_Scheme_Description;
+    ssn.Specific_Policy_Objective_Global = Specific_Policy_Objective;
     const formatter = new Intl.NumberFormat("en-GB");
 
     if (Budget.includes(",")) Budget = Budget.split(",").join("");
@@ -317,6 +321,18 @@ router.post("/", (req, res) => {
         ssn.SubsidyErrors.push("The subsidy scheme description must be 10000 characters or less.");
         ssn.SubsidyFocus.push("#Subsidy_Scheme_Description");
       }
+
+      
+      if (Specific_Policy_Objective == ""){
+        ssn.Specific_Policy_Objective_Error = true;
+        ssn.SubsidyErrors.push("Enter the Specific policy objective");
+        ssn.SubsidyFocus.push("#Specific_Policy_Objective");
+      } else if (Specific_Policy_Objective.length > 1500){
+        ssn.Specific_Policy_Objective_Length_Error = true;
+        ssn.SubsidyErrors.push("The specific policy objective must be 1500 characters or less.");
+        ssn.SubsidyFocus.push("#Specific_Policy_Objective");
+      }
+
 
       if (!Legal_Basis) {
         ssn.Legal_Basis_Error = true;
@@ -687,6 +703,8 @@ router.post("/", (req, res) => {
         ssn.Granting_Authority_Policy_255_Error ||
         ssn.Subsidy_Scheme_Description_Error ||
         ssn.Subsidy_Scheme_Description_Length_Error ||
+        ssn.Specific_Policy_Objective_Error ||
+        ssn.Specific_Policy_Objective_Length_Error ||
         ssn.spendingsector_Error ||
         ssn.Maximum_Amount_Under_Scheme_255_Error
       ) {

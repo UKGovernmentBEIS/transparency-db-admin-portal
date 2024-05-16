@@ -67,6 +67,9 @@ router.post("/", async (req, res) => {
     ssn.Spending_Sector_Error = false;
     ssn.Subsidy_Award_Description_Error = false;
     ssn.Subsidy_Award_Description_Error_Length = false;
+    ssn.Specific_Policy_Objective_Error = false;
+    ssn.Specific_Policy_Objective_Error_Length = false;
+
     console.log(
       "ssn.Subsidy_Full_Amount_Range_Global ",
       ssn.Subsidy_Full_Amount_Range_Global
@@ -104,6 +107,7 @@ router.post("/", async (req, res) => {
     const addAwardRequest = {
       standaloneAward: ssn.Standalone_Award_Global.trim(),
       subsidyAwardDescription: ssn.Subsidy_Award_Description_Global.trim(),
+      specificPolicyObjective: ssn.Specific_Policy_Objective_Global.trim(),
       subsidyControlTitle: ssn.Subsidy_Measure_Title_Global.trim(),
       subsidyControlNumber: ssn.Subsidy_Control_Number_Global.trim(),
       nationalIdType: ssn.National_ID_Type_Global.trim(),
@@ -134,6 +138,7 @@ router.post("/", async (req, res) => {
         awardNumber: ssn.Edit_Award_Number_global,
         standaloneAward: ssn.Standalone_Award_Global.trim(),
         subsidyAwardDescription: ssn.Subsidy_Award_Description_Global.trim(),
+        specificPolicyObjective: ssn.Specific_Policy_Objective_Global.trim(),
         subsidyControlTitle: ssn.Subsidy_Measure_Title_Global.trim(),
         subsidyControlNumber: ssn.Subsidy_Control_Number_Global.trim(),
         nationalIdType: ssn.National_ID_Type_Global.trim(),

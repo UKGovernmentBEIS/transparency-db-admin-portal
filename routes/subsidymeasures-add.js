@@ -34,6 +34,8 @@ router.get("/", (req, res) => {
     ssn.Legal_Basis_Error = false;
     ssn.Subsidy_Scheme_Description_Error = false;
     ssn.Subsidy_Scheme_Description_Length_Error = false;
+    ssn.Specific_Policy_Objective_Error = false;
+    ssn.Specific_Policy_Objective_Length_Error = false;
     ssn.Granting_Authority_Name_Inactive_Error = false;
     ssn.Granting_Authority_URL_Error = false;
     ssn.Granting_Authority_Policy_Error = false;
@@ -48,6 +50,7 @@ router.get("/", (req, res) => {
     ssn.Subsidy_Measure_Title_Global = "";
     ssn.Subsidy_Adhoc_Global = "";
     ssn.Subsidy_Scheme_Description_Global = "";
+    ssn.Specific_Policy_Objective_Global= "";
 
     ssn.SubsidyArraySize = 0;
 

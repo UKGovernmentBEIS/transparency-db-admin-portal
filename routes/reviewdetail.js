@@ -64,6 +64,10 @@ router.post("/", async (req, res) => {
     ssn.Standalone_Award_Error = false;
     ssn.Subsidy_Award_Description_Error = false;
     ssn.Subsidy_Award_Description_Error_Length = false;
+    ssn.Specific_Policy_Objective_Error = false;
+    ssn.Specific_Policy_Objective_Error_Length = false;
+
+
     ssn.Admin_Program_Error = false;
     ssn.Admin_Program_255_Error = false;
     ssn.Admin_Program_Exist_Error = false;
@@ -75,6 +79,7 @@ router.post("/", async (req, res) => {
       Subsidy_Control_Number_Name,
       // Subsidy_Adhoc,
       Subsidy_Award_Description,
+      Specific_Policy_Objective,
       Subsidy_Objective,
       Subsidy_Objective_Other,
       Subsidy_Instrument,
@@ -116,6 +121,7 @@ router.post("/", async (req, res) => {
     }
 
     ssn.Subsidy_Award_Description_Global = Subsidy_Award_Description;
+    ssn.Specific_Policy_Objective_Global = Specific_Policy_Objective;
     ssn.Subsidy_Objective_Global = Subsidy_Objective;
     ssn.Subsidy_Objective_Other_Global = Subsidy_Objective_Other;
     ssn.Subsidy_Instrument_Global = Subsidy_Instrument;
@@ -254,6 +260,23 @@ router.post("/", async (req, res) => {
           ssn.SubsidyFocus[Additem] = "#subsidy-award-description-container";
           Additem = Additem + 1;
       }
+
+      if(Specific_Policy_Objective.length > 1500){
+        ssn.Specific_Policy_Objective_Error_Length = true;
+        ssn.SubsidyErrors[Additem] =
+          "The specific policy objective must be 1500 characters or less.";
+        ssn.SubsidyFocus[Additem] = "#specific-policy-objective-container";
+        Additem = Additem + 1;
+      }
+
+      if (!Specific_Policy_Objective) {
+        ssn.Specific_Policy_Objective_Error = true;
+        ssn.SubsidyErrors[Additem] =
+          " You must add a policy objective.";
+        ssn.SubsidyFocus[Additem] = "#specific-policy-objective-container";
+        Additem = Additem + 1;
+      }
+
 
       if (Subsidy_Objective == "") {
         ssn.Subsidy_Objective_Error = true;
@@ -539,7 +562,9 @@ router.post("/", async (req, res) => {
         ssn.Beneficiary_Name_255_Error ||
         ssn.Standalone_Award_Error ||
         ssn.Subsidy_Award_Description_Error ||
-        ssn.Subsidy_Award_Description_Error_Length
+        ssn.Subsidy_Award_Description_Error_Length || 
+        ssn.Specific_Policy_Objective_Error_Length ||
+        ssn.Specific_Policy_Objective_Error
       ) {
         res.render("bulkupload/addsubsidyaward", {
           ssn,
