@@ -300,32 +300,29 @@
                         
                                     <div class="govuk-radios" id="Subsidy_Scheme_Interest">
                                         <div class="govuk-radios__item">
-                        
-                                            <input class="govuk-radios__input" name="Subsidy_Scheme_Interest" 
-                                                id="Scheme_Of_Interest" type="radio" value="Subsidies or Schemes of Interest (SSoI)" <% if(ssn.Subsidy_Scheme_Interest_Global=='Subsidies or Schemes of Interest (SSoI)'
-                                                ) { %> checked <% } %> >
-                                                <label class="govuk-label govuk-radios__label" for="Subsidy_Of_Interest">
+                                            <input class="govuk-radios__input" name="Subsidy_Scheme_Interest" id="Scheme_Of_Interest" type="radio"
+                                                value="Subsidies or Schemes of Interest (SSoI)" <%
+                                                if(ssn.Subsidy_Scheme_Interest_Global=='Subsidies or Schemes of Interest (SSoI)' ) { %> checked <% } %> >
+                                                <label class="govuk-label govuk-radios__label" for="Scheme_Of_Interest">
                                                     Subsidies or Schemes of Interest (SSoI)
                                                 </label>
                                         </div>
+
                                         <div class="govuk-radios__item">
-                        
-                                            <input class="govuk-radios__input" name="Subsidy_Scheme_Interest"
-                                                id="Subsidy_Of_Particular_Interest" type="radio"
-                                                value="Subsidies or Schemes of Particular Interest (SSoPI)" <% if(ssn.Subsidy_Scheme_Interest_Global=='Subsidies or Schemes of Particular Interest (SSoPI)' )
-                                                { %> checked <% } %> >
-                                                <label class="govuk-label govuk-radios__label" for="Subsidy_Of_Particular_Interest">
+                                            <input class="govuk-radios__input" name="Subsidy_Scheme_Interest" id="Scheme_Of_Particular_Interest" type="radio"
+                                                value="Subsidies or Schemes of Particular Interest (SSoPI)" <%
+                                                if(ssn.Subsidy_Scheme_Interest_Global=='Subsidies or Schemes of Particular Interest (SSoPI)' ){ %> checked <% }
+                                                %> >
+                                                <label class="govuk-label govuk-radios__label" for="Scheme_Of_Particular_Interest">
                                                     Subsidies or Schemes of Particular Interest (SSoPI)
                                                 </label>
                                         </div>
                                         <div class="govuk-radios__item">
-                        
-                                            <input class="govuk-radios__input" name="Subsidy_Scheme_Interest"
-                                                id="Neither_Interest_Or_Particular_Interest " type="radio" 
-                                                value="Neither" <% if(ssn.Subsidy_Scheme_Interest_Global=='Neither' )
-                                                { %> checked <% } %> >
-                                                <label class="govuk-label govuk-radios__label" for="Subsidy_Of_Particular_Interest">
-                                                Neither
+                                            <input class="govuk-radios__input" name="Subsidy_Scheme_Interest" id="Neither_Interest_Or_Particular_Interest" type="radio" 
+                                                value="Neither" <% 
+                                                if(ssn.Subsidy_Scheme_Interest_Global=='Neither' ) { %> checked <% } %> >
+                                                <label class="govuk-label govuk-radios__label" for="Neither_Interest_Or_Particular_Interest">
+                                                    Neither
                                                 </label>
                                         </div>
                                     </div>

@@ -102,6 +102,10 @@ router.post("/", async (req, res) => {
       ssn.Subsidy_Control_Number_Global = "";
     }
 
+    if(ssn.Standalone_Award_Global === "No"){
+      ssn.Subsidy_Award_Interest_Global = "";
+    }
+
     const addAwardRequest = {
       standaloneAward: ssn.Standalone_Award_Global.trim(),
       subsidyAwardDescription: ssn.Subsidy_Award_Description_Global.trim(),
