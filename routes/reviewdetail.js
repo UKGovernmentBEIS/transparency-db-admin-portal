@@ -251,7 +251,7 @@ router.post("/", async (req, res) => {
         }
       }
 
-      if (Subsidy_Award_Interest == "") {
+      if (Standalone_Award.toLowerCase() != 'no' && !Subsidy_Award_Interest) {
         ssn.Subsidy_Award_Interest_Error = true;
         ssn.SubsidyErrors.push("You must select the if the award is of interest, particular interest or neither");
         ssn.SubsidyFocus.push("#Subsidy_Award_Interest");
