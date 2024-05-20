@@ -1252,7 +1252,7 @@
                   <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
                     name="Subsidy_Element_Full_Amount" type="number" inputmode="numeric" min="0" step="0.01" aria-describedby="Subsidy_Element_Full_Amount"
                     <% if(ssn.Subsidy_Element_Full_Amount_Global) {%>
-                    value="<%= ssn.Subsidy_Element_Full_Amount_Global%>" <% } %> />
+                    value="<%= ssn.Subsidy_Element_Full_Amount_Global.replaceAll(',', '')%>" <% } %> />
                 </div>
 
               </div>
@@ -1271,7 +1271,7 @@
                   <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
                     name="Subsidy_Element_Full_Amount" type="number" inputmode="numeric" min="0" step="0.01" aria-describedby="Subsidy_Element_Full_Amount"
                     <% if(ssn.Subsidy_Element_Full_Amount_Global) {%>
-                    value="<%= ssn.Subsidy_Element_Full_Amount_Global%>" <% } %> />
+                    value="<%= ssn.Subsidy_Element_Full_Amount_Global.replaceAll(',', '')%>" <% } %> />
 
                 </div>
 
@@ -1288,7 +1288,7 @@
                   <input class="govuk-input govuk-input--width-20" id="Subsidy_Element_Full_Amount"
                     name="Subsidy_Element_Full_Amount" type="number" inputmode="numeric" min="0" step="0.01" aria-describedby="Subsidy_Element_Full_Amount"
                     <% if(ssn.Subsidy_Element_Full_Amount_Global) {%>
-                    value="<%= ssn.Subsidy_Element_Full_Amount_Global%>" <% } %> />
+                    value="<%= ssn.Subsidy_Element_Full_Amount_Global.replaceAll(',', '')%>" <% } %> />
 
                 </div>
 
