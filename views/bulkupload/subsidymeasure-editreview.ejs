@@ -7,26 +7,12 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
     <script>
-         // window.dataLayer = window.dataLayer || [];
-
-        // function gtag() {
-        //     dataLayer.push(arguments);
-        // }
-        // gtag('js', new Date());
-        // gtag('config', 'UA-145652997-21');
-    </script>
-    <script>
         const formatter = new Intl.NumberFormat("en-GB");
         getFormatedCurrency = (budget) => {
             if (budget.toString().includes(","))
                 budget = budget.split(",").join("");
             formatedCurrency = formatter.format(budget);
             document.getElementById("formatText").textContent = '£ ' + formatedCurrency;
-            // formatedCurrency = "$" + budget.replace(/\d(?=(\ d{3})+\. )/g, "$&,");
-            // formatedCurrency = formatter.format(parseInt(budget))
-            // formatedCurrency = budget.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            // alert(formatedCurrency);
-            //document.getElementById("formatText").textContent = '£ ' + formatedCurrency;
         }
     </script>
     <style>
@@ -77,9 +63,8 @@
             <!-- bread crumbs ends here -->
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
-                    <!-- <h1 class="govuk-heading-xl">Review subsidy scheme </h1> -->
                     <h1 class="govuk-heading-xl"><%= ssn.searchmeasuredetails.subsidyMeasureTitle %></h1>
-                    <!-- *************************************
+            <!-- *************************************
               Review for subsidy details tab
               ************************************* -->
 
@@ -131,7 +116,7 @@
 
             </div>
             <section class="govuk-table-responsive">
-                <table class="govuk-table">
+                <table class="govuk-table" id="scheme-details-table">
                     <tbody class="govuk-table__body">
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Public Authority</th>
@@ -145,6 +130,11 @@
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme name</th>
                             <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.subsidyMeasureTitle %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme of interest or particular interest</th>
+                            <td
+                            class="govuk-table__cell render-newlines"><%= ssn.searchmeasuredetails.subsidySchemeInterest %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme description</th>
@@ -251,14 +241,22 @@
                     </tbody>
                 </table>
             </section>
-            <div style="border-top:1px solid #808080; padding-top:30px">
+
+            <% if(schemeVersions.length > 0) { %>
+                <div>
+                    <h2 class="govuk-heading-m">Previous versions of scheme</h2>
+                    <%- include('../partials/scheme-version-list-partial.ejs') %>
+                </div>
+            <% } %>
+
+            <div>
                 <div>
                     <h2 class="govuk-heading-m">Subsidy awards given under this subsidy scheme</h2>
                     <%- include('../partials/award-list-partial.ejs') %>
                 </div>
             </div>
+
             <div class="govuk-grid-row">
-                <!-- <div class="govuk-grid-column-two-thirds govuk-padding-0"> -->
                 <form action="/mysubsidymeasures" method="GET" novalidate>
                     <input type="hidden" name="answers-checked" value="true">
 
@@ -281,16 +279,7 @@
                             Delete
                         </a>
                     <% } %>
-                    <!-- <a href="/cancelreviewsubsidymeasures?scheme=<%= ssn.searchmeasuredetails.scNumber %>"
-                        class="govuk-link govuk-cancel-button-link ">
-                        Cancel
-                    </a> -->
                 </form>
-
-                <!-- <form action="" method="GET" class="govuk-grid-column-one-half"> -->
-
-                <!-- </form> -->
-                <!-- </div> -->
             </div>
         </main>
     </div>

@@ -45,6 +45,7 @@ router.get("/", (req, res) => {
     ssn.spendingsector_Error = false;
     ssn.Maximum_Amount_Under_Scheme_255_Error = false;
     ssn.purpose_Error = false;
+    ssn.Subsidy_Scheme_Interest_Error = false;
 
     ssn.Subsidy_Measure_Title_Global = "";
     ssn.Subsidy_Adhoc_Global = "";
@@ -92,6 +93,7 @@ router.get("/", (req, res) => {
     ssn.spendingsector_transportation_and_storage_Global = "";
     ssn.spendingsector_water_supply_Global = "";
     ssn.spendingsector_wholesale_and_retail_trade_Global = "";
+    ssn.Subsidy_Scheme_Interest_Global = "";
     formatedCurrency = "";
     ssn.Scheme_purpose_Json_Global = "";
     ssn.Purpose_Array_Global = new Array();

@@ -58,8 +58,9 @@ router.get("/", async (req, res) => {
         Scheme_End_Date = ssn.searchmeasuredetails.endDate;
         ssn.Has_No_End_Date = measureapidata.data.hasNoEndDate;
         ssn.Subsidy_Scheme_Description_Global = measureapidata.data.subsidySchemeDescription;
+        ssn.Spending_Sector_Array_Global = measureapidata.data.spendingSectorArray;
 
-        ssn.Spending_Sector_Array_Global = measureapidata.data.spendingSectorArray
+        ssn.Subsidy_Scheme_Interest_Global = measureapidata.data.subsidySchemeInterest;
 
         ssn.spendingsector_accommodation_Global = false;
         ssn.spendingsector_activities_of_extraterritorial_Global = false;
@@ -288,6 +289,7 @@ router.get("/", async (req, res) => {
         ssn.scheme_issued_confirmation_month_Error = false;
         ssn.scheme_issued_confirmation_year_Error = false;
         ssn.Maximum_Amount_Under_Scheme_255_Error = false;
+        ssn.Subsidy_Of_Particular_Interest_Error = false;
 
         if (ssn.dashboard_roles !== "Granting Authority Encoder") {
           res.render("bulkupload/subsidymeasures-edit", { formatedCurrency });
