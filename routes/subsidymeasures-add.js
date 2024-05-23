@@ -105,7 +105,6 @@ router.get("/", (req, res) => {
     ssn.purpose_regional_development_Global = "";
     ssn.purpose_rescue_subsidy_Global = "";
     ssn.purpose_research_and_development_Global = "";
-    ssn.purpose_sme_support_Global = "";
     ssn.purpose_training_Global = "";
     ssn.purpose_other_Global = "";
     isCallfromEditAward = false;

@@ -94,7 +94,6 @@ router.get("/", async (req, res) => {
         ssn.purpose_regional_development_Global = false;
         ssn.purpose_rescue_subsidy_Global = false;
         ssn.purpose_research_and_development_Global = false;
-        ssn.purpose_sme_support_Global = false;
         ssn.purpose_training_Global = false;
         ssn.purpose_other_Global = false;
 
@@ -195,14 +194,11 @@ router.get("/", async (req, res) => {
             case "Regional development":
               ssn.purpose_regional_devlopment_Global = true;
               break;
-            case "Rescue subsidy":
+            case "Rescue and restructuring subsidy":
               ssn.purpose_rescue_subsidy_Global = true;
               break;
             case "Research and development":
               ssn.purpose_research_and_development_Global = true;
-              break;
-            case "SME (Small/Medium-sized enterprise) support":
-              ssn.purpose_sme_support_Global = true;
               break;
             case "Training":
               ssn.purpose_training_Global = true;

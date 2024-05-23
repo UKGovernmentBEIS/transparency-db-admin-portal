@@ -104,7 +104,6 @@ router.post("/", (req, res) => {
       purpose_regional_development,
       purpose_rescue_subsidy,
       purpose_research_and_development,
-      purpose_sme_support,
       purpose_training,
       purpose_other,
     } = req.body;
@@ -317,11 +316,6 @@ router.post("/", (req, res) => {
      if(purpose_research_and_development){
        ssn.purpose_research_and_development_Global = purpose_research_and_development;
        purposeArray.push(purpose_research_and_development);
-     }
- 
-     if(purpose_sme_support){
-       ssn.purpose_sme_support_Global = purpose_sme_support;
-       purposeArray.push(purpose_sme_support);
      }
  
      if(purpose_training){

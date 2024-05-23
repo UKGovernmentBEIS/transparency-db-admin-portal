@@ -109,7 +109,6 @@ router.post("/", (req, res) => {
       purpose_regional_development,
       purpose_rescue_subsidy,
       purpose_research_and_development,
-      purpose_sme_support,
       purpose_training,
       purpose_other,
       Subsidy_Scheme_Interest
@@ -339,10 +338,6 @@ router.post("/", (req, res) => {
       purposeArray.push(purpose_research_and_development);
     }
 
-    if(purpose_sme_support){
-      ssn.purpose_sme_support_Global = purpose_sme_support;
-      purposeArray.push(purpose_sme_support);
-    }
 
     if(purpose_training){
       ssn.purpose_training_Global = purpose_training;
@@ -426,7 +421,6 @@ router.post("/", (req, res) => {
     console.log("ssn.purpose_regional_devlopment  :" + ssn.purpose_regional_devlopment_Global)
     console.log("ssn.purpose_rescue_subsidy  :" + ssn.purpose_rescue_subsidy_Global)
     console.log("ssn.purpose_research_and_development  :" + ssn.purpose_research_and_development_Global)
-    console.log("ssn.purpose_sme_support  :" + ssn.purpose_sme_support_Global)
     console.log("ssn.purpose_training  :" + ssn.purpose_training_Global)
     console.log("ssn.purpose_other  :" + ssn.purpose_other_Global)
     console.log("ssn.Subsidy_Scheme_Interest :" + ssn.Subsidy_Scheme_Interest_Global)

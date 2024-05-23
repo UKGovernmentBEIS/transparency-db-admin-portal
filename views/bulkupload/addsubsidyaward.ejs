@@ -700,9 +700,9 @@
               <select class="govuk-select" id="Subsidy_Objective" name="Subsidy_Objective"
                 onChange=changeSubsidyPurpose(event)>
                 <% if( ssn.Subsidy_Objective_Global == '' ){ %>
-                <option value="" selected>Select subsidy purpose (12)</option>
+                <option value="" selected>Select subsidy purpose (10)</option>
                 <% } else { %>
-                <option value="">Select subsidy purpose (12)</option>
+                <option value="">Select subsidy purpose (10)</option>
                 <% } %>
                 <% if( ssn.Subsidy_Objective_Global == 'Culture or Heritage' ){ %>
                 <option value="Culture or Heritage" selected>Culture or Heritage</option>
@@ -740,30 +740,16 @@
                 <option value="Regional development">Regional development</option>
                 <% } %>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Rescue subsidy' || ssn.Subsidy_Objective_Global == 'Rescue aid' ){ %>
-                <option value="Rescue subsidy" selected>Rescue subsidy</option>
+                <% if( ssn.Subsidy_Objective_Global == 'Rescue and restructuring subsidy' || ssn.Subsidy_Objective_Global == 'Rescue subsidy' || ssn.Subsidy_Objective_Global == 'Rescue aid' ){ %>
+                <option value="Rescue and restructuring subsidy" selected>Rescue and restructuring subsidy</option>
                 <% } else { %>
-                <option value="Rescue subsidy">Rescue subsidy</option>
+                <option value="Rescue and restructuring subsidy">Rescue and restructuring subsidy</option>
                 <% } %>
 
                 <% if( ssn.Subsidy_Objective_Global == 'Research and development' ){ %>
                 <option value="Research and development" selected>Research and development</option>
                 <% } else { %>
                 <option value="Research and development">Research and development</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Services of Public Economic Interest' ){ %>
-                <option value="Services of Public Economic Interest" selected>Services of Public Economic Interest</option>
-                <% } else { %>
-                <option value="Services of Public Economic Interest">Services of Public Economic Interest</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'SME (Small/Medium-sized enterprise) support' ){ %>
-                <option value="SME (Small/Medium-sized enterprise) support" selected>SME (Small/Medium-sized
-                  enterprise) support</option>
-                <% } else { %>
-                <option value="SME (Small/Medium-sized enterprise) support">SME (Small/Medium-sized enterprise)
-                  support</option>
                 <% } %>
 
                 <% if( ssn.Subsidy_Objective_Global == 'Training' ){ %>
@@ -790,9 +776,9 @@
               <select class="govuk-select" id="Subsidy_Objective" name="Subsidy_Objective"
                 onChange=changeSubsidyPurpose(event)>
                 <% if( ssn.Subsidy_Objective_Global == '' ){ %>
-                <option value="" selected>Select subsidy purpose (12)</option>
+                <option value="" selected>Select subsidy purpose (10)</option>
                 <% } else { %>
-                <option value="">Select subsidy purpose (12)</option>
+                <option value="">Select subsidy purpose (10)</option>
                 <% } %>
                 <% if( ssn.Subsidy_Objective_Global == 'Culture or Heritage' ){ %>
                 <option value="Culture or Heritage" selected>Culture or Heritage</option>
@@ -830,10 +816,10 @@
                 <option value="Regional development">Regional development</option>
                 <% } %>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Rescue subsidy' || ssn.Subsidy_Objective_Global == 'Rescue aid'){ %>
-                <option value="Rescue subsidy" selected>Rescue subsidy</option>
+                <% if( ssn.Subsidy_Objective_Global == 'Rescue and restructuring subsidy' || ssn.Subsidy_Objective_Global == 'Rescue subsidy' || ssn.Subsidy_Objective_Global == 'Rescue aid'){ %>
+                <option value="Rescue and restructuring subsidy" selected>Rescue and restructuring subsidy</option>
                 <% } else { %>
-                <option value="Rescue subsidy">Rescue subsidy</option>
+                <option value="Rescue and restructuring subsidy">Rescue and restructuring subsidy</option>
                 <% } %>
 
                 <% if( ssn.Subsidy_Objective_Global == 'Research and development' ){ %>
@@ -842,19 +828,6 @@
                 <option value="Research and development">Research and development</option>
                 <% } %>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Services of Public Economic Interest' ){ %>
-                <option value="Services of Public Economic Interest" selected>Services of Public Economic Interest</option>
-                <% } else { %>
-                <option value="Services of Public Economic Interest">Services of Public Economic Interest</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'SME (Small/Medium-sized enterprise) support' ){ %>
-                <option value="SME (Small/Medium-sized enterprise) support" selected>SME (Small/Medium-sized
-                  enterprise) support</option>
-                <% } else { %>
-                <option value="SME (Small/Medium-sized enterprise) support">SME (Small/Medium-sized enterprise)
-                  support</option>
-                <% } %>
 
                 <% if( ssn.Subsidy_Objective_Global == 'Training' ){ %>
                 <option value="Training" selected>Training</option>
