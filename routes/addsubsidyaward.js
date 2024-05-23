@@ -48,6 +48,7 @@ router.get("/", (req, res) => {
     ssn.Subsidy_Full_Amount_Range_Upper_Global = "";
     ssn.Standalone_Award_Global = "";
     ssn.Admin_Program_Number_Global = "";
+    ssn.Subsidy_Award_Interest_Global = "";
     ssn.Authority_URL_Global = "";
     ssn.Authority_URL_Description_Global = "";
 
@@ -88,6 +89,7 @@ router.get("/", (req, res) => {
     ssn.Subsidy_Award_Description_Error = false;
     ssn.Authority_URL_Error = false;
     ssn.Authority_URL_Description_Error = false;
+    ssn.Subsidy_Award_Interest_Error = false;
 
     isCallfromEditAward = false;
     var isAddSubsidyPrimarycall = true;

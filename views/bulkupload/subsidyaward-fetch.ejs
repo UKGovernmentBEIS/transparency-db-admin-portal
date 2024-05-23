@@ -153,9 +153,18 @@
                     </div>
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">
+                            Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= (fetchawarddetails.standaloneAward === 'No' || fetchawarddetails.subsidyAwardInterest === '') ? 'NA' : fetchawarddetails.subsidyAwardInterest %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
                             Award description
                         </dt>
                         <dd class="govuk-summary-list__value render-newlines"><%= fetchawarddetails.subsidyAwardDescription %></dd>
+                        
                     </div>
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">

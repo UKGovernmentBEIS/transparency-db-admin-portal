@@ -67,6 +67,7 @@ router.post("/", async (req, res) => {
     ssn.Spending_Sector_Error = false;
     ssn.Subsidy_Award_Description_Error = false;
     ssn.Subsidy_Award_Description_Error_Length = false;
+    ssn.Subsidy_Award_Interest_Error = false;
     console.log(
       "ssn.Subsidy_Full_Amount_Range_Global ",
       ssn.Subsidy_Full_Amount_Range_Global
@@ -101,6 +102,10 @@ router.post("/", async (req, res) => {
       ssn.Subsidy_Control_Number_Global = "";
     }
 
+    if(ssn.Standalone_Award_Global === "No"){
+      ssn.Subsidy_Award_Interest_Global = "";
+    }
+
     const addAwardRequest = {
       standaloneAward: ssn.Standalone_Award_Global.trim(),
       subsidyAwardDescription: ssn.Subsidy_Award_Description_Global.trim(),
@@ -124,6 +129,7 @@ router.post("/", async (req, res) => {
       adminProgramNumber: ssn.Admin_Program_Number_Global.trim(),
       authorityURL: ssn.Authority_URL_Global.trim(),
       authorityURLDescription: ssn.Authority_URL_Description_Global.trim(),
+      subsidyAwardInterest: ssn.Subsidy_Award_Interest_Global.trim()
     };
 
     if (isCallfromEditAward) {
@@ -154,6 +160,7 @@ router.post("/", async (req, res) => {
         adminProgramNumber: ssn.Admin_Program_Number_Global.trim(),
         authorityURL: ssn.Authority_URL_Global.trim(),
         authorityURLDescription: ssn.Authority_URL_Description_Global.trim(),
+        subsidyAwardInterest: ssn.Subsidy_Award_Interest_Global.trim(),
         status: status,
       };
 
@@ -248,6 +255,17 @@ router.post("/", async (req, res) => {
             ssn.SubsidyErrors[Additem] =
               add_award_response.validationErrorResult[i].message;
             ssn.SubsidyFocus[Additem] = "#Subsidy_Measure_Title";
+            Additem = Additem + 1;
+          }
+
+          if (
+            add_award_response.validationErrorResult[i].column ==
+            "#Subsidy_Award_Interest"
+          ) {
+            ssn.Subsidy_Award_Interest_Error = true;
+            ssn.SubsidyErrors[Additem] =
+              add_award_response.validationErrorResult[i].message;
+            ssn.SubsidyFocus[Additem] = "#Subsidy_Award_Interest";
             Additem = Additem + 1;
           }
 
