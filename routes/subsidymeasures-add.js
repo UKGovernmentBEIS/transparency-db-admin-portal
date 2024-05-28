@@ -46,6 +46,7 @@ router.get("/", (req, res) => {
     ssn.scheme_issued_end_day_lesser_Error = false;
     ssn.spendingsector_Error = false;
     ssn.Maximum_Amount_Under_Scheme_255_Error = false;
+    ssn.Subsidy_Scheme_Interest_Error = false;
 
     ssn.Subsidy_Measure_Title_Global = "";
     ssn.Subsidy_Adhoc_Global = "";
@@ -94,6 +95,7 @@ router.get("/", (req, res) => {
     ssn.spendingsector_transportation_and_storage_Global = "";
     ssn.spendingsector_water_supply_Global = "";
     ssn.spendingsector_wholesale_and_retail_trade_Global = "";
+    ssn.Subsidy_Scheme_Interest_Global = "";
     formatedCurrency = "";
     isCallfromEditAward = false;
     var isAddSubsidyPrimarycall = true;

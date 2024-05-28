@@ -50,6 +50,7 @@ router.post("/", (req, res) => {
     ssn.Specific_Policy_objective_Length_Error = false;
     ssn.spendingsector_Error = false;
     ssn.Maximum_Amount_Under_Scheme_255_Error = false;
+    ssn.Subsidy_Scheme_Interest_Error = false;
 
     var {
       Subsidy_Adhoc,
@@ -95,6 +96,7 @@ router.post("/", (req, res) => {
       myCheck,
       has_no_end_date,
       Subsidy_Scheme_Description,
+      Subsidy_Scheme_Interest,
       Specific_Policy_Objective,
     } = req.body;
 
@@ -122,6 +124,7 @@ router.post("/", (req, res) => {
     ssn.Scheme_Start_Year_Global = scheme_issued_start_year;
     ssn.Has_No_End_Date_Global = has_no_end_date;
     ssn.Has_No_End_Date_Output_Global = "NA";
+    ssn.Subsidy_Scheme_Interest_Global = Subsidy_Scheme_Interest;
 
     if (ssn.Subsidy_Adhoc_Global == "Yes") {
       ssn.Scheme_End_Day_Global = scheme_issued_start_day;
@@ -281,6 +284,12 @@ router.post("/", (req, res) => {
         );
         ssn.SubsidyFocus.push("#Subsidy_Measure_Title");
         // Additem = Additem + 1;
+      }
+
+      if (!Subsidy_Scheme_Interest) {
+        ssn.Subsidy_Scheme_Interest_Error = true;
+        ssn.SubsidyErrors.push("You must select the if the scheme is of interest, particular interest or neither");
+        ssn.SubsidyFocus.push("#Subsidy_Scheme_Interest");
       }
 
       if (Granting_Authority_URL != "" && Granting_Authority_URL.length > 255) {
@@ -706,7 +715,8 @@ router.post("/", (req, res) => {
         ssn.Specific_Policy_Objective_Error ||
         ssn.Specific_Policy_Objective_Length_Error ||
         ssn.spendingsector_Error ||
-        ssn.Maximum_Amount_Under_Scheme_255_Error
+        ssn.Maximum_Amount_Under_Scheme_255_Error ||
+        ssn.Subsidy_Scheme_Interest_Error
       ) {
         res.render("bulkupload/subsidymeasures-edit", {
           ssn,

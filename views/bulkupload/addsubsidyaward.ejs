@@ -15,6 +15,7 @@
         document.getElementById('related-subsidy-scheme').style.display = 'none';
         document.getElementById('related-admin-program').style.display = 'none';
         document.getElementById('authority-url-and-description-container').style.display = 'block';
+        document.getElementById('standalone-award-interest-container').style.display = 'block';
       }
       else
       {
@@ -94,10 +95,12 @@
         document.getElementById('related-subsidy-scheme').style.display = 'none';
         document.getElementById('related-admin-program').style.display = 'none';
         document.getElementById('authority-url-and-description-container').style.display = 'block';
+        document.getElementById('standalone-award-interest-container').style.display = 'block';
       }else{
         document.getElementById('related-subsidy-scheme').style.display = 'block';
         document.getElementById('related-admin-program').style.display = 'block';
         document.getElementById('authority-url-and-description-container').style.display = 'none';
+        document.getElementById('standalone-award-interest-container').style.display = 'none';
       }
 
     };
@@ -230,7 +233,8 @@
                 </div>
               </fieldset>
             </div>
-            <div id="related-subsidy-scheme" <% if(ssn.Standalone_Award_Global == 'Yes'){ %> hidden <% } %>>
+
+            <div id="related-subsidy-scheme" <% if(ssn.Standalone_Award_Global == 'Yes'){ %> hidden <% } %>> 
               <h1 class="govuk-heading-l">Related subsidy scheme</h1>
 
               <p class="govuk-body">Enter the details of the subsidy scheme that this award is related to.</p>
@@ -553,8 +557,68 @@
             </div>
           </div>
 
-
+          <div id="subsidy-award-details">
             <h1 class="govuk-heading-l">Subsidy award details</h1>
+          
+            <div id="standalone-award-interest-container" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>> 
+              <div class="govuk-form-group <% if( ssn.Subsidy_Award_Interest_Error ){ %> govuk-form-group--error <% } %>" id="SubsidyAwardInterestContainer">   
+                <label class="govuk-label" for="Subsidy_Award_Interest">
+                  Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
+                </label>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What are Subsidies or Schemes of Interest (SSoI) and Subsidies or Schemes of Particular Interest
+                      (SSoPI)?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    Subsidy or Scheme of Interest (SSoI) and Subsidy Scheme of Particular Interest (SSoPI) are two distinct
+                    categories of
+                    subsidy or subsidy scheme that have been identified as having greater potential to lead to negative effects
+                    on
+                    competition or investment in the UK, or on international trade or investment. <a
+                      href="https://assets.publishing.service.gov.uk/media/658025b295bf65000d719140/uk_subsidy_control_regime_statutory_guidance.pdf">[See
+                      Chapter 10 of the Subsidy Control Statutory Guidance]</a>
+                  </div>
+                </details>
+                <% if( ssn.Subsidy_Award_Interest_Error ){ %>
+                  <span class="govuk-error-message" id="Subsidy_Award_Interest_Error">
+                    <span class="govuk-visually-hidden">Error:</span> You must select if this scheme is a Scheme of Interest
+                    (SSoI), Schemes of Particular Interest (SSoPI) or neither
+                  </span>
+                  <% } %>
+          
+                    <div class="govuk-radios" id="Subsidy_Award_Interest">
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" name="Subsidy_Award_Interest" id="Subsidy_Of_Interest" 
+                          type="radio" value="Subsidies or Schemes of Interest (SSoI)" <%
+                          if(ssn.Subsidy_Award_Interest_Global=='Subsidies or Schemes of Interest (SSoI)' ) { %> checked <% } %> >
+                          <label class="govuk-label govuk-radios__label" for="Subsidy_Of_Interest">
+                            Subsidies or Schemes of Interest (SSoI)
+                          </label>
+                      </div>
+
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" name="Subsidy_Award_Interest" id="Subsidy_Of_Particular_Interest"
+                          type="radio" value="Subsidies or Schemes of Particular Interest (SSoPI)" <%
+                          if(ssn.Subsidy_Award_Interest_Global=='Subsidies or Schemes of Particular Interest (SSoPI)' ) { %> checked <% } %> >
+                          <label class="govuk-label govuk-radios__label" for="Subsidy_Of_Particular_Interest">
+                            Subsidies or Schemes of Particular Interest (SSoPI)
+                          </label>
+                      </div>
+
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" name="Subsidy_Award_Interest" id="Neither_Interest_Or_Particular_Interest"
+                         type="radio" value="Neither" <%
+                          if(ssn.Subsidy_Award_Interest_Global=='Neither' ) { %> checked <% } %> >
+                          <label class="govuk-label govuk-radios__label" for="Neither_Interest_Or_Particular_Interest">
+                            Neither
+                          </label>
+                      </div>
+                    </div>
+              </div>
+            </div>
             <div id="specific-policy-objective-container">
               <div class="govuk-form-group <% if(ssn.Specific_Policy_Objective_Error || ssn.Specific_Policy_Objective_Error_Length) {%> govuk-form-group--error<% } %>">
                 <label class="govuk-label" for="Specific_Policy_Objective">
@@ -1215,7 +1279,7 @@
                   <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
                     name="Subsidy_Element_Full_Amount" type="number" inputmode="numeric" min="0" step="0.01" aria-describedby="Subsidy_Element_Full_Amount"
                     <% if(ssn.Subsidy_Element_Full_Amount_Global) {%>
-                    value="<%= ssn.Subsidy_Element_Full_Amount_Global%>" <% } %> />
+                    value="<%= ssn.Subsidy_Element_Full_Amount_Global.replaceAll(',', '')%>" <% } %> />
                 </div>
 
               </div>
@@ -1234,7 +1298,7 @@
                   <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
                     name="Subsidy_Element_Full_Amount" type="number" inputmode="numeric" min="0" step="0.01" aria-describedby="Subsidy_Element_Full_Amount"
                     <% if(ssn.Subsidy_Element_Full_Amount_Global) {%>
-                    value="<%= ssn.Subsidy_Element_Full_Amount_Global%>" <% } %> />
+                    value="<%= ssn.Subsidy_Element_Full_Amount_Global.replaceAll(',', '')%>" <% } %> />
 
                 </div>
 
@@ -1251,7 +1315,7 @@
                   <input class="govuk-input govuk-input--width-20" id="Subsidy_Element_Full_Amount"
                     name="Subsidy_Element_Full_Amount" type="number" inputmode="numeric" min="0" step="0.01" aria-describedby="Subsidy_Element_Full_Amount"
                     <% if(ssn.Subsidy_Element_Full_Amount_Global) {%>
-                    value="<%= ssn.Subsidy_Element_Full_Amount_Global%>" <% } %> />
+                    value="<%= ssn.Subsidy_Element_Full_Amount_Global.replaceAll(',', '')%>" <% } %> />
 
                 </div>
 

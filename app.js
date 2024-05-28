@@ -16,8 +16,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
 app.use(cookierParser());
-// var users = [];
-// app.use(fileUpload());
 app.use(
   fileUpload({
     useTempFiles: false,
@@ -73,179 +71,7 @@ app.get("/", async (req, res) => {
     id_token = process.env.ID_TOKEN;
   }
    console.log("id_token " + id_token);
-  // console.log("req.session", req.session);
   ssn = req.session;
-  // ssn.Subsidy_Control_Number_Global="";
-  // ssn.SubsidyArraySize;
-  // ssn.isAddSubsidyPrimarycall;
-  // ssn.Subsidy_Control_Number_Global_Substring;
-  // ssn.Subsidy_Measure_Title_Global;
-  // ssn.Subsidy_Adhoc_Global;
-  // ssn.Subsidy_Objective_Global;
-  // ssn.Subsidy_Objective_Other_Global;
-  // ssn.Subsidy_Objective_Plus_Other_Global;
-  // ssn.Subsidy_Instrument_Global;
-  // ssn.Subsidy_Instrument_Other_Global;
-  // ssn.Subsidy_Instrument_Plus_Other_Global;
-  // ssn.Subsidy_Element_Full_Amount_Global;
-  // ssn.Subsidy_Element_Full_Amount_Global_Trim;
-  // ssn.National_ID_Type_Global;
-  // ssn.National_ID_Number_Global;
-  // ssn.Beneficiary_Name_Global;
-  // ssn.Size_of_the_Organisation_Global;
-  // ssn.Granting_Authority_Name_Global;
-  // ssn.Legal_Basis_Global;
-  // ssn.Legal_Granting_Date_Day_Global;
-  // ssn.Legal_Granting_Date_Month_Global;
-  // ssn.Legal_Granting_Date_Year_Global;
-  // ssn.Goods_or_Services_Global;
-  // ssn.Spending_Region_Global;
-  // ssn.Spending_Sector_Global;
-  // ssn.Granting_Authority_URL_Global;
-  // ssn.Granting_Authority_Policy_Global;
-  // ssn.Budget_Global;
-
-  // ssn.Scheme_Start_Day_Global;
-  // ssn.Scheme_Start_Month_Global;
-  // ssn.Scheme_Start_Year_Global;
-  // ssn.Scheme_End_Day_Global;
-  // ssn.Scheme_End_Month_Global;
-  // ssn.Scheme_End_Year_Global;
-
-  // ssn.grantingAuthorityID_global;
-  // ssn.grantingAuthorityName_Global;
-
-  // ssn.GetMonthName;
-  // ssn.GetEndMonthName;
-  // ssn.file_upload_name;
-  // ssn.isCallfromEditAward;
-  // ssn.addUser_extract;
-
-  // ssn.email_addresspass;
-  // ssn.formvalidationerrpass = [];
-  // ssn.errorsvalidationpass = [];
-
-  // ssn.dashboard_user_name;
-  // ssn.user_id;
-
-  // ssn.dashboard_ga_name;
-  // ssn.dashboard_roles;
-  // ssn.dashbaord_ga_ID;
-  // ssn.frontend_totalRecordsPerPage;
-  // ssn.Environment_variable;
-
-  // ssn.pageCount;
-  // ssn.previous_page;
-  // ssn.next_page;
-  // ssn.start_record;
-  // ssn.end_record;
-  // ssn.totalrows;
-  // ssn.current_page_active;
-  // ssn.current_page;
-  // ssn.start_page;
-  // ssn.end_page;
-  // ssn.dashboardawards;
-  // ssn.awardnumber;
-  // ssn.fetchawarddetails;
-  // ssn.Award_search_URL;
-  // ssn.grantingAuthorityPublish_Global;
-
-  // ssn.Award_selected_status;
-  // ssn.awards_status;
-  // ssn.Award_search_text;
-
-  // ssn.scheme_selected_status;
-  // ssn.schemes_status;
-  // ssn.Schemes_search_text;
-  // ssn.scNumber_Global;
-
-  // ssn.Subsidy_Control_Number_Error;
-  // ssn.Subsidy_Measure_Title_Error;
-  // ssn.Subsidy_Adhoc_Error;
-  // ssn.Subsidy_Objective_Error;
-  // ssn.Subsidy_Objective_Other_Error;
-  // ssn.Subsidy_Instrument_Error;
-  // ssn.Subsidy_Instrument_Other_Error;
-  // ssn.Subsidy_Element_Full_Amount_Error;
-  // ssn.Subsidy_Full_Amount_Range_Error;
-  // ssn.National_ID_Type_Error;
-  // ssn.National_ID_Number_Error;
-  // ssn.Beneficiary_Name_Error;
-  // ssn.Size_of_the_Organisation_Error;
-  // ssn.Granting_Authority_Name_Error;
-  // ssn.Granting_Authority_Valid_Name_Error;
-  // ssn.Legal_Granting_Date_Day_Error;
-  // ssn.Legal_Granting_Date_Month_Error;
-  // ssn.Legal_Granting_Date_Year_Error;
-  // ssn.Goods_or_Services_Error;
-  // ssn.Spending_Region_Error;
-  // ssn.Spending_Sector_Error;
-  // ssn.grantingAuthorityName_Error;
-  // ssn.grantingAuthorityName_Error_Msg;
-
-  // ssn.searchmeasuredetails;
-  // ssn.Subsidy_Control_Number_Global_Text;
-  // ssn.Scheme_Legal_Granting_Start_Date_Month;
-  // ssn.Scheme_Legal_Granting_Start_Date_Day;
-  // ssn.Scheme_Legal_Granting_Start_Date_Year;
-  // ssn.Scheme_Legal_Granting_End_Date_Month;
-  // ssn.Scheme_Legal_Granting_End_Date_Day;
-  // ssn.Scheme_Legal_Granting_End_Date_Year;
-  // ssn.subsidy_scheme_name_sorting_order;
-  // ssn.subsidy_control_no_sorting_order;
-  // ssn.granting_authority_sorting_order;
-  // ssn.start_date_sorting_order;
-  // ssn.end_date_sorting_order;
-  // ssn.duration_sorting_order;
-  // ssn.budget_sorting_order;
-  // ssn.sorting_order_pass;
-  // ssn.Search_Text_Global;
-
-  // ssn.apiroles_extract;
-  // ssn.apiroles_total_objects;
-  // ssn.isUserSlectIsPrimaryCall;
-  // ssn.Granting_Authority_Name_Measure_Global;
-  // ssn.Granting_Authority_Selected;
-  // ssn.GA_Selected;
-  // ssn.Roles_Selected;
-  // ssn.GAUserList;
-
-  // ssn.gaId_no_arrow;
-  // ssn.ganame_arrow;
-  // ssn.added_by_arrow;
-  // ssn.status_arrow;
-  // ssn.created_on_arrow;
-  // ssn.last_modified_arrow;
-  // ssn.UserPrincileObjectGlobal;
-
-  // ssn.User_Role_Global;
-  // ssn.GA_Name_User_Global;
-  // ssn.Full_Name_Global;
-  // ssn.Last_Name_Global;
-  // ssn.Email_Id_Global;
-  // ssn.Phone_Number_Global;
-  // ssn.UserErrorLength_Global;
-  // ssn.Full_Name_Error;
-  // ssn.Last_Name_Error;
-  // ssn.Email_Id_Error;
-  // ssn.User_Role_Error;
-  // ssn.GA_Name_User_Error;
-  // ssn.Phone_Number_Error;
-  // ssn.UserErrorsLenght;
-
-  // ssn.gaID_extract;
-
-  // ssn.User_Role_Single;
-  // ssn.User_GA_Name;
-  // ssn.User_Name_Single;
-  // ssn.User_Last_Name_Single;
-  // ssn.User_Email_Single;
-  // ssn.User_Mobile_Single;
-  // ssn.Delete_UserId;
-
-  // ssn.GAUserList_Empty;
-
-  // ssn.GaListArr_Global;
 
   var Environment_variable = process.argv[2];
 
@@ -328,22 +154,6 @@ app.get("/", async (req, res) => {
     console.log(beis_url_accessmanagement);
     console.log(beis_url_publicsearch);
   } else if (Environment_variable == "env=dev") {
-    //                    OLD URLs below
-    // beis_url_publishing =
-    //   "https://dev-beis-tp-db-publishing-subsidies-service.azurewebsites.net";
-    // beis_url_accessmanagement =
-    //   "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
-    // beis_url_publicsearch =
-    //   "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
-    // beis_url_searchscheme =
-    //   "https://dev-beis-tp-db-ga-schemes-service.azurewebsites.net";
-
-    // beis_
-    _url = "https://dev-beis-tp-dp-admin-portal.azurewebsites.net";
-    // beis_public_search =
-    //   "https://dev-beis-tp-db-publicsearch-portal.azurewebsites.net";
-
-    // DM 30-04-21
     beis_url_publishing =
       "https://dev-transparency-db-publishing-subsidies-service.azurewebsites.net";
     beis_url_accessmanagement =
@@ -412,15 +222,10 @@ app.get("/", async (req, res) => {
   ssn.frontend_totalRecordsPerPage = 10;
 
   var id_token_decoded = jwt_decode(id_token);
-  // console.log("id_token_decoded " + id_token_decoded);
-  // console.log("logged in user " + id_token_decoded.name);
-  // console.log("id_token_decoded parsed " + JSON.stringify(id_token_decoded));
   var id_token_json = JSON.parse(JSON.stringify(id_token_decoded));
   ssn.dashboard_user_name = id_token_decoded.name;
   ssn.user_id = id_token_decoded.oid;
   ssn.dashboard_roles_object = JSON.stringify(id_token_json.roles);
-  // console.log("username : " + ssn.dashboard_user_name);
-  // console.log("roles :" + ssn.dashboard_roles_object);
   ssn.dashboard_roles_object_id1 = ssn.dashboard_roles_object.substr(2, 36);
   ssn.dashboard_roles_object_id2 = ssn.dashboard_roles_object.substr(41, 36);
 
@@ -438,10 +243,8 @@ app.get("/", async (req, res) => {
     console.log(`Status: ${apiroles.status}`);
     API_response_code = `${apiroles.status}`;
     console.log("API_response_code: try" + API_response_code);
-    // console.log("Body: ", apiroles.data);
     ssn.apiroles_extract = apiroles.data;
     ssn.apiroles_total_objects = Object.keys(ssn.apiroles_extract).length;
-    // console.log(" apiroles_total_objects: ", ssn.apiroles_total_objects);
 
     for (var i = 0; i < ssn.apiroles_total_objects; i++) {
       if (ssn.dashboard_roles_object_id1 == ssn.apiroles_extract[i].azGrpId) {
@@ -461,7 +264,6 @@ app.get("/", async (req, res) => {
     response_error_message = err;
     console.log("message error : " + err);
     console.log("response_error_message catch : " + response_error_message);
-    // window.location.href = "/signout";
   }
 
   if (apiroles_extract_object1.includes("BEIS Administrator")) {
@@ -504,9 +306,6 @@ app.get("/", async (req, res) => {
     azGrpId_Global = ssn.dashboard_roles_object_id1;
   }
 
-  // console.log("ssn.dashboard_roles : " + ssn.dashboard_roles);
-  // console.log("ssn.dashboard_ga_name : " + ssn.dashboard_ga_name);
-
   var userPrincipleRequest =
     '{"userName":"' +
     ssn.dashboard_user_name +
@@ -519,7 +318,6 @@ app.get("/", async (req, res) => {
     ssn.dashboard_ga_name +
     '"}';
 
-  // console.log("userprincile: " + userPrincipleRequest);
   ssn.UserPrincileObjectGlobal = {
     headers: {
       userPrinciple: userPrincipleRequest,
@@ -533,10 +331,6 @@ app.get("/", async (req, res) => {
   gaTotalCount_Global = 0;
   azuserUsers = 0;
   try {
-    // azGrpId = ssn.dashboard_roles_object_id1;
-    // if (ssn.dashboard_roles == "BEIS Administrator")
-    //   azGrpId = ssn.dashboard_roles_object_id1;
-    // else azGrpId = ssn.dashboard_roles_object_id2;
     userManagementEndpoint = "/usermanagement/groups/" + azGrpId_Global; // default to users for group
     if (ssn.dashboard_roles == "BEIS Administrator") {
         userManagementEndpoint = "/usermanagement/countUsers"; // if BEIS Admin, just get counts
@@ -574,7 +368,6 @@ app.get("/", async (req, res) => {
       "response_error_message catchGROUPS : " + response_error_message
     );
     res.redirect("/signout");
-    // window.location.href = "/signout";
   }
   var searchAudits = [];
   try {
@@ -592,7 +385,6 @@ app.get("/", async (req, res) => {
       ssn.UserPrincileObjectGlobal
     );
 
-    // console.log("Body: ", apidata.data);
     if (apidata.data.auditLogs.length > 5) {
       for (var i = 0; i <= 4; i++) {
         searchAudits.push(apidata.data.auditLogs[i]);
@@ -614,17 +406,12 @@ app.get("/", async (req, res) => {
 
   if (ssn.dashboard_roles == "BEIS Administrator") {
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
-    // console.log("request :" + JSON.stringify(data));
 
     try {
       var apidata = await axios.get(
         beis_url_accessmanagement + "/accessmanagement/beisadmin",
         ssn.UserPrincileObjectGlobal
       );
-      // console.log(`Status: ${apidata.status}`);
-      // API_response_code = `${apidata.status}`;
-      // console.log("API_response_code: try" + API_response_code);
-      // console.log("Body: ", apidata.data);
       dashboardawards = apidata.data;
 
       res.render("bulkupload/dashboard-beisadmin", {
@@ -643,21 +430,15 @@ app.get("/", async (req, res) => {
     }
   } else if (ssn.dashboard_roles == "Granting Authority Administrator") {
     var data = JSON.parse(JSON.stringify(userPrincipleRequest));
-    // console.log("request :" + JSON.stringify(data));
-
     try {
       var apidata = await axios.get(
         beis_url_accessmanagement + "/accessmanagement/gaadmin",
         ssn.UserPrincileObjectGlobal
       );
-      // console.log(`Status: ${apidata.status}`);
       API_response_code = `${apidata.status}`;
-      // console.log("API_response_code: try" + API_response_code);
-      // console.log("Body: ", apidata.data);
       dashboardawards = apidata.data;
       res.render("bulkupload/dashboard-gaadmin", {
         beis_url_accessmanagement,
-        // ssn.dashboard_user_name,
         ssn,
         searchAudits,
         gaAdminCount_Global,
@@ -717,7 +498,6 @@ app.get("/", async (req, res) => {
       dashboardawards = apidata.data;
       res.render("bulkupload/dashboard-gaencoder", {
         beis_url_accessmanagement,
-        // ssn.dashboard_user_name,
         ssn,
         gaAdminCount_Global,
         gaApproverCount_Global,
@@ -730,7 +510,6 @@ app.get("/", async (req, res) => {
       console.log("response_error_message catch : " + response_error_message);
     }
   }
-  // res.render("bulkupload/logintransparency");
 });
 
 var logintransparency = require("./routes/logintransparency");
@@ -746,32 +525,11 @@ app.use("/loginfirstpage", loginfirstpage);
 var mysubsidyawards = require("./routes/mysubsidyawards");
 app.use("/mysubsidyawards", mysubsidyawards);
 
-// var subsidyawarddeletedsuccessfully = require("./routes/subsidyaward-deleted-successfully");
-// app.use("/subsidyawarddeletedsuccessfully", subsidyawarddeletedsuccessfully);
-
 var bulkuploadsubsidy = require("./routes/bulkuploadsubsidy");
 app.use("/bulkuploadsubsidy", bulkuploadsubsidy);
 
 var bulkuploadsubsidyschemes = require("./routes/bulkuploadsubsidyschemes");
 app.use("/bulkuploadsubsidyschemes", bulkuploadsubsidyschemes);
-
-// var loginforgetpassword = require("./routes/loginforgetpassword");
-// app.use("/loginforgetpassword", loginforgetpassword);
-
-// var loginnewpassword = require("./routes/loginnewpassword");
-// app.use("/loginnewpassword", loginnewpassword);
-
-// var loginemailconfirmation = require("./routes/loginemailconfirmation");
-// app.use("/loginemailconfirmation", loginemailconfirmation);
-
-// var loginpasswordcomplete = require("./routes/loginpasswordcomplete");
-// app.use("/loginpasswordcomplete", loginpasswordcomplete);
-
-// var loginresetpassword = require("./routes/loginresetpassword");
-// app.use("/loginresetpassword", loginresetpassword);
-
-// var loginemailconfirmationexpiry = require("./routes/loginemailconfirmationexpiry");
-// app.use("/loginemailconfirmationexpiry", loginemailconfirmationexpiry);
 
 var reviewdetail = require("./routes/reviewdetail");
 app.use("/reviewdetail", reviewdetail);
@@ -853,9 +611,6 @@ app.use("/deactivategrantingauthority", deactivategrantingauthority);
 
 var deactivatedGA = require("./routes/grantingauthority-deactivated-successfully");
 app.use("/gadeactivated", deactivatedGA);
-
-// var choosedashboard = require("./routes/choosedashboard");
-// app.use("/choosedashboard", choosedashboard);
 
 var mysubsidymeasures = require("./routes/mysubsidymeasures");
 app.use("/mysubsidymeasures", mysubsidymeasures);
@@ -954,10 +709,10 @@ app.use("/subsidyawardrejectreason", subsidyawardrejectreason);
 var reviewdetailcancel = require("./routes/reviewdetailcancel");
 app.use("/reviewdetailcancel", reviewdetailcancel);
 
-//Users Pages
+var subsidymeasureversion = require("./routes/subsidymeasure-version");
+app.use("/subsidymeasureversion", subsidymeasureversion);
 
-// var manageusers = require("./routes/users-manage");
-// app.use("/manageusers", manageusers);
+//Users Pages
 
 var userselect = require("./routes/user-select");
 app.use("/userselect", userselect);

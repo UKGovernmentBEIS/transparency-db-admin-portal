@@ -44,6 +44,7 @@ router.get("/", (req, res) => {
     ssn.Goods_or_Services_Error = false;
     ssn.Spending_Region_Error = false;
     ssn.Spending_Sector_Error = false;
+    ssn.Subsidy_Award_Interest_Error = false;
     ssn.SubsidyErrors = [];
     ssn.SubsidyFocus = [];
 
@@ -150,6 +151,7 @@ router.get("/", (req, res) => {
     ssn.Goods_or_Services_Global = fetchawarddetails.goodsServicesFilter;
     ssn.Spending_Region_Global = fetchawarddetails.spendingRegion;
     ssn.Spending_Sector_Global = fetchawarddetails.spendingSector;
+    ssn.Subsidy_Award_Interest_Global = fetchawarddetails.subsidyAwardInterest;
 
     ssn.Subsidy_Control_Number_Error = false;
     ssn.Subsidy_Measure_Title_Error = false;

@@ -73,6 +73,7 @@ router.post("/", async (req, res) => {
     ssn.Admin_Program_Exist_Error = false;
     ssn.Admin_Program_Active_Error = false;
     ssn.Admin_Program_Match_Error = false;
+    ssn.Subsidy_Award_Interest_Error = false;
 
 
     var {
@@ -105,6 +106,7 @@ router.post("/", async (req, res) => {
       Authority_URL,
       Authority_URL_Description,
       mylink,
+      Subsidy_Award_Interest
     } = req.body;
 
     ssn.Standalone_Award_Global = Standalone_Award;
@@ -165,11 +167,13 @@ router.post("/", async (req, res) => {
     ssn.Goods_or_Services_Global = Goods_or_Services;
     ssn.Spending_Region_Global = Spending_Region;
     ssn.Spending_Sector_Global = Spending_Sector;
+    ssn.Subsidy_Award_Interest_Global = Subsidy_Award_Interest;
 
     console.log("Subsidy_Objective_Other", Subsidy_Objective_Other.length);
     console.log("Subsidy_Instrument_Other", Subsidy_Instrument_Other);
     console.log("Beneficiary_Name", Beneficiary_Name);
     console.log("Subsidy_Objective", Subsidy_Objective);
+    console.log("ssn.Subsidy_Award_Interest :" + ssn.Subsidy_Award_Interest_Global)
     console.log("buttonvalue", buttonvalue);
 
     if (ssn.Legal_Granting_Date_Month_Global == 1) {
@@ -251,6 +255,12 @@ router.post("/", async (req, res) => {
           ssn.SubsidyFocus[Additem] = '#AdminProgramContainer';
           Additem = Additem + 1;
         }
+      }
+
+      if (Standalone_Award.toLowerCase() != 'no' && !Subsidy_Award_Interest) {
+        ssn.Subsidy_Award_Interest_Error = true;
+        ssn.SubsidyErrors.push("You must select the if the award is of interest, particular interest or neither");
+        ssn.SubsidyFocus.push("#Subsidy_Award_Interest");
       }
 
       if(Subsidy_Award_Description.length > 10000){
@@ -562,7 +572,7 @@ router.post("/", async (req, res) => {
         ssn.Beneficiary_Name_255_Error ||
         ssn.Standalone_Award_Error ||
         ssn.Subsidy_Award_Description_Error ||
-        ssn.Subsidy_Award_Description_Error_Length || 
+        ssn.Subsidy_Award_Interest_Error ||
         ssn.Specific_Policy_Objective_Error_Length ||
         ssn.Specific_Policy_Objective_Error
       ) {

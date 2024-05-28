@@ -18,11 +18,6 @@ router.get("/", async (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
-    // res.set("X-Frame-Options", "DENY");
-    // res.set("X-Content-Type-Options", "nosniff");
-    // res.set("Content-Security-Policy", 'frame-ancestors "self"');
-    // res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
-
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
     console.log("req.query.scheme: " + req.query.scheme);
@@ -30,7 +25,6 @@ router.get("/", async (req, res) => {
     console.log("scnumber : " + scnumber);
 
     scNumber_Global = scnumber;
-    // ssn.Subsidy_Control_Number_Global = scnumber;
     var currentURI = req.protocol + '://' + req.get('host') + req.originalUrl;
     var measureendpoint = beis_url_searchscheme + "/scheme/" + scnumber + "/withawards";
     currentPage = 1;
@@ -77,6 +71,7 @@ router.get("/", async (req, res) => {
         
 
         Maximum_Amount_Under_Scheme = ssn.searchmeasuredetails.maximumAmountUnderScheme
+        Subsidy_Scheme_Interest = ssn.searchmeasuredetails.Subsidy_Scheme_Interest;
         console.log(`Status: ${response.status}`);
         console.log("Body: ", response.data);
         
@@ -92,6 +87,8 @@ router.get("/", async (req, res) => {
         nextPage = Math.min(totalPages, currentPage + 1);
         pagingStart = Math.max(1, currentPage - 5);
         pagingEnd = Math.min(totalPages, currentPage + 5);
+
+        schemeVersions = response.data.schemeVersions;
 
         var spendingSectorArray = new Array();
         if(ssn.searchmeasuredetails.spendingSectors != null){

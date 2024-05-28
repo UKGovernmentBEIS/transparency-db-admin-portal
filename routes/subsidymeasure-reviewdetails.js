@@ -55,6 +55,7 @@ router.post("/", (req, res) => {
     ssn.Specific_Policy_Objective_Length_Error=false;
     ssn.spendingsector_Error = false;
     ssn.Maximum_Amount_Under_Scheme_255_Error = false;
+    ssn.Subsidy_Scheme_Interest_Error = false;
 
 
     var {
@@ -102,6 +103,7 @@ router.post("/", (req, res) => {
       spendingsector_wholesale_and_retail_trade,
       myCheck,
       has_no_end_date,
+      Subsidy_Scheme_Interest
     } = req.body;
 
     console.log("isAddSubsidyPrimarycall: " + isAddSubsidyPrimarycall);
@@ -147,6 +149,8 @@ router.post("/", (req, res) => {
     ssn.Has_No_End_Date_Output_Global = "NA";
 
     ssn.Subsidy_Scheme_Description_Global = Subsidy_Scheme_Description;
+
+    ssn.Subsidy_Scheme_Interest_Global = Subsidy_Scheme_Interest;
     ssn.Specific_Policy_Objective_Global = Specific_Policy_Objective;
 
     if (ssn.Subsidy_Adhoc_Global == "Yes") {
@@ -346,6 +350,8 @@ router.post("/", (req, res) => {
     console.log("ssn.spendingsector_water_supply  :" + ssn.spendingsector_water_supply_Global)
     console.log("ssn.spendingsector_wholesale_and_retail_trade  :" + ssn.spendingsector_wholesale_and_retail_trade_Global)
 
+    console.log("ssn.Subsidy_Scheme_Interest :" + ssn.Subsidy_Scheme_Interest_Global)
+
     const monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August','September', 'October', 'November', 'December'];
 
     ssn.GetConfirmationMonthName = monthArray[((parseInt(scheme_issued_confirmation_month)) - 1)];
@@ -374,6 +380,12 @@ router.post("/", (req, res) => {
           "Subsidy scheme name cannot be greater than 255 characters"
         );
         ssn.SubsidyFocus.push("#Subsidy_Measure_Title");
+      }
+
+      if (!Subsidy_Scheme_Interest) {
+        ssn.Subsidy_Scheme_Interest_Error = true;
+        ssn.SubsidyErrors.push("You must select the if the scheme is of interest, particular interest or neither");
+        ssn.SubsidyFocus.push("#Subsidy_Scheme_Interest");
       }
 
       if (Specific_Policy_Objective == ""){
@@ -777,7 +789,8 @@ router.post("/", (req, res) => {
         ssn.Specific_Policy_Objective_Error ||
         ssn.Specific_Policy_Objective_Length_Error ||
         ssn.spendingsector_Error ||
-        ssn.Maximum_Amount_Under_Scheme_255_Error
+        ssn.Maximum_Amount_Under_Scheme_255_Error ||
+        ssn.Subsidy_Scheme_Interest_Error
       ) {
         res.render("bulkupload/subsidymeasures-add", {
           formatedCurrency,
@@ -815,6 +828,7 @@ router.post("/", (req, res) => {
       ssn.Scheme_Start_Day_Global = scheme_issued_start_day;
       ssn.Scheme_Start_Month_Global = scheme_issued_start_month;
       ssn.Scheme_Start_Year_Global = scheme_issued_start_year;
+      ssn.Subsidy_Scheme_Interest_Global = Subsidy_Scheme_Interest;
       res.render("bulkupload/subsidymeasure-cancel");
     }
   }
