@@ -75,14 +75,14 @@
             }
         }
     </script>
-      <script>
+    <script>
         function selectAll(source) {
             checkboxes = document.getElementsByClassName("govuk-checkboxes__input_spendingsector");
             for(var i=0, n=checkboxes.length;i<n;i++) {
             checkboxes[i].checked = source.checked;
             }
         }
-      </script>
+    </script>
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
       <script src="/assets/javascripts/jquery.min.js"></script>
 
@@ -343,7 +343,7 @@
                                                 </span>
                                             </summary>
                                             <div class="govuk-details__text">
-                                                Please provide a summary description of the subsidy scheme which includes information such as location, enterprise eligibility, the basis for calculating subsidies under the scheme and any other information required by the Subsidy Control (Subsidy Database Information Requirements) Regulations 2022 which is not already included in the database entry.
+                                                <%- include('../partials/scheme-description-partial.ejs') %>
                                             </div>
                                         </details>
 
