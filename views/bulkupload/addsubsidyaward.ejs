@@ -15,6 +15,7 @@
         document.getElementById('related-subsidy-scheme').style.display = 'none';
         document.getElementById('related-admin-program').style.display = 'none';
         document.getElementById('authority-url-and-description-container').style.display = 'block';
+        document.getElementById('standalone-description-text').style.display = 'none';
         document.getElementById('standalone-award-interest-container').style.display = 'block';
       }
       else
@@ -95,11 +96,15 @@
         document.getElementById('related-subsidy-scheme').style.display = 'none';
         document.getElementById('related-admin-program').style.display = 'none';
         document.getElementById('authority-url-and-description-container').style.display = 'block';
+        document.getElementById('standalone-description-text').style.display = 'block';
+        document.getElementById('description-text').style.display = 'none';
         document.getElementById('standalone-award-interest-container').style.display = 'block';
       }else{
         document.getElementById('related-subsidy-scheme').style.display = 'block';
         document.getElementById('related-admin-program').style.display = 'block';
         document.getElementById('authority-url-and-description-container').style.display = 'none';
+        document.getElementById('standalone-description-text').style.display = 'none';
+        document.getElementById('description-text').style.display = 'block';
         document.getElementById('standalone-award-interest-container').style.display = 'none';
       }
 
@@ -631,8 +636,15 @@
                       What details should be provided?
                     </span>
                   </summary>
-                  <div class="govuk-details__text">
-                    <p>This description should include TCA requirements such as relevant time limits or other conditions attached to the scheme.</p>
+                  <div id="standalone-description-text" class="govuk-details__text" style="display:none">
+                    <%- include('../partials/standalone-award-description-partial.ejs') %>
+                  </div>
+                  <div id="description-text" class="govuk-details__text">
+                    <p>Please include the following information in the description</p>
+                    <p></p>
+                    <p> - The policy objective(s) of the subsidy award   </p>
+                    <p></p>
+                    <p>- Duration of the subsidy and a summary of any other time limits attached to the use of the subsidy.</p>
                   </div>
                 </details>
                 <% if(ssn.Subsidy_Award_Description_Error || ssn.Subsidy_Award_Description_Error_Length){ %>
