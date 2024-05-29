@@ -91,6 +91,10 @@
                             <td class="govuk-table__cell"><%= schemeVersionDetails.subsidyMeasureTitle %></td>
                         </tr>
                         <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)</th>
+                            <td class="govuk-table__cell"><%= (schemeVersionDetails.subsidySchemeInterest === '' || schemeVersionDetails.subsidySchemeInterest === null) ? 'NA' : schemeVersionDetails.subsidySchemeInterest %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme description</th>
                             <td
                             class="govuk-table__cell render-newlines"><%= schemeVersionDetails.subsidySchemeDescription %></td>

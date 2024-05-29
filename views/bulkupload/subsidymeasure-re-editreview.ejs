@@ -89,8 +89,8 @@
                             <td class="govuk-table__cell"><%= ssn.scNumber_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme of interest or particular interest</th>
-                            <td class="govuk-table__cell"><%= ssn.Subsidy_Scheme_Interest_Global %></td>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)</th>
+                            <td class="govuk-table__cell"><%= (ssn.Subsidy_Scheme_Interest_Global === '') ? 'NA' : ssn.Subsidy_Scheme_Interest_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme description</th>
