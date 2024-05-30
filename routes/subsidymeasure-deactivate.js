@@ -22,15 +22,18 @@ router.get("/", async (req, res) => {
     if(req.query.hasOwnProperty("action"))
     {
       action = req.query.action;
+      if(action === 'Delete')
+      {    
+        if (ssn.dashboard_roles != "BEIS Administrator") {
+          res.render("bulkupload/notAuthorized");
+        }
+      }
     }
     else
     {
       action = "Deactivate";
     }
 
-    if (ssn.dashboard_roles != "BEIS Administrator") {
-      res.render("bulkupload/notAuthorized");
-    }
     charLimit = 1000;
     
     res.render("bulkupload/subsidymeasure-deactivate", {action, charLimit});
