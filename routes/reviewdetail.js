@@ -93,7 +93,6 @@ router.post("/", async (req, res) => {
       Legal_Granting_Date_Month,
       Legal_Granting_Date_Year,
       Goods_or_Services,
-      Spending_Region,
       Spending_Sector,
       buttonvalue,
       Standalone_Award,
@@ -101,7 +100,8 @@ router.post("/", async (req, res) => {
       Authority_URL,
       Authority_URL_Description,
       mylink,
-      Subsidy_Award_Interest
+      Subsidy_Award_Interest,
+      ...formVars
     } = req.body;
 
     ssn.Standalone_Award_Global = Standalone_Award;
@@ -126,6 +126,17 @@ router.post("/", async (req, res) => {
     ssn.Subsidy_Full_Amount_Range_Upper_Global = Subsidy_Full_Amount_Range_Upper;
 
     Subsidy_Full_Amount_Range = "£" + Subsidy_Full_Amount_Range_Lower + " - £" + Subsidy_Full_Amount_Range_Upper;
+
+    ssn.Spending_Regions_Selected_Global = new Array();
+
+    for(variable in formVars){
+      if (variable.startsWith("Spending_Region")){
+        if(variable == "Spending_Region_Select_All"){
+          continue;
+        }
+        ssn.Spending_Regions_Selected_Global.push(`${formVars[variable]}`);
+      }
+    }
 
     if (
       ssn.Subsidy_Instrument_Global !==
@@ -159,7 +170,10 @@ router.post("/", async (req, res) => {
     ssn.Legal_Granting_Date_Month_Global = Legal_Granting_Date_Month;
     ssn.Legal_Granting_Date_Year_Global = Legal_Granting_Date_Year;
     ssn.Goods_or_Services_Global = Goods_or_Services;
-    ssn.Spending_Region_Global = Spending_Region;
+
+    ssn.Spending_Regions_Global = ssn.Spending_Regions_Selected_Global;
+    ssn.Spending_Regions_JSON_Global = JSON.stringify(ssn.Spending_Regions_Global);
+    
     ssn.Spending_Sector_Global = Spending_Sector;
     ssn.Subsidy_Award_Interest_Global = Subsidy_Award_Interest;
 
@@ -504,10 +518,10 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
-      if (Spending_Region == "") {
+      if (ssn.Spending_Regions_Selected_Global.length == 0) {
         ssn.Spending_Region_Error = true;
         ssn.SubsidyErrors[Additem] =
-          "You must select the region that the recipient organisation is based in.";
+          "You must select the region where the subsidised economic activity takes place.";
         ssn.SubsidyFocus[Additem] = "#Spending_Region";
         Additem = Additem + 1;
       }

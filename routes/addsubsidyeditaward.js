@@ -146,7 +146,11 @@ router.get("/", (req, res) => {
 
     ssn.Legal_Granting_Date_Year_Global = Legal_date_split[2];
     ssn.Goods_or_Services_Global = fetchawarddetails.goodsServicesFilter;
-    ssn.Spending_Region_Global = fetchawarddetails.spendingRegion;
+    
+    if(fetchawarddetails.spendingRegion){
+      ssn.Spending_Regions_Selected_Global = JSON.parse(fetchawarddetails.spendingRegion);
+    }
+
     ssn.Spending_Sector_Global = fetchawarddetails.spendingSector;
     ssn.Subsidy_Award_Interest_Global = fetchawarddetails.subsidyAwardInterest;
 

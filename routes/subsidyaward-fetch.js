@@ -38,6 +38,13 @@ router.get("/", async (req, res) => {
       console.log(`Status: ${awardapidata.status}`);
       console.log("Body: ", awardapidata.data);
       fetchawarddetails = awardapidata.data;
+
+      fetchawarddetails.regionArray = new Array();
+
+      if (fetchawarddetails.spendingRegion != null){
+        fetchawarddetails.regionArray = JSON.parse(fetchawarddetails.spendingRegion);
+      }
+
       Get_Award_Status = fetchawarddetails.status;
       console.log("Get_Award_Status", Get_Award_Status);
       if (
