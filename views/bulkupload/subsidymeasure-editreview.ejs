@@ -8,7 +8,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
     <script>
         const formatter = new Intl.NumberFormat("en-GB");
-        getFormatedCurrency = (budget) => {
+        getFormattedCurrency = (budget) => {
             if (budget.toString().includes(","))
                 budget = budget.split(",").join("");
             formatedCurrency = formatter.format(budget);
@@ -25,7 +25,7 @@
 </head>
 
 <body class="govuk-template__body app-example-page"
-    onload="getFormatedCurrency('<%= ssn.searchmeasuredetails.budget %>')">
+    onload="getFormattedCurrency('<%= ssn.searchmeasuredetails.budget %>')">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -69,38 +69,54 @@
               ************************************* -->
 
                 </div>
-                <% if(ssn.searchmeasuredetails.status == 'Inactive') { %>
+                <% if(ssn.searchmeasuredetails.status != 'Active') { %>
                 <div class="govuk-grid-column-full">
                     <div class="govuk-form-group app-example govuk-inative-status">
+                        <% if(ssn.searchmeasuredetails.status === "Inactive") {%>
+
                         <div class="app-example__toolbar">
                             <label>This scheme is not active</label>
                         </div>
-                    </div>
-                </div>
-                <% } else if(ssn.searchmeasuredetails.status == "Deleted") {%>
-                    <div class="govuk-form-group app-example govuk-inative-status">
+                        <% } else if(ssn.searchmeasuredetails.status === "Deleted") {%>
                         <div class="app-example__toolbar">
                             <label>This scheme has been deleted</label>
                         </div>
-                        <dl class="govuk-summary-list">
-                            <div class="govuk-summary-list__row">
-                                <dt class="govuk-summary-list__key">
-                                    Deleted by
-                                </dt>
-                                <dd class="govuk-summary-list__value">
-                                    <%= ssn.searchmeasuredetails.deletedBy %>
-                                </dd>
-                            </div>
-                            <div class="govuk-summary-list__row">
-                                <dt class="govuk-summary-list__key">
-                                    Deleted date/time
-                                </dt>
-                                <dd class="govuk-summary-list__value">
-                                    <%= ssn.searchmeasuredetails.deletedTimestamp %>
-                                </dd>
-                            </div>
-                        </dl>
+                        <%}%>
+                        <div>
+                            <dl class="govuk-summary-list" id="rejection-details-list">
+                                <% if(ssn.searchmeasuredetails.status === "Deleted") {%>                                
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">
+                                        Deleted by
+                                    </dt>
+                                    <dd class="govuk-summary-list__value">
+                                        <%= ssn.searchmeasuredetails.deletedBy %>
+                                    </dd>
+                                </div>
+                                <%}%>
+                                <% if(ssn.searchmeasuredetails.status === "Deleted") {%>                                
+
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">
+                                        Deleted date/time
+                                    </dt>
+                                    <dd class="govuk-summary-list__value">
+                                        <%= ssn.searchmeasuredetails.deletedTimestamp %>
+                                    </dd>
+                                </div>
+                                <%}%>
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">
+                                        Comments from the approver
+                                    </dt>
+                                    <dd class="govuk-summary-list__value"><%=ssn.searchmeasuredetails.reason%></dd>
+                                </div>
+                            </dl>
+                            
+                        </div>
                     </div>
+                    
+                </div>
                 <% } %>
                 <div class="govuk-grid-column-full">
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details
@@ -250,7 +266,7 @@
                         Back to subsidy schemes
                     </button>
                     <% if(ssn.dashboard_roles != 'Granting Authority Encoder' && ssn.searchmeasuredetails.status == 'Active' && ssn.searchmeasuredetails.canEdit) { %>
-                    <a class="govuk-button  govuk-button--warning" href="/deactivatescheme" data-module="govuk-button">
+                    <a class="govuk-button  govuk-button--warning" href="/deactivatescheme?action=Deactivate" data-module="govuk-button">
                         Deactivate
                     </a>
                     <a class="govuk-button govuk-button--secondary"
@@ -261,7 +277,7 @@
                     <% } %>
 
                     <% if (ssn.dashboard_roles == "BEIS Administrator" && ssn.searchmeasuredetails.status != 'Deleted') { %>
-                        <a class="govuk-button govuk-button--warning" href="/deletescheme" data-module="govuk-button" style="float:right">
+                        <a class="govuk-button govuk-button--warning" href="/deactivatescheme?action=Delete" data-module="govuk-button" style="float:right">
                             Delete
                         </a>
                     <% } %>

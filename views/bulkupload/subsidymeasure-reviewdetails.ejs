@@ -17,7 +17,7 @@
     </script>
     <script>
         const formatter = new Intl.NumberFormat("en-GB");
-        getFormatedCurrency = (budget) => {
+        getFormattedCurrency = (budget) => {
             if (budget.toString().includes(","))
                 budget = budget.split(",").join("");
             formatedCurrency = formatter.format(budget);
@@ -27,7 +27,7 @@
 </head>
 
 
-<body class="govuk-template__body app-example-page" onload="getFormatedCurrency('<%=formatedCurrency%>')">
+<body class="govuk-template__body app-example-page" onload="getFormattedCurrency('<%=formatedCurrency%>')">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>

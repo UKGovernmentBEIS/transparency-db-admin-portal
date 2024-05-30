@@ -69,10 +69,50 @@
                     <h1 class="govuk-heading-xl"><%= schemeVersionDetails.subsidyMeasureTitle %></h1>
                     <h2>Modified date <%= schemeVersionDetails.lastModifiedDate %></h2>
                 </div>
+                <% if(schemeVersionDetails.status != 'Active') { %>
+                    <div class="govuk-form-group app-example govuk-inative-status">
+                        <% if(schemeVersionDetails.status === "Inactive") {%>
+                        <div class="app-example__toolbar">
+                            <label>This scheme is not active</label>
+                        </div>
+                        <% } else if(schemeVersionDetails.status === "Deleted") {%>
+                        <div class="app-example__toolbar">
+                            <label>This scheme has been deleted</label>
+                        </div>
+                        <%}%>
+                        <div>
+                            <dl class="govuk-summary-list" id="rejection-details-list">
+                                <% if(schemeVersionDetails.status === "Deleted") {%>                                
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">
+                                        Deleted by
+                                    </dt>
+                                    <dd class="govuk-summary-list__value">
+                                        <%= schemeVersionDetails.deletedBy %>
+                                    </dd>
+                                </div>                          
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">
+                                        Deleted date/time
+                                    </dt>
+                                    <dd class="govuk-summary-list__value">
+                                        <%= schemeVersionDetails.deletedTimestamp %>
+                                    </dd>
+                                </div>
+                                <%}%>
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">
+                                        Comments from the approver
+                                    </dt>
+                                    <dd class="govuk-summary-list__value"><%=schemeVersionDetails.reason%></dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                <% } %>
                 <div class="govuk-grid-column-full">
                     <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details</h2>
                 </div>
-
             </div>
             <section class="govuk-table-responsive">
                 <table class="govuk-table" id="scheme-details-table">
