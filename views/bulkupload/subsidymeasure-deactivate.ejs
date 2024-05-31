@@ -21,8 +21,8 @@
                 actionButton.text(action + " subsidy scheme");
                 
                 //Disables submit button if the reason length is too long
-                $("#rejection-reason").on('input', function() {
-                    var length = $("#rejection-reason").val().length;
+                $("#label-as-page-heading").on('input', function() {
+                    var length = $("#label-as-page-heading").val().length;
                     var isValid = length > 0 && length <= charLimit;
                     $('#action-button').prop('disabled', !isValid);          
                 });
@@ -125,7 +125,7 @@
                                 <% } %>
                                     <div id="rejection-reason-container" hidden>
                                         <div class="govuk-grid-row" id="regression-search-area">
-                                            <div class="govuk-grid-column-two-thirds-from-desktop">
+                                            <div class="govuk-grid-column-two-thirds-from-desktop" id="regression-search-area">
                                                 <h1 class="govuk-heading-xl">Add comments</h1>
                                                 <form method="POST" action="/successfullydeletescheme"
                                                     id="rejection-form">
@@ -140,10 +140,10 @@
                                                                 public.
                                                             </label>
                                                             <textarea class="govuk-textarea govuk-js-character-count"
-                                                                id="rejection-reason" name="reason" rows="6"
-                                                                aria-describedby="rejection-reason-info"></textarea>
+                                                                id="label-as-page-heading" name="reason" rows="6"
+                                                                aria-describedby="label-as-page-heading-info"></textarea>
                                                         </div>
-                                                        <div id="rejection-reason-info"
+                                                        <div id="label-as-page-heading-info"
                                                             class="govuk-hint govuk-character-count__message"
                                                             aria-live="polite">
                                                             You can enter up to <%= (typeof charLimit !='undefined' ) ?
