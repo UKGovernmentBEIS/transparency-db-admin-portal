@@ -15,11 +15,14 @@
         document.getElementById('related-subsidy-scheme').style.display = 'none';
         document.getElementById('related-admin-program').style.display = 'none';
         document.getElementById('authority-url-and-description-container').style.display = 'block';
+        document.getElementById('specific-policy-objective-container').style.display = 'block';
         document.getElementById('standalone-award-interest-container').style.display = 'block';
       }
       else
       {
         document.getElementById('authority-url-and-description-container').style.display = 'none';
+        document.getElementById('specific-policy-objective-container').style.display = 'none';
+
       }
       jQuery('#Subsidy_Control_Number').on('input', function () {
         var SubsidyMeasureTitle = document.getElementById("Subsidy_Measure_Title");
@@ -96,11 +99,13 @@
         document.getElementById('related-admin-program').style.display = 'none';
         document.getElementById('authority-url-and-description-container').style.display = 'block';
         document.getElementById('standalone-award-interest-container').style.display = 'block';
+        document.getElementById('specific-policy-objective-container').style.display = 'block';
       }else{
         document.getElementById('related-subsidy-scheme').style.display = 'block';
         document.getElementById('related-admin-program').style.display = 'block';
         document.getElementById('authority-url-and-description-container').style.display = 'none';
         document.getElementById('standalone-award-interest-container').style.display = 'none';
+        document.getElementById('specific-policy-objective-container').style.display = 'none';
       }
 
     };
@@ -619,7 +624,7 @@
                     </div>
               </div>
             </div>
-            <div id="specific-policy-objective-container">
+            <div id="specific-policy-objective-container" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>>
               <div class="govuk-form-group <% if(ssn.Specific_Policy_Objective_Error || ssn.Specific_Policy_Objective_Error_Length) {%> govuk-form-group--error<% } %>">
                 <label class="govuk-label" for="Specific_Policy_Objective">
                   Specific policy objective
@@ -646,6 +651,7 @@
                 <% } %>
                 <textarea class="govuk-textarea govuk-js-character-count" id="Specific_Policy_Objective" name="Specific_Policy_Objective" rows="5" aria-describedby="Specific_Policy_Objective-info"><%= ssn.Specific_Policy_Objective_Global %></textarea>
               </div>
+            </div>
 
             <div id="subsidy-award-description-container">
               <div class="govuk-form-group <% if(ssn.Subsidy_Award_Description_Error || ssn.Subsidy_Award_Description_Error_Length) {%> govuk-form-group--error<% } %>">
