@@ -132,9 +132,9 @@
                             <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.subsidyMeasureTitle %></td>
                         </tr>
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme of interest or particular interest</th>
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)</th>
                             <td
-                            class="govuk-table__cell render-newlines"><%= ssn.searchmeasuredetails.subsidySchemeInterest %></td>
+                            class="govuk-table__cell render-newlines"><%= (ssn.searchmeasuredetails.subsidySchemeInterest === '' || ssn.searchmeasuredetails.subsidySchemeInterest === null) ? 'NA' : ssn.searchmeasuredetails.subsidySchemeInterest %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Specific policy objective</th>
