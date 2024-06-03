@@ -229,7 +229,9 @@
                                 <% if(purposeArray.length > 0) { %>
                                 <ul class="govuk-list govuk-list--bullet">
                                     <% purposeArray.forEach(function(item) { %>
-                                    <li> <%=item %> </li>
+                                        <%if(item != ""){%>
+                                        <li> <%=item %> </li>
+                                        <% } %>
                                     <% }); %>
                                 </ul>
                                 <% } else { %>

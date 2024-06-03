@@ -344,9 +344,12 @@ router.post("/", (req, res) => {
       purposeArray.push(purpose_training);
     }
 
-    if(purpose_other){
+    if(purpose_other.startsWith("Other -")){
       ssn.purpose_other_Global = purpose_other;
       purposeArray.push(purpose_other);
+    }else{
+     ssn.purpose_other_Global = purpose_other;
+      purposeArray.push("Other - " + purpose_other);
     }
 
     ssn.Scheme_purpose_Json_Global = JSON.stringify(purposeArray);
@@ -831,6 +834,13 @@ router.post("/", (req, res) => {
         ssn.SubsidyFocus.push("#purposeArray");
       }
 
+      if(ssn.purpose_other_Global != "" && ssn.purpose_other_Global.length > 255){
+        ssn.purpose_Error = true;
+        ssn.SubsidyErrors.push(
+          "Purpose(s) under Other cannot be greater than 255 characters"
+        );
+        ssn.SubsidyFocus.push("#purposeArray");
+      }
 
       ssn.SubsidyArraySize = ssn.SubsidyErrors.length;
       if (

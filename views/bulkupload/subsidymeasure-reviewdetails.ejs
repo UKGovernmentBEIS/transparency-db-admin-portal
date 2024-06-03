@@ -179,7 +179,9 @@
                             <td class="govuk-table__cell">
                                 <ul class="govuk-list govuk-list--bullet">
                                     <% purposeArray.forEach(function(item) { %>
-                                    <li> <%=item %> </li>
+                                        <%if(item != ""){%>
+                                        <li> <%=item %> </li>
+                                        <% } %>
                                     <% }); %>
                                 </ul>
                             </td>

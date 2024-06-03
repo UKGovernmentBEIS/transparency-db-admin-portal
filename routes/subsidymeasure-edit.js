@@ -85,6 +85,7 @@ router.get("/", async (req, res) => {
         ssn.spendingsector_wholesale_and_retail_trade_Global = false;
 
         ssn.Purpose_Array_Global = measureapidata.data.purposeArray
+        ssn.Purpose_Array_Other_Global = JSON.parse(ssn.searchmeasuredetails.purpose).slice(-1).toString().replace('Other - ', '')
 
         ssn.purpose_culture_or_heritage_Global = false;
         ssn.purpose_employment_Global = false;
@@ -95,7 +96,7 @@ router.get("/", async (req, res) => {
         ssn.purpose_rescue_subsidy_Global = false;
         ssn.purpose_research_and_development_Global = false;
         ssn.purpose_training_Global = false;
-        ssn.purpose_other_Global = false;
+        ssn.purpose_other_Global = null;
 
 
         var spendingSectorArray = new Array();
@@ -192,7 +193,7 @@ router.get("/", async (req, res) => {
               ssn.purpose_infrastructure_Global = true;
               break;
             case "Regional development":
-              ssn.purpose_regional_devlopment_Global = true;
+              ssn.purpose_regional_development_Global = true;
               break;
             case "Rescue and restructuring subsidy":
               ssn.purpose_rescue_subsidy_Global = true;
@@ -203,8 +204,8 @@ router.get("/", async (req, res) => {
             case "Training":
               ssn.purpose_training_Global = true;
               break;
-            case "Other":
-              ssn.purpose_other_Global = true;
+            case ssn.Purpose_Array_Other_Global:
+              ssn.purpose_other_Global = ssn.Purpose_Array_Other_Global;
               break;
           }
         });

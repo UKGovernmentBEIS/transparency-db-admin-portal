@@ -90,6 +90,15 @@
             checkboxes[i].checked = source.checked;
             }
         }
+        function onPurposeOtherClick() {
+            if (document.getElementById('purpose-other-checkBox').checked) {
+                document.getElementById('purpose-other-div').style.display = 'block';
+            } 
+            else{
+                document.getElementById('purpose-other-div').style.display = 'none';
+                document.getElementById('purpose-other').value = "";
+            }
+        }
     </script>
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
       <script src="/assets/javascripts/jquery.min.js"></script>
@@ -98,7 +107,7 @@
 
 
 <body class="govuk-template__body app-example-page"
-    onload="getErrorList('<%=ssn.SubsidyArraySize%>','<%=ssn.Subsidy_Adhoc_Global%>'); checkEndDateCheckBox()">
+    onload="getErrorList('<%=ssn.SubsidyArraySize%>','<%=ssn.Subsidy_Adhoc_Global%>'); checkEndDateCheckBox(); onPurposeOtherClick()">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -1041,7 +1050,7 @@
 
                                                     <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">
                                                     <div class="govuk-checkboxes__item">
-                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_purpose" onclick="selectAll_Purpose(this)" id="purpose-0" name="select-all" type="checkbox"
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_purpose" onclick="selectAll_Purpose(this);onPurposeOtherClick()" id="purpose-0" name="select-all" type="checkbox"
                                                         value="Select all"
                                                         data-aria-controls="conditional-spendingsector-0">
                                                         <label class="govuk-label govuk-checkboxes__label" for="purpose-0">
@@ -1137,15 +1146,23 @@
 
 
                                                         <div class="govuk-checkboxes__item">
-                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_purpose" id="purpose-other"
-                                                            name="purpose_other" type="checkbox" value="Other"<% if (ssn.purpose_other_Global) { %>
+                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_purpose" id="purpose-other-checkBox"
+                                                            name="purpose_other-checkBox" type="checkbox" onclick="onPurposeOtherClick()" <% if (ssn.purpose_other_Global) { %>
                                                                 checked <% } %>>
                                                         <label class="govuk-label govuk-checkboxes__label" for="purpose-other">
                                                             Other
-                                                        </label>
+                                                        </label>                                                  
                                                         </div>
 
                                                     </div>
+                                                    <div class="govuk-input__wrapper" style="display: none;" id="purpose-other-div">
+                                                        <label class="govuk-label">
+                                                            Please enter the other purpose
+                                                        </label>
+                                                            <input class="govuk-input" id="purpose-other"
+                                                            name="purpose_other" type="text"
+                                                            value="<%= ssn.purpose_other_Global %>">
+                                                        </div>
                                                     </div>
 
                                                 </fieldset>
