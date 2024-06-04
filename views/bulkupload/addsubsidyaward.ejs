@@ -1600,66 +1600,51 @@
                 </legend>
 
 
-                <span class="govuk-error-message" id="Size_of_the_Organisation_Error">
-                  <span class="govuk-visually-hidden">Error:</span> You must select an organisation size.
+              <span class="govuk-error-message" id="Size_of_the_Organisation_Error">
+                <span class="govuk-visually-hidden">Error:</span> You must select an organisation size.
 
-                </span>
+              </span>
 
+              <div class="govuk-radios">
+                <div class="govuk-radios__item">
+                  <% if( ssn.Size_of_the_Organisation_Global == 'SME' ){ %>
+                  <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
+                    type="radio" value="SME" checked>
 
-                <div class="govuk-radios">
-                  <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Micro (fewer than 10 employees)' ){ %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
-                      type="radio" value="Micro (fewer than 10 employees)" checked>
-
-                    <% } else { %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
-                      type="radio" value="Micro (fewer than 10 employees)">
-                    <% } %>
-                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation">
-                      Micro (fewer than 10 employees)
-                    </label>
-                  </div>
-                  <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Small (between 10 and 49 employees)' ){ %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
-                      type="radio" value="Small (between 10 and 49 employees)" checked>
-
-                    <% } else { %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
-                      type="radio" value="Small (between 10 and 49 employees)">
-                    <% } %>
-                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-2">
-                      Small (between 10 and 49 employees)
-                    </label>
-                  </div>
-                  <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Medium (between 50 and 249 employees)' ){ %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
-                      type="radio" value="Medium (between 50 and 249 employees)" checked>
-
-                    <% } else { %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
-                      type="radio" value="Medium (between 50 and 249 employees)">
-                    <% } %>
-                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-3">
-                      Medium (between 50 and 249 employees)
-                    </label>
-                  </div>
-                  <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Large (250 or more employees)' || ssn.Size_of_the_Organisation_Global == 'Large (more than 250 employees)' ){ %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                      type="radio" value="Large (250 or more employees)" checked>
-                    <% } else { %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                      type="radio" value="Large (250 or more employees)">
-                    <% } %>
-                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-4">
-                      Large (250 or more employees)
-                    </label>
-                  </div>
+                  <% } else { %>
+                  <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
+                    type="radio" value="SME">
+                  <% } %>
+                  <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation">
+                    SME
+                  </label>
                 </div>
-              </fieldset>
+                <div class="govuk-radios__item">
+                  <% if( ssn.Size_of_the_Organisation_Global == 'Large' ){ %>
+                  <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
+                    type="radio" value="Large" checked>
+
+                  <% } else { %>
+                  <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
+                    type="radio" value="Large">
+                  <% } %>
+                  <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-2">
+                    Large
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <% if( ssn.Size_of_the_Organisation_Global == 'Not specified'){ %>
+                  <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
+                    type="radio" value="Not specified" checked>
+                  <% } else { %>
+                  <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
+                    type="radio" value="Not specified">
+                  <% } %>
+                  <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-3">
+                    Not specified
+                  </label>
+                </div>
+              </div>
             </div>
 
             <% } else { %>
@@ -1667,7 +1652,7 @@
             <div class="govuk-form-group">
               <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                  <h1 class="govuk-label">
+                  <h1 class="govuk-label" for="Size_of_the_Organisation">
                     Organisation size
                   </h1>
                 </legend>
@@ -1675,54 +1660,41 @@
 
                 <div class="govuk-radios">
                   <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Micro (fewer than 10 employees)' ){ %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
-                      type="radio" value="Micro (fewer than 10 employees)" checked>
-
-                    <% } else { %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
-                      type="radio" value="Micro (fewer than 10 employees)">
-                    <% } %>
-                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation">
-                      Micro (fewer than 10 employees)
-                    </label>
-                  </div>
-                  <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Small (between 10 and 49 employees)' ){ %>
+                    <% if( ssn.Size_of_the_Organisation_Global == 'SME' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
-                      type="radio" value="Small (between 10 and 49 employees)" checked>
+                      type="radio" value="SME" checked>
 
                     <% } else { %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
-                      type="radio" value="Small (between 10 and 49 employees)">
+                      type="radio" value="SME">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-2">
-                      Small (between 10 and 49 employees)
+                      SME
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Medium (between 50 and 249 employees)' ){ %>
+                    <% if( ssn.Size_of_the_Organisation_Global == 'Large' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
-                      type="radio" value="Medium (between 50 and 249 employees)" checked>
+                      type="radio" value="Large" checked>
 
                     <% } else { %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
-                      type="radio" value="Medium (between 50 and 249 employees)">
+                      type="radio" value="Large">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-3">
-                      Medium (between 50 and 249 employees)
+                      Large
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Large (250 or more employees)' || ssn.Size_of_the_Organisation_Global == 'Large (more than 250 employees)' ){ %>
+                    <% if( ssn.Size_of_the_Organisation_Global == 'Not specified' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                      type="radio" value="Large (250 or more employees)" checked>
+                      type="radio" value="Not specified" checked>
                     <% } else { %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                      type="radio" value="Large (250 or more employees)">
+                      type="radio" value="Not specified">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-4">
-                      Large (250 or more employees)
+                      Not specified
                     </label>
                   </div>
                 </div>
