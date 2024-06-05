@@ -12,17 +12,11 @@
             var action = '<%=action%>';
             var charLimit = 1000;
             $(document).ready(function () {
-                var actionButton = $('#action-button');
-                if(action == 'Delete')
-                    actionButton.attr('value', 'Deleted');
-                else
-                    actionButton.attr('value', 'Inactive');
-
-                actionButton.text(action + " subsidy scheme");
+                $('#action-button').text(action + " subsidy scheme");
                 
                 //Disables submit button if the reason length is too long
                 $("#label-as-page-heading").on('input', function() {
-                    var length = $("#label-as-page-heading").val().length;
+                    var length = $("#label-as-page-heading").val().trim().length;
                     var isValid = length > 0 && length <= charLimit;
                     $('#action-button').prop('disabled', !isValid);          
                 });
@@ -127,12 +121,23 @@
                                         <div class="govuk-grid-row" id="regression-search-area">
                                             <div class="govuk-grid-column-two-thirds-from-desktop" id="regression-search-area">
                                                 <h1 class="govuk-heading-xl">Add comments</h1>
-                                                <form method="POST" action="/successfullydeletescheme"
+                                                <% if(typeof reasonLengthError != 'undefined' && reasonLengthError) { %>
+                                                    <div tabindex="-1" class="govuk-error-summary" id="error-alert" role="alert"
+                                                    aria-labelledby="error-summary-title" data-module="govuk-error-summary">
+                                                    <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+                                                <div class="govuk-error-summary__body">
+                                                    <ul class="govuk-list govuk-error-summary__list">
+                                                        <li> <a>Reason should be between 1 and 1000 characters in length </a> </li>
+                                                    </ul>
+                                                </div> 
+                                                </div>
+                                                <% } %>
+                                                <form method="POST" action="/successfullydeactivatescheme"
                                                     id="rejection-form">
 
                                                     <div class="govuk-character-count"
                                                         data-module="govuk-character-count"
-                                                        data-maxlength="<%=(typeof charLimit != 'undefined') ? charLimit : 1000%>">
+                                                        data-maxlength=1000>
                                                         <div class="govuk-form-group">
                                                             <label class="govuk-label" for="rejection-reason">
                                                                 Add feedback for the person who is working on this
@@ -146,13 +151,11 @@
                                                         <div id="label-as-page-heading-info"
                                                             class="govuk-hint govuk-character-count__message"
                                                             aria-live="polite">
-                                                            You can enter up to <%= (typeof charLimit !='undefined' ) ?
-                                                                charLimit.toLocaleString() :
-                                                                1000 %> characters
+                                                            You can enter up to <%=1000%> 
                                                         </div>
                                                     </div>
                                                     <button class="govuk-button govuk-button--warning"
-                                                        id='action-button' value="put" name="buttonValue"
+                                                        id='action-button' value=<%=action%> name="action"
                                                         data-module="govuk-button" disabled>
                                                     </button>
                                                 </form>

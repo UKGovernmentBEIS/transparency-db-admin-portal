@@ -32,8 +32,21 @@ router.post("/", async (req, res) => {
       }
     }
     
-    if(typeof req.body.reason != 'undefined')
-      reason = req.body.reason;
+    if(typeof req.body.reason === 'undefined')
+    {      
+      res.redirect("/deactivatescheme?action=" + action + "&error=True");
+      return;
+    }
+
+    reason = req.body.reason;
+    reason = reason.trim();
+    if(reason.length > 1000 || reason.length <= 0)
+    {        
+      res.redirect("/deactivatescheme?action=" + action +"&error=True");
+      return;
+    }
+    
+
 
     res.set("X-Frame-Options", "DENY");
     res.set("X-Content-Type-Options", "nosniff");
