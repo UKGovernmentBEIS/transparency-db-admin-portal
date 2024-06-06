@@ -204,7 +204,7 @@ router.get("/", async (req, res) => {
             case "Training":
               ssn.purpose_training_Global = true;
               break;
-            case ssn.Purpose_Array_Other_Global:
+            case "Other - " + ssn.Purpose_Array_Other_Global:
               ssn.purpose_other_Global = ssn.Purpose_Array_Other_Global;
               break;
           }

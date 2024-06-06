@@ -345,12 +345,11 @@ router.post("/", (req, res) => {
     }
 
     if(purpose_other.startsWith("Other -")){
-      ssn.purpose_other_Global = purpose_other;
       purposeArray.push(purpose_other);
-    }else{
-     ssn.purpose_other_Global = purpose_other;
+     }else if(purpose_other.length > 0){
       purposeArray.push("Other - " + purpose_other);
-    }
+     }
+     ssn.purpose_other_Global = purpose_other;
 
     ssn.Scheme_purpose_Json_Global = JSON.stringify(purposeArray);
 
