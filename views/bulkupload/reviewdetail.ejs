@@ -144,9 +144,9 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Policy Objective
+            Policy objective
           </dt>
-          <dd class="govuk-summary-list__value render-newlines"><%= ssn.Specific_Policy_Objective_Global %></dd>
+          <dd class="govuk-summary-list__value render-newlines"><%= (ssn.Standalone_Award_Global === 'No') ? 'NA' : ssn.Specific_Policy_Objective_Global %></dd>
         </div>
 
         <div class="govuk-summary-list__row">

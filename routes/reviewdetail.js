@@ -276,15 +276,15 @@ router.post("/", async (req, res) => {
         ssn.Specific_Policy_Objective_Error_Length = true;
         ssn.SubsidyErrors[Additem] =
           "The specific policy objective must be 1500 characters or less.";
-        ssn.SubsidyFocus[Additem] = "#specific-policy-objective-container";
+        ssn.SubsidyFocus[Additem] = "#Specific_Policy_Objective";
         Additem = Additem + 1;
       }
 
-      if (!Specific_Policy_Objective) {
+      if (Standalone_Award == 'Yes' && !Specific_Policy_Objective) {
         ssn.Specific_Policy_Objective_Error = true;
         ssn.SubsidyErrors[Additem] =
           " You must add a policy objective.";
-        ssn.SubsidyFocus[Additem] = "#specific-policy-objective-container";
+        ssn.SubsidyFocus[Additem] = "#Specific_Policy_Objective";
         Additem = Additem + 1;
       }
 

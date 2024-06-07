@@ -163,8 +163,11 @@
                         <dt class="govuk-summary-list__key">
                             Policy objective
                         </dt>
-                        <dd class="govuk-summary-list__value render-newlines"><%= fetchawarddetails.specificPolicyObjective %></dd>
+                        <dd class="govuk-summary-list__value">
+                            <%= (fetchawarddetails.standaloneAward === 'No' || fetchawarddetails.specificPolicyObjective === '') ? 'NA' : fetchawarddetails.specificPolicyObjective %>
+                        </dd>
                     </div>
+
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">
                             Award description
