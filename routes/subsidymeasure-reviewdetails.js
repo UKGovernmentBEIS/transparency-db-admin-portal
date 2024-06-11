@@ -390,7 +390,7 @@ router.post("/", (req, res) => {
 
       if (Specific_Policy_Objective == ""){
         ssn.Specific_Policy_Objective_Error = true;
-        ssn.SubsidyErrors.push("Enter the Specific Policy Objective");
+        ssn.SubsidyErrors.push("Enter the Specific policy objective");
         ssn.SubsidyFocus.push("#Specific_Policy_Objective");
       } else if (Specific_Policy_Objective.length > 1500){
         ssn.Specific_Policy_Objective_Length_Error = true;

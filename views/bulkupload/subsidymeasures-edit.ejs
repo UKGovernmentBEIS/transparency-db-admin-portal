@@ -264,46 +264,6 @@
                                     value="<%= ssn.Subsidy_Measure_Title_Global %>">
                             </div>
                             
-                                <% if( ssn.Specific_Policy_Objective_Error ||ssn.Specific_Policy_Objective_Length_Error){ %>
-                                    <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
-                                        <% } else { %>
-                                        <div class="govuk-form-group govuk-grid-column-two-thirds">
-                                            <% }  %>
-                                            <label class="govuk-label" for="address-line-1">
-                                                Specific policy objective
-                                            </label>
-                                            <details class="govuk-details" data-module="govuk-details">
-                                                <summary class="govuk-details__summary">
-                                                    <span class="govuk-details__summary-text">
-                                                        What is a Specific policy objective?
-                                                    </span>
-                                                </summary>
-                                                <div class="govuk-details__text">
-                                                    Specific Policy Objective(s) - provide details of the policy objective(s) of the scheme or subsidy. This should reflect the specific policy objective(s) documented under Subsidy Control Principle A (which forms part of Step 1 of the Assessment Framework in the Statutory Guidance for the UK Subsidy Control Regime).
-                                                </div>
-                                            </details>
-
-                                            <!-- <div class="govuk-hint">A short summary of the policy page that you provided
-                                                the URL for. For example, Water Purity Scheme policy page.
-                                            </div> -->
-                                            <% if( ssn.Specific_Policy_Objective_Error ){ %>
-                                            <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
-                                                <span class="govuk-visually-hidden">Error:</span> Enter a valid
-                                               specific policy objective
-                                            </span>
-
-                                            <% } else if( ssn.Specific_Policy_Objective_Length_Error ){ %>
-                                            <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
-                                                <span class="govuk-visually-hidden">Error:</span> Specific policy objective cannot be greater than 1500 characters
-                                            </span>
-                                            <% }  %>
-                                            <!-- <input class="govuk-input" id="Subsidy_Scheme_Description"
-                                                name="Subsidy_Scheme_Description" type="text"
-                                                value="<%= ssn.Subsidy_Scheme_Description_Global%>"> -->
-
-                                                <textarea class="govuk-textarea govuk-js-character-count" id="Specific_Policy_Objective" name="Specific_Policy_Objective" rows="5" aria-describedby="Specific_Policy_Objective-info"><%= ssn.Specific_Policy_Objective_Global %></textarea>
-                                        </div>
-
                             <div
                             class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.Subsidy_Scheme_Interest_Error ){ %> govuk-form-group--error <% } %>">
                             <label class="govuk-label" for="address-line-1">
@@ -367,6 +327,47 @@
                                         </div>
                                     </div>
                             </div>
+
+                            <% if( ssn.Specific_Policy_Objective_Error ||ssn.Specific_Policy_Objective_Length_Error){ %>
+                                <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                                    <% } else { %>
+                                    <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                        <% }  %>
+                                        <label class="govuk-label" for="address-line-1">
+                                            Specific policy objective
+                                        </label>
+                                        <details class="govuk-details" data-module="govuk-details">
+                                            <summary class="govuk-details__summary">
+                                                <span class="govuk-details__summary-text">
+                                                    What is a Specific policy objective?
+                                                </span>
+                                            </summary>
+                                            <div class="govuk-details__text">
+                                                Specific Policy Objective(s) - provide details of the policy objective(s) of the scheme or subsidy. This should reflect the specific policy objective(s) documented under Subsidy Control Principle A (which forms part of Step 1 of the Assessment Framework in the Statutory Guidance for the UK Subsidy Control Regime).
+                                            </div>
+                                        </details>
+
+                                        <!-- <div class="govuk-hint">A short summary of the policy page that you provided
+                                            the URL for. For example, Water Purity Scheme policy page.
+                                        </div> -->
+                                        <% if( ssn.Specific_Policy_Objective_Error ){ %>
+                                        <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
+                                            <span class="govuk-visually-hidden">Error:</span> Enter a valid
+                                           specific policy objective
+                                        </span>
+
+                                        <% } else if( ssn.Specific_Policy_Objective_Length_Error ){ %>
+                                        <span class="govuk-error-message" id="Granting_Authority_Policy_Error">
+                                            <span class="govuk-visually-hidden">Error:</span> Specific policy objective cannot be greater than 1500 characters
+                                        </span>
+                                        <% }  %>
+                                        <!-- <input class="govuk-input" id="Subsidy_Scheme_Description"
+                                            name="Subsidy_Scheme_Description" type="text"
+                                            value="<%= ssn.Subsidy_Scheme_Description_Global%>"> -->
+
+                                            <textarea class="govuk-textarea govuk-js-character-count" id="Specific_Policy_Objective" name="Specific_Policy_Objective" rows="5" aria-describedby="Specific_Policy_Objective-info"><%= ssn.Specific_Policy_Objective_Global %></textarea>
+                                    </div>
+
 
 
                             <% if( ssn.Subsidy_Scheme_Description_Error ||ssn.Subsidy_Scheme_Description_Length_Error){ %>
