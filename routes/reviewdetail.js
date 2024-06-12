@@ -257,7 +257,7 @@ router.post("/", async (req, res) => {
         }
       }
 
-      if (((Standalone_Award?.toLowerCase() ?? '') !== 'no' && !Subsidy_Award_Interest)) {
+      if ((Standalone_Award !== 'No' && !Subsidy_Award_Interest)) {
         ssn.Subsidy_Award_Interest_Error = true;
         ssn.SubsidyErrors[Additem] = "You must select if the award is a Subsidies or Schemes of Interest (SSoI), Subsidies or Schemes of Particular Interest (SSoPI) or neither";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Award_Interest";
