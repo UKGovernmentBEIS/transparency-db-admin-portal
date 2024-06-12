@@ -53,19 +53,36 @@
 
     </script>
     <script>
-    function selectAll(source) {
-        checkboxes = document.getElementsByClassName("govuk-checkboxes__input_spendingsector");
-        for(var i=0, n=checkboxes.length;i<n;i++) {
-        checkboxes[i].checked = source.checked;
+        function selectAll(source) {
+            checkboxes = document.getElementsByClassName("govuk-checkboxes__input_spendingsector");
+            for(var i=0, n=checkboxes.length;i<n;i++) {
+            checkboxes[i].checked = source.checked;
+            }
         }
-    }
+    </script>
+    <script>
+        function selectAll_Purpose(source) {
+            checkboxes = document.getElementsByClassName("govuk-checkboxes__input_purpose");
+            for(var i=0, n=checkboxes.length;i<n;i++) {
+            checkboxes[i].checked = source.checked;
+            }
+        }
+        function onPurposeOtherClick() {
+            if (document.getElementById('purpose-other-checkBox').checked) {
+                document.getElementById('purpose-other-div').style.display = 'block';
+            } 
+            else{
+                document.getElementById('purpose-other-div').style.display = 'none';
+                document.getElementById('purpose-other').value = "";
+            }
+        }
     </script>
 
 </head>
 
 
 <body class="govuk-template__body app-example-page"
-    onload="getErrorList('<%=ssn.SubsidyArraySize%>','<%=ssn.Subsidy_Adhoc_Global%>'); getSubsidyNoEndDate()">
+    onload="getErrorList('<%=ssn.SubsidyArraySize%>','<%=ssn.Subsidy_Adhoc_Global%>'); getSubsidyNoEndDate(); onPurposeOtherClick()">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -1016,7 +1033,139 @@
 
                                                                 </fieldset>
                                                             </div>
+                                                            <% if(ssn.purpose_Error){ %>
+                                                                <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                                                                    <% } else { %>
+                                                            <div class="govuk-form-group govuk-grid-column-two-thirds">
+                                                                <% } %>
+                                                                <fieldset class="govuk-fieldset" aria-describedby="sector-hint">
+                                                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-grid-column-two-thirds">
+                                                                    </legend>
+                                                                    <div class="govuk-grid-row govuk-form-group">
+                                                                        <div class="govuk-grid-column-full">
+                                                                            <p id="purpose-hint" class="govuk-body " for="subsidylabel">
+                                                                            Select one or more purpose(s)
+                                                                            </p>
+                                                                            <% if(ssn.purpose_Error){ %>
+                                                                            <span class="govuk-error-message" id="purposeArray">
+                                                                                <span class="govuk-visually-hidden">Error:</span>
+                                                                                Enter at least one or more purpose(s)
+                                                                            </span>
+                                                                            <% } %>
+                                                                        </div>
+                                                                    </div>
+                
+                                                                    <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">
+                                                                    <div class="govuk-checkboxes__item">
+                                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_purpose" onclick="selectAll_Purpose(this)" id="purpose-0" name="select-all" type="checkbox"
+                                                                        value="Select all"
+                                                                        data-aria-controls="conditional-spendingsector-0">
+                                                                        <label class="govuk-label govuk-checkboxes__label" for="purpose-0">
+                                                                        Select all
+                                                                        </label>
+                                                                    </div>
+                
+                                                                    <div class="govuk-checkboxes__conditional" id="conditional-objective0">
+                
+                                                                        <div class="govuk-checkboxes__item">
+                                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_purpose" id="purpose-culture-or-heritage" name="purpose_culture_and_heritage"
+                                                                            type="checkbox" value="Culture or Heritage"<% if (ssn.purpose_culture_or_heritage_Global) { %>
+                                                                                checked <% } %>>
+                                                                        <label class="govuk-label govuk-checkboxes__label" for="purpose-culture-or-heritage">
+                                                                            Culture or Heritage
+                                                                        </label>
+                                                                        </div>
+                
+                                                                        <div class="govuk-checkboxes__item">
+                                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_purpose" id="purpose-employment"
+                                                                            name="purpose_employment" type="checkbox" value="Employment"<% if (ssn.purpose_employment_Global) { %>
+                                                                                checked <% } %>>
+                                                                        <label class="govuk-label govuk-checkboxes__label" for="purpose-employment">
+                                                                            Employment
+                                                                        </label>
+                                                                        </div>
+                
+                                                                        <div class="govuk-checkboxes__item">
+                                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_purpose" id="purpose-energy-efficiency"
+                                                                            name="purpose_energy_efficiency" type="checkbox"
+                                                                            value="Energy efficiency"<% if (ssn.purpose_energy_efficiency_Global) { %>
+                                                                                checked <% } %>>
+                                                                        <label class="govuk-label govuk-checkboxes__label" for="purpose-energy-efficiency">
+                                                                            Energy efficiency
+                                                                        </label>
+                                                                        </div>
+                
+                                                                        <div class="govuk-checkboxes__item">
+                                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_purpose" id="purpose-environmental-protetion" name="purpose_environmental_protection"
+                                                                            type="checkbox" value="Environmental protection"<% if (ssn.purpose_environmental_protection_Global) { %>
+                                                                                checked <% } %>>
+                                                                        <label class="govuk-label govuk-checkboxes__label" for="purpose-environmental-protetion">
+                                                                            Environmental protection
+                                                                        </label>
+                                                                        </div>
+                
+                                                                        <div class="govuk-checkboxes__item">
+                                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_purpose" id="purpose-infrastructure"
+                                                                            name="purpose_infrastructure" type="checkbox" value="Infrastructure"<% if (ssn.purpose_infrastructure_Global) { %>
+                                                                                checked <% } %>>
+                                                                        <label class="govuk-label govuk-checkboxes__label"
+                                                                            for="purpose-infrastructure">
+                                                                            Infrastructure
+                                                                        </label>
+                                                                        </div>
+                
+                                                                        <div class="govuk-checkboxes__item">
+                                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_purpose" id="purpose-regional-development" name="purpose_regional_development"
+                                                                            type="checkbox" value="Regional development"<% if (ssn.purpose_regional_devlopment_Global) { %>
+                                                                                checked <% } %>>
+                                                                        <label class="govuk-label govuk-checkboxes__label" for="purpose-regional-development">
+                                                                            Regional development
+                                                                        </label>
+                                                                        </div>
+                
+                                                                        <div class="govuk-checkboxes__item">
+                                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_purpose" id="purpose-rescue-subsidy" name="purpose_rescue_subsidy"
+                                                                            type="checkbox" value="Rescue and restructuring subsidy"<% if (ssn.purpose_rescue_subsidy_Global) { %>
+                                                                                checked <% } %>>
+                                                                        <label class="govuk-label govuk-checkboxes__label" for="purpose-rescue-subsidy">
+                                                                            Rescue and restructuring subsidy
+                                                                        </label>
+                                                                        </div>
+                
+                                                                        <div class="govuk-checkboxes__item">
+                                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_purpose" id="purpose-research-and-development" name="purpose_research_and_development"
+                                                                            type="checkbox" value="Research and development"<% if (ssn.purpose_research_and_development_Global) { %>
+                                                                                checked <% } %>>
+                                                                        <label class="govuk-label govuk-checkboxes__label" for="purpose-research-and-development">
+                                                                            Research and development
+                                                                        </label>
+                                                                        </div>
+                
+                
+                                                                        <div class="govuk-checkboxes__item">
+                                                                        <input class="govuk-checkboxes__input govuk-checkboxes__input_purpose" id="purpose-other-checkBox"
+                                                                            name="purpose_other-checkBox" type="checkbox" onclick="onPurposeOtherClick()" <% if (ssn.purpose_other_Global) { %>
+                                                                                checked <% } %>>
+                                                                        <label class="govuk-label govuk-checkboxes__label" for="purpose-other">
+                                                                            Other
+                                                                        </label>                                                  
+                                                                        </div>
 
+                                                                    </div>
+
+                                                                    <div class="govuk-input__wrapper" style="display: none;" id="purpose-other-div">
+                                                                        <label class="govuk-label">
+                                                                             Please enter the other purpose
+                                                                        </label>
+                                                                        <input class="govuk-input" id="purpose-other"
+                                                                            name="purpose_other" type="text"
+                                                                            value="<%= ssn.purpose_other_Global %>">
+                                                                    </div>
+                                                                </div>
+                
+                                                            </fieldset>
+                                                        </div>
+                
                                                     <!-- action button details -->
 
                                                     <div class="govuk-form-group govuk-grid-column-two-thirds">

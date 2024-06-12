@@ -113,7 +113,8 @@ router.post("/", async (req, res) => {
       confirmationDate: subsidy_confirmation_date,
       spendingSectorJson: ssn.Scheme_Sector_Json_Global,
       maximumAmountUnderScheme: ssn.Maximum_Amount_Under_Scheme_Global,
-      subsidySchemeInterest: ssn.Subsidy_Scheme_Interest_Global
+      subsidySchemeInterest: ssn.Subsidy_Scheme_Interest_Global,
+      purposeJson: ssn.Scheme_purpose_Json_Global,
     };
 
     console.log("add scheme data", JSON.stringify(addSchemeRequest));
@@ -216,7 +217,8 @@ router.post("/", async (req, res) => {
         confirmationDate: subsidy_confirmation_date,
         spendingSectorJson: ssn.Scheme_Sector_Json_Global,
         maximumAmountUnderScheme: ssn.Maximum_Amount_Under_Scheme_Global,
-        subsidySchemeInterest: ssn.Subsidy_Scheme_Interest_Global
+        subsidySchemeInterest: ssn.Subsidy_Scheme_Interest_Global,
+        purposeJson: ssn.Scheme_purpose_Json_Global,
       };
 
       updateSchemeUrl =
