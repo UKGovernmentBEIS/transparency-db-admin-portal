@@ -91,6 +91,10 @@
                             <td class="govuk-table__cell"><%= schemeVersionDetails.subsidyMeasureTitle %></td>
                         </tr>
                         <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)</th>
+                            <td class="govuk-table__cell"><%= (schemeVersionDetails.subsidySchemeInterest === '' || schemeVersionDetails.subsidySchemeInterest === null) ? 'NA' : schemeVersionDetails.subsidySchemeInterest %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme description</th>
                             <td
                             class="govuk-table__cell render-newlines"><%= schemeVersionDetails.subsidySchemeDescription %></td>
@@ -170,6 +174,23 @@
                                 <ul class="govuk-list govuk-list--bullet">
                                     <% schemeVersionDetails.spendingSectorArray.forEach(function(item) { %>
                                     <li> <%=item %> </li>
+                                    <% }); %>
+                                </ul>
+                                <% } else { %>
+                                    NA
+                                 <% } %>
+                            </td>
+                        </tr>
+
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Purpose(s)</th>
+                            <td class="govuk-table__cell">
+                                <% if(schemeVersionDetails.purposeArray.length > 0) { %>
+                                <ul class="govuk-list govuk-list--bullet">
+                                    <% schemeVersionDetails.purposeArray.forEach(function(item) { %>
+                                        <%if(item != ""){%>
+                                        <li> <%=item %> </li>
+                                        <% } %>
                                     <% }); %>
                                 </ul>
                                 <% } else { %>
