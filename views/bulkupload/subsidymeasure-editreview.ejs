@@ -228,6 +228,22 @@
                                  <% } %>
                             </td>
                         </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Purpose(s)</th>
+                            <td class="govuk-table__cell">
+                                <% if(purposeArray.length > 0) { %>
+                                <ul class="govuk-list govuk-list--bullet">
+                                    <% purposeArray.forEach(function(item) { %>
+                                        <%if(item != ""){%>
+                                        <li> <%=item %> </li>
+                                        <% } %>
+                                    <% }); %>
+                                </ul>
+                                <% } else { %>
+                                    NA
+                                 <% } %>
+                            </td>
+                        </tr>
 
                     </tbody>
                 </table>

@@ -95,11 +95,17 @@ router.get("/", async (req, res) => {
           spendingSectorArray = JSON.parse(ssn.searchmeasuredetails.spendingSectors);
         }
 
+        var purposeArray = new Array();
+        if(ssn.searchmeasuredetails.purpose != null){
+          purposeArray = JSON.parse(ssn.searchmeasuredetails.purpose);
+        }
+
         var date = Scheme_Start_Date.split(" ");
         console.log("Scheme_Start_Date", Scheme_Start_Date);
 
         res.render("bulkupload/subsidymeasure-editreview", {
           spendingSectorArray,
+          purposeArray,
           currentURI: req.protocol + '://' + req.get('host') + req.originalUrl
         });
       });

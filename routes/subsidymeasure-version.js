@@ -40,6 +40,11 @@ router.get("/", async (req, res) => {
       if(schemeVersionDetails.spendingSectors != null){
         schemeVersionDetails.spendingSectorArray = JSON.parse(schemeVersionDetails.spendingSectors);
       }
+      
+      schemeVersionDetails.purposeArray = new Array();
+      if(schemeVersionDetails.purpose != null){
+        schemeVersionDetails.purposeArray = JSON.parse(schemeVersionDetails.purpose);
+      }
 
       var response = await axios.get(
         schemeEndpoint,
