@@ -96,7 +96,7 @@ router.post("/", (req, res) => {
       has_no_end_date,
       Subsidy_Scheme_Description,
       Subsidy_Scheme_Interest,
-      purpose_culture_and_heritage,
+      purpose_culture_or_heritage,
       purpose_employment,
       purpose_energy_efficiency,
       purpose_environmental_protection,
@@ -278,9 +278,9 @@ router.post("/", (req, res) => {
      var purposeArray = new Array();
      ssn.Purpose_Array_Global = purposeArray
  
-     if(purpose_culture_and_heritage){
-       ssn.purpose_culture_or_heritage_Global = purpose_culture_and_heritage;
-       purposeArray.push(purpose_culture_and_heritage);
+     if(purpose_culture_or_heritage){
+       ssn.purpose_culture_or_heritage_Global = purpose_culture_or_heritage;
+       purposeArray.push(purpose_culture_or_heritage);
      }
  
      if(purpose_employment){
