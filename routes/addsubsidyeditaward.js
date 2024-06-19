@@ -58,7 +58,10 @@ router.get("/", (req, res) => {
     ssn.Standalone_Award_Global = fetchawarddetails.standaloneAward;
     ssn.Subsidy_Award_Description_Global = fetchawarddetails.subsidyAwardDescription;
 
+    ssn.Specific_Policy_Objective_global = fetchawarddetails.specificPolicyObjective;
+
     ssn.Subsidy_Objective_Global = fetchawarddetails.subsidyObjective;
+
 
     var subsidy_objective_split = ssn.Subsidy_Objective_Global.split("-");
     var subsidy_objective_split_check = subsidy_objective_split[0].toLowerCase();
