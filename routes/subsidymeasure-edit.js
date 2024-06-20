@@ -84,7 +84,6 @@ router.get("/", async (req, res) => {
         ssn.spendingsector_water_supply_Global = false;
         ssn.spendingsector_wholesale_and_retail_trade_Global = false;
 
-        ssn.Purpose_Array_Global = measureapidata.data.purposeArray
         ssn.Purpose_Array_Other_Global = JSON.parse(ssn.searchmeasuredetails.purpose).slice(-1).toString().replace('Other - ', '')
 
         ssn.purpose_culture_or_heritage_Global = false;

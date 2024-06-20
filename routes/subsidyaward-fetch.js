@@ -40,6 +40,12 @@ router.get("/", async (req, res) => {
       fetchawarddetails = awardapidata.data;
       Get_Award_Status = fetchawarddetails.status;
       console.log("Get_Award_Status", Get_Award_Status);
+
+      var objectiveArray = new Array();
+      if(fetchawarddetails.subsidyObjective != null){
+        objectiveArray = JSON.parse(fetchawarddetails.subsidyObjective);
+      }
+
       if (
         Get_Award_Status.toLowerCase() == "rejected" ||
         Get_Award_Status.toLowerCase() == "awaiting approval" ||
@@ -47,7 +53,7 @@ router.get("/", async (req, res) => {
         Get_Award_Status.toLowerCase() == "deleted" ||
         Get_Award_Status.toLowerCase() == "deactive"
       ) {
-        res.render("bulkupload/subsidyaward-fetch");
+        res.render("bulkupload/subsidyaward-fetch", {objectiveArray});
       }
       else {
         res.render("bulkupload/subsidyaward-fetch-notfound");

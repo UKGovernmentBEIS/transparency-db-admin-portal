@@ -70,13 +70,32 @@ router.post("/", async (req, res) => {
     ssn.Admin_Program_Active_Error = false;
     ssn.Admin_Program_Match_Error = false;
     ssn.Subsidy_Award_Interest_Error = false;
+    objective_culture_Global = "";
+    objective_employment_Global = "";
+    objective_energy_efficiency_Global = "";
+    objective_environmental_Global = "";
+    objective_infrastructure_Global = "";
+    objective_regional_development_Global = "";
+    objective_rescue_subsidy_Global = "";
+    objective_research_Global = "";
+    objective_training_Global = "";
+    objective_other_Global = "";
 
 
     var {
       Subsidy_Control_Number_Name,
       // Subsidy_Adhoc,
       Subsidy_Award_Description,
-      Subsidy_Objective,
+      objective_culture,
+      objective_employment,
+      objective_energy_efficiency,
+      objective_environmental,
+      objective_infrastructure,
+      objective_regional_development,
+      objective_rescue_subsidy,
+      objective_research,
+      objective_training,
+      objective_other,
       Subsidy_Objective_Other,
       Subsidy_Instrument,
       Subsidy_Instrument_Other,
@@ -118,7 +137,6 @@ router.post("/", async (req, res) => {
     }
 
     ssn.Subsidy_Award_Description_Global = Subsidy_Award_Description;
-    ssn.Subsidy_Objective_Global = Subsidy_Objective;
     ssn.Subsidy_Objective_Other_Global = Subsidy_Objective_Other;
     ssn.Subsidy_Instrument_Global = Subsidy_Instrument;
     ssn.Subsidy_Instrument_Other_Global = Subsidy_Instrument_Other;
@@ -166,9 +184,66 @@ router.post("/", async (req, res) => {
     console.log("Subsidy_Objective_Other", Subsidy_Objective_Other.length);
     console.log("Subsidy_Instrument_Other", Subsidy_Instrument_Other);
     console.log("Beneficiary_Name", Beneficiary_Name);
-    console.log("Subsidy_Objective", Subsidy_Objective);
     console.log("ssn.Subsidy_Award_Interest :" + ssn.Subsidy_Award_Interest_Global)
     console.log("buttonvalue", buttonvalue);
+    var subsidyObjectiveArray = new Array();
+
+    if(objective_culture){
+      ssn.objective_culture_Global = objective_culture;
+      subsidyObjectiveArray.push(objective_culture);
+    }
+
+    if(objective_employment){
+      ssn.objective_employment_Global = objective_employment;
+      subsidyObjectiveArray.push(objective_employment);
+    }
+
+    if(objective_energy_efficiency){
+      ssn.objective_energy_efficiency_Global = objective_energy_efficiency;
+      subsidyObjectiveArray.push(objective_energy_efficiency);
+    }
+
+    if(objective_environmental){
+      ssn.objective_environmental_Global = objective_environmental;
+      subsidyObjectiveArray.push(objective_environmental);
+    }
+
+    if(objective_infrastructure){
+      ssn.objective_infrastructure_Global = objective_infrastructure;
+      subsidyObjectiveArray.push(objective_infrastructure);
+    }
+
+    if(objective_regional_development){
+      ssn.objective_regional_development_Global = objective_regional_development;
+      subsidyObjectiveArray.push(objective_regional_development);
+    }
+
+    if(objective_rescue_subsidy){
+      ssn.objective_rescue_subsidy_Global = objective_rescue_subsidy;
+      subsidyObjectiveArray.push(objective_rescue_subsidy);
+    }
+
+    if(objective_research){
+      ssn.objective_research_Global = objective_research;
+      subsidyObjectiveArray.push(objective_research);
+    }
+
+    if(objective_training){
+      ssn.objective_training_Global = objective_training;
+      subsidyObjectiveArray.push(objective_training);
+    }
+
+    if(objective_other){
+      ssn.objective_other_Global = objective_other;
+      if(Subsidy_Objective_Other.length > 0){
+        subsidyObjectiveArray.push("Other - " + Subsidy_Objective_Other);
+      }
+    }
+
+  
+    ssn.Scheme_Objective_Json_Global = JSON.stringify(subsidyObjectiveArray);
+    ssn.objective_Array_Global = subsidyObjectiveArray;
+    console.log("Subsidy purpose: " + ssn.Scheme_Objective_Json_Global);
 
     if (ssn.Legal_Granting_Date_Month_Global == 1) {
       ssn.GetMonthName = "January";
@@ -266,7 +341,7 @@ router.post("/", async (req, res) => {
           Additem = Additem + 1;
       }
 
-      if (Subsidy_Objective == "") {
+      if (subsidyObjectiveArray.length <= 0) {
         ssn.Subsidy_Objective_Error = true;
         ssn.SubsidyErrors[Additem] =
           " You must select the purpose of the subsidy.";
@@ -274,7 +349,7 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
-      if (Subsidy_Objective == "Other" && Subsidy_Objective_Other == "") {
+      if (objective_other in subsidyObjectiveArray && Subsidy_Objective_Other.trim() == "") {
         ssn.Subsidy_Objective_Other_Error = true;
         ssn.Subsidy_Objective_Other_255_Error = false;
         ssn.SubsidyErrors[Additem] =
@@ -284,7 +359,7 @@ router.post("/", async (req, res) => {
       }
 
       if (
-        Subsidy_Objective == "Other" &&
+        objective_other in subsidyObjectiveArray &&
         Subsidy_Objective_Other.length > 249
       ) {
         ssn.Subsidy_Objective_Other_255_Error = true;
@@ -557,7 +632,7 @@ router.post("/", async (req, res) => {
           ssn,
         });
       } else {
-        if (ssn.Subsidy_Objective_Global == "Other") {
+        if (objective_other in subsidyObjectiveArray) {
           ssn.Subsidy_Objective_Plus_Other_Global =
             ssn.Subsidy_Objective_Global +
             "-" +
@@ -736,6 +811,7 @@ router.post("/", async (req, res) => {
         } else {
           res.render("bulkupload/reviewdetail", {
             ssn,
+            subsidyObjectiveArray
           });
         }
 

@@ -42,17 +42,24 @@
         return false;
       };
 
+      var objective_other_Global = '<%=typeof ssn.objective_other_Global%>';
+      console.log(objective_other_Global);
+
+      if(objective_other_Global !== 'undefined')
+        $('#other_objective').css('display', 'block');
+      else
+        $('#other_objective').css('display ', 'none');
+      
     });
 
-    changeSubsidyPurpose = (event) => {
-
-      if (event.target.value == 'Other')
-        document.getElementById("other_purpose").style.display = "block";
+    changeSubsidyObjective = () => {
+      if ($('#objective-other').prop("checked"))
+        document.getElementById("other_objective").style.display = "block";
       else
-        document.getElementById("other_purpose").style.display = "none";
+        document.getElementById("other_objective").style.display = "none";
     };
 
-    getSubsidyInstrument = (subsidyValue, purposeValue, errorArray) => {
+    getSubsidyInstrument = (subsidyValue, objectiveValue, errorArray) => {
       if (errorArray > 0) {
         document.getElementById("error-alert").focus();
       }
@@ -68,11 +75,6 @@
         document.getElementById("other_type").style.display = "block";
       else
         document.getElementById("other_type").style.display = "none";
-
-      if (purposeValue == 'Other')
-        document.getElementById("other_purpose").style.display = "block";
-      else
-        document.getElementById("other_purpose").style.display = "none";
     }
 
     changeSubsidyType = (event) => {
@@ -109,6 +111,13 @@
       }
 
     };
+      function selectAll(source) {
+          checkboxes = document.getElementsByClassName("govuk-checkboxes__input_spendingsector");
+          for(var i=0, n=checkboxes.length;i<n;i++) {
+          checkboxes[i].checked = source.checked;
+          }
+          changeSubsidyObjective();
+      }
   </script>
 </head>
 
@@ -699,177 +708,145 @@
             <!-- *************************************  -->
             <!-- Get the  Subsidy Objective  from user  -->
             <!-- *************************************  -->
-            <% if( ssn.Subsidy_Objective_Error && !isAddSubsidyPrimarycall ) { %>
-            <div class="govuk-form-group govuk-form-group--error">
-              <label class="govuk-label" for="Subsidy_Objective">
-                Subsidy purpose
-              </label>
 
-              <span class="govuk-error-message" id="Subsidy_Objective_Error">
-                <span class="govuk-visually-hidden">Error:</span> You must select the purpose of the subsidy.
-              </span>
+              <fieldset class="govuk-fieldset" aria-describedby="objective-hint" id="Subsidy_Objective">
+                <% if(ssn.Subsidy_Objective_Error){ %>
+                  <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                  <% } else { %>
+                  <div class="govuk-form-group govuk-grid-column-two-thirds">
+                  <% } %>
+                  <label class="govuk-label" for="Subsidy_Objective">
+                    Subsidy purpose
+                  </label>
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-grid-column-two-thirds">
+                  </legend>
+                  <div class="govuk-grid-row govuk-form-group">
+                      <div class="govuk-grid-column-full">
+                          <p id="objective-hint" class="govuk-body " for="subsidylabel">
+                          Select one or more purposes(s)
+                          </p>
+                          <% if(ssn.Subsidy_Objective_Error){ %>
+                          <span class="govuk-error-message" id="subsidyObjectiveArray">
+                              <span class="govuk-visually-hidden">Error:</span>
+                              Enter at least one or more subsidy purposes(s)
+                          </span>
+                          <% } %>
+                      </div>
+                  </div>
 
-              <select class="govuk-select" id="Subsidy_Objective" name="Subsidy_Objective"
-                onChange=changeSubsidyPurpose(event)>
-                <% if( ssn.Subsidy_Objective_Global == '' ){ %>
-                <option value="" selected>Select subsidy purpose (10)</option>
-                <% } else { %>
-                <option value="">Select subsidy purpose (10)</option>
-                <% } %>
-                <% if( ssn.Subsidy_Objective_Global == 'Culture or Heritage' ){ %>
-                <option value="Culture or Heritage" selected>Culture or Heritage</option>
-                <% } else { %>
-                <option value="Culture or Heritage">Culture or Heritage</option>
-                <% } %>
+                  <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">
+                  <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" onclick="selectAll(this)" id="objective-0" name="select-all" type="checkbox"
+                      value="Select all"
+                      data-aria-controls="conditional-objective-0">
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-0">
+                      Select all
+                      </label>
+                  </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Employment' ){ %>
-                <option value="Employment" selected>Employment</option>
-                <% } else { %>
-                <option value="Employment">Employment</option>
-                <% } %>
+                  <div class="govuk-checkboxes__conditional" id="conditional-objective0">
 
-                <% if( ssn.Subsidy_Objective_Global == 'Energy efficiency' ){ %>
-                <option value="Energy efficiency" selected>Energy efficiency</option>
-                <% } else { %>
-                <option value="Energy efficiency">Energy efficiency</option>
-                <% } %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-culture" name="objective_culture"
+                          type="checkbox" value="Culture or Heritage"<% if (ssn.objective_culture_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-culture">
+                          Culture or Heritage
+                      </label>
+                      </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Environmental protection' ){ %>
-                <option value="Environmental protection" selected>Environmental protection</option>
-                <% } else { %>
-                <option value="Environmental protection">Environmental protection</option>
-                <% } %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-activities-of-extraterritorial"
+                          name="objective_employment" type="checkbox" value="Employment"<% if (ssn.objective_employment_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-employment">
+                          Employment
+                      </label>
+                      </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Infrastructure' ){ %>
-                <option value="Infrastructure" selected>Infrastructure</option>
-                <% } else { %>
-                <option value="Infrastructure">Infrastructure</option>
-                <% } %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-energy-efficiency"
+                          name="objective_energy_efficiency" type="checkbox"
+                          value="Energy efficiency"<% if (ssn.objective_energy_efficiency_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-energy-efficiency">
+                          Energy efficiency
+                      </label>
+                      </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Regional development' ){ %>
-                <option value="Regional development" selected>Regional development</option>
-                <% } else { %>
-                <option value="Regional development">Regional development</option>
-                <% } %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-environmental" name="objective_environmental"
+                          type="checkbox" value="Environmental protection"<% if (ssn.objective_environmental_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-environmental">
+                          Environmental protection
+                      </label>
+                      </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Rescue and restructuring subsidy' || ssn.Subsidy_Objective_Global == 'Rescue subsidy' || ssn.Subsidy_Objective_Global == 'Rescue aid' ){ %>
-                <option value="Rescue and restructuring subsidy" selected>Rescue and restructuring subsidy</option>
-                <% } else { %>
-                <option value="Rescue and restructuring subsidy">Rescue and restructuring subsidy</option>
-                <% } %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-infrastructure"
+                          name="objective_infrastructure" type="checkbox" value="Infrastructure"<% if (ssn.objective_infrastructure_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label"
+                          for="objective-infrastructure">
+                          Infrastructure
+                      </label>
+                      </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Research and development' ){ %>
-                <option value="Research and development" selected>Research and development</option>
-                <% } else { %>
-                <option value="Research and development">Research and development</option>
-                <% } %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-regional-development" name="objective_regional_development"
+                          type="checkbox" value="Regional development"<% if (ssn.objective_regional_development_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-regional-development">
+                          Regional development
+                      </label>
+                      </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Training' ){ %>
-                <option value="Training" selected>Training</option>
-                <% } else { %>
-                <option value="Training">Training</option>
-                <% } %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-rescue-subsidy" name="objective_rescue_subsidy"
+                          type="checkbox" value="Rescue and restructuring subsidy"<% if (ssn.objective_rescue_subsidy_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-rescue-subsidy">
+                          Rescue and restructuring subsidy
+                      </label>
+                      </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Other' ){ %>
-                <option value="Other" selected>Other</option>
-                <% } else { %>
-                <option value="Other">Other</option>
-                <% } %>
-              </select>
-            </div>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-research" name="objective_research"
+                          type="checkbox" value="Research and development"<% if (ssn.objective_research_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-research">
+                          Research and development
+                      </label>
+                      </div>
 
-            <% } else { %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-training"
+                          name="objective_training" type="checkbox" value="Training"<% if (ssn.objective_training_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label"
+                          for="objective-training">
+                          Training
+                      </label>
+                      </div>
 
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="Subsidy_Objective">
-                Subsidy purpose
-              </label>
-
-              <select class="govuk-select" id="Subsidy_Objective" name="Subsidy_Objective"
-                onChange=changeSubsidyPurpose(event)>
-                <% if( ssn.Subsidy_Objective_Global == '' ){ %>
-                <option value="" selected>Select subsidy purpose (10)</option>
-                <% } else { %>
-                <option value="">Select subsidy purpose (10)</option>
-                <% } %>
-                <% if( ssn.Subsidy_Objective_Global == 'Culture or Heritage' ){ %>
-                <option value="Culture or Heritage" selected>Culture or Heritage</option>
-                <% } else { %>
-                <option value="Culture or Heritage">Culture or Heritage</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Employment' ){ %>
-                <option value="Employment" selected>Employment</option>
-                <% } else { %>
-                <option value="Employment">Employment</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Energy efficiency' ){ %>
-                <option value="Energy efficiency" selected>Energy efficiency</option>
-                <% } else { %>
-                <option value="Energy efficiency">Energy efficiency</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Environmental protection' ){ %>
-                <option value="Environmental protection" selected>Environmental protection</option>
-                <% } else { %>
-                <option value="Environmental protection">Environmental protection</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Infrastructure' ){ %>
-                <option value="Infrastructure" selected>Infrastructure</option>
-                <% } else { %>
-                <option value="Infrastructure">Infrastructure</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Regional development' ){ %>
-                <option value="Regional development" selected>Regional development</option>
-                <% } else { %>
-                <option value="Regional development">Regional development</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Rescue and restructuring subsidy' || ssn.Subsidy_Objective_Global == 'Rescue subsidy' || ssn.Subsidy_Objective_Global == 'Rescue aid'){ %>
-                <option value="Rescue and restructuring subsidy" selected>Rescue and restructuring subsidy</option>
-                <% } else { %>
-                <option value="Rescue and restructuring subsidy">Rescue and restructuring subsidy</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Research and development' ){ %>
-                <option value="Research and development" selected>Research and development</option>
-                <% } else { %>
-                <option value="Research and development">Research and development</option>
-                <% } %>
-
-
-                <% if( ssn.Subsidy_Objective_Global == 'Training' ){ %>
-                <option value="Training" selected>Training</option>
-                <% } else { %>
-                <option value="Training">Training</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Other' ){ %>
-                <option value="Other" selected>Other</option>
-                <% } else { %>
-                <option value="Other">Other</option>
-                <% } %>
-              </select>
-            </div>
-
-            <% } %>
-            <!-- <div id="other_purpose" class="govuk-form-group" style="display: none;">
-              <label class="govuk-label" for="Subsidy_Objective">
-                Other purpose
-              </label>
-              <input class="govuk-input govuk-input--width-20" type="text">
-            </div> -->
-
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-other" name="objective_other"
+                          type="checkbox" onchange='changeSubsidyObjective()' value="Other"<% if (ssn.objective_other_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-other">
+                          Other
+                      </label>
+                      </div>
+                  </div>
+              </fieldset>   
 
             <!-- *****************************************  -->
             <!-- Get the  Subsidy objective other category  -->
             <!-- *****************************************  -->
 
             <% if( ssn.Subsidy_Objective_Other_Error ){ %>
-            <div id="other_purpose" class="govuk-form-group govuk-form-group--error" style="display: none;">
+            <div id="other_objective" class="govuk-form-group govuk-form-group--error" style="display: none;">
               <label class="govuk-label" for="Subsidy_Objective_Other">
                 Other purpose
               </label>
@@ -884,7 +861,7 @@
                 <% } %> />
             </div>
             <% } else if(ssn.Subsidy_Objective_Other_255_Error) { %>
-            <div id="other_purpose" class="govuk-form-group govuk-form-group--error" style="display: none;">
+            <div id="other_objective" class="govuk-form-group govuk-form-group--error" style="display: none;">
               <label class="govuk-label" for="Subsidy_Objective_Other">
                 Other purpose
               </label>
@@ -901,7 +878,7 @@
             </div>
             <% } else { %>
 
-            <div id="other_purpose" class="govuk-form-group" style="display: none;">
+            <div id="other_objective" class="govuk-form-group" style="display: none;">
               <label class="govuk-label" for="Subsidy_Objective_Other">
                 Other purpose
               </label>
