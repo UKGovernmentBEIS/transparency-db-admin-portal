@@ -311,10 +311,18 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Region
+            Region(s)
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= ssn.Spending_Region_Global %>
+            <% if(ssn.Spending_Regions_Global.length > 0) { %>
+              <ul class="govuk-list govuk-list--bullet">
+                  <% ssn.Spending_Regions_Global.forEach(function(item) { %>
+                  <li> <%=item %> </li>
+                  <% }); %>
+              </ul>
+          <% } else { %>
+              NA
+          <% } %>
 
           </dd>
         </div>

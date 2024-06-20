@@ -510,6 +510,11 @@ app.get("/", async (req, res) => {
       console.log("response_error_message catch : " + response_error_message);
     }
   }
+
+  var regions = ["England", "Northern Ireland", "Scotland", "Wales"];
+  var subRegions = ["North East", "North West", "Yorkshire and Humber", "East Midlands", "West Midlands", "East of England", "London", "South East", "South West"];
+
+  spendingRegionList = ["UK-wide", "GB-wide"].concat(regions.sort(), subRegions.sort());
 });
 
 var logintransparency = require("./routes/logintransparency");

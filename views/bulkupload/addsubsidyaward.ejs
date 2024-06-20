@@ -31,6 +31,13 @@
 
       });
 
+      const nationalCheckbox = document.getElementById("Spending_Region_National")
+
+      if (nationalCheckbox.checked){
+        selectNational(nationalCheckbox);
+      }
+      
+
       $('.govuk-date-input__input').on('keypress', function (e) {
         return e.metaKey || // cmd/ctrl
           e.which <= 0 || // arrow keys
@@ -114,6 +121,24 @@
       }
 
     };
+    function selectAll(source) {
+      const checkboxes = document.getElementsByClassName("govuk-checkboxes__input_spendingregion");
+      for(var i=0, n=checkboxes.length;i<n;i++) {
+        checkboxes[i].checked = source.checked;
+        checkboxes[i].ariaChecked = source.checked;
+      }
+    }
+
+    function selectNational(source) {
+      var checkboxes = document.getElementsByClassName("govuk-checkboxes__input_spendingregion");
+      checkboxes = Array.from(checkboxes).concat(document.getElementById("Spending_Region_Select_All"));
+      for(var i=0, n=checkboxes.length;i<n;i++) {
+        checkboxes[i].checked = false;
+        checkboxes[i].ariaChecked = false;
+        checkboxes[i].disabled = source.checked;
+        checkboxes[i].ariaDisabled = source.checked;
+      }
+    }
   </script>
 </head>
 
@@ -2064,202 +2089,49 @@
             <!-- **********************************  -->
             <!-- Get the Spending Region  from user  -->
             <!-- **********************************  -->
-            <% if( ssn.Spending_Region_Error && !isAddSubsidyPrimarycall ) { %>
-            <div class="govuk-form-group govuk-form-group--error">
-              <label class="govuk-label" for="Spending_Region">
+            <div class="govuk-form-group <% if( ssn.Spending_Region_Error && !isAddSubsidyPrimarycall ) { %>govuk-form-group--error<% } %>">
+              <label class="govuk-label" for="Spending_Regions" id="Spending_Region">
                 Region
               </label>
               <div id="Spending_Region-hint" class="govuk-hint">
-                This is the region that the organisation is based in.
+                This is the region(s) where the subsidised economic activity takes place.
               </div>
-              <span class="govuk-error-message" id="Spending_Region_Error">
-                <span class="govuk-visually-hidden">Error:</span>You must select the region that the recipient
-                organisation is based in.
+              <% if( ssn.Spending_Region_Error && !isAddSubsidyPrimarycall ) { %>
+                <span class="govuk-error-message" id="Spending_Region_Error">
+                  <span class="govuk-visually-hidden">Error:</span>You must select at least one region.
+                </span>
+              <% } %>
 
-              </span>
+              <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" onclick="selectNational(this)" id="Spending_Region_National" name="Spending_Region_National" type="checkbox" 
+                    value="National" <% if (ssn.Spending_Regions_Selected_Global.includes("National")) { %> checked aria-checked="true" <% } %>>
+                  <label class="govuk-label govuk-checkboxes__label" for="Spending_Region_National">
+                    National
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" onclick="selectAll(this)" id="Spending_Region_Select_All" name="Spending_Region_Select_All" type="checkbox"
+                    value="Select all" <% if (ssn.Spending_Regions_Selected_Global.includes("Select all")) { %> checked aria-checked="true" <% } %>
+                    data-aria-controls="conditional-spendingregions">
+                  <label class="govuk-label govuk-checkboxes__label" for="Spending_Region_Select_All">
+                  Select all
+                  </label>
+                </div>
 
-              <select class="govuk-select" id="Spending_Region" name="Spending_Region">
-                <% if( ssn.Spending_Region_Global == '' ){ %>
-                <option value="" selected>Select a region (12)</option>
-                <% } else { %>
-                <option value="">Select a region (12)</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'North East' ){ %>
-                <option value="North East" selected>North East</option>
-                <% } else { %>
-                <option value="North East">North East</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'North West' ){ %>
-                <option value="North West" selected>North West</option>
-                <% } else { %>
-                <option value="North West">North West</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'Yorkshire and humber' ){ %>
-                <option value="Yorkshire and humber" selected>Yorkshire and humber</option>
-                <% } else { %>
-                <option value="Yorkshire and humber">Yorkshire and humber</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'East Midlands' ){ %>
-                <option value="East Midlands" selected>East Midlands</option>
-                <% } else { %>
-                <option value="East Midlands">East Midlands</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'West Midlands' ){ %>
-                <option value="West Midlands" selected>West Midlands</option>
-                <% } else { %>
-                <option value="West Midlands">West Midlands</option>
-                <% } %>
-
-
-                <% if(ssn.Spending_Region_Global == 'East of England' ){ %>
-                <option value="East of England" selected>East of England</option>
-                <% } else { %>
-                <option value="East of England">East of England</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'London' ){ %>
-                <option value="London" selected>London</option>
-                <% } else { %>
-                <option value="London">London</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'South East' ){ %>
-                <option value="South East" selected>South East</option>
-                <% } else { %>
-                <option value="South East">South East</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'South West' ){ %>
-                <option value="South West" selected>South West</option>
-                <% } else { %>
-                <option value="South West">South West</option>
-                <% } %>
-
-
-                <% if( ssn.Spending_Region_Global == 'Scotland' ){ %>
-                <option value="Scotland" selected>Scotland</option>
-                <% } else { %>
-                <option value="Scotland">Scotland</option>
-                <% } %>
-
-
-                <% if( ssn.Spending_Region_Global == 'Wales' ){ %>
-                <option value="Wales" selected>Wales</option>
-                <% } else { %>
-                <option value="Wales">Wales</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'Northern Ireland' ){ %>
-                <option value="Northern Ireland" selected>Northern Ireland</option>
-                <% } else { %>
-                <option value="Northern Ireland">Northern Ireland</option>
-                <% } %>
-
-
-              </select>
-            </div>
-
-            <% } else { %>
-
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="Spending_Region">
-                Region
-              </label>
-              <div id="Spending_Region-hint" class="govuk-hint">
-                This is the region that the organisation is based in.
+                <div class="govuk-checkboxes__conditional" id="conditional-spendingregions">
+                  <% spendingRegionList.forEach(function(item) { %>
+                    <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingregion" id="Spending_Region_<%= item.replace(/[\s+,-]/g, '_') %>" name="Spending_Region_<%= item.replace(/[\s+,-]/g, '_') %>"
+                        type="checkbox" value="<%= item %>" <% if (ssn.Spending_Regions_Selected_Global.includes(item)) { %> checked aria-checked="true" <% } %>>
+                    <label class="govuk-label govuk-checkboxes__label" for="Spending_Region_<%= item.replace(/[\s+,-]/g, '_') %>">
+                        <%= item %>
+                    </label>
+                    </div>
+                    <% }) %>
+                </div>
               </div>
-              <select class="govuk-select" id="Spending_Region" name="Spending_Region">
-                <% if( ssn.Spending_Region_Global == '' ){ %>
-                <option value="" selected>Select a region (12)</option>
-                <% } else { %>
-                <option value="">Select a region (12)</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'North East' ){ %>
-                <option value="North East" selected>North East</option>
-                <% } else { %>
-                <option value="North East">North East</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'North West' ){ %>
-                <option value="North West" selected>North West</option>
-                <% } else { %>
-                <option value="North West">North West</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'Yorkshire and humber' ){ %>
-                <option value="Yorkshire and humber" selected>Yorkshire and humber</option>
-                <% } else { %>
-                <option value="Yorkshire and humber">Yorkshire and humber</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'East Midlands' ){ %>
-                <option value="East Midlands" selected>East Midlands</option>
-                <% } else { %>
-                <option value="East Midlands">East Midlands</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'West Midlands' ){ %>
-                <option value="West Midlands" selected>West Midlands</option>
-                <% } else { %>
-                <option value="West Midlands">West Midlands</option>
-                <% } %>
-
-
-                <% if( ssn.Spending_Region_Global == 'East of England' ){ %>
-                <option value="East of England" selected>East of England</option>
-                <% } else { %>
-                <option value="East of England">East of England</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'London' ){ %>
-                <option value="London" selected>London</option>
-                <% } else { %>
-                <option value="London">London</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'South East' ){ %>
-                <option value="South East" selected>South East</option>
-                <% } else { %>
-                <option value="South East">South East</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'South West' ){ %>
-                <option value="South West" selected>South West</option>
-                <% } else { %>
-                <option value="South West">South West</option>
-                <% } %>
-
-
-                <% if( ssn.Spending_Region_Global == 'Scotland' ){ %>
-                <option value="Scotland" selected>Scotland</option>
-                <% } else { %>
-                <option value="Scotland">Scotland</option>
-                <% } %>
-
-
-                <% if( ssn.Spending_Region_Global == 'Wales' ){ %>
-                <option value="Wales" selected>Wales</option>
-                <% } else { %>
-                <option value="Wales">Wales</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'Northern Ireland' ){ %>
-                <option value="Northern Ireland" selected>Northern Ireland</option>
-                <% } else { %>
-                <option value="Northern Ireland">Northern Ireland</option>
-                <% } %>
-
-
-              </select>
             </div>
-
-            <% }  %>
 
 
             <!-- **********************************  -->
