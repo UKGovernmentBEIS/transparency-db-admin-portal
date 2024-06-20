@@ -68,6 +68,9 @@ router.post("/", async (req, res) => {
     ssn.Subsidy_Award_Description_Error = false;
     ssn.Subsidy_Award_Description_Error_Length = false;
     ssn.Subsidy_Award_Interest_Error = false;
+    ssn.Specific_Policy_Objective_Error = false;
+    ssn.Specific_Policy_Objective_Error_Length = false;
+
     console.log(
       "ssn.Subsidy_Full_Amount_Range_Global ",
       ssn.Subsidy_Full_Amount_Range_Global
@@ -106,9 +109,14 @@ router.post("/", async (req, res) => {
       ssn.Subsidy_Award_Interest_Global = "";
     }
 
+    if(ssn.Standalone_Award_Global === "No"){
+      ssn.Specific_Policy_Objective_Global = "";
+    }
+
     const addAwardRequest = {
       standaloneAward: ssn.Standalone_Award_Global.trim(),
       subsidyAwardDescription: ssn.Subsidy_Award_Description_Global.trim(),
+      specificPolicyObjective: ssn.Specific_Policy_Objective_Global.trim(),
       subsidyControlTitle: ssn.Subsidy_Measure_Title_Global.trim(),
       subsidyControlNumber: ssn.Subsidy_Control_Number_Global.trim(),
       nationalIdType: ssn.National_ID_Type_Global.trim(),
@@ -122,7 +130,7 @@ router.post("/", async (req, res) => {
       legalGrantingDate: subsidy_legal_granting_date.trim(),
       grantingAuthorityName: ssn.Granting_Authority_Name_Global.trim(),
       goodsOrServices: ssn.Goods_or_Services_Global.trim(),
-      spendingRegion: ssn.Spending_Region_Global.trim(),
+      spendingRegion: ssn.Spending_Regions_JSON_Global.trim(),
       spendingSector: ssn.Spending_Sector_Global.trim(),
       subsidyObjectiveOther: ssn.Subsidy_Objective_Other_Global,
       subsidyInstrumentOther: ssn.Subsidy_Instrument_Other_Global.trim(),
@@ -140,6 +148,7 @@ router.post("/", async (req, res) => {
         awardNumber: ssn.Edit_Award_Number_global,
         standaloneAward: ssn.Standalone_Award_Global.trim(),
         subsidyAwardDescription: ssn.Subsidy_Award_Description_Global.trim(),
+        specificPolicyObjective: ssn.Specific_Policy_Objective_Global.trim(),
         subsidyControlTitle: ssn.Subsidy_Measure_Title_Global.trim(),
         subsidyControlNumber: ssn.Subsidy_Control_Number_Global.trim(),
         nationalIdType: ssn.National_ID_Type_Global.trim(),
@@ -153,7 +162,7 @@ router.post("/", async (req, res) => {
         legalGrantingDate: subsidy_legal_granting_date.trim(),
         grantingAuthorityName: ssn.Granting_Authority_Name_Global.trim(),
         goodsOrServices: ssn.Goods_or_Services_Global.trim(),
-        spendingRegion: ssn.Spending_Region_Global.trim(),
+        spendingRegion: ssn.Spending_Regions_JSON_Global.trim(),
         spendingSector: ssn.Spending_Sector_Global.trim(),
         subsidyObjectiveOther: ssn.Subsidy_Objective_Other_Global.trim(),
         subsidyInstrumentOther: ssn.Subsidy_Instrument_Other_Global.trim(),
