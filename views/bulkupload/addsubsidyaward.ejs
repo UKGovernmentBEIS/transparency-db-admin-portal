@@ -16,11 +16,14 @@
         document.getElementById('related-admin-program').style.display = 'none';
         document.getElementById('authority-url-and-description-container').style.display = 'block';
         document.getElementById('standalone-description-text').style.display = 'none';
+        document.getElementById('specific-policy-objective-container').style.display = 'block';
         document.getElementById('standalone-award-interest-container').style.display = 'block';
       }
       else
       {
         document.getElementById('authority-url-and-description-container').style.display = 'none';
+        //document.getElementById('specific-policy-objective-container').style.display = 'none';
+
       }
       jQuery('#Subsidy_Control_Number').on('input', function () {
         var SubsidyMeasureTitle = document.getElementById("Subsidy_Measure_Title");
@@ -106,6 +109,7 @@
         document.getElementById('standalone-description-text').style.display = 'block';
         document.getElementById('description-text').style.display = 'none';
         document.getElementById('standalone-award-interest-container').style.display = 'block';
+        document.getElementById('specific-policy-objective-container').style.display = 'block';
       }else{
         document.getElementById('related-subsidy-scheme').style.display = 'block';
         document.getElementById('related-admin-program').style.display = 'block';
@@ -113,6 +117,7 @@
         document.getElementById('standalone-description-text').style.display = 'none';
         document.getElementById('description-text').style.display = 'block';
         document.getElementById('standalone-award-interest-container').style.display = 'none';
+        document.getElementById('specific-policy-objective-container').style.display = 'none';
       }
 
     };
@@ -649,6 +654,35 @@
                     </div>
               </div>
             </div>
+            <div id="specific-policy-objective-container" <% if (ssn.Standalone_Award_Global == 'No') { %> hidden <% } %>>
+              <div class="govuk-form-group <% if( ssn.Specific_Policy_Objective_Error || ssn.Specific_Policy_Objective_Error_Length){ %> govuk-form-group--error <% } %>" id="SpecificPolicyObjectiveContainer">   
+                <label class="govuk-label" for="Specific_Policy_Objective">
+                  Specific policy objective
+                </label>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What details should be provided?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    <p>Specific Policy Objective(s) - provide details of the policy objective(s) of the scheme or subsidy. This should reflect the specific policy objective(s) documented under Subsidy Control Principle A (which forms part of Step 1 of the Assessment Framework in the Statutory Guidance for the UK Subsidy Control Regime).</p>
+                  </div>
+                </details>
+                <% if (ssn.Specific_Policy_Objective_Error || ssn.Specific_Policy_Objective_Error_Length) { %>
+                  <span class="govuk-error-message" id="Subsidy_Objective_Error">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    <% if (ssn.Specific_Policy_Objective_Error) { %>
+                      You must add a policy objective.
+                    <% } else { %>
+                      The specific policy objective must be 1500 characters or less.
+                    <% } %>
+                  </span>
+                <% } %>
+                <textarea class="govuk-textarea govuk-js-character-count" id="Specific_Policy_Objective" name="Specific_Policy_Objective" rows="5" aria-describedby="Specific_Policy_Objective-info"><%= ssn.Specific_Policy_Objective_Global %></textarea>
+              </div>
+            </div>
+            
 
             <div id="subsidy-award-description-container">
               <div class="govuk-form-group <% if(ssn.Subsidy_Award_Description_Error || ssn.Subsidy_Award_Description_Error_Length) {%> govuk-form-group--error<% } %>">

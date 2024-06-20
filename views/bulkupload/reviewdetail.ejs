@@ -144,6 +144,13 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            Policy objective
+          </dt>
+          <dd class="govuk-summary-list__value render-newlines"><%= (ssn.Standalone_Award_Global === 'No') ? 'NA' : ssn.Specific_Policy_Objective_Global %></dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Description
           </dt>
           <dd class="govuk-summary-list__value render-newlines"><%= ssn.Subsidy_Award_Description_Global %></dd>
