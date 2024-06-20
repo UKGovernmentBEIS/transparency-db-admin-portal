@@ -41,6 +41,7 @@ router.get("/", async (req, res) => {
       ssn.gaName = apidata.data.gaList[0].grantingAuthorityName;
       ssn.grantingAuthorityPublish_Global = false;
       ssn.GAstatus = apidata.data.gaList[0].status;
+      ssn.protectedGA = ssn.protected_gas.includes(ssn.gaName);
       if (ssn.dashboard_roles == "BEIS Administrator") {
         res.render("bulkupload/grantingauthority-editreview", {
           // ssn.grantingAuthorityID_Global,
@@ -52,7 +53,9 @@ router.get("/", async (req, res) => {
         res.render("bulkupload/notAuthorized");
       }
     } catch (err) {
-      if (err.toString().includes("500")) res.render("bulkupload/notAvailable");
+      if (err.toString().includes("500") || err.toString().includes("404"))
+        res.render("bulkupload/notAvailable");
+      
       console.log("message error deactivate GA : " + err);
       // res.render("publicusersearch/noresults");
     }
