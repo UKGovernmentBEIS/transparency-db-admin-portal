@@ -98,7 +98,17 @@ router.post("/", (req, res) => {
       has_no_end_date,
       Subsidy_Scheme_Description,
       Subsidy_Scheme_Interest,
-      Specific_Policy_Objective,
+      purpose_culture_or_heritage,
+      purpose_employment,
+      purpose_energy_efficiency,
+      purpose_environmental_protection,
+      purpose_infrastructure,
+      purpose_regional_development,
+      purpose_rescue_subsidy,
+      purpose_research_and_development,
+      purpose_training,
+      purpose_other,
+      Specific_Policy_Objective
     } = req.body;
 
     ssn.Subsidy_Adhoc_Global = Subsidy_Adhoc;
@@ -272,9 +282,9 @@ router.post("/", (req, res) => {
      var purposeArray = new Array();
      ssn.Purpose_Array_Global = purposeArray
  
-     if(purpose_culture_and_heritage){
-       ssn.purpose_culture_or_heritage_Global = purpose_culture_and_heritage;
-       purposeArray.push(purpose_culture_and_heritage);
+     if(purpose_culture_or_heritage){
+       ssn.purpose_culture_or_heritage_Global = purpose_culture_or_heritage;
+       purposeArray.push(purpose_culture_or_heritage);
      }
  
      if(purpose_employment){
