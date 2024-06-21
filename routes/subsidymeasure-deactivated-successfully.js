@@ -9,7 +9,7 @@ const router = express.Router();
 const axios = require("axios");
 var request = require("request");
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   ssn = req.session;
   if (
     typeof ssn.dashboard_roles_object_id1 === "undefined" ||
@@ -19,14 +19,35 @@ router.get("/", async (req, res) => {
   } else {
     var schemeStatus = "Inactive";
     var render = "bulkupload/subsidymeasure-deactivated-successfully";
-    if (req.baseUrl.includes("/successfullydeletescheme")) {
+
+    if(action === "Delete")
+    {      
       if (ssn.dashboard_roles != "BEIS Administrator"){
         res.render("bulkupload/notAuthorized");
-      }else{
+      }
+      else
+      {        
         schemeStatus = "Deleted";
-        render = "bulkupload/subsidymeasure-deleted-successfully"
+        render = "bulkupload/subsidymeasure-deleted-successfully";
       }
     }
+    
+    if(typeof req.body.reason === 'undefined')
+    {      
+      res.redirect("/deactivatescheme?action=" + action + "&error=True");
+      return;
+    }
+
+    reason = req.body.reason;
+    reason = reason.trim();
+    if(reason.length > 1000 || reason.length <= 0)
+    {        
+      res.redirect("/deactivatescheme?action=" + action +"&error=True");
+      return;
+    }
+    
+
+
     res.set("X-Frame-Options", "DENY");
     res.set("X-Content-Type-Options", "nosniff");
     res.set("Content-Security-Policy", 'frame-ancestors "self"');
@@ -39,6 +60,7 @@ router.get("/", async (req, res) => {
         beis_url_searchscheme + `/scheme/update/${scNumber_Global}`,
         {
           status: schemeStatus,
+          reason: reason
         },
         ssn.UserPrincileObjectGlobal
       );

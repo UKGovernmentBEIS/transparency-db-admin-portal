@@ -66,7 +66,10 @@ router.get("/", async (req, res) => {
         Scheme_Confirmation_Date = ssn.searchmeasuredetails.confirmationDate;
         Scheme_Start_Date = ssn.searchmeasuredetails.startDate;
         Scheme_End_Date = ssn.searchmeasuredetails.endDate;
+        Specific_Policy_Objective = ssn.searchmeasuredetails.Specific_Policy_Objective;
         Subsidy_Scheme_Description = ssn.searchmeasuredetails.Subsidy_Scheme_Description;
+        
+
         Maximum_Amount_Under_Scheme = ssn.searchmeasuredetails.maximumAmountUnderScheme
         Subsidy_Scheme_Interest = ssn.searchmeasuredetails.Subsidy_Scheme_Interest;
         console.log(`Status: ${response.status}`);

@@ -83,6 +83,8 @@ router.post("/", async (req, res) => {
     ssn.scheme_issued_end_day_Error = false;
     ssn.scheme_issued_end_day_lesser_Error = false;
     ssn.Subsidy_Scheme_Description_Length_Error = false;
+    ssn.Specific_Policy_Objective_Length_Error = false;
+
     ssn.scheme_issued_confirmation_day_Error = false;
     ssn.scheme_issued_confirmation_month_Error = false;
     ssn.scheme_issued_confirmation_year_Error = false;
@@ -110,6 +112,7 @@ router.post("/", async (req, res) => {
       status: "Active",
       hasNoEndDate: ssn.Has_No_End_Date_Global,
       subsidySchemeDescription: ssn.Subsidy_Scheme_Description_Global,
+      specificPolicyObjective: ssn.Specific_Policy_Objective_Global,
       confirmationDate: subsidy_confirmation_date,
       spendingSectorJson: ssn.Scheme_Sector_Json_Global,
       maximumAmountUnderScheme: ssn.Maximum_Amount_Under_Scheme_Global,
@@ -163,6 +166,9 @@ router.post("/", async (req, res) => {
         isAddSubsidyPrimarycall = false;
         ssn.Subsidy_Scheme_Description_Error = false;
         ssn.Subsidy_Scheme_Description_Length_Error = false;
+        ssn.Specific_Policy_Objective_Error = false;
+        ssn.Specific_Policy_Objective_Length_Error = false;
+
         ssn.scheme_issued_confirmation_day_Error = false;
         ssn.scheme_issued_confirmation_month_Error = false;
         ssn.scheme_issued_confirmation_year_Error = false;
@@ -214,6 +220,7 @@ router.post("/", async (req, res) => {
         status: "Active",
         hasNoEndDate: ssn.Has_No_End_Date_Global,
         subsidySchemeDescription: ssn.Subsidy_Scheme_Description_Global,
+        specificPolicyObjective: ssn.Specific_Policy_Objective_Global,
         confirmationDate: subsidy_confirmation_date,
         spendingSectorJson: ssn.Scheme_Sector_Json_Global,
         maximumAmountUnderScheme: ssn.Maximum_Amount_Under_Scheme_Global,

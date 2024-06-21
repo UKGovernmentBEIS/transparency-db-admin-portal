@@ -19,7 +19,29 @@ router.get("/", async (req, res) => {
     res.set("Content-Security-Policy", 'frame-ancestors "self"');
     res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-    res.render("bulkupload/subsidymeasure-deactivate");
+    if(req.query.hasOwnProperty("action"))
+    {
+      action = req.query.action;
+      if(action === 'Delete')
+      {    
+        if (ssn.dashboard_roles != "BEIS Administrator") {
+          res.render("bulkupload/notAuthorized");
+        }
+      }
+    }
+    else
+    {
+      action = "Deactivate";
+    }
+
+    if(req.query.hasOwnProperty("error"))
+      reasonLengthError = req.query.error === "True";
+    else
+      reasonLengthError = false;
+
+    charLimit = 1000;
+    
+    res.render("bulkupload/subsidymeasure-deactivate", {action, charLimit});
   }
 });
 

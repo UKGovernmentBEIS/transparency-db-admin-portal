@@ -510,6 +510,11 @@ app.get("/", async (req, res) => {
       console.log("response_error_message catch : " + response_error_message);
     }
   }
+
+  var regions = ["England", "Northern Ireland", "Scotland", "Wales"];
+  var subRegions = ["North East", "North West", "Yorkshire and Humber", "East Midlands", "West Midlands", "East of England", "London", "South East", "South West"];
+
+  spendingRegionList = ["UK-wide", "GB-wide"].concat(regions.sort(), subRegions.sort());
 });
 
 var logintransparency = require("./routes/logintransparency");
@@ -650,13 +655,12 @@ app.use("/subsidymeasurereditreview", subsidymeasurereditreview);
 
 var deactivatescheme = require("./routes/subsidymeasure-deactivate");
 app.use("/deactivatescheme", deactivatescheme);
+app.use("/deletescheme", deactivatescheme);
 
 var successfullydeactivatescheme = require("./routes/subsidymeasure-deactivated-successfully");
 app.use("/successfullydeactivatescheme", successfullydeactivatescheme);
 app.use("/successfullydeletescheme", successfullydeactivatescheme);
 
-var deletescheme = require("./routes/subsidymeasure-delete");
-app.use("/deletescheme", deletescheme);
 
 var awardspageroute = require("./routes/awardspageroute");
 app.use("/awardspageroute", awardspageroute);

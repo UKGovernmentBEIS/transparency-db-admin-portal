@@ -161,11 +161,21 @@
                     </div>
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">
+                            Policy objective
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= (fetchawarddetails.standaloneAward === 'No' || fetchawarddetails.specificPolicyObjective === '') ? 'NA' : fetchawarddetails.specificPolicyObjective %>
+                        </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
                             Award description
                         </dt>
                         <dd class="govuk-summary-list__value render-newlines"><%= fetchawarddetails.subsidyAwardDescription %></dd>
                         
                     </div>
+                 
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">
                             Subsidy control (SC) number
@@ -345,10 +355,18 @@
                     </div>
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">
-                            Region
+                            Region(s)
                         </dt>
                         <dd class="govuk-summary-list__value">
-                            <%= fetchawarddetails.spendingRegion %>
+                            <% if(fetchawarddetails.regionArray.length > 0) { %>
+                                <ul class="govuk-list govuk-list--bullet">
+                                    <% fetchawarddetails.regionArray.forEach(function(item) { %>
+                                    <li> <%=item %> </li>
+                                    <% }); %>
+                                </ul>
+                            <% } else { %>
+                                NA
+                            <% } %>
                         </dd>
                     </div>
                     <div class="govuk-summary-list__row">
