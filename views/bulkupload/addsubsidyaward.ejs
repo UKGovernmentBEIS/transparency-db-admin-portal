@@ -125,7 +125,7 @@
     };
 
     function selectAll(source) {
-      const checkboxes = document.getElementsByClassName("govuk-checkboxes__input_spendingregion");
+      const checkboxes = document.getElementsByClassName(source.className);
       for(var i=0, n=checkboxes.length;i<n;i++) {
         checkboxes[i].checked = source.checked;
         checkboxes[i].ariaChecked = source.checked;
@@ -790,7 +790,7 @@
 
                   <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">
                   <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" onclick="selectAll(this)" id="objective-0" name="select-all" type="checkbox"
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" onclick="selectAll(this)" id="objective-0" name="select-all" type="checkbox"
                       value="Select all"
                       data-aria-controls="conditional-objective-0">
                       <label class="govuk-label govuk-checkboxes__label" for="objective-0">
@@ -801,7 +801,7 @@
                   <div class="govuk-checkboxes__conditional" id="conditional-objective0">
 
                       <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-culture" name="objective_culture"
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-culture" name="objective_culture"
                           type="checkbox" value="Culture or Heritage"<% if (ssn.objective_culture_Global) { %>
                               checked <% } %>>
                       <label class="govuk-label govuk-checkboxes__label" for="objective-culture">
@@ -810,7 +810,7 @@
                       </div>
 
                       <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-activities-of-extraterritorial"
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-activities-of-extraterritorial"
                           name="objective_employment" type="checkbox" value="Employment"<% if (ssn.objective_employment_Global) { %>
                               checked <% } %>>
                       <label class="govuk-label govuk-checkboxes__label" for="objective-employment">
@@ -819,7 +819,7 @@
                       </div>
 
                       <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-energy-efficiency"
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-energy-efficiency"
                           name="objective_energy_efficiency" type="checkbox"
                           value="Energy efficiency"<% if (ssn.objective_energy_efficiency_Global) { %>
                               checked <% } %>>
@@ -829,7 +829,7 @@
                       </div>
 
                       <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-environmental" name="objective_environmental"
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-environmental" name="objective_environmental"
                           type="checkbox" value="Environmental protection"<% if (ssn.objective_environmental_Global) { %>
                               checked <% } %>>
                       <label class="govuk-label govuk-checkboxes__label" for="objective-environmental">
@@ -838,7 +838,7 @@
                       </div>
 
                       <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-infrastructure"
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-infrastructure"
                           name="objective_infrastructure" type="checkbox" value="Infrastructure"<% if (ssn.objective_infrastructure_Global) { %>
                               checked <% } %>>
                       <label class="govuk-label govuk-checkboxes__label"
@@ -848,7 +848,7 @@
                       </div>
 
                       <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-regional-development" name="objective_regional_development"
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-regional-development" name="objective_regional_development"
                           type="checkbox" value="Regional development"<% if (ssn.objective_regional_development_Global) { %>
                               checked <% } %>>
                       <label class="govuk-label govuk-checkboxes__label" for="objective-regional-development">
@@ -857,7 +857,7 @@
                       </div>
 
                       <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-rescue-subsidy" name="objective_rescue_subsidy"
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-rescue-subsidy" name="objective_rescue_subsidy"
                           type="checkbox" value="Rescue and restructuring subsidy"<% if (ssn.objective_rescue_subsidy_Global) { %>
                               checked <% } %>>
                       <label class="govuk-label govuk-checkboxes__label" for="objective-rescue-subsidy">
@@ -866,7 +866,7 @@
                       </div>
 
                       <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-research" name="objective_research"
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-research" name="objective_research"
                           type="checkbox" value="Research and development"<% if (ssn.objective_research_Global) { %>
                               checked <% } %>>
                       <label class="govuk-label govuk-checkboxes__label" for="objective-research">
@@ -875,7 +875,7 @@
                       </div>
 
                       <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-training"
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-training"
                           name="objective_training" type="checkbox" value="Training"<% if (ssn.objective_training_Global) { %>
                               checked <% } %>>
                       <label class="govuk-label govuk-checkboxes__label"
@@ -885,7 +885,7 @@
                       </div>
 
                       <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" id="objective-other" name="objective_other"
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-other" name="objective_other"
                           type="checkbox" onchange='changeSubsidyObjective()' value="Other"<% if (ssn.objective_other_Global) { %>
                               checked <% } %>>
                       <label class="govuk-label govuk-checkboxes__label" for="objective-other">
