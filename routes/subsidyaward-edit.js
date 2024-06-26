@@ -37,19 +37,8 @@ router.get("/", async (req, res) => {
       Subsidy_Element_Full_Amount = awardapidata.data.subsidyFullAmountRange;
       Granting_Authority_Name =
         awardapidata.data.grantingAuthorityResponse.grantingAuthorityName;
-      Purpose_Array = measureapidata.data.purposeArray
-      ssn.Purpose_Array_Other = JSON.parse(ssn.searchmeasuredetails.purpose).slice(-1).toString().replace('Other - ', '')
-
-      ssn.purpose_culture_or_heritage = false;
-      ssn.purpose_employment = false;
-      ssn.purpose_energy_efficiency = false;
-      ssn.purpose_environmental_protection = false;
-      ssn.purpose_infrastructure = false;
-      ssn.purpose_regional_development = false;
-      ssn.purpose_rescue_subsidy = false;
-      ssn.purpose_research_and_development = false;
-      ssn.purpose_training = false;
-      ssn.purpose_other = null;
+      objectiveArray = awardapidata.data.subsidyObjective
+      ssn.objective_other_Global = JSON.parse(awardapidata.data.subsidyObjective).slice(-1).toString().replace('Other - ', '');
 
       Spending_Region = awardapidata.data.spendingRegion;
       Subsidy_Instrument = awardapidata.data.subsidyInstrument;

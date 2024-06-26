@@ -130,7 +130,9 @@
         checkboxes[i].checked = source.checked;
         checkboxes[i].ariaChecked = source.checked;
       }
-      changeSubsidyObjective();
+      
+      if(source.id === "objective-0")
+        changeSubsidyObjective();
     }
 
     function selectNational(source) {

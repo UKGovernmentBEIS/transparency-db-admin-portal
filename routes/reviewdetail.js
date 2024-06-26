@@ -101,11 +101,8 @@ router.post("/", async (req, res) => {
       objective_research,
       objective_training,
       objective_other,
-
-      Specific_Policy_Objective,
-      Subsidy_Objective,
-
       Subsidy_Objective_Other,
+      Specific_Policy_Objective,
       Subsidy_Instrument,
       Subsidy_Instrument_Other,
       Subsidy_Element_Full_Amount,
@@ -148,7 +145,7 @@ router.post("/", async (req, res) => {
     ssn.Subsidy_Award_Description_Global = Subsidy_Award_Description;
 
     ssn.Specific_Policy_Objective_Global = Specific_Policy_Objective;
-    ssn.Subsidy_Objective_Global = Subsidy_Objective;
+    ssn.Subsidy_Objective_Global = ssn.Award_Objective_Json_Global;
     ssn.Subsidy_Objective_Other_Global = Subsidy_Objective_Other;
     ssn.Subsidy_Instrument_Global = Subsidy_Instrument;
     ssn.Subsidy_Instrument_Other_Global = Subsidy_Instrument_Other;
@@ -262,14 +259,13 @@ router.post("/", async (req, res) => {
     if(objective_other){
       ssn.objective_other_Global = objective_other;
       if(Subsidy_Objective_Other.length > 0){
-        subsidyObjectiveArray.push("Other - " + Subsidy_Objective_Other);
+        subsidyObjectiveArray.push("Other - " + Subsidy_Objective_Other.replace('Other -', ''));
       }
     }
 
-  
-    ssn.Scheme_Objective_Json_Global = JSON.stringify(subsidyObjectiveArray);
+    ssn.Award_Objective_Json_Global = JSON.stringify(subsidyObjectiveArray);
     ssn.objective_Array_Global = subsidyObjectiveArray;
-    console.log("Subsidy purpose: " + ssn.Scheme_Objective_Json_Global);
+    console.log("Subsidy objective: " + ssn.Award_Objective_Json_Global);
 
     if (ssn.Legal_Granting_Date_Month_Global == 1) {
       ssn.GetMonthName = "January";
