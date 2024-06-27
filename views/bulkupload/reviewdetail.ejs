@@ -158,10 +158,24 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Subsidy purpose
+            Subsidy purpose(s)
           </dt>
           <dd class="govuk-summary-list__value">
-            <%=  ssn.Subsidy_Objective_Plus_Other_Global %>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                  <% if(subsidyObjectiveArray.length > 0) { %>
+                  <ul class="govuk-list govuk-list--bullet">
+                      <% subsidyObjectiveArray.forEach(function(item) { %>
+                          <%if(item != ""){%>
+                          <li> <%=item %> </li>
+                          <% } %>
+                      <% }); %>
+                  </ul>
+                  <% } else { %>
+                      NA
+                   <% } %>
+              </td>
+          </tr>
           </dd>
 
         </div>

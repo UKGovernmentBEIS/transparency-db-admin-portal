@@ -55,6 +55,19 @@ router.get("/", (req, res) => {
     ssn.Authority_URL_Global = "";
     ssn.Authority_URL_Description_Global = "";
 
+    ssn.Scheme_purpose_Json_Global = "";
+    ssn.objective_Array_Global = new Array();
+    ssn.objective_culture_Global = undefined;
+    ssn.objective_employment_Global = undefined;
+    ssn.objective_energy_efficiency_Global = undefined;
+    ssn.objective_environmental_Global = undefined;
+    ssn.objective_infrastructure_Global = undefined;
+    ssn.objective_regional_development_Global = undefined;
+    ssn.objective_rescue_subsidy_Global = undefined;
+    ssn.objective_research_Global = undefined;
+    ssn.objective_training_Global = undefined;
+    ssn.objective_other_Global = undefined;
+    
     ssn.Subsidy_Control_Number_Error = false;
     ssn.Subsidy_Measure_Title_Error = false;
     ssn.Subsidy_Measure_Title_255_Error = false;

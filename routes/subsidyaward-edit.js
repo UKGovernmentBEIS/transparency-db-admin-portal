@@ -37,7 +37,9 @@ router.get("/", async (req, res) => {
       Subsidy_Element_Full_Amount = awardapidata.data.subsidyFullAmountRange;
       Granting_Authority_Name =
         awardapidata.data.grantingAuthorityResponse.grantingAuthorityName;
-      Subsidy_Objective = awardapidata.data.subsidyObjective;
+      objectiveArray = awardapidata.data.subsidyObjective
+      ssn.objective_other_Global = JSON.parse(awardapidata.data.subsidyObjective).slice(-1).toString().replace('Other - ', '');
+
       Spending_Region = awardapidata.data.spendingRegion;
       Subsidy_Instrument = awardapidata.data.subsidyInstrument;
       Spending_Sector = awardapidata.data.spendingSector;

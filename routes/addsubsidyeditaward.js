@@ -47,6 +47,18 @@ router.get("/", (req, res) => {
     ssn.Subsidy_Award_Interest_Error = false;
     ssn.SubsidyErrors = [];
     ssn.SubsidyFocus = [];
+    
+    ssn.objective_Array_Global = new Array();
+    ssn.objective_culture_Global = undefined;
+    ssn.objective_employment_Global = undefined;
+    ssn.objective_energy_efficiency_Global = undefined;
+    ssn.objective_environmental_Global = undefined;
+    ssn.objective_infrastructure_Global = undefined;
+    ssn.objective_regional_development_Global = undefined;
+    ssn.objective_rescue_subsidy_Global = undefined;
+    ssn.objective_research_Global = undefined;
+    ssn.objective_training_Global = undefined;
+    ssn.objective_other_Global = undefined;
 
     ssn.SubsidyArraySize = 0;
 
@@ -65,13 +77,6 @@ router.get("/", (req, res) => {
 
     var subsidy_objective_split = ssn.Subsidy_Objective_Global.split("-");
     var subsidy_objective_split_check = subsidy_objective_split[0].toLowerCase();
-    if (subsidy_objective_split_check == "other") {
-      ssn.Subsidy_Objective_Other_Global = subsidy_objective_split[1];
-
-      ssn.Subsidy_Objective_Global = "Other";
-    } else {
-      ssn.Subsidy_Objective_Other_Global = "";
-    }
     ssn.Subsidy_Instrument_Global = fetchawarddetails.subsidyInstrument;
     console.log("instrument: " + ssn.Subsidy_Instrument_Global);
 
@@ -147,6 +152,47 @@ router.get("/", (req, res) => {
       ssn.Legal_Granting_Date_Month_Global = "12";
     }
 
+    var objectiveArray = new Array();
+    if(fetchawarddetails.subsidyObjective != null){
+      objectiveArray = JSON.parse(fetchawarddetails.subsidyObjective);
+    }
+    ssn.Objective_Array_Other_Global = JSON.parse(fetchawarddetails.subsidyObjective).slice(-1).toString().replace('Other - ', '')
+
+    objectiveArray.forEach(function(objective){
+      switch(objective) {
+        case "Culture or Heritage":
+          ssn.objective_culture_Global = true;
+          break;
+        case "Employment":
+          ssn.objective_employment_Global = true;
+          break;
+        case "Energy efficiency":
+          ssn.objective_energy_efficiency_Global = true;
+          break;
+        case "Environmental protection":
+          ssn.objective_environmental_Global = true;
+          break;
+        case "Infrastructure":
+          ssn.objective_infrastructure_Global = true;
+          break;
+        case "Regional development":
+          ssn.objective_regional_development_Global = true;
+          break;
+        case "Rescue and restructuring subsidy":
+          ssn.objective_rescue_subsidy_Global = true;
+          break;
+        case "Research and development":
+          ssn.objective_research_Global = true;
+          break;
+        case "Training":
+          ssn.objective_training_Global = true;
+          break;
+        case "Other - " + ssn.Objective_Array_Other_Global:
+          ssn.objective_other_Global = true;
+          ssn.Subsidy_Objective_Other_Global = ssn.Objective_Array_Other_Global;
+          break;
+      }
+    });
     ssn.Legal_Granting_Date_Year_Global = Legal_date_split[2];
     ssn.Goods_or_Services_Global = fetchawarddetails.goodsServicesFilter;
     

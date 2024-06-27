@@ -92,7 +92,7 @@ router.post("/", async (req, res) => {
         Subsidy_Element_Full_Amount_Global_Trim
     );
 
-    if (ssn.Subsidy_Objective_Global !== "Other") {
+    if (typeof ssn.objective_other_Global === 'undefined') {
       ssn.Subsidy_Objective_Other_Global = "";
     }
 
@@ -124,7 +124,7 @@ router.post("/", async (req, res) => {
       beneficiaryName: ssn.Beneficiary_Name_Global.trim(),
       orgSize: ssn.Size_of_the_Organisation_Global.trim(),
       subsidyInstrument: ssn.Subsidy_Instrument_Global.trim(),
-      subsidyObjective: ssn.Subsidy_Objective_Global.trim(),
+      subsidyObjective: ssn.Award_Objective_Json_Global,
       subsidyAmountRange: Subsidy_Full_Amount_Range_Global_Trim,
       subsidyAmountExact: Subsidy_Element_Full_Amount_Global_Trim,
       legalGrantingDate: subsidy_legal_granting_date.trim(),
@@ -132,7 +132,7 @@ router.post("/", async (req, res) => {
       goodsOrServices: ssn.Goods_or_Services_Global.trim(),
       spendingRegion: ssn.Spending_Regions_JSON_Global.trim(),
       spendingSector: ssn.Spending_Sector_Global.trim(),
-      subsidyObjectiveOther: ssn.Subsidy_Objective_Other_Global.trim(),
+      subsidyObjectiveOther: ssn.Subsidy_Objective_Other_Global,
       subsidyInstrumentOther: ssn.Subsidy_Instrument_Other_Global.trim(),
       adminProgramNumber: ssn.Admin_Program_Number_Global.trim(),
       authorityURL: ssn.Authority_URL_Global.trim(),
@@ -156,7 +156,7 @@ router.post("/", async (req, res) => {
         beneficiaryName: ssn.Beneficiary_Name_Global.trim(),
         orgSize: ssn.Size_of_the_Organisation_Global.trim(),
         subsidyInstrument: ssn.Subsidy_Instrument_Global.trim(),
-        subsidyObjective: ssn.Subsidy_Objective_Global.trim(),
+        subsidyObjective: ssn.Award_Objective_Json_Global,
         subsidyAmountRange: Subsidy_Full_Amount_Range_Global_Trim.trim(),
         subsidyAmountExact: Subsidy_Element_Full_Amount_Global_Trim,
         legalGrantingDate: subsidy_legal_granting_date.trim(),
