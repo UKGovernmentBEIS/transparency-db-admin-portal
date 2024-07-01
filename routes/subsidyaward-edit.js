@@ -48,6 +48,7 @@ router.get("/", async (req, res) => {
       Size_of_the_Organisation = awardapidata.data.beneficiary.orgSize;
       Beneficiary_Name = awardapidata.data.beneficiary.beneficiaryName;
       Goods_or_Services = awardapidata.data.goodsServicesFilter;
+      SPEI = awardapidata.data.spei;
 
       var date = awardapidata.data.legalGrantingDate.split(" ");
       var month = [
