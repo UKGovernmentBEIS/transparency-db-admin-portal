@@ -70,7 +70,10 @@ router.get("/", (req, res) => {
     ssn.Standalone_Award_Global = fetchawarddetails.standaloneAward;
     ssn.Subsidy_Award_Description_Global = fetchawarddetails.subsidyAwardDescription;
 
-    ssn.Specific_Policy_Objective_global = fetchawarddetails.specificPolicyObjective;
+    ssn.Specific_Policy_Objective_Global = fetchawarddetails.specificPolicyObjective;
+
+    ssn.Authority_URL_Global = fetchawarddetails.authorityURL
+    ssn.Authority_URL_Description_Global = fetchawarddetails.authorityURLDescription
 
     ssn.Subsidy_Objective_Global = fetchawarddetails.subsidyObjective;
 
