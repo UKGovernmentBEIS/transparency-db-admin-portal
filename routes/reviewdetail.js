@@ -74,6 +74,7 @@ router.post("/", async (req, res) => {
     ssn.Admin_Program_Active_Error = false;
     ssn.Admin_Program_Match_Error = false;
     ssn.Subsidy_Award_Interest_Error = false;
+    ssn.SPEI_Error = false;
     objective_culture_Global = "";
     objective_employment_Global = "";
     objective_energy_efficiency_Global = "";
@@ -85,12 +86,10 @@ router.post("/", async (req, res) => {
     objective_training_Global = "";
     objective_other_Global = "";
 
-
     var {
       Subsidy_Control_Number_Name,
       // Subsidy_Adhoc,
       Subsidy_Award_Description,
-
       objective_culture,
       objective_employment,
       objective_energy_efficiency,
@@ -126,6 +125,7 @@ router.post("/", async (req, res) => {
       Authority_URL_Description,
       mylink,
       Subsidy_Award_Interest,
+      SPEI,
       ...formVars
     } = req.body;
 
@@ -203,11 +203,13 @@ router.post("/", async (req, res) => {
     
     ssn.Spending_Sector_Global = Spending_Sector;
     ssn.Subsidy_Award_Interest_Global = Subsidy_Award_Interest;
+    ssn.SPEI_Global = SPEI;
 
     console.log("Subsidy_Objective_Other", Subsidy_Objective_Other.length);
     console.log("Subsidy_Instrument_Other", Subsidy_Instrument_Other);
     console.log("Beneficiary_Name", Beneficiary_Name);
     console.log("ssn.Subsidy_Award_Interest :" + ssn.Subsidy_Award_Interest_Global)
+    console.log("ssn.SPEI :" + ssn.SPEI_Global)
     console.log("buttonvalue", buttonvalue);
     var subsidyObjectiveArray = new Array();
 
@@ -352,6 +354,13 @@ router.post("/", async (req, res) => {
         ssn.Subsidy_Award_Interest_Error = true;
         ssn.SubsidyErrors[Additem] = "You must select if the award is a Subsidies or Schemes of Interest (SSoI), Subsidies or Schemes of Particular Interest (SSoPI) or neither";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Award_Interest";
+        Additem = Additem + 1;
+      }
+
+      if (!SPEI) {
+        ssn.SPEI_Error = true;
+        ssn.SubsidyErrors[Additem] = "You must select if the award is Services of Public Economic Interest (SPEI)";
+        ssn.SubsidyFocus[Additem] = '#SPEI';
         Additem = Additem + 1;
       }
 
@@ -667,7 +676,8 @@ router.post("/", async (req, res) => {
         ssn.Subsidy_Award_Description_Error ||
         ssn.Subsidy_Award_Interest_Error ||
         ssn.Specific_Policy_Objective_Error_Length ||
-        ssn.Specific_Policy_Objective_Error
+        ssn.Specific_Policy_Objective_Error ||
+        ssn.SPEI_Error
       ) {
         res.render("bulkupload/addsubsidyaward", {
           ssn,
