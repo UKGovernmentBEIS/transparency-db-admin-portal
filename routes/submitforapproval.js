@@ -70,6 +70,7 @@ router.post("/", async (req, res) => {
     ssn.Subsidy_Award_Interest_Error = false;
     ssn.Specific_Policy_Objective_Error = false;
     ssn.Specific_Policy_Objective_Error_Length = false;
+    ssn.SPEI_Error = false;
 
     console.log(
       "ssn.Subsidy_Full_Amount_Range_Global ",
@@ -137,7 +138,8 @@ router.post("/", async (req, res) => {
       adminProgramNumber: ssn.Admin_Program_Number_Global.trim(),
       authorityURL: ssn.Authority_URL_Global.trim(),
       authorityURLDescription: ssn.Authority_URL_Description_Global.trim(),
-      subsidyAwardInterest: ssn.Subsidy_Award_Interest_Global.trim()
+      subsidyAwardInterest: ssn.Subsidy_Award_Interest_Global.trim(),
+      spei: ssn.SPEI_Global.trim()
     };
 
     if (isCallfromEditAward) {
@@ -171,10 +173,10 @@ router.post("/", async (req, res) => {
         authorityURLDescription: ssn.Authority_URL_Description_Global.trim(),
         subsidyAwardInterest: ssn.Subsidy_Award_Interest_Global.trim(),
         status: status,
+        spei: ssn.SPEI_Global.trim()
       };
 
       var data = JSON.parse(JSON.stringify(updateAwardRequest));
-      // console.log("request :" + JSON.stringify(data));
     } else {
       var data = JSON.parse(JSON.stringify(addAwardRequest));
     }
@@ -275,6 +277,16 @@ router.post("/", async (req, res) => {
             ssn.SubsidyErrors[Additem] =
               add_award_response.validationErrorResult[i].message;
             ssn.SubsidyFocus[Additem] = "#Subsidy_Award_Interest";
+            Additem = Additem + 1;
+          }
+          if(
+            add_award_response.validationErrorResult[i].column ==
+            "#SPEI"
+          ) {
+            ssn.SPEI_Error = true;
+            ssn.SubsidyErrors[AddItem] = 
+              add_award_response.validationErrorResult[i].message;
+            ssn.SubsidyFocus[AddItem] = "#SPEI";
             Additem = Additem + 1;
           }
 

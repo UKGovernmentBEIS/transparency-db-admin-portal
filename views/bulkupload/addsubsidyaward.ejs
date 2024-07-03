@@ -761,26 +761,67 @@
                 <input id="authority-url-description" class="govuk-input" value="<%=ssn.Authority_URL_Description_Global%>" name="Authority_URL_Description" maxlength="255"/>
               </div>
             </div>
+            
+            <div id="SPEI-container"> 
+              <div class="govuk-form-group<% if( ssn.SPEI_Error ){ %> govuk-form-group--error <% } %>" id="SPEIContainer">   
+                <label class="govuk-label" for="SPEI">
+                  Services of Public Economic Interest (SPEI)
+                </label>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What is a Services of Public Economic Interest (SPEI)?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    The Act contains provisions for public authorities to provide subsidies for services of public economic interest (SPEI). These are subsidies for essential services provided to the public that would otherwise not be supplied in an appropriate way or may not be supplied at all by the market. Examples of SPEIs may include postal services, social housing, and some types of transport networks, particularly in rural or less populated areas of the country.
+                  </div>
+                </details>
+                <% if( ssn.SPEI_Error ){ %>
+                  <span class="govuk-error-message" id="SPEI_Error">
+                    <span class="govuk-visually-hidden">Error:</span> You must select if this award is Services of Public Economic Interest (SPEI)
+                  </span>
+                  <% } %>
+          
+                    <div class="govuk-radios" id="SPEI">
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" name="SPEI" id="SPEI_Yes" 
+                          type="radio" value="Yes" <%
+                          if(ssn.SPEI_Global=='Yes') { %> checked <% } %> >
+                          <label class="govuk-label govuk-radios__label" for="SPEI_Yes">
+                            Yes
+                          </label>
+                      </div>
+
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" name="SPEI" id="SPEI_No"
+                          type="radio" value="No" <%
+                          if(ssn.SPEI_Global=='No') { %> checked <% } %> >
+                          <label class="govuk-label govuk-radios__label" for="SPEI_No">
+                            No
+                          </label>
+                      </div>
+                    </div>
+              </div>
+            </div>
             <!-- *************************************  -->
             <!-- Get the  Subsidy Objective  from user  -->
             <!-- *************************************  -->
 
               <fieldset class="govuk-fieldset" aria-describedby="objective-hint" id="Subsidy_Objective">
                 <% if(ssn.Subsidy_Objective_Error){ %>
-                  <div class="govuk-form-group govuk-grid-column-two-thirds govuk-form-group--error">
+                  <div class="govuk-form-group govuk-form-group--error">
                   <% } else { %>
-                  <div class="govuk-form-group govuk-grid-column-two-thirds">
+                  <div class="govuk-form-group">
                   <% } %>
                   <label class="govuk-label" for="Subsidy_Objective">
                     Subsidy purpose
                   </label>
-                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-grid-column-two-thirds">
-                  </legend>
-                  <div class="govuk-grid-row govuk-form-group">
+                  <div class="govuk-grid-row">
                       <div class="govuk-grid-column-full">
-                          <p id="objective-hint" class="govuk-body " for="subsidylabel">
+                          <div id="objective-hint" class="govuk-hint" for="subsidylabel">
                           Select one or more purposes(s)
-                          </p>
+                          </div>
                           <% if(ssn.Subsidy_Objective_Error){ %>
                           <span class="govuk-error-message" id="subsidyObjectiveArray">
                               <span class="govuk-visually-hidden">Error:</span>
@@ -812,7 +853,7 @@
                       </div>
 
                       <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-activities-of-extraterritorial"
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-employment"
                           name="objective_employment" type="checkbox" value="Employment"<% if (ssn.objective_employment_Global) { %>
                               checked <% } %>>
                       <label class="govuk-label govuk-checkboxes__label" for="objective-employment">
