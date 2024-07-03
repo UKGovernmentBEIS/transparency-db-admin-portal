@@ -172,6 +172,7 @@ router.post("/", async (req, res) => {
         authorityURL: ssn.Authority_URL_Global.trim(),
         authorityURLDescription: ssn.Authority_URL_Description_Global.trim(),
         subsidyAwardInterest: ssn.Subsidy_Award_Interest_Global.trim(),
+        status: status,
         spei: ssn.SPEI_Global.trim()
       };
 
