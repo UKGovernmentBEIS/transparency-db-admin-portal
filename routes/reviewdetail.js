@@ -861,8 +861,7 @@ router.post("/", async (req, res) => {
           });
         } else {
           res.render("bulkupload/reviewdetail", {
-            ssn,
-            subsidyObjectiveArray
+            ssn
           });
         }
 
