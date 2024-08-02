@@ -220,6 +220,11 @@ app.get("/", async (req, res) => {
   // Globale declarations
   // *******************
   ssn.frontend_totalRecordsPerPage = 10;
+  ssn.protected_gas = ["Granting Authority Encoder", 
+  "Granting Authority Approver", 
+  "Granting Authority Administrator",
+  "BEIS Administrator",
+  "TEST GA"];
 
   var id_token_decoded = jwt_decode(id_token);
   var id_token_json = JSON.parse(JSON.stringify(id_token_decoded));
