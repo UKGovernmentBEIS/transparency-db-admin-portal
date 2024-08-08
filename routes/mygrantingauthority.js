@@ -181,7 +181,8 @@ router.get("/", async (req, res) => {
 
         if (ssn.grantingAuthorityName_Global)
           grantingAuthorityName = ssn.grantingAuthorityName_Global;
-        else grantingAuthorityName = grantingAuthorityID_global;
+        if(ssn.gaID)
+          grantingAuthorityID = ssn.grantingAuthorityID;
 
         // data = {
         //   grantingAuthorityName: ssn.grantingAuthorityName_Global,
@@ -205,8 +206,8 @@ router.get("/", async (req, res) => {
         //  ssn.frontend_totalRecordsPerPage = 10;
       }
       data = {
-        grantingAuthorityName: ssn.grantingAuthorityName_Global.trim(),
-        grantingAuthorityID: grantingAuthorityID_global.trim(),
+        searchText: ssn.grantingAuthorityName_Global.trim(),
+        id: grantingAuthorityID_global.trim(),
         pageNumber: current_page,
         status: status,
         // totalRecordsPerPage: 10,
@@ -229,7 +230,7 @@ router.get("/", async (req, res) => {
         console.log("GALIST", grantingAuthorityList);
 
         activeCount = grantingAuthorityList.activeCount;
-        inActiveCount = grantingAuthorityList.inActiveCount;
+        inActiveCount = grantingAuthorityList.inactiveCount;
         totalSearchResults = grantingAuthorityList.totalSearchResults;
 
         // apidata.data.gaList.forEach(function (item) {
@@ -331,18 +332,9 @@ router.get("/", async (req, res) => {
           nogas,
           noresult,
           noGrantingAuthority,
-          ssn,
-          // gaId_no_arrow,
-          // ganame_arrow,
-          // added_by_arrow,
-          // status_arrow,
-          // created_on_arrow,
-          // last_modified_arrow,
-
           activeCount,
           inActiveCount,
           totalSearchResults,
-
           grantingAuthorityName,
           end_record,
           totalrows,
@@ -458,7 +450,7 @@ router.post("/", async (req, res) => {
       totalrows = grantingAuthorityList.totalSearchResults;
       if (req.body.hasOwnProperty("grantingAuthorityName")) {
         activeCount = grantingAuthorityList.activeCount;
-        inActiveCount = grantingAuthorityList.inActiveCount;
+        inActiveCount = grantingAuthorityList.inactiveCount;
         totalSearchResults = grantingAuthorityList.totalSearchResults;
       }
 

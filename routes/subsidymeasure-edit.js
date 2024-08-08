@@ -58,8 +58,10 @@ router.get("/", async (req, res) => {
         Scheme_End_Date = ssn.searchmeasuredetails.endDate;
         ssn.Has_No_End_Date = measureapidata.data.hasNoEndDate;
         ssn.Subsidy_Scheme_Description_Global = measureapidata.data.subsidySchemeDescription;
+        ssn.Spending_Sector_Array_Global = measureapidata.data.spendingSectorArray;
+        ssn.Specific_Policy_Objective_Global = measureapidata.data.specificPolicyObjective;
 
-        ssn.Spending_Sector_Array_Global = measureapidata.data.spendingSectorArray
+        ssn.Subsidy_Scheme_Interest_Global = measureapidata.data.subsidySchemeInterest;
 
         ssn.spendingsector_accommodation_Global = false;
         ssn.spendingsector_activities_of_extraterritorial_Global = false;
@@ -82,6 +84,19 @@ router.get("/", async (req, res) => {
         ssn.spendingsector_transportation_and_storage_Global = false;
         ssn.spendingsector_water_supply_Global = false;
         ssn.spendingsector_wholesale_and_retail_trade_Global = false;
+
+        ssn.Purpose_Array_Other_Global = JSON.parse(ssn.searchmeasuredetails.purpose).slice(-1).toString().replace('Other - ', '')
+
+        ssn.purpose_culture_or_heritage_Global = false;
+        ssn.purpose_employment_Global = false;
+        ssn.purpose_energy_efficiency_Global = false;
+        ssn.purpose_environmental_protection_Global = false;
+        ssn.purpose_infrastructure_Global = false;
+        ssn.purpose_regional_development_Global = false;
+        ssn.purpose_rescue_subsidy_Global = false;
+        ssn.purpose_research_and_development_Global = false;
+        ssn.purpose_training_Global = false;
+        ssn.purpose_other_Global = null;
 
 
         var spendingSectorArray = new Array();
@@ -156,6 +171,44 @@ router.get("/", async (req, res) => {
           }
         });
 
+        var purposeArray = new Array();
+        if(ssn.searchmeasuredetails.purpose != null){
+          purposeArray = JSON.parse(ssn.searchmeasuredetails.purpose);
+        }
+        purposeArray.forEach(function(purpose){
+          switch(purpose) {
+            case "Culture or Heritage":
+              ssn.purpose_culture_or_heritage_Global = true;
+              break;
+            case "Employment":
+              ssn.purpose_employment_Global = true;
+              break;
+            case "Energy efficiency":
+              ssn.purpose_energy_efficiency_Global = true;
+              break;
+            case "Environmental protection":
+              ssn.purpose_environmental_protection_Global = true;
+              break;
+            case "Infrastructure":
+              ssn.purpose_infrastructure_Global = true;
+              break;
+            case "Regional development":
+              ssn.purpose_regional_development_Global = true;
+              break;
+            case "Rescue and restructuring subsidy":
+              ssn.purpose_rescue_subsidy_Global = true;
+              break;
+            case "Research and development":
+              ssn.purpose_research_and_development_Global = true;
+              break;
+            case "Training":
+              ssn.purpose_training_Global = true;
+              break;
+            case "Other - " + ssn.Purpose_Array_Other_Global:
+              ssn.purpose_other_Global = ssn.Purpose_Array_Other_Global;
+              break;
+          }
+        });
 
         var month = [
           "January",
@@ -229,10 +282,13 @@ router.get("/", async (req, res) => {
         ssn.scheme_issued_end_year_Error = false;
         ssn.Subsidy_Scheme_Description_Error = false;
         ssn.Subsidy_Scheme_Description_Length_Error = false;
+        ssn.Specific_Policy_Objective_Error = false;
+        ssn.Specific_Policy_Objective_Length_Error=false;
         ssn.scheme_issued_confirmation_day_Error = false;
         ssn.scheme_issued_confirmation_month_Error = false;
         ssn.scheme_issued_confirmation_year_Error = false;
         ssn.Maximum_Amount_Under_Scheme_255_Error = false;
+        ssn.Subsidy_Of_Particular_Interest_Error = false;
 
         if (ssn.dashboard_roles !== "Granting Authority Encoder") {
           res.render("bulkupload/subsidymeasures-edit", { formatedCurrency });

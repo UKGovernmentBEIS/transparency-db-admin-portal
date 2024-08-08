@@ -17,7 +17,7 @@
     </script>
     <script>
         const formatter = new Intl.NumberFormat("en-GB");
-        getFormatedCurrency = (budget) => {
+        getFormattedCurrency = (budget) => {
             if (budget.toString().includes(","))
                 budget = budget.split(",").join("");
             formatedCurrency = formatter.format(budget);
@@ -27,7 +27,7 @@
 </head>
 
 
-<body class="govuk-template__body app-example-page" onload="getFormatedCurrency('<%=formatedCurrency%>')">
+<body class="govuk-template__body app-example-page" onload="getFormattedCurrency('<%=formatedCurrency%>')">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -89,6 +89,14 @@
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme name</th>
                             <td class="govuk-table__cell"><%= ssn.Subsidy_Measure_Title_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme of inteSubsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)rest or particular interest</th>
+                            <td class="govuk-table__cell render-newlines"><%= ssn.Subsidy_Scheme_Interest_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Specific policy objective</th>
+                            <td class="govuk-table__cell render-newlines"><%= ssn.Specific_Policy_Objective_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme description</th>
@@ -166,6 +174,18 @@
                                 <ul class="govuk-list govuk-list--bullet">
                                     <% spendingSectorArray.forEach(function(item) { %>
                                     <li> <%=item %> </li>
+                                    <% }); %>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Purpose(s)</th>
+                            <td class="govuk-table__cell">
+                                <ul class="govuk-list govuk-list--bullet">
+                                    <% purposeArray.forEach(function(item) { %>
+                                        <%if(item != ""){%>
+                                        <li> <%=item %> </li>
+                                        <% } %>
                                     <% }); %>
                                 </ul>
                             </td>

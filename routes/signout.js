@@ -27,7 +27,7 @@ router.get("/", (req, res) => {
         console.log("Logout Error", err);
       } else {
         var cookei_var = req.headers.cookie;
-        var cookiesList = cookei_var.split(";");
+        var cookiesList = (cookei_var ? cookei_var.split(";") : '');
         var CookeiNames = [];
 
         cookiesList.forEach(function (items) {

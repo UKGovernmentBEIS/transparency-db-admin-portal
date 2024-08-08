@@ -51,14 +51,19 @@ router.post("/", (req, res) => {
     ssn.scheme_issued_end_day_lesser_Error = false;
     ssn.Subsidy_Scheme_Description_Error = false;
     ssn.Subsidy_Scheme_Description_Length_Error = false;
+    ssn.Specific_Policy_Objective_Error = false;
+    ssn.Specific_Policy_Objective_Length_Error=false;
     ssn.spendingsector_Error = false;
     ssn.Maximum_Amount_Under_Scheme_255_Error = false;
+    ssn.purpose_Error = false;
+    ssn.Subsidy_Scheme_Interest_Error = false;
 
 
     var {
       Subsidy_Adhoc,
       Granting_Authority_Name,
       Subsidy_Measure_Title,
+      Specific_Policy_Objective,
       Subsidy_Scheme_Description,
 
       Legal_Basis,
@@ -99,6 +104,17 @@ router.post("/", (req, res) => {
       spendingsector_wholesale_and_retail_trade,
       myCheck,
       has_no_end_date,
+      purpose_culture_or_heritage,
+      purpose_employment,
+      purpose_energy_efficiency,
+      purpose_environmental_protection,
+      purpose_infrastructure,
+      purpose_regional_development,
+      purpose_rescue_subsidy,
+      purpose_research_and_development,
+      purpose_training,
+      purpose_other,
+      Subsidy_Scheme_Interest
     } = req.body;
 
     console.log("isAddSubsidyPrimarycall: " + isAddSubsidyPrimarycall);
@@ -145,6 +161,9 @@ router.post("/", (req, res) => {
 
     ssn.Subsidy_Scheme_Description_Global = Subsidy_Scheme_Description;
 
+    ssn.Subsidy_Scheme_Interest_Global = Subsidy_Scheme_Interest;
+    ssn.Specific_Policy_Objective_Global = Specific_Policy_Objective;
+
     if (ssn.Subsidy_Adhoc_Global == "Yes") {
       ssn.Scheme_End_Day_Global = scheme_issued_start_day;
       ssn.Scheme_End_Month_Global = scheme_issued_start_month;
@@ -167,6 +186,7 @@ router.post("/", (req, res) => {
       ssn.Scheme_End_Year_Global = scheme_issued_end_year;
     }
 
+    //spending sector sorting
     var spendingSectorArray = new Array();
     ssn.Spending_Sector_Array_Global = spendingSectorArray
 
@@ -278,6 +298,65 @@ router.post("/", (req, res) => {
 
     ssn.Scheme_Sector_Json_Global = JSON.stringify(spendingSectorArray);
 
+    //purpose sorting
+    var purposeArray = new Array();
+    ssn.Purpose_Array_Global = purposeArray
+
+    if(purpose_culture_or_heritage){
+      ssn.purpose_culture_or_heritage_Global = purpose_culture_or_heritage;
+      purposeArray.push(purpose_culture_or_heritage);
+    }
+
+    if(purpose_employment){
+      ssn.purpose_employment_Global = purpose_employment;
+      purposeArray.push(purpose_employment);
+    }
+
+    if(purpose_energy_efficiency){
+      ssn.purpose_energy_efficiency_Global = purpose_energy_efficiency;
+      purposeArray.push(purpose_energy_efficiency);
+    }
+
+    if(purpose_environmental_protection){
+      ssn.purpose_environmental_protection_Global = purpose_environmental_protection;
+      purposeArray.push(purpose_environmental_protection);
+    }
+
+    if(purpose_infrastructure){
+      ssn.purpose_infrastructure_Global = purpose_infrastructure;
+      purposeArray.push(purpose_infrastructure);
+    }
+
+    if(purpose_regional_development){
+      ssn.purpose_regional_development_Global = purpose_regional_development;
+      purposeArray.push(purpose_regional_development);
+    }
+
+    if(purpose_rescue_subsidy){
+      ssn.purpose_rescue_subsidy_Global = purpose_rescue_subsidy;
+      purposeArray.push(purpose_rescue_subsidy);
+    }
+
+    if(purpose_research_and_development){
+      ssn.purpose_research_and_development_Global = purpose_research_and_development;
+      purposeArray.push(purpose_research_and_development);
+    }
+
+
+    if(purpose_training){
+      ssn.purpose_training_Global = purpose_training;
+      purposeArray.push(purpose_training);
+    }
+
+    if(purpose_other.startsWith("Other -")){
+      purposeArray.push(purpose_other);
+     }else if(purpose_other.length > 0){
+      purposeArray.push("Other - " + purpose_other);
+     }
+     ssn.purpose_other_Global = purpose_other;
+
+    ssn.Scheme_purpose_Json_Global = JSON.stringify(purposeArray);
+
     console.log("ssn.Subsidy_Adhoc_Global :" + ssn.Subsidy_Adhoc_Global);
     console.log(
       "ssn.Granting_Authority_Name_Measure_Global :" +
@@ -286,6 +365,8 @@ router.post("/", (req, res) => {
     console.log(
       "ssn.Subsidy_Measure_Title_Global :" + ssn.Subsidy_Measure_Title_Global
     );
+    console.log("ssn.Specific_Policy_Objective_Global  :" + ssn.Specific_Policy_Objective_Global);
+
     console.log("ssn.Subsidy_Scheme_Description_Global  :" + ssn.Subsidy_Scheme_Description_Global);
     console.log("ssn.Legal_Basis_Global  :" + ssn.Legal_Basis_Global);
     console.log(
@@ -340,6 +421,18 @@ router.post("/", (req, res) => {
     console.log("ssn.spendingsector_water_supply  :" + ssn.spendingsector_water_supply_Global)
     console.log("ssn.spendingsector_wholesale_and_retail_trade  :" + ssn.spendingsector_wholesale_and_retail_trade_Global)
 
+    console.log("ssn.purpose_culture_or_heritage  :" + ssn.purpose_culture_or_heritage_Global)
+    console.log("ssn.purpose_employment  :" + ssn.purpose_employment_Global)
+    console.log("ssn.purpose_energy_efficiency  :" + ssn.purpose_energy_efficiency_Global)
+    console.log("ssn.purpose_environmental_protection  :" + ssn.purpose_environmental_protection_Global)
+    console.log("ssn.purpose_infrastructure  :" + ssn.purpose_infrastructure_Global)
+    console.log("ssn.purpose_regional_devlopment  :" + ssn.purpose_regional_devlopment_Global)
+    console.log("ssn.purpose_rescue_subsidy  :" + ssn.purpose_rescue_subsidy_Global)
+    console.log("ssn.purpose_research_and_development  :" + ssn.purpose_research_and_development_Global)
+    console.log("ssn.purpose_training  :" + ssn.purpose_training_Global)
+    console.log("ssn.purpose_other  :" + ssn.purpose_other_Global)
+    console.log("ssn.Subsidy_Scheme_Interest :" + ssn.Subsidy_Scheme_Interest_Global)
+
     const monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August','September', 'October', 'November', 'December'];
 
     ssn.GetConfirmationMonthName = monthArray[((parseInt(scheme_issued_confirmation_month)) - 1)];
@@ -368,6 +461,22 @@ router.post("/", (req, res) => {
           "Subsidy scheme name cannot be greater than 255 characters"
         );
         ssn.SubsidyFocus.push("#Subsidy_Measure_Title");
+      }
+
+      if (!Subsidy_Scheme_Interest) {
+        ssn.Subsidy_Scheme_Interest_Error = true;
+        ssn.SubsidyErrors.push("You must select the if the scheme is of interest, particular interest or neither");
+        ssn.SubsidyFocus.push("#Subsidy_Scheme_Interest");
+      }
+
+      if (Specific_Policy_Objective == ""){
+        ssn.Specific_Policy_Objective_Error = true;
+        ssn.SubsidyErrors.push("Enter the Specific policy objective");
+        ssn.SubsidyFocus.push("#Specific_Policy_Objective");
+      } else if (Specific_Policy_Objective.length > 1500){
+        ssn.Specific_Policy_Objective_Length_Error = true;
+        ssn.SubsidyErrors.push(" The specific policy objective must be 1500 characters or less.");
+        ssn.SubsidyFocus.push("#Specific_Policy_Objective");
       }
 
       if (Subsidy_Scheme_Description == ""){
@@ -732,6 +841,21 @@ router.post("/", (req, res) => {
         ssn.SubsidyFocus.push("#spendingSectorArray");
       }
 
+      if (purposeArray.length == 0){
+        ssn.purpose_Error = true;
+        ssn.SubsidyErrors.push(
+          "Enter at least one or more purpose(s)"
+        );
+        ssn.SubsidyFocus.push("#purposeArray");
+      }
+
+      if(ssn.purpose_other_Global != "" && ssn.purpose_other_Global.length > 255){
+        ssn.purpose_Error = true;
+        ssn.SubsidyErrors.push(
+          "Purpose(s) under Other cannot be greater than 255 characters"
+        );
+        ssn.SubsidyFocus.push("#purposeArray");
+      }
 
       ssn.SubsidyArraySize = ssn.SubsidyErrors.length;
       if (
@@ -758,20 +882,26 @@ router.post("/", (req, res) => {
         ssn.Granting_Authority_Policy_255_Error ||
         ssn.Subsidy_Scheme_Description_Error ||
         ssn.Subsidy_Scheme_Description_Length_Error ||
+        ssn.Specific_Policy_Objective_Error ||
+        ssn.Specific_Policy_Objective_Length_Error ||
         ssn.spendingsector_Error ||
-        ssn.Maximum_Amount_Under_Scheme_255_Error
+        ssn.Maximum_Amount_Under_Scheme_255_Error ||
+        ssn.purpose_Error ||
+        ssn.Subsidy_Scheme_Interest_Error
       ) {
         res.render("bulkupload/subsidymeasures-add", {
           formatedCurrency,
           ssn,
           isAddSubsidyPrimarycall,
           spendingSectorArray,
+          purposeArray,
         });
       } else {
         res.render("bulkupload/subsidymeasure-reviewdetails", {
           ssn,
           formatedCurrency,
           spendingSectorArray,
+          purposeArray,
         });
       }
     } else {
@@ -797,6 +927,7 @@ router.post("/", (req, res) => {
       ssn.Scheme_Start_Day_Global = scheme_issued_start_day;
       ssn.Scheme_Start_Month_Global = scheme_issued_start_month;
       ssn.Scheme_Start_Year_Global = scheme_issued_start_year;
+      ssn.Subsidy_Scheme_Interest_Global = Subsidy_Scheme_Interest;
       res.render("bulkupload/subsidymeasure-cancel");
     }
   }

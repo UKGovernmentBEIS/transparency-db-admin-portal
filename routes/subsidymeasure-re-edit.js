@@ -43,6 +43,7 @@ router.post("/", (req, res) => {
     ssn.scheme_issued_confirmation_day_Error = false;
     ssn.scheme_issued_confirmation_month_Error = false;
     ssn.scheme_issued_confirmation_year_Error = false;
+    ssn.Subsidy_Scheme_Interest_Error - false;
 
     const {
       Subsidy_Adhoc,
@@ -62,7 +63,8 @@ router.post("/", (req, res) => {
       scheme_issued_end_month,
       scheme_issued_end_day,
       Maximum_Amount_Under_Scheme,
-      buttonvalue,
+      Subsidy_Scheme_Interest,
+      buttonvalue
     } = req.body;
 
     console.log("buttonvalue:" + buttonvalue);
@@ -86,6 +88,7 @@ router.post("/", (req, res) => {
     ssn.Scheme_End_Month_Global = scheme_issued_end_month;
     ssn.Scheme_End_Year_Global = scheme_issued_end_year;
     ssn.Maximum_Amount_Under_Scheme_Global = Maximum_Amount_Under_Scheme;
+    ssn.Subsidy_Scheme_interest_Global = Subsidy_Scheme_Interest;
 
 
     console.log("ssn.Subsidy_Adhoc_Global :" + ssn.Subsidy_Adhoc_Global);
@@ -177,6 +180,13 @@ router.post("/", (req, res) => {
       }
 
       // if (!Subsidy_Measure_Title) {
+        
+      if (!Subsidy_Scheme_Interest) {
+        ssn.Subsidy_Scheme_Interest_Error = true;
+        ssn.SubsidyErrors.push("You must select the if the scheme is of interest, particular interest or neither");
+        ssn.SubsidyFocus.push("#Subsidy_Scheme_Interest");
+      }
+
 
       // }
       if (!Subsidy_Adhoc) {
@@ -388,6 +398,8 @@ router.post("/", (req, res) => {
       }
 
       ssn.SubsidyArraySize = ssn.SubsidyErrors.length;
+
+      
 
       if (
         ssn.Subsidy_Measure_Title_Error ||

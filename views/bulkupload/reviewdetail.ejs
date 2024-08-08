@@ -137,6 +137,20 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
+          </dt>
+          <dd class="govuk-summary-list__value render-newlines"><%= (ssn.Standalone_Award_Global === 'No') ? 'NA' : ssn.Subsidy_Award_Interest_Global %></dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Policy objective
+          </dt>
+          <dd class="govuk-summary-list__value render-newlines"><%= (ssn.Standalone_Award_Global === 'No') ? 'NA' : ssn.Specific_Policy_Objective_Global %></dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Description
           </dt>
           <dd class="govuk-summary-list__value render-newlines"><%= ssn.Subsidy_Award_Description_Global %></dd>
@@ -144,17 +158,39 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Subsidy purpose
+            Services of Public Economic Interest (SPEI)
           </dt>
           <dd class="govuk-summary-list__value">
-            <%=  ssn.Subsidy_Objective_Plus_Other_Global %>
+            <%=  ssn.SPEI_Global %>
           </dd>
-
         </div>
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Subsidy type
+            Subsidy purpose(s)
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                  <% if(ssn.objective_Array_Global.length > 0) { %>
+                  <ul class="govuk-list govuk-list--bullet">
+                      <% ssn.objective_Array_Global.forEach(function(item) { %>
+                          <%if(item != ""){%>
+                          <li> <%=item %> </li>
+                          <% } %>
+                      <% }); %>
+                  </ul>
+                  <% } else { %>
+                      NA
+                   <% } %>
+              </td>
+          </tr>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidy form
           </dt>
           <dd class="govuk-summary-list__value">
             <%=  ssn.Subsidy_Instrument_Plus_Other_Global %>
@@ -193,6 +229,23 @@
             <%= ssn.Granting_Authority_Name_Global %>
           </dd>
 
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Public authority policy URL
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= (ssn.Standalone_Award_Global === 'No') ? 'NA' : ssn.Authority_URL_Global %>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Public authority policy page summary
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= (ssn.Standalone_Award_Global === 'No') ? 'NA' : ssn.Authority_URL_Description_Global %>
+          </dd>
         </div>
 
         <div class="govuk-summary-list__row">
@@ -280,10 +333,18 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Region
+            Region(s)
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= ssn.Spending_Region_Global %>
+            <% if(ssn.Spending_Regions_Global.length > 0) { %>
+              <ul class="govuk-list govuk-list--bullet">
+                  <% ssn.Spending_Regions_Global.forEach(function(item) { %>
+                  <li> <%=item %> </li>
+                  <% }); %>
+              </ul>
+          <% } else { %>
+              NA
+          <% } %>
 
           </dd>
         </div>

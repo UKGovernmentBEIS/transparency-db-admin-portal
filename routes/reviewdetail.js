@@ -64,19 +64,44 @@ router.post("/", async (req, res) => {
     ssn.Standalone_Award_Error = false;
     ssn.Subsidy_Award_Description_Error = false;
     ssn.Subsidy_Award_Description_Error_Length = false;
+    ssn.Specific_Policy_Objective_Error = false;
+    ssn.Specific_Policy_Objective_Error_Length = false;
+
+
     ssn.Admin_Program_Error = false;
     ssn.Admin_Program_255_Error = false;
     ssn.Admin_Program_Exist_Error = false;
     ssn.Admin_Program_Active_Error = false;
     ssn.Admin_Program_Match_Error = false;
-
+    ssn.Subsidy_Award_Interest_Error = false;
+    ssn.SPEI_Error = false;
+    objective_culture_Global = "";
+    objective_employment_Global = "";
+    objective_energy_efficiency_Global = "";
+    objective_environmental_Global = "";
+    objective_infrastructure_Global = "";
+    objective_regional_development_Global = "";
+    objective_rescue_subsidy_Global = "";
+    objective_research_Global = "";
+    objective_training_Global = "";
+    objective_other_Global = "";
 
     var {
       Subsidy_Control_Number_Name,
       // Subsidy_Adhoc,
       Subsidy_Award_Description,
-      Subsidy_Objective,
+      objective_culture,
+      objective_employment,
+      objective_energy_efficiency,
+      objective_environmental,
+      objective_infrastructure,
+      objective_regional_development,
+      objective_rescue_subsidy,
+      objective_research,
+      objective_training,
+      objective_other,
       Subsidy_Objective_Other,
+      Specific_Policy_Objective,
       Subsidy_Instrument,
       Subsidy_Instrument_Other,
       Subsidy_Element_Full_Amount,
@@ -92,25 +117,35 @@ router.post("/", async (req, res) => {
       Legal_Granting_Date_Month,
       Legal_Granting_Date_Year,
       Goods_or_Services,
-      Spending_Region,
       Spending_Sector,
       buttonvalue,
       Standalone_Award,
       Admin_Program_Number,
+      Authority_URL,
+      Authority_URL_Description,
       mylink,
+      Subsidy_Award_Interest,
+      SPEI,
+      ...formVars
     } = req.body;
 
     ssn.Standalone_Award_Global = Standalone_Award;
     if(ssn.Standalone_Award_Global == 'Yes'){
       ssn.Subsidy_Control_Number_Name_Global = "";
       ssn.Admin_Program_Number_Global = "";
+      ssn.Authority_URL_Global = Authority_URL;
+      ssn.Authority_URL_Description_Global = Authority_URL_Description;
     }else{
+      ssn.Authority_URL_Global = "";
+      ssn.Authority_URL_Description_Global = "";
       ssn.Admin_Program_Number_Global = Admin_Program_Number;
       ssn.Subsidy_Control_Number_Name_Global = Subsidy_Control_Number_Name;
     }
 
     ssn.Subsidy_Award_Description_Global = Subsidy_Award_Description;
-    ssn.Subsidy_Objective_Global = Subsidy_Objective;
+
+    ssn.Specific_Policy_Objective_Global = Specific_Policy_Objective;
+    ssn.Subsidy_Objective_Global = ssn.Award_Objective_Json_Global;
     ssn.Subsidy_Objective_Other_Global = Subsidy_Objective_Other;
     ssn.Subsidy_Instrument_Global = Subsidy_Instrument;
     ssn.Subsidy_Instrument_Other_Global = Subsidy_Instrument_Other;
@@ -118,6 +153,17 @@ router.post("/", async (req, res) => {
     ssn.Subsidy_Full_Amount_Range_Upper_Global = Subsidy_Full_Amount_Range_Upper;
 
     Subsidy_Full_Amount_Range = "£" + Subsidy_Full_Amount_Range_Lower + " - £" + Subsidy_Full_Amount_Range_Upper;
+
+    ssn.Spending_Regions_Selected_Global = new Array();
+
+    for(variable in formVars){
+      if (variable.startsWith("Spending_Region")){
+        if(variable == "Spending_Region_Select_All"){
+          continue;
+        }
+        ssn.Spending_Regions_Selected_Global.push(`${formVars[variable]}`);
+      }
+    }
 
     if (
       ssn.Subsidy_Instrument_Global !==
@@ -136,7 +182,7 @@ router.post("/", async (req, res) => {
     } else {
       ssn.Subsidy_Full_Amount_Range_Global = "n/a";
     }
-
+    
     ssn.National_ID_Type_Global = National_ID_Type;
     ssn.National_ID_Number_Global = National_ID_Number;
     ssn.Beneficiary_Name_Global = Beneficiary_Name;
@@ -151,14 +197,77 @@ router.post("/", async (req, res) => {
     ssn.Legal_Granting_Date_Month_Global = Legal_Granting_Date_Month;
     ssn.Legal_Granting_Date_Year_Global = Legal_Granting_Date_Year;
     ssn.Goods_or_Services_Global = Goods_or_Services;
-    ssn.Spending_Region_Global = Spending_Region;
+
+    ssn.Spending_Regions_Global = ssn.Spending_Regions_Selected_Global;
+    ssn.Spending_Regions_JSON_Global = JSON.stringify(ssn.Spending_Regions_Global);
+    
     ssn.Spending_Sector_Global = Spending_Sector;
+    ssn.Subsidy_Award_Interest_Global = Subsidy_Award_Interest;
+    ssn.SPEI_Global = SPEI;
 
     console.log("Subsidy_Objective_Other", Subsidy_Objective_Other.length);
     console.log("Subsidy_Instrument_Other", Subsidy_Instrument_Other);
     console.log("Beneficiary_Name", Beneficiary_Name);
-    console.log("Subsidy_Objective", Subsidy_Objective);
+    console.log("ssn.Subsidy_Award_Interest :" + ssn.Subsidy_Award_Interest_Global)
+    console.log("ssn.SPEI :" + ssn.SPEI_Global)
     console.log("buttonvalue", buttonvalue);
+    var subsidyObjectiveArray = new Array();
+
+    if(objective_culture){
+      ssn.objective_culture_Global = objective_culture;
+      subsidyObjectiveArray.push(objective_culture);
+    }
+
+    if(objective_employment){
+      ssn.objective_employment_Global = objective_employment;
+      subsidyObjectiveArray.push(objective_employment);
+    }
+
+    if(objective_energy_efficiency){
+      ssn.objective_energy_efficiency_Global = objective_energy_efficiency;
+      subsidyObjectiveArray.push(objective_energy_efficiency);
+    }
+
+    if(objective_environmental){
+      ssn.objective_environmental_Global = objective_environmental;
+      subsidyObjectiveArray.push(objective_environmental);
+    }
+
+    if(objective_infrastructure){
+      ssn.objective_infrastructure_Global = objective_infrastructure;
+      subsidyObjectiveArray.push(objective_infrastructure);
+    }
+
+    if(objective_regional_development){
+      ssn.objective_regional_development_Global = objective_regional_development;
+      subsidyObjectiveArray.push(objective_regional_development);
+    }
+
+    if(objective_rescue_subsidy){
+      ssn.objective_rescue_subsidy_Global = objective_rescue_subsidy;
+      subsidyObjectiveArray.push(objective_rescue_subsidy);
+    }
+
+    if(objective_research){
+      ssn.objective_research_Global = objective_research;
+      subsidyObjectiveArray.push(objective_research);
+    }
+
+    if(objective_training){
+      ssn.objective_training_Global = objective_training;
+      subsidyObjectiveArray.push(objective_training);
+    }
+
+    if(objective_other){
+      ssn.objective_other_Global = objective_other;
+      if(Subsidy_Objective_Other.length > 0){
+        subsidyObjectiveArray.push("Other - " + Subsidy_Objective_Other.replace('Other -', ''));
+      }
+    }
+
+    ssn.Award_Objective_Json_Global = JSON.stringify(subsidyObjectiveArray);
+    ssn.objective_Array_Global = subsidyObjectiveArray;
+    console.log("Subsidy objective: " + ssn.Award_Objective_Json_Global);
 
     if (ssn.Legal_Granting_Date_Month_Global == 1) {
       ssn.GetMonthName = "January";
@@ -241,6 +350,20 @@ router.post("/", async (req, res) => {
         }
       }
 
+      if ((Standalone_Award !== 'No' && !Subsidy_Award_Interest)) {
+        ssn.Subsidy_Award_Interest_Error = true;
+        ssn.SubsidyErrors[Additem] = "You must select if the award is a Subsidies or Schemes of Interest (SSoI), Subsidies or Schemes of Particular Interest (SSoPI) or neither";
+        ssn.SubsidyFocus[Additem] = "#Subsidy_Award_Interest";
+        Additem = Additem + 1;
+      }
+
+      if (!SPEI) {
+        ssn.SPEI_Error = true;
+        ssn.SubsidyErrors[Additem] = "You must select if the award is Services of Public Economic Interest (SPEI)";
+        ssn.SubsidyFocus[Additem] = '#SPEI';
+        Additem = Additem + 1;
+      }
+
       if(Subsidy_Award_Description.length > 10000){
           ssn.Subsidy_Award_Description_Error_Length = true;
           ssn.SubsidyErrors[Additem] =
@@ -249,7 +372,25 @@ router.post("/", async (req, res) => {
           Additem = Additem + 1;
       }
 
-      if (Subsidy_Objective == "") {
+
+      if(Specific_Policy_Objective.length > 1500){
+        ssn.Specific_Policy_Objective_Error_Length = true;
+        ssn.SubsidyErrors[Additem] =
+          "The specific policy objective must be 1500 characters or less.";
+        ssn.SubsidyFocus[Additem] = "#Specific_Policy_Objective";
+        Additem = Additem + 1;
+      }
+
+      if (Standalone_Award == 'Yes' && !Specific_Policy_Objective) {
+        ssn.Specific_Policy_Objective_Error = true;
+        ssn.SubsidyErrors[Additem] =
+          " You must add a policy objective.";
+        ssn.SubsidyFocus[Additem] = "#Specific_Policy_Objective";
+        Additem = Additem + 1;
+      }
+
+
+      if (subsidyObjectiveArray.length <= 0) {
         ssn.Subsidy_Objective_Error = true;
         ssn.SubsidyErrors[Additem] =
           " You must select the purpose of the subsidy.";
@@ -257,7 +398,7 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
-      if (Subsidy_Objective == "Other" && Subsidy_Objective_Other == "") {
+      if (objective_other in subsidyObjectiveArray && Subsidy_Objective_Other.trim() == "") {
         ssn.Subsidy_Objective_Other_Error = true;
         ssn.Subsidy_Objective_Other_255_Error = false;
         ssn.SubsidyErrors[Additem] =
@@ -267,7 +408,7 @@ router.post("/", async (req, res) => {
       }
 
       if (
-        Subsidy_Objective == "Other" &&
+        objective_other in subsidyObjectiveArray &&
         Subsidy_Objective_Other.length > 249
       ) {
         ssn.Subsidy_Objective_Other_255_Error = true;
@@ -280,7 +421,7 @@ router.post("/", async (req, res) => {
 
       if (Subsidy_Instrument == "") {
         ssn.Subsidy_Instrument_Error = true;
-        ssn.SubsidyErrors[Additem] = "You must select a subsidy type.";
+        ssn.SubsidyErrors[Additem] = "You must select a subsidy form.";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Instrument";
         Additem = Additem + 1;
       }
@@ -288,7 +429,7 @@ router.post("/", async (req, res) => {
       if (Subsidy_Instrument == "Other" && Subsidy_Instrument_Other == "") {
         ssn.Subsidy_Instrument_Other_Error = true;
         ssn.SubsidyErrors[Additem] =
-          "You must enter the details of the subsidy type";
+          "You must enter the details of the subsidy form";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Instrument_Other";
         Additem = Additem + 1;
       }
@@ -300,7 +441,7 @@ router.post("/", async (req, res) => {
         ssn.Subsidy_Instrument_Other_255_Error = true;
         ssn.Subsidy_Instrument_Other_Error = false;
         ssn.SubsidyErrors[Additem] =
-          "The subsidy type must be less than 255 characters. ";
+          "The subsidy form must be less than 255 characters. ";
         ssn.SubsidyFocus[Additem] = "#Subsidy_Instrument_Other";
         Additem = Additem + 1;
       }
@@ -488,10 +629,10 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
-      if (Spending_Region == "") {
+      if (ssn.Spending_Regions_Selected_Global.length == 0) {
         ssn.Spending_Region_Error = true;
         ssn.SubsidyErrors[Additem] =
-          "You must select the region that the recipient organisation is based in.";
+          "You must select the region where the subsidised economic activity takes place.";
         ssn.SubsidyFocus[Additem] = "#Spending_Region";
         Additem = Additem + 1;
       }
@@ -533,13 +674,16 @@ router.post("/", async (req, res) => {
         ssn.Beneficiary_Name_255_Error ||
         ssn.Standalone_Award_Error ||
         ssn.Subsidy_Award_Description_Error ||
-        ssn.Subsidy_Award_Description_Error_Length
+        ssn.Subsidy_Award_Interest_Error ||
+        ssn.Specific_Policy_Objective_Error_Length ||
+        ssn.Specific_Policy_Objective_Error ||
+        ssn.SPEI_Error
       ) {
         res.render("bulkupload/addsubsidyaward", {
           ssn,
         });
       } else {
-        if (ssn.Subsidy_Objective_Global == "Other") {
+        if (objective_other in subsidyObjectiveArray) {
           ssn.Subsidy_Objective_Plus_Other_Global =
             ssn.Subsidy_Objective_Global +
             "-" +
@@ -717,7 +861,7 @@ router.post("/", async (req, res) => {
           });
         } else {
           res.render("bulkupload/reviewdetail", {
-            ssn,
+            ssn
           });
         }
 

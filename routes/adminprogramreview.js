@@ -123,7 +123,7 @@ router.post("/", async (req, res) => {
 
         let gaResponse;
         let gaRequest = {
-          grantingAuthorityName: ssn.Granting_Authority_Name_Global.trim(),
+          searchText: ssn.Granting_Authority_Name_Global.trim(),
           pageNumber: 1,
           totalRecordsPerPage: 9000,
         };
@@ -149,7 +149,7 @@ router.post("/", async (req, res) => {
             return false;
           }
 
-          var gaList = gaResponse.data.gaList;
+          var gaList = gaResponse.data.responseList;
 
           var gaFiltered = gaList.filter(item => item.grantingAuthorityName.toLowerCase() === ssn.Granting_Authority_Name_Global.trim().toLowerCase())
 

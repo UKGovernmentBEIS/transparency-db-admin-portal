@@ -67,6 +67,11 @@ router.post("/", async (req, res) => {
     ssn.Spending_Sector_Error = false;
     ssn.Subsidy_Award_Description_Error = false;
     ssn.Subsidy_Award_Description_Error_Length = false;
+    ssn.Subsidy_Award_Interest_Error = false;
+    ssn.Specific_Policy_Objective_Error = false;
+    ssn.Specific_Policy_Objective_Error_Length = false;
+    ssn.SPEI_Error = false;
+
     console.log(
       "ssn.Subsidy_Full_Amount_Range_Global ",
       ssn.Subsidy_Full_Amount_Range_Global
@@ -88,7 +93,7 @@ router.post("/", async (req, res) => {
         Subsidy_Element_Full_Amount_Global_Trim
     );
 
-    if (ssn.Subsidy_Objective_Global !== "Other") {
+    if (typeof ssn.objective_other_Global === 'undefined') {
       ssn.Subsidy_Objective_Other_Global = "";
     }
 
@@ -101,9 +106,18 @@ router.post("/", async (req, res) => {
       ssn.Subsidy_Control_Number_Global = "";
     }
 
+    if(ssn.Standalone_Award_Global === "No"){
+      ssn.Subsidy_Award_Interest_Global = "";
+    }
+
+    if(ssn.Standalone_Award_Global === "No"){
+      ssn.Specific_Policy_Objective_Global = "";
+    }
+
     const addAwardRequest = {
       standaloneAward: ssn.Standalone_Award_Global.trim(),
       subsidyAwardDescription: ssn.Subsidy_Award_Description_Global.trim(),
+      specificPolicyObjective: ssn.Specific_Policy_Objective_Global.trim(),
       subsidyControlTitle: ssn.Subsidy_Measure_Title_Global.trim(),
       subsidyControlNumber: ssn.Subsidy_Control_Number_Global.trim(),
       nationalIdType: ssn.National_ID_Type_Global.trim(),
@@ -111,17 +125,21 @@ router.post("/", async (req, res) => {
       beneficiaryName: ssn.Beneficiary_Name_Global.trim(),
       orgSize: ssn.Size_of_the_Organisation_Global.trim(),
       subsidyInstrument: ssn.Subsidy_Instrument_Global.trim(),
-      subsidyObjective: ssn.Subsidy_Objective_Global.trim(),
+      subsidyObjective: ssn.Award_Objective_Json_Global,
       subsidyAmountRange: Subsidy_Full_Amount_Range_Global_Trim,
       subsidyAmountExact: Subsidy_Element_Full_Amount_Global_Trim,
       legalGrantingDate: subsidy_legal_granting_date.trim(),
       grantingAuthorityName: ssn.Granting_Authority_Name_Global.trim(),
       goodsOrServices: ssn.Goods_or_Services_Global.trim(),
-      spendingRegion: ssn.Spending_Region_Global.trim(),
+      spendingRegion: ssn.Spending_Regions_JSON_Global.trim(),
       spendingSector: ssn.Spending_Sector_Global.trim(),
-      subsidyObjectiveOther: ssn.Subsidy_Objective_Other_Global.trim(),
+      subsidyObjectiveOther: ssn.Subsidy_Objective_Other_Global,
       subsidyInstrumentOther: ssn.Subsidy_Instrument_Other_Global.trim(),
-      adminProgramNumber: ssn.Admin_Program_Number_Global.trim()
+      adminProgramNumber: ssn.Admin_Program_Number_Global.trim(),
+      authorityURL: ssn.Authority_URL_Global.trim(),
+      authorityURLDescription: ssn.Authority_URL_Description_Global.trim(),
+      subsidyAwardInterest: ssn.Subsidy_Award_Interest_Global.trim(),
+      spei: ssn.SPEI_Global.trim()
     };
 
     if (isCallfromEditAward) {
@@ -132,6 +150,7 @@ router.post("/", async (req, res) => {
         awardNumber: ssn.Edit_Award_Number_global,
         standaloneAward: ssn.Standalone_Award_Global.trim(),
         subsidyAwardDescription: ssn.Subsidy_Award_Description_Global.trim(),
+        specificPolicyObjective: ssn.Specific_Policy_Objective_Global.trim(),
         subsidyControlTitle: ssn.Subsidy_Measure_Title_Global.trim(),
         subsidyControlNumber: ssn.Subsidy_Control_Number_Global.trim(),
         nationalIdType: ssn.National_ID_Type_Global.trim(),
@@ -139,22 +158,25 @@ router.post("/", async (req, res) => {
         beneficiaryName: ssn.Beneficiary_Name_Global.trim(),
         orgSize: ssn.Size_of_the_Organisation_Global.trim(),
         subsidyInstrument: ssn.Subsidy_Instrument_Global.trim(),
-        subsidyObjective: ssn.Subsidy_Objective_Global.trim(),
+        subsidyObjective: ssn.Award_Objective_Json_Global,
         subsidyAmountRange: Subsidy_Full_Amount_Range_Global_Trim.trim(),
         subsidyAmountExact: Subsidy_Element_Full_Amount_Global_Trim,
         legalGrantingDate: subsidy_legal_granting_date.trim(),
         grantingAuthorityName: ssn.Granting_Authority_Name_Global.trim(),
         goodsOrServices: ssn.Goods_or_Services_Global.trim(),
-        spendingRegion: ssn.Spending_Region_Global.trim(),
+        spendingRegion: ssn.Spending_Regions_JSON_Global.trim(),
         spendingSector: ssn.Spending_Sector_Global.trim(),
         subsidyObjectiveOther: ssn.Subsidy_Objective_Other_Global.trim(),
         subsidyInstrumentOther: ssn.Subsidy_Instrument_Other_Global.trim(),
         adminProgramNumber: ssn.Admin_Program_Number_Global.trim(),
+        authorityURL: ssn.Authority_URL_Global.trim(),
+        authorityURLDescription: ssn.Authority_URL_Description_Global.trim(),
+        subsidyAwardInterest: ssn.Subsidy_Award_Interest_Global.trim(),
         status: status,
+        spei: ssn.SPEI_Global.trim()
       };
 
       var data = JSON.parse(JSON.stringify(updateAwardRequest));
-      // console.log("request :" + JSON.stringify(data));
     } else {
       var data = JSON.parse(JSON.stringify(addAwardRequest));
     }
@@ -244,6 +266,27 @@ router.post("/", async (req, res) => {
             ssn.SubsidyErrors[Additem] =
               add_award_response.validationErrorResult[i].message;
             ssn.SubsidyFocus[Additem] = "#Subsidy_Measure_Title";
+            Additem = Additem + 1;
+          }
+
+          if (
+            add_award_response.validationErrorResult[i].column ==
+            "#Subsidy_Award_Interest"
+          ) {
+            ssn.Subsidy_Award_Interest_Error = true;
+            ssn.SubsidyErrors[Additem] =
+              add_award_response.validationErrorResult[i].message;
+            ssn.SubsidyFocus[Additem] = "#Subsidy_Award_Interest";
+            Additem = Additem + 1;
+          }
+          if(
+            add_award_response.validationErrorResult[i].column ==
+            "#SPEI"
+          ) {
+            ssn.SPEI_Error = true;
+            ssn.SubsidyErrors[AddItem] = 
+              add_award_response.validationErrorResult[i].message;
+            ssn.SubsidyFocus[AddItem] = "#SPEI";
             Additem = Additem + 1;
           }
 

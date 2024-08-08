@@ -14,13 +14,29 @@
       if(document.getElementById('Standalone_Award_Yes').checked){
         document.getElementById('related-subsidy-scheme').style.display = 'none';
         document.getElementById('related-admin-program').style.display = 'none';
+        document.getElementById('authority-url-and-description-container').style.display = 'block';
+        document.getElementById('standalone-description-text').style.display = 'none';
+        document.getElementById('specific-policy-objective-container').style.display = 'block';
+        document.getElementById('standalone-award-interest-container').style.display = 'block';
       }
+      else
+      {
+        document.getElementById('authority-url-and-description-container').style.display = 'none';
+        //document.getElementById('specific-policy-objective-container').style.display = 'none';
 
+      }
       jQuery('#Subsidy_Control_Number').on('input', function () {
         var SubsidyMeasureTitle = document.getElementById("Subsidy_Measure_Title");
         SubsidyMeasureTitle = $('#Subsidy_Control_Number').val();
 
       });
+
+      const nationalCheckbox = document.getElementById("Spending_Region_National")
+
+      if (nationalCheckbox.checked){
+        selectNational(nationalCheckbox);
+      }
+      
 
       $('.govuk-date-input__input').on('keypress', function (e) {
         return e.metaKey || // cmd/ctrl
@@ -36,17 +52,24 @@
         return false;
       };
 
+      var objective_other_Global = '<%=typeof ssn.objective_other_Global%>';
+      console.log(objective_other_Global);
+
+      if(objective_other_Global !== 'undefined')
+        $('#other_objective').css('display', 'block');
+      else
+        $('#other_objective').css('display ', 'none');
+      
     });
 
-    changeSubsidyPurpose = (event) => {
-
-      if (event.target.value == 'Other')
-        document.getElementById("other_purpose").style.display = "block";
+    changeSubsidyObjective = () => {
+      if ($('#objective-other').prop("checked"))
+        document.getElementById("other_objective").style.display = "block";
       else
-        document.getElementById("other_purpose").style.display = "none";
+        document.getElementById("other_objective").style.display = "none";
     };
 
-    getSubsidyInstrument = (subsidyValue, purposeValue, errorArray) => {
+    getSubsidyInstrument = (subsidyValue, objectiveValue, errorArray) => {
       if (errorArray > 0) {
         document.getElementById("error-alert").focus();
       }
@@ -62,11 +85,6 @@
         document.getElementById("other_type").style.display = "block";
       else
         document.getElementById("other_type").style.display = "none";
-
-      if (purposeValue == 'Other')
-        document.getElementById("other_purpose").style.display = "block";
-      else
-        document.getElementById("other_purpose").style.display = "none";
     }
 
     changeSubsidyType = (event) => {
@@ -89,12 +107,44 @@
       if(event.target.value == 'Yes'){
         document.getElementById('related-subsidy-scheme').style.display = 'none';
         document.getElementById('related-admin-program').style.display = 'none';
+        document.getElementById('authority-url-and-description-container').style.display = 'block';
+        document.getElementById('standalone-description-text').style.display = 'block';
+        document.getElementById('description-text').style.display = 'none';
+        document.getElementById('standalone-award-interest-container').style.display = 'block';
+        document.getElementById('specific-policy-objective-container').style.display = 'block';
       }else{
         document.getElementById('related-subsidy-scheme').style.display = 'block';
         document.getElementById('related-admin-program').style.display = 'block';
+        document.getElementById('authority-url-and-description-container').style.display = 'none';
+        document.getElementById('standalone-description-text').style.display = 'none';
+        document.getElementById('description-text').style.display = 'block';
+        document.getElementById('standalone-award-interest-container').style.display = 'none';
+        document.getElementById('specific-policy-objective-container').style.display = 'none';
       }
 
     };
+
+    function selectAll(source) {
+      const checkboxes = document.getElementsByClassName(source.className);
+      for(var i=0, n=checkboxes.length;i<n;i++) {
+        checkboxes[i].checked = source.checked;
+        checkboxes[i].ariaChecked = source.checked;
+      }
+      
+      if(source.id === "objective-0")
+        changeSubsidyObjective();
+    }
+
+    function selectNational(source) {
+      var checkboxes = document.getElementsByClassName("govuk-checkboxes__input_spendingregion");
+      checkboxes = Array.from(checkboxes).concat(document.getElementById("Spending_Region_Select_All"));
+      for(var i=0, n=checkboxes.length;i<n;i++) {
+        checkboxes[i].checked = false;
+        checkboxes[i].ariaChecked = false;
+        checkboxes[i].disabled = source.checked;
+        checkboxes[i].ariaDisabled = source.checked;
+      }
+    }
   </script>
 </head>
 
@@ -161,6 +211,7 @@
           <h1 class="govuk-heading-xl">Add a subsidy award</h1>
           <% } %>
           <form id="myform" action="/reviewdetail" method="POST">
+            <%- include('../partials/subsidy-database-requirements.ejs') %>
             <div class="govuk-form-group">
               <label class="govuk-label" for="Subsidy_award_label">
                 This section is for adding one subsidy award, or standalone subsidy award.
@@ -224,7 +275,7 @@
               </fieldset>
             </div>
 
-            <div id="related-subsidy-scheme" <% if(ssn.Standalone_Award_Global == 'Yes'){ %> hidden <% } %>>
+            <div id="related-subsidy-scheme" <% if(ssn.Standalone_Award_Global == 'Yes'){ %> hidden <% } %>> 
               <h1 class="govuk-heading-l">Related subsidy scheme</h1>
 
               <p class="govuk-body">Enter the details of the subsidy scheme that this award is related to.</p>
@@ -547,8 +598,97 @@
             </div>
           </div>
 
-
+          <div id="subsidy-award-details">
             <h1 class="govuk-heading-l">Subsidy award details</h1>
+          
+            <div id="standalone-award-interest-container" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>> 
+              <div class="govuk-form-group <% if( ssn.Subsidy_Award_Interest_Error ){ %> govuk-form-group--error <% } %>" id="SubsidyAwardInterestContainer">   
+                <label class="govuk-label" for="Subsidy_Award_Interest">
+                  Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
+                </label>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What are Subsidies or Schemes of Interest (SSoI) and Subsidies or Schemes of Particular Interest
+                      (SSoPI)?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    Subsidy or Scheme of Interest (SSoI) and Subsidy Scheme of Particular Interest (SSoPI) are two distinct
+                    categories of
+                    subsidy or subsidy scheme that have been identified as having greater potential to lead to negative effects
+                    on
+                    competition or investment in the UK, or on international trade or investment. <a
+                      href="https://assets.publishing.service.gov.uk/media/658025b295bf65000d719140/uk_subsidy_control_regime_statutory_guidance.pdf">[See
+                      Chapter 10 of the Subsidy Control Statutory Guidance]</a>
+                  </div>
+                </details>
+                <% if( ssn.Subsidy_Award_Interest_Error ){ %>
+                  <span class="govuk-error-message" id="Subsidy_Award_Interest_Error">
+                    <span class="govuk-visually-hidden">Error:</span> You must select if this scheme is a Scheme of Interest
+                    (SSoI), Schemes of Particular Interest (SSoPI) or neither
+                  </span>
+                  <% } %>
+          
+                    <div class="govuk-radios" id="Subsidy_Award_Interest">
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" name="Subsidy_Award_Interest" id="Subsidy_Of_Interest" 
+                          type="radio" value="Subsidies or Schemes of Interest (SSoI)" <%
+                          if(ssn.Subsidy_Award_Interest_Global=='Subsidies or Schemes of Interest (SSoI)' ) { %> checked <% } %> >
+                          <label class="govuk-label govuk-radios__label" for="Subsidy_Of_Interest">
+                            Subsidies or Schemes of Interest (SSoI)
+                          </label>
+                      </div>
+
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" name="Subsidy_Award_Interest" id="Subsidy_Of_Particular_Interest"
+                          type="radio" value="Subsidies or Schemes of Particular Interest (SSoPI)" <%
+                          if(ssn.Subsidy_Award_Interest_Global=='Subsidies or Schemes of Particular Interest (SSoPI)' ) { %> checked <% } %> >
+                          <label class="govuk-label govuk-radios__label" for="Subsidy_Of_Particular_Interest">
+                            Subsidies or Schemes of Particular Interest (SSoPI)
+                          </label>
+                      </div>
+
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" name="Subsidy_Award_Interest" id="Neither_Interest_Or_Particular_Interest"
+                         type="radio" value="Neither" <%
+                          if(ssn.Subsidy_Award_Interest_Global=='Neither' ) { %> checked <% } %> >
+                          <label class="govuk-label govuk-radios__label" for="Neither_Interest_Or_Particular_Interest">
+                            Neither
+                          </label>
+                      </div>
+                    </div>
+              </div>
+            </div>
+            <div id="specific-policy-objective-container" <% if (ssn.Standalone_Award_Global == 'No') { %> hidden <% } %>>
+              <div class="govuk-form-group <% if( ssn.Specific_Policy_Objective_Error || ssn.Specific_Policy_Objective_Error_Length){ %> govuk-form-group--error <% } %>" id="SpecificPolicyObjectiveContainer">   
+                <label class="govuk-label" for="Specific_Policy_Objective">
+                  Specific policy objective
+                </label>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What details should be provided?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    <p>Specific Policy Objective(s) - provide details of the policy objective(s) of the scheme or subsidy. This should reflect the specific policy objective(s) documented under Subsidy Control Principle A (which forms part of Step 1 of the Assessment Framework in the Statutory Guidance for the UK Subsidy Control Regime).</p>
+                  </div>
+                </details>
+                <% if (ssn.Specific_Policy_Objective_Error || ssn.Specific_Policy_Objective_Error_Length) { %>
+                  <span class="govuk-error-message" id="Subsidy_Objective_Error">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    <% if (ssn.Specific_Policy_Objective_Error) { %>
+                      You must add a policy objective.
+                    <% } else { %>
+                      The specific policy objective must be 1500 characters or less.
+                    <% } %>
+                  </span>
+                <% } %>
+                <textarea class="govuk-textarea govuk-js-character-count" id="Specific_Policy_Objective" name="Specific_Policy_Objective" rows="5" aria-describedby="Specific_Policy_Objective-info"><%= ssn.Specific_Policy_Objective_Global %></textarea>
+              </div>
+            </div>
+            
 
             <div id="subsidy-award-description-container">
               <div class="govuk-form-group <% if(ssn.Subsidy_Award_Description_Error || ssn.Subsidy_Award_Description_Error_Length) {%> govuk-form-group--error<% } %>">
@@ -561,8 +701,15 @@
                       What details should be provided?
                     </span>
                   </summary>
-                  <div class="govuk-details__text">
-                    <p>This description should include TCA requirements such as relevant time limits or other conditions attached to the scheme.</p>
+                  <div id="standalone-description-text" class="govuk-details__text" style="display:none">
+                    <%- include('../partials/standalone-award-description-partial.ejs') %>
+                  </div>
+                  <div id="description-text" class="govuk-details__text">
+                    <p>Please include the following information in the description</p>
+                    <p></p>
+                    <p> - The policy objective(s) of the subsidy award   </p>
+                    <p></p>
+                    <p>- Duration of the subsidy and a summary of any other time limits attached to the use of the subsidy.</p>
                   </div>
                 </details>
                 <% if(ssn.Subsidy_Award_Description_Error || ssn.Subsidy_Award_Description_Error_Length){ %>
@@ -578,208 +725,225 @@
                 <textarea class="govuk-textarea govuk-js-character-count" id="Subsidy_Award_Description" name="Subsidy_Award_Description" rows="5" aria-describedby="Subsidy_Award_Description-info"><%= ssn.Subsidy_Award_Description_Global %></textarea>
               </div>
             </div>
+            <div id="authority-url-and-description-container" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>>
+              <div class="<%- ssn.Authority_URL_Error ? 'govuk-form-group--error' : 'govuk-form-group' %>" id="authority-url-container">
+                <label class="govuk-label" for="authority-url">
+                  Public authority policy URL
+                </label>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text">
+                          What is a Public authority policy URL?
+                      </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                      This is the web address for the policy that
+                      this standalone subsidy award is related to.
+                  </div>
+              </details>
+                <input id="authority_url" class="govuk-input" name="Authority_URL" maxlength="500" value="<%=ssn.Authority_URL_Global%>"/>
+              </div>
+              <div class="<%- ssn.Authority_URL_Description_Error ? 'govuk-form-group--error' : 'govuk-form-group' %>" id="authority-url-description-container">
+                <label class="govuk-label" for="authority-url-description">
+                  Public authority policy page description
+                </label>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text">
+                          What should a Public authority policy page description be?
+                      </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                      A short summary of the policy page that you provided the URL for.
+                      For example, Water Purity award policy page.
+                  </div>
+              </details>
+                <input id="authority-url-description" class="govuk-input" value="<%=ssn.Authority_URL_Description_Global%>" name="Authority_URL_Description" maxlength="255"/>
+              </div>
+            </div>
+            
+            <div id="SPEI-container"> 
+              <div class="govuk-form-group<% if( ssn.SPEI_Error ){ %> govuk-form-group--error <% } %>" id="SPEIContainer">   
+                <label class="govuk-label" for="SPEI">
+                  Services of Public Economic Interest (SPEI)
+                </label>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What is a Services of Public Economic Interest (SPEI)?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    The Act contains provisions for public authorities to provide subsidies for services of public economic interest (SPEI). These are subsidies for essential services provided to the public that would otherwise not be supplied in an appropriate way or may not be supplied at all by the market. Examples of SPEIs may include postal services, social housing, and some types of transport networks, particularly in rural or less populated areas of the country.
+                  </div>
+                </details>
+                <% if( ssn.SPEI_Error ){ %>
+                  <span class="govuk-error-message" id="SPEI_Error">
+                    <span class="govuk-visually-hidden">Error:</span> You must select if this award is Services of Public Economic Interest (SPEI)
+                  </span>
+                  <% } %>
+          
+                    <div class="govuk-radios" id="SPEI">
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" name="SPEI" id="SPEI_Yes" 
+                          type="radio" value="Yes" <%
+                          if(ssn.SPEI_Global=='Yes') { %> checked <% } %> >
+                          <label class="govuk-label govuk-radios__label" for="SPEI_Yes">
+                            Yes
+                          </label>
+                      </div>
 
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" name="SPEI" id="SPEI_No"
+                          type="radio" value="No" <%
+                          if(ssn.SPEI_Global=='No') { %> checked <% } %> >
+                          <label class="govuk-label govuk-radios__label" for="SPEI_No">
+                            No
+                          </label>
+                      </div>
+                    </div>
+              </div>
+            </div>
             <!-- *************************************  -->
             <!-- Get the  Subsidy Objective  from user  -->
             <!-- *************************************  -->
-            <% if( ssn.Subsidy_Objective_Error && !isAddSubsidyPrimarycall ) { %>
-            <div class="govuk-form-group govuk-form-group--error">
-              <label class="govuk-label" for="Subsidy_Objective">
-                Subsidy purpose
-              </label>
 
-              <span class="govuk-error-message" id="Subsidy_Objective_Error">
-                <span class="govuk-visually-hidden">Error:</span> You must select the purpose of the subsidy.
-              </span>
+              <fieldset class="govuk-fieldset" aria-describedby="objective-hint" id="Subsidy_Objective">
+                <% if(ssn.Subsidy_Objective_Error){ %>
+                  <div class="govuk-form-group govuk-form-group--error">
+                  <% } else { %>
+                  <div class="govuk-form-group">
+                  <% } %>
+                  <label class="govuk-label" for="Subsidy_Objective">
+                    Subsidy purpose
+                  </label>
+                  <div class="govuk-grid-row">
+                      <div class="govuk-grid-column-full">
+                          <div id="objective-hint" class="govuk-hint" for="subsidylabel">
+                          Select one or more purposes(s)
+                          </div>
+                          <% if(ssn.Subsidy_Objective_Error){ %>
+                          <span class="govuk-error-message" id="subsidyObjectiveArray">
+                              <span class="govuk-visually-hidden">Error:</span>
+                              Enter at least one or more subsidy purposes(s)
+                          </span>
+                          <% } %>
+                      </div>
+                  </div>
 
-              <select class="govuk-select" id="Subsidy_Objective" name="Subsidy_Objective"
-                onChange=changeSubsidyPurpose(event)>
-                <% if( ssn.Subsidy_Objective_Global == '' ){ %>
-                <option value="" selected>Select subsidy purpose (12)</option>
-                <% } else { %>
-                <option value="">Select subsidy purpose (12)</option>
-                <% } %>
-                <% if( ssn.Subsidy_Objective_Global == 'Culture or Heritage' ){ %>
-                <option value="Culture or Heritage" selected>Culture or Heritage</option>
-                <% } else { %>
-                <option value="Culture or Heritage">Culture or Heritage</option>
-                <% } %>
+                  <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">
+                  <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" onclick="selectAll(this)" id="objective-0" name="select-all" type="checkbox"
+                      value="Select all"
+                      data-aria-controls="conditional-objective-0">
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-0">
+                      Select all
+                      </label>
+                  </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Employment' ){ %>
-                <option value="Employment" selected>Employment</option>
-                <% } else { %>
-                <option value="Employment">Employment</option>
-                <% } %>
+                  <div class="govuk-checkboxes__conditional" id="conditional-objective0">
 
-                <% if( ssn.Subsidy_Objective_Global == 'Energy efficiency' ){ %>
-                <option value="Energy efficiency" selected>Energy efficiency</option>
-                <% } else { %>
-                <option value="Energy efficiency">Energy efficiency</option>
-                <% } %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-culture" name="objective_culture"
+                          type="checkbox" value="Culture or Heritage"<% if (ssn.objective_culture_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-culture">
+                          Culture or Heritage
+                      </label>
+                      </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Environmental protection' ){ %>
-                <option value="Environmental protection" selected>Environmental protection</option>
-                <% } else { %>
-                <option value="Environmental protection">Environmental protection</option>
-                <% } %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-employment"
+                          name="objective_employment" type="checkbox" value="Employment"<% if (ssn.objective_employment_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-employment">
+                          Employment
+                      </label>
+                      </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Infrastructure' ){ %>
-                <option value="Infrastructure" selected>Infrastructure</option>
-                <% } else { %>
-                <option value="Infrastructure">Infrastructure</option>
-                <% } %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-energy-efficiency"
+                          name="objective_energy_efficiency" type="checkbox"
+                          value="Energy efficiency"<% if (ssn.objective_energy_efficiency_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-energy-efficiency">
+                          Energy efficiency
+                      </label>
+                      </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Regional development' ){ %>
-                <option value="Regional development" selected>Regional development</option>
-                <% } else { %>
-                <option value="Regional development">Regional development</option>
-                <% } %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-environmental" name="objective_environmental"
+                          type="checkbox" value="Environmental protection"<% if (ssn.objective_environmental_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-environmental">
+                          Environmental protection
+                      </label>
+                      </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Rescue subsidy' || ssn.Subsidy_Objective_Global == 'Rescue aid' ){ %>
-                <option value="Rescue subsidy" selected>Rescue subsidy</option>
-                <% } else { %>
-                <option value="Rescue subsidy">Rescue subsidy</option>
-                <% } %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-infrastructure"
+                          name="objective_infrastructure" type="checkbox" value="Infrastructure"<% if (ssn.objective_infrastructure_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label"
+                          for="objective-infrastructure">
+                          Infrastructure
+                      </label>
+                      </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Research and development' ){ %>
-                <option value="Research and development" selected>Research and development</option>
-                <% } else { %>
-                <option value="Research and development">Research and development</option>
-                <% } %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-regional-development" name="objective_regional_development"
+                          type="checkbox" value="Regional development"<% if (ssn.objective_regional_development_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-regional-development">
+                          Regional development
+                      </label>
+                      </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Services of Public Economic Interest' ){ %>
-                <option value="Services of Public Economic Interest" selected>Services of Public Economic Interest</option>
-                <% } else { %>
-                <option value="Services of Public Economic Interest">Services of Public Economic Interest</option>
-                <% } %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-rescue-subsidy" name="objective_rescue_subsidy"
+                          type="checkbox" value="Rescue and restructuring subsidy"<% if (ssn.objective_rescue_subsidy_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-rescue-subsidy">
+                          Rescue and restructuring subsidy
+                      </label>
+                      </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'SME (Small/Medium-sized enterprise) support' ){ %>
-                <option value="SME (Small/Medium-sized enterprise) support" selected>SME (Small/Medium-sized
-                  enterprise) support</option>
-                <% } else { %>
-                <option value="SME (Small/Medium-sized enterprise) support">SME (Small/Medium-sized enterprise)
-                  support</option>
-                <% } %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-research" name="objective_research"
+                          type="checkbox" value="Research and development"<% if (ssn.objective_research_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-research">
+                          Research and development
+                      </label>
+                      </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Training' ){ %>
-                <option value="Training" selected>Training</option>
-                <% } else { %>
-                <option value="Training">Training</option>
-                <% } %>
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-training"
+                          name="objective_training" type="checkbox" value="Training"<% if (ssn.objective_training_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label"
+                          for="objective-training">
+                          Training
+                      </label>
+                      </div>
 
-                <% if( ssn.Subsidy_Objective_Global == 'Other' ){ %>
-                <option value="Other" selected>Other</option>
-                <% } else { %>
-                <option value="Other">Other</option>
-                <% } %>
-              </select>
-            </div>
-
-            <% } else { %>
-
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="Subsidy_Objective">
-                Subsidy purpose
-              </label>
-
-              <select class="govuk-select" id="Subsidy_Objective" name="Subsidy_Objective"
-                onChange=changeSubsidyPurpose(event)>
-                <% if( ssn.Subsidy_Objective_Global == '' ){ %>
-                <option value="" selected>Select subsidy purpose (12)</option>
-                <% } else { %>
-                <option value="">Select subsidy purpose (12)</option>
-                <% } %>
-                <% if( ssn.Subsidy_Objective_Global == 'Culture or Heritage' ){ %>
-                <option value="Culture or Heritage" selected>Culture or Heritage</option>
-                <% } else { %>
-                <option value="Culture or Heritage">Culture or Heritage</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Employment' ){ %>
-                <option value="Employment" selected>Employment</option>
-                <% } else { %>
-                <option value="Employment">Employment</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Energy efficiency' ){ %>
-                <option value="Energy efficiency" selected>Energy efficiency</option>
-                <% } else { %>
-                <option value="Energy efficiency">Energy efficiency</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Environmental protection' ){ %>
-                <option value="Environmental protection" selected>Environmental protection</option>
-                <% } else { %>
-                <option value="Environmental protection">Environmental protection</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Infrastructure' ){ %>
-                <option value="Infrastructure" selected>Infrastructure</option>
-                <% } else { %>
-                <option value="Infrastructure">Infrastructure</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Regional development' ){ %>
-                <option value="Regional development" selected>Regional development</option>
-                <% } else { %>
-                <option value="Regional development">Regional development</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Rescue subsidy' || ssn.Subsidy_Objective_Global == 'Rescue aid'){ %>
-                <option value="Rescue subsidy" selected>Rescue subsidy</option>
-                <% } else { %>
-                <option value="Rescue subsidy">Rescue subsidy</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Research and development' ){ %>
-                <option value="Research and development" selected>Research and development</option>
-                <% } else { %>
-                <option value="Research and development">Research and development</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Services of Public Economic Interest' ){ %>
-                <option value="Services of Public Economic Interest" selected>Services of Public Economic Interest</option>
-                <% } else { %>
-                <option value="Services of Public Economic Interest">Services of Public Economic Interest</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'SME (Small/Medium-sized enterprise) support' ){ %>
-                <option value="SME (Small/Medium-sized enterprise) support" selected>SME (Small/Medium-sized
-                  enterprise) support</option>
-                <% } else { %>
-                <option value="SME (Small/Medium-sized enterprise) support">SME (Small/Medium-sized enterprise)
-                  support</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Training' ){ %>
-                <option value="Training" selected>Training</option>
-                <% } else { %>
-                <option value="Training">Training</option>
-                <% } %>
-
-                <% if( ssn.Subsidy_Objective_Global == 'Other' ){ %>
-                <option value="Other" selected>Other</option>
-                <% } else { %>
-                <option value="Other">Other</option>
-                <% } %>
-              </select>
-            </div>
-
-            <% } %>
-            <!-- <div id="other_purpose" class="govuk-form-group" style="display: none;">
-              <label class="govuk-label" for="Subsidy_Objective">
-                Other purpose
-              </label>
-              <input class="govuk-input govuk-input--width-20" type="text">
-            </div> -->
-
+                      <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input govuk-checkboxes__input_objective" id="objective-other" name="objective_other"
+                          type="checkbox" onchange='changeSubsidyObjective()' value="Other"<% if (ssn.objective_other_Global) { %>
+                              checked <% } %>>
+                      <label class="govuk-label govuk-checkboxes__label" for="objective-other">
+                          Other
+                      </label>
+                      </div>
+                  </div>
+              </fieldset>   
 
             <!-- *****************************************  -->
             <!-- Get the  Subsidy objective other category  -->
             <!-- *****************************************  -->
 
             <% if( ssn.Subsidy_Objective_Other_Error ){ %>
-            <div id="other_purpose" class="govuk-form-group govuk-form-group--error" style="display: none;">
+            <div id="other_objective" class="govuk-form-group govuk-form-group--error" style="display: none;">
               <label class="govuk-label" for="Subsidy_Objective_Other">
                 Other purpose
               </label>
@@ -794,7 +958,7 @@
                 <% } %> />
             </div>
             <% } else if(ssn.Subsidy_Objective_Other_255_Error) { %>
-            <div id="other_purpose" class="govuk-form-group govuk-form-group--error" style="display: none;">
+            <div id="other_objective" class="govuk-form-group govuk-form-group--error" style="display: none;">
               <label class="govuk-label" for="Subsidy_Objective_Other">
                 Other purpose
               </label>
@@ -811,7 +975,7 @@
             </div>
             <% } else { %>
 
-            <div id="other_purpose" class="govuk-form-group" style="display: none;">
+            <div id="other_objective" class="govuk-form-group" style="display: none;">
               <label class="govuk-label" for="Subsidy_Objective_Other">
                 Other purpose
               </label>
@@ -830,19 +994,19 @@
             <% if( ssn.Subsidy_Instrument_Error && !isAddSubsidyPrimarycall ) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <label class="govuk-label" for="Subsidy_Instrument">
-                Subsidy type
+                Subsidy form
               </label>
 
               <span class="govuk-error-message" id="Subsidy_Instrument_Error">
-                <span class="govuk-visually-hidden">Error:</span> You must select a subsidy type.
+                <span class="govuk-visually-hidden">Error:</span> You must select a subsidy form.
               </span>
 
               <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument"
                 onchange="changeSubsidyType(event)">
                 <% if( ssn.Subsidy_Instrument_Global == '' ) { %>
-                <option value="" selected>Select subsidy type (8)</option>
+                <option value="" selected>Select subsidy form (8)</option>
                 <% } else { %>
-                <option value="">Select subsidy type (8)</option>
+                <option value="">Select subsidy form (8)</option>
                 <% } %>
                 <% if( ssn.Subsidy_Instrument_Global == 'Direct Grant' ) { %>
                 <option value="Direct Grant" selected>Direct Grant</option>
@@ -897,14 +1061,14 @@
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="Subsidy_Instrument">
-                Subsidy type
+                Subsidy form
               </label>
               <select class="govuk-select" id="Subsidy_Instrument" name="Subsidy_Instrument"
                 onchange="changeSubsidyType(event)">
                 <% if( ssn.Subsidy_Instrument_Global == '' ) { %>
-                <option value="" selected>Select subsidy type (8)</option>
+                <option value="" selected>Select subsidy form (8)</option>
                 <% } else { %>
-                <option value="">Select subsidy type (8)</option>
+                <option value="">Select subsidy form (8)</option>
                 <% } %>
                 <% if( ssn.Subsidy_Instrument_Global == 'Direct Grant' ) { %>
                 <option value="Direct Grant" selected>Direct Grant</option>
@@ -972,11 +1136,11 @@
             <% if( ssn.Subsidy_Instrument_Other_Error ){ %>
             <div id="other_type" class="govuk-form-group govuk-form-group--error" style="display: none;">
               <label class="govuk-label" for="Subsidy_Instrument_Other">
-                Other type
+                Other form
               </label>
 
               <span class="govuk-error-message" id="Subsidy_Instrument_Other_Error">
-                <span class="govuk-visually-hidden">Error:</span>You must enter the details of the subsidy type.
+                <span class="govuk-visually-hidden">Error:</span>You must enter the details of the subsidy form.
               </span>
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Instrument_Other"
@@ -987,11 +1151,11 @@
             <% } else if(ssn.Subsidy_Instrument_Other_255_Error) {%>
             <div id="other_type" class="govuk-form-group govuk-form-group--error" style="display: none;">
               <label class="govuk-label" for="Subsidy_Instrument_Other">
-                Other type
+                Other form
               </label>
 
               <span class="govuk-error-message" id="Subsidy_Instrument_Other_Error">
-                <span class="govuk-visually-hidden">Error:</span> The subsidy type must be less than 255 characters
+                <span class="govuk-visually-hidden">Error:</span> The subsidy form must be less than 255 characters
               </span>
 
               <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Instrument_Other"
@@ -1003,7 +1167,7 @@
 
             <div id="other_type" class="govuk-form-group" style="display: none;">
               <label class="govuk-label" for="Subsidy_Instrument_Other">
-                Other type
+                Other form
               </label>
 
               <input class="govuk-input govuk-input--width-20" id="Subsidy_Instrument_Other"
@@ -1147,7 +1311,7 @@
                   <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
                     name="Subsidy_Element_Full_Amount" type="number" inputmode="numeric" min="0" step="0.01" aria-describedby="Subsidy_Element_Full_Amount"
                     <% if(ssn.Subsidy_Element_Full_Amount_Global) {%>
-                    value="<%= ssn.Subsidy_Element_Full_Amount_Global%>" <% } %> />
+                    value="<%= ssn.Subsidy_Element_Full_Amount_Global.replace(',', '')%>" <% } %> />
                 </div>
 
               </div>
@@ -1166,7 +1330,7 @@
                   <input class="govuk-input govuk-input--width-20 govuk-input--error" id="Subsidy_Element_Full_Amount"
                     name="Subsidy_Element_Full_Amount" type="number" inputmode="numeric" min="0" step="0.01" aria-describedby="Subsidy_Element_Full_Amount"
                     <% if(ssn.Subsidy_Element_Full_Amount_Global) {%>
-                    value="<%= ssn.Subsidy_Element_Full_Amount_Global%>" <% } %> />
+                    value="<%= ssn.Subsidy_Element_Full_Amount_Global.replace(',', '')%>" <% } %> />
 
                 </div>
 
@@ -1183,7 +1347,7 @@
                   <input class="govuk-input govuk-input--width-20" id="Subsidy_Element_Full_Amount"
                     name="Subsidy_Element_Full_Amount" type="number" inputmode="numeric" min="0" step="0.01" aria-describedby="Subsidy_Element_Full_Amount"
                     <% if(ssn.Subsidy_Element_Full_Amount_Global) {%>
-                    value="<%= ssn.Subsidy_Element_Full_Amount_Global%>" <% } %> />
+                    value="<%= ssn.Subsidy_Element_Full_Amount_Global.replace(',', '')%>" <% } %> />
 
                 </div>
 
@@ -1483,66 +1647,51 @@
                 </legend>
 
 
-                <span class="govuk-error-message" id="Size_of_the_Organisation_Error">
-                  <span class="govuk-visually-hidden">Error:</span> You must select an organisation size.
+              <span class="govuk-error-message" id="Size_of_the_Organisation_Error">
+                <span class="govuk-visually-hidden">Error:</span> You must select an organisation size.
 
-                </span>
+              </span>
 
+              <div class="govuk-radios">
+                <div class="govuk-radios__item">
+                  <% if( ssn.Size_of_the_Organisation_Global == 'SME' ){ %>
+                  <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
+                    type="radio" value="SME" checked>
 
-                <div class="govuk-radios">
-                  <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Micro (fewer than 10 employees)' ){ %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
-                      type="radio" value="Micro (fewer than 10 employees)" checked>
-
-                    <% } else { %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
-                      type="radio" value="Micro (fewer than 10 employees)">
-                    <% } %>
-                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation">
-                      Micro (fewer than 10 employees)
-                    </label>
-                  </div>
-                  <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Small (between 10 and 49 employees)' ){ %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
-                      type="radio" value="Small (between 10 and 49 employees)" checked>
-
-                    <% } else { %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
-                      type="radio" value="Small (between 10 and 49 employees)">
-                    <% } %>
-                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-2">
-                      Small (between 10 and 49 employees)
-                    </label>
-                  </div>
-                  <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Medium (between 50 and 249 employees)' ){ %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
-                      type="radio" value="Medium (between 50 and 249 employees)" checked>
-
-                    <% } else { %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
-                      type="radio" value="Medium (between 50 and 249 employees)">
-                    <% } %>
-                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-3">
-                      Medium (between 50 and 249 employees)
-                    </label>
-                  </div>
-                  <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Large (250 or more employees)' || ssn.Size_of_the_Organisation_Global == 'Large (more than 250 employees)' ){ %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                      type="radio" value="Large (250 or more employees)" checked>
-                    <% } else { %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                      type="radio" value="Large (250 or more employees)">
-                    <% } %>
-                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-4">
-                      Large (250 or more employees)
-                    </label>
-                  </div>
+                  <% } else { %>
+                  <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
+                    type="radio" value="SME">
+                  <% } %>
+                  <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation">
+                    SME
+                  </label>
                 </div>
-              </fieldset>
+                <div class="govuk-radios__item">
+                  <% if( ssn.Size_of_the_Organisation_Global == 'Large' ){ %>
+                  <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
+                    type="radio" value="Large" checked>
+
+                  <% } else { %>
+                  <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
+                    type="radio" value="Large">
+                  <% } %>
+                  <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-2">
+                    Large
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <% if( ssn.Size_of_the_Organisation_Global == 'Not specified'){ %>
+                  <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
+                    type="radio" value="Not specified" checked>
+                  <% } else { %>
+                  <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
+                    type="radio" value="Not specified">
+                  <% } %>
+                  <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-3">
+                    Not specified
+                  </label>
+                </div>
+              </div>
             </div>
 
             <% } else { %>
@@ -1550,7 +1699,7 @@
             <div class="govuk-form-group">
               <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                  <h1 class="govuk-label">
+                  <h1 class="govuk-label" for="Size_of_the_Organisation">
                     Organisation size
                   </h1>
                 </legend>
@@ -1558,54 +1707,41 @@
 
                 <div class="govuk-radios">
                   <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Micro (fewer than 10 employees)' ){ %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
-                      type="radio" value="Micro (fewer than 10 employees)" checked>
-
-                    <% } else { %>
-                    <input class="govuk-radios__input" id="Size_of_the_Organisation" name="Size_of_the_Organisation"
-                      type="radio" value="Micro (fewer than 10 employees)">
-                    <% } %>
-                    <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation">
-                      Micro (fewer than 10 employees)
-                    </label>
-                  </div>
-                  <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Small (between 10 and 49 employees)' ){ %>
+                    <% if( ssn.Size_of_the_Organisation_Global == 'SME' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
-                      type="radio" value="Small (between 10 and 49 employees)" checked>
+                      type="radio" value="SME" checked>
 
                     <% } else { %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-2" name="Size_of_the_Organisation"
-                      type="radio" value="Small (between 10 and 49 employees)">
+                      type="radio" value="SME">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-2">
-                      Small (between 10 and 49 employees)
+                      SME
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Medium (between 50 and 249 employees)' ){ %>
+                    <% if( ssn.Size_of_the_Organisation_Global == 'Large' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
-                      type="radio" value="Medium (between 50 and 249 employees)" checked>
+                      type="radio" value="Large" checked>
 
                     <% } else { %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-3" name="Size_of_the_Organisation"
-                      type="radio" value="Medium (between 50 and 249 employees)">
+                      type="radio" value="Large">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-3">
-                      Medium (between 50 and 249 employees)
+                      Large
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <% if( ssn.Size_of_the_Organisation_Global == 'Large (250 or more employees)' || ssn.Size_of_the_Organisation_Global == 'Large (more than 250 employees)' ){ %>
+                    <% if( ssn.Size_of_the_Organisation_Global == 'Not specified' ){ %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                      type="radio" value="Large (250 or more employees)" checked>
+                      type="radio" value="Not specified" checked>
                     <% } else { %>
                     <input class="govuk-radios__input" id="Size_of_the_Organisation-4" name="Size_of_the_Organisation"
-                      type="radio" value="Large (250 or more employees)">
+                      type="radio" value="Not specified">
                     <% } %>
                     <label class="govuk-label govuk-radios__label" for="Size_of_the_Organisation-4">
-                      Large (250 or more employees)
+                      Not specified
                     </label>
                   </div>
                 </div>
@@ -1968,202 +2104,49 @@
             <!-- **********************************  -->
             <!-- Get the Spending Region  from user  -->
             <!-- **********************************  -->
-            <% if( ssn.Spending_Region_Error && !isAddSubsidyPrimarycall ) { %>
-            <div class="govuk-form-group govuk-form-group--error">
-              <label class="govuk-label" for="Spending_Region">
+            <div class="govuk-form-group <% if( ssn.Spending_Region_Error && !isAddSubsidyPrimarycall ) { %>govuk-form-group--error<% } %>">
+              <label class="govuk-label" for="Spending_Regions" id="Spending_Region">
                 Region
               </label>
               <div id="Spending_Region-hint" class="govuk-hint">
-                This is the region that the organisation is based in.
+                This is the region(s) where the subsidised economic activity takes place.
               </div>
-              <span class="govuk-error-message" id="Spending_Region_Error">
-                <span class="govuk-visually-hidden">Error:</span>You must select the region that the recipient
-                organisation is based in.
+              <% if( ssn.Spending_Region_Error && !isAddSubsidyPrimarycall ) { %>
+                <span class="govuk-error-message" id="Spending_Region_Error">
+                  <span class="govuk-visually-hidden">Error:</span>You must select at least one region.
+                </span>
+              <% } %>
 
-              </span>
+              <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" onclick="selectNational(this)" id="Spending_Region_National" name="Spending_Region_National" type="checkbox" 
+                    value="National" <% if (ssn.Spending_Regions_Selected_Global.includes("National")) { %> checked aria-checked="true" <% } %>>
+                  <label class="govuk-label govuk-checkboxes__label" for="Spending_Region_National">
+                    National
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingregion" onclick="selectAll(this)" id="Spending_Region_Select_All" name="Spending_Region_Select_All" type="checkbox"
+                    value="Select all" <% if (ssn.Spending_Regions_Selected_Global.includes("Select all")) { %> checked aria-checked="true" <% } %>
+                    data-aria-controls="conditional-spendingregions">
+                  <label class="govuk-label govuk-checkboxes__label" for="Spending_Region_Select_All">
+                  Select all
+                  </label>
+                </div>
 
-              <select class="govuk-select" id="Spending_Region" name="Spending_Region">
-                <% if( ssn.Spending_Region_Global == '' ){ %>
-                <option value="" selected>Select a region (12)</option>
-                <% } else { %>
-                <option value="">Select a region (12)</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'North East' ){ %>
-                <option value="North East" selected>North East</option>
-                <% } else { %>
-                <option value="North East">North East</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'North West' ){ %>
-                <option value="North West" selected>North West</option>
-                <% } else { %>
-                <option value="North West">North West</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'Yorkshire and humber' ){ %>
-                <option value="Yorkshire and humber" selected>Yorkshire and humber</option>
-                <% } else { %>
-                <option value="Yorkshire and humber">Yorkshire and humber</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'East Midlands' ){ %>
-                <option value="East Midlands" selected>East Midlands</option>
-                <% } else { %>
-                <option value="East Midlands">East Midlands</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'West Midlands' ){ %>
-                <option value="West Midlands" selected>West Midlands</option>
-                <% } else { %>
-                <option value="West Midlands">West Midlands</option>
-                <% } %>
-
-
-                <% if(ssn.Spending_Region_Global == 'East of England' ){ %>
-                <option value="East of England" selected>East of England</option>
-                <% } else { %>
-                <option value="East of England">East of England</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'London' ){ %>
-                <option value="London" selected>London</option>
-                <% } else { %>
-                <option value="London">London</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'South East' ){ %>
-                <option value="South East" selected>South East</option>
-                <% } else { %>
-                <option value="South East">South East</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'South West' ){ %>
-                <option value="South West" selected>South West</option>
-                <% } else { %>
-                <option value="South West">South West</option>
-                <% } %>
-
-
-                <% if( ssn.Spending_Region_Global == 'Scotland' ){ %>
-                <option value="Scotland" selected>Scotland</option>
-                <% } else { %>
-                <option value="Scotland">Scotland</option>
-                <% } %>
-
-
-                <% if( ssn.Spending_Region_Global == 'Wales' ){ %>
-                <option value="Wales" selected>Wales</option>
-                <% } else { %>
-                <option value="Wales">Wales</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'Northern Ireland' ){ %>
-                <option value="Northern Ireland" selected>Northern Ireland</option>
-                <% } else { %>
-                <option value="Northern Ireland">Northern Ireland</option>
-                <% } %>
-
-
-              </select>
-            </div>
-
-            <% } else { %>
-
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="Spending_Region">
-                Region
-              </label>
-              <div id="Spending_Region-hint" class="govuk-hint">
-                This is the region that the organisation is based in.
+                <div class="govuk-checkboxes__conditional" id="conditional-spendingregions">
+                  <% spendingRegionList.forEach(function(item) { %>
+                    <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingregion" id="Spending_Region_<%= item.replace(/[\s+,-]/g, '_') %>" name="Spending_Region_<%= item.replace(/[\s+,-]/g, '_') %>"
+                        type="checkbox" value="<%= item %>" <% if (ssn.Spending_Regions_Selected_Global.includes(item)) { %> checked aria-checked="true" <% } %>>
+                    <label class="govuk-label govuk-checkboxes__label" for="Spending_Region_<%= item.replace(/[\s+,-]/g, '_') %>">
+                        <%= item %>
+                    </label>
+                    </div>
+                    <% }) %>
+                </div>
               </div>
-              <select class="govuk-select" id="Spending_Region" name="Spending_Region">
-                <% if( ssn.Spending_Region_Global == '' ){ %>
-                <option value="" selected>Select a region (12)</option>
-                <% } else { %>
-                <option value="">Select a region (12)</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'North East' ){ %>
-                <option value="North East" selected>North East</option>
-                <% } else { %>
-                <option value="North East">North East</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'North West' ){ %>
-                <option value="North West" selected>North West</option>
-                <% } else { %>
-                <option value="North West">North West</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'Yorkshire and humber' ){ %>
-                <option value="Yorkshire and humber" selected>Yorkshire and humber</option>
-                <% } else { %>
-                <option value="Yorkshire and humber">Yorkshire and humber</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'East Midlands' ){ %>
-                <option value="East Midlands" selected>East Midlands</option>
-                <% } else { %>
-                <option value="East Midlands">East Midlands</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'West Midlands' ){ %>
-                <option value="West Midlands" selected>West Midlands</option>
-                <% } else { %>
-                <option value="West Midlands">West Midlands</option>
-                <% } %>
-
-
-                <% if( ssn.Spending_Region_Global == 'East of England' ){ %>
-                <option value="East of England" selected>East of England</option>
-                <% } else { %>
-                <option value="East of England">East of England</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'London' ){ %>
-                <option value="London" selected>London</option>
-                <% } else { %>
-                <option value="London">London</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'South East' ){ %>
-                <option value="South East" selected>South East</option>
-                <% } else { %>
-                <option value="South East">South East</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'South West' ){ %>
-                <option value="South West" selected>South West</option>
-                <% } else { %>
-                <option value="South West">South West</option>
-                <% } %>
-
-
-                <% if( ssn.Spending_Region_Global == 'Scotland' ){ %>
-                <option value="Scotland" selected>Scotland</option>
-                <% } else { %>
-                <option value="Scotland">Scotland</option>
-                <% } %>
-
-
-                <% if( ssn.Spending_Region_Global == 'Wales' ){ %>
-                <option value="Wales" selected>Wales</option>
-                <% } else { %>
-                <option value="Wales">Wales</option>
-                <% } %>
-
-                <% if( ssn.Spending_Region_Global == 'Northern Ireland' ){ %>
-                <option value="Northern Ireland" selected>Northern Ireland</option>
-                <% } else { %>
-                <option value="Northern Ireland">Northern Ireland</option>
-                <% } %>
-
-
-              </select>
             </div>
-
-            <% }  %>
 
 
             <!-- **********************************  -->

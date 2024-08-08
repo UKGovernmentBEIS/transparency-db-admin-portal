@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - <%= ssn.searchmeasuredetails.subsidyMeasureTitle %> scheme details page</title>
+    <title>GOV.UK - <%= schemeVersionDetails.subsidyMeasureTitle %> previous version</title>
     <%- include('../partials/headercss.ejs') %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
     <script>
         const formatter = new Intl.NumberFormat("en-GB");
-        getFormattedCurrency = (budget) => {
+        getFormatedCurrency = (budget) => {
             if (budget.toString().includes(","))
                 budget = budget.split(",").join("");
             formatedCurrency = formatter.format(budget);
@@ -25,7 +25,7 @@
 </head>
 
 <body class="govuk-template__body app-example-page"
-    onload="getFormattedCurrency('<%= ssn.searchmeasuredetails.budget %>')">
+    onload="getFormatedCurrency('<%= schemeVersionDetails.budget %>')">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/cookies-consent.ejs') %> <%- include('../partials/header.ejs') %>
@@ -55,53 +55,48 @@
                         <a class="govuk-breadcrumbs__link" href="/mysubsidymeasures">Subsidy schemes</a>
                     </li>
                     <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/editreviewsubsidymeasure?scheme=<%= originalScheme.scNumber %>"><%= originalScheme.subsidyMeasureTitle %></a>
+                    </li>                    
+                    <li class="govuk-breadcrumbs__list-item">
                         <a class="govuk-breadcrumbs__link" aria-current="page"
-                            href="#"><%= ssn.searchmeasuredetails.subsidyMeasureTitle %></a>
+                            href="#"><%= schemeVersionDetails.lastModifiedDate %></a>
                     </li>
                 </ol>
             </div>
             <!-- bread crumbs ends here -->
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds-from-desktop">
-                    <h1 class="govuk-heading-xl"><%= ssn.searchmeasuredetails.subsidyMeasureTitle %></h1>
-            <!-- *************************************
-              Review for subsidy details tab
-              ************************************* -->
-
+                    <h1 class="govuk-heading-xl"><%= schemeVersionDetails.subsidyMeasureTitle %></h1>
+                    <h2>Modified date <%= schemeVersionDetails.lastModifiedDate %></h2>
                 </div>
-                <% if(ssn.searchmeasuredetails.status != 'Active') { %>
-                <div class="govuk-grid-column-full">
+                <% if(schemeVersionDetails.status != 'Active') { %>
                     <div class="govuk-form-group app-example govuk-inative-status">
-                        <% if(ssn.searchmeasuredetails.status === "Inactive") {%>
-
+                        <% if(schemeVersionDetails.status === "Inactive") {%>
                         <div class="app-example__toolbar">
                             <label>This scheme is not active</label>
                         </div>
-                        <% } else if(ssn.searchmeasuredetails.status === "Deleted") {%>
+                        <% } else if(schemeVersionDetails.status === "Deleted") {%>
                         <div class="app-example__toolbar">
                             <label>This scheme has been deleted</label>
                         </div>
                         <%}%>
                         <div>
                             <dl class="govuk-summary-list" id="rejection-details-list">
-                                <% if(ssn.searchmeasuredetails.status === "Deleted") {%>                                
+                                <% if(schemeVersionDetails.status === "Deleted") {%>                                
                                 <div class="govuk-summary-list__row">
                                     <dt class="govuk-summary-list__key">
                                         Deleted by
                                     </dt>
                                     <dd class="govuk-summary-list__value">
-                                        <%= ssn.searchmeasuredetails.deletedBy %>
+                                        <%= schemeVersionDetails.deletedBy %>
                                     </dd>
-                                </div>
-                                <%}%>
-                                <% if(ssn.searchmeasuredetails.status === "Deleted") {%>                                
-
+                                </div>                          
                                 <div class="govuk-summary-list__row">
                                     <dt class="govuk-summary-list__key">
                                         Deleted date/time
                                     </dt>
                                     <dd class="govuk-summary-list__value">
-                                        <%= ssn.searchmeasuredetails.deletedTimestamp %>
+                                        <%= schemeVersionDetails.deletedTimestamp %>
                                     </dd>
                                 </div>
                                 <%}%>
@@ -109,118 +104,105 @@
                                     <dt class="govuk-summary-list__key">
                                         Comments from the approver
                                     </dt>
-                                    <dd class="govuk-summary-list__value"><%=ssn.searchmeasuredetails.reason%></dd>
+                                    <dd class="govuk-summary-list__value"><%=schemeVersionDetails.reason%></dd>
                                 </div>
                             </dl>
-                            
                         </div>
                     </div>
-                    
-                </div>
                 <% } %>
                 <div class="govuk-grid-column-full">
-                    <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details
-                    </h2>
-                    <% if(ssn.searchmeasuredetails.status == 'Active' && ssn.dashboard_roles == 'BEIS Administrator') { %>
-                    <a rel="external" aria-label="Change subsidy scheme details"
-                        class="govuk-link head-right govuk-relative-position"
-                        href="/editsubsidymeasure?scheme=<%= ssn.searchmeasuredetails.scNumber %>&editsc=No">
-                        <p>Change </p>
-                    </a>
-                    <% } %>
+                    <h2 class="govuk-heading-m" name="subsidydetails" value="subsidydetails">Subsidy scheme details</h2>
                 </div>
-
             </div>
             <section class="govuk-table-responsive">
                 <table class="govuk-table" id="scheme-details-table">
                     <tbody class="govuk-table__body">
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Public Authority</th>
-                            <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.gaName %></td>
+                            <td class="govuk-table__cell"><%= schemeVersionDetails.gaName %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme number
                             </th>
-                            <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.scNumber %></td>
+                            <td class="govuk-table__cell"><%= schemeVersionDetails.scNumber %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme name</th>
-                            <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.subsidyMeasureTitle %></td>
+                            <td class="govuk-table__cell"><%= schemeVersionDetails.subsidyMeasureTitle %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)</th>
-                            <td
-                            class="govuk-table__cell render-newlines"><%= (ssn.searchmeasuredetails.subsidySchemeInterest === '' || ssn.searchmeasuredetails.subsidySchemeInterest === null) ? 'NA' : ssn.searchmeasuredetails.subsidySchemeInterest %></td>
+                            <td class="govuk-table__cell"><%= (schemeVersionDetails.subsidySchemeInterest === '' || schemeVersionDetails.subsidySchemeInterest === null) ? 'NA' : schemeVersionDetails.subsidySchemeInterest %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Specific policy objective</th>
                             <td
-                            class="govuk-table__cell render-newlines"><%= ssn.searchmeasuredetails.specificPolicyObjective %></td>
+                            class="govuk-table__cell render-newlines"><%= schemeVersionDetails.specificPolicyObjective %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme description</th>
                             <td
-                            class="govuk-table__cell render-newlines"><%= ssn.searchmeasuredetails.subsidySchemeDescription %></td>
+                            class="govuk-table__cell render-newlines"><%= schemeVersionDetails.subsidySchemeDescription %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Legal basis</th>
-                            <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.legalBasisText %></td>
+                            <td class="govuk-table__cell"><%= schemeVersionDetails.legalBasisText %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Public authority policy
                                 URL </th>
-                            <td class="govuk-table__cell"><%= ssn.searchmeasuredetails.gaSubsidyWebLink %>
+                            <td class="govuk-table__cell"><%= schemeVersionDetails.gaSubsidyWebLink %>
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Public authority policy
                                 page summary </th>
                             <td class="govuk-table__cell">
-                                <% if(ssn.searchmeasuredetails.gaSubsidyWebLink.includes("https://") || ssn.searchmeasuredetails.gaSubsidyWebLink.includes("http://")) { %>
-                                <a href="<%= ssn.searchmeasuredetails.gaSubsidyWebLink %>"
-                                    target="_blank"><%= ssn.searchmeasuredetails.gaSubsidyWebLinkDescription %></a>
+                                <% if(schemeVersionDetails.gaSubsidyWebLink.includes("https://") || schemeVersionDetails.gaSubsidyWebLink.includes("http://")) { %>
+                                <a href="<%= schemeVersionDetails.gaSubsidyWebLink %>"
+                                    target="_blank"><%= schemeVersionDetails.gaSubsidyWebLinkDescription %></a>
                                 <% } else { %>
-                                <a href="https://<%= ssn.searchmeasuredetails.gaSubsidyWebLink %>"
-                                    target="_blank"><%= ssn.searchmeasuredetails.gaSubsidyWebLinkDescription %></a>
+                                <a href="https://<%= schemeVersionDetails.gaSubsidyWebLink %>"
+                                    target="_blank"><%= schemeVersionDetails.gaSubsidyWebLinkDescription %></a>
                                 <% } %>
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Budget or amount</th>
-                            <td class="govuk-table__cell" id="formatText">£ <%= ssn.searchmeasuredetails.budget %></td>
+                            <td class="govuk-table__cell" id="formatText">£ <%= schemeVersionDetails.budget %></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Maximum amount given under this scheme</th>
                             <td class="govuk-table__cell">
-                                <% if (ssn.searchmeasuredetails.maximumAmountUnderScheme == null) { %>
+                                <% if (schemeVersionDetails.maximumAmountUnderScheme == null) { %>
                                     NA
                                 <% } else { %>
-                                    <%= ssn.searchmeasuredetails.maximumAmountUnderScheme %>
+                                    <%= schemeVersionDetails.maximumAmountUnderScheme %>
                                 <% } %>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Confirmation date</th>
                             <td class="govuk-table__cell">
-                                <% if (Scheme_Confirmation_Date == '') { %>
+                                <% if (schemeVersionDetails.confirmationDate == '') { %>
                                     NA
                                 <% } else { %>
-                                    <%= Scheme_Confirmation_Date %>
+                                    <%= schemeVersionDetails.confirmationDate %>
                                 <% } %>
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Start date</th>
 
-                            <td class="govuk-table__cell"><%= Scheme_Start_Date%></td>
+                            <td class="govuk-table__cell"><%= schemeVersionDetails.startDate%></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">End date</th>
 
                             <td class="govuk-table__cell">
-                                <% if(Scheme_End_Date == "") { %>
+                                <% if(schemeVersionDetails.endDate == "") { %>
                                     NA
                                  <% } else { %>
-                                    <%= Scheme_End_Date %>
+                                    <%= schemeVersionDetails.endDate %>
                                  <% } %>
                             </td>
                         </tr>
@@ -228,14 +210,14 @@
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Published Date</th>
 
                             <td class="govuk-table__cell">
-                                <%= ssn.searchmeasuredetails.publishedMeasureDate%></td>
+                                <%= schemeVersionDetails.publishedMeasureDate%></td>
                         </tr>
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Spending Sectors</th>
                             <td class="govuk-table__cell">
-                                <% if(spendingSectorArray.length > 0) { %>
+                                <% if(schemeVersionDetails.spendingSectorArray.length > 0) { %>
                                 <ul class="govuk-list govuk-list--bullet">
-                                    <% spendingSectorArray.forEach(function(item) { %>
+                                    <% schemeVersionDetails.spendingSectorArray.forEach(function(item) { %>
                                     <li> <%=item %> </li>
                                     <% }); %>
                                 </ul>
@@ -244,12 +226,13 @@
                                  <% } %>
                             </td>
                         </tr>
+
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Purpose(s)</th>
                             <td class="govuk-table__cell">
-                                <% if(purposeArray.length > 0) { %>
+                                <% if(schemeVersionDetails.purposeArray.length > 0) { %>
                                 <ul class="govuk-list govuk-list--bullet">
-                                    <% purposeArray.forEach(function(item) { %>
+                                    <% schemeVersionDetails.purposeArray.forEach(function(item) { %>
                                         <%if(item != ""){%>
                                         <li> <%=item %> </li>
                                         <% } %>
@@ -264,46 +247,6 @@
                     </tbody>
                 </table>
             </section>
-
-            <% if(schemeVersions.length > 0) { %>
-                <div>
-                    <h2 class="govuk-heading-m">Previous versions of scheme</h2>
-                    <%- include('../partials/scheme-version-list-partial.ejs') %>
-                </div>
-            <% } %>
-
-            <div>
-                <div>
-                    <h2 class="govuk-heading-m">Subsidy awards given under this subsidy scheme</h2>
-                    <%- include('../partials/award-list-partial.ejs') %>
-                </div>
-            </div>
-
-            <div class="govuk-grid-row">
-                <form action="/mysubsidymeasures" method="GET" novalidate>
-                    <input type="hidden" name="answers-checked" value="true">
-
-                    <button class="govuk-button" data-module="govuk-button">
-                        Back to subsidy schemes
-                    </button>
-                    <% if(ssn.dashboard_roles != 'Granting Authority Encoder' && ssn.searchmeasuredetails.status == 'Active' && ssn.searchmeasuredetails.canEdit) { %>
-                    <a class="govuk-button  govuk-button--warning" href="/deactivatescheme?action=Deactivate" data-module="govuk-button">
-                        Deactivate
-                    </a>
-                    <a class="govuk-button govuk-button--secondary"
-                        href="/addsubsidyaward?scheme=<%= ssn.searchmeasuredetails.scNumber %>"
-                        data-module="govuk-button">
-                        Add a subsidy award to this scheme
-                    </a>
-                    <% } %>
-
-                    <% if (ssn.dashboard_roles == "BEIS Administrator" && ssn.searchmeasuredetails.status != 'Deleted') { %>
-                        <a class="govuk-button govuk-button--warning" href="/deactivatescheme?action=Delete" data-module="govuk-button" style="float:right">
-                            Delete
-                        </a>
-                    <% } %>
-                </form>
-            </div>
         </main>
     </div>
 

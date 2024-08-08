@@ -89,6 +89,14 @@
                             <td class="govuk-table__cell"><%= ssn.scNumber_Global %></td>
                         </tr>
                         <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)</th>
+                            <td class="govuk-table__cell"><%= (ssn.Subsidy_Scheme_Interest_Global === '') ? 'NA' : ssn.Subsidy_Scheme_Interest_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Specific policy objective</th>
+                            <td class="govuk-table__cell render-newlines"><%= ssn.Specific_Policy_Objective_Global %></td>
+                        </tr>
+                        <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Subsidy scheme description</th>
                             <td class="govuk-table__cell render-newlines"><%= ssn.Subsidy_Scheme_Description_Global %></td>
                         </tr>
@@ -148,6 +156,16 @@
                             <td class="govuk-table__cell">
                                 <ul class="govuk-list govuk-list--bullet">
                                     <% spendingSectorArray.forEach(function(item) { %>
+                                    <li> <%=item %> </li>
+                                    <% }); %>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Purpose(s)</th>
+                            <td class="govuk-table__cell">
+                                <ul class="govuk-list govuk-list--bullet">
+                                    <% purposeArray.forEach(function(item) { %>
                                     <li> <%=item %> </li>
                                     <% }); %>
                                 </ul>

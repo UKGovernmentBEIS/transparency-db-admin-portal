@@ -38,30 +38,111 @@
             </li>
         </ol>
     </div>
-      <!-- bread crumbs ends here -->
+    <!-- bread crumbs ends here -->
 
-      <!-- Body header starts here -->
-      <h1 class="govuk-heading-xl">Admin Programs</h1>
-      <!-- Body header ends here -->
-      <% if(noresult) { %>
-        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
-          data-module="govuk-error-summary">
+    <!-- Body header starts here -->
+    <h1 class="govuk-heading-xl">Admin Programs</h1>
+    <!-- Body header ends here -->
+    <% if(noresult) { %>
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
 
-          <div class="govuk-error-summary__body">
-            <ul class="govuk-list govuk-error-summary__list">
-              <li>
+              <a aria-label="<%= nodata%>"><%= nodata %></a>
+            </li>
 
-                <a aria-label="<%= nodata%>"><%= nodata %></a>
-              </li>
+          </ul>
+        </div>
+      </div>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full" id="subsidy_search_text">
+            <label class="govuk-label">
+              You can search for admin programs by entering a name, admin program number, or public authority.
+            </label>
+          </div>
 
-            </ul>
+          <div class="govuk-grid-column-one-half">
+            <form action="/adminprograms" method="get" novalidate>
 
+              <input class="govuk-input govuk-!-width-three-quarters" id="search_text" name="query" type="text"
+                aria-describedby="subsidy_search_text" value="<%= ssn.Admin_Program_Search_Name_Global%>" />
+
+              <button class="govuk-button" data-module="govuk-button">
+                Search
+              </button>
+            </form>
+          </div>
+
+          <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
+            <form class="govuk-!-width-full govuk-padding-0" action="/adminprograms" method="GET">
+              <select class="govuk-!-width-full govuk-select" name="status" aria-describedby="status-message"
+                aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
+                <% if(adminProgramStatus == "") { %>
+                <option value="" selected>Show all (<%= ssn.allAdminPrograms %>)
+                </option>
+                <% } else { %>
+                <option value="">Show all (<%= ssn.allAdminPrograms %>)</option>
+                <% }  %>
+
+                <% if(adminProgramStatus == "Active") { %>
+                <option value="Active" selected>Active (<%= ssn.activeAdminPrograms %>)</option>
+                <% } else { %>
+                <option value="Active">Active (<%= ssn.activeAdminPrograms %>)</option>
+                <% }  %>
+
+                <% if(adminProgramStatus == "Deleted") { %>
+                <option value="Deleted" selected>Deleted (<%= ssn.deletedAdminPrograms %>)</option>
+                <% } else { %>
+                <option value="Deleted">Deleted (<%= ssn.deletedAdminPrograms %>)</option>
+                <% }  %>
+              </select>
+            </form>
+            <span id="status-message" style="display:none" aria-hidden="true">
+              On selecting, the page will reload and display admin programs.</span>
           </div>
         </div>
         <% if(ssn.dashboard_roles != 'Granting Authority Encoder' ) { %>
         <a href="/adminprogramadd" class="govuk-button" data-module="govuk-button">
           Add a new Admin Program
         </a>
+
+        <div class="govuk-grid-column-one-half govuk-display-flex govuk-form-group" style="float: right;">
+          <label class="govuk-grid-column-two-thirds">
+            Results per page
+          </label>
+          <div class="pagination pagination-style-modified govuk-padding-0 govuk-!-width-one-third"
+            style="display: inline;  margin: 0;">
+            <% if( ssn.frontend_totalRecordsPerPage  == 10) { %>
+            <a aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
+              href="/adminprograms/?resultsPerPage=10">10</a>
+
+            <% } else { %>
+            <a aria-label="10 records per page " class="round btn-page" href="/adminprograms/?resultsPerPage=10">10</a>
+            <% }  %>
+            <% if( ssn.frontend_totalRecordsPerPage  == 20) { %>
+            <a aria-label="20 records per page  selected" aria-selected="true" class="round btn-page active"
+              href="/adminprograms/?resultsPerPage=20">20</a>
+            <% } else { %>
+            <a aria-label="20 records per page " class="round btn-page" href="/adminprograms/?resultsPerPage=20">20</a>
+            <% }  %>
+
+            <% if( ssn.frontend_totalRecordsPerPage  == 50) { %>
+            <a aria-label="50 records per page selected" aria-selected="true " class="round btn-page active"
+              href="/adminprograms/?resultsPerPage=50">50</a>
+            <% } else { %>
+            <a aria-label="50 records per page " class="round btn-page" href="/adminprograms/?resultsPerPage=50">50</a>
+            <% }  %>
+
+            <% if( ssn.frontend_totalRecordsPerPage  == 100) { %>
+            <a aria-label="100 records per page selected" aria-selected="true " class="round btn-page active"
+              href="/adminprograms/?resultsPerPage=100">100</a>
+            <% } else { %>
+            <a aria-label="100 records per page " class="round btn-page" href="/adminprograms/?resultsPerPage=100">100</a>
+            <% }  %>
+          </div>
+
+        </div>
 
         <% } %>
       <% } else { %>
