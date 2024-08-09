@@ -105,7 +105,7 @@ router.post("/", async (req, res) => {
           if (gaFiltered.length == 0) {
             ssn.Granting_Authority_Exists_Error = true;
             ssn.MFAGroupingErrors[Additem] =
-              "Public authority' " + ssn.Granting_Authority_Name_Global.trim() + " 'doesn't exist.";
+              "Public authority '" + ssn.Granting_Authority_Name_Global.trim() + "' doesn't exist.";
             ssn.MFAFocus[Additem] = "#Granting_Authority_Name";
             Additem = Additem + 1;
           }else if(gaFiltered.length > 1){
