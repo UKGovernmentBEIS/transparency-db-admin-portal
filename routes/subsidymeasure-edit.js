@@ -85,7 +85,7 @@ router.get("/", async (req, res) => {
         ssn.spendingsector_water_supply_Global = false;
         ssn.spendingsector_wholesale_and_retail_trade_Global = false;
 
-        ssn.Purpose_Array_Other_Global = JSON.parse(ssn.searchmeasuredetails.purpose).slice(-1).toString().replace('Other - ', '')
+        ssn.Purpose_Array_Other_Global =  "";
 
         ssn.purpose_culture_or_heritage_Global = false;
         ssn.purpose_employment_Global = false;
@@ -174,6 +174,7 @@ router.get("/", async (req, res) => {
         var purposeArray = new Array();
         if(ssn.searchmeasuredetails.purpose != null){
           purposeArray = JSON.parse(ssn.searchmeasuredetails.purpose);
+          ssn.Purpose_Array_Other_Global = JSON.parse(ssn.searchmeasuredetails.purpose).slice(-1).toString().replace('Other - ', '')
         }
         purposeArray.forEach(function(purpose){
           switch(purpose) {
