@@ -201,10 +201,11 @@ router.get("/", async (req, res) => {
         ssn.last_modified_arrow = "upanddown";
         sorting_column = "createdTimestamp,desc";
         current_page = 1;
-        ssn.grantingAuthorityName_Global = "";
+       ssn.grantingAuthorityName_Global = "";
         grantingAuthorityID_global = "";
         //  ssn.frontend_totalRecordsPerPage = 10;
       }
+
       data = {
         searchText: ssn.grantingAuthorityName_Global.trim(),
         id: grantingAuthorityID_global.trim(),
@@ -428,8 +429,8 @@ router.post("/", async (req, res) => {
       }
     }
     const data = {
-      grantingAuthorityName: ssn.grantingAuthorityName_Global.trim(),
-      grantingAuthorityID: grantingAuthorityID_global.trim(),
+      searchText: ssn.grantingAuthorityName_Global.trim(),
+      id: grantingAuthorityID_global.trim(),
       pageNumber: 1,
       status: status,
       totalRecordsPerPage: ssn.frontend_totalRecordsPerPage,
