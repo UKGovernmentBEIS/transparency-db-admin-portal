@@ -32,10 +32,10 @@
 
       });
 
-      const nationalCheckbox = document.getElementById("Spending_Region_National")
+      const UKWideCheckbox = document.getElementById("Spending_Region_UK_Wide")
 
-      if (nationalCheckbox.checked){
-        selectNational(nationalCheckbox);
+      if (UKWideCheckbox.checked){
+        selectUKWide(UKWideCheckbox);
       }
       
 
@@ -136,7 +136,7 @@
         changeSubsidyObjective();
     }
 
-    function selectNational(source) {
+    function selectUKWide(source) {
       var checkboxes = document.getElementsByClassName("govuk-checkboxes__input_spendingregion");
       checkboxes = Array.from(checkboxes).concat(document.getElementById("Spending_Region_Select_All"));
       for(var i=0, n=checkboxes.length;i<n;i++) {
@@ -2120,10 +2120,10 @@
 
               <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">
                 <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" onclick="selectNational(this)" id="Spending_Region_National" name="Spending_Region_National" type="checkbox" 
-                    value="National" <% if (ssn.Spending_Regions_Selected_Global.includes("National")) { %> checked aria-checked="true" <% } %>>
-                  <label class="govuk-label govuk-checkboxes__label" for="Spending_Region_National">
-                    National
+                  <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector" onclick="selectUKWide(this)" id="Spending_Region_UK_Wide" name="Spending_Region_UK_Wide" type="checkbox" 
+                    value="UK-wide" <% if (ssn.Spending_Regions_Selected_Global.includes("UK-wide")) { %> checked aria-checked="true" <% } %>>
+                  <label class="govuk-label govuk-checkboxes__label" for="Spending_Region_UK_Wide">
+                    UK-wide
                   </label>
                 </div>
                 <div class="govuk-checkboxes__item">
