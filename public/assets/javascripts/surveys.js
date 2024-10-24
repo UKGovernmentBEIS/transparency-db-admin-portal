@@ -1,7 +1,7 @@
 !(function () {
   "use strict";
   window.GOVUK = window.GOVUK || {};
-  var i = { essential: !0, usage: !1 },
+  var i = { essential: !0, usage: !1, campaigns: !0 },
     o = {
       cookies_policy: "essential",
       seen_cookie_message: "essential",
@@ -34,7 +34,7 @@
       window.GOVUK.setConsentCookie(i);
     }),
     (window.GOVUK.approveAllCookieTypes = function () {
-      var e = { essential: !0, usage: !0 };
+      var e = { essential: !0, usage: !0, campaigns: !0 };
       window.GOVUK.setCookie("cookies_policy", JSON.stringify(e), {
         days: 365,
       });
