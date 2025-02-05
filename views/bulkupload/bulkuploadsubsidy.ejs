@@ -2,7 +2,14 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Bulk upload subsidy award uploaded page</title>
+  <title>
+    <% if (locals.isFileUploadEmpty || !locals.isExcelFormat || !locals.isXlsxOk) { %>
+      Error - GOV.UK - BBulk upload subsidy award uploaded page
+    <% } else { %>
+      GOV.UK - Bulk upload subsidy award uploaded page
+    <% } %>
+  </title>
+  
   <!-- <%- include('../partials/headersubsidy.ejs') %> -->
   <%- include('../partials/headercss.ejs') %>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>

@@ -2,7 +2,14 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Bulk upload subsidy scheme uploaded page</title>
+  <title>
+  <% if (locals.isFileUploadEmpty || !locals.isExcelFormat || !locals.isXlsxOk) { %>
+    Error - GOV.UK - Bulk upload subsidy scheme uploaded page
+  <% } else { %>
+    GOV.UK - Bulk upload subsidy scheme uploaded page
+  <% } %>
+</title>
+
   <!-- <%- include('../partials/headersubsidy.ejs') %> -->
   <%- include('../partials/headercss.ejs') %>
 
