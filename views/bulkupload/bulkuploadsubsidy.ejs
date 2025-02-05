@@ -10,8 +10,8 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
   <script type="text/javascript" src="/assets/javascripts/bulkuploadpdfgen.js"></script>
   <script>
-    var url = window.location.href;
-    window.location.href = url + "#upload-csv";
+ var url = window.location.href;
+   window.location.href = url + "#upload-csv";
     getErrorList = (isFileUploadEmpty, isExcelFormat, isXlsxOk) => {
       if (isFileUploadEmpty || !isExcelFormat || !isXlsxOk) {
         document.getElementById("error-alert").focus();
@@ -80,7 +80,7 @@
             </a>
           </li>
         </ul>
-
+        
 
         <!-- <a rel="external" target="_blank" class="govuk-link head-right govuk-relative-position"
           href="./assets/files/HelpDocumentBulkUpload.pdf">
@@ -96,27 +96,36 @@
             <div class="govuk-grid-column-full">
               <form method="get" action="./assets/files/Bulk_Upload_Awards_Template.xlsx">
                 <h2 class="govuk-heading-m">Download template</h2>
+              
                 <%- include('../partials/subsidy-database-requirements.ejs') %>
+              
                 <p class="govuk-body">
                   You can use the template to fill in the required information for the subsidy awards you want to add.
                 </p>
-                <p class="govuk-body govuk-form-group">You can download the user guide for
+              
+                <p class="govuk-body govuk-form-group">
+                  You can download the user guide for
                   <a rel="external" target="_blank" class="govuk-link"
                     href="./assets/files/HelpDocumentBulkUploadAwards.docx">
                     help with adding multiple subsidy awards.
                   </a>
                 </p>
+              
+                <div class="govuk-button-group">
+                  <button class="govuk-button">Download the template file</button>
+                  <a class="govuk-link govuk-cancel-button-link" href="/mysubsidyawards"> Cancel </a>
+
+                </div>
+              
               </form>
-              <div class="govuk-grid-row">
-                <form method="get" action="./assets/files/helptemplatefile.csv" class="govuk-grid-column-one-third">
-                  <button class="govuk-button">Download the template file </button>
-                </form>
-                <a class="govuk-link govuk-cancel-button-link" href="/mysubsidyawards"> Cancel </a>
+              
+              
+                <!--<a class="govuk-link govuk-cancel-button-link" href="/mysubsidyawards"> Cancel </a> -->
                 <!-- <div class="govuk-grid-column-one-third">
                   <button class="govuk-link govuk-cancel-button-link" data-module="govuk-button">Cancel </button></div>
               </div> -->
 
-              </div>
+             
             </div>
           </div>
         </div>
@@ -378,7 +387,53 @@
   <script src="/assets/javascripts/example.js"></script> -->
   <script>
     document.getElementById('subsidyaward-li').firstElementChild.setAttribute("aria-current", 'page');
-  </script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+    // Get all tab links
+    const tabs = document.querySelectorAll(".govuk-tabs__tab");
+
+    // Check the URL hash (if present) and set the correct active tab
+    if (window.location.hash) {
+      const activeTab = document.querySelector(`a[href="${window.location.hash}"]`);
+      if (activeTab) {
+        switchTab(activeTab);
+      }
+    }
+
+    // Add click event listeners to switch tabs correctly
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", function (event) {
+        event.preventDefault();
+        switchTab(this);
+        window.location.hash = this.getAttribute("href"); // Update URL hash
+      });
+    });
+
+    function switchTab(selectedTab) {
+      // Remove active state from all tabs
+      tabs.forEach((tab) => {
+        tab.setAttribute("aria-selected", "false");
+        tab.setAttribute("tabindex", "-1");
+      });
+
+      // Hide all tab panels
+      document.querySelectorAll(".govuk-tabs__panel").forEach((panel) => {
+        panel.classList.add("govuk-tabs__panel--hidden");
+      });
+
+      // Set the clicked tab as active
+      selectedTab.setAttribute("aria-selected", "true");
+      selectedTab.setAttribute("tabindex", "0");
+
+      // Show the corresponding panel
+      const targetPanel = document.querySelector(selectedTab.getAttribute("href"));
+      if (targetPanel) {
+        targetPanel.classList.remove("govuk-tabs__panel--hidden");
+      }
+    }
+  });
+      </script>
+  
 </body>
 
 </html>
