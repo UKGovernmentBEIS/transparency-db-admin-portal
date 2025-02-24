@@ -2,7 +2,11 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Add Subsidy Award page</title>
+  <% if(ssn.SubsidyArraySize > 0 ) { %>
+    <title>Error - GOV.UK - Add Subsidy Award page</title>
+  <% } else { %>
+    <title>GOV.UK - Add Subsidy Award page</title>
+  <% } %>
   <%- include('../partials/headercss.ejs') %>
 
   <script src="assets/javascripts/jquery.min.js"></script>
@@ -193,7 +197,7 @@
 
             <ul class="govuk-list govuk-error-summary__list">
               <% for(var i=0; i < ssn.SubsidyArraySize  ; i++) {%>
-              <li> <a href="<%= ssn.SubsidyFocus[i] %>"> <%= ssn.SubsidyErrors[i] %> </a> </li>
+              <li> <a autofocus href="<%= ssn.SubsidyFocus[i] %>"> <%= ssn.SubsidyErrors[i] %> </a> </li>
               <% } %>
             </ul>
 

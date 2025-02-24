@@ -2,7 +2,11 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - Edit Subsidy Schemes page</title>
+    <% if(ssn.SubsidyArraySize > 0) { %>
+        <title>Error - GOV.UK - Edit Subsidy Schemes page</title>
+    <% } else { %>
+        <title>GOV.UK - Edit Subsidy Schemes page</title>
+    <% } %>
     <%- include('../partials/headercss.ejs') %>
     <script>
         getSubsidyAdhoc = (event) => {
@@ -155,7 +159,7 @@
                     <% for(var i=0; i < ssn.SubsidyArraySize ; i++) {%>
                     <ul class="govuk-list govuk-error-summary__list">
 
-                        <li> <a href="<%= ssn.SubsidyFocus[i] %>"> <%= ssn.SubsidyErrors[i] %> </a> </li>
+                        <li> <a autofocus href="<%= ssn.SubsidyFocus[i] %>"> <%= ssn.SubsidyErrors[i] %> </a> </li>
                     </ul>
                     <% } %>
                 </div>
