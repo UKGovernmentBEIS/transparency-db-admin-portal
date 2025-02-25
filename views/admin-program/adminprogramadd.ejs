@@ -2,7 +2,11 @@
 <html lang="en">
 
 <head>
+    <% if(ssn.errors.length > 0) { %>
+    <title>Error - GOV.UK - <%=addOrEdit%> Admin Program page</title>
+    <% } else { %>
     <title>GOV.UK - <%=addOrEdit%> Admin Program page</title>
+    <% } %>
 
     <%- include('../partials/headercss.ejs') %>
 </head>
@@ -50,16 +54,14 @@
 
             <div tabindex="-1" class="govuk-error-summary" id="error-alert" role="alert" aria-labelledby="error-summary-title" data-module="govuk-error-summary">
                 <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
-
                 <div class="govuk-error-summary__body">
                     <% for(var i=0; i < ssn.errors.length  ; i++) {%>
                     <ul class="govuk-list govuk-error-summary__list">
 
-                        <li> <a href="<%= ssn.focus[i] %>"> <%= ssn.errors[i] %> </a> </li>
+                        <li> <a autofocus href="<%= ssn.focus[i] %>"> <%= ssn.errors[i] %> </a> </li>
                     </ul>
                     <% } %>
                 </div>
-
             </div>
 
             <% } %>

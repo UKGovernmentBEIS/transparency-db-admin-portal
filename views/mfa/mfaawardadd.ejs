@@ -2,7 +2,11 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - <%=addOrEdit%> MFA Award page</title>
+    <% if( ssn.MFAAwardErrors.length > 0 ) { %>
+        <title>Error - GOV.UK - <%=addOrEdit%> MFA Award page</title>
+      <% } else { %>
+        <title>GOV.UK - <%=addOrEdit%> MFA Award page</title>
+      <% } %>
 
     <%- include('../partials/headercss.ejs') %>
 
@@ -76,7 +80,7 @@
                     <% for(var i=0; i < ssn.MFAAwardErrors.length  ; i++) {%>
                     <ul class="govuk-list govuk-error-summary__list">
 
-                        <li> <a href="<%= ssn.MFAFocus[i] %>"> <%= ssn.MFAAwardErrors[i] %> </a> </li>
+                        <li> <a autofocus href="<%= ssn.MFAFocus[i] %>"> <%= ssn.MFAAwardErrors[i] %> </a> </li>
                     </ul>
                     <% } %>
                 </div>

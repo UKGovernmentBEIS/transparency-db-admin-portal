@@ -2,8 +2,11 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - <%=addOrEdit%> MFA Grouping page</title>
-
+    <% if(ssn.MFAGroupingErrors.length > 0 ) { %>
+        <title>Error - GOV.UK - <%=addOrEdit%> MFA Grouping page</title>
+    <% } else { %>
+        <title>GOV.UK - <%=addOrEdit%> MFA Grouping page</title>
+    <% } %>
     <%- include('../partials/headercss.ejs') %>
 </head>
 
@@ -58,7 +61,7 @@
                     <% for(var i=0; i < ssn.MFAGroupingErrors.length  ; i++) {%>
                     <ul class="govuk-list govuk-error-summary__list">
 
-                        <li> <a href="<%= ssn.MFAFocus[i] %>"> <%= ssn.MFAGroupingErrors[i] %> </a> </li>
+                        <li> <a autofocus href="<%= ssn.MFAFocus[i] %>"> <%= ssn.MFAGroupingErrors[i] %> </a> </li>
                     </ul>
                     <% } %>
                 </div>
