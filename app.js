@@ -830,7 +830,7 @@ var privacynotice = require("./routes/privacy-notice");
 app.use("/privacy", privacynotice);
 
 // Accessibility Statement
-app.use("/accessibility", require("./routes/accessibility"));
+app.use("/accessibilityStatement", require("./routes/accessibility"));
 
 // MFA Groupings
 var mfaGroupingAddEdit = require("./routes/mfagroupingadd");
