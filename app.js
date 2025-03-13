@@ -822,13 +822,15 @@ var auditpageroute = require("./routes/audit-page-route");
 app.use("/auditpageroute", auditpageroute);
 
 // Cookies Consent
-
 var cookieshelp = require("./routes/cookies-help");
 app.use("/cookieshelp", cookieshelp);
 
 // Privacy Notice
 var privacynotice = require("./routes/privacy-notice");
 app.use("/privacy", privacynotice);
+
+// Accessibility Statement
+app.use("/accessibilityStatement", require("./routes/accessibility"));
 
 // MFA Groupings
 var mfaGroupingAddEdit = require("./routes/mfagroupingadd");
