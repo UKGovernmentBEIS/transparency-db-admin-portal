@@ -79,34 +79,43 @@
               </button>
             </form>
           </div>
-
-          <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
-            <form class="govuk-!-width-full govuk-padding-0" action="/mfagroupings" method="GET">
-              <select class="govuk-!-width-full govuk-select" name="status" aria-describedby="status-message"
-                aria-label="Drop down list that shows mfa grouping by status" id="filter-select" onchange="this.form.submit()">
-                <% if(mfaGroupingStatus == "") { %>
-                <option value="" selected>Show all (<%= ssn.allMfaGroupings %>)
-                </option>
-                <% } else { %>
-                <option value="">Show all (<%= ssn.allMfaGroupings %>)</option>
-                <% }  %>
-
-                <% if(mfaGroupingStatus == "Active") { %>
-                <option value="Active" selected>Active (<%= ssn.activeMfaGroupings %>)</option>
-                <% } else { %>
-                <option value="Active">Active (<%= ssn.activeMfaGroupings %>)</option>
-                <% }  %>
-
-                <% if(mfaGroupingStatus == "Deleted") { %>
-                <option value="Deleted" selected>Deleted (<%= ssn.deletedMfaGroupings %>)</option>
-                <% } else { %>
-                <option value="Deleted">Deleted (<%= ssn.deletedMfaGroupings %>)</option>
-                <% }  %>
-              </select>
-            </form>
-            <span id="status-message" style="display:none" aria-hidden="true">
-              On selecting, the page will reload and display MFA groupings.</span>
+ 
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-quarter">
+              <label for="filter-select" class="govuk-label" style="white-space: nowrap;">
+                Show MFA groups by status
+              </label>
+            </div>
+            <div class="govuk-grid-column-one-quarter">
+              <form class="govuk-!-width-full govuk-padding-0" action="/mfagroupings" method="GET">
+                <select class="govuk-select" 
+                        name="status" 
+                        aria-describedby="status-message" 
+                        id="filter-select" 
+                        onchange="this.form.submit()" 
+                        style="width: 220px; margin-left: 1px;">
+                  <% if(mfaGroupingStatus == "") { %>
+                  <option value="" selected>Show all (<%= ssn.allMfaGroupings %>)</option>
+                  <% } else { %>
+                  <option value="">Show all (<%= ssn.allMfaGroupings %>)</option>
+                  <% } %>
+          
+                  <% if(mfaGroupingStatus == "Active") { %>
+                  <option value="Active" selected>Active (<%= ssn.activeMfaGroupings %>)</option>
+                  <% } else { %>
+                  <option value="Active">Active (<%= ssn.activeMfaGroupings %>)</option>
+                  <% } %>
+          
+                  <% if(mfaGroupingStatus == "Deleted") { %>
+                  <option value="Deleted" selected>Deleted (<%= ssn.deletedMfaGroupings %>)</option>
+                  <% } else { %>
+                  <option value="Deleted">Deleted (<%= ssn.deletedMfaGroupings %>)</option>
+                  <% } %>
+                </select>
+              </form>
+            </div>
           </div>
+          
 
           <% if(ssn.dashboard_roles != 'Granting Authority Encoder' ) { %>
           <div class="govuk-grid-column-one-half"><a href="/mfagroupingadd" class="govuk-button"

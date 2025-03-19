@@ -105,35 +105,38 @@
         </div>
 
 
-        <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
-          <form class="govuk-!-width-full govuk-padding-0" action="/measuresfilterroute" method="GET">
+          <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
+            <form class="govuk-!-width-full govuk-padding-0" action="/measuresfilterroute" method="GET">
             <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
               aria-label="Drop down list that shows subsidy scheme by status" id="filter-select" onchange="this.form.submit()">
               <% if(schemes_status  == "") { %>
               <option value="" selected>Show all (<%= ssn.allScheme %>)
               </option>
-              <% } else { %>
-              <option value="">Show all (<%= ssn.allScheme %>)</option>
-              <% }  %>
-              <% if(schemes_status  == "Active") { %>
-              <option value="Active" selected>Active (<%= ssn.activeScheme %>)</option>
-              <% } else { %>
-              <option value="Active">Active (<%= ssn.activeScheme %>)</option>
-              <% }  %>
-
-              <% if(schemes_status  == "Inactive") { %>
-              <option value="Inactive" selected>Inactive (<%= ssn.inactiveScheme %>)</option>
-              <% } else { %>
-              <option value="Inactive">Inactive (<%= ssn.inactiveScheme %>)</option>
-              <% }  %>
-
-
-
-            </select>
-          </form>
-          <span id="status-message" style="display:none" aria-hidden="true">
-            On selecting, the page will reload and display the subsidy awards.</span>
+                <% } else { %>
+                  <option value="">Show all (<%= ssn.allScheme %>)</option>
+                <% } %>
+        
+                <% if(schemes_status == "Active") { %>
+                  <option value="Active" selected>Active (<%= ssn.activeScheme %>)</option>
+                <% } else { %>
+                  <option value="Active">Active (<%= ssn.activeScheme %>)</option>
+                <% } %>
+        
+                <% if(schemes_status == "Inactive") { %>
+                  <option value="Inactive" selected>Inactive (<%= ssn.inactiveScheme %>)</option>
+                <% } else { %>
+                  <option value="Inactive">Inactive (<%= ssn.inactiveScheme %>)</option>
+                <% } %>
+        
+              </select>
+            </form>
+        
+            <span id="status-message" style="display:none" aria-hidden="true">
+              On selecting, the page will reload and display the subsidy awards.
+            </span>
+          </div>
         </div>
+        
 
         <% if(ssn.dashboard_roles != 'Granting Authority Encoder' ) { %>
         <div class="govuk-grid-column-one-half">
@@ -211,39 +214,45 @@
           </form>
         </div>
 
-
-        <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
-          <form class="govuk-!-width-full govuk-padding-0" action="/measuresfilterroute" method="GET">
-            <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
-              aria-label="Drop down list that shows subsidy scheme by status" id="filter-select" onchange="this.form.submit()">
-              <% if(schemes_status  == "") { %>
-              <option value="" selected>Show all (<%= ssn.allScheme %>)
-              </option>
-              <% } else { %>
-              <option value="">Show all (<%= ssn.allScheme %>)</option>
-              <% }  %>
-              <% if(schemes_status  == "Active") { %>
-              <option value="Active" selected>Active (<%= ssn.activeScheme %>)</option>
-              <% } else { %>
-              <option value="Active">Active (<%= ssn.activeScheme %>)</option>
-              <% }  %>
-
-              <% if(schemes_status  == "Inactive") { %>
-              <option value="Inactive" selected>Inactive (<%= ssn.inactiveScheme %>)</option>
-              <% } else { %>
-              <option value="Inactive">Inactive (<%= ssn.inactiveScheme %>)</option>
-              <% }  %>
-
-              <% if(schemes_status  == "Deleted") { %>
-              <option value="Deleted" selected>Deleted (<%= ssn.deletedScheme %>)</option>
-              <% } else { %>
-              <option value="Deleted">Deleted (<%= ssn.deletedScheme %>)</option>
-              <% }  %>
-            </select>
-          </form>
-          <span id="status-message" style="display:none" aria-hidden="true">
-            On selecting, the page will reload and display the subsidy awards.</span>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-one-quarter">
+            <label for="filter-select" class="govuk-label" style="white-space: nowrap;">
+              Show schemes by status
+            </label>
+          </div>
+          <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
+            <form class="govuk-!-width-full govuk-padding-0" action="/measuresfilterroute" method="GET">
+              <select class="govuk-select" name="sort" id="filter-select" onchange="this.form.submit()" 
+                style="width: 200px; margin-left: 1px;">
+                <% if(schemes_status  == "") { %>
+                  <option value="" selected>Show all (<%= ssn.allScheme %>)</option>
+                <% } else { %>
+                  <option value="">Show all (<%= ssn.allScheme %>)</option>
+                <% } %>
+        
+                <% if(schemes_status  == "Active") { %>
+                  <option value="Active" selected>Active (<%= ssn.activeScheme %>)</option>
+                <% } else { %>
+                  <option value="Active">Active (<%= ssn.activeScheme %>)</option>
+                <% } %>
+        
+                <% if(schemes_status  == "Inactive") { %>
+                  <option value="Inactive" selected>Inactive (<%= ssn.inactiveScheme %>)</option>
+                <% } else { %>
+                  <option value="Inactive">Inactive (<%= ssn.inactiveScheme %>)</option>
+                <% } %>
+        
+                <% if(schemes_status  == "Deleted") { %>
+                  <option value="Deleted" selected>Deleted (<%= ssn.deletedScheme %>)</option>
+                <% } else { %>
+                  <option value="Deleted">Deleted (<%= ssn.deletedScheme %>)</option>
+                <% } %>
+              </select>
+            </form>
+          </div>
         </div>
+        
+        
 
         <% if(ssn.dashboard_roles != 'Granting Authority Encoder' ) { %>
         <div class="govuk-grid-column-two-thirds">

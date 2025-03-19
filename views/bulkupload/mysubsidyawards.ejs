@@ -225,40 +225,60 @@
             </button>
           </form>
         </div>
-        <div class="govuk-grid-column-one-third govuk-padding-0">
-          <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
-            <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
-              aria-label="Drop down list that shows subsidy award by status" id="filter-select" onchange="this.form.submit()">
-              <% if(ssn.awards_status  == "Show all") { %>
-              <option value="Show all" selected>Show all (<%=totalSubsidyAward%>)</option>
-              <% } else { %>
-              <option value="Show all">Show all(<%=totalSubsidyAward%>)</option>
-              <% }  %>
-              <% if(ssn.awards_status  == "Awaiting Approval") { %>
-              <option value="Awaiting Approval" selected>Awaiting Approval (<%=totalAwaitingAward%>) </option>
-              <% } else { %>
-              <option value="Awaiting Approval">Awaiting Approval (<%=totalAwaitingAward%>)</option>
-              <% }  %>
-              <% if(ssn.awards_status  == "Published") { %>
-              <option value="Published" selected>Published (<%=totalPublishedAward%>)</option>
-              <% } else { %>
-              <option value="Published">Published (<%=totalPublishedAward%>)</option>
-              <% }  %>
-              <% if(ssn.awards_status  == "Deleted") { %>
-              <option value="Deleted" selected>Deleted (<%=totalInactiveAward%>)</option>
-              <% } else { %>
-              <option value="Deleted">Deleted (<%=totalInactiveAward%>)</option>
-              <% }  %>
-              <% if(ssn.awards_status  == "Rejected") { %>
-              <option value="Rejected" selected>Rejected (<%=totalRejectedAward%>)</option>
-              <% } else { %>
-              <option value="Rejected">Rejected (<%=totalRejectedAward%>)</option>
-              <% }  %>
-            </select>
-          </form>
-          <span id="status-message" style="display:none" aria-hidden="true">
-            On selecting, the page will reload and display the subsidy awards.</span>
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-one-quarter" style="display: inline-block; padding-right: 5px;">
+            <label for="filter-select" class="govuk-label" style="white-space: nowrap; margin-right: 20px;">
+              Show awards by status
+            </label>
+          </div>
+          
+          <div class="govuk-grid-column-one-quarter govuk-padding-0" style="display: inline-block;">
+            <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
+              <select class="govuk-select" name="sort" aria-describedby="status-message"
+                id="filter-select" onchange="this.form.submit()" style="width: 220px; margin-left: 0px;">
+                
+                <% if(ssn.awards_status == "Show all") { %>
+                  <option value="Show all" selected>Show all (<%= totalSubsidyAward %>)</option>
+                <% } else { %>
+                  <option value="Show all">Show all (<%= totalSubsidyAward %>)</option>
+                <% } %>
+        
+                <% if(ssn.awards_status == "Awaiting Approval") { %>
+                  <option value="Awaiting Approval" selected>Awaiting Approval (<%= totalAwaitingAward %>)</option>
+                <% } else { %>
+                  <option value="Awaiting Approval">Awaiting Approval (<%= totalAwaitingAward %>)</option>
+                <% } %>
+        
+                <% if(ssn.awards_status == "Published") { %>
+                  <option value="Published" selected>Published (<%= totalPublishedAward %>)</option>
+                <% } else { %>
+                  <option value="Published">Published (<%= totalPublishedAward %>)</option>
+                <% } %>
+        
+                <% if(ssn.awards_status == "Deleted") { %>
+                  <option value="Deleted" selected>Deleted (<%= totalInactiveAward %>)</option>
+                <% } else { %>
+                  <option value="Deleted">Deleted (<%= totalInactiveAward %>)</option>
+                <% } %>
+        
+                <% if(ssn.awards_status == "Rejected") { %>
+                  <option value="Rejected" selected>Rejected (<%= totalRejectedAward %>)</option>
+                <% } else { %>
+                  <option value="Rejected">Rejected (<%= totalRejectedAward %>)</option>
+                <% } %>
+        
+              </select>
+            </form>
+            
+            <span id="status-message" style="display:none" aria-hidden="true">
+              On selecting, the page will reload and display the subsidy awards.
+            </span>
+          </div>
         </div>
+        
+        
+        
 
 
         <div class="govuk-grid-column-two-thirds">

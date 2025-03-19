@@ -80,45 +80,54 @@
             </form>
           </div>
 
-          <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-quarter">
+              <label for="filter-select" class="govuk-label" style="white-space: nowrap; margin-right: 20px;">
+                Show MFA awards by status
+              </label>
+            </div>
+          <div class="govuk-grid-column-one-quarter govuk-padding-0">
             <form class="govuk-!-width-full govuk-padding-0" action="/mfaawards" method="GET">
-              <select class="govuk-!-width-full govuk-select" name="status" aria-describedby="status-message"
-                aria-label="Drop down list that shows mfa award by status" id="filter-select" onchange="this.form.submit()">
-                <% if(mfaAwardStatus == "") { %>
-                <option value="" selected>Show all (<%= ssn.allMfaAwards %>)
-                </option>
-                <% } else { %>
-                <option value="">Show all (<%= ssn.allMfaAwards %>)</option>
-                <% }  %>
-
-                <% if(mfaAwardStatus == "Published") { %>
-                <option value="Published" selected>Published (<%= ssn.publishedMfaAwards %>)</option>
-                <% } else { %>
-                <option value="Published">Published (<%= ssn.publishedMfaAwards %>)</option>
-                <% }  %>
-
-                <% if(mfaAwardStatus == "Awaiting Approval") { %>
-                  <option value="Awaiting Approval" selected>Awaiting Approval (<%= ssn.awaitingMfaAwards %>)</option>
-                  <% } else { %>
-                  <option value="Awaiting Approval">Awaiting Approval (<%= ssn.awaitingMfaAwards %>)</option>
-                  <% }  %>
-
-                <% if(mfaAwardStatus == "Deleted") { %>
-                <option value="Deleted" selected>Deleted (<%= ssn.deletedMfaAwards %>)</option>
-                <% } else { %>
-                <option value="Deleted">Deleted (<%= ssn.deletedMfaAwards %>)</option>
-                <% }  %>
-
-                <% if(mfaAwardStatus == "Rejected") { %>
-                  <option value="Rejected" selected>Rejected (<%= ssn.rejectedMfaAwards %>)</option>
-                  <% } else { %>
-                  <option value="Rejected">Rejected (<%= ssn.rejectedMfaAwards %>)</option>
-                  <% }  %>
-              </select>
+                    <select class="govuk-select" name="status" aria-describedby="status-message"
+                     id="filter-select" onchange="this.form.submit()" 
+                    style="width: 200px; margin-left: 20px;"> 
+                    <% if(mfaAwardStatus == "") { %>
+                        <option value="" selected>Show all (<%= ssn.allMfaAwards %>)</option>
+                    <% } else { %>
+                        <option value="">Show all (<%= ssn.allMfaAwards %>)</option>
+                    <% } %>
+        
+                    <% if(mfaAwardStatus == "Published") { %>
+                        <option value="Published" selected>Published (<%= ssn.publishedMfaAwards %>)</option>
+                    <% } else { %>
+                        <option value="Published">Published (<%= ssn.publishedMfaAwards %>)</option>
+                    <% } %>
+        
+                    <% if(mfaAwardStatus == "Awaiting Approval") { %>
+                        <option value="Awaiting Approval" selected>Awaiting Approval (<%= ssn.awaitingMfaAwards %>)</option>
+                    <% } else { %>
+                        <option value="Awaiting Approval">Awaiting Approval (<%= ssn.awaitingMfaAwards %>)</option>
+                    <% } %>
+        
+                    <% if(mfaAwardStatus == "Deleted") { %>
+                        <option value="Deleted" selected>Deleted (<%= ssn.deletedMfaAwards %>)</option>
+                    <% } else { %>
+                        <option value="Deleted">Deleted (<%= ssn.deletedMfaAwards %>)</option>
+                    <% } %>
+        
+                    <% if(mfaAwardStatus == "Rejected") { %>
+                        <option value="Rejected" selected>Rejected (<%= ssn.rejectedMfaAwards %>)</option>
+                    <% } else { %>
+                        <option value="Rejected">Rejected (<%= ssn.rejectedMfaAwards %>)</option>
+                    <% } %>
+                </select>
             </form>
             <span id="status-message" style="display:none" aria-hidden="true">
-              On selecting, the page will reload and display MFA awards.</span>
-          </div>
+                On selecting, the page will reload and display MFA awards.
+            </span>
+        </div>
+        </div>
+        
 
           <div class="govuk-grid-column-one-half"><a href="/mfaawardadd" class="govuk-button"
               data-module="govuk-button">
