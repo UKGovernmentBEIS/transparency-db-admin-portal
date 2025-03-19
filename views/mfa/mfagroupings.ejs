@@ -70,7 +70,7 @@
 
           <div class="govuk-grid-column-one-half">
             <form action="/mfagroupings" method="get" novalidate>
-
+              <label for="filter-select" class="govuk-label"> Search </label> 
               <input class="govuk-input govuk-!-width-three-quarters" id="search-text" name="mfaGroupingName" type="text"
                 aria-describedby="subsidy_search_text" value="<%= ssn.MFA_Grouping_Search_Name_Global%>" />
 
@@ -79,50 +79,55 @@
               </button>
             </form>
           </div>
+ 
+        
+            <div class="govuk-grid-column-one-quarter">
+              <form class="govuk-!-width-full govuk-padding-0" action="/mfagroupings" method="GET">
+                <label for="filter-select" class="govuk-label"> Show groups by status </label> 
 
-          <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
-            <form class="govuk-!-width-full govuk-padding-0" action="/mfagroupings" method="GET">
-              <select class="govuk-!-width-full govuk-select" name="status" aria-describedby="status-message"
-                aria-label="Drop down list that shows mfa grouping by status" id="filter-select" onchange="this.form.submit()">
-                <% if(mfaGroupingStatus == "") { %>
-                <option value="" selected>Show all (<%= ssn.allMfaGroupings %>)
-                </option>
-                <% } else { %>
-                <option value="">Show all (<%= ssn.allMfaGroupings %>)</option>
-                <% }  %>
-
-                <% if(mfaGroupingStatus == "Active") { %>
-                <option value="Active" selected>Active (<%= ssn.activeMfaGroupings %>)</option>
-                <% } else { %>
-                <option value="Active">Active (<%= ssn.activeMfaGroupings %>)</option>
-                <% }  %>
-
-                <% if(mfaGroupingStatus == "Deleted") { %>
-                <option value="Deleted" selected>Deleted (<%= ssn.deletedMfaGroupings %>)</option>
-                <% } else { %>
-                <option value="Deleted">Deleted (<%= ssn.deletedMfaGroupings %>)</option>
-                <% }  %>
-              </select>
-            </form>
-            <span id="status-message" style="display:none" aria-hidden="true">
-              On selecting, the page will reload and display MFA groupings.</span>
-          </div>
+                <select class="govuk-select" 
+                        name="status" 
+                        aria-describedby="status-message" 
+                        id="filter-select" 
+                        onchange="this.form.submit()" 
+                        >
+                  <% if(mfaGroupingStatus == "") { %>
+                  <option value="" selected>Show all (<%= ssn.allMfaGroupings %>)</option>
+                  <% } else { %>
+                  <option value="">Show all (<%= ssn.allMfaGroupings %>)</option>
+                  <% } %>
+          
+                  <% if(mfaGroupingStatus == "Active") { %>
+                  <option value="Active" selected>Active (<%= ssn.activeMfaGroupings %>)</option>
+                  <% } else { %>
+                  <option value="Active">Active (<%= ssn.activeMfaGroupings %>)</option>
+                  <% } %>
+          
+                  <% if(mfaGroupingStatus == "Deleted") { %>
+                  <option value="Deleted" selected>Deleted (<%= ssn.deletedMfaGroupings %>)</option>
+                  <% } else { %>
+                  <option value="Deleted">Deleted (<%= ssn.deletedMfaGroupings %>)</option>
+                  <% } %>
+                </select>
+              </form>
+            </div>
+       
+          
 
           <% if(ssn.dashboard_roles != 'Granting Authority Encoder' ) { %>
-          <div class="govuk-grid-column-one-half"><a href="/mfagroupingadd" class="govuk-button"
+          <div class="govuk-grid-column-two-thirds"><a href="/mfagroupingadd" class="govuk-button"
               data-module="govuk-button">
               Add a new MFA grouping
             </a>
           </div>
           <% } %>
 
-          <div class="govuk-grid-column-one-half govuk-display-flex govuk-form-group" style="float: right;">
+          <div class="govuk-grid-column-one-third govuk-form-group govuk-display-flex govuk-padding-0" style="text-align: right;">
             <label class="govuk-grid-column-two-thirds">
               Results per page
             </label>
-            <div class="pagination pagination-style-modified govuk-padding-0 govuk-!-width-one-third"
-              style="display: inline;  margin: 0;">
-              <% if( ssn.frontend_totalRecordsPerPage  == 10) { %>
+            <div class="pagination pagination-style-modified govuk-padding-0 govuk-!-width-one-half"
+            style="display: inline;  margin: 0;">              <% if( ssn.frontend_totalRecordsPerPage  == 10) { %>
               <a id="results-per-page-10" aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/mfagroupings/?resultsPerPage=10">10</a>
 
