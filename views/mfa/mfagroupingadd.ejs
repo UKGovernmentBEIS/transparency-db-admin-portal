@@ -3,9 +3,17 @@
 
 <head>
     <% if(ssn.MFAGroupingErrors.length > 0 ) { %>
-        <title>Error - GOV.UK - <%=addOrEdit%> MFA Grouping page</title>
+        <%if(isCallFromEditGrouping) {%>
+            <title>Error - MFA Goruping <%= ssn.mfaGroupingDetails.mfaGroupingNumber %> - Manage UK subsidies - GOV.UK - <%=addOrEdit%> MFA Grouping page</title>
+        <% } else { %>
+            <title>Error - Manage UK subsidies - GOV.UK - <%=addOrEdit%> MFA Grouping page</title>
+        <% } %>
     <% } else { %>
-        <title>GOV.UK - <%=addOrEdit%> MFA Grouping page</title>
+        <%if(isCallFromEditGrouping) {%>
+            <title>MFA Goruping <%= ssn.mfaGroupingDetails.mfaGroupingNumber %>- Manage UK subsidies - GOV.UK - <%=addOrEdit%> MFA Grouping page</title>
+        <% } else { %>
+            <title>Manage UK subsidies - GOV.UK - <%=addOrEdit%> MFA Grouping page</title>
+        <% } %>
     <% } %>
     <%- include('../partials/headercss.ejs') %>
 </head>
