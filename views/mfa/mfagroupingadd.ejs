@@ -4,13 +4,13 @@
 <head>
     <% if(ssn.MFAGroupingErrors.length > 0 ) { %>
         <%if(isCallFromEditGrouping) {%>
-            <title>Error - MFA Goruping <%= ssn.mfaGroupingDetails.mfaGroupingNumber %> - Manage UK subsidies - GOV.UK - <%=addOrEdit%> MFA Grouping page</title>
+            <title>Error - MFA Grouping <%= ssn.mfaGroupingDetails.mfaGroupingNumber %> - Manage UK subsidies - GOV.UK - <%=addOrEdit%> MFA Grouping page</title>
         <% } else { %>
             <title>Error - Manage UK subsidies - GOV.UK - <%=addOrEdit%> MFA Grouping page</title>
         <% } %>
     <% } else { %>
         <%if(isCallFromEditGrouping) {%>
-            <title>MFA Goruping <%= ssn.mfaGroupingDetails.mfaGroupingNumber %>- Manage UK subsidies - GOV.UK - <%=addOrEdit%> MFA Grouping page</title>
+            <title>MFA Grouping <%= ssn.mfaGroupingDetails.mfaGroupingNumber %>- Manage UK subsidies - GOV.UK - <%=addOrEdit%> MFA Grouping page</title>
         <% } else { %>
             <title>Manage UK subsidies - GOV.UK - <%=addOrEdit%> MFA Grouping page</title>
         <% } %>
