@@ -3,9 +3,17 @@
 
 <head>
     <% if(ssn.errors.length > 0) { %>
-    <title>Error - GOV.UK - <%=addOrEdit%> Admin Program page</title>
+        <% if(isCallFromEdit) { %>
+            <title>Error - Admin progam <%= ssn.adminProgramDetails.apNumber %> - Manage UK subsidies - GOV.UK - <%=addOrEdit%> Admin Program page</title>
+        <% } else { %>
+            <title>Error - Manage UK subsidies - GOV.UK - <%=addOrEdit%> Admin Program page</title>
+        <% } %>
     <% } else { %>
-    <title>GOV.UK - <%=addOrEdit%> Admin Program page</title>
+        <% if(isCallFromEdit) { %>
+            <title>Admin progam <%= ssn.adminProgramDetails.apNumber %> - Manage UK subsidies - GOV.UK - <%=addOrEdit%> Admin Program page</title>
+        <% } else { %>
+            <title>Manage UK subsidies - GOV.UK - <%=addOrEdit%> Admin Program page</title>
+        <% } %>
     <% } %>
 
     <%- include('../partials/headercss.ejs') %>
