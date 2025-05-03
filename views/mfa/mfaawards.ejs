@@ -70,6 +70,8 @@
 
           <div class="govuk-grid-column-one-half">
             <form action="/mfaawards" method="get" novalidate>
+              <label for="filter-select" class="govuk-label"> Search </label> 
+
 
               <input class="govuk-input govuk-!-width-three-quarters" id="search-text" name="mfaAwardSearchName" type="text"
                 aria-describedby="subsidy_search_text" value="<%= ssn.MFA_Award_Search_Name_Global%>" />
@@ -80,47 +82,54 @@
             </form>
           </div>
 
-          <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
+         
+          <div class="govuk-grid-column-one-quarter  govuk-padding-0 " style="display: inline-block;">
+            <label for="filter-select" class="govuk-label"> Show awards by status </label> 
+
             <form class="govuk-!-width-full govuk-padding-0" action="/mfaawards" method="GET">
-              <select class="govuk-!-width-full govuk-select" name="status" aria-describedby="status-message"
-                aria-label="Drop down list that shows mfa award by status" id="filter-select" onchange="this.form.submit()">
-                <% if(mfaAwardStatus == "") { %>
-                <option value="" selected>Show all (<%= ssn.allMfaAwards %>)
-                </option>
-                <% } else { %>
-                <option value="">Show all (<%= ssn.allMfaAwards %>)</option>
-                <% }  %>
 
-                <% if(mfaAwardStatus == "Published") { %>
-                <option value="Published" selected>Published (<%= ssn.publishedMfaAwards %>)</option>
-                <% } else { %>
-                <option value="Published">Published (<%= ssn.publishedMfaAwards %>)</option>
-                <% }  %>
-
-                <% if(mfaAwardStatus == "Awaiting Approval") { %>
-                  <option value="Awaiting Approval" selected>Awaiting Approval (<%= ssn.awaitingMfaAwards %>)</option>
-                  <% } else { %>
-                  <option value="Awaiting Approval">Awaiting Approval (<%= ssn.awaitingMfaAwards %>)</option>
-                  <% }  %>
-
-                <% if(mfaAwardStatus == "Deleted") { %>
-                <option value="Deleted" selected>Deleted (<%= ssn.deletedMfaAwards %>)</option>
-                <% } else { %>
-                <option value="Deleted">Deleted (<%= ssn.deletedMfaAwards %>)</option>
-                <% }  %>
-
-                <% if(mfaAwardStatus == "Rejected") { %>
-                  <option value="Rejected" selected>Rejected (<%= ssn.rejectedMfaAwards %>)</option>
-                  <% } else { %>
-                  <option value="Rejected">Rejected (<%= ssn.rejectedMfaAwards %>)</option>
-                  <% }  %>
-              </select>
+                    <select class="govuk-select" name="status" aria-describedby="status-message"
+                     id="filter-select" onchange="this.form.submit()" >
+                   
+                    <% if(mfaAwardStatus == "") { %>
+                        <option value="" selected>Show all (<%= ssn.allMfaAwards %>)</option>
+                    <% } else { %>
+                        <option value="">Show all (<%= ssn.allMfaAwards %>)</option>
+                    <% } %>
+        
+                    <% if(mfaAwardStatus == "Published") { %>
+                        <option value="Published" selected>Published (<%= ssn.publishedMfaAwards %>)</option>
+                    <% } else { %>
+                        <option value="Published">Published (<%= ssn.publishedMfaAwards %>)</option>
+                    <% } %>
+        
+                    <% if(mfaAwardStatus == "Awaiting Approval") { %>
+                        <option value="Awaiting Approval" selected>Awaiting Approval (<%= ssn.awaitingMfaAwards %>)</option>
+                    <% } else { %>
+                        <option value="Awaiting Approval">Awaiting Approval (<%= ssn.awaitingMfaAwards %>)</option>
+                    <% } %>
+        
+                    <% if(mfaAwardStatus == "Deleted") { %>
+                        <option value="Deleted" selected>Deleted (<%= ssn.deletedMfaAwards %>)</option>
+                    <% } else { %>
+                        <option value="Deleted">Deleted (<%= ssn.deletedMfaAwards %>)</option>
+                    <% } %>
+        
+                    <% if(mfaAwardStatus == "Rejected") { %>
+                        <option value="Rejected" selected>Rejected (<%= ssn.rejectedMfaAwards %>)</option>
+                    <% } else { %>
+                        <option value="Rejected">Rejected (<%= ssn.rejectedMfaAwards %>)</option>
+                    <% } %>
+                </select>
             </form>
             <span id="status-message" style="display:none" aria-hidden="true">
-              On selecting, the page will reload and display MFA awards.</span>
-          </div>
+                On selecting, the page will reload and display MFA awards.
+            </span>
+        </div>
+      
+        
 
-          <div class="govuk-grid-column-one-half"><a href="/mfaawardadd" class="govuk-button"
+          <div class="govuk-grid-column-two-thirds"><a href="/mfaawardadd" class="govuk-button"
               data-module="govuk-button">
               Add a new MFA award
             </a>
@@ -129,11 +138,11 @@
             </a>
           </div>
           <% if(!noresult) { %>
-          <div class="govuk-grid-column-one-half govuk-display-flex govuk-form-group" style="float: right;">
-            <label class="govuk-grid-column-two-thirds">
+            <div class="govuk-grid-column-one-third govuk-form-group govuk-display-flex govuk-padding-0" style="text-align: right;">
+              <label class="govuk-grid-column-two-thirds">
               Results per page
             </label>
-            <div class="pagination pagination-style-modified govuk-padding-0 govuk-!-width-one-third"
+            <div class="pagination pagination-style-modified govuk-padding-0 govuk-!-width-one-half"
               style="display: inline;  margin: 0;">
               <% if( ssn.frontend_totalRecordsPerPage  == 10) { %>
               <a id="results-per-page-10" aria-label="10 records per page selected" class="round btn-page active"
