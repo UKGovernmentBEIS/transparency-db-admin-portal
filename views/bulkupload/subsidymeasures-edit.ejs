@@ -3,9 +3,9 @@
 
 <head>
     <% if(ssn.SubsidyArraySize > 0) { %>
-        <title>Error - GOV.UK - Edit Subsidy Schemes page</title>
+        <title>Scheme <%=ssn.scNumber_Global%> - Manage Uk subsidies - Error - GOV.UK - Edit Subsidy Schemes page</title>
     <% } else { %>
-        <title>GOV.UK - Edit Subsidy Schemes page</title>
+        <title>Scheme <%=ssn.scNumber_Global%> - Manage Uk subsidies - GOV.UK - Edit Subsidy Schemes page</title>
     <% } %>
     <%- include('../partials/headercss.ejs') %>
     <script>
