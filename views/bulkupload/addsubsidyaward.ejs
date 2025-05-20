@@ -559,7 +559,7 @@
             </p>
             <div class="govuk-form-group <% if( ssn.Admin_Program_Error ){ %> govuk-form-group--error <% } %> " id="AdminProgramContainer">
               <label class="govuk-label" for="address-line-1">
-                  Admin program number
+                  Admin program number 
               </label>
 
               <div id="Legal_Granting_Date-hint" class="govuk-hint">
@@ -666,7 +666,7 @@
             <div id="specific-policy-objective-container" <% if (ssn.Standalone_Award_Global == 'No') { %> hidden <% } %>>
               <div class="govuk-form-group <% if( ssn.Specific_Policy_Objective_Error || ssn.Specific_Policy_Objective_Error_Length){ %> govuk-form-group--error <% } %>" id="SpecificPolicyObjectiveContainer">   
                 <label class="govuk-label" for="Specific_Policy_Objective">
-                  Specific policy objective
+                  Specific policy objective <span class="govuk-hint">(optional)</span>
                 </label>
                 <details class="govuk-details" data-module="govuk-details">
                   <summary class="govuk-details__summary">
@@ -696,7 +696,7 @@
             <div id="subsidy-award-description-container">
               <div class="govuk-form-group <% if(ssn.Subsidy_Award_Description_Error || ssn.Subsidy_Award_Description_Error_Length) {%> govuk-form-group--error<% } %>">
                 <label class="govuk-label" for="Subsidy_Award_Description">
-                  Description of subsidy award
+                  Description of subsidy award <span class="govuk-hint">(optional)</span>
                 </label>
                 <details class="govuk-details" data-module="govuk-details">
                   <summary class="govuk-details__summary">
@@ -733,6 +733,7 @@
                 <label class="govuk-label" for="authority-url">
                   Public authority policy URL
                 </label>
+                
                 <details class="govuk-details" data-module="govuk-details">
                   <summary class="govuk-details__summary">
                       <span class="govuk-details__summary-text">
@@ -748,7 +749,7 @@
               </div>
               <div class="<%- ssn.Authority_URL_Description_Error ? 'govuk-form-group--error' : 'govuk-form-group' %>" id="authority-url-description-container">
                 <label class="govuk-label" for="authority-url-description">
-                  Public authority policy page description
+                  Public authority policy page description 
                 </label>
                 <details class="govuk-details" data-module="govuk-details">
                   <summary class="govuk-details__summary">
