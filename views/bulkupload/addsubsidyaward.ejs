@@ -696,7 +696,7 @@
             <div id="subsidy-award-description-container">
               <div class="govuk-form-group <% if(ssn.Subsidy_Award_Description_Error || ssn.Subsidy_Award_Description_Error_Length) {%> govuk-form-group--error<% } %>">
                 <label class="govuk-label" for="Subsidy_Award_Description">
-                  Description of subsidy award
+                  Description of subsidy award <span class="govuk-hint">(optional)</span>
                 </label>
                 <details class="govuk-details" data-module="govuk-details">
                   <summary class="govuk-details__summary">
@@ -731,7 +731,7 @@
             <div id="authority-url-and-description-container" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>>
               <div class="<%- ssn.Authority_URL_Error ? 'govuk-form-group--error' : 'govuk-form-group' %>" id="authority-url-container">
                 <label class="govuk-label" for="authority-url">
-                  Public authority policy URL
+                  Public authority policy URL <span class="govuk-hint">(optional)</span>
                 </label>
                 <details class="govuk-details" data-module="govuk-details">
                   <summary class="govuk-details__summary">
@@ -748,7 +748,7 @@
               </div>
               <div class="<%- ssn.Authority_URL_Description_Error ? 'govuk-form-group--error' : 'govuk-form-group' %>" id="authority-url-description-container">
                 <label class="govuk-label" for="authority-url-description">
-                  Public authority policy page description
+                  Public authority policy page description <span class="govuk-hint">(optional)</span>
                 </label>
                 <details class="govuk-details" data-module="govuk-details">
                   <summary class="govuk-details__summary">
