@@ -3,9 +3,17 @@
 
 <head>
   <% if(ssn.SubsidyArraySize > 0 ) { %>
-    <title>Error - GOV.UK - Add Subsidy Award page</title>
+    <% if(isCallfromEditAward) { %>
+      <title>Error - Award <%= ssn.Edit_Award_Number_global %> - Manage UK subsidies - GOV.UK - Edit Subsidy Award page</title>
+    <% } else { %>
+      <title>Error - Manage UK subsidies - GOV.UK - Add Subsidy Award page</title>
+    <% } %>
   <% } else { %>
-    <title>GOV.UK - Add Subsidy Award page</title>
+    <% if(isCallfromEditAward) { %>
+      <title>Award <%= ssn.Edit_Award_Number_global %> - Manage UK subsidies - GOV.UK - Edit Subsidy Award page</title>
+    <% } else { %>
+      <title>Manage UK subsidies - GOV.UK - Add Subsidy Award page</title>
+      <% } %>
   <% } %>
   <%- include('../partials/headercss.ejs') %>
 
