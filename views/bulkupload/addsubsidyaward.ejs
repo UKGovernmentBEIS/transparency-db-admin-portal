@@ -2109,14 +2109,14 @@
             <!-- **********************************  -->
             <div class="govuk-form-group <% if( ssn.Spending_Region_Error && !isAddSubsidyPrimarycall ) { %>govuk-form-group--error<% } %>">
               <label class="govuk-label" for="Spending_Regions" id="Spending_Region">
-                Region
+                Geographical Location
               </label>
               <div id="Spending_Region-hint" class="govuk-hint">
-                This is the region(s) where the subsidised economic activity takes place.
+                This is the geographical location(s) where the subsidised economic activity takes place.
               </div>
               <% if( ssn.Spending_Region_Error && !isAddSubsidyPrimarycall ) { %>
                 <span class="govuk-error-message" id="Spending_Region_Error">
-                  <span class="govuk-visually-hidden">Error:</span>You must select at least one region.
+                  <span class="govuk-visually-hidden">Error:</span>You must select at least one geographical location.
                 </span>
               <% } %>
 
