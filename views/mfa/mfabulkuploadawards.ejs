@@ -24,6 +24,13 @@
       }
     }
   </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('bulk-upload-form').addEventListener('submit', function(event) {
+        document.getElementById('upload-file-button').disabled = true;
+      });
+    });
+  </script>
 </head>
 
 <body class="govuk-template__body app-example-page"
@@ -145,7 +152,7 @@
 
               <% if( locals.isFileUploadEmpty || !locals.isExcelFormat){ %>
 
-              <form encType="multipart/form-data" action="/formvalidationmfa" method="post" novalidate="">
+              <form encType="multipart/form-data" action="/formvalidationmfa" method="post" novalidate="" id="bulk-upload-form">
 
                 <div tabindex="-1" class="govuk-error-summary" id="error-alert" role="alert"
                   aria-labelledby="error-summary-title" data-module="govuk-error-summary">
@@ -185,7 +192,7 @@
 
 
                 <button class="govuk-button" data-module="govuk-button" aria-label="Upload file"
-                  value="Upload file">Upload file </button>
+                  value="Upload file" id="bulk-upload-form">Upload file </button>
 
               </form>
 
@@ -218,7 +225,7 @@
 
 
                 <button class="govuk-button" data-module="govuk-button" aria-label="Upload file"
-                  value="Upload file">Upload file </button>
+                  value="Upload file" id="bulk-upload-form">Upload file </button>
 
               </form>
               <hr />
@@ -374,7 +381,7 @@
 
 
                 <button class="govuk-button" data-module="govuk-button" aria-label="Upload File"
-                  value="Upload file">Upload file </button>
+                  value="Upload file" id="bulk-upload-form">Upload file </button>
 
                 <% } %>
 
