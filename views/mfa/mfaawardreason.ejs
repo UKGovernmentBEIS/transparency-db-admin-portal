@@ -56,7 +56,7 @@
                 <div class="govuk-grid-column-two-thirds-from-desktop">
                     <h1 class="govuk-heading-xl">Add comments</h1>
                     <form action="/mfaawardreasonsubmit" method="POST">
-
+                        <input type="hidden" name="awardnumber" value="<%= awardnumber %>">
                         <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="1000">
                             <div class="govuk-form-group">
                                 <% if(Award_status == 'Reject') {%>

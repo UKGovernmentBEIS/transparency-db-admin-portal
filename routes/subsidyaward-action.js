@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
     res.set("X-Content-Type-Options", "nosniff");
     res.set("Content-Security-Policy", 'frame-ancestors "self"');
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-    var { Award_status } = req.body;
+    var { Award_status,awardnumber } = req.body;
 
     console.log("awardnumber : " + awardnumber);
     console.log("Award_status : " + Award_status);

@@ -91,11 +91,12 @@ router.post("/", async (req, res) => {
         if (button_value == "Rejected") Award_status = "Reject";
         else Award_status = "Delete";
         Award_status_lower = Award_status.toLowerCase();
-        awardnumber = ssn.mfaAwardDetails.mfaAwardNumber;
+        const awardnumber = req.body.awardnumber;
         res.render("mfa/mfaawarddeletereject", {
           ssn,
           Award_status,
           Award_status_lower,
+          awardnumber
         });
       }else{
 

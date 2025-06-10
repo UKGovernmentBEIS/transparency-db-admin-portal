@@ -285,7 +285,7 @@
                         Back to subsidy schemes
                     </button>
                     <% if(ssn.dashboard_roles != 'Granting Authority Encoder' && ssn.searchmeasuredetails.status == 'Active' && ssn.searchmeasuredetails.canEdit) { %>
-                    <a class="govuk-button  govuk-button--warning" href="/deactivatescheme?action=Deactivate" data-module="govuk-button">
+                    <a class="govuk-button  govuk-button--warning" href="/deactivatescheme?action=Deactivate&scheme=<%= ssn.searchmeasuredetails.scNumber %>" data-module="govuk-button">
                         Deactivate
                     </a>
                     <a class="govuk-button govuk-button--secondary"
@@ -296,7 +296,7 @@
                     <% } %>
 
                     <% if (ssn.dashboard_roles == "BEIS Administrator" && ssn.searchmeasuredetails.status != 'Deleted') { %>
-                        <a class="govuk-button govuk-button--warning" href="/deactivatescheme?action=Delete" data-module="govuk-button" style="float:right">
+                        <a class="govuk-button govuk-button--warning" href="/deactivatescheme?action=Delete&scheme=<%= ssn.searchmeasuredetails.scNumber %>" data-module="govuk-button" style="float:right">
                             Delete
                         </a>
                     <% } %>
