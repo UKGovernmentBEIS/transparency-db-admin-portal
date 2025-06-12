@@ -2,13 +2,14 @@
 <html lang="en">
 
 <head>
-    <title>GOV.UK - Deactivate <%=ssn.searchmeasuredetails.subsidyMeasureTitle%> page</title>
+    <title>GOV.UK - Deactivate <%=scheme%> page</title>
     <%- include('../partials/headercss.ejs') %>
         <script src="assets/javascripts/jquery.min.js"></script>
         <script src="/assets/javascripts/all.js"></script>
         <script>
             var action = '<%=action%>';
             var charLimit = 1000;
+
             $(document).ready(function () {
                 $('#action-button').text(action + " subsidy scheme");
                 
@@ -60,8 +61,8 @@
                                 </li>
                                 <li class="govuk-breadcrumbs__list-item">
                                     <a class="govuk-breadcrumbs__link" aria-current="page"
-                                        href="editreviewsubsidymeasure?scheme=<%=scNumber_Global%>">
-                                        <%= ssn.searchmeasuredetails.subsidyMeasureTitle%>
+                                        href="editreviewsubsidymeasure?scheme=<%=scheme%>">
+                                        <%= scheme%>
                                     </a>
                                 </li>
                                 <li class="govuk-breadcrumbs__list-item">
@@ -88,7 +89,7 @@
                                 <a onclick="acceptConfirmation(event)" class="govuk-button govuk-button--secondary">
                                     Yes, delete subsidy scheme
                                 </a>
-                                <a href="/editreviewsubsidymeasure?scheme=<%=scNumber_Global%>"
+                                <a href="/editreviewsubsidymeasure?scheme=<%=scheme%>"
                                     class="govuk-button govuk-button_sm govuk-button--secondary"
                                     data-module="govuk-button">
                                     Cancel
@@ -107,7 +108,7 @@
                                     <a onclick="acceptConfirmation(event)" class="govuk-button govuk-button--secondary">
                                         Yes, deactivate subsidy scheme
                                     </a>
-                                    <a href="/editreviewsubsidymeasure?scheme=<%=scNumber_Global%>"
+                                    <a href="/editreviewsubsidymeasure?scheme=<%=scheme%>"
                                         class="govuk-button govuk-button_sm govuk-button--secondary"
                                         data-module="govuk-button">
                                         Cancel
@@ -132,6 +133,7 @@
                                                 <% } %>
                                                 <form method="POST" action="/successfullydeactivatescheme"
                                                     id="rejection-form">
+                                                    <input type="hidden" name="scheme" value="<%= scheme %>">
 
                                                     <div class="govuk-character-count"
                                                         data-module="govuk-character-count"

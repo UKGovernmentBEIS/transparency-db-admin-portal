@@ -11,6 +11,8 @@ var request = require("request");
 
 router.post("/", async (req, res) => {
   ssn = req.session;
+  var {action,reason,scheme}=req.body;
+  
   if (
     typeof ssn.dashboard_roles_object_id1 === "undefined" ||
     typeof ssn.dashboard_roles_object_id2 === "undefined"
@@ -32,20 +34,27 @@ router.post("/", async (req, res) => {
       }
     }
     
-    if(typeof req.body.reason === 'undefined')
+    if(typeof reason === 'undefined')
     {      
-      res.redirect("/deactivatescheme?action=" + action + "&error=True");
+      res.redirect("/deactivatescheme?action=" +  action + "&scheme=" +scheme + "&error=True");
       return;
     }
 
-    reason = req.body.reason;
     reason = reason.trim();
     if(reason.length > 1000 || reason.length <= 0)
     {        
-      res.redirect("/deactivatescheme?action=" + action +"&error=True");
+      res.redirect("/deactivatescheme?action=" +  action + "&scheme=" +scheme + "&error=True");
       return;
     }
     
+    
+    if(scheme === 'undefined')
+      {      
+        res.redirect("bulkupload/notAvailable");
+        return;
+      }
+  
+      scheme = scheme.trim();
 
 
     res.set("X-Frame-Options", "DENY");
@@ -55,9 +64,9 @@ router.post("/", async (req, res) => {
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
     try {
-      console.log("scNumber_Global", scNumber_Global);
+      console.log("scNumber_Global", scheme);
       const deleteUser = await axios.put(
-        beis_url_searchscheme + `/scheme/update/${scNumber_Global}`,
+        beis_url_searchscheme + `/scheme/update/${scheme}`,
         {
           status: schemeStatus,
           reason: reason
@@ -69,12 +78,12 @@ router.post("/", async (req, res) => {
 
       if (schemeStatus == "Deleted"){
         const deleteAwards = await axios.put(
-          beis_url_publishing + `/award/deletescheme/${scNumber_Global}`, {}, ssn.UserPrincileObjectGlobal
+          beis_url_publishing + `/award/deletescheme/${scheme}`, {}, ssn.UserPrincileObjectGlobal
         );
       }
 
       res.render(render, {
-        scNumber_Global,
+        scheme,
       });
     } catch (err) {
       const status = err.response.status;

@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
     if(req.query.hasOwnProperty("action"))
     {
-      action = req.query.action;
+      var { action,scheme }=req.query;
       if(action === 'Delete')
       {    
         if (ssn.dashboard_roles != "BEIS Administrator") {
@@ -41,7 +41,7 @@ router.get("/", async (req, res) => {
 
     charLimit = 1000;
     
-    res.render("bulkupload/subsidymeasure-deactivate", {action, charLimit});
+    res.render("bulkupload/subsidymeasure-deactivate", {scheme, action, charLimit});
   }
 });
 
