@@ -55,6 +55,7 @@ router.get("/", (req, res) => {
     ssn.Authority_URL_Global = "";
     ssn.Authority_URL_Description_Global = "";
     ssn.SPEI_Global = "";
+    ssn.Legal_Basis_Global="";
 
     ssn.Scheme_purpose_Json_Global = "";
     ssn.objective_Array_Global = new Array();
@@ -109,6 +110,7 @@ router.get("/", (req, res) => {
     ssn.Authority_URL_Description_Error = false;
     ssn.Subsidy_Award_Interest_Error = false;
     ssn.SPEI_Error = false;
+    ssn.Legal_Basis_Error=false;
 
     isCallfromEditAward = false;
     var isAddSubsidyPrimarycall = true;

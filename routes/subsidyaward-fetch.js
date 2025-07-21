@@ -47,6 +47,7 @@ router.get("/", async (req, res) => {
 
       Get_Award_Status = fetchawarddetails.status;
     console.log("Get_Award_Status", Get_Award_Status);
+    console.log("HAJRA", fetchawarddetails.legalBasis);
 
       var objectiveArray = new Array();
       if(fetchawarddetails.subsidyObjective != null){
