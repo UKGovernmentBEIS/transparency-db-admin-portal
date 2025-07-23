@@ -66,7 +66,7 @@ router.post("/", async (req, res) => {
     ssn.Subsidy_Award_Description_Error_Length = false;
     ssn.Specific_Policy_Objective_Error = false;
     ssn.Specific_Policy_Objective_Error_Length = false;
-
+   
 
     ssn.Admin_Program_Error = false;
     ssn.Admin_Program_255_Error = false;
@@ -75,6 +75,8 @@ router.post("/", async (req, res) => {
     ssn.Admin_Program_Match_Error = false;
     ssn.Subsidy_Award_Interest_Error = false;
     ssn.SPEI_Error = false;
+    ssn.Legal_Basis_Error = false;
+    ssn.Legal_Basis_Error_Length=false;
     objective_culture_Global = "";
     objective_employment_Global = "";
     objective_energy_efficiency_Global = "";
@@ -126,6 +128,7 @@ router.post("/", async (req, res) => {
       mylink,
       Subsidy_Award_Interest,
       SPEI,
+      Legal_Basis,
       ...formVars
     } = req.body;
 
@@ -204,10 +207,12 @@ router.post("/", async (req, res) => {
     ssn.Spending_Sector_Global = Spending_Sector;
     ssn.Subsidy_Award_Interest_Global = Subsidy_Award_Interest;
     ssn.SPEI_Global = SPEI;
+    ssn.Legal_Basis_Global = Legal_Basis;
 
     console.log("Subsidy_Objective_Other", Subsidy_Objective_Other.length);
     console.log("Subsidy_Instrument_Other", Subsidy_Instrument_Other);
     console.log("Beneficiary_Name", Beneficiary_Name);
+    console.log("ssn.Legal_Basis:" + ssn.Legal_Basis_Global);
     console.log("ssn.Subsidy_Award_Interest :" + ssn.Subsidy_Award_Interest_Global)
     console.log("ssn.SPEI :" + ssn.SPEI_Global)
     console.log("buttonvalue", buttonvalue);
@@ -371,6 +376,23 @@ router.post("/", async (req, res) => {
           ssn.SubsidyFocus[Additem] = "#subsidy-award-description-container";
           Additem = Additem + 1;
       }
+
+      if(Legal_Basis.length > 5000){
+        ssn.Legal_Basis_Error_Length = true;
+        ssn.SubsidyErrors[Additem] =
+          "The legal basis must be 5000 characters or less.";
+        ssn.SubsidyFocus[Additem] = "#legal-basis-container";
+        Additem = Additem + 1;
+    }
+
+    if(Legal_Basis.length <= 0){
+      ssn.Legal_Basis_Error = true;
+      ssn.SubsidyErrors[Additem] =
+        "You must enter the legal basis.";
+      ssn.SubsidyFocus[Additem] = "#legal-basis-container";
+      Additem = Additem + 1;
+  }
+
 
 
       if(Specific_Policy_Objective.length > 1500){
@@ -677,6 +699,8 @@ router.post("/", async (req, res) => {
         ssn.Subsidy_Award_Interest_Error ||
         ssn.Specific_Policy_Objective_Error_Length ||
         ssn.Specific_Policy_Objective_Error ||
+        ssn.Legal_Basis_Error ||
+        ssn.Legal_Basis_Error_Length ||
         ssn.SPEI_Error
       ) {
         res.render("bulkupload/addsubsidyaward", {
