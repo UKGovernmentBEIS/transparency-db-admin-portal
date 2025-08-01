@@ -601,6 +601,16 @@
 
           <div id="subsidy-award-details">
             <h1 class="govuk-heading-l">Subsidy award details</h1>
+
+            <div id="standalone-award-title-container" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>> 
+              <div class="govuk-form-group <% if( ssn.Standalone_Award_Title_Error ){ %> govuk-form-group--error <% } %>" id="SubsidyAwardTitleContainer">   
+                <label class="govuk-label" for="Standalone_Award_Title">
+                  Standalone Award Title
+                </label>
+                <input id="authority_url" class="govuk-input" name="Standalone_Award_Title" maxlength="255" value="<%=ssn.Standalone_Award_Title_Global%>"/>
+              </div>
+            </div>
+          
             <div id="standalone-award-interest-container" class="standalone-only" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>> 
               <div class="govuk-form-group <% if( ssn.Subsidy_Award_Interest_Error ){ %> govuk-form-group--error <% } %>" id="SubsidyAwardInterestContainer">   
                 <label class="govuk-label" for="Subsidy_Award_Interest">
