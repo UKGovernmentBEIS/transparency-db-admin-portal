@@ -72,7 +72,8 @@ router.post("/", async (req, res) => {
     ssn.Specific_Policy_Objective_Error_Length = false;
     ssn.SPEI_Error = false;
     ssn.Legal_Basis_Error = false;
-    ssn.Legal_Basis_Error_Length=false;
+    ssn.Legal_Basis_Error_Length = false;
+    ssn.Standalone_Award_Title_Error = false;
 
     console.log(
       "ssn.Subsidy_Full_Amount_Range_Global ",
@@ -143,7 +144,8 @@ router.post("/", async (req, res) => {
       authorityURLDescription: ssn.Authority_URL_Description_Global.trim(),
       subsidyAwardInterest: ssn.Subsidy_Award_Interest_Global.trim(),
       spei: ssn.SPEI_Global.trim(),
-      legalBasis: ssn.Legal_Basis_Global.trim()
+      legalBasis: ssn.Legal_Basis_Global.trim(),
+      standaloneAwardTitle: ssn.Standalone_Award_Title_Global.trim(),
     };
 
     if (isCallfromEditAward) {
@@ -178,7 +180,8 @@ router.post("/", async (req, res) => {
         subsidyAwardInterest: ssn.Subsidy_Award_Interest_Global.trim(),
         status: status,
         spei: ssn.SPEI_Global.trim(),
-        legalBasis: ssn.Legal_Basis_Global.trim()
+        legalBasis: ssn.Legal_Basis_Global.trim(),
+        standaloneAwardTitle: ssn.Standalone_Award_Title_Global.trim(),
       };
 
       var data = JSON.parse(JSON.stringify(updateAwardRequest));
