@@ -251,56 +251,56 @@
                     </div>
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Award_Confirmation_Day_Error || ssn.MFA_Award_Confirmation_Month_Error || ssn.MFA_Award_Confirmation_Year_Error ){ %> govuk-form-group--error <% } %> ">
-                        <label class="govuk-label" for="address-line-1" id="confirmationDateLabel">
-                            Confirmation Date
-                        </label>
-                        <div class="govuk-hint">
+                        <fieldset class="govuk-fieldset" role="group" aria-describedby="confirmation-date-hint">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"> Confirmation Date </legend>
+                            <div id="confirmation-date-hint" class="govuk-hint">
                             For example, 25 5 2022
-                        </div>
-                        <details class="govuk-details" data-module="govuk-details">
-                            <summary class="govuk-details__summary">
-                                <span class="govuk-details__summary-text">
-                                    What is confirmation date?
-                                </span>
-                            </summary>
-                            <div class="govuk-details__text">
-                                Confirmation date is the date that a public authority confirms the decision to make an award.
                             </div>
-                        </details>
-                        <% if( ssn.MFA_Award_Confirmation_Day_Error || ssn.MFA_Award_Confirmation_Month_Error || ssn.MFA_Award_Confirmation_Year_Error){ %>
-                        <span class="govuk-error-message" id="Date_Error">
-                            <span class="govuk-visually-hidden">Error:</span>
-                            Enter a valid date
-                        </span>
-                        <% }  %>
+                            <details class="govuk-details" data-module="govuk-details">
+                                <summary class="govuk-details__summary">
+                                    <span class="govuk-details__summary-text">
+                                        What is confirmation date?
+                                    </span>
+                                </summary>
+                                <div class="govuk-details__text">
+                                    Confirmation date is the date that a public authority confirms the decision to make an award.
+                                </div>
+                            </details>
+                            <% if( ssn.MFA_Award_Confirmation_Day_Error || ssn.MFA_Award_Confirmation_Month_Error || ssn.MFA_Award_Confirmation_Year_Error){ %>
+                            <span class="govuk-error-message" id="Date_Error">
+                                <span class="govuk-visually-hidden">Error:</span>
+                                Enter a valid date
+                            </span>
+                            <% }  %>
 
-                        <div class="govuk-date-input" id="mfa-award-issued">
-                            <div class="govuk-date-input__item">
-                                <div class="govuk-form-group">
-                                    <label class="govuk-label govuk-date-input__label" for="mfa_award_confirmation_day">
-                                        Day
-                                    </label>
-                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="mfa_award_confirmation_day" name="mfa_award_confirmation_day" type="text" placeholder="DD" pattern="[0-9]*" inputmode="numeric" value="<%= ssn.MFA_Award_Confirmation_Day_Global%>">
+                            <div class="govuk-date-input" id="mfa-award-issued">
+                                <div class="govuk-date-input__item">
+                                    <div class="govuk-form-group">
+                                        <label class="govuk-label govuk-date-input__label" for="mfa_award_confirmation_day">
+                                            Day
+                                        </label>
+                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="mfa_award_confirmation_day" name="mfa_award_confirmation_day" type="text" placeholder="DD" pattern="[0-9]*" inputmode="numeric" value="<%= ssn.MFA_Award_Confirmation_Day_Global%>">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="govuk-date-input__item">
-                                <div class="govuk-form-group">
-                                    <label class="govuk-label govuk-date-input__label" for="mfa_award_confirmation_month">
-                                        Month
-                                    </label>
+                                <div class="govuk-date-input__item">
+                                    <div class="govuk-form-group">
+                                        <label class="govuk-label govuk-date-input__label" for="mfa_award_confirmation_month">
+                                            Month
+                                        </label>
 
-                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="mfa_award_confirmation_month" value="<%= ssn.MFA_Award_Confirmation_Month_Global%>" name="mfa_award_confirmation_month" placeholder="MM" type="text" pattern="[0-9]*" inputmode="numeric">
+                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="mfa_award_confirmation_month" value="<%= ssn.MFA_Award_Confirmation_Month_Global%>" name="mfa_award_confirmation_month" placeholder="MM" type="text" pattern="[0-9]*" inputmode="numeric">
+                                    </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                    <div class="govuk-form-group">
+                                        <label class="govuk-label govuk-date-input__label" for="mfa_award_confirmation_year">
+                                            Year
+                                        </label>
+                                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="mfa_award_confirmation_year" name="mfa_award_confirmation_year" type="text" pattern="[0-9]{4}" title="Use YYYY format" inputmode="numeric" value="<%= ssn.MFA_Award_Confirmation_Year_Global%>" placeholder="YYYY">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="govuk-date-input__item">
-                                <div class="govuk-form-group">
-                                    <label class="govuk-label govuk-date-input__label" for="mfa_award_confirmation_year">
-                                        Year
-                                    </label>
-                                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="mfa_award_confirmation_year" name="mfa_award_confirmation_year" type="text" pattern="[0-9]{4}" title="Use YYYY format" inputmode="numeric" value="<%= ssn.MFA_Award_Confirmation_Year_Global%>" placeholder="YYYY">
-                                </div>
-                            </div>
-                        </div>
+                        </fieldset>
                     </div>
 
                     <% if( ssn.Granting_Authority_Name_Error || ssn.Granting_Authority_Name_Inactive_Error || ssn.Granting_Authority_Multiple_Error || ssn.Granting_Authority_Exists_Error) { %>
