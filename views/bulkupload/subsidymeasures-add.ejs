@@ -579,76 +579,76 @@
                                                     <% } else { %>
                                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                         <% }  %>
-                                                        <fieldset class="govuk-fieldset" role="group" aria-describedby="confirmation-date-hint">
-                                                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"> Confirmation Date </legend>
-                                                            <div id="confirmation-date-hint" class="govuk-hint">
-                                                                For example, 25 5 2022
+                                                        <label class="govuk-label" for="address-line-1" id="confirmationDateLabel">
+                                                            Confirmation Date
+                                                        </label>
+                                                        <div class="govuk-hint">
+                                                            For example, 25 5 2022
+                                                        </div>
+                                                        <details class="govuk-details" data-module="govuk-details">
+                                                            <summary class="govuk-details__summary">
+                                                                <span class="govuk-details__summary-text">
+                                                                    What is confirmation date?
+                                                                </span>
+                                                            </summary>
+                                                            <div class="govuk-details__text">
+                                                                Confirmation date is the date that a public authority confirms the decision to make a subsidy scheme.
                                                             </div>
-                                                            <details class="govuk-details" data-module="govuk-details">
-                                                                <summary class="govuk-details__summary">
-                                                                    <span class="govuk-details__summary-text">
-                                                                        What is confirmation date?
-                                                                    </span>
-                                                                </summary>
-                                                                <div class="govuk-details__text">
-                                                                    Confirmation date is the date that a public authority confirms the decision to make a subsidy scheme.
-                                                                </div>
-                                                            </details>
-                                                            <% if( ssn.scheme_issued_confirmation_day_Error || ssn.scheme_issued_confirmation_month_Error || ssn.scheme_issued_confirmation_year_Error){ %>
-                                                            <span class="govuk-error-message" id="Date_Error">
-                                                                <span class="govuk-visually-hidden">Error:</span>
-                                                                Enter a valid date
-                                                            </span>
-                                                            <% }  %>
+                                                        </details>
+                                                        <% if( ssn.scheme_issued_confirmation_day_Error || ssn.scheme_issued_confirmation_month_Error || ssn.scheme_issued_confirmation_year_Error){ %>
+                                                        <span class="govuk-error-message" id="Date_Error">
+                                                            <span class="govuk-visually-hidden">Error:</span>
+                                                            Enter a valid date
+                                                        </span>
+                                                        <% }  %>
 
 
-                                                            <div class="govuk-date-input" id="scheme-issued-confirmation">
-                                                                <div class="govuk-date-input__item">
-                                                                    <div class="govuk-form-group">
-                                                                        <label class="govuk-label govuk-date-input__label"
-                                                                            for="scheme_issued_confirmation_day">
-                                                                            Day
-                                                                        </label>
-                                                                        <input
-                                                                            class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                                                            id="scheme_issued_confirmation_day"
-                                                                            name="scheme_issued_confirmation_day" type="text"
-                                                                            placeholder="DD" pattern="[0-9]*"
-                                                                            inputmode="numeric"
-                                                                            value="<%= ssn.Scheme_Confirmation_Day_Global%>">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="govuk-date-input__item">
-                                                                    <div class="govuk-form-group">
-                                                                        <label class="govuk-label govuk-date-input__label"
-                                                                            for="scheme_issued_confirmation_month">
-                                                                            Month
-                                                                        </label>
-
-                                                                        <input
-                                                                            class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                                                            id="scheme_issued_confirmation_month"
-                                                                            value="<%= ssn.Scheme_Confirmation_Month_Global%>"
-                                                                            name="scheme_issued_confirmation_month" placeholder="MM"
-                                                                            type="text" pattern="[0-9]*" inputmode="numeric">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="govuk-date-input__item">
-                                                                    <div class="govuk-form-group">
-                                                                        <label class="govuk-label govuk-date-input__label"
-                                                                            for="scheme_issued_confirmation_year">
-                                                                            Year
-                                                                        </label>
-                                                                        <input
-                                                                            class="govuk-input govuk-date-input__input govuk-input--width-4"
-                                                                            id="scheme_issued_confirmation_year"
-                                                                            name="scheme_issued_confirmation_year" type="text"
-                                                                            pattern="[0-9]*" inputmode="numeric"
-                                                                            value="<%= ssn.Scheme_Confirmation_Year_Global%>"
-                                                                            placeholder="YYYY"></div>
+                                                        <div class="govuk-date-input" id="scheme-issued-confirmation">
+                                                            <div class="govuk-date-input__item">
+                                                                <div class="govuk-form-group">
+                                                                    <label class="govuk-label govuk-date-input__label"
+                                                                        for="scheme_issued_confirmation_day">
+                                                                        Day
+                                                                    </label>
+                                                                    <input
+                                                                        class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                                        id="scheme_issued_confirmation_day"
+                                                                        name="scheme_issued_confirmation_day" type="text"
+                                                                        placeholder="DD" pattern="[0-9]*"
+                                                                        inputmode="numeric"
+                                                                        value="<%= ssn.Scheme_Confirmation_Day_Global%>">
                                                                 </div>
                                                             </div>
-                                                        </fieldset>
+                                                            <div class="govuk-date-input__item">
+                                                                <div class="govuk-form-group">
+                                                                    <label class="govuk-label govuk-date-input__label"
+                                                                        for="scheme_issued_confirmation_month">
+                                                                        Month
+                                                                    </label>
+
+                                                                    <input
+                                                                        class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                                        id="scheme_issued_confirmation_month"
+                                                                        value="<%= ssn.Scheme_Confirmation_Month_Global%>"
+                                                                        name="scheme_issued_confirmation_month" placeholder="MM"
+                                                                        type="text" pattern="[0-9]*" inputmode="numeric">
+                                                                </div>
+                                                            </div>
+                                                            <div class="govuk-date-input__item">
+                                                                <div class="govuk-form-group">
+                                                                    <label class="govuk-label govuk-date-input__label"
+                                                                        for="scheme_issued_confirmation_year">
+                                                                        Year
+                                                                    </label>
+                                                                    <input
+                                                                        class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                                                        id="scheme_issued_confirmation_year"
+                                                                        name="scheme_issued_confirmation_year" type="text"
+                                                                        pattern="[0-9]*" inputmode="numeric"
+                                                                        value="<%= ssn.Scheme_Confirmation_Year_Global%>"
+                                                                        placeholder="YYYY"></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                             <% if( ssn.scheme_issued_start_day_Error || ssn.scheme_issued_start_month_Error || ssn.scheme_issued_start_year_Error ){ %>
@@ -657,72 +657,70 @@
                                                 <% } else { %>
                                                 <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                     <% }  %>
-                                                    <fieldset class="govuk-fieldset" role="group" aria-describedby="start-date-hint">
-                                                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"> 
-                                                            <% if(ssn.Subsidy_Adhoc_Global == 'Yes') { %>
-                                                            Date
-                                                            <%} else {%>
-                                                            Start Date
-                                                            <% }  %>
-                                                        </legend>
-                                                        <div id="start-date-hint" class="govuk-hint">
-                                                        For example, 25 3 2020
-                                                        </div>
-                                                        <% if( ssn.scheme_issued_start_day_Error || ssn.scheme_issued_start_month_Error || ssn.scheme_issued_start_year_Error){ %>
-                                                        <span class="govuk-error-message" id="Date_Error">
-                                                            <span class="govuk-visually-hidden">Error:</span>
-                                                            Enter a valid date
-                                                        </span>
+                                                    <label class="govuk-label" for="address-line-1" id="startDateLabel">
+                                                        <% if(ssn.Subsidy_Adhoc_Global == 'Yes') { %>
+                                                        Date
+                                                        <%} else {%>
+                                                        Start Date
                                                         <% }  %>
+                                                    </label>
+                                                    <div class="govuk-hint">
+                                                        For example, 25 3 2020
+                                                    </div>
+                                                    <% if( ssn.scheme_issued_start_day_Error || ssn.scheme_issued_start_month_Error || ssn.scheme_issued_start_year_Error){ %>
+                                                    <span class="govuk-error-message" id="Date_Error">
+                                                        <span class="govuk-visually-hidden">Error:</span>
+                                                        Enter a valid date
+                                                    </span>
+                                                    <% }  %>
 
 
-                                                        <div class="govuk-date-input" id="scheme-issued-start">
-                                                            <div class="govuk-date-input__item">
-                                                                <div class="govuk-form-group">
-                                                                    <label class="govuk-label govuk-date-input__label"
-                                                                        for="scheme_issued_start_day">
-                                                                        Day
-                                                                    </label>
-                                                                    <input
-                                                                        class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                                                        id="scheme_issued_start_day"
-                                                                        name="scheme_issued_start_day" type="text"
-                                                                        placeholder="DD" pattern="[0-9]*"
-                                                                        inputmode="numeric"
-                                                                        value="<%= ssn.Scheme_Start_Day_Global%>">
-                                                                </div>
-                                                            </div>
-                                                            <div class="govuk-date-input__item">
-                                                                <div class="govuk-form-group">
-                                                                    <label class="govuk-label govuk-date-input__label"
-                                                                        for="scheme_issued_start_month">
-                                                                        Month
-                                                                    </label>
-
-                                                                    <input
-                                                                        class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                                                        id="scheme_issued_start_month"
-                                                                        value="<%= ssn.Scheme_Start_Month_Global%>"
-                                                                        name="scheme_issued_start_month" placeholder="MM"
-                                                                        type="text" pattern="[0-9]*" inputmode="numeric">
-                                                                </div>
-                                                            </div>
-                                                            <div class="govuk-date-input__item">
-                                                                <div class="govuk-form-group">
-                                                                    <label class="govuk-label govuk-date-input__label"
-                                                                        for="scheme_issued_start_year">
-                                                                        Year
-                                                                    </label>
-                                                                    <input
-                                                                        class="govuk-input govuk-date-input__input govuk-input--width-4"
-                                                                        id="scheme_issued_start_year"
-                                                                        name="scheme_issued_start_year" type="text"
-                                                                        pattern="[0-9]*" inputmode="numeric"
-                                                                        value="<%= ssn.Scheme_Start_Year_Global%>"
-                                                                        placeholder="YYYY"></div>
+                                                    <div class="govuk-date-input" id="scheme-issued-start">
+                                                        <div class="govuk-date-input__item">
+                                                            <div class="govuk-form-group">
+                                                                <label class="govuk-label govuk-date-input__label"
+                                                                    for="scheme_issued_start_day">
+                                                                    Day
+                                                                </label>
+                                                                <input
+                                                                    class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                                    id="scheme_issued_start_day"
+                                                                    name="scheme_issued_start_day" type="text"
+                                                                    placeholder="DD" pattern="[0-9]*"
+                                                                    inputmode="numeric"
+                                                                    value="<%= ssn.Scheme_Start_Day_Global%>">
                                                             </div>
                                                         </div>
-                                                    </fieldset>                                                   
+                                                        <div class="govuk-date-input__item">
+                                                            <div class="govuk-form-group">
+                                                                <label class="govuk-label govuk-date-input__label"
+                                                                    for="scheme_issued_start_month">
+                                                                    Month
+                                                                </label>
+
+                                                                <input
+                                                                    class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                                    id="scheme_issued_start_month"
+                                                                    value="<%= ssn.Scheme_Start_Month_Global%>"
+                                                                    name="scheme_issued_start_month" placeholder="MM"
+                                                                    type="text" pattern="[0-9]*" inputmode="numeric">
+                                                            </div>
+                                                        </div>
+                                                        <div class="govuk-date-input__item">
+                                                            <div class="govuk-form-group">
+                                                                <label class="govuk-label govuk-date-input__label"
+                                                                    for="scheme_issued_start_year">
+                                                                    Year
+                                                                </label>
+                                                                <input
+                                                                    class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                                                    id="scheme_issued_start_year"
+                                                                    name="scheme_issued_start_year" type="text"
+                                                                    pattern="[0-9]*" inputmode="numeric"
+                                                                    value="<%= ssn.Scheme_Start_Year_Global%>"
+                                                                    placeholder="YYYY"></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                                 <% if( ssn.scheme_issued_end_day_lesser_Error || ssn.scheme_issued_end_day_Error || ssn.scheme_issued_end_month_Error || ssn.scheme_issued_end_year_Error ){ %>
@@ -732,84 +730,83 @@
                                                     <div class="govuk-form-group govuk-grid-column-two-thirds"
                                                         id="endDateDiv">
                                                         <% }  %>
-                                                        <fieldset class="govuk-fieldset" role="group" aria-describedby="end-date-hint">
-                                                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"> End Date </legend>
-                                                            <div id="end-date-hint" class="govuk-hint">
+                                                        <label class="govuk-label" for="address-line-1">
+                                                            End Date
+                                                        </label>
+                                                        <div class="govuk-hint">
                                                             For example, 25 11 2021
-                                                            </div>
-                                                            <% if( ssn.scheme_issued_end_day_Error  || ssn.scheme_issued_end_month_Error || ssn.scheme_issued_end_year_Error){ %>
-                                                            <span class="govuk-error-message" id="EndDate_Error">
-                                                                <span class="govuk-visually-hidden">Error:</span>
-                                                                Enter a valid date
-                                                            </span>
-                                                            <% } else if(ssn.scheme_issued_end_day_lesser_Error) {%>
-                                                            <span class="govuk-error-message" id="EndDate_Error">
-                                                                <span class="govuk-visually-hidden">Error:</span>
-                                                                End date should be later than start date
-                                                            </span>
-                                                            <% } %>
-                                                            <div class="govuk-date-input" id="scheme-issued-end">
-                                                                <div class="govuk-date-input__item">
-                                                                    <div class="govuk-form-group">
-                                                                        <label class="govuk-label govuk-date-input__label"
-                                                                            for="scheme_issued_end_day">
-                                                                            Day
-                                                                        </label>
+                                                        </div>
+                                                        <% if( ssn.scheme_issued_end_day_Error  || ssn.scheme_issued_end_month_Error || ssn.scheme_issued_end_year_Error){ %>
+                                                        <span class="govuk-error-message" id="EndDate_Error">
+                                                            <span class="govuk-visually-hidden">Error:</span>
+                                                            Enter a valid date
+                                                        </span>
+                                                        <% } else if(ssn.scheme_issued_end_day_lesser_Error) {%>
+                                                        <span class="govuk-error-message" id="EndDate_Error">
+                                                            <span class="govuk-visually-hidden">Error:</span>
+                                                            End date should be later than start date
+                                                        </span>
+                                                        <% } %>
+                                                        <div class="govuk-date-input" id="scheme-issued-end">
+                                                            <div class="govuk-date-input__item">
+                                                                <div class="govuk-form-group">
+                                                                    <label class="govuk-label govuk-date-input__label"
+                                                                        for="scheme_issued_end_day">
+                                                                        Day
+                                                                    </label>
 
-                                                                        <input
-                                                                            class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                                                            id="scheme_issued_end_day"
-                                                                            value="<%= ssn.Scheme_End_Day_Global%>"
-                                                                            name="scheme_issued_end_day" type="text"
-                                                                            placeholder="DD" pattern="[0-9]*"
-                                                                            inputmode="numeric">
+                                                                    <input
+                                                                        class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                                        id="scheme_issued_end_day"
+                                                                        value="<%= ssn.Scheme_End_Day_Global%>"
+                                                                        name="scheme_issued_end_day" type="text"
+                                                                        placeholder="DD" pattern="[0-9]*"
+                                                                        inputmode="numeric">
 
-                                                                    </div>
-                                                                </div>
-                                                                <div class="govuk-date-input__item">
-                                                                    <div class="govuk-form-group">
-                                                                        <label class="govuk-label govuk-date-input__label"
-                                                                            for="scheme_issued_end_month">
-                                                                            Month
-                                                                        </label>
-
-                                                                        <input
-                                                                            class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                                                            id="scheme_issued_end_month"
-                                                                            value="<%= ssn.Scheme_End_Month_Global%>"
-                                                                            name="scheme_issued_end_month" placeholder="MM"
-                                                                            type="text" pattern="[0-9]*"
-                                                                            inputmode="numeric">
-
-                                                                    </div>
-                                                                </div>
-                                                                <div class="govuk-date-input__item">
-                                                                    <div class="govuk-form-group">
-                                                                        <label class="govuk-label govuk-date-input__label"
-                                                                            for="scheme_issued_end_year">
-                                                                            Year
-                                                                        </label>
-
-                                                                        <input
-                                                                            class="govuk-input govuk-date-input__input govuk-input--width-4"
-                                                                            id="scheme_issued_end_year"
-                                                                            value="<%= ssn.Scheme_End_Year_Global%>"
-                                                                            name="scheme_issued_end_year" type="text"
-                                                                            pattern="[0-9]*" inputmode="numeric"
-                                                                            placeholder="YYYY">
-
-                                                                    </div>
-                                                                </div>
-                                                                <div class="govuk-date-input__item">
-                                                                    <div class="govuk-checkboxes__item">
-                                                                        <input class="govuk-checkboxes__input" onclick="getSubsidyNoEndDate(event)" id="myCheck" name="myCheck" type="checkbox"<% if (ssn.Has_No_End_Date_Global) { %>
-                                                                            checked <% } %> >
-                                                                        <label class="govuk-label govuk-checkboxes__label" for="myCheck"> No End Date </label>
-                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </fieldset>
-                                                    </div>
+                                                            <div class="govuk-date-input__item">
+                                                                <div class="govuk-form-group">
+                                                                    <label class="govuk-label govuk-date-input__label"
+                                                                        for="scheme_issued_end_month">
+                                                                        Month
+                                                                    </label>
+
+                                                                    <input
+                                                                        class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                                        id="scheme_issued_end_month"
+                                                                        value="<%= ssn.Scheme_End_Month_Global%>"
+                                                                        name="scheme_issued_end_month" placeholder="MM"
+                                                                        type="text" pattern="[0-9]*"
+                                                                        inputmode="numeric">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="govuk-date-input__item">
+                                                                <div class="govuk-form-group">
+                                                                    <label class="govuk-label govuk-date-input__label"
+                                                                        for="scheme_issued_end_year">
+                                                                        Year
+                                                                    </label>
+
+                                                                    <input
+                                                                        class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                                                        id="scheme_issued_end_year"
+                                                                        value="<%= ssn.Scheme_End_Year_Global%>"
+                                                                        name="scheme_issued_end_year" type="text"
+                                                                        pattern="[0-9]*" inputmode="numeric"
+                                                                        placeholder="YYYY">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="govuk-date-input__item">
+                                                                <div class="govuk-checkboxes__item">
+                                                                    <input class="govuk-checkboxes__input" onclick="getSubsidyNoEndDate(event)" id="myCheck" name="myCheck" type="checkbox"<% if (ssn.Has_No_End_Date_Global) { %>
+                                                                        checked <% } %> >
+                                                                    <label class="govuk-label govuk-checkboxes__label" for="myCheck"> No End Date </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                 </div>
 
                                                 <!--************************************
