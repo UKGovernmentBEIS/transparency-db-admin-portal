@@ -519,12 +519,9 @@
                   <td class="govuk-table__cell"><%= item.gaName %></td>
                   <td class="govuk-table__cell"><%= item.eventMessage %></td>
                   <td class="govuk-table__cell">
-                    <% var date = item.actionDateTime%>
-                    <% var dateAndTime = date.split("T") %>
-                    <% var date = dateAndTime[0]%>
-                    <% var splitDate = date.split("-") %>
-                    <% var time = dateAndTime[1] %>
-                    <% var condensedTimeFormat = time.split(".") %>
+                    <% var dateAndTime = item.actionDateTime.split("T") %>
+                    <% var splitDate = dateAndTime[0].split("-") %>
+                    <% var condensedTimeFormat = dateAndTime[1].split(".") %>
                     <%= splitDate[2] %>
                     <% var stringMonth = splitDate[1] < 10 ? splitDate[1].split("").pop() : splitDate[1] %>
                     <% var month = [
