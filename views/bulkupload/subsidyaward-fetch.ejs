@@ -426,25 +426,14 @@
                 <% } %>
                 <% } %>
                 <% if(Get_Award_Status.toLowerCase() =="rejected" &&  fetchawarddetails.subsidyMeasure.status != "Inactive" && (ssn.dashboard_roles == 'BEIS Administrator' || ssn.dashboard_ga_name == fetchawarddetails.grantingAuthorityResponse.grantingAuthorityName)) { %>
-                <!-- <button class="govuk-button" data-module="govuk-button" name="Award_status" id="Award_status"
-                    value="Editaward">
-                    Edit</button> -->
-                <!-- <a href="/editsubsidyaward?award=<%= awardnumber%>" -->
+
                 <input type="hidden" value="Yes" name="PublishAward">
                 <a href="/addsubsidyeditaward" style="color : rgb(250, 245, 245); text-decoration: none"
                     class="govuk-button" data-module="govuk-button">Edit</a>
-                <!-- <button class="govuk-button govuk-button--warning" data-module="govuk-button" name="Award_status"
-                    id="Award_status" value="Rejected">
-                    Reject </button> -->
-
-                <!-- <a value="Cancel" href="/subsidyawardfetchcancel" class="govuk-button-cancel" name="Award_status"
-                   >Cancel</a> -->
                 <% } %>
 
                 <a href="/mysubsidyawards" class="govuk-button govuk-button--secondary" data-module="govuk-button">Back
                     to subsidy awards list</a>
-                <!-- <a value="Cancel" href="/subsidyawardfetchcancel" class="govuk-button-cancel" name="Award_status"
-                    aria-label="cancel the current award rejection page ">Cancel</a> -->
             </form>
             <% }  %>
         </main>
