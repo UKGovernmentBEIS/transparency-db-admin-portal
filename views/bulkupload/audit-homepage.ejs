@@ -518,33 +518,7 @@
                   <td class="govuk-table__cell"><%= item.userName %></td>
                   <td class="govuk-table__cell"><%= item.gaName %></td>
                   <td class="govuk-table__cell"><%= item.eventMessage %></td>
-                  <td class="govuk-table__cell">
-                    <% var dateAndTime = item.actionDateTime.split("T") %>
-                    <% var splitDate = dateAndTime[0].split("-") %>
-                    <% var condensedTimeFormat = dateAndTime[1].split(".") %>
-                    <%= splitDate[2] %>
-                    <% var stringMonth = splitDate[1] < 10 ? splitDate[1].split("").pop() : splitDate[1] %>
-                    <% var month = [
-                    "January",
-                    "February",
-                    "March",
-                    "April",
-                    "May",
-                    "June",
-                    "July",
-                    "August",
-                    "September",
-                    "October",
-                    "November",
-                    "December",
-                  ];%>
-                    <% var months = month[stringMonth - 1] %>
-                    <%= months  %>
-                    <%= splitDate[0] %>
-                    <% if (condensedTimeFormat != "00:00:00") {%>
-                    <%= condensedTimeFormat[0].split(":").slice(0, -1).join(':') %>
-                    <% } %>
-                  </td>
+                  <td class="govuk-table__cell"><%= item.actionDateTime %></td>
                 </tr>
                 <% } ); %>
               </tbody>
