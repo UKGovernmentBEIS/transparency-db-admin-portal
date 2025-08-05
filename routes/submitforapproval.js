@@ -396,6 +396,14 @@ router.post("/", async (req, res) => {
             ssn.SubsidyFocus[Additem] = "#Granting_Authority_Name";
             Additem = Additem + 1;
           }
+
+          if (add_award_response.validationErrorResult[i].column == "StandaloneAwardTitle") {
+            ssn.Standalone_Award_Title_Error = true;
+            ssn.SubsidyErrors[Additem] =
+              add_award_response.validationErrorResult[i].message;
+            ssn.SubsidyFocus[Additem] = "#Standalone_Award_Title";
+            Additem = Additem + 1;
+          }
         } /*end for FOR loop */
 
         ssn.SubsidyArraySize = ssn.SubsidyErrors.length;
