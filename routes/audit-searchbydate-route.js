@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
       req.body.Audit_Granting_Date_Month_Start +
       "-" +
       req.body.Audit_Granting_Date_Day_Start +
-      "T23:59:59";
+      "T00:00:00";
 
     if (
       !req.body.Audit_Granting_Date_Day_End ||
