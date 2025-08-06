@@ -38,7 +38,9 @@ router.post("/", async (req, res) => {
       "-" +
       req.body.Audit_Granting_Date_Month_Start +
       "-" +
-      req.body.Audit_Granting_Date_Day_Start;
+      req.body.Audit_Granting_Date_Day_Start +
+      "T23:59:59";
+
     if (
       !req.body.Audit_Granting_Date_Day_End ||
       !req.body.Audit_Granting_Date_Month_End ||
@@ -49,14 +51,18 @@ router.post("/", async (req, res) => {
         "-" +
         req.body.Audit_Granting_Date_Month_Start +
         "-" +
-        req.body.Audit_Granting_Date_Day_Start;
+        req.body.Audit_Granting_Date_Day_Start
+        +
+        "T23:59:59";
     else
       ssn.audit_search_by_end_date =
         req.body.Audit_Granting_Date_Year_End +
         "-" +
         req.body.Audit_Granting_Date_Month_End +
         "-" +
-        req.body.Audit_Granting_Date_Day_End;
+        req.body.Audit_Granting_Date_Day_End
+        +
+        "T23:59:59";
 
     ssn.Audit_Granting_Date_Year_End_Global =
       req.body.Audit_Granting_Date_Year_End;
@@ -72,6 +78,14 @@ router.post("/", async (req, res) => {
     ssn.Audit_Granting_Date_Day_Start_Global =
       req.body.Audit_Granting_Date_Day_Start;
 
+    if (ssn.audit_search_by_end_date) {
+      ssn.audit_search_by_end_date = new Date(ssn.audit_search_by_end_date);
+    }
+
+    if (ssn.audit_search_by_from_date) {
+      ssn.audit_search_by_from_date = new Date(ssn.audit_search_by_from_date);
+    }
+    
     const data_request = {
       searchName: ssn.audit_search_by_text,
       searchStartDate: ssn.audit_search_by_from_date,
