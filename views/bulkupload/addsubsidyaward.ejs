@@ -614,61 +614,62 @@
           
             <div id="standalone-award-interest-container" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>> 
               <div class="govuk-form-group <% if( ssn.Subsidy_Award_Interest_Error ){ %> govuk-form-group--error <% } %>" id="SubsidyAwardInterestContainer">   
-                <label class="govuk-label" for="Subsidy_Award_Interest">
-                  Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
-                </label>
-                <details class="govuk-details" data-module="govuk-details">
-                  <summary class="govuk-details__summary">
-                    <span class="govuk-details__summary-text">
-                      What are Subsidies or Schemes of Interest (SSoI) and Subsidies or Schemes of Particular Interest
-                      (SSoPI)?
-                    </span>
-                  </summary>
-                  <div class="govuk-details__text">
-                    Subsidy or Scheme of Interest (SSoI) and Subsidy Scheme of Particular Interest (SSoPI) are two distinct
-                    categories of
-                    subsidy or subsidy scheme that have been identified as having greater potential to lead to negative effects
-                    on
-                    competition or investment in the UK, or on international trade or investment. <a
-                      href="https://assets.publishing.service.gov.uk/media/658025b295bf65000d719140/uk_subsidy_control_regime_statutory_guidance.pdf">[See
-                      Chapter 10 of the Subsidy Control Statutory Guidance]</a>
-                  </div>
-                </details>
-                <% if( ssn.Subsidy_Award_Interest_Error ){ %>
-                  <span class="govuk-error-message" id="Subsidy_Award_Interest_Error">
-                    <span class="govuk-visually-hidden">Error:</span> You must select if this scheme is a Scheme of Interest
-                    (SSoI), Schemes of Particular Interest (SSoPI) or neither
-                  </span>
-                  <% } %>
-          
-                    <div class="govuk-radios" id="Subsidy_Award_Interest">
-                      <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" name="Subsidy_Award_Interest" id="Subsidy_Of_Interest" 
-                          type="radio" value="Subsidies or Schemes of Interest (SSoI)" <%
-                          if(ssn.Subsidy_Award_Interest_Global=='Subsidies or Schemes of Interest (SSoI)' ) { %> checked <% } %> >
-                          <label class="govuk-label govuk-radios__label" for="Subsidy_Of_Interest">
-                            Subsidies or Schemes of Interest (SSoI)
-                          </label>
-                      </div>
-
-                      <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" name="Subsidy_Award_Interest" id="Subsidy_Of_Particular_Interest"
-                          type="radio" value="Subsidies or Schemes of Particular Interest (SSoPI)" <%
-                          if(ssn.Subsidy_Award_Interest_Global=='Subsidies or Schemes of Particular Interest (SSoPI)' ) { %> checked <% } %> >
-                          <label class="govuk-label govuk-radios__label" for="Subsidy_Of_Particular_Interest">
-                            Subsidies or Schemes of Particular Interest (SSoPI)
-                          </label>
-                      </div>
-
-                      <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" name="Subsidy_Award_Interest" id="Neither_Interest_Or_Particular_Interest"
-                         type="radio" value="Neither" <%
-                          if(ssn.Subsidy_Award_Interest_Global=='Neither' ) { %> checked <% } %> >
-                          <label class="govuk-label govuk-radios__label" for="Neither_Interest_Or_Particular_Interest">
-                            Neither
-                          </label>
-                      </div>
+                <fieldset class="govuk-fieldset" aria-describedby="subsidy-type-hint">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"> Subsidy type </legend>
+                  <div class="govuk-hint" id="subsidy-type-hint"> Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI) </div>
+                  <details class="govuk-details" data-module="govuk-details">
+                    <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text">
+                        What are Subsidies or Schemes of Interest (SSoI) and Subsidies or Schemes of Particular Interest
+                        (SSoPI)?
+                      </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                      Subsidy or Scheme of Interest (SSoI) and Subsidy Scheme of Particular Interest (SSoPI) are two distinct
+                      categories of
+                      subsidy or subsidy scheme that have been identified as having greater potential to lead to negative effects
+                      on
+                      competition or investment in the UK, or on international trade or investment. <a
+                        href="https://assets.publishing.service.gov.uk/media/658025b295bf65000d719140/uk_subsidy_control_regime_statutory_guidance.pdf">[See
+                        Chapter 10 of the Subsidy Control Statutory Guidance]</a>
                     </div>
+                  </details>
+                  <% if( ssn.Subsidy_Award_Interest_Error ){ %>
+                    <span class="govuk-error-message" id="Subsidy_Award_Interest_Error">
+                      <span class="govuk-visually-hidden">Error:</span> You must select if this scheme is a Scheme of Interest
+                      (SSoI), Schemes of Particular Interest (SSoPI) or neither
+                    </span>
+                    <% } %>
+            
+                      <div class="govuk-radios" id="Subsidy_Award_Interest">
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" name="Subsidy_Award_Interest" id="Subsidy_Of_Interest" 
+                            type="radio" value="Subsidies or Schemes of Interest (SSoI)" <%
+                            if(ssn.Subsidy_Award_Interest_Global=='Subsidies or Schemes of Interest (SSoI)' ) { %> checked <% } %> >
+                            <label class="govuk-label govuk-radios__label" for="Subsidy_Of_Interest">
+                              Subsidies or Schemes of Interest (SSoI)
+                            </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" name="Subsidy_Award_Interest" id="Subsidy_Of_Particular_Interest"
+                            type="radio" value="Subsidies or Schemes of Particular Interest (SSoPI)" <%
+                            if(ssn.Subsidy_Award_Interest_Global=='Subsidies or Schemes of Particular Interest (SSoPI)' ) { %> checked <% } %> >
+                            <label class="govuk-label govuk-radios__label" for="Subsidy_Of_Particular_Interest">
+                              Subsidies or Schemes of Particular Interest (SSoPI)
+                            </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" name="Subsidy_Award_Interest" id="Neither_Interest_Or_Particular_Interest"
+                          type="radio" value="Neither" <%
+                            if(ssn.Subsidy_Award_Interest_Global=='Neither' ) { %> checked <% } %> >
+                            <label class="govuk-label govuk-radios__label" for="Neither_Interest_Or_Particular_Interest">
+                              Neither
+                            </label>
+                        </div>
+                      </div>
+                </fieldset>
               </div>
             </div>
             <div id="specific-policy-objective-container" <% if (ssn.Standalone_Award_Global == 'No') { %> hidden <% } %>>
@@ -774,45 +775,46 @@
             </div>
             
             <div id="SPEI-container"> 
-              <div class="govuk-form-group<% if( ssn.SPEI_Error ){ %> govuk-form-group--error <% } %>" id="SPEIContainer">   
-                <label class="govuk-label" for="SPEI">
-                  Services of Public Economic Interest (SPEI)
-                </label>
-                <details class="govuk-details" data-module="govuk-details">
-                  <summary class="govuk-details__summary">
-                    <span class="govuk-details__summary-text">
-                      What is a Services of Public Economic Interest (SPEI)?
-                    </span>
-                  </summary>
-                  <div class="govuk-details__text">
-                    The Act contains provisions for public authorities to provide subsidies for services of public economic interest (SPEI). These are subsidies for essential services provided to the public that would otherwise not be supplied in an appropriate way or may not be supplied at all by the market. Examples of SPEIs may include postal services, social housing, and some types of transport networks, particularly in rural or less populated areas of the country.
-                  </div>
-                </details>
-                <% if( ssn.SPEI_Error ){ %>
-                  <span class="govuk-error-message" id="SPEI_Error">
-                    <span class="govuk-visually-hidden">Error:</span> You must select if this award is Services of Public Economic Interest (SPEI)
-                  </span>
-                  <% } %>
-          
-                    <div class="govuk-radios" id="SPEI">
-                      <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" name="SPEI" id="SPEI_Yes" 
-                          type="radio" value="Yes" <%
-                          if(ssn.SPEI_Global=='Yes') { %> checked <% } %> >
-                          <label class="govuk-label govuk-radios__label" for="SPEI_Yes">
-                            Yes
-                          </label>
-                      </div>
-
-                      <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" name="SPEI" id="SPEI_No"
-                          type="radio" value="No" <%
-                          if(ssn.SPEI_Global=='No') { %> checked <% } %> >
-                          <label class="govuk-label govuk-radios__label" for="SPEI_No">
-                            No
-                          </label>
-                      </div>
+              <div class="govuk-form-group<% if( ssn.SPEI_Error ){ %> govuk-form-group--error <% } %>" id="SPEIContainer">
+                <fieldset class="govuk-fieldset" aria-describedby="SPEI-hint">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"> Services of Public Economic Interest (SPEI) </legend>
+                  <div class="govuk-hint" id="SPEI-hint"> Services of Public Economic Interest (SPEI) </div>
+                  <details class="govuk-details" data-module="govuk-details">
+                    <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text">
+                        What is a Services of Public Economic Interest (SPEI)?
+                      </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                      The Act contains provisions for public authorities to provide subsidies for services of public economic interest (SPEI). These are subsidies for essential services provided to the public that would otherwise not be supplied in an appropriate way or may not be supplied at all by the market. Examples of SPEIs may include postal services, social housing, and some types of transport networks, particularly in rural or less populated areas of the country.
                     </div>
+                  </details>
+                  <% if( ssn.SPEI_Error ){ %>
+                    <span class="govuk-error-message" id="SPEI_Error">
+                      <span class="govuk-visually-hidden">Error:</span> You must select if this award is Services of Public Economic Interest (SPEI)
+                    </span>
+                    <% } %>
+            
+                      <div class="govuk-radios" id="SPEI">
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" name="SPEI" id="SPEI_Yes" 
+                            type="radio" value="Yes" <%
+                            if(ssn.SPEI_Global=='Yes') { %> checked <% } %> >
+                            <label class="govuk-label govuk-radios__label" for="SPEI_Yes">
+                              Yes
+                            </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" name="SPEI" id="SPEI_No"
+                            type="radio" value="No" <%
+                            if(ssn.SPEI_Global=='No') { %> checked <% } %> >
+                            <label class="govuk-label govuk-radios__label" for="SPEI_No">
+                              No
+                            </label>
+                        </div>
+                      </div>
+                </fieldset>   
               </div>
             </div>
             <!-- *************************************  -->
