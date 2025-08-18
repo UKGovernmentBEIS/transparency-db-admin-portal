@@ -262,15 +262,18 @@
                 <% if (ssn.gaId_no_arrow == "upanddown" ) { %>
                 <a href="/mygrantingauthority?sort=gaId&arrow=upanddown" style="text-decoration: none">
                   Public Authority ID <img id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
-                    aria-label="Currently not sorted"></a>
+                  alt="Public Authority ID currently not sorted, activate to sort by ascending order">
+                </a>
                 <% } else if (ssn.gaId_no_arrow == "downdecending" ) { %>
                 <a href="/mygrantingauthority?sort=gaId&arrow=downdecending" style="text-decoration: none">
                   Public Authority ID <img id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
-                    aria-label="Currently sorted by Descending order"></a>
+                  alt="Public Authority ID currently sorted by descending order, activate to sort by ascending order">
+                  </a>
                 <% } else { %>
                 <a href="/mygrantingauthority?sort=gaId&arrow=upacending" style="text-decoration: none">
                   Public Authority ID <img id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
-                    aria-label="Currently sorted by Ascending order"></a>
+                  alt="Public Authority ID currently sorted by ascending order, activate to sort by descending order">
+                  </a>
                 <% } %>
 
               </th>
@@ -279,32 +282,38 @@
                 <a href="/mygrantingauthority?sort=gaName&arrow=upanddown" aria-sort="Currently not sorted"
                   style="text-decoration: none">
                   Public Authority name <img id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
-                    aria-label="Currently not sorted"></a>
+                  alt="Public Authority name currently not sorted, activate to sort by ascending order">
+                </a>
                 <% } else if (ssn.ganame_arrow == "downdecending" ) { %>
                 <a href="/mygrantingauthority?sort=gaName&arrow=downdecending"
                   aria-sort="Currently sorted by Descending order" style="text-decoration: none">
                   Public Authority name <img id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
-                    aria-label="Currently sorted by Descending order"></a>
+                  alt="Public Authority name currently sorted by descending order, activate to sort by ascending order">
+                </a>
                 <% } else { %>
                 <a href="/mygrantingauthority?sort=gaName&arrow=upacending"
                   aria-sort="Currently sorted by Ascending order" style="text-decoration: none">
                   Public Authority name <img id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
-                    aria-label="Currently sorted by Ascending order"></a>
+                  alt="Public Authority name currently sorted by ascending order, activate to sort by descending order">
+                </a>
                 <% } %>
               </th>
               <th scope="col" class="govuk-table__header app-custom-class">
                 <% if (ssn.added_by_arrow == "upanddown" ) { %>
                 <a href="/mygrantingauthority?sort=added_by&arrow=upanddown" style="text-decoration: none">
                   Added by <img id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
-                    aria-label="Currently not sorted"></a>
+                  alt="Added by currently not sorted, activate to sort by ascending order">
+                </a>
                 <% } else if (ssn.added_by_arrow == "downdecending" ) { %>
                 <a href="/mygrantingauthority?sort=added_by&arrow=downdecending" style="text-decoration: none">
                   Added by <img id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
-                    aria-label="Currently sorted by Descending order"></a>
+                  alt="Added by currently sorted by descending order, activate to sort by ascending order">
+                </a>
                 <% } else { %>
                 <a href="/mygrantingauthority?sort=added_by&arrow=upacending" style="text-decoration: none">
                   Added by <img id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
-                    aria-label="Currently sorted by Ascending order"></a>
+                  alt="Added by currently sorted by ascending order, activate to sort by descending order">
+                </a>
                 <% } %>
 
               </th>
@@ -312,15 +321,18 @@
                 <% if (ssn.status_arrow == "upanddown" ) { %>
                 <a href="/mygrantingauthority?sort=status&arrow=upanddown" style="text-decoration: none">
                   Status <img id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
-                    aria-label="Currently not sorted"></a>
+                  alt="Status currently not sorted, activate to sort by ascending order">
+                </a>
                 <% } else if (ssn.status_arrow == "downdecending" ) { %>
                 <a href="/mygrantingauthority?sort=status&arrow=downdecending" style="text-decoration: none">
                   Status <img id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
-                    aria-label="Currently sorted by Descending order"></a>
+                  alt="Status currently sorted by descending order, activate to sort by ascending order">
+                </a>
                 <% } else { %>
                 <a href="/mygrantingauthority?sort=status&arrow=upacending" style="text-decoration: none">
                   Status <img id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
-                    aria-label="Currently sorted by Ascending order"></a>
+                  alt="Status currently sorted by ascending order, activate to sort by descending order">
+                </a>
                 <% } %>
                 </p>
               </th>
@@ -328,15 +340,18 @@
                 <% if (ssn.created_on_arrow == "upanddown" ) { %>
                 <a href="/mygrantingauthority?sort=created_on&arrow=upanddown" data-type="date" style="text-decoration: none">
                   Created on <img id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
-                    aria-label="Currently not sorted"></a>
+                  alt="Created on currently not sorted, activate to sort by ascending order">
+                </a>
                 <% } else if (ssn.created_on_arrow == "downdecending" ) { %>
                 <a href="/mygrantingauthority?sort=created_on&arrow=downdecending" data-type="date" style="text-decoration: none">
                   Created on <img id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
-                    aria-label="Currently sorted by Descending order"></a>
+                  alt="Created on currently sorted by descending order, activate to sort by ascending order">
+                </a>
                 <% } else { %>
                 <a href="/mygrantingauthority?sort=created_on&arrow=upacending" data-type="date" style="text-decoration: none">
                   Created on <img id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
-                    aria-label="Currently sorted by Ascending order"></a>
+                  alt="Created on currently sorted by ascending order, activate to sort by descending order">
+                </a>
                 <% } %>
                 </p>
               </th>
@@ -344,15 +359,18 @@
                 <% if (ssn.last_modified_arrow == "upanddown" ) { %>
                 <a href="/mygrantingauthority?sort=last_modified&arrow=upanddown" data-type="date" style="text-decoration: none">
                   Last modified <img id="subsidy_control_no_updownarrow" src="/assets/images/UpDownArrow.jpg"
-                    aria-label="Currently not sorted"></a>
+                  alt="Last modified currently not sorted, activate to sort by ascending order">
+                </a>
                 <% } else if (ssn.last_modified_arrow == "downdecending" ) { %>
                 <a href="/mygrantingauthority?sort=last_modified&arrow=downdecending" data-type="date" style="text-decoration: none">
                   Last modified <img id="subsidy_control_no_downarrow" src="/assets/images/DownArrow.jpg"
-                    aria-label="Currently sorted by Descending order"></a>
+                  alt="Last modified currently sorted by descending order, activate to sort by ascending order">
+                </a>
                 <% } else { %>
                 <a href="/mygrantingauthority?sort=last_modified&arrow=upacending" data-type="date" style="text-decoration: none">
                   Last modified <img id="subsidy_control_nouparrow" src="/assets/images/UpArrow.jpg"
-                    aria-label="Currently sorted by Ascending order"></a>
+                  alt="Last modified currently sorted by ascending order, activate to sort by descending order">
+                </a>
                 <% } %>
                 </p>
               </th>
