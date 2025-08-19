@@ -602,7 +602,7 @@
           <div id="subsidy-award-details">
             <h1 class="govuk-heading-l">Subsidy award details</h1>
 
-            <div id="standalone-award-title-container" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>> 
+            <div id="standalone-award-title-container" class="standalone-only" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>> 
               <div class="govuk-form-group <% if( ssn.Standalone_Award_Title_Error ){ %> govuk-form-group--error <% } %>" id="SubsidyAwardTitleContainer">   
                 <label class="govuk-label" for="Standalone_Award_Title">
                   Standalone Award Title
