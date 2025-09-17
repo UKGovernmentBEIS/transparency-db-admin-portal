@@ -99,7 +99,7 @@
         <div class="govuk-tabs__panel" id="upload-csv">
           <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
-              <form enctype="multipart/form-data" action="/formvalidationschemes" method="post" novalidate="">
+              <form enctype="multipart/form-data" action="/formvalidationschemes" method="post" novalidate="" id="bulk-upload-form">
 
                 <% if( locals.isFileUploadEmpty || locals.isNotCsvOrExcel){ %>
 
@@ -131,7 +131,7 @@
                 </div>
 
                 <button class="govuk-button" data-module="govuk-button" aria-label="Upload file"
-                  value="Upload file">Upload file </button>
+                  value="Upload file" id="upload-file-button">Upload file </button>
 
                 <% } else if( locals.isExcelFormat){ %>
 
@@ -159,7 +159,7 @@
                 </div>
 
 
-                <button class="govuk-button" data-module="govuk-button" value="Upload file">Upload file </button>
+                <button class="govuk-button" data-module="govuk-button" value="Upload file" id="upload-file-button">Upload file </button>
 
 
                 <div class="govuk-form-group govuk-form-group--error">
@@ -284,7 +284,7 @@
                 </div>
 
                 <button class="govuk-button" data-module="govuk-button" aria-label="Upload file"
-                  value="Upload file">Upload file </button>
+                  value="Upload file" id="upload-file-button">Upload file </button>
 
                 <% } %>
 
