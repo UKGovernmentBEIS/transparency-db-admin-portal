@@ -88,8 +88,8 @@
 
             <form class="govuk-!-width-full govuk-padding-0" action="/mfaawards" method="GET">
 
-                    <select class="govuk-select" name="status" aria-describedby="status-message"
-                     id="filter-select" onchange="this.form.submit()" >
+                    <select class="govuk-select" name="filter-search-button" id="filter-search-button" aria-describedby="status-message"
+                     aria-label="Drop down list that shows subsidy award by status">
                    
                     <% if(mfaAwardStatus == "") { %>
                         <option value="" selected>Show all (<%= ssn.allMfaAwards %>)</option>
@@ -121,6 +121,10 @@
                         <option value="Rejected">Rejected (<%= ssn.rejectedMfaAwards %>)</option>
                     <% } %>
                 </select>
+
+                <button class="govuk-button" data-module="govuk-button" id="search-button">
+                  Search
+                </button>
             </form>
             <span id="status-message" style="display:none" aria-hidden="true">
                 On selecting, the page will reload and display MFA awards.
