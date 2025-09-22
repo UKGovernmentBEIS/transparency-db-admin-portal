@@ -38,7 +38,6 @@
     });
 
   </script>
-
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -125,8 +124,8 @@
         </div>
         <div class="govuk-grid-column-one-third govuk-padding-0">
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
-            <select class="govuk-!-width-full govuk-select" name="sort" aria-describedby="status-message"
-              aria-label="Drop down list that shows subsidy award by status" id="filter-select" onchange="this.form.submit()">
+            <select class="govuk-select" name="filter-search-button" id="filter-search-button" aria-describedby="status-message"
+              aria-label="Drop down list that shows subsidy award by status">
               <% if(ssn.awards_status  == "Show all") { %>
               <option value="Show all" selected>Show all (<%=totalSubsidyAward%>)</option>
               <% } else { %>
@@ -155,6 +154,10 @@
               <option value="Rejected">Rejected (<%=totalRejectedAward%>)</option>
               <% }  %>
             </select>
+            
+            <button class="govuk-button" data-module="govuk-button" id="search-button">
+              Search
+            </button>
           </form>
           <span id="status-message" style="display:none" aria-hidden="true">
             On selecting, the page will reload and display the subsidy awards.</span>
@@ -232,9 +235,8 @@
           <div class="govuk-grid-column-one-quarter govuk-padding-0" style="display: inline-block;">
             <label for="filter-select" class="govuk-label"> Show awards by status </label> 
             <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
-              <select class="govuk-select" name="sort" aria-describedby="status-message"
-              
-                id="filter-select" onchange="this.form.submit()" >
+              <select class="govuk-select" name="filter-search-button" id="filter-search-button" 
+              aria-label="Drop down list that shows subsidy award by status" aria-describedby="status-message">
                 
                 <% if(ssn.awards_status == "Show all") { %>
                   <option value="Show all" selected>Show all (<%= totalSubsidyAward %>)</option>
@@ -265,8 +267,11 @@
                 <% } else { %>
                   <option value="Rejected">Rejected (<%= totalRejectedAward %>)</option>
                 <% } %>
-        
               </select>
+
+              <button class="govuk-button" data-module="govuk-button" id="search-button">
+                Search
+              </button>
             </form>
             
             <span id="status-message" style="display:none" aria-hidden="true">
