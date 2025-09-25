@@ -825,10 +825,10 @@ router.post("/", async (req, res) => {
                 ssn.Award_Date_Not_Valid_Error = true;
                 if(searchschemes.schemes[0].endDate == ''){
                 ssn.SubsidyErrors[Additem] =
-                "Granting date is not valid, it must be on or after "+searchschemes.schemes[0].startDate;
+                "Award confirmation date is not valid, it must be on or after "+searchschemes.schemes[0].startDate;
               }else{
                 ssn.SubsidyErrors[Additem] =
-                    "Granting date is not valid, it must be between "+searchschemes.schemes[0].startDate+" and "+searchschemes.schemes[0].endDate+" inclusive";
+                    "Award confirmation date is not valid, it must be between "+searchschemes.schemes[0].startDate+" and "+searchschemes.schemes[0].endDate+" inclusive";
                 }
               ssn.SubsidyFocus[Additem] = "#Legal_Granting_Date";
                 Additem = Additem + 1;
