@@ -735,7 +735,7 @@
                 <textarea class="govuk-textarea govuk-js-character-count" id="Subsidy_Award_Description" name="Subsidy_Award_Description" rows="5" aria-describedby="Subsidy_Award_Description-info"><%= ssn.Subsidy_Award_Description_Global %></textarea>
               </div>
             </div>
-            <div id="authority-url-and-description-container" class="subsidy-only" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>>
+            <div id="authority-url-and-description-container" class="scheme-only" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>>
               <div class="<%- ssn.Authority_URL_Error ? 'govuk-form-group--error' : 'govuk-form-group' %>" id="authority-url-container">
                 <label class="govuk-label" for="authority-url">
                   Public authority policy URL <span class="govuk-hint">(optional)</span>
