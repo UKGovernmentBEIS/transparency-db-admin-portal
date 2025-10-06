@@ -31,15 +31,16 @@
                         Subsidy awards
                     </a>
                 </li>
-                <div class="dropdown">
-                    <li class="govuk-sub-navigation__item" id="mfa-li">
-                        <a class="govuk-sub-navigation__link" href="#" onClick="return false;">MFA / SPEIA</a>
-                        <div class="mfa-links">
-                            <a class="govuk-sub-navigation__link" href="/mfagroupings">MFA / SPEIA Groupings</a>
-                            <a class="govuk-sub-navigation__link" href="/mfaawards">MFA / SPEIA Awards</a>
-                        </div>
-                    </li>
-                </div>
+                <li class="govuk-sub-navigation__item" id="mfa-grouping-li">
+                    <a class="govuk-sub-navigation__link" href="/mfagroupings">
+                        MFA / SPEIA Groupings
+                    </a>
+                </li>
+                <li class="govuk-sub-navigation__item" id="mfa-award-li">
+                    <a class="govuk-sub-navigation__link" href="/mfaawards">
+                        MFA / SPEIA Awards
+                    </a>
+                </li>
 
                 <% if(ssn.dashboard_roles == 'BEIS Administrator' || ssn.dashboard_roles == 'Granting Authority Administrator') { %>
                 <li class="govuk-sub-navigation__item" id="auditlog-li">
