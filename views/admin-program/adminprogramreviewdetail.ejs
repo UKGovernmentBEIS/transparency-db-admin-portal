@@ -2,7 +2,12 @@
 <html lang="en">
 
 <head>
-    <title>Admin program <%= ssn.adminProgramDetails.apNumber %> - Manage UK subsidies - GOV.UK - Admin Program Review details page</title>
+    <title>
+        <% if (isCallFromEdit){ %>
+        Admin program <%= ssn.adminProgramDetails.apNumber %> -
+        <% } %>
+        Manage UK subsidies - GOV.UK - Admin Program Review details page
+    </title>
     <%- include('../partials/headercss.ejs') %>
 </head>
 
