@@ -132,6 +132,7 @@ noAwardMessage - message displayed when no awards are available
                                         transform="matrix(1 0 0 1 456 1241 )" mask="url(#clip2)" />
                                 </g>
                             </svg>
+                            <span class="govuk-visually-hidden"> go to first page</span>
                         </a>
                         <a href="<%-setURIParameter(currentURI, 'page', prevPage)%>#searchresult-table"
                             aria-label="go to subsidy awards search results previous page"
@@ -178,7 +179,9 @@ noAwardMessage - message displayed when no awards are available
                                             transform="matrix(1 0 0 1 930 1241 )"
                                             mask="url(#clip3)" />
                                     </g>
-                                </svg></a>
+                                </svg>
+                                <span class="govuk-visually-hidden"> go to last page</span>
+                            </a>
                         <% } %>
                     <% } %>
                 </div>
