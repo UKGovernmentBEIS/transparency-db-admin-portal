@@ -2763,6 +2763,16 @@
     });
   }
 
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('bulk-upload-form');
+    const button = document.getElementById('upload-file-button');
+  
+    if (form && button) {
+      form.addEventListener('submit', function () {
+        button.disabled = true;
+      });
+    }
+  });
   // exports.initAll = initAll;
   exports.Accordion = Accordion;
   exports.Button = Button;
