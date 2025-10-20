@@ -100,7 +100,7 @@
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds 
                     <% if( ssn.Subsidy_Control_Number_Error || ssn.Subsidy_Control_Inactive_Error || ssn.Subsidy_Control_Exists_Error || ssn.Admin_Program_Has_Awards_Error ){ %> govuk-form-group--error <% } %>">
-                        <label class="govuk-label" for="address-line-1">
+                        <label class="govuk-label" for="Subsidy_Control_Number_Error">
                             Subsidy control number
                         </label>
                         <div class="govuk-hint">
@@ -131,7 +131,7 @@
                     </div>
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.Admin_Program_Name_Error || ssn.Admin_Program_Name_Length_Error ){ %> govuk-form-group--error <% } %>">
-                        <label class="govuk-label" for="address-line-1">
+                        <label class="govuk-label" for="Admin_Program_Name">
                             Admin program name
                         </label>
                         <% if( ssn.Admin_Program_Name_Length_Error ){ %>
@@ -193,7 +193,7 @@
                     <% }  %>
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.Budget_Error ){ %> govuk-form-group--error <% } %>">
-                        <label class="govuk-label" for="address-line-1">
+                        <label class="govuk-label" for="Admin_Program_Budget">
                             Budget of the grouping of subsidy awards (£)
                         </label>
                         <% if( ssn.Budget_Error ){ %>

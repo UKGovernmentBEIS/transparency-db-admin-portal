@@ -166,7 +166,7 @@
             <form action="/reviewsubsidymeasures" method="POST" id="scheme-form">
                 <section class="govuk-grid-row">
                         <div class="govuk-form-group govuk-grid-column-two-thirds" hidden>
-                            <label class="govuk-label" for="address-line-1">
+                            <label class="govuk-label" for="Subsidy_Adhoc">
                                 Is this for an ad hoc subsidy?
                             </label>
                             <details class="govuk-details" data-module="govuk-details">
@@ -275,7 +275,7 @@
                         </div>
 
                         <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.Subsidy_Scheme_Interest_Error ){ %> govuk-form-group--error <% } %>">
-                            <label class="govuk-label" for="address-line-1">
+                            <label class="govuk-label" for="Subsidy_Scheme_Interest">
                                 Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
                             </label>
                             <details class="govuk-details" data-module="govuk-details">
@@ -506,7 +506,7 @@
                                             <% } else { %>
                                             <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                 <% }  %>
-                                                <label class="govuk-label" for="address-line-1">
+                                                <label class="govuk-label" for="Budget">
                                                     Budget (£)
                                                 </label>
                                                 <div class="govuk-hint">
@@ -545,7 +545,7 @@
                                                     <% } else { %>
                                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                         <% }  %>
-                                                        <label class="govuk-label" for="address-line-1">
+                                                        <label class="govuk-label" for="Maximum_Amount_Under_Scheme">
                                                             Maximum amount given under scheme <span class="govuk-hint">(optional)</span>
                                                         </label>
                                                         <div class="govuk-hint">
@@ -578,7 +578,7 @@
                                                     <% } else { %>
                                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                         <% }  %>
-                                                        <label class="govuk-label" for="address-line-1" id="confirmationDateLabel">
+                                                        <label class="govuk-label" for="confirmationDateLabel" id="confirmationDateLabel">
                                                             Confirmation Date
                                                         </label>
                                                         <div class="govuk-hint">
@@ -656,7 +656,7 @@
                                                 <% } else { %>
                                                 <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                     <% }  %>
-                                                    <label class="govuk-label" for="address-line-1" id="startDateLabel">
+                                                    <label class="govuk-label" for="startDateLabel" id="startDateLabel">
                                                         <% if(ssn.Subsidy_Adhoc_Global == 'Yes') { %>
                                                         Date
                                                         <%} else {%>
@@ -729,7 +729,7 @@
                                                     <div class="govuk-form-group govuk-grid-column-two-thirds"
                                                         id="endDateDiv">
                                                         <% }  %>
-                                                        <label class="govuk-label" for="address-line-1">
+                                                        <label class="govuk-label" for="endDateDiv">
                                                             End Date
                                                         </label>
                                                         <div class="govuk-hint">

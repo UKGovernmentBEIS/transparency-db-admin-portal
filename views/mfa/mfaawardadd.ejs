@@ -122,7 +122,7 @@
 
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.SPEI_Error ){ %> govuk-form-group--error <% } %> ">
-                        <label class="govuk-label" for="address-line-1">
+                        <label class="govuk-label" for="SPEI">
                             Is this a SPEI Assistance Award?
                         </label>
                         <details class="govuk-details" data-module="govuk-details">
@@ -160,7 +160,7 @@
                     </div>
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Grouping_YesNo_Error ){ %> govuk-form-group--error <% } %>">
-                        <label class="govuk-label" for="address-line-1">
+                        <label class="govuk-label" for="MFA_Grouping_YesNo">
                             Do you wish to include this award in an MFA / SPEIA Grouping?
                         </label>
                         <details class="govuk-details" data-module="govuk-details">
@@ -206,7 +206,7 @@
                     </div>
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Grouping_Error ){ %> govuk-form-group--error <% } %> " id="MfaGroupingContainer">
-                        <label class="govuk-label" for="address-line-1">
+                        <label class="govuk-label" for="MFA_Grouping_ID">
                             MFA / SPEIA Grouping ID
                         </label>
 
@@ -251,7 +251,7 @@
                     </div>
 
                     <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.MFA_Award_Confirmation_Day_Error || ssn.MFA_Award_Confirmation_Month_Error || ssn.MFA_Award_Confirmation_Year_Error ){ %> govuk-form-group--error <% } %> ">
-                        <label class="govuk-label" for="address-line-1" id="confirmationDateLabel">
+                        <label class="govuk-label" for="confirmationDateLabel" id="confirmationDateLabel">
                             Confirmation Date
                         </label>
                         <div class="govuk-hint">
