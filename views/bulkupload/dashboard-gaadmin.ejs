@@ -114,8 +114,10 @@
                 <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                   <%= dashboardawards.subsidyMeasureUserActionCount.totalActiveScheme %>
                 </p>
+                <% const activeSchemesCount = dashboardawards.subsidyMeasureUserActionCount.totalActiveScheme; %>
                 <a href="/mysubsidymeasures?sort=Active" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
                     Active
+                    <span class="govuk-visually-hidden"> - <%= activeSchemesCount %> active subsidy schemes</span>
                 </a>
               </div>
             </div>
@@ -124,8 +126,10 @@
                 <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                   <%= dashboardawards.subsidyMeasureUserActionCount.totalInactiveScheme %>
                 </p>
+                <% const inactiveSchemesCount = dashboardawards.subsidyMeasureUserActionCount.totalInactiveScheme; %>
                 <a href="/mysubsidymeasures?sort=Inactive" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
                     Inactive
+                    <span class="govuk-visually-hidden"> - <%= inactiveSchemesCount %> inactive subsidy schemes</span>
                 </a>
               </div>
             </div>
@@ -134,8 +138,10 @@
                 <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                   <%= dashboardawards.subsidyMeasureUserActionCount.totalDeletedScheme %>
                 </p>
+                <% const deletedSchemesCount = dashboardawards.subsidyMeasureUserActionCount.totalDeletedScheme; %>
                 <a href="/mysubsidymeasures?sort=Deleted" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
                   Deleted
+                  <span class="govuk-visually-hidden"> - <%= deletedSchemesCount %> deletyed subsidy schemes</span>
                 </a>
               </div>
             </div>
@@ -170,8 +176,10 @@
                 <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                   <%= dashboardawards.awardUserActionCount.totalAwaitingAward %>
                 </p>
+                <% const awardsAwaitingApproval = dashboardawards.awardUserActionCount.totalAwaitingAward; %>
                 <a href="/mysubsidyawards?sort=Awaiting Approval" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
                   Awaiting approval
+                  <span class="govuk-visually-hidden"> - <%= awardsAwaitingApproval %> awards awaiting approval</span>
                 </a>
               </div>
             </div>
@@ -180,8 +188,10 @@
                 <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                   <%= dashboardawards.awardUserActionCount.totalPublishedAward %>
                 </p>
+                <% const publishedAwards = dashboardawards.awardUserActionCount.totalPublishedAward; %>
                 <a href="/mysubsidyawards?sort=Published" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
                   Published
+                  <span class="govuk-visually-hidden"> - <%= publishedAwards %> awards published</span>
                 </a>
               </div>
             </div>
@@ -191,8 +201,10 @@
                 <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                   <%= dashboardawards.awardUserActionCount.totalRejectedAward %>
                 </p>
+                <% const rejectedAwards = dashboardawards.awardUserActionCount.totalRejectedAward; %>
                 <a href="/mysubsidyawards?sort=Rejected" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
                   Rejected
+                  <span class="govuk-visually-hidden"> - <%= rejectedAwards %> awards rejected</span>
                 </a>
               </div>
             </div>
@@ -202,8 +214,10 @@
                 <p class="govuk-body govuk-!-font-weight-bold govuk-total-count">
                   <%= dashboardawards.awardUserActionCount.totalDeleteAward %>
                 </p>
+                <% const deletedAwards = dashboardawards.awardUserActionCount.totalDeleteAward; %>
                 <a href="/mysubsidyawards?sort=Deleted" class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-24 govuk-description-text">
                   Deleted
+                  <span class="govuk-visually-hidden"> - <%= deletedAwards %> awards deleted</span>
                 </a>
               </div>
             </div>
