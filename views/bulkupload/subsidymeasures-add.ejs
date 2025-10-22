@@ -156,9 +156,8 @@
             <h1 class="govuk-heading-xl">Add a subsidy scheme</h1>
             <%- include('../partials/subsidy-database-requirements.ejs') %>
             <p class="govuk-body govuk-!-font-size-19">This section is for adding a subsidy scheme. To add a new award
-                under an existing scheme, you can add <a href="/addsubsidyaward" aria-label="Add Single Award">a subsidy
-                    award</a> or use the bulk
-                upload to <a href="/bulkuploadsubsidy" aria-label="Bulk Upload Subsidy Awards">add multiple
+                under an existing scheme, you can <a href="/addsubsidyaward">add a subsidy
+                    award</a> or <a href="/bulkuploadsubsidy">use the bulk upload to add multiple
                     subsidy awards</a>.</p>
             <!-- Body header ends here -->
             <label class="govuk-heading-l">
@@ -168,7 +167,7 @@
             <form action="/reviewsubsidymeasures" method="POST" id="scheme-form">
                 <section class="govuk-grid-row">
                         <div class="govuk-form-group govuk-grid-column-two-thirds" hidden>
-                            <label class="govuk-label" for="address-line-1">
+                            <label class="govuk-label" for="Subsidy_Adhoc">
                                 Is this for an ad hoc subsidy?
                             </label>
                             <details class="govuk-details" data-module="govuk-details">
@@ -257,7 +256,7 @@
                             <% } else { %>
                             <div class="govuk-form-group govuk-grid-column-two-thirds">
                                 <% }  %>
-                                <label class="govuk-label" for="address-line-1">
+                                <label class="govuk-label" for="Subsidy_Measure_Title">
                                     Subsidy scheme name
                                 </label>
                                 <% if( ssn.Subsidy_Measure_Title_Error ){ %>
@@ -277,7 +276,7 @@
                         </div>
 
                         <div class="govuk-form-group govuk-grid-column-two-thirds <% if( ssn.Subsidy_Scheme_Interest_Error ){ %> govuk-form-group--error <% } %>">
-                            <label class="govuk-label" for="address-line-1">
+                            <label class="govuk-label" for="Subsidy_Scheme_Interest">
                                 Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
                             </label>
                             <details class="govuk-details" data-module="govuk-details">
@@ -340,7 +339,7 @@
                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                         <br>
                                         <% }  %>
-                                        <label class="govuk-label" for="address-line-1">
+                                        <label class="govuk-label" for="Specific_Policy_Objective">
                                             Specific policy objective
                                         </label>
                                         <details class="govuk-details" data-module="govuk-details">
@@ -373,7 +372,7 @@
                                     <% } else { %>
                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                         <% }  %>
-                                        <label class="govuk-label" for="address-line-1">
+                                        <label class="govuk-label" for="Subsidy_Scheme_Description">
                                             Subsidy scheme description
                                         </label>
                                         <details class="govuk-details" data-module="govuk-details">
@@ -435,7 +434,7 @@
                                     <% } else { %>
                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                         <% }  %>
-                                        <label class="govuk-label" for="address-line-1">
+                                        <label class="govuk-label" for="Granting_Authority_URL">
                                             Public authority policy URL <span class="govuk-hint">(optional)</span>
                                         </label>
                                         <details class="govuk-details" data-module="govuk-details">
@@ -471,7 +470,7 @@
                                         <% } else { %>
                                         <div class="govuk-form-group govuk-grid-column-two-thirds">
                                             <% }  %>
-                                            <label class="govuk-label" for="address-line-1">
+                                            <label class="govuk-label" for="Granting_Authority_Policy">
                                                 Public authority policy page description <span class="govuk-hint">(optional)</span>
                                             </label>
                                             <details class="govuk-details" data-module="govuk-details">
@@ -508,7 +507,7 @@
                                             <% } else { %>
                                             <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                 <% }  %>
-                                                <label class="govuk-label" for="address-line-1">
+                                                <label class="govuk-label" for="Budget">
                                                     Budget (£)
                                                 </label>
                                                 <div class="govuk-hint">
@@ -547,7 +546,7 @@
                                                     <% } else { %>
                                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                         <% }  %>
-                                                        <label class="govuk-label" for="address-line-1">
+                                                        <label class="govuk-label" for="Maximum_Amount_Under_Scheme">
                                                             Maximum amount given under scheme <span class="govuk-hint">(optional)</span>
                                                         </label>
                                                         <div class="govuk-hint">
@@ -580,7 +579,7 @@
                                                     <% } else { %>
                                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                         <% }  %>
-                                                        <label class="govuk-label" for="address-line-1" id="confirmationDateLabel">
+                                                        <label class="govuk-label" for="confirmationDateLabel" id="confirmationDateLabel">
                                                             Confirmation Date
                                                         </label>
                                                         <div class="govuk-hint">
@@ -658,7 +657,7 @@
                                                 <% } else { %>
                                                 <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                     <% }  %>
-                                                    <label class="govuk-label" for="address-line-1" id="startDateLabel">
+                                                    <label class="govuk-label" for="startDateLabel" id="startDateLabel">
                                                         <% if(ssn.Subsidy_Adhoc_Global == 'Yes') { %>
                                                         Date
                                                         <%} else {%>
@@ -731,7 +730,7 @@
                                                     <div class="govuk-form-group govuk-grid-column-two-thirds"
                                                         id="endDateDiv">
                                                         <% }  %>
-                                                        <label class="govuk-label" for="address-line-1">
+                                                        <label class="govuk-label" for="endDateDiv">
                                                             End Date
                                                         </label>
                                                         <div class="govuk-hint">
