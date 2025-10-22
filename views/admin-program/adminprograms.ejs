@@ -76,8 +76,8 @@
 
           <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
             <form class="govuk-!-width-full govuk-padding-0" action="/adminprograms" method="GET">
-              <select class="govuk-!-width-full govuk-select" name="status" aria-describedby="status-message"
-                aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
+              <select class="govuk-!-width-full govuk-select" name="filter-search-button" id="filter-search-button" aria-describedby="status-message"
+                aria-label="Drop down list that shows subsidy award by status">
                 <% if(adminProgramStatus == "") { %>
                 <option value="" selected>Show all (<%= ssn.allAdminPrograms %>)
                 </option>
@@ -97,6 +97,10 @@
                 <option value="Deleted">Deleted (<%= ssn.deletedAdminPrograms %>)</option>
                 <% }  %>
               </select>
+
+              <button class="govuk-button" data-module="govuk-button" id="search-button">
+                Search
+              </button>
             </form>
             <span id="status-message" style="display:none" aria-hidden="true">
               On selecting, the page will reload and display admin programs.</span>
@@ -168,8 +172,8 @@
 
           <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
             <form class="govuk-!-width-full govuk-padding-0" action="/adminprograms" method="GET">
-              <select class="govuk-!-width-full govuk-select" name="status" aria-describedby="status-message"
-                aria-label="Drop down list that shows subsidy award by status" onchange="this.form.submit()">
+              <select class="govuk-!-width-full govuk-select" name="filter-search-button" id="filter-search-button" aria-describedby="status-message"
+                aria-label="Drop down list that shows subsidy award by status">
                 <% if(adminProgramStatus == "") { %>
                 <option value="" selected>Show all (<%= ssn.allAdminPrograms %>)
                 </option>
@@ -189,6 +193,10 @@
                 <option value="Deleted">Deleted (<%= ssn.deletedAdminPrograms %>)</option>
                 <% }  %>
               </select>
+
+              <button class="govuk-button" data-module="govuk-button" id="search-button">
+                Search
+              </button>
             </form>
             <span id="status-message" style="display:none" aria-hidden="true">
               On selecting, the page will reload and display admin programs.</span>
