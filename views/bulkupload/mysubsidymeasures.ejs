@@ -222,7 +222,7 @@
             <form class="govuk-!-width-full govuk-padding-0" action="/measuresfilterroute" method="GET">
               <label for="filter-select" class="govuk-label"> Show schemes by status </label> 
 
-              <select class="govuk-select" name="sort" id="filter-select" onchange="this.form.submit()" 
+              <select class="govuk-select" name="sort" id="filter-select" onchange="this.form.submit()">
                 
                 <% if(schemes_status  == "") { %>
                   <option value="" selected>Show all (<%= ssn.allScheme %>)</option>
