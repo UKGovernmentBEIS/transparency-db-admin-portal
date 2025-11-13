@@ -97,7 +97,7 @@
 
 
         <!-- *****************************************  -->
-        <!-- Get the Legal Granting Date     from user  -->
+        <!-- Get the Award confirmation Date     from user  -->
         <!-- *****************************************  -->
         <div class="govuk-grid-column-full govuk-padding-0">
           <form action="/auditsearchbydateroute" method="post">
@@ -110,7 +110,7 @@
                   </legend>
 
                   <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
-                    <span class="govuk-visually-hidden">Error:</span> Enter the granting date
+                    <span class="govuk-visually-hidden">Error:</span> Enter the award confirmation date
                   </span>
 
                   <div class="govuk-date-input" id="Audit_Granting_Date">
@@ -242,7 +242,7 @@
                   </legend>
 
                   <span class="govuk-error-message" id="Subsidy_Control_Number_Error">
-                    <span class="govuk-visually-hidden">Error:</span> Enter the granting date
+                    <span class="govuk-visually-hidden">Error:</span> Enter the award confirmation date
                   </span>
 
                   <div class="govuk-date-input" id="Audit_Granting_Date">
@@ -519,28 +519,7 @@
                   <td class="govuk-table__cell"><%= item.userName %></td>
                   <td class="govuk-table__cell"><%= item.gaName %></td>
                   <td class="govuk-table__cell"><%= item.eventMessage %></td>
-                  <td class="govuk-table__cell">
-                    <% var date = item.actionDateTime.split("-") %>
-                    <%= date[2] %>
-                    <% var stringMonth = date[1] < 10 ? date[1].split("").pop() : date[1] %>
-                    <% var month = [
-                    "January",
-                    "February",
-                    "March",
-                    "April",
-                    "May",
-                    "June",
-                    "July",
-                    "August",
-                    "September",
-                    "October",
-                    "November",
-                    "December",
-                  ];%>
-                    <% var months = month[stringMonth - 1] %>
-                    <%= months  %>
-                    <%= date[0]  %>
-                  </td>
+                  <td class="govuk-table__cell"><%= item.actionDateTime %></td>
                 </tr>
                 <% } ); %>
               </tbody>

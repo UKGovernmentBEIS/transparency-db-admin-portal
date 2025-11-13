@@ -22,19 +22,13 @@
   <script>
     $(document).ready(function () {
       if(document.getElementById('Standalone_Award_Yes').checked){
-        document.getElementById('related-subsidy-scheme').style.display = 'none';
-        document.getElementById('related-admin-program').style.display = 'none';
-        document.getElementById('authority-url-and-description-container').style.display = 'block';
-        document.getElementById('standalone-description-text').style.display = 'block';
-        document.getElementById('description-text').style.display = 'none';
-        document.getElementById('specific-policy-objective-container').style.display = 'block';
-        document.getElementById('standalone-award-interest-container').style.display = 'block';
+        showHideElements(document.getElementsByClassName("standalone-only"),'block');
+        showHideElements(document.getElementsByClassName("scheme-only"),'none');
       }
       else
       {
-        document.getElementById('authority-url-and-description-container').style.display = 'none';
-        //document.getElementById('specific-policy-objective-container').style.display = 'none';
-
+        showHideElements(document.getElementsByClassName("standalone-only"),'none');
+        showHideElements(document.getElementsByClassName("scheme-only"),'block');
       }
       jQuery('#Subsidy_Control_Number').on('input', function () {
         var SubsidyMeasureTitle = document.getElementById("Subsidy_Measure_Title");
@@ -116,24 +110,20 @@
 
     standaloneAwardToggle = (event) => {
       if(event.target.value == 'Yes'){
-        document.getElementById('related-subsidy-scheme').style.display = 'none';
-        document.getElementById('related-admin-program').style.display = 'none';
-        document.getElementById('authority-url-and-description-container').style.display = 'block';
-        document.getElementById('standalone-description-text').style.display = 'block';
-        document.getElementById('description-text').style.display = 'none';
-        document.getElementById('standalone-award-interest-container').style.display = 'block';
-        document.getElementById('specific-policy-objective-container').style.display = 'block';
-      }else{
-        document.getElementById('related-subsidy-scheme').style.display = 'block';
-        document.getElementById('related-admin-program').style.display = 'block';
-        document.getElementById('authority-url-and-description-container').style.display = 'none';
-        document.getElementById('standalone-description-text').style.display = 'none';
-        document.getElementById('description-text').style.display = 'block';
-        document.getElementById('standalone-award-interest-container').style.display = 'none';
-        document.getElementById('specific-policy-objective-container').style.display = 'none';
-      }
+        showHideElements(document.getElementsByClassName("standalone-only"),'block');
+        showHideElements(document.getElementsByClassName("scheme-only"),'none');
 
-    };
+      }else{
+        showHideElements(document.getElementsByClassName("standalone-only"),'none');
+        showHideElements(document.getElementsByClassName("scheme-only"),'block');
+      };
+    }
+
+    function showHideElements(e, action){
+      for (var i = 0; i < e.length; i++) {
+          e[i].style.display = action;
+        }
+    }
 
     function selectAll(source) {
       const checkboxes = document.getElementsByClassName(source.className);
@@ -287,7 +277,7 @@
               </fieldset>
             </div>
 
-            <div id="related-subsidy-scheme" <% if(ssn.Standalone_Award_Global == 'Yes'){ %> hidden <% } %>> 
+            <div id="related-subsidy-scheme" class="scheme-only" <% if(ssn.Standalone_Award_Global == 'Yes'){ %> hidden <% } %>> 
               <h1 class="govuk-heading-l">Related subsidy scheme</h1>
 
               <p class="govuk-body">Enter the details of the subsidy scheme that this award is related to.</p>
@@ -561,7 +551,7 @@
               <% } %>
           </div>
 
-          <div id="related-admin-program" <% if(ssn.Standalone_Award_Global == 'Yes'){ %> hidden <% } %>>
+          <div id="related-admin-program" class="scheme-only" <% if(ssn.Standalone_Award_Global == 'Yes'){ %> hidden <% } %>>
             <h1 class="govuk-heading-l">Related admin program</h1>
             <p class="govuk-body">
               If you wish to associate this subsidy award to an admin program, enter the AP Number of the admin program
@@ -612,8 +602,17 @@
 
           <div id="subsidy-award-details">
             <h1 class="govuk-heading-l">Subsidy award details</h1>
+
+            <div id="standalone-award-title-container" class="standalone-only" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>> 
+              <div class="govuk-form-group <% if( ssn.Standalone_Award_Title_Error ){ %> govuk-form-group--error <% } %>" id="SubsidyAwardTitleContainer">   
+                <label class="govuk-label" for="Standalone_Award_Title">
+                  Standalone Award Title
+                </label>
+                <input id="Standalone_Award_Title" class="govuk-input" name="Standalone_Award_Title" maxlength="255" value="<%=ssn.Standalone_Award_Title_Global%>"/>
+              </div>
+            </div>
           
-            <div id="standalone-award-interest-container" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>> 
+            <div id="standalone-award-interest-container" class="standalone-only" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>> 
               <div class="govuk-form-group <% if( ssn.Subsidy_Award_Interest_Error ){ %> govuk-form-group--error <% } %>" id="SubsidyAwardInterestContainer">   
                 <label class="govuk-label" for="Subsidy_Award_Interest">
                   Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
@@ -672,7 +671,7 @@
                     </div>
               </div>
             </div>
-            <div id="specific-policy-objective-container" <% if (ssn.Standalone_Award_Global == 'No') { %> hidden <% } %>>
+            <div id="specific-policy-objective-container" class="standalone-only" <% if (ssn.Standalone_Award_Global == 'No') { %> hidden <% } %>>
               <div class="govuk-form-group <% if( ssn.Specific_Policy_Objective_Error || ssn.Specific_Policy_Objective_Error_Length){ %> govuk-form-group--error <% } %>" id="SpecificPolicyObjectiveContainer">   
                 <label class="govuk-label" for="Specific_Policy_Objective">
                   Specific policy objective
@@ -713,10 +712,10 @@
                       What details should be provided?
                     </span>
                   </summary>
-                  <div id="standalone-description-text" class="govuk-details__text" style="display:none">
+                  <div id="standalone-description-text" class="govuk-details__text standalone-only" style="display:none">
                     <%- include('../partials/standalone-award-description-partial.ejs') %>
                   </div>
-                  <div id="description-text" class="govuk-details__text">
+                  <div id="description-text" class="govuk-details__text scheme-only">
                     <p>Please include the following information in the description</p>
                     <p></p>
                     <p> - The policy objective(s) of the subsidy award   </p>
@@ -737,7 +736,7 @@
                 <textarea class="govuk-textarea govuk-js-character-count" id="Subsidy_Award_Description" name="Subsidy_Award_Description" rows="5" aria-describedby="Subsidy_Award_Description-info"><%= ssn.Subsidy_Award_Description_Global %></textarea>
               </div>
             </div>
-            <div id="authority-url-and-description-container" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>>
+            <div id="authority-url-and-description-container" class="scheme-only" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>>
               <div class="<%- ssn.Authority_URL_Error ? 'govuk-form-group--error' : 'govuk-form-group' %>" id="authority-url-container">
                 <label class="govuk-label" for="authority-url">
                   Public authority policy URL <span class="govuk-hint">(optional)</span>
@@ -771,6 +770,65 @@
                   </div>
               </details>
                 <input id="authority-url-description" class="govuk-input" value="<%=ssn.Authority_URL_Description_Global%>" name="Authority_URL_Description" maxlength="255"/>
+              </div>
+            </div>
+
+          <!--
+             <div id="legal-basis-container" class="govuk-form-group govuk-!-margin-bottom-6">
+              <label class="govuk-label" for="Legal_Basis">
+                Legal Basis
+              </label>
+              <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    What is Legal Basis?
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  This is the legal justification of this subsidy award.
+                </div>
+              </details>
+              <% if (ssn.Legal_Basis_Error || ssn.Legal_Basis_Error_Length) { %>
+                <span class="govuk-error-message" id="Legal_Basis_Error">
+                  <span class="govuk-visually-hidden">Error:</span>
+                  <% if (ssn.Legal_Basis_Error) { %>
+                    Enter a valid legal basis.
+                  <% } else { %>
+                    The legal basis must be 5000 characters or less.
+                  <% } %>
+                </span>
+              <% } %>
+              <input class="govuk-input govuk-!-width-one-half" id="Legal_Basis"
+                name="Legal_Basis" type="text" value="<%= ssn.Legal_Basis_Global %>">
+            </div>
+            --> 
+            
+            <div id="legal-basis-container">
+              <div class="govuk-form-group <% if( ssn.Legal_Basis_Error || ssn.Legal_Basis_Error_Length){ %> govuk-form-group--error <% } %>" id="SpecificPolicyObjectiveContainer">   
+                <label class="govuk-label" for="Legal_Basis">
+                  Legal Basis
+                </label>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What is Legal Basis?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    <p>This is the legal justification of this subsidy award. </p>
+                  </div>
+                </details>
+                <% if (ssn.Legal_Basis_Error || ssn.Legal_Basis_Error_Length) { %>
+                  <span class="govuk-error-message" id="Legal_Basis_Error">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    <% if (ssn.Legal_Basis_Error) { %>
+                      You must add a legal basis.
+                    <% } else { %>
+                      The legal basis must be 5000 characters or less.
+                    <% } %>
+                  </span>
+                <% } %>
+                <textarea class="govuk-textarea govuk-js-character-count" id="Legal_Basis" name="Legal_Basis" rows="5" aria-describedby="Legal_Basis-info"><%= ssn.Legal_Basis_Global %></textarea>
               </div>
             </div>
             
@@ -1442,13 +1500,13 @@
 
 
             <!-- *****************************************  -->
-            <!-- Get the Legal Granting Date     from user  -->
+            <!-- Get the Award confirmation Date     from user  -->
             <!-- *****************************************  -->
             <% if( ssn.Legal_Granting_Date_Day_Error || ssn.Legal_Granting_Date_Month_Error || ssn.Legal_Granting_Date_Year_Error || ssn.Award_Date_Not_Valid_Error) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <fieldset class="govuk-fieldset" role="group" aria-describedby="Legal_Granting_Date-hint">
                 <label class="govuk-label" for="address-line-1" id="grantingDateLabel">
-                  Granting Date
+                  Award confirmation Date
                 </label>
                 <div id="Legal_Granting_Date-hint" class="govuk-hint">
                   For example, 31 3 1980
@@ -1462,7 +1520,7 @@
                 <details class="govuk-details" data-module="govuk-details">
                   <summary class="govuk-details__summary">
                     <span class="govuk-details__summary-text">
-                      What is granting date?
+                      What is award confirmation date?
                     </span>
                   </summary>
                   <div class="govuk-details__text">
@@ -1536,7 +1594,7 @@
             <div class="govuk-form-group">
               <fieldset class="govuk-fieldset" role="group" aria-describedby="Legal_Granting_Date-hint">
                 <label class="govuk-label" for="address-line-1" id="grantingDateLabel">
-                  Granting Date
+                  Award confirmation Date
               </label>
                 <div id="Legal_Granting_Date-hint" class="govuk-hint">
                   For example, 31 3 1980
@@ -1544,7 +1602,7 @@
                 <details class="govuk-details" data-module="govuk-details">
                   <summary class="govuk-details__summary">
                     <span class="govuk-details__summary-text">
-                      What is granting date?
+                      What is award confirmation date?
                     </span>
                   </summary>
                   <div class="govuk-details__text">

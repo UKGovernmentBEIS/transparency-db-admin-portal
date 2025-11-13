@@ -75,6 +75,15 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            Standalone award title
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%=  ssn.Standalone_Award_Title_Global == '' || !ssn.Standalone_Award_Title_Global ? 'NA' : ssn.Standalone_Award_Title_Global %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Subsidy control (SC) number
           </dt>
           <dd class="govuk-summary-list__value">
@@ -144,6 +153,13 @@
             Description
           </dt>
           <dd class="govuk-summary-list__value render-newlines"><%= ssn.Subsidy_Award_Description_Global %></dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Legal Basis
+          </dt>
+          <dd class="govuk-summary-list__value render-newlines"><%= ssn.Legal_Basis_Global %></dd>
         </div>
 
         <div class="govuk-summary-list__row">
@@ -240,7 +256,7 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Award date
+            Award confirmation date
           </dt>
           <dd class="govuk-summary-list__value">
             <%= ssn.Legal_Granting_Date_Day_Global %> &nbsp; <%= ssn.GetMonthName %> &nbsp;

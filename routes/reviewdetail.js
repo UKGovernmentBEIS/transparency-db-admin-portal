@@ -66,7 +66,7 @@ router.post("/", async (req, res) => {
     ssn.Subsidy_Award_Description_Error_Length = false;
     ssn.Specific_Policy_Objective_Error = false;
     ssn.Specific_Policy_Objective_Error_Length = false;
-
+    ssn.Standalone_Award_Title_Error = false;
 
     ssn.Admin_Program_Error = false;
     ssn.Admin_Program_255_Error = false;
@@ -75,6 +75,8 @@ router.post("/", async (req, res) => {
     ssn.Admin_Program_Match_Error = false;
     ssn.Subsidy_Award_Interest_Error = false;
     ssn.SPEI_Error = false;
+    ssn.Legal_Basis_Error = false;
+    ssn.Legal_Basis_Error_Length = false;
     objective_culture_Global = "";
     objective_employment_Global = "";
     objective_energy_efficiency_Global = "";
@@ -126,6 +128,8 @@ router.post("/", async (req, res) => {
       mylink,
       Subsidy_Award_Interest,
       SPEI,
+      Legal_Basis,
+      Standalone_Award_Title,
       ...formVars
     } = req.body;
 
@@ -135,11 +139,13 @@ router.post("/", async (req, res) => {
       ssn.Admin_Program_Number_Global = "";
       ssn.Authority_URL_Global = Authority_URL;
       ssn.Authority_URL_Description_Global = Authority_URL_Description;
+      ssn.Standalone_Award_Title_Global = Standalone_Award_Title;
     }else{
       ssn.Authority_URL_Global = "";
       ssn.Authority_URL_Description_Global = "";
       ssn.Admin_Program_Number_Global = Admin_Program_Number;
       ssn.Subsidy_Control_Number_Name_Global = Subsidy_Control_Number_Name;
+      ssn.Standalone_Award_Title_Global = "";
     }
 
     ssn.Subsidy_Award_Description_Global = Subsidy_Award_Description;
@@ -204,10 +210,12 @@ router.post("/", async (req, res) => {
     ssn.Spending_Sector_Global = Spending_Sector;
     ssn.Subsidy_Award_Interest_Global = Subsidy_Award_Interest;
     ssn.SPEI_Global = SPEI;
+    ssn.Legal_Basis_Global = Legal_Basis;
 
     console.log("Subsidy_Objective_Other", Subsidy_Objective_Other.length);
     console.log("Subsidy_Instrument_Other", Subsidy_Instrument_Other);
     console.log("Beneficiary_Name", Beneficiary_Name);
+    console.log("ssn.Legal_Basis:" + ssn.Legal_Basis_Global);
     console.log("ssn.Subsidy_Award_Interest :" + ssn.Subsidy_Award_Interest_Global)
     console.log("ssn.SPEI :" + ssn.SPEI_Global)
     console.log("buttonvalue", buttonvalue);
@@ -350,6 +358,22 @@ router.post("/", async (req, res) => {
         }
       }
 
+      if(Standalone_Award == 'Yes' && !Standalone_Award_Title){
+        ssn.Standalone_Award_Title_Error = true;
+        ssn.SubsidyErrors[Additem] =
+        "You must include a standalone award title.";
+        ssn.SubsidyFocus[Additem] = "#Standalone_Award_Title";
+        Additem = Additem + 1;
+      }
+  
+      if(Standalone_Award == 'Yes' && Standalone_Award_Title.length > 255){
+        ssn.Standalone_Award_Title_Error = true;
+        ssn.SubsidyErrors[Additem] =
+        "The standalone award title must be 255 characters or less.";
+        ssn.SubsidyFocus[Additem] = "#Standalone_Award_Title";
+        Additem = Additem + 1;
+      }
+
       if ((Standalone_Award !== 'No' && !Subsidy_Award_Interest)) {
         ssn.Subsidy_Award_Interest_Error = true;
         ssn.SubsidyErrors[Additem] = "You must select if the award is a Subsidies or Schemes of Interest (SSoI), Subsidies or Schemes of Particular Interest (SSoPI) or neither";
@@ -372,6 +396,21 @@ router.post("/", async (req, res) => {
           Additem = Additem + 1;
       }
 
+      if(Legal_Basis.length > 5000){
+        ssn.Legal_Basis_Error_Length = true;
+        ssn.SubsidyErrors[Additem] =
+          "The legal basis must be 5000 characters or less.";
+        ssn.SubsidyFocus[Additem] = "#legal-basis-container";
+        Additem = Additem + 1;
+    }
+
+    if(Legal_Basis.length <= 0){
+      ssn.Legal_Basis_Error = true;
+      ssn.SubsidyErrors[Additem] =
+        "You must enter the legal basis.";
+      ssn.SubsidyFocus[Additem] = "#legal-basis-container";
+      Additem = Additem + 1;
+    }
 
       if(Specific_Policy_Objective.length > 1500){
         ssn.Specific_Policy_Objective_Error_Length = true;
@@ -384,7 +423,7 @@ router.post("/", async (req, res) => {
       if (Standalone_Award == 'Yes' && !Specific_Policy_Objective) {
         ssn.Specific_Policy_Objective_Error = true;
         ssn.SubsidyErrors[Additem] =
-          " You must add a policy objective.";
+          "You must add a policy objective.";
         ssn.SubsidyFocus[Additem] = "#Specific_Policy_Objective";
         Additem = Additem + 1;
       }
@@ -677,6 +716,9 @@ router.post("/", async (req, res) => {
         ssn.Subsidy_Award_Interest_Error ||
         ssn.Specific_Policy_Objective_Error_Length ||
         ssn.Specific_Policy_Objective_Error ||
+        ssn.Legal_Basis_Error ||
+        ssn.Legal_Basis_Error_Length ||
+        ssn.Standalone_Award_Title_Error ||
         ssn.SPEI_Error
       ) {
         res.render("bulkupload/addsubsidyaward", {
@@ -783,10 +825,10 @@ router.post("/", async (req, res) => {
                 ssn.Award_Date_Not_Valid_Error = true;
                 if(searchschemes.schemes[0].endDate == ''){
                 ssn.SubsidyErrors[Additem] =
-                "Granting date is not valid, it must be on or after "+searchschemes.schemes[0].startDate;
+                "Award confirmation date is not valid, it must be on or after "+searchschemes.schemes[0].startDate;
               }else{
                 ssn.SubsidyErrors[Additem] =
-                    "Granting date is not valid, it must be between "+searchschemes.schemes[0].startDate+" and "+searchschemes.schemes[0].endDate+" inclusive";
+                    "Award confirmation date is not valid, it must be between "+searchschemes.schemes[0].startDate+" and "+searchschemes.schemes[0].endDate+" inclusive";
                 }
               ssn.SubsidyFocus[Additem] = "#Legal_Granting_Date";
                 Additem = Additem + 1;

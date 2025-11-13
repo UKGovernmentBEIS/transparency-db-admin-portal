@@ -71,6 +71,9 @@ router.post("/", async (req, res) => {
     ssn.Specific_Policy_Objective_Error = false;
     ssn.Specific_Policy_Objective_Error_Length = false;
     ssn.SPEI_Error = false;
+    ssn.Legal_Basis_Error = false;
+    ssn.Legal_Basis_Error_Length = false;
+    ssn.Standalone_Award_Title_Error = false;
 
     console.log(
       "ssn.Subsidy_Full_Amount_Range_Global ",
@@ -114,6 +117,7 @@ router.post("/", async (req, res) => {
       ssn.Specific_Policy_Objective_Global = "";
     }
 
+
     const addAwardRequest = {
       standaloneAward: ssn.Standalone_Award_Global.trim(),
       subsidyAwardDescription: ssn.Subsidy_Award_Description_Global.trim(),
@@ -139,7 +143,9 @@ router.post("/", async (req, res) => {
       authorityURL: ssn.Authority_URL_Global.trim(),
       authorityURLDescription: ssn.Authority_URL_Description_Global.trim(),
       subsidyAwardInterest: ssn.Subsidy_Award_Interest_Global.trim(),
-      spei: ssn.SPEI_Global.trim()
+      spei: ssn.SPEI_Global.trim(),
+      legalBasis: ssn.Legal_Basis_Global.trim(),
+      standaloneAwardTitle: ssn.Standalone_Award_Title_Global.trim(),
     };
 
     if (isCallfromEditAward) {
@@ -173,7 +179,9 @@ router.post("/", async (req, res) => {
         authorityURLDescription: ssn.Authority_URL_Description_Global.trim(),
         subsidyAwardInterest: ssn.Subsidy_Award_Interest_Global.trim(),
         status: status,
-        spei: ssn.SPEI_Global.trim()
+        spei: ssn.SPEI_Global.trim(),
+        legalBasis: ssn.Legal_Basis_Global.trim(),
+        standaloneAwardTitle: ssn.Standalone_Award_Title_Global.trim(),
       };
 
       var data = JSON.parse(JSON.stringify(updateAwardRequest));
@@ -290,6 +298,17 @@ router.post("/", async (req, res) => {
             Additem = Additem + 1;
           }
 
+          if(
+            add_award_response.validationErrorResult[i].column ==
+            "#Legal_Basis"
+          ) {
+            ssn.Legal_Basis_Error = true;
+            ssn.SubsidyErrors[AddItem] = 
+              add_award_response.validationErrorResult[i].message;
+            ssn.SubsidyFocus[AddItem] = "#Legal_Basis";
+            Additem = Additem + 1;
+          }
+
           if (
             add_award_response.validationErrorResult[i].column == "nationalId"
           ) {
@@ -375,6 +394,14 @@ router.post("/", async (req, res) => {
             ssn.SubsidyErrors[Additem] =
               add_award_response.validationErrorResult[i].message;
             ssn.SubsidyFocus[Additem] = "#Granting_Authority_Name";
+            Additem = Additem + 1;
+          }
+
+          if (add_award_response.validationErrorResult[i].column == "StandaloneAwardTitle") {
+            ssn.Standalone_Award_Title_Error = true;
+            ssn.SubsidyErrors[Additem] =
+              add_award_response.validationErrorResult[i].message;
+            ssn.SubsidyFocus[Additem] = "#Standalone_Award_Title";
             Additem = Additem + 1;
           }
         } /*end for FOR loop */
