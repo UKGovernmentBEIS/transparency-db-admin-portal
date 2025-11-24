@@ -224,11 +224,11 @@
           <form id="myform" action="/reviewdetail" method="POST">
             <%- include('../partials/subsidy-database-requirements.ejs') %>
             <div class="govuk-form-group">
-              <label class="govuk-label" for="Subsidy_award_label">
-                This section is for adding one subsidy award, or standalone subsidy award.
-                You can use the bulk upload to
-                <a href="/bulkuploadsubsidy">add multiple subsidy awards.</a>
-              </label>
+              <p class="govuk-body govuk-!-font-size-19">
+                This section is for adding one subsidy award, or a standalone subsidy award.
+                You can <a href="/bulkuploadsubsidy">use the bulk upload to add multiple
+                subsidy awards</a>.
+              </p>
             </div>
             <h1 id="Standalong_Award_h1" class="govuk-heading-l">Standalone subsidy award</h1>
             <div class="govuk-form-group<% if(ssn.Standalone_Award_Error){ %> govuk-form-group--error<% } %>">
