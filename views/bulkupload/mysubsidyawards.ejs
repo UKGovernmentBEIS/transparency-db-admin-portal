@@ -122,9 +122,10 @@
             </button>
           </form>
         </div>
-        <div class="govuk-grid-column-one-third govuk-padding-0">
+        <div class="govuk-grid-column-one-half govuk-padding-0">
           <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
-            <select class="govuk-select" name="filter-search-button" id="filter-search-button" aria-describedby="status-message"
+            <label for="filter-select" class="govuk-label"> Show awards by status </label> 
+            <select class="govuk-select" name="sort" id="sort" aria-describedby="status-message"
               aria-label="Drop down list that shows subsidy award by status">
               <% if(ssn.awards_status  == "Show all") { %>
               <option value="Show all" selected>Show all (<%=totalSubsidyAward%>)</option>
@@ -155,7 +156,7 @@
               <% }  %>
             </select>
             
-            <button class="govuk-button" data-module="govuk-button" id="search-button">
+            <button class="govuk-button" type="submit">
               Search
             </button>
           </form>
@@ -232,10 +233,10 @@
 
     
           
-          <div class="govuk-grid-column-one-quarter govuk-padding-0" style="display: inline-block;">
-            <label for="filter-select" class="govuk-label"> Show awards by status </label> 
+          <div class="govuk-grid-column-one-half govuk-padding-0" style="display: inline-block;">
             <form class="govuk-!-width-full govuk-padding-0" action="/awardsfilterroute" method="GET">
-              <select class="govuk-select" name="filter-search-button" id="filter-search-button" 
+              <label for="filter-select" class="govuk-label"> Show awards by status </label> 
+              <select class="govuk-select" name="sort" id="sort"
               aria-label="Drop down list that shows subsidy award by status" aria-describedby="status-message">
                 
                 <% if(ssn.awards_status == "Show all") { %>
@@ -269,7 +270,7 @@
                 <% } %>
               </select>
 
-              <button class="govuk-button" data-module="govuk-button" id="search-button">
+              <button class="govuk-button" type="submit">
                 Search
               </button>
             </form>

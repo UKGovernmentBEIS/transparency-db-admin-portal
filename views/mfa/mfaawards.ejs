@@ -83,12 +83,12 @@
           </div>
 
          
-          <div class="govuk-grid-column-one-quarter  govuk-padding-0 " style="display: inline-block;">
+          <div class="govuk-grid-column-one-half  govuk-padding-0 " style="display: inline-block;">
             <label for="filter-select" class="govuk-label"> Show awards by status </label> 
 
             <form class="govuk-!-width-full govuk-padding-0" action="/mfaawards" method="GET">
 
-                    <select class="govuk-select" name="filter-search-button" id="filter-search-button" aria-describedby="status-message"
+                    <select class="govuk-select" name="status" aria-describedby="status-message"
                      aria-label="Drop down list that shows subsidy award by status">
                    
                     <% if(mfaAwardStatus == "") { %>

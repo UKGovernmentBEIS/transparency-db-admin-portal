@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Admin grograms search page</title>
+  <title>GOV.UK - Admin programs search page</title>
   <%- include('../partials/headercss.ejs') %>
 </head>
 
@@ -72,9 +72,9 @@
             </form>
           </div>
 
-          <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
+          <div class="govuk-grid-column-one-half govuk-padding-0">
             <form class="govuk-!-width-full govuk-padding-0" action="/adminprograms" method="GET">
-              <select class="govuk-!-width-full govuk-select" name="filter-search-button" id="filter-search-button" aria-describedby="status-message"
+              <select class="govuk-select" name="status"  aria-describedby="status-message"
                 aria-label="Drop down list that shows subsidy award by status">
                 <% if(adminProgramStatus == "") { %>
                 <option value="" selected>Show all (<%= ssn.allAdminPrograms %>)
@@ -168,10 +168,10 @@
             </form>
           </div>
 
-          <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
+          <div class="govuk-grid-column-one-half govuk-padding-0">
             <form class="govuk-!-width-full govuk-padding-0" action="/adminprograms" method="GET">
-              <select class="govuk-!-width-full govuk-select" name="filter-search-button" id="filter-search-button" aria-describedby="status-message"
-                aria-label="Drop down list that shows subsidy award by status">
+              <select class="govuk-select" name="status"  aria-describedby="status-message"
+                aria-label="Drop down list that shows admin programs by status">
                 <% if(adminProgramStatus == "") { %>
                 <option value="" selected>Show all (<%= ssn.allAdminPrograms %>)
                 </option>

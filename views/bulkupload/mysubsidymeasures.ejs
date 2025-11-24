@@ -105,9 +105,9 @@
         </div>
 
 
-          <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
+          <div class="govuk-grid-column-one-half govuk-padding-0">
             <form class="govuk-!-width-full govuk-padding-0" action="/measuresfilterroute" method="GET">
-            <select class="govuk-!-width-full govuk-select" name="filter-search-button" id="filter-search-button" aria-describedby="status-message"
+            <select class="govuk-select" name="sort" id="sort" aria-describedby="status-message"
               aria-label="Drop down list that shows subsidy scheme by status">
               <% if(schemes_status  == "") { %>
               <option value="" selected>Show all (<%= ssn.allScheme %>)
@@ -130,7 +130,7 @@
         
               </select>
 
-              <button class="govuk-button" data-module="govuk-button" id="search-button">
+              <button class="govuk-button" type="submit">
                 Search
               </button>
             </form>
@@ -221,10 +221,10 @@
         </div>
 
    
-          <div class="govuk-grid-column-one-quarter govuk-padding-0 govuk-form-group">
+          <div class="govuk-grid-column-one-half govuk-padding-0 govuk-form-group">
             <form class="govuk-!-width-full govuk-padding-0" action="/measuresfilterroute" method="GET">
               <label for="filter-select" class="govuk-label"> Show schemes by status </label> 
-              <select class="govuk-select" name="filter-search-button" id="filter-search-button"  
+              <select class="govuk-select" name="sort" id="sort"
               aria-label="Drop down list that shows subsidy award by status" aria-describedby="status-message">
                 <% if(schemes_status  == "") { %>
                   <option value="" selected>Show all (<%= ssn.allScheme %>)</option>
@@ -251,7 +251,7 @@
                 <% } %>
               </select>
 
-              <button class="govuk-button" data-module="govuk-button" id="search-button">
+              <button class="govuk-button" type="submit">
                 Search
               </button>
             </form>

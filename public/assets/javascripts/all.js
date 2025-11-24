@@ -1676,14 +1676,6 @@
     node.addEventListener("click", callback);
   };
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const select = document.getElementById("filter-search-button");
-    if (select) {
-      select.addEventListener("change", function () {
-      });
-    }
-  });
-
   function CharacterCount($module) {
     this.$module = $module;
     this.$textarea = $module.querySelector(".govuk-js-character-count");
