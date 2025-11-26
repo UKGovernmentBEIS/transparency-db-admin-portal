@@ -1,6 +1,6 @@
 {
   "name": "transparency-admin-portal",
-  "version": "0.8.10",
+  "version": "0.9.0",
   "description": "",
   "main": "server.js",
   "scripts": {
