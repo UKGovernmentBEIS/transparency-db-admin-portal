@@ -90,8 +90,8 @@
               </form>
             </div>
 
-            <form class="govuk-grid-column-one-half" action="/mygrantingauthority"  method="POST">
-              <select class="govuk-select" name="status" style="width: 100%" id='filter-select' nchange="this.form.submit()"
+            <form class="govuk-grid-column-one-half" action="/mygrantingauthority"  method="GET">
+              <select class="govuk-select" style="width: 100%" name="status"
                 aria-label="Results as per status shown in current page" aria-describedby="info-message"
                 aria-autocomplete="list">
                 <% if(status == 'Active') { %>
@@ -112,6 +112,9 @@
                 <!-- <option value="">Inactive </option>
                 <option value="" selected>Show all</option> -->
               </select>
+              <button class="govuk-button" type="submit">
+                Search
+              </button>
             </form>
 
           </div>
@@ -180,30 +183,35 @@
                 </button>
               </form>
             </div>
-
-            <form class="govuk-grid-column-one-half" action="/mygrantingauthority"  method="POST">
-              <select class="govuk-select" name="status" style="width: 100%" id='filter-select' onchange="this.form.submit()"
-                aria-label="Results as per status shown in current page" aria-describedby="info-message"
-                aria-autocomplete="list">
-                <% if(status == 'Active') { %>
-                <option value="Active" selected>Active(<%=activeCount%>) </option>
-                <% } else {%>
-                <option value="Active">Active(<%=activeCount%>) </option>
-                <% } %>
-                <% if(status == 'Inactive') { %>
-                <option value="Inactive" selected>Inactive(<%=inActiveCount%>) </option>
-                <% } else {%>
-                <option value="Inactive">Inactive(<%=inActiveCount%>) </option>
-                <% } %>
-                <% if(status == '') { %>
-                <option value="" selected>Show all (<%=totalSearchResults%>)</option>
-                <% } else {%>
-                <option value="">Show all (<%=totalSearchResults%>)</option>
-                <% } %>
-                <!-- <option value="">Inactive </option>
-                <option value="" selected>Show all</option> -->
-              </select>
-            </form>
+            <div class="govuk-grid-column-one-half govuk-padding-0">
+              <form class="govuk-!-width-full govuk-padding-0" action="/mygrantingauthority"  method="GET">
+                <select class="govuk-select" name="status"
+                  aria-label="Results as per status shown in current page" aria-describedby="info-message"
+                  aria-autocomplete="list">
+                  <% if(status == 'Active') { %>
+                  <option value="Active" selected>Active(<%=activeCount%>) </option>
+                  <% } else {%>
+                  <option value="Active">Active(<%=activeCount%>) </option>
+                  <% } %>
+                  <% if(status == 'Inactive') { %>
+                  <option value="Inactive" selected>Inactive(<%=inActiveCount%>) </option>
+                  <% } else {%>
+                  <option value="Inactive">Inactive(<%=inActiveCount%>) </option>
+                  <% } %>
+                  <% if(status == '') { %>
+                  <option value="" selected>Show all (<%=totalSearchResults%>)</option>
+                  <% } else {%>
+                  <option value="">Show all (<%=totalSearchResults%>)</option>
+                  <% } %>
+                  <!-- <option value="">Inactive </option>
+                  <option value="" selected>Show all</option> -->
+                </select>
+                <button class="govuk-button" type="submit">
+                  Search
+                </button>
+              </form>
+            </div>
+            
 
           </div>
           <div class="govuk-grid-column-full govuk-p-0">
