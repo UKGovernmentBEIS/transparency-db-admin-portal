@@ -566,11 +566,11 @@
               If you wish to associate this subsidy award to an admin program, enter the AP Number of the admin program
             </p>
             <div class="govuk-form-group <% if( ssn.Admin_Program_Error ){ %> govuk-form-group--error <% } %> " id="AdminProgramContainer">
-              <label class="govuk-label" for="Legal_Granting_Date-hint">
+              <label class="govuk-label" for="Admin_Program_Number">
                   Admin program number
               </label>
 
-              <div id="Legal_Granting_Date-hint" class="govuk-hint">
+              <div id="Admin_Program_Hint" class="govuk-hint">
                   For example, AP10002
               </div>
 
@@ -1446,7 +1446,7 @@
             <% if( ssn.Legal_Granting_Date_Day_Error || ssn.Legal_Granting_Date_Month_Error || ssn.Legal_Granting_Date_Year_Error || ssn.Award_Date_Not_Valid_Error) { %>
             <div class="govuk-form-group govuk-form-group--error">
               <fieldset class="govuk-fieldset" role="group" aria-describedby="Legal_Granting_Date-hint">
-                <label class="govuk-label" for="grantingDateLabel" id="grantingDateLabel">
+                <label class="govuk-label" for="Legal_Granting_Date" id="grantingDateLabel">
                   Granting Date
                 </label>
                 <div id="Legal_Granting_Date-hint" class="govuk-hint">
@@ -1534,7 +1534,7 @@
 
             <div class="govuk-form-group">
               <fieldset class="govuk-fieldset" role="group" aria-describedby="Legal_Granting_Date-hint">
-                <label class="govuk-label" for="grantingDateLabel" id="grantingDateLabel">
+                <label class="govuk-label" for="Legal_Granting_Date" id="grantingDateLabel">
                   Granting Date
               </label>
                 <div id="Legal_Granting_Date-hint" class="govuk-hint">

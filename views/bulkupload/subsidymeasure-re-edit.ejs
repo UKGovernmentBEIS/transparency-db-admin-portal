@@ -317,7 +317,7 @@
                                                 <% } else { %>
                                                 <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                     <% }  %>
-                                                    <label class="govuk-label" for="confirmationDateLabel" id="confirmationDateLabel">
+                                                    <label class="govuk-label" for="scheme-issued" id="confirmationDateLabel">
                                                         Confirmation Date
                                                     </label>
                                                     <div class="govuk-hint">
@@ -384,13 +384,13 @@
                                                 <% } else { %>
                                                 <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                     <% }  %>
-                                                    <label class="govuk-label" for="scheme-issued">
+                                                    <label class="govuk-label" for="Confirmation_Date_Start_Date">
                                                         Start Date
                                                     </label>
                                                     <div class="govuk-hint">
                                                         For example, 25 3 2020
                                                     </div>
-                                                    <div class="govuk-date-input" id="scheme-issued">
+                                                    <div class="govuk-date-input" id="Confirmation_Date_Start_Date">
                                                         <div class="govuk-date-input__item">
                                                             <div class="govuk-form-group">
                                                                 <label class="govuk-label govuk-date-input__label"
@@ -399,14 +399,14 @@
                                                                 </label>
                                                                 <% if( ssn.scheme_issued_start_day_Error ){ %>
                                                                 <span class="govuk-error-message"
-                                                                    id="scheme_issued_start_day_Error">
+                                                                    id="Confirmation_Date_Start_Date_Error">
                                                                     <span class="govuk-visually-hidden">Error:</span>
                                                                     Enter a valid date
                                                                 </span>
                                                                 <% }  %>
                                                                 <input
                                                                     class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                                                    id="scheme_issued_start_day"
+                                                                    id="Confirmation_Date_Start_Date"
                                                                     name="scheme_issued_start_day" type="text"
                                                                     placeholder="DD" pattern="[0-9]*"
                                                                     inputmode="numeric"
@@ -421,14 +421,14 @@
                                                                 </label>
                                                                 <% if( ssn.scheme_issued_start_month_Error ){ %>
                                                                 <span class="govuk-error-message"
-                                                                    id="scheme_issued_start_month_Error">
+                                                                    id="Confirmation_Date_Start_Date_Error">
                                                                     <span class="govuk-visually-hidden">Error:</span>
                                                                     Enter a valid month
                                                                 </span>
                                                                 <% }  %>
                                                                 <input
                                                                     class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                                                    id="scheme_issued_start_month"
+                                                                    id="Confirmation_Date_Start_Date"
                                                                     value="<%= ssn.Scheme_Start_Month_Global%>"
                                                                     name="scheme_issued_start_month" placeholder="MM"
                                                                     type="text" pattern="[0-9]*" inputmode="numeric">
@@ -442,14 +442,14 @@
                                                                 </label>
                                                                 <% if( ssn.scheme_issued_start_year_Error ){ %>
                                                                 <span class="govuk-error-message"
-                                                                    id="scheme_issued_start_year_Error">
+                                                                    id="Confirmation_Date_Start_Date_Error">
                                                                     <span class="govuk-visually-hidden">Error:</span>
                                                                     Enter a valid year
                                                                 </span>
                                                                 <% }  %>
                                                                 <input
                                                                     class="govuk-input govuk-date-input__input govuk-input--width-4"
-                                                                    id="scheme_issued_start_year"
+                                                                    id="Confirmation_Date_Start_Date"
                                                                     name="scheme_issued_start_year" type="text"
                                                                     pattern="[0-9]*" inputmode="numeric"
                                                                     value="<%= ssn.Scheme_Start_Year_Global%>"
@@ -464,13 +464,13 @@
                                                     <% } else { %>
                                                     <div class="govuk-form-group govuk-grid-column-two-thirds">
                                                         <% }  %>
-                                                        <label class="govuk-label" for="scheme-issued">
+                                                        <label class="govuk-label" for="Confirmation_Date_End_Date">
                                                             End Date
                                                         </label>
                                                         <div class="govuk-hint">
                                                             For example, 25 3 2021
                                                         </div>
-                                                        <div class="govuk-date-input" id="scheme-issued">
+                                                        <div class="govuk-date-input" id="Confirmation_Date_End_Date">
                                                             <div class="govuk-date-input__item">
                                                                 <div class="govuk-form-group">
                                                                     <label class="govuk-label govuk-date-input__label"
@@ -479,7 +479,7 @@
                                                                     </label>
                                                                     <% if( ssn.scheme_issued_end_day_Error ){ %>
                                                                     <span class="govuk-error-message"
-                                                                        id="scheme_issued_end_day_Error">
+                                                                        id="Confirmation_Date_End_Date_Error">
                                                                         <span
                                                                             class="govuk-visually-hidden">Error:</span>
                                                                         Enter a valid date
@@ -487,7 +487,7 @@
                                                                     <% }  %>
                                                                     <input
                                                                         class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                                                        id="scheme-issued-day"
+                                                                        id="Confirmation_Date_End_Date"
                                                                         value="<%= ssn.Scheme_End_Day_Global%>"
                                                                         name="scheme_issued_end_day" type="text"
                                                                         placeholder="DD" pattern="[0-9]*"
@@ -501,7 +501,7 @@
                                                                     </label>
                                                                     <% if( ssn.scheme_issued_start_month_Error ){ %>
                                                                     <span class="govuk-error-message"
-                                                                        id="scheme_issued_start_month_Error">
+                                                                        id="Confirmation_Date_End_Date_Error">
                                                                         <span
                                                                             class="govuk-visually-hidden">Error:</span>
                                                                         Enter a valid month
@@ -509,7 +509,7 @@
                                                                     <% }  %>
                                                                     <input
                                                                         class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                                                        id="scheme_issued_end_month"
+                                                                        id="Confirmation_Date_End_Date"
                                                                         value="<%= ssn.Scheme_End_Month_Global%>"
                                                                         name="scheme_issued_end_month" placeholder="MM"
                                                                         type="text" pattern="[0-9]*"
@@ -524,7 +524,7 @@
                                                                     </label>
                                                                     <% if( ssn.scheme_issued_end_year_Error ){ %>
                                                                     <span class="govuk-error-message"
-                                                                        id="scheme_issued_end_year_Error">
+                                                                        id="Confirmation_Date_End_Date_Error">
                                                                         <span
                                                                             class="govuk-visually-hidden">Error:</span>
                                                                         Enter a valid year
@@ -532,7 +532,7 @@
                                                                     <% }  %>
                                                                     <input
                                                                         class="govuk-input govuk-date-input__input govuk-input--width-4"
-                                                                        id="scheme_issued_end_year"
+                                                                        id="Confirmation_Date_End_Date"
                                                                         value="<%= ssn.Scheme_End_Year_Global%>"
                                                                         name="scheme_issued_end_year" type="text"
                                                                         pattern="[0-9]*" inputmode="numeric"

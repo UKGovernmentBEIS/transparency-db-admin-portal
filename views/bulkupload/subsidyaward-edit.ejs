@@ -287,7 +287,7 @@
                         </select>
                     </div>
                     <div class="govuk-form-group govuk-grid-column-two-thirds">
-                        <label class="govuk-label" for="passport-issued-hint">
+                        <label class="govuk-label" for="Granting_Authority_Name">
                             Public authority name
                         </label>
 
@@ -295,10 +295,10 @@
                             name="Granting_Authority_Name" type="text">
                     </div>
                     <div class="govuk-form-group govuk-grid-column-two-thirds">
-                        <label class="govuk-label" for="passport-issued-hint">
+                        <label class="govuk-label" for="Granting_Authority_Date">
                             Granting date
                         </label>
-                        <div id="passport-issued-hint" class="govuk-hint">
+                        <div id="Granting_Authority_Date" class="govuk-hint">
                             For example, 25 3 2020
                         </div>
                         <div class="govuk-date-input" id="passport-issued">
@@ -339,10 +339,10 @@
                         Recipient details
                     </label>
                     <div class="govuk-form-group govuk-grid-column-two-thirds">
-                        <label class="govuk-label" for="Size_of_the_Organisation">
+                        <label class="govuk-label" for="Beneficiary_Name">
                             Recipient organisation name
                         </label>
-                        <input type="text" class="govuk-input  govuk-!-width-one-half" value="<%= Beneficiary_Name%>"
+                        <input id = Beneficiary_Name type="text" class="govuk-input  govuk-!-width-one-half" value="<%= Beneficiary_Name%>"
                             name="Beneficiary_Name">
                     </div>
                     <div class="govuk-form-group govuk-grid-column-two-thirds">
@@ -463,10 +463,10 @@
                         </div>
                     </div>
                     <div class="govuk-form-group govuk-grid-column-two-thirds">
-                        <label class="govuk-label" for="passport-issued-hint">
+                        <label class="govuk-label" for="pNational_ID_Number">
                             ID number
                         </label>
-                        <div id="passport-issued-hint" class="govuk-hint">This must match the ID type. For example, if
+                        <div id="ID_Number-hint" class="govuk-hint">This must match the ID type. For example, if
                             you selected ‘VAT number’ for ID type, you
                             must enter the recipient’s VAT number.</div>
                         <input class="govuk-input govuk-!-width-one-third" name="National_ID_Number"
