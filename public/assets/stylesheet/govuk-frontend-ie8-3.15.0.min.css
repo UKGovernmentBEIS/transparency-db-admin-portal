@@ -1915,16 +1915,6 @@
     border-top-color: inherit
 }
 
-.hyphen-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-.hyphen-list li::before {
-  content: "-";
-  margin-right: 8px;
-}
-
 .govuk-details__text {
     padding-top: 15px;
     padding-bottom: 15px;
