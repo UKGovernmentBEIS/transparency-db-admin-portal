@@ -736,6 +736,36 @@
                 <textarea class="govuk-textarea govuk-js-character-count" id="Subsidy_Award_Description" name="Subsidy_Award_Description" rows="5" aria-describedby="Subsidy_Award_Description-info"><%= ssn.Subsidy_Award_Description_Global %></textarea>
               </div>
             </div>
+
+            <div id="legal-basis-container">
+              <div class="govuk-form-group <% if( ssn.Legal_Basis_Error || ssn.Legal_Basis_Error_Length){ %> govuk-form-group--error <% } %>" id="SpecificPolicyObjectiveContainer">   
+                <label class="govuk-label" for="Legal_Basis">
+                  Legal Basis
+                </label>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      What is Legal Basis?
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    <p>This is the legal justification of this subsidy award.</p>
+                  </div>
+                </details>
+                <% if (ssn.Legal_Basis_Error || ssn.Legal_Basis_Error_Length) { %>
+                  <span class="govuk-error-message" id="Legal_Basis_Error">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    <% if (ssn.Legal_Basis_Error) { %>
+                      You must add a legal basis.
+                    <% } else { %>
+                      The legal basis must be 5000 characters or less.
+                    <% } %>
+                  </span>
+                <% } %>
+                <textarea class="govuk-textarea govuk-js-character-count" id="Legal_Basis" name="Legal_Basis" rows="5" aria-describedby="Legal_Basis-info"><%= ssn.Legal_Basis_Global %></textarea>
+              </div>
+            </div>
+
             <div id="authority-url-and-description-container" class="standalone-only" <% if(ssn.Standalone_Award_Global == 'No'){ %> hidden <% } %>>
               <div class="<%- ssn.Authority_URL_Error ? 'govuk-form-group--error' : 'govuk-form-group' %>" id="authority-url-container">
                 <label class="govuk-label" for="authority-url">
@@ -771,66 +801,7 @@
               </details>
                 <input id="authority-url-description" class="govuk-input" value="<%=ssn.Authority_URL_Description_Global%>" name="Authority_URL_Description" maxlength="255"/>
               </div>
-            </div>
-
-          <!--
-             <div id="legal-basis-container" class="govuk-form-group govuk-!-margin-bottom-6">
-              <label class="govuk-label" for="Legal_Basis">
-                Legal Basis
-              </label>
-              <details class="govuk-details" data-module="govuk-details">
-                <summary class="govuk-details__summary">
-                  <span class="govuk-details__summary-text">
-                    What is Legal Basis?
-                  </span>
-                </summary>
-                <div class="govuk-details__text">
-                  This is the legal justification of this subsidy award.
-                </div>
-              </details>
-              <% if (ssn.Legal_Basis_Error || ssn.Legal_Basis_Error_Length) { %>
-                <span class="govuk-error-message" id="Legal_Basis_Error">
-                  <span class="govuk-visually-hidden">Error:</span>
-                  <% if (ssn.Legal_Basis_Error) { %>
-                    Enter a valid legal basis.
-                  <% } else { %>
-                    The legal basis must be 5000 characters or less.
-                  <% } %>
-                </span>
-              <% } %>
-              <input class="govuk-input govuk-!-width-one-half" id="Legal_Basis"
-                name="Legal_Basis" type="text" value="<%= ssn.Legal_Basis_Global %>">
-            </div>
-            --> 
-            
-            <div id="legal-basis-container">
-              <div class="govuk-form-group <% if( ssn.Legal_Basis_Error || ssn.Legal_Basis_Error_Length){ %> govuk-form-group--error <% } %>" id="SpecificPolicyObjectiveContainer">   
-                <label class="govuk-label" for="Legal_Basis">
-                  Legal Basis
-                </label>
-                <details class="govuk-details" data-module="govuk-details">
-                  <summary class="govuk-details__summary">
-                    <span class="govuk-details__summary-text">
-                      What is Legal Basis?
-                    </span>
-                  </summary>
-                  <div class="govuk-details__text">
-                    <p>This is the legal justification of this subsidy award. </p>
-                  </div>
-                </details>
-                <% if (ssn.Legal_Basis_Error || ssn.Legal_Basis_Error_Length) { %>
-                  <span class="govuk-error-message" id="Legal_Basis_Error">
-                    <span class="govuk-visually-hidden">Error:</span>
-                    <% if (ssn.Legal_Basis_Error) { %>
-                      You must add a legal basis.
-                    <% } else { %>
-                      The legal basis must be 5000 characters or less.
-                    <% } %>
-                  </span>
-                <% } %>
-                <textarea class="govuk-textarea govuk-js-character-count" id="Legal_Basis" name="Legal_Basis" rows="5" aria-describedby="Legal_Basis-info"><%= ssn.Legal_Basis_Global %></textarea>
-              </div>
-            </div>
+            </div>            
             
             <div id="SPEI-container"> 
               <div class="govuk-form-group<% if( ssn.SPEI_Error ){ %> govuk-form-group--error <% } %>" id="SPEIContainer">   
