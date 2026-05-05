@@ -22,6 +22,7 @@ router.get("/", async (req, res) => {
     res.set("Content-Security-Policy", 'frame-ancestors "self"');
     res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
+    res.set("Referrer-Policy", "strict-origin-when-cross-origin");
 
     console.log("req.query.scheme: " + req.query.scheme);
     scnumber = req.query.scheme;

@@ -18,6 +18,7 @@ router.get("/", async (req, res) => {
     res.redirect("/signout");
   } else {
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
+    res.set("Referrer-Policy", "strict-origin-when-cross-origin");
 
     if(req.query.hasOwnProperty("id")){
         mfaAwardNumber = req.query.id;

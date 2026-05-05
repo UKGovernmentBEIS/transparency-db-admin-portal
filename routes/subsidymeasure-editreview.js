@@ -19,6 +19,7 @@ router.get("/", async (req, res) => {
     res.redirect("/signout");
   } else {
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
+    res.set("Referrer-Policy", "strict-origin-when-cross-origin");
 
     console.log("req.query.scheme: " + req.query.scheme);
     scnumber = req.query.scheme;
