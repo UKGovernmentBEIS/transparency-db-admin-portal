@@ -18,7 +18,7 @@ router.post("/", (req, res) => {
     res.set("X-Content-Type-Options", "nosniff");
     res.set("Content-Security-Policy", 'frame-ancestors "self"');
     res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
     Award_status = req.body.status;
     awardnumber = req.body.awardnumber;
     res.render("bulkupload/subsidyaward-reject", { Award_status, awardnumber });

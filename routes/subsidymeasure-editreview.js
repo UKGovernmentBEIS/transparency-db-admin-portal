@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
 
     console.log("req.query.scheme: " + req.query.scheme);
     scnumber = req.query.scheme;

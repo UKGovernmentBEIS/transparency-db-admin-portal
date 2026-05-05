@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
     res.set("X-Content-Type-Options", "nosniff");
     res.set("Content-Security-Policy", 'frame-ancestors "self"');
     res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
 
     // Full_Name_Edit_Global = ssn.Full_Name_Global + " " + ssn.Last_Name_Global;
     // Full_Name_Edit_Global = ssn.Full_Name_Global;

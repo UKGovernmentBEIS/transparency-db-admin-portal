@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
         res.set("Access-Control-Allow-Origin", beis_url_searchscheme);
         res.set(
           "Strict-Transport-Security",
-          "max-age=31536000; includeSubDomains"
+          "max-age=31536000; includeSubDomains; preload"
         );
         const review = req.body.editReview;
         res.render("bulkupload/grantingauthority-addsuccessfully", {
@@ -65,7 +65,7 @@ router.post("/", async (req, res) => {
         res.set("Access-Control-Allow-Origin", beis_url_searchscheme);
         res.set(
           "Strict-Transport-Security",
-          "max-age=31536000; includeSubDomains"
+          "max-age=31536000; includeSubDomains; preload"
         );
         var data1 = {
           name: req.body.GaName,
