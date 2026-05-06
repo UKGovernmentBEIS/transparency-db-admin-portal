@@ -23,6 +23,9 @@ router.post("/", async (req, res) => {
     res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
     res.set("Referrer-Policy", "strict-origin-when-cross-origin");
+    res.set("Cross-Origin-Resource-Policy", "same-site");
+    res.set("Cross-Origin-Opener-Policy", "same-origin");
+    res.set("Cross-Origin-Embedder-Policy", "require-corp");
 
     console.log("req.query.page: " + req.body.Audit_Granting_Date_Day);
     ssn.awards_status = req.query.sort;

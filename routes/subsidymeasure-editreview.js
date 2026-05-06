@@ -20,6 +20,9 @@ router.get("/", async (req, res) => {
   } else {
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
     res.set("Referrer-Policy", "strict-origin-when-cross-origin");
+    res.set("Cross-Origin-Resource-Policy", "same-site");
+    res.set("Cross-Origin-Opener-Policy", "same-origin");
+    res.set("Cross-Origin-Embedder-Policy", "require-corp");
 
     console.log("req.query.scheme: " + req.query.scheme);
     scnumber = req.query.scheme;
