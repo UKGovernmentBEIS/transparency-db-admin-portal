@@ -48,6 +48,10 @@ router.post("/", async (req, res) => {
           "Strict-Transport-Security",
           "max-age=31536000; includeSubDomains; preload"
         );
+        res.set("Referrer-Policy", "strict-origin-when-cross-origin");
+        res.set("Cross-Origin-Resource-Policy", "same-origin");
+        res.set("Cross-Origin-Opener-Policy", "same-origin");
+        res.set("Cross-Origin-Embedder-Policy", "require-corp");
         const review = req.body.editReview;
         res.render("bulkupload/grantingauthority-addsuccessfully", {
           // ssn.gaID_extract,
@@ -91,6 +95,10 @@ router.post("/", async (req, res) => {
           "Strict-Transport-Security",
           "max-age=31536000; includeSubDomains; preload"
         );
+        res.set("Referrer-Policy", "strict-origin-when-cross-origin");
+        res.set("Cross-Origin-Resource-Policy", "same-origin");
+        res.set("Cross-Origin-Opener-Policy", "same-origin");
+        res.set("Cross-Origin-Embedder-Policy", "require-corp");
         var data1 = {
           name: req.body.GaName,
           userName: ssn.dashboard_user_name,

@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
 
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
     res.set("Referrer-Policy", "strict-origin-when-cross-origin");
-    res.set("Cross-Origin-Resource-Policy", "same-site");
+    res.set("Cross-Origin-Resource-Policy", "same-origin");
     res.set("Cross-Origin-Opener-Policy", "same-origin");
     res.set("Cross-Origin-Embedder-Policy", "require-corp");
     var { Award_status,awardnumber } = req.body;
