@@ -5,6 +5,7 @@
 const express = require("express");
 var session = require("express-session");
 const router = express.Router();
+const utils = require("../utils");
 
 router.get("/", (req, res) => {
   ssn = req.session;
@@ -14,6 +15,8 @@ router.get("/", (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
+    utils.setSecurityHeaders(res, beis_url_accessmanagement);
+
     // res.set("X-Frame-Options", "DENY");
     // res.set("X-Content-Type-Options", "nosniff");
   //   res.set("Content-Security-Policy", [
@@ -145,6 +148,7 @@ router.post("/", (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
+    utils.setSecurityHeaders(res, beis_url_accessmanagement);
     // res.set("X-Frame-Options", "DENY");
     // res.set("X-Content-Type-Options", "nosniff");
     // res.set("Content-Security-Policy", [

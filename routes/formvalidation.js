@@ -8,6 +8,7 @@ const router = express.Router();
 
 const request = require("request");
 const axios = require("axios");
+const utils = require("../utils");
 
 const FormData = require("form-data");
 const fs = require("fs");
@@ -25,27 +26,7 @@ router.get("/", (req, res) => {
     let isNotCsvOrExcel = false;
     let isExcelFormat = false;
 
-    res.set("X-Frame-Options", "DENY");
-    res.set("X-Content-Type-Options", "nosniff");
-    res.set("Content-Security-Policy", [
-      "default-src 'self'",
-      "script-src 'self' 'unsafe-inline'",
-      "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data:",
-      "font-src 'self' data:",
-      "connect-src 'self'",
-      "object-src 'none'",
-      "base-uri 'self'",
-      "form-action 'self'",
-      "frame-ancestors 'self'"
-    ].join(";"));
-
-    res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
-    res.set("Referrer-Policy", "strict-origin-when-cross-origin");
-    res.set("Cross-Origin-Resource-Policy", "same-origin");
-    res.set("Cross-Origin-Opener-Policy", "same-origin");
-    res.set("Cross-Origin-Embedder-Policy", "require-corp");
+    utils.setSecurityHeaders(res, beis_url_accessmanagement);
 
     res.render("bulkupload/bulkuploadsubsidy", {
       isFileUploadEmpty,
@@ -65,27 +46,7 @@ router.post("/", async (req, res) => {
   } else {
     let isFileUploadEmpty = false;
 
-    res.set("X-Frame-Options", "DENY");
-    res.set("X-Content-Type-Options", "nosniff");
-    res.set("Content-Security-Policy", [
-      "default-src 'self'",
-      "script-src 'self' 'unsafe-inline'",
-      "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data:",
-      "font-src 'self' data:",
-      "connect-src 'self'",
-      "object-src 'none'",
-      "base-uri 'self'",
-      "form-action 'self'",
-      "frame-ancestors 'self'"
-    ].join(";"));
-
-    res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
-    res.set("Referrer-Policy", "strict-origin-when-cross-origin");
-    res.set("Cross-Origin-Resource-Policy", "same-origin");
-    res.set("Cross-Origin-Opener-Policy", "same-origin");
-    res.set("Cross-Origin-Embedder-Policy", "require-corp");
+    utils.setSecurityHeaders(res, beis_url_accessmanagement);
 
     console.log("formvalidation");
     API_data_received = "no";
