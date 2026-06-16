@@ -8,7 +8,7 @@ const router = express.Router();
 
 const axios = require("axios");
 var request = require("request");
-var utils = require("../utils");
+const utils = require("../utils");
 
 router.get("/", async (req, res) => {
   ssn = req.session;
