@@ -8,6 +8,7 @@ const router = express.Router();
 
 const axios = require("axios");
 var request = require("request");
+const utils = require("../utils");
 
 router.get("/", async (req, res) => {
   ssn = req.session;
@@ -20,11 +21,7 @@ router.get("/", async (req, res) => {
     var status = "Deleted";
     var render = "admin-program/adminprogramdeletesuccess";
 
-    res.set("X-Frame-Options", "DENY");
-    res.set("X-Content-Type-Options", "nosniff");
-    res.set("Content-Security-Policy", 'frame-ancestors "self"');
-    res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    utils.setSecurityHeaders(res, beis_url_searchscheme);
 
     try {
       console.log("Admin Program Number", ssn.adminProgramDetails.apNumber);

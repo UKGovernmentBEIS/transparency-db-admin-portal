@@ -5,6 +5,7 @@
 const express = require("express");
 var session = require("express-session");
 const router = express.Router();
+const utils = require("../utils");
 
 router.get("/", (req, res) => {
   ssn = req.session;
@@ -14,6 +15,8 @@ router.get("/", (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
+    utils.setSecurityHeaders(res, beis_url_accessmanagement);
+
     ssn.Subsidy_Control_Number_Error = false;
     ssn.Subsidy_Measure_Title_Error = false;
     ssn.Subsidy_Measure_Title_255_Error = false;
@@ -246,12 +249,6 @@ router.get("/", (req, res) => {
 
     isCallfromEditAward = true;
     ssn.addToScheme = false;
-
-    res.set("X-Frame-Options", "DENY");
-    res.set("X-Content-Type-Options", "nosniff");
-    res.set("Content-Security-Policy", 'frame-ancestors "self"');
-    res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
     res.render("bulkupload/addsubsidyaward", {
       isCallfromEditAward,

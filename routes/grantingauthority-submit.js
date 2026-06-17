@@ -6,6 +6,8 @@ const express = require("express");
 const axios = require("axios");
 var session = require("express-session");
 const router = express.Router();
+const utils = require("../utils");
+
 router.post("/", async (req, res) => {
   ssn = req.session;
   if (
@@ -14,6 +16,7 @@ router.post("/", async (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
+    utils.setSecurityHeaders(res, beis_url_searchscheme);
     if (req.body.editReview == "true") {
       ssn.gaID_extract = req.body.grantingAuthorityID;
       var gaID_Name = {
@@ -28,14 +31,7 @@ router.post("/", async (req, res) => {
           ssn.UserPrincileObjectGlobal
         );
         // const gaID = apidata.gaId;
-        res.set("X-Frame-Options", "DENY");
-        res.set("X-Content-Type-Options", "nosniff");
-        res.set("Content-Security-Policy", 'frame-ancestors "self"');
-        res.set("Access-Control-Allow-Origin", beis_url_searchscheme);
-        res.set(
-          "Strict-Transport-Security",
-          "max-age=31536000; includeSubDomains"
-        );
+        
         const review = req.body.editReview;
         res.render("bulkupload/grantingauthority-addsuccessfully", {
           // ssn.gaID_extract,
@@ -60,13 +56,6 @@ router.post("/", async (req, res) => {
         // userPrincipleRequest.grantingAuthorityGroupName = ssn.dashboard_ga_name;
         // userPrincipleRequest.userName = ssn.dashboard_user_name;
 
-        res.set("X-Frame-Options", "DENY");
-        res.set("Content-Security-Policy", 'frame-ancestors "self"');
-        res.set("Access-Control-Allow-Origin", beis_url_searchscheme);
-        res.set(
-          "Strict-Transport-Security",
-          "max-age=31536000; includeSubDomains"
-        );
         var data1 = {
           name: req.body.GaName,
           userName: ssn.dashboard_user_name,

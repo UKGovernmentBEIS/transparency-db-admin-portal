@@ -5,6 +5,7 @@
 const express = require("express");
 var session = require("express-session");
 const router = express.Router();
+const utils = require("../utils");
 
 router.get("/", (req, res) => {
   ssn = req.session;
@@ -16,11 +17,7 @@ router.get("/", (req, res) => {
   } else {
     console.log("subsiy details:" + JSON.stringify(ssn));
 
-    res.set("X-Frame-Options", "DENY");
-    res.set("X-Content-Type-Options", "nosniff");
-    res.set("Content-Security-Policy", 'frame-ancestors "self"');
-    res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    utils.setSecurityHeaders(res, beis_url_accessmanagement);
 
     res.render("bulkupload/addsubsidyaward", {
       ssn,

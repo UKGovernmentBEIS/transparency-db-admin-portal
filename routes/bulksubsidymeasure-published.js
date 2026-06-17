@@ -8,6 +8,7 @@ const router = express.Router();
 
 const axios = require("axios");
 var request = require("request");
+const utils = require("../utils");
 
 router.post("/", async (req, res) => {
   ssn = req.session;
@@ -17,12 +18,7 @@ router.post("/", async (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
-    res.set("X-Frame-Options", "DENY");
-    res.set("X-Content-Type-Options", "nosniff");
-    res.set("Content-Security-Policy", 'frame-ancestors "self"');
-    res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-
+    utils.setSecurityHeaders(res, beis_url_publishing);
 
     console.log("request :" + JSON.stringify(data));
     console.log("SSN :" + JSON.stringify(ssn.UserPrincileObjectGlobal));

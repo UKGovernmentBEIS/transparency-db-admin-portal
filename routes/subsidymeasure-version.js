@@ -6,6 +6,7 @@ const express = require("express");
 var session = require("express-session");
 const router = express.Router();
 const axios = require("axios");
+const utils = require("../utils");
 
 router.get("/", async (req, res) => {
   ssn = req.session;
@@ -15,7 +16,7 @@ router.get("/", async (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    utils.setSecurityHeaders(res, beis_url_accessmanagement);
 
     console.log("scNumber: " + req.query.scNumber);
     console.log("version: " + req.query.version);

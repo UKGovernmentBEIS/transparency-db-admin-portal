@@ -8,6 +8,7 @@ const router = express.Router();
 
 const axios = require("axios");
 var request = require("request");
+const utils = require("../utils");
 
 router.get("/", async (req, res) => {
   ssn = req.session;
@@ -17,7 +18,7 @@ router.get("/", async (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    utils.setSecurityHeaders(res, beis_url_accessmanagement);
 
     if(req.query.hasOwnProperty("id")){
         mfaGroupingNumber = req.query.id;

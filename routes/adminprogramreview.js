@@ -7,7 +7,7 @@ var session = require("express-session");
 const axios = require("axios");
 const { ajaxTransport } = require("jquery");
 const router = express.Router();
-var utils = require("../utils");
+const utils = require("../utils");
 
 router.post("/", async (req, res) => {
   ssn = req.session;
@@ -17,11 +17,7 @@ router.post("/", async (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
-    res.set("X-Frame-Options", "DENY");
-    res.set("X-Content-Type-Options", "nosniff");
-    res.set("Content-Security-Policy", 'frame-ancestors "self"');
-    res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    utils.setSecurityHeaders(res, beis_url_accessmanagement);
 
     ssn.errors = [];
     ssn.focus = [];
@@ -258,11 +254,7 @@ router.get("/", (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
-    res.set("X-Frame-Options", "DENY");
-    res.set("X-Content-Type-Options", "nosniff");
-    res.set("Content-Security-Policy", 'frame-ancestors "self"');
-    res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    utils.setSecurityHeaders(res, beis_url_accessmanagement);
 
     res.render("admin-program/adminprogramreviewdetail");
   }

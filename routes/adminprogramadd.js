@@ -6,6 +6,7 @@ const express = require("express");
 var session = require("express-session");
 const axios = require("axios");
 const router = express.Router();
+const utils = require("../utils");
 
 router.get("/", async (req, res) => {
   ssn = req.session;
@@ -15,6 +16,8 @@ router.get("/", async (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
+    utils.setSecurityHeaders(res, beis_url_accessmanagement);
+
     if (!req.get('Referrer').includes("review")) {
       ssn.Admin_Program_Number_Global = "";
       ssn.Admin_Program_Name_Global = "";
@@ -84,12 +87,6 @@ router.get("/", async (req, res) => {
         } 
       }
     }
-
-    res.set("X-Frame-Options", "DENY");
-    res.set("X-Content-Type-Options", "nosniff");
-    res.set("Content-Security-Policy", 'frame-ancestors "self"');
-    res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
     res.render("admin-program/adminprogramadd", { 
       ssn,

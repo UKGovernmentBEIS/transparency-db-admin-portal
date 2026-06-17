@@ -4,6 +4,7 @@
 const express = require("express");
 var session = require("express-session");
 const router = express.Router();
+const utils = require("../utils");
 
 router.post("/", async (req, res) => {
   ssn = req.session;
@@ -13,6 +14,8 @@ router.post("/", async (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
+    utils.setSecurityHeaders(res, beis_url_accessmanagement);
+
     ssn.User_Role_Error = false;
     ssn.Email_Id_Error = false;
     ssn.GA_Error = false;
@@ -88,6 +91,7 @@ router.get("/", (req, res) => {
   ) {
     res.redirect("/signout");
   } else {
+    utils.setSecurityHeaders(res, beis_url_accessmanagement);
     res.render("bulkupload/user-review");
   }
 });

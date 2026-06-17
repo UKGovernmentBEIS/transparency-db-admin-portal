@@ -8,6 +8,7 @@ const router = express.Router();
 
 const axios = require("axios");
 var request = require("request");
+const utils = require("../utils");
 
 router.get("/", async (req, res) => {
   ssn = req.session;
@@ -18,11 +19,7 @@ router.get("/", async (req, res) => {
     res.redirect("/signout");
   } else {
     awardnumber = req.query.award;
-    res.set("X-Frame-Options", "DENY");
-    res.set("X-Content-Type-Options", "nosniff");
-    res.set("Content-Security-Policy", 'frame-ancestors "self"');
-    res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    utils.setSecurityHeaders(res, beis_url_accessmanagement);
     try {
       const awardapidata = await axios.get(
         beis_url_accessmanagement + "/searchResults/award/" + awardnumber,

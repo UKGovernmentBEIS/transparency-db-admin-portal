@@ -8,6 +8,7 @@ const router = express.Router();
 
 const request = require("request");
 const axios = require("axios");
+const utils = require("../utils");
 
 const FormData = require("form-data");
 const fs = require("fs");
@@ -25,11 +26,7 @@ router.get("/", (req, res) => {
     let isNotCsvOrExcel = false;
     let isExcelFormat = false;
 
-    res.set("X-Frame-Options", "DENY");
-    res.set("X-Content-Type-Options", "nosniff");
-    res.set("Content-Security-Policy", 'frame-ancestors "self"');
-    res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    utils.setSecurityHeaders(res, beis_url_accessmanagement);
 
     res.render("mfa/mfabulkuploadawards", {
       isFileUploadEmpty,
@@ -49,11 +46,7 @@ router.post("/", async (req, res) => {
   } else {
     let isFileUploadEmpty = false;
 
-    res.set("X-Frame-Options", "DENY");
-    res.set("X-Content-Type-Options", "nosniff");
-    res.set("Content-Security-Policy", 'frame-ancestors "self"');
-    res.set("Access-Control-Allow-Origin", beis_url_accessmanagement);
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    utils.setSecurityHeaders(res, beis_url_accessmanagement);
 
     console.log("formvalidationmfa");
     API_data_received = "no";
