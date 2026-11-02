@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
     console.log("edit user role", ssn.User_Role_Single);
     UserRole = "";
     if (ssn.User_Role_Single != "") {
-      if (ssn.User_Role_Single.includes("GrantingAuthority"))
+      if (ssn.User_Role_Single.includes("Granting Authority Administrator"))
         UserRole = "Granting Authority Administrators";
       else if (ssn.User_Role_Single.includes("BEIS"))
         UserRole = "BEIS Administrators";
