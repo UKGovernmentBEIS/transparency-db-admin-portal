@@ -188,6 +188,7 @@ router.post("/", async (req, res) => {
     } else {
       ssn.Subsidy_Full_Amount_Range_Global = "n/a";
     }
+
     ssn.National_ID_Type_Global = National_ID_Type;
     ssn.National_ID_Number_Global = National_ID_Number;
     ssn.Beneficiary_Name_Global = Beneficiary_Name;
@@ -205,6 +206,7 @@ router.post("/", async (req, res) => {
 
     ssn.Spending_Regions_Global = ssn.Spending_Regions_Selected_Global;
     ssn.Spending_Regions_JSON_Global = JSON.stringify(ssn.Spending_Regions_Global);
+
     ssn.Spending_Sector_Global = Spending_Sector;
     ssn.Subsidy_Award_Interest_Global = Subsidy_Award_Interest;
     ssn.SPEI_Global = SPEI;
@@ -219,7 +221,7 @@ router.post("/", async (req, res) => {
     console.log("buttonvalue", buttonvalue);
     var subsidyObjectiveArray = new Array();
 
-   if(objective_culture){
+    if(objective_culture){
       ssn.objective_culture_Global = objective_culture;
       subsidyObjectiveArray.push(objective_culture);
     }
@@ -266,7 +268,7 @@ router.post("/", async (req, res) => {
 
     if(objective_other){
       ssn.objective_other_Global = objective_other;
-      if (Subsidy_Objective_Other.length > 0) {
+      if(Subsidy_Objective_Other.length > 0){
         subsidyObjectiveArray.push("Other - " + Subsidy_Objective_Other.replace('Other -', ''));
       }
     }
@@ -314,10 +316,10 @@ router.post("/", async (req, res) => {
 
     // console.log("ssn.Legal_Granting_Date_Month_Global" + ssn.GetMonthName);
 
-    if(buttonvalue == "continue"){
+    if (buttonvalue == "continue") {
       //Empty field validations
       let schemeError = false;
-      if (!Standalone_Award) {
+      if(!Standalone_Award) {
         ssn.Standalone_Award_Error = true;
         ssn.SubsidyErrors[Additem] =
           "You must specify the standalone status of the subsidy award.";
@@ -363,7 +365,6 @@ router.post("/", async (req, res) => {
         ssn.SubsidyFocus[Additem] = "#Standalone_Award_Title";
         Additem = Additem + 1;
       }
-
       if(Standalone_Award == 'Yes' && Standalone_Award_Title.length > 255){
         ssn.Standalone_Award_Title_Error = true;
         ssn.SubsidyErrors[Additem] =
@@ -397,10 +398,10 @@ router.post("/", async (req, res) => {
       if(Legal_Basis.length > 5000){
         ssn.Legal_Basis_Error_Length = true;
         ssn.SubsidyErrors[Additem] =
-        "The legal basis must be 5000 characters or less.";
+          "The legal basis must be 5000 characters or less.";
         ssn.SubsidyFocus[Additem] = "#legal-basis-container";
         Additem = Additem + 1;
-      }
+    }
 
     if(Legal_Basis.length <= 0){
       ssn.Legal_Basis_Error = true;
@@ -495,7 +496,7 @@ router.post("/", async (req, res) => {
         Additem = Additem + 1;
       }
 
-      if(Subsidy_Instrument == "Tax measures (tax credit, or tax/duty exemption)"){
+      if (Subsidy_Instrument == "Tax measures (tax credit, or tax/duty exemption)"){
         if (!Subsidy_Full_Amount_Range_Lower || !Subsidy_Full_Amount_Range_Upper) {
           ssn.Subsidy_Full_Amount_Range_Error = true;
           ssn.SubsidyErrors[Additem] =
