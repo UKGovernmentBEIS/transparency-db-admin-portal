@@ -25,8 +25,8 @@ router.get("/", async (req, res) => {
     console.log("version: " + req.query.version);
     const scnumber = req.query.scNumber;
     const version = req.query.version;
-
     
+
     scNumber_Global = scnumber;
 
     const currentURI = req.protocol + '://' + req.get('host') + req.originalUrl;

@@ -365,6 +365,7 @@ router.post("/", async (req, res) => {
         ssn.SubsidyFocus[Additem] = "#Standalone_Award_Title";
         Additem = Additem + 1;
       }
+      
       if(Standalone_Award == 'Yes' && Standalone_Award_Title.length > 255){
         ssn.Standalone_Award_Title_Error = true;
         ssn.SubsidyErrors[Additem] =
