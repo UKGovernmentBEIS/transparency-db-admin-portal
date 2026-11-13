@@ -424,7 +424,7 @@ router.post("/", (req, res) => {
     console.log("ssn.purpose_energy_efficiency  :" + ssn.purpose_energy_efficiency_Global)
     console.log("ssn.purpose_environmental_protection  :" + ssn.purpose_environmental_protection_Global)
     console.log("ssn.purpose_infrastructure  :" + ssn.purpose_infrastructure_Global)
-    console.log("ssn.purpose_regional_devlopment  :" + ssn.purpose_regional_devlopment_Global)
+    console.log("ssn.purpose_regional_development  :" + ssn.purpose_regional_development_Global)
     console.log("ssn.purpose_rescue_subsidy  :" + ssn.purpose_rescue_subsidy_Global)
     console.log("ssn.purpose_research_and_development  :" + ssn.purpose_research_and_development_Global)
     console.log("ssn.purpose_training  :" + ssn.purpose_training_Global)
